@@ -35,6 +35,9 @@ import be.sportgreenmoove.app.design.SgmGridTexture
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.domain.createTripPublishDraft
+import be.sportgreenmoove.app.domain.TripPriceValidationMessage
+import be.sportgreenmoove.app.domain.publicationPriceCents
+import be.sportgreenmoove.app.domain.publicationPriceLabel
 import be.sportgreenmoove.app.services.FirebaseGateway
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -108,7 +111,10 @@ fun PublishScreen(
                     onDepartureIso = { departureIso = it },
                     childTracking = childTracking,
                     onChildTracking = { childTracking = !childTracking },
-                    onNext = { step = 3 },
+                    onNext = {
+                        if (publicationPriceCents(price) == null) onError(TripPriceValidationMessage)
+                        else step = 3
+                    },
                 )
 
                 else -> PublishStepThree(
@@ -123,7 +129,9 @@ fun PublishScreen(
                     loading = controller.loading,
                     onPublish = {
                         val club = publishClub
-                        if (club == null) {
+                        if (publicationPriceCents(price) == null) {
+                            onError(TripPriceValidationMessage)
+                        } else if (club == null) {
                             onError("Associez votre compte à un club avant de publier un trajet.")
                         } else {
                             controller.publish(
@@ -244,7 +252,7 @@ private fun PublishStepThree(from: String, to: String, seats: Int, frequency: St
             Text("FOOTBALL · $category", style = SgmType.DisplayLG.copy(color = SgmColor.TextOnGreen, fontSize = 18.sp, letterSpacing = 0.04.em))
         }
         Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            listOf("Club" to clubName, "Départ" to (from.ifBlank { "—" }), "Destination" to (to.ifBlank { "—" }), "Places" to seats.toString(), "Fréquence" to frequency, "Aller-retour" to if (returnTrip) "Oui" else "Non", "Prix" to (if (price.isNotBlank()) "$price€" else "Gratuit")).forEach { (label, value) ->
+            listOf("Club" to clubName, "Départ" to (from.ifBlank { "—" }), "Destination" to (to.ifBlank { "—" }), "Places" to seats.toString(), "Fréquence" to frequency, "Aller-retour" to if (returnTrip) "Oui" else "Non", "Prix" to publicationPriceLabel(price)).forEach { (label, value) ->
                 PublishSummaryRow(label, value)
             }
         }

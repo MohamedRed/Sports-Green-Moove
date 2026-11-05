@@ -67,7 +67,7 @@ struct PublishScreen: View {
                 seats: $seats,
                 frequency: $frequency,
                 price: $price,
-                onNext: { step = 3 }
+                onNext: nextFromDetails
             )
         default:
             PublishConfirmStep(
@@ -94,9 +94,13 @@ struct PublishScreen: View {
     }
 
     private func publish() {
+        guard let priceCents = TripPublicationPrice.cents(price) else {
+            appState.errorMessage = TripPublicationPrice.validationMessage
+            return
+        }
         Task {
             await controller.publish(
-                draft: makeDraft(),
+                draft: makeDraft(priceCents: priceCents),
                 firebase: appState.firebase,
                 onNotice: { appState.noticeMessage = $0 },
                 onError: setError,
@@ -105,7 +109,15 @@ struct PublishScreen: View {
         }
     }
 
-    private func makeDraft() -> TripPublishDraft? {
+    private func nextFromDetails() {
+        guard TripPublicationPrice.cents(price) != nil else {
+            appState.errorMessage = TripPublicationPrice.validationMessage
+            return
+        }
+        step = 3
+    }
+
+    private func makeDraft(priceCents: Int) -> TripPublishDraft? {
         guard let origin = controller.origin, let destination = controller.destination else { return nil }
         return TripPublishDraft(
             title: "U8 Nationaux vs Royal Ottignies SC",
@@ -123,7 +135,7 @@ struct PublishScreen: View {
             seatsAvailable: seats,
             baggage: "medium",
             returnTrip: returnTrip,
-            priceCents: parsePriceCents(price),
+            priceCents: priceCents,
             supportsVehicleTracking: true,
             supportsChildTracking: childTracking,
             co2SavedKgEstimate: 4.2
@@ -133,13 +145,6 @@ struct PublishScreen: View {
     private func setError(_ message: String?) {
         appState.errorMessage = message
     }
-}
-
-private func parsePriceCents(_ value: String) -> Int {
-    let normalized = value.replacingOccurrences(of: ",", with: ".")
-        .trimmingCharacters(in: .whitespacesAndNewlines)
-    let amount = Double(normalized) ?? 0
-    return max(0, Int(amount * 100))
 }
 
 private extension PublishScreen {

@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+Publication price validation now retains actual negative reproductions: 0.29
+becomes 28 cents and nonfinite input traps on iPhone; Android accepts invalid text
+as a zero-price draft. Exact bounded decimal parsing replaces both floating-point
+paths, with explicit errors before confirmation/publication and matching summaries.
+Both languages pass all 100001 supported cent values; full local native checks
+and 846 Android JVM cases pass. Blank publication input remains free; blank trip
+editing remains invalid. Publish a short local-only price note, no new media,
+changed prior flows/statuses/dates/tours/blockers or release acceptance. No
+commission, membership, team authority, network or notification policy changes.
+Native screen checks for this source and complete publication remain pending.
+See `docs/release/evidence/publication-price-2026-11-05/`.
+
 The later 6e89 ARM gate finishes normally in under 25 minutes, with SDK success,
 nine passing and two failing iPhone cases (four assertion failures). Disposal
 succeeds and artifacts remain empty. The personal emergency-contact case passes

@@ -77,7 +77,7 @@ struct PublishConfirmStep: View {
                 summary("Places", "\(seats)")
                 summary("Fréquence", frequency)
                 summary("Aller-retour", returnTrip ? "Oui" : "Non")
-                summary("Prix", price.isEmpty ? "Gratuit" : "\(price)€")
+                summary("Prix", TripPublicationPrice.label(price))
             }
             .padding(14)
         }

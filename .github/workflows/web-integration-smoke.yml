@@ -4,6 +4,11 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/publication-price-input.test.mjs"
+      - "scripts/qa/check-publication-price.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripPriceInput.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/PublishDraftFactory.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/PublishScreen.kt"
       - "tests/chat-source-access*.test.*"
       - "tests/ios-current-fixture-result.test.mjs"
       - "tests/ios-input-controls.test.mjs"
@@ -693,6 +698,11 @@ on:
     branches:
       - main
     paths:
+      - "tests/publication-price-input.test.mjs"
+      - "scripts/qa/check-publication-price.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripPriceInput.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/PublishDraftFactory.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/PublishScreen.kt"
       - "tests/chat-source-access*.test.*"
       - "tests/ios-current-fixture-result.test.mjs"
       - "tests/ios-input-controls.test.mjs"
@@ -1709,6 +1719,9 @@ jobs:
 
       - name: Verify iPhone search-to-booking contract without provider calls
         run: node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs
+
+      - name: Verify exact publication price input
+        run: node scripts/qa/check-publication-price.mjs && node --test tests/publication-price-input.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

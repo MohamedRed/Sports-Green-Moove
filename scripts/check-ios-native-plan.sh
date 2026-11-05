@@ -113,6 +113,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TripPublishDraft.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TripPublicationPrice.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PublishController.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/NativePlanPolicies.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MapRoutePolyline.swift" \
@@ -165,6 +166,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PublishOwnershipChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TripPublicationPriceChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AccountWorkChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PublishBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ProfileInitializationProbe.swift" \

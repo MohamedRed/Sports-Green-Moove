@@ -1,0 +1,5432 @@
+[
+  {
+    "name": "be.sportgreenmoove.app.data.BookingIntentSnapshotTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.850Z",
+    "cases": [
+      {
+        "name": "knownMalformedFieldsCannotBecomeDefaultedBookingTerms",
+        "seconds": 0.026,
+        "status": "passed"
+      },
+      {
+        "name": "callableAndDocumentMappersPreserveExactlyTheSameOperationalSnapshot",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "nullableContextIsNotInventedAndMissingRequiredDetailsRemainUnbookable",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "mappingCopiesMutableInputRatherThanKeepingAReferenceToItsLatestValues",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.design.SgmAccentContrastTest",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.917Z",
+    "cases": [
+      {
+        "name": "roleMeetsItsContrastThreshold[light-accent-text-app]",
+        "seconds": 0.012,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[light-accent-text-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[light-accent-text-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[light-accent-text-elevated]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[light-accent-text-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[dark-accent-text-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[dark-accent-text-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[dark-accent-text-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[dark-accent-text-elevated]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[dark-accent-text-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-green-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-orange-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-green-light-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-orange-light-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-green-icon]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[on-orange-icon]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[hero-start-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[hero-end-text]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[material-light-primary]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "roleMeetsItsContrastThreshold[material-dark-primary]",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.design.SgmFeedbackContrastTest",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.936Z",
+    "cases": [
+      {
+        "name": "feedbackRemainsReadable[light-runtime-info]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-runtime-warning]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-live-pill]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-stale-pill]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-stale-entry-heading]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-stale-entry-update]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-stale-monitor-warning]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-review-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-rating-action]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-on-material-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-material-error-app]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-material-error-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-material-error-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-material-error-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[light-material-error-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-runtime-info]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-runtime-warning]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-live-pill]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-stale-pill]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-stale-entry-heading]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-stale-entry-update]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-stale-monitor-warning]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-review-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-rating-action]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-on-material-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-material-error-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-material-error-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-material-error-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-material-error-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "feedbackRemainsReadable[dark-material-error-input]",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.944Z",
+    "cases": [
+      {
+        "name": "formFeedbackRemainsReadable[light-auth]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[light-search]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[light-chat-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[light-chat-limit]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[light-chat-sending]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[dark-auth]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[dark-search]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[dark-chat-error]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[dark-chat-limit]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "formFeedbackRemainsReadable[dark-chat-sending]",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.design.SgmTextContrastTest",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.950Z",
+    "cases": [
+      {
+        "name": "normalTextMeetsMinimumContrast[light-primary-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-primary-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-primary-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-primary-elevated]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-primary-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-secondary-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-secondary-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-secondary-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-secondary-elevated]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-secondary-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-muted-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-muted-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-muted-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-muted-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[light-muted-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-primary-app]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-primary-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-primary-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-primary-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-primary-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-secondary-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-secondary-surface]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-secondary-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-secondary-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-secondary-input]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-muted-app]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-muted-surface]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-muted-card]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-muted-elevated]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "normalTextMeetsMinimumContrast[dark-muted-input]",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.AuthFormPolicyTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.956Z",
+    "cases": [
+      {
+        "name": "loginValidationNormalizesEmailAndPassword",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "signupRequiresNameValidEmailAndStrongPassword",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unknownAuthErrorsUseGenericRetryMessage",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "firebaseCredentialErrorsDoNotLeakRawMessages",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.ClubMembershipStateTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.962Z",
+    "cases": [
+      {
+        "name": "requestedMembershipIsPendingButNotActiveMember",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "rejectedInactiveAndMissingStatusesCannotBecomeMembersThroughTheirRoleLabel",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "activeRoleIsMember",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.966Z",
+    "cases": [
+      {
+        "name": "staleEarlierResponsesCannotReplaceANewerPreviewOrReadCount",
+        "seconds": 0.007,
+        "status": "passed"
+      },
+      {
+        "name": "olderConversationsSurviveLiveHeadUpdatesAndAreNotDuplicated",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aCompleteServerSnapshotRemovesEntriesNoLongerPresentWithoutRegressingRevisions",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "burstsBiggerThanTheLiveWindowCanBePagedUntilTheOldCoverageIsReached",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.ConversationSourceAccessTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:56.976Z",
+    "cases": [
+      {
+        "name": "cancellingTheCollectorDisposesBothOwnedFlows",
+        "seconds": 0.083,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationDoesNotRemoveParticipantsButDeletionDoes",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "parentTakesPrecedenceOverTheRetainedRequester",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "currentRideDriverParticipantAndChildAreRequired",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "waitsForSourceThenRevokesWithoutAnotherMessageAndDisposesTheMessageListener",
+        "seconds": 0.008,
+        "status": "passed"
+      },
+      {
+        "name": "initialRevocationCannotOpenTheMessageListener",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.ConversationTimelineTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.072Z",
+    "cases": [
+      {
+        "name": "aBurstLargerThanTheLiveWindowCanBeLoadedWithoutLosingOlderHistory",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "earlierPagesAndReadUpdatesKeepOneOrderedCopyOfEveryMessage",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "equalTimestampMessagesUseNanosecondsAndStableDocumentIdOrder",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.MapRoutePolylineTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.077Z",
+    "cases": [
+      {
+        "name": "decodesGoogleEncodedPolyline",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "fallsBackToEndpointsWhenPolylineIsMissing",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.NativePlanPoliciesTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.081Z",
+    "cases": [
+      {
+        "name": "locationBatchPayloadUsesCloudFunctionContract",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "co2RewardsAndLedgerMathMatchBackendContract",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripStateUsesDepartureTimeOnly",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "activeRideRequiresAllRuntimePermissions",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "matchingScoreRewardsTrackedSameTeamRides",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "matchingScoreAppliesExplicitDetourAndPickupCaps",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.PublishDraftFactoryTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.087Z",
+    "cases": [
+      {
+        "name": "draftRequiresResolvedPlaces",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "invalidPublicationPriceCannotBecomeAFreeTripOrCrash",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "publicationPreservesExactCentsAndExplicitlyEmptyFreePrice",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "draftUsesMemberClubContextInsteadOfStaticClubData",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.RideAccessPolicyTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.095Z",
+    "cases": [
+      {
+        "name": "onlyTheAuthenticatedOwnerInDriverModeHasControls",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.RideObservationAgeTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.097Z",
+    "cases": [
+      {
+        "name": "elapsedOverflowCannotMakeAnOldPositionFresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "unknownAndMissingPointsAreDistinctAndNeverFresh",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "childAgeContinuesWithoutInventingAChildDevice",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingProtocolAndBackwardsMonotonicClockAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.RidePaymentVerificationTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.100Z",
+    "cases": [
+      {
+        "name": "bindsCheckoutToExactOwnerBookingAndFrozenAmount",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "acceptsOnlyExplicitServerStatesForTheSameAttempt",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.TripCalendarTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.105Z",
+    "cases": [
+      {
+        "name": "defaultCalendarMonthUsesBelgianDepartureRegardlessOfDeviceZone",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "missingOrInvalidDatesAreNotInvented",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "filtersByLocalDepartureMonthIncludingYearBoundary",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "navigationFixtureMonthMatchesBelgianCalendarAtUtcMonthAndYearBoundaries",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.TripPriceInputTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.114Z",
+    "cases": [
+      {
+        "name": "malformedPricesAreRejectedInsteadOfLabelledAsFree",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "everySupportedCentAmountRoundTripsExactly",
+        "seconds": 0.126,
+        "status": "passed"
+      },
+      {
+        "name": "publicationSummaryUsesTheSameExactCentsAsThePayload",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripEditingStillRequiresAnExplicitPrice",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.domain.UserFacingErrorPolicyTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.242Z",
+    "cases": [
+      {
+        "name": "aChangedBookingGetsAnActionableMessageWithoutProviderDetails",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "mapsDriverVerificationPrecondition",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "mapsMissingParentRoleToActionableMessage",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anUnconfirmedBookingReplyDoesNotClaimTheServerRejectedTheRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "mapsUnknownFailuresToGenericRetry",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ActiveRideLifecycleTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.247Z",
+    "cases": [
+      {
+        "name": "matchingServerConfirmedDriverRemainsActive",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "oldTerminalCallbackCannotAffectANewRideOrAuthenticationSession",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "completedCancelledMissingAndMalformedServerRidesStopTracking",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "driverReplacementAndChildRemovalStopTracking",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "cachedActiveOrTerminalStateCannotAuthorizeOrTerminateTheCurrentLease",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "matchingServerConfirmedChildRemainsActive",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.250Z",
+    "cases": [
+      {
+        "name": "logoutAndReloginToTheSameUidCannotReviveAnOldLeaseOrPendingIntent",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "replacingTheRideInvalidatesAlreadyQueuedBatches",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "signedOutCallbacksAreRejectedBeforeTheAuthListenerRuns",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anotherAccountCannotUseThePreviousDriverLease",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "clearingAServiceCannotBeUndoneByAnOldQueuedBatch",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "noImplicitDriverOrAnonymousOrParentTrackingIsAccepted",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "childTrackingStillRequiresItsOwnCurrentIdentity",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "sameAuthorizedStartIsIdempotent",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ActiveRideResumeTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.255Z",
+    "cases": [
+      {
+        "name": "aDifferentAuthenticatedAccountCannotResumeTheOldDriver",
+        "seconds": 0.012,
+        "status": "passed"
+      },
+      {
+        "name": "ownExistingRideResumesTrackingWithoutCreatingAnotherRide",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aParentCannotResumeDriverSensors",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anAccountSwitchDuringTheRideReadCannotStartSensors",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anAccountSwitchDuringTheLocationWriteCannotReturnAStaleRide",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingChangedOrForeignRidesCannotStartSensors",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.BookingIntentMappingTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.270Z",
+    "cases": [
+      {
+        "name": "publishedAndSearchResultsCarryTheirDisplayedTermsIntoTheRequest",
+        "seconds": 0.017,
+        "status": "passed"
+      },
+      {
+        "name": "aPreviewWithoutValidTermsCannotBeSilentlyRequotedAtDispatch",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "existingTimestampAndDateDocumentsRemainBookable",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "inconsistentResultIdentityFailsRatherThanBookingAnotherTrip",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.BookingRequestCoordinatorTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.291Z",
+    "cases": [
+      {
+        "name": "failedResolutionKeepsTheOldIdentityAndDoesNotSubmitChangedDetails",
+        "seconds": 0.006,
+        "status": "passed"
+      },
+      {
+        "name": "aLateAcknowledgementCannotRemoveADifferentPendingOperation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aCommittedOldIntentDoesNotSilentlySendTheChangedSelection",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "accountsHaveSeparateIdentitiesAndAChangedAccountCannotAcknowledgeAnOldRequest",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aCachedIdentityAfterFailedDiskWriteCannotBypassDurabilityOnRetry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anAcknowledgedNewExplicitOperationReceivesANewIdentity",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aRecoveredClosedBookingDoesNotPretendANewRequestWasSent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "storageFailurePreventsAnyNetworkSubmission",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aLostReplySurvivesGatewayRecreationAndRetainsSeatsChildAndTerms",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "malformedOrMismatchedAcknowledgementsCannotClearThePendingIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "changedDetailsResolveTheOldAttemptBeforeCreatingANewOne",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.BookingRequestPayloadTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.307Z",
+    "cases": [
+      {
+        "name": "aChildlessRequestDoesNotInventAChild",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidCapacityOrIdentifiersFailBeforeDispatch",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLaterTripObjectCannotReplaceThePreviouslyDisplayedSnapshot",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "theSelectedSeatCountAndChildAreSentUnchanged",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingOrInvalidDisplayedTermsCannotBeDispatched",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ChildRideEmergencyWireTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.308Z",
+    "cases": [
+      {
+        "name": "unsafeVersionsAndUnversionedContactsAreRejected",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "exactChildAndRideBindingsAreRequired",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingContactAndMalformedNumberAreNotInterpretedAsAbsence",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "discoveryRequiresTheCurrentAccountAndAnExplicitCurrentField",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ConversationDirectoryMappersTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.312Z",
+    "cases": [
+      {
+        "name": "parsesAllFiveBookingStatusesInTheSamePageIncludingDeclined",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "parsesFullUnreadCountsAndActualTripContext",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "rejectsMalformedResponsesInsteadOfInventingAnEmptyInboxOrDefaultOwner",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.EmergencyContactWireTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.316Z",
+    "cases": [
+      {
+        "name": "childViewsRequireTheExactClubImmutableIdentityAndTransactionBoundNames",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "payloadsNeverAcceptAnotherOwnerAndRemovalIsNotOmitted",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "malformedNamesNumbersAndControlCharactersNeverBecomeADialDestination",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingNullAndRemovedContactsHaveExplicitSafeVersions",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "adultViewsAndWritesCannotCarryUnrelatedChildPrivateMetadata",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unsafeMissingFractionalAndOutOfRangeVersionsAreNotCoerced",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "childReceiptsCannotAcknowledgeAnotherProfileOrClub",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anotherOwnerKindOrSubjectIsRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aReceiptRequiresTheExactScopeANewerVersionAndExplicitReplayFlag",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.GuardianVerificationWireTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.322Z",
+    "cases": [
+      {
+        "name": "receiptIdentityAndRevisionCannotConfirmAnotherOrUnadvancedRequest",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "absentVerificationRequiresExplicitNullAndZeroRevision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "foreignOwnershipManagerActionsAndMalformedVersionsAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "optionalCurrentIdentityStaysMissingInsteadOfInventingAName",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "pagesAreBoundedAndRequireExplicitCursorState",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.InitializedAuthProfileWireTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.327Z",
+    "cases": [
+      {
+        "name": "childAndAdultRoleCombinationsAreRejectedRatherThanPartiallyParsed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aChildRemainsAChildWithoutAnAdultDefault",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingContradictoryAndUnrecognizedRoleFlagsCannotOverrideTheRoleList",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingEmptyUnknownDuplicatedOrNonStringRolesCannotBecomeParent",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "everySupportedAdultRoleAndLegitimateAdultCombinationIsPreserved",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingOrUnrelatedAccountProfilesAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.LedgerSummaryWireTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.330Z",
+    "cases": [
+      {
+        "name": "completeTotalsAreNotRecomputedFromEightHistoryEntries",
+        "seconds": 0.008,
+        "status": "passed"
+      },
+      {
+        "name": "foreignAndMalformedTotalsAreRejectedInsteadOfReplacingThemWithZero",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unboundedDuplicateUnknownAndUnsortedHistoryIsRejected",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "emptyLedgerIsExplicitAndIntegerMinimumDoesNotOverflowFormatting",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.MembershipPageTokenTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.340Z",
+    "cases": [
+      {
+        "name": "guardianAndTeamPagesKeepLongEntityIdsAndTheSameContinuationToken",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "explicitNullIsTheOnlyEmptyPageMarker",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "longOpaqueTokensAreKeptExactlyWithoutAnyClientSideScopeOrIdentityRewrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "oversizedPaddedAndNonAsciiTokensAreRejectedNotTruncated",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.NativeCaptureClockTest",
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.346Z",
+    "cases": [
+      {
+        "name": "aDelayedCalibrationCannotRetroactivelyChangeAFixAssignedByAnotherCallback",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aSlowResponseDoesNotPermanentlyPoisonTrackingAfterNetworkRecovery",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "oldAndDuplicateRepliesCannotReplaceTheNewestRequestReference",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLowerReferenceCorrectsTheMappingWithoutRejuvenatingDelayedFixes",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLaterFasterResponseCannotMakeAnOldFixLookNewer",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "subMillisecondAgesRoundDownRatherThanInventingAFutureCapture",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "startupHandoffPreservesEveryCaptureEpochInsteadOfReanchoringCachedFixes",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aReplyFromBeforeTheCurrentAnchorCannotMoveIt",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFixBeforeTheResponseKeepsItsRealElapsedAge",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "networkDelayRemainsConservativeInsteadOfBeingAddedToTheFix",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "zeroNegativeOrFutureSensorTimesAreRejected",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aResetMonotonicCounterCannotReuseTheOldProcessReference",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "malformedClockHistoryCannotCrossTheServiceBoundary",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "manyCalibrationsNeverMakeTheSameDelayedCaptureYounger",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "invalidReferenceIntervalsAndOutOfRangeCaptureResultsFailClosed",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "integerCallableNumbersAreAcceptedWithoutChangingTheirTime",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFixAfterTheReferenceAdvancesWithoutReadingAWallClock",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "malformedOrMissingServerTimeIsNotADeviceClockFallback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "fractionalOffsetChangesCannotRejuvenateAFixByOneMillisecond",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidCalibrationDoesNotMutateTheLastTrustedMapping",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "boundedHistoryRejectsEvictedFixesRatherThanGivingThemANewCaptureTime",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.354Z",
+    "cases": [
+      {
+        "name": "contradictoryFractionalOrUnboundedCountsAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anAuthenticatedRetainedPositionDoesNotNeedAnotherCommitToStartTracking",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "mismatchedIdentityAndCaptureAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anOldServerCountAloneIsNotAnAcknowledgement",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "ignoredInvalidCaptureCannotMasqueradeAsARetainedPoint",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSingleStartupPointCannotAcceptAnEmptyOrMultiPointResponse",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.NotificationInboxWireTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.356Z",
+    "cases": [
+      {
+        "name": "currentAccountGetsExactlyTheAuthoritativeRowsIncludingConfirmedEmpty",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "foreignMissingExtraOrMalformedMetadataIsRejectedRatherThanInventedEmpty",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.NotificationReadReceiptTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.357Z",
+    "cases": [
+      {
+        "name": "rejectsMissingWrongOwnerWrongNoticeAndUnconfirmedReceipts",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acceptsOnlyTheExactConfirmedOwnerAndNotice",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.PendingReviewParserTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.358Z",
+    "cases": [
+      {
+        "name": "rejectsWrongOwnerMissingCursorMalformedRowsDuplicatesAndUnknownFields",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "parsesEmptyContinuationAndTerminalPagesSeparately",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ProfileCityWireTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.361Z",
+    "cases": [
+      {
+        "name": "rejectsFractionalNonfiniteAndUnsafeVersions",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "rejectsForeignMissingExtraAndMalformedFields",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "parsesAnExplicitAbsentCityAndExactSavedRevision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "normalizesUnicodeAndRejectsControlsInsteadOfSilentlyRemovingThem",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.366Z",
+    "cases": [
+      {
+        "name": "cancelledDeletionAwaitCannotDeleteATokenFetchedForTheNextOwner",
+        "seconds": 0.009,
+        "status": "passed"
+      },
+      {
+        "name": "cancelledTokenAwaitDoesNotAllowDeletionToOvertakeItsActualSdkCompletion",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aTerminalSdkFailureIsReportedAndOnlyALaterExplicitOperationCanProceed",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ReceivedRatingsParserTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.379Z",
+    "cases": [
+      {
+        "name": "emptyAndPopulatedResponsesRemainDistinct",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "invalidCountsAndAveragesAreNeverRepairedOrClamped",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anotherAccountsSummaryAndUnexpectedFieldsAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ReservationPayloadsTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.381Z",
+    "cases": [
+      {
+        "name": "missingFieldsDoNotInventRequestedStatusOrOneSeat",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "invalidCapabilitiesCountsAndPagingFailExplicitly",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "decodesTheActualSeatCountStatusAndCapabilities",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.ReviewTripContextParserTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.386Z",
+    "cases": [
+      {
+        "name": "parsesTheActualContextWithoutChangingItsDateOrTitle",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acceptsExplicitUnavailableStateButNeverMissingMalformedOrPartialDetails",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "parsesTheSameContextFromInboxAndContinuationWithoutAcceptingAnotherReviewOwner",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.RideObservationTraceTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.388Z",
+    "cases": [
+      {
+        "name": "onlyEnumeratedEventsAndConnectionFlagsAreRecorded",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "eachObserverHasADistinctIdentityWithoutAccountOrRideIdentifiers",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "connectionValueCannotBeAttachedToAnotherEvent",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.RideObservationWireTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.395Z",
+    "cases": [
+      {
+        "name": "invalidAgesAndUnknownSourcesAreNotGuessed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "readsStructuredServerAgesWithoutReadingThePhoneClock",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anAbsentProtocolRemainsExplicitlyAbsentForTheObserverToRefuse",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.RidePaymentCoordinatorTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.396Z",
+    "cases": [
+      {
+        "name": "completedCheckoutStaysPendingUntilTheServerRecordsItWithoutAnotherCharge",
+        "seconds": 0.016,
+        "status": "passed"
+      },
+      {
+        "name": "readFailureKeepsAnExplicitReadOnlyRetry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "switchingAccountsDuringPreparationCannotOpenCheckoutForTheNextUser",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "lateCheckoutCallbackCannotConfirmAnotherAccount",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "refreshFailureCannotChangeARecordedPaymentBackToUnconfirmed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "repeatedTapsDuringAReadNeverPrepareAnotherPayment",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "switchingAccountsDuringTheStatusReadIgnoresTheOldResult",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingCheckoutDoesNotClaimProviderCancellationOrSuccess",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.StripeConnectCoordinatorTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.417Z",
+    "cases": [
+      {
+        "name": "successOpensOnceWithoutClaimingThatVerificationOrPayoutFinished",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "configurationErrorsNeverExposeProviderDetails",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "changedAccountAfterAccountCreationCannotRequestALink",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "invalidLinksAndBrowserFailureDoNotReportSuccess",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "staleProviderErrorsCannotAppearForAnotherAccount",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancelledWorkReleasesBusyWithoutPublishingAnError",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "signOutWhileLinkLoadsCannotOpenIt",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "changedRoleWhileLinkLoadsCannotOpenIt",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "unavailableConfigurationAndExistingPaymentPreventProviderCalls",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "incompleteOrNonDriverIdentityNeverCallsTheProvider",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "repeatedTapsCannotStartAnotherAccountOrLink",
+        "seconds": 0.004,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.SupportCallTraceTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.437Z",
+    "cases": [
+      {
+        "name": "disabledTraceDoesNotInspectOrRecordAnOperation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anExplicitSecondSdkCallKeepsTheOperationButHasAnotherCallNumber",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "oneSdkCallHasOneStartAndOneTerminalEvenIfTheObserverIsRepeated",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "enabledTraceRejectsAnythingOtherThanAnImmutableUuidBeforeLogging",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationHasOnlyItsBoundedOutcome",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.SupportSubmissionStoreTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.444Z",
+    "cases": [
+      {
+        "name": "corruptedOrForeignStoredContentFailsClosed",
+        "seconds": 0.022,
+        "status": "passed"
+      },
+      {
+        "name": "failedWriteDoesNotCreateAnInMemoryReplacementIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "receiptMustMatchAccountIdentityStatusAndShape",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "persistenceIsAccountScopedAndStaleAcknowledgeCannotClearIt",
+        "seconds": 0.004,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.SupportWireTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.472Z",
+    "cases": [
+      {
+        "name": "responseAndStatusAreDecodedWithoutPrivateMetadata",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "malformedNumbersStatusesRepliesAndPagesAreRejected",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamConversationWireTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.477Z",
+    "cases": [
+      {
+        "name": "malformedMessagesAndDuplicateOrUnorderedPagesAreRejected",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "optionsBindCurrentAccountClubModeAndImmutableTeamIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "readFlagsAndReceiptsCannotInventAnotherAccountOrWindow",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anotherAccountTeamOrHistoryPolicyCannotProduceMessages",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "responseBindsAccountTeamHistoryAndMessageRequestIdentity",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSendReceiptCannotConfirmAnotherAccountOrTeam",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamEnrollmentHistoryWireTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.481Z",
+    "cases": [
+      {
+        "name": "historyNeverCreatesAnEmptyRequestOrExposesRequestApprovalCapabilities",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anIneligibleChildCannotExposeANameOrApprovedWithdrawal",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anOwnedAdultCanReviewWithdrawalWithoutCurrentClubEligibilityOrLabels",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "historyCannotDecodeAnotherRequestingAccountOrAnUnexpectedRecordIdentity",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "theRequestingParentCanWithdrawAPendingRedactedChildRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closedHistoryHasNoActionAndMalformedRevisionsRemainErrors",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamEnrollmentWireTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.486Z",
+    "cases": [
+      {
+        "name": "malformedOwnershipIdentityVersionAndCapabilityNeverProduceAConfirmedView",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "receiptsMustAdvanceThisExactEnrollmentIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "selfAndChildResponsesBindExactTargetAndSeparateStatusFromEligibility",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "requestPayloadCarriesOnlyViewedIdentityVersionAndOperationId",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushAlertTest",
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.488Z",
+    "cases": [
+      {
+        "name": "proofOnlyLeavesTheJournalInTheStrictCallableRequestAndNeverInDiagnosticStrings",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "permissionWithdrawalImmediatelyPersistsOneRemovalWithoutSigningTheUserOut",
+        "seconds": 0.01,
+        "status": "passed"
+      },
+      {
+        "name": "suppressedAlertHasNoEffectAndDoesNotModifyTheRegistration",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "signoutInvalidatesAuthorityBeforeThePlatformNotificationCleanupHook",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "tokenRefreshIsSerializedBehindResolutionAndDoesNotInvalidateTheNextTapEpoch",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "permissionWithdrawalDuringResolutionRejectsTheReceiptBeforeDisplay",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "currentConfirmedDeviceResolvesAndConsumesOnlyAfterTheActualServerResult",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "malformedRequestsCannotCarryArbitraryIdentifiersOrEpochs",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "permissionRemovalAndUnconfirmedRegistrationNeverResolve",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "signoutWhileResolvingCannotDisplayOrOpenAnEarlierResult",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "reenablingNotificationsNeedsNewTokenConfirmationButKeepsTheCurrentAccountEpoch",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anotherAccountAndReturnToTheSameAccountCannotReuseAnEarlierEpoch",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "onlyGenericCopyAndTheExactOpaqueAlertCanBecomeATeamTarget",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushJournalTest",
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.526Z",
+    "cases": [
+      {
+        "name": "invalidAccountIdentifiersNeverCreateOrChangeAnInstallation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aCallbackCannotReactivateAnAlreadyAcknowledgedRevision",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "malformedOrForeignAcknowledgementsNeverConfirmThePendingRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "laterTokenRetrievalWinsAndAnOlderCallbackCannotReplaceIt",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "exhaustedCountersCannotWrapOrReinitializeTheInstallation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "confirmedRegistrationRequiresAnActualMatchingAcknowledgement",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unconfirmedRequestsSurviveReconstructionWithoutAllocatingAnotherRevision",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "removalSurvivesLogoutButCannotBeSentWithAnotherAccount",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidTokensDoNotReplaceTheCurrentPendingCommandAndSensitiveObjectsAreRedacted",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "returningToTheSameAccountDoesNotAcceptItsEarlierSessionCallback",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anOlderDeletionCompletionCannotClearANewerDeletionBarrier",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "duplicateCallbacksCannotChangeThePayloadOfAnAlreadyPersistedRevision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedDurableWriteDoesNotPublishAnUnpersistedCommandOrAdvanceTheCounter",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "delayedRemovalCannotAcknowledgeOrClearTheNewOwnersActivation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "accountSwitchDropsAnOldActivationAndRequiresProviderTokenDeletion",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushLifecycleTest",
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.536Z",
+    "cases": [
+      {
+        "name": "signoutBlocksReactivationEvenBeforeFirebaseHasClearedItsCurrentUser",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "signedOutInstallationsNeverGenerateAToken",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "returningToTheSameAccountCannotConsumeThePriorSessionsTokenCallback",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "losingAdultEligibilityRemovesAnAlreadyConfirmedBinding",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aTokenRetrievalFinishingAfterAnAccountChangeCannotCreateAPendingCommand",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFailedCallableCannotManufactureAConfirmedRegistration",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "tokenRefreshUsesANewerRevisionAndConfirmsOnlyTheNewToken",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "missingOrMixedChildClaimsNeverBecomeAnAdultRegistration",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "deniedPermissionRemovesOnlyThisInstallationAndDeletesTheProviderToken",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aLostActivationResponseRetriesThePersistedCommandBeforeAnyNewTokenRetrieval",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anOfflineLogoutDoesNotReplayThePreviousOwnersRemovalAsTheNextUser",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aStaleSdkDeletionCompletionCannotUnlockANewerAccount",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "signoutDuringTokenRetrievalCannotBindTheOldSession",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aLostRemovalResponseStillDeletesTheTokenAndRetainsTheExactRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "childOrUninitializedClaimsDoNotAcquireAToken",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aServerAcknowledgementFinishingAfterAnAccountChangeCannotConfirmTheOldAccount",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aGrantedAdultRegistersAndOrdinaryResumeDoesNotAllocateAnotherRevision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedTokenFetchCannotLeaveAutomaticRegistrationEnabled",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "concurrentLifecycleEventsShareTheSameInFlightRegistration",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "permissionGrantAfterRemovalUsesAFreshRevision",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "failedProviderDeletionPreventsAnotherAccountFromFetchingOrBindingAToken",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushRegistrationWireTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.575Z",
+    "cases": [
+      {
+        "name": "explicitRemovalRequiresAnInactiveConfirmationAndPreservesExactReplayIdentity",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "malformedForeignFractionalAndUnknownResponsesFailClosed",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aDifferentOrEndedAccountCannotStartTheCallable",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "callablePayloadContainsOnlyTheStrictServerFieldsWithoutAClientChosenUserId",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "switchingDuringTheCallCannotAcknowledgeTheOldOwner",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aCallFailureIsNotConvertedIntoSuccessOrAnEmptyRegistration",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.582Z",
+    "cases": [
+      {
+        "name": "aDifferentIdentityCannotClearTheIntentWithoutAnActualMatchingSignIn",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "versionOnePermissionRemovalDoesNotBecomeAnAccountLogout",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "unacknowledgedRemovalSurvivesReconstructionAndIsReplayedOnlyAfterExplicitSignIn",
+        "seconds": 0.029,
+        "status": "passed"
+      },
+      {
+        "name": "aKnownVersionOneSignedOutRemovalMigratesWithoutResettingIdentityOrCounters",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "failedIntentPersistenceDisablesAutoInitAndNeverSendsAnUnpersistedRemoval",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedRemovalStillPreventsAutomaticSessionRestorationAfterReconstruction",
+        "seconds": 0.014,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushSignOutTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.635Z",
+    "cases": [
+      {
+        "name": "anotherAccountsReceiptCannotClearThePendingRemoval",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "callerCancellationKeepsTheRemovalAndDoesNotLookLikeConfirmation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anUnavailableServerRetainsPendingRemovalWithoutManufacturingConfirmation",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anInstallationWithoutAnyRegistrationHasNothingToConfirm",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSignedOutClientNeverReplaysAnUnauthenticatedPreviousOwnersRemoval",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "accountChangeDuringRemovalCannotAcknowledgeAsTheNextUser",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "forcedLocalSignoutAfterConfirmationDoesNotCreateAnExtraRemoval",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aSilentServerWaitIsBoundedToTwoAndAHalfSeconds",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aLateRegistrationReplyCannotReactivateTheInstallationDuringSignout",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "authenticatedRemovalIsAcknowledgedBeforeAuthClearsTheAccount",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TeamPushStorageTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.649Z",
+    "cases": [
+      {
+        "name": "twoInstancesReserveUniqueMonotonicRevisionsWithoutLostWrites",
+        "seconds": 0.014,
+        "status": "passed"
+      },
+      {
+        "name": "privateFileRestoresTheExactUnconfirmedRequestAndClearsOnlyAfterAcknowledgement",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "logoutRemovalAndDeletionBarrierSurviveNewStorageInstances",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "duplicateUnknownMalformedAndTrailingStateCannotBeSilentlyNormalized",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "impossibleActivationAndConfirmationStatesFailRatherThanBeingRepaired",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "corruptedRecordsRemainUntouchedAndAreNeverReplacedWithAFreshIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TripCancellationMappingTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.676Z",
+    "cases": [
+      {
+        "name": "rejectsTruncatedFractionalOrConflictingCounts",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "mapsReadyAndExactConfirmedReceipt",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancelledTripRemainsPastEvenBeforeDepartureAndRetainsOwnership",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "rejectsMalformedOrUnrelatedReceipts",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "payloadContainsOnlyValidatedIntent",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TripChangeHistoryMappingTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.678Z",
+    "cases": [
+      {
+        "name": "malformedOrForeignRowsFailRatherThanDisappearing",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "retainsClosedProposalIdentityAndDoesNotInventAnEmptyPage",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TripChangeMappingTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.681Z",
+    "cases": [
+      {
+        "name": "readOnlyResolutionRequiresExactRequestAndExplicitAbsence",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "fullReviewIsStrictAndScopedToTheRequestedTripAndProposal",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "quoteHasBoundedServerRouteAndExpiry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "invalidCountsStatesAndForeignBalancesAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "receiptRequiresExactActorRequestRevisionAndQuote",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "malformedTermsFailClosedWithoutCoercion",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "exactPayloadsBindAllWritesWithoutClientAuthority",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.TripDateMappersTest",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.689Z",
+    "cases": [
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-19T11:50:00Z -> LUN 19 OCT 13h50]",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-01-15T11:50:00Z -> JEU 15 JANV 12h50]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-07-01T22:30:00Z -> JEU 02 JUIL 00h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-12-31T23:30:00Z -> VEN 01 JANV 00h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-03-29T00:59:00Z -> DIM 29 MARS 01h59]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-03-29T01:00:00Z -> DIM 29 MARS 03h00]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T00:59:00Z -> DIM 25 OCT 02h59]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T01:00:00Z -> DIM 25 OCT 02h00]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T00:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[UTC: 2026-10-25T01:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-19T11:50:00Z -> LUN 19 OCT 13h50]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-01-15T11:50:00Z -> JEU 15 JANV 12h50]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-07-01T22:30:00Z -> JEU 02 JUIL 00h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-12-31T23:30:00Z -> VEN 01 JANV 00h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-03-29T00:59:00Z -> DIM 29 MARS 01h59]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-03-29T01:00:00Z -> DIM 29 MARS 03h00]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T00:59:00Z -> DIM 25 OCT 02h59]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T01:00:00Z -> DIM 25 OCT 02h00]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T00:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[America/Los_Angeles: 2026-10-25T01:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-19T11:50:00Z -> LUN 19 OCT 13h50]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-01-15T11:50:00Z -> JEU 15 JANV 12h50]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-07-01T22:30:00Z -> JEU 02 JUIL 00h30]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-12-31T23:30:00Z -> VEN 01 JANV 00h30]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-03-29T00:59:00Z -> DIM 29 MARS 01h59]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-03-29T01:00:00Z -> DIM 29 MARS 03h00]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T00:59:00Z -> DIM 25 OCT 02h59]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T01:00:00Z -> DIM 25 OCT 02h00]",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T00:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "tripAndPaymentLabelsUseBelgianDateRegardlessOfDeviceZone[Asia/Tokyo: 2026-10-25T01:30:00Z -> DIM 25 OCT 02h30]",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.services.VehicleMapPointWireTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.702Z",
+    "cases": [
+      {
+        "name": "newCoordinatesAndTheCaptureIdentityAreBothReplaced",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "absentCoordinatesNeverBecomeAnOriginMarker",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "parsesTheServerPointWithoutSubstitutingTheRouteOrPhoneTime",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "malformedCoordinatesTimesAndSourcesAreNotSilentlyReplaced",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.testing.WindowFocusSnapshotTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.703Z",
+    "cases": [
+      {
+        "name": "boundsTheNumberOfSanitizedObservationsAndDoesNotAcceptPackagePrefixes",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "retainsOnlyKnownWindowOwnersAndNoTitlesOrEditorText",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unknownApplicationsAndArbitraryTitlesAreRedactedRatherThanEchoed",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ActiveRideObservationStateTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.709Z",
+    "cases": [
+      {
+        "name": "mismatchedRideAndMissingObservationFailClosed",
+        "seconds": 0.01,
+        "status": "passed"
+      },
+      {
+        "name": "errorsNeverLeaveALiveBadgeAndDoNotAutomaticallyRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "positionsAgeWithoutNewPacketsAndIgnoreWallClock",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "remotePassengerChangesAndCompletionReplaceTheSameRideWithoutNavigation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingASessionPreventsAnOldFlowFromPublishingAgain",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "includesTheWholeRequestDurationRatherThanMakingASlowResponseLookNew",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ActiveRideResumeActionTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.730Z",
+    "cases": [
+      {
+        "name": "aChangedAccountCannotClearTheNewAccountsErrorOrStartTheOldRide",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anExplicitResumeClearsThePreviousFailureBeforeAcquiringAnotherPoint",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aNewFailureRemainsVisibleAndDoesNotOpenTheRide",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.AppDataStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.736Z",
+    "cases": [
+      {
+        "name": "aSlowAppSnapshotCannotUndoANewerGroupsRefresh",
+        "seconds": 0.01,
+        "status": "passed"
+      },
+      {
+        "name": "logoutInvalidatesAnAlreadyRunningRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anOlderResponseCannotReplaceTheNewAccountsRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anOldObserverCannotPublishIntoANewAccountEvenForTheSameRideId",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSlowAppRefreshCannotUndoALiveRideUpdate",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "externalCancellationStillCancelsTheRefreshWithoutPublishing",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFailureFromAnInvalidatedAccountCannotSurfaceInTheNewSession",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFailedRefreshCannotPublishHalfOfANewSnapshot",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "completionHistoryRefreshCannotJumpToAnotherActiveRide",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.AppSessionShutdownTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.756Z",
+    "cases": [
+      {
+        "name": "facebookFailureCannotSkipAuthAndDeviceTrackingRevocation",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "authShutdownFailureIsNotReportedAsSuccess",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "allProvidersSignOutInOrder",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "googleFailureCannotSkipAuthAndDeviceTrackingRevocation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "preparationFailureCannotSkipLocalShutdown",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ChildAccountLinkStateTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.762Z",
+    "cases": [
+      {
+        "name": "networkFailureNeedsAnExplicitParentRetryAndNeverShowsSuccess",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "parentApprovalUsesTheSelectedImmutableIdentityAndClearsThePairingSecret",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "expiryRemovesTheCodeRatherThanKeepingItVisibleAsUsable",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "creatingACodeNeverApprovesAnAccountOrUsesTheParentEndpoint",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSelfLinkReceiptCannotApproveTheParentAccount",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "childCodeMustBelongToTheCurrentAccountAndBeUnexpired",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUnrelatedReceiptCannotConfirmTheSelectedChild",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "parentCannotRequestAChildCodeOrSubmitAnInvalidTruncatedCode",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anotherTapCannotEraseOrReplaceAVisibleUnexpiredCode",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLateCodeCannotReappearAfterLeavingForeground",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "leavingTheDialogErasesInputAndPreventsFutureOperations",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ChildInvitationStateTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.771Z",
+    "cases": [
+      {
+        "name": "theSelectedProfileAndApprovedHttpsFragmentCannotBeChangedByAResponse",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "doubleTapsCannotCreateParallelInvitations",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUncertainResponseRequiresAStatusRefreshAndNeverAssumesAnInvitationIsUsable",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aStatusRefreshDoesNotReconstructOrCacheTheInvitationSecret",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "sharingRequiresAnExplicitCreationAndKeepsApprovalSeparate",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "revocationUsesTheDisplayedFingerprintAndErasesTheUsableLink",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anExpiredLinkCannotBeShared",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aLateResponseCannotRestoreTheSecretAfterLeavingForeground",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aConsumedInvitationCannotBeReplacedRevokedOrSharedFromOldState",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingDisablesAllFutureMutationsAndSharing",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.784Z",
+    "cases": [
+      {
+        "name": "discoveryReplyAfterLeavingTheScreenCannotRestorePrivateData",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aChangedNumberOrChildIdentityRequiresAnotherExplicitTap",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "emptyIsExplicitButAReadFailureClearsThePrivateContactAndNeverLooksEmpty",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "discoversTheChildContactWithoutAnAdultRideAndRechecksThatRideBeforeDialing",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundAndAccountDisposalInvalidateAnOutstandingRead",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingOrDeniedPhoneAppsKeepTheVerifiedDestinationWithoutInventingAnAlternative",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "otherAccountsOtherRidesAndUnsafeRepliesCannotPopulateTheScreen",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "removalOrRevokedAuthorityCannotOpenThePreviouslyDisplayedNumber",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "onlyAFreshMatchingContactCanOpenThePhoneAndNoWriteCapabilityIsUsed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "noRideAndDeniedDiscoveryAreDistinctAndNeverRetainThePreviousNumber",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundDuringFreshDialReadPreventsTheHandoff",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ConversationComposerStateTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.793Z",
+    "cases": [
+      {
+        "name": "blankOrOversizedDraftsNeverAllocateAnIntentOrReachTheGateway",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFirstDefinitiveRejectionStillAllowsEditingANewIntent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationAndSavedHolderRecreationDoNotMakeAPendingIntentFreshAgain",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anObservedConfirmationCannotBeUndoneByALateSendFailure",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anUncertainAttemptKeepsItsIdentityEvenWhenTheRetryIsDefinitelyRejected",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "overlappingSendsAndEditsCannotReplaceTheInFlightIntent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aVisibleOwnAcknowledgementConfirmsEvenAnExceptionAndStaleAcknowledgementsAreIgnored",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ConversationDirectoryStateTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.799Z",
+    "cases": [
+      {
+        "name": "failedInitialRequestEndsLoadingWithAnExplicitError",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "supersededInitialRequestDoesNotPresentAnEmptyInboxBeforeTheReplacementLoads",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ConversationDraftStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.802Z",
+    "cases": [
+      {
+        "name": "failedAcknowledgementStorageRetainsTheOriginalIdentityUntilItCanBeCleared",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aRejectedRetryCannotEraseAnEarlierUncertainIntent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "writeFailurePreservesVisibleTextAndPreventsANetworkSend",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFirstDefinitiveRejectionRestoresEditableTextButNoPendingIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "readFailureNeverReplacesAnExistingDraftWithAnEmptyComposer",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "interruptionRestoresTheSameDurablePendingIdentityBeforeAnyExplicitRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "invalidStoredBodiesAndRequestIdentitiesAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "draftsAreIsolatedByAccountConversationAndSourceKind",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aNewStateRestoresAnUnsentDraftWithoutSubmittingAnything",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ConversationStateTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.809Z",
+    "cases": [
+      {
+        "name": "lateReadSuccessOrFailureCannotRestoreFeedbackAfterRevocation",
+        "seconds": 0.005,
+        "status": "passed"
+      },
+      {
+        "name": "revocationClearsAllPrivateContentAndPagination",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "lifecycleCancellationScrubsContentBeforeAReplacementObservation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "lateEarlierSuccessOrFailureCannotRestoreContentAfterRevocation",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.819Z",
+    "cases": [
+      {
+        "name": "advancingQueuedWorkNeverBypassesTheFreshReadRevocationDenial",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "callbackCompletionDoesNotRunTheQueuedDialContinuationWithoutSchedulerProgress",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "advancingQueuedWorkNeverDialsAChangedDestinationWithoutAnotherTap",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.EmergencyContactSelectionTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.825Z",
+    "cases": [
+      {
+        "name": "aReadFailureDoesNotSilentlyRestoreThePreviouslySelectedAdult",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingTheAccountRefusesAStalePickerCallback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "selectionDuringAnInitialReadIsExplicitlyRefusedWithoutChangingItsScope",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.EmergencyContactStateTest",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.829Z",
+    "cases": [
+      {
+        "name": "anotherOwnerOrAnUnexpectedTargetCannotPopulateTheEditor",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aChildTargetNeedsItsOwnCurrentIdentityAndCannotKeepThePreviousAdultsContact",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedSaveCannotPopulateTheEditorFromARecreatedChildReadback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "invalidAndLocalNumbersCannotBeSavedOrDialed",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "onlyTheReadRevisionAndValidatedTrimmedContactAreSaved",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "childSavesCarryOnlyTheIdentityFromTheDisplayedRead",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingAnAccountDiscardsLateContactDetails",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aLostReplyClearsTheContactAndRequiresAnExplicitReadWithoutAnotherSave",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aRevokedChildReadClearsPreviouslyVisiblePrivateDetails",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aRecreatedChildWithTheSameContactAndVersionNeedsAnotherTapBeforeDialing",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "unsavedEditsCannotBeDialedAndFailedFreshAuthorityClearsTheNumber",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLateLaunchResultCannotRestoreAnotherAccountsNotice",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aChangedNumberNeverOpensWithoutANewTap",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "dialingReadsAgainAndOpensOnlyTheUnchangedSavedContact",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aMissingDialerRetainsTheContactWithoutClaimingThatACallConnected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "removalUsesTheExactDisplayedViewAndRetainsItsNewRevision",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anAcknowledgedSaveWithFailedReadIsNotReportedAsUnsent",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "absenceIsExplicitButReadFailureNeverLooksLikeAnEmptyContact",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSimultaneousSecondSaveCannotRepeatTheOperation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "leavingTheForegroundClearsDetailsAndResumingNeedsAFreshRead",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.EmergencyRideAccessTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.837Z",
+    "cases": [
+      {
+        "name": "mixedRoleCannotSwitchToTheAdultContactEditor",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "noRideNeverBecomesAGuessedOrPreviousRide",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "adultSettingsRemainIndependentOfTheRide",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "childCanReadFromSettingsOrTripsWithoutEnteringTheTrackingPermissionGate",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.GroupsStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.838Z",
+    "cases": [
+      {
+        "name": "anOlderRefreshCannotReplaceTheLatestMembership",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "initialLoadingIsNotAnEmptyResult",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedWriteAndFailedReadRetainTheAcknowledgementWithoutOldActions",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "concurrentRequestsAndReloadDuringSubmissionCannotDuplicateTheWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "uncertainWriteRequiresAnExplicitRefreshBeforeAnotherAction",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "leavingAnAccountInvalidatesItsLateResponseAndCallback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationDoesNotPublishOrBecomeAnError",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closedRequestCannotReloadOrPublishInAnotherAccount",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "refreshReplacesPendingWithTheServerDecision",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.GuardianPageStateTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.847Z",
+    "cases": [
+      {
+        "name": "filteredEmptyPagesKeepTheContinuationAndDoNotPretendExhaustion",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "disposedPagesCannotPublishThePreviousAccountsResults",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "repeatingCursorsAndDuplicateRowsClearThePageRatherThanSilentlyTruncate",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.GuardianVerificationStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.851Z",
+    "cases": [
+      {
+        "name": "aChangedSelectionAndAnOldViewCannotSendAnotherChildsRequest",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "closingAnAccountClearsAllListsAndDiscardsLateResults",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "simultaneousConfirmationAndRefreshCannotDuplicateAWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "lostReplyNeedsReadOnlyRecoveryAndDoesNotRepeatTheSubmission",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "selectionRequiresAPointReadAndOnlyItsDisplayedRevisionIsSent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "verificationCanOnlyBeRemovedOrRerequestedAccordingToCurrentCapabilities",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "historyOpensItsActualRevisionEvenWhenNotInTheFirstChoicePage",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedWriteIsNotCalledUnsentWhenItsReadFails",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingIdentityCannotBeNewlyVerifiedThroughARequest",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.MessagesNotificationPollingTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.861Z",
+    "cases": [
+      {
+        "name": "endingTheObservationClearsReadConfirmationsBeforeTheNextOwner",
+        "seconds": 0.01,
+        "status": "passed"
+      },
+      {
+        "name": "explicitNotificationRetryKeepsReviewPagesDirectoryAndConfirmedReadThenResumesPolling",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "notificationPollingDoesNotResetLoadedReviewPagesOrConversationHistory",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aSeparateReviewFailureDoesNotDisableThePrimaryNotificationRead",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.NotificationInboxStateTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.879Z",
+    "cases": [
+      {
+        "name": "accountDisposalIgnoresLateRowsAndCannotStartAnotherRead",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anUnverifiedReadHidesExistingRowsAndRequiresExplicitRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "primaryPollingAddsAndRemovesRowsWithoutDuplicatesWhileActive",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "explicitSuccessfulRetryResumesPollingButFailedRetryDoesNot",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "pauseRejectsAnUncooperativeLateFailureWithoutHidingTheNewResult",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "onlySuccessfulCurrentRowsReachReadReconciliation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "overlappingReadsDoNotDuplicateRequestsAndCancellationCannotPublish",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "pauseClearsPrivateRowsAndRejectsAnUncooperativeLateResponse",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.NotificationReadStateTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.887Z",
+    "cases": [
+      {
+        "name": "leavingOrSwitchingAccountDropsLateResponsesAndPrivateState",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failureRemainsUnreadUntilExplicitRetryOfTheSameNotice",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aStaleRefreshCannotRestoreUnreadAfterConfirmedAcknowledgement",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "alreadyReadNoticesDoNotWrite",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationIsPropagatedWithoutAnInventedReadOrError",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "readAppearsOnlyAfterConfirmationAndDoubleTapsAreIgnored",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFreshServerReadResolvesALostReplyWithoutAnotherWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "lateFailureCannotUndoAnIndependentServerConfirmation",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.NotificationSettingsStateTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.891Z",
+    "cases": [
+      {
+        "name": "blockedPermissionIsReadRatherThanAssumedAllowed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "openingSettingsNeverOptimisticallyGrantsPermission",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "allowedPermissionIsReadFromTheDevice",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "returningFromSettingsReadsTheCurrentPermissionAndClearsTheOldError",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "deniedSettingsActivityDoesNotChangePermission",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingSettingsActivityIsAnErrorWithoutAnotherLaunch",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anExplicitNewOpeningClearsItsPreviousError",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.PassengerStatusObservationOwnershipTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.893Z",
+    "cases": [
+      {
+        "name": "pickupDoesNotCreateASecondSnapshotWriter",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "dropoffDoesNotCreateASecondSnapshotWriter",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.PendingReviewsStateTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.898Z",
+    "cases": [
+      {
+        "name": "refreshOrDisposalDiscardsLateRepliesAndConcurrentLoadsAreSuppressed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationDoesNotConsumeTheCursorOrBecomeAZeroReviewResult",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anotherOwnerAndNonAdvancingCursorFailWithoutReplacingData",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "emptyContinuationCanAdvanceToARealReviewAndThenToTheEnd",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "duplicateRowsAndSubmittedReviewsCannotReappearOnLaterPagesOrRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedPagePreservesRowsAndCursorForExplicitRetry",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ProfileCityStateTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.903Z",
+    "cases": [
+      {
+        "name": "doesNotInventACityAndSavesOnlyTheNormalizedValue",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "failedReadDoesNotLookLikeAnUnsetCityOrEnableSaving",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "readingAfterALostReplyReconcilesTheSavedCityWithoutAnotherWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "removalIsExplicitAndKeepsTheNewRevision",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingDiscardsLateReadsFromTheOldAccount",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "editingAndCancellingNeverWrites",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "lostReplyKeepsOneExactRetryIdentityAndCannotChangeItsPayload",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "foreignReadAndWriteResponsesCannotPopulateTheProfile",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingDiscardsLateWriteResultsFromTheOldAccount",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "simultaneousSaveTapsCannotCreateTwoOperations",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ReceivedRatingLabelsTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.909Z",
+    "cases": [
+      {
+        "name": "rejectsNegativeCountsInsteadOfInventingAnEmptySummary",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "preservesFrenchGrammarAndFullIntegerCounts",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "usesBreakableGroupingWithoutRoundingOrDroppingDigits",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ReceivedRatingsStateTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.910Z",
+    "cases": [
+      {
+        "name": "repeatedRefreshWhileWaitingCannotReadTwice",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationPropagatesWithoutLeavingAnInventedEmptySummary",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingDiscardsAnOldAccountsLateResponse",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "zeroAndHistoricalRatingsAreReadWithoutInventingAScore",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "failureClearsTheOldScoreAndExplicitRetryReadsFreshData",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "foreignResultFailsClosed",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ReservationStateTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.917Z",
+    "cases": [
+      {
+        "name": "concurrentTapsCannotDispatchAnotherDecision",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "initialLoadingIsNotACompletedEmptyHistory",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "absentItemsAndUnavailableActionsNeverDispatch",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "repeatedCursorFailsWithoutAppendingRows",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingSuppressesALateWriteAndRefresh",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "closingSuppressesALateReadAndItsAppCallback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedWriteWithFailedReloadIsNotReportedAsAnUnconfirmedWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "uncertainDecisionRequiresExplicitReloadBeforeAnyRetry",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "confirmedDecisionReloadsServerStateAndRefreshesTheApp",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "reloadingInvalidatesAnOlderPageThatIgnoresCancellation",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.ReviewSubmissionStateTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.929Z",
+    "cases": [
+      {
+        "name": "explicitRetryReusesTheSameTripAndOnlyRemovesItsAcknowledgedReview",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "overlappingClicksCannotSubmitAnotherTripUntilTheFirstSendSettles",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "accountDisposalRejectsLateAcknowledgementsAndLateErrors",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationKeepsTheReviewWithoutPretendingTheServerRejectedOrAcknowledgedIt",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "failedSendKeepsAllContextAndContinuationWithoutReplacingTheInboxWithAnError",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.RouteMapViewportTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.935Z",
+    "cases": [
+      {
+        "name": "fittedEndpointsHaveRoomForBothMarkerHeads",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "absentOrUnusableLayoutCannotClaimFraming",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "resizingRequiresTheNewViewportAndAllowsOnlyPixelRounding",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchBookingBindingTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.936Z",
+    "cases": [
+      {
+        "name": "missingConsentIsRejectedInsteadOfDispatchingAContradictorySearch",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "theRequestCannotSubstituteAChildDifferentFromTheCompletedSearch",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "editingAPlaceInvalidatesThePreviousRequestAction",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aTripOutsideTheReturnedResultsCannotBeRequested",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "theRequestCarriesTheDisplayedTripObjectWithoutFetchingNewTerms",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUnsearchedTripCannotBeRequested",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aMismatchedSummaryCannotSubstituteAnotherTrip",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchBookingFeedbackTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.944Z",
+    "cases": [
+      {
+        "name": "newCriteriaDiscardThePreviousConfirmationButDoNotSubmitAnything",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aPendingRequestStillRejectsRepeatedTapsUntilItsReplyArrives",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aReplyFromAnEarlierSearchCannotMarkTheNewSelectionConfirmed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aDefinitiveBusinessRejectionIsNotLabelledAsAnUnconfirmedRetry",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aConfirmedResultCannotSubmitAgainFromTheSameSearch",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anExplicitNewSearchDoesNotInventASingleBookingBusinessRestriction",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingTheAccountClearsFeedbackAndRejectsADelayedSuccessfulReply",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aFailedReplyRemainsExplicitlyRetryableWithoutPretendingItSucceeded",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchBookingRecoveryTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.949Z",
+    "cases": [
+      {
+        "name": "aChangedTripClearsResultsAndRequiresAnotherSearchWithoutAutomaticBookingRetry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aClosedAccountDoesNotReceiveTheOldFailureOrClearAnotherController",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUnrelatedFailureKeepsTheExistingErrorPolicyAndDoesNotClaimChangedTerms",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anOldRejectionDoesNotEraseResultsFromANewerSearch",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchControllerLifecycleTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.953Z",
+    "cases": [
+      {
+        "name": "changingAPlaceInvalidatesItsCoordinatesAndPendingMatches",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aClosedControllerCannotDispatchAnyOldHandler",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "loadingRemainsTrueUntilBothPlaceRequestsFinish",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "closeClearsCachedPlacesResultsAndSearchStatus",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closeRejectsAResolutionThatIgnoresCancellation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anActiveFailureIsReportedWithoutInventingAPlace",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchControllerRequestsTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.959Z",
+    "cases": [
+      {
+        "name": "cancelledBookingCannotPublishAnErrorOrLoadingCallback",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "olderSuggestionsCannotReplaceTheLatestRequest",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "olderResolvedPlaceCannotReplaceANewerSelection",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "olderSearchCannotReplaceNewerMatches",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchControllerSafetyTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.965Z",
+    "cases": [
+      {
+        "name": "repeatedBookingTapsDoNotDispatchConcurrentWrites",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anInvalidNewFormCancelsThePreviousSearchInsteadOfShowingItsMatches",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aSupersededErrorCannotReplaceTheLatestSuccessfulChoice",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "anOldBookingCompletionCannotClearTheNextSessionsLoadingState",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aQueuedBookingCannotStartAfterLogout",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchCriteriaStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.972Z",
+    "cases": [
+      {
+        "name": "changingChildOrTrackingRequiresANewExplicitConsent",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "changingAnOptionRejectsAnAlreadyRunningSearchResponse",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "everyChangedOptionInvalidatesResultsAndTheirBookingAction",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "removedChildClearsSelectionConsentAndResultsWithoutSelectingAnotherChild",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unchangedOptionsKeepTheCurrentResults",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aClosedSearchLosesUnresolvedInputAndAllFormChoices",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "insufficientReturnedCapacityCannotBeRequested",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidOptionsAreExplicitFailuresNotEmptySearchResults",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "bookingUsesTheCompletedSearchsSeatCountAndChild",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SearchDepartureInputTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.976Z",
+    "cases": [
+      {
+        "name": "aRepeatedAutumnHourDoesNotSilentlyChooseAnOffset",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "validLeapDayAndMonthBoundaryRemainExact",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "summerLabelsUseTheSameZoneAsTheTripList",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidWireDatesAreExplicitlyUnavailableNotReplacedWithNow",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "winterLabelsUseBelgianLocalTimeWithoutLeakingWireSyntax",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "dateCanCrossMidnightInBelgium",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aMissingSpringHourNeverSelectsAnImplicitReplacement",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "selectingOnlyTheDatePreservesTheOriginalClockPrecision",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "phoneTimezoneDoesNotChangeTheSearchCriteria",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "bothExplicitInstantsOfARepeatedHourRemainReadable",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SessionRestorationStateTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.978Z",
+    "cases": [
+      {
+        "name": "failedDisconnectDoesNotPublishSignedOutState",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "explicitRetryRestoresTheSameIdentityOnce",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "transportFailureNeverBecomesSignedOutOrAutomaticallyRetries",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "disposalRejectsLateNonCancellableResults",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "genuineSignedOutStateIsDeliveredOnlyAfterSuccessfulRead",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "inFlightReadBlocksAdditionalReadsRetryAndDisconnect",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "lifecycleCancellationIsPropagatedNotDisplayedAsFailure",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "disconnectIsAnExplicitActionNotAnErrorFallback",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SessionRoleSelectionTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.989Z",
+    "cases": [
+      {
+        "name": "activeMobileRole_keepsManualRoleWhenSameSessionStillAllowsIt",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "activeMobileRole_switchesToDriverWhenNewSessionHasParentAndDriverRoles",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "activeMobileRole_replacesUnavailableRoleOnSameSession",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "preferredMobileRole_prefersDriverWhenUserHasParentAndDriverRoles",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SessionShutdownStateTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.989Z",
+    "cases": [
+      {
+        "name": "offlineNotificationCleanupIsPendingRatherThanAFalseFailedLocalLogout",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aPreparationFailureStillFinishesTheUiWithoutExposingPrivateExceptionText",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "cancelledPreparationAlwaysClearsAuthBeforeTheUiBecomesAvailable",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aBeforeHookFailureCannotSkipTheActualSessionTermination",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "duplicateActionsDoNotDuplicatePreparationAndBeforeRunsBeforeTheFirstSuspend",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "evenAnAlreadyCancelledUiScopeCannotDiscardTheLogoutAction",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aNonResponsiveGatewayCannotHoldTheUiOrSkipItsForcedAuthCleanup",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SupportInboxStateTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:57.998Z",
+    "cases": [
+      {
+        "name": "navigatingAwayIgnoresAnOlderDetailResponse",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "explicitPaginationAndDetailReturnUseTheSameOwner",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closedAccountIgnoresPendingReplyAndNeverReadsAgain",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "staleOrRepeatedPagesFailClosedUntilExplicitRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "incompleteHistoryOrChangedReportNeedsRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.SupportSubmissionStateTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.004Z",
+    "cases": [
+      {
+        "name": "invalidOrOversizedInputNeverReachesStorageOrTransport",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "writeFailurePreventsAnyNetworkRequestAndDoesNotClaimSuccess",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "cancellationKeepsIdentityAndReleasesBusyState",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "anotherAccountDoesNotReadOrSendTheOriginalPendingRequest",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgementStorageFailureRetainsSameIdentityForRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "corruptStorageIsNotReplacedByAnEmptyOrNewRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "lostAcknowledgementRestoresExactOperationAfterReopeningAndWaitsForExplicitRetry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "closingDuringSendDiscardsLateUiResultButRetainsDurableOperation",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamConversationDraftStateTest",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.018Z",
+    "cases": [
+      {
+        "name": "theIntentIsDurableBeforeSendingAndCancellationRestoresTheSameLockedRequest",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aRejectedRetryCannotEraseAnEarlierUncertainIntent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "invalidRecordIdentitiesAndUnboundedStoredTextAreRejected",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFirstDefinitiveRejectionRemovesOnlyThePendingIdAndStillRestoresTheText",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFailedEditKeepsTypedTextAndPreventsNetworkSubmissionUntilStorageWorks",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUnsentDraftIsRecoveredByANewStateWithoutAnyAutomaticSend",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aSuccessfulSendClearsDurableStateAndANewInstanceStaysEmpty",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anUnreadableDraftCannotCreateAnEmptyComposerOrOverwriteTheRecord",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "accountsTeamsAndRecreatedTeamInstancesCannotLoadEachOthersDrafts",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "failureToPersistAnAcknowledgementKeepsItsOriginalIdentityAndNeverSendsAutomatically",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamConversationReadStateTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.024Z",
+    "cases": [
+      {
+        "name": "failedReadRemainsUnreadUntilAnExplicitRetrySucceeds",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "aLateReadCannotAcknowledgeANewAdmissionWindow",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLateLostReplyCannotRestoreAnErrorAfterTheServerHasAlreadyConfirmedTheRead",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aPartialPageCannotClearUnconfirmedReadsThatItDoesNotConfirm",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "rejectedReadAuthorityRemovesAllPrivateRowsAndTheTitle",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "onlyVisibleIncomingUnreadRowsAreAcknowledgedAndOnlyAfterConfirmation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "anUnknownReadReplyIsReconciledByFreshServerFlagsWithoutAnotherWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundingOrSwitchingAccountsDoesNotKeepReadStateOrApplyALateReply",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamConversationStateTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.030Z",
+    "cases": [
+      {
+        "name": "olderHistoryRemainsOnlyWhileTheAdmissionVersionIsUnchanged",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundingIgnoresLateRepliesAndASeparateAccountStartsWithoutPrivateRows",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "revokedOrUnreachableAuthorityHidesEveryCachedMessageAndTitle",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anOlderPageFromChangedAdmissionClearsTheThreadInsteadOfMergingPrivateHistory",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "concurrentReadsDoNotDuplicateLoadsAndFailureDoesNotWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.033Z",
+    "cases": [
+      {
+        "name": "ownedHistoryDoesNotNeedActiveClubChoicesAndLoadingNeverWrites",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "revokedOrChangedIdentityCannotRetainAnOldAction",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "missingCapabilitiesNeverProduceAWrite",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "confirmationUsesOnlyTheExactFreshlyReadObjectAndWithdrawsOnce",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLostReplyNeverResubmitsAndOnlyAnExplicitReadRevealsTheCommittedWithdrawal",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundingAndAccountReplacementClearPrivateRowsAndIgnoreLateReplies",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anAcknowledgedWithdrawalIsNotReportedAsUnsentWhenItsReadbackFails",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "simultaneousConfirmationsAndPaginationCannotDuplicateAWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedRefreshClearsVisibleRowsAndDoesNotRetainAnOldConfirmation",
+        "seconds": 0,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamEnrollmentStateTest",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.041Z",
+    "cases": [
+      {
+        "name": "staleOrRevokedReadRepliesCannotKeepAnOldAction",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "concurrentConfirmationsAndRefreshDoNotDuplicateTheWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "acknowledgedWritesKeepTheirReceiptWhenTheLaterReadFails",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "onlyAnAllowedWithdrawalIsSubmittedForTheDisplayedApprovedRevision",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aForeignOrRecreatedTeamReadDoesNotReplaceTheConfirmedRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "changingClubClearsAllTeamAndChildContext",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "missingNamesNeverBecomeAnInventedRequestIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "choicesNeverSubmitBeforeAnExactCurrentReviewAndConfirmation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "subjectChangesCannotReuseAnotherPersonsDisplayedRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "backgroundingAndClosingDiscardNamesSelectionsAndLateResponses",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aNonParentCannotChooseOrAccidentallyRequestForAChild",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aLostReplyClearsActionsAndRequiresAnExplicitReadNotAnotherWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TeamPushOpenStateTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.049Z",
+    "cases": [
+      {
+        "name": "cancellationDoesNotBecomeAnAvailableResultOrAnAutomaticRetry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "aDifferentAccountChildOrMissingGatewayCannotResolveTheRequest",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingTheRouteRejectsALateResultAndFutureLoads",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "noPrivateTeamTargetExistsBeforeTheActualAuthorityReceipt",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedReadRemainsRetryableUntilAnotherActualResultArrives",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "suppressionAndExplicitAuthorityWithdrawalHaveNoRetryOrTarget",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "returningFromBackgroundRequiresAnotherReceiptAndCannotAcceptTheOldAttempt",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripActionBookingTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.056Z",
+    "cases": [
+      {
+        "name": "accountClosureRejectsALateSuccessfulReplyAndClearsAllPrivateState",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "openingAndDismissingEitherCardNeverCreatesABooking",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aFreshControllerFindsAnEarlierReservationBeyondTheFirstPage",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "anotherChildsReservationDoesNotBlockTheAdultsExplicitRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "repeatedParentCardTapsMustNotResubmitAnAcknowledgedBooking",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "onlyAnExplicitRetryResubmitsAnUnconfirmedReplyThroughTheExistingGateway",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "foreignAccountsAndRepeatedCursorsAreRejectedWithoutAnyWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "changedTermsRequireReloadAndANewExplicitConfirmation",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "repeatedConfirmationAndAnotherCardCannotChangeAnInFlightRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "aDelayedReadAfterAnAccountSwitchCannotEnableConfirmation",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedHistoryReadsCannotSilentlyPermitAnotherBooking",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripCancellationStateTest",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.066Z",
+    "cases": [
+      {
+        "name": "overlappingActionsAndEditsDoNotDispatch",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "uncertaintyLocksDraftUntilRefreshAndPreservesExactIntent",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "closingIgnoresLateReadAndCallback",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "refreshDiscoversRecordedCancellationWithoutAnotherWrite",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "changedRevisionRequiresReviewAndANewRequest",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "confirmedCancellationIsRetainedWhenAppRefreshFails",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "invalidReceiptNeverClaimsSuccessOrRefreshes",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "requiresAnAuthoritativePreviewAndValidReason",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "closingDropsPrivateStateAndIgnoresLateWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripChangeDraftTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.078Z",
+    "cases": [
+      {
+        "name": "ambiguousAndNonexistentBelgianTimesRequireAnotherExplicitTime",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "invalidScheduleOrUnresolvedPlaceCannotBecomeAProposal",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "editingPlaceInvalidatesCoordinatesAndLateSuggestions",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "pricesUseExactCentsAndRejectImplicitRounding",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "staleResolutionAndClosedSessionCannotRestorePrivateData",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "untouchedInstantsKeepOriginalPrecisionAndOffset",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripChangeHistoryStateTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.084Z",
+    "cases": [
+      {
+        "name": "closingAnAccountScopeDiscardsLateResponsesAndNeverLoadsAgain",
+        "seconds": 0.004,
+        "status": "passed"
+      },
+      {
+        "name": "errorDoesNotLeaveStaleHistoryOrPretendTheListIsEmpty",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "wrongTripRepeatedPageAndDuplicateProposalsFailClosed",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "pagesAreExplicitAndRefreshStartsAtTheFirstPage",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripChangePersistenceTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.093Z",
+    "cases": [
+      {
+        "name": "requestPersistenceFailurePreventsNetworkWrite",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "failedSaveKeepsTypedInputAndBlocksSubmissionUntilExplicitRetry",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "unknownProposalIsResolvedAfterReopeningWithoutAnotherSubmission",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "parentReviewsNeverAccessDriverDraftStorage",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "openingUnrelatedClosedHistoryNeverDeletesAnUnsentDraft",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "editedInputDoesNotKeepAnObsoleteUnrecordedSubmission",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "accountAndTripScopesNeverLoadEachOthersDraft",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "failedReadDoesNotCreateAnEmptyDraftOrWrite",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "staleDraftIsRetainedButCannotBeSubmittedUntilExplicitlyReplaced",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "rawInvalidFieldsSurviveNewStateWithoutWritesToTheTrip",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "unrecordedRequestCanOnlyBeResentExplicitlyWithSameIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      }
+    ]
+  },
+  {
+    "name": "be.sportgreenmoove.app.ui.TripChangeStateTest",
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "timestamp": "2026-11-05T20:39:58.103Z",
+    "cases": [
+      {
+        "name": "closingIgnoresLatePreviewAndCannotRestoreADraft",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "closingDropsPrivateDataAndIgnoresLateWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "uncertainDecisionReusesIntentAndRecordedReviewDoesNotWriteAgain",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "overlappingActionsCannotWriteTwiceAndWithdrawalPreservesOriginal",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "refreshFindsCommittedProposalEvenWhenBothAcknowledgementAndListRefreshWereLost",
+        "seconds": 0.003,
+        "status": "passed"
+      },
+      {
+        "name": "onlyExplicitValidChangedDriverTermsCanBeProposed",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "eachParentDecisionIsExplicitAndDoesNotApplyTheChange",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "proposalStatusCanArriveBeforeRefreshReleasesTheWithdrawalAction",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "uncertainProposalRequiresRefreshAndReusesExactRequest",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "failedResolutionNeverFallsThroughToAnotherPreviewOrWrite",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "provenReceiptSurvivesRefreshFailureAndPreventsDuplicateApplication",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "changedSourceRevisionKeepsDraftButRequiresExplicitResetAndFreshRequest",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "uncertainApplyKeepsExactRequestAndQuoteAfterExplicitRefresh",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "outdatedReviewDisablesDecisionAndApplication",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "unknownQuoteResponseIsRetriedWithSameIdentityUnlessServerConfirmsExpiry",
+        "seconds": 0.002,
+        "status": "passed"
+      },
+      {
+        "name": "wrongActorReceiptCannotClaimApplication",
+        "seconds": 0,
+        "status": "passed"
+      },
+      {
+        "name": "expiryRequiresANewExplicitCalculationWithANewIdentity",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "foreignReviewCannotReplaceTheCurrentTripOrUnlockActions",
+        "seconds": 0.001,
+        "status": "passed"
+      },
+      {
+        "name": "confirmationRequiresCurrentRouteAndExplicitApplication",
+        "seconds": 0.002,
+        "status": "passed"
+      }
+    ]
+  }
+]
