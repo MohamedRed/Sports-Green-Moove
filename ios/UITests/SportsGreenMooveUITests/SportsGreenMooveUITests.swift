@@ -33,6 +33,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         XCTAssertTrue(received.waitForExistence(timeout: 6))
         XCTAssertEqual(received.label, "2 avis reçus")
         captureApproved(.profile, in: app)
+        verifyProfileCity(in: app)
     }
 
     @MainActor func testPublishSearchAndBookingIdentifiers() {

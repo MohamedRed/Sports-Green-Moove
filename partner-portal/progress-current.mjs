@@ -37,6 +37,7 @@ import {iosTeamChatProgress} from './ios-team-chat.mjs';
 import {iosReceivedRatingsProgress} from './ios-received-ratings.mjs';
 import {iosBuildAuditProgress} from './ios-build-audit.mjs';
 import {iosMembershipProgress, iosMembershipFixtureProgress} from './ios-membership.mjs';
+import {iosProfileCityProgress} from './ios-profile-city.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -129,6 +130,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosProfileCityProgress,
   iosMembershipProgress,
   iosMembershipFixtureProgress,
   iosBuildAuditProgress,

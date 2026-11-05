@@ -1,5 +1,8 @@
 import Foundation
 
+try checkProfileCityWire()
+await checkProfileCityState()
+await checkProfileCityBoundaries()
 try checkMembershipWire()
 await checkMembershipState()
 await checkMembershipBoundaries()

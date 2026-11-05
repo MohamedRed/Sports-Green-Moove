@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone profile city is now source-wired to the existing owned read/save
+callables, independent of trip search. Controlled validation/state checks,
+32 delayed account/lifecycle boundaries and ten separate isolated service
+groups pass. Save/removal/reopen assertions are prepared inside the existing
+profile case, not an extra case or capture. SDK/UI and native service integration
+remain unverified. Publish one short local-only note without changing previous
+flows, dates, statuses, media, tours, blockers or public access. Preserve the
+eleven-case, 50-minute gate and approved capture bounds. See
+`docs/release/evidence/ios-profile-city-2026-11-05/README.md`.
+
 The iPhone club request/detail and versioned manager approval/refusal are now
 source-wired. Controlled native checks, 128 delayed boundaries and seven separate
 local service/client-rule checks pass. The earlier 9f7f0ee SDK build passes, but

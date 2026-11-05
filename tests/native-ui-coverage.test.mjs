@@ -76,6 +76,7 @@ const iosHome = readFile("ios/Sources/SportsGreenMooveApp/HomeScreen.swift");
 const iosImpactRewards = readFile("ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift");
 const iosLedgerGateway = readFile("ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift");
 const iosProfile = readFile("ios/Sources/SportsGreenMooveApp/ProfileScreen.swift");
+const iosProfileSettings = readFile("ios/Sources/SportsGreenMooveApp/ProfileSettingsCard.swift");
 const iosBookingActions = readFile("ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift");
 const iosActiveRideStartup = readFile("ios/Sources/SportsGreenMooveApp/ActiveRideStartup.swift");
 const iosRideLifecycle = readFile("ios/Sources/SportsGreenMooveApp/AppStateRideLifecycle.swift");
@@ -168,7 +169,9 @@ notIncludes(iosGroups, "Royal Ottignies", "iOS Groups screen must not embed club
 notIncludes(iosGroups, "Collège du Biéreau", "iOS Groups screen must not embed club fixtures");
 includes(androidProfile, "primaryClubLabel", "Android Profile reads the primary club label from app state");
 notIncludes(androidProfile, "Olivier · Collège du Biéreau", "Android Profile must not embed a static club identity");
-includes(iosProfile, "clubSummaries.first", "iOS Profile reads the primary club from app state");
+includes(iosProfile, "ProfileSettingsCard()", "iOS Profile renders its modular settings");
+includes(iosProfileSettings, "clubSummaries.first", "iOS Profile settings read the primary club from app state");
+includes(iosProfileSettings, "ProfileCityEntry(access: access, gateway: appState.firebase)", "iOS Profile city uses the owned backend gateway");
 notIncludes(iosProfile, "Olivier · Collège du Biéreau", "iOS Profile must not embed a static club identity");
 includes(androidLedgerGateway, '"getImpactSummary"', "Android ledger gateway reads the complete owned impact summary");
 includes(androidLedgerGateway, '"getRewardSummary"', "Android ledger gateway reads the complete owned reward summary");

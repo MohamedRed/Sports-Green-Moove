@@ -26,6 +26,7 @@ import {iosTeamChat} from './ios-team-chat.mjs';
 import {iosReceivedRatings} from './ios-received-ratings.mjs';
 import {iosBuildAudit} from './ios-build-audit.mjs';
 import {iosMembership} from './ios-membership.mjs';
+import {iosProfileCity} from './ios-profile-city.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -40,4 +41,5 @@ export const iosCheckpoints = {
   iosReceivedRatings,
   iosBuildAudit,
   iosMembership,
+  iosProfileCity,
 };
