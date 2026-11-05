@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The actual team draft setter reproduces twelve truncation boundaries under the
+old read/busy gate; the candidate retains exact text while keeping sends blocked.
+Full controlled native checks and both original fixture-model decisions pass.
+City button accessibility and the club label hit area are adjusted candidates,
+not native-screen acceptance or a proven membership failure cause. Publish one
+short local-only note, preserving all prior records/media/dates/tours/blockers and
+public access. Keep eleven cases, 50 minutes and capture bounds unchanged. See
+`docs/release/evidence/ios-input-controls-2026-11-05/README.md`.
+
 The EEF SDK build passes but only one fixture case completes before the approved
 50-minute deadline. D51 compiles and executes all eleven: eight pass and three
 fail (five assertions: city entry, complete chat draft/send text, membership

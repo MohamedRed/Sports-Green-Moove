@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "controlled-team-input-and-ui-candidates-not-native-screen-acceptance",
+  "baselineCommit": "62f5365485e4e8550231c1d6b2ac8206a2e3a92b",
+  "records": [
+    {
+      "file": "baseline-result.txt",
+      "sha256": "a572cfedfeb1dba3f44cfe85dc41dfd5da8d686ce6ea5cbab13dd1ecce372272"
+    },
+    {
+      "file": "candidate-state-result.txt",
+      "sha256": "180146563167f32b3e17e0b5bc83b7f144d45c962b82bc2e55e55ad4fac6659b"
+    },
+    {
+      "file": "complete-native-result.txt",
+      "sha256": "4723abfd42a44ca88527a3827dc903f1fbdd621d007343ac3bf96343845b9bd1"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "syntax-result.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "fixture-state-result.txt",
+      "sha256": "951ca48af9c9bebc3e55348833ea3173371a5960751878a08ed4518a6dc9c968"
+    }
+  ],
+  "localChecks": {
+    "baselineReproductions": 12,
+    "candidateInputBoundaries": 12,
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "syntaxExitCode": 0,
+    "actualFixtureDecisions": 2
+  },
+  "backgroundReadsNoLongerDisableTyping": true,
+  "concurrentSendsStillDenied": true,
+  "unknownSendIdentityPreserved": true,
+  "cityButtonAccessibilityCandidate": true,
+  "fullClubLabelHitAreaCandidate": true,
+  "membershipUiCauseProven": false,
+  "fixtureCases": 11,
+  "deadlineMinutes": 50,
+  "uiAssertionsChanged": false,
+  "sdkLinkedBuildAccepted": false,
+  "nativeUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0
+}

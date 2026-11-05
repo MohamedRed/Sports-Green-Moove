@@ -24,8 +24,8 @@ import Observation
     var live: Bool { !closed && active && TeamChatPolicy.permits(access) && TeamChatWire.validTarget(target) }
     var busy: Bool { inFlight > 0 || access.waitingForEarlierWork }
     var hasEarlier: Bool { live && loaded && error == nil && timeline.olderCursor != nil }
-    var canCompose: Bool { live && loaded && title != nil && error == nil && !busy && composer.loaded }
-    var canSend: Bool { canCompose && TeamChatWire.validBody(TeamChatText.normalized(composer.body)) }
+    var canCompose: Bool { live && loaded && title != nil && error == nil && composer.loaded }
+    var canSend: Bool { canCompose && !busy && TeamChatWire.validBody(TeamChatText.normalized(composer.body)) }
 
     init(access: AccountAccess, target: TeamChatTarget, gateway: any TeamChatGateway,
         makeStorage: @escaping @Sendable () throws -> any TeamChatDraftStorage) {

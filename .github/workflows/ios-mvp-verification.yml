@@ -12,6 +12,9 @@ on:
     paths:
       - "ios/**"
       - "scripts/check-ios-native-plan.sh"
+      - "scripts/qa/check-ios-membership-fixture.sh"
+      - "tests/fixtures/ios-membership-fixture/**"
+      - "tests/ios-input-controls.test.mjs"
       - "scripts/check-ios-support-concurrency.sh"
       - "tests/fixtures/ios-support-concurrency/**"
       - "tests/ios-mvp-workflow.test.mjs"

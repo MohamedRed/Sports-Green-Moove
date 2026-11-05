@@ -6,6 +6,10 @@ on:
     paths:
       - "tests/chat-source-access*.test.*"
       - "tests/ios-current-fixture-result.test.mjs"
+      - "tests/ios-input-controls.test.mjs"
+      - "scripts/qa/check-ios-membership-fixture.sh"
+      - "tests/fixtures/ios-membership-fixture/**"
+      - "docs/release/evidence/ios-input-controls-2026-11-05/**"
       - "docs/release/evidence/ios-fixture-failure-d51-2026-11-05/**"
       - "scripts/qa/*chat-source*.mjs"
       - "docs/release/evidence/chat-source-access-2026-11-05/**"
@@ -679,6 +683,10 @@ on:
     paths:
       - "tests/chat-source-access*.test.*"
       - "tests/ios-current-fixture-result.test.mjs"
+      - "tests/ios-input-controls.test.mjs"
+      - "scripts/qa/check-ios-membership-fixture.sh"
+      - "tests/fixtures/ios-membership-fixture/**"
+      - "docs/release/evidence/ios-input-controls-2026-11-05/**"
       - "docs/release/evidence/ios-fixture-failure-d51-2026-11-05/**"
       - "scripts/qa/*chat-source*.mjs"
       - "docs/release/evidence/chat-source-access-2026-11-05/**"
@@ -1521,7 +1529,7 @@ jobs:
       - name: Verify current booking and ride chat authority
         env:
           SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/chat-source-access.json
-        run: npm run test:chat-source-access && node --test tests/chat-source-access.test.mjs tests/ios-current-fixture-result.test.mjs
+        run: npm run test:chat-source-access && node --test tests/chat-source-access.test.mjs tests/ios-current-fixture-result.test.mjs tests/ios-input-controls.test.mjs
 
       - name: Set up rules configuration validation
         uses: hashicorp/setup-terraform@v4

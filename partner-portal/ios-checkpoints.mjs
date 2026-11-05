@@ -28,6 +28,7 @@ import {iosBuildAudit} from './ios-build-audit.mjs';
 import {iosMembership} from './ios-membership.mjs';
 import {iosProfileCity} from './ios-profile-city.mjs';
 import {iosCurrentFixtureFailure} from './ios-current-fixture-failure.mjs';
+import {iosInputControls} from './ios-input-controls.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -44,4 +45,5 @@ export const iosCheckpoints = {
   iosMembership,
   iosProfileCity,
   iosCurrentFixtureFailure,
+  iosInputControls,
 };

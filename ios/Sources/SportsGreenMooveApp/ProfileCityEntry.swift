@@ -12,7 +12,7 @@ struct ProfileCityEntry: View {
     }
     var body: some View {
         ProfileSettingRow(icon: .location, title: "Ma ville", value: label) { editing = true }
-            .accessibilityElement(children: .ignore).accessibilityLabel("Ma ville").accessibilityValue(label)
+            .accessibilityLabel("Ma ville").accessibilityValue(label)
             .accessibilityIdentifier("profile.city").disabled(!state.live || state.busy)
             .task(id: scenePhase) { if scenePhase == .active { await state.resume() } else { state.suspend() } }
             .onChange(of: scenePhase) { _, phase in if phase != .active { editing = false; state.suspend() } }

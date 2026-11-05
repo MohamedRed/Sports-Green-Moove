@@ -111,6 +111,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatEditingChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatWireChecks.swift" \
@@ -143,3 +144,4 @@ swiftc \
   -o "${BUILD_DIR}/SportsGreenMooveNativeChecks"
 
 "${BUILD_DIR}/SportsGreenMooveNativeChecks"
+bash "${ROOT_DIR}/scripts/qa/check-ios-membership-fixture.sh"

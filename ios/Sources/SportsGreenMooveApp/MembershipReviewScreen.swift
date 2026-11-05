@@ -25,7 +25,8 @@ struct MembershipReviewScreen: View {
                         ForEach(state.clubs) { club in
                             Button { Task { await state.select(club) } } label: {
                                 HStack { Text(club.name).fixedSize(horizontal: false, vertical: true).frame(maxWidth: .infinity, alignment: .leading)
-                                    Image(systemName: "chevron.right").frame(width: 24, height: 24) }.frame(minHeight: 44)
+                                    Image(systemName: "chevron.right").frame(width: 24, height: 24) }
+                                    .frame(minHeight: 44).contentShape(Rectangle())
                             }.buttonStyle(.plain).disabled(state.busy).accessibilityIdentifier("membership.review.club.\(club.id)")
                         }
                     } else {
