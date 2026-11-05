@@ -13,8 +13,10 @@ const folder = 'docs/release/evidence/ios-parent-contact-2026-11-05/';
 
 test('the parent picker uses server verification history rather than declared children or membership flags', () => {
   const source = read(app + 'FirebaseEmergencyContactGateway.swift');
-  assert(source.includes('name: "listMyGuardianVerifications"'));
-  assert(source.includes('GuardianContactWire.validCursor(cursor)'));
+  const request = read(app + 'EmergencyContactRequest.swift');
+  assert(source.includes('request: .guardianContacts(cursor: cursor)'));
+  assert(request.includes('return "listMyGuardianVerifications"'));
+  assert(request.includes('GuardianContactWire.validCursor(cursor)'));
   assert(source.includes('GuardianContactWire.page($0, uid: uid)'));
   assert.doesNotMatch(source, /listClubGuardianVerifications|collection\(|setCustomUserClaims|guardianUserIds/);
   const picker = read(app + 'GuardianContactPicker.swift');

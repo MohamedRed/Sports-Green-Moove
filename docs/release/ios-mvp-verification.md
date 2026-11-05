@@ -3,9 +3,9 @@
 The owner confirmed Android **and iPhone** on 4 November 2026. No iOS release
 requirements are removed. Existing routine iOS jobs remain disabled; the separate
 `iOS MVP Verification` workflow checks the real SDK-linked Xcode project and
-all fixture-screen tests on an isolated simulator: five original identifier checks
-and two added search-consent cases. The later sign-out candidate adds a separate
-profile-to-authentication case; it requires all eight cases, not a reduced selection.
+all eleven fixture-screen tests on an isolated simulator: five original identifier
+checks, two search-consent cases, one profile sign-out case, two emergency-contact
+cases and one parent contact-selection case. No reduced selection is accepted.
 The PR user-flow verifier requires this separate check to succeed: missing,
 skipped, cancelled and failed runs are rejected. The old skipped routine lanes
 are retained for their original cost policy, not used as iPhone proof.
@@ -16,7 +16,7 @@ uses no cache or provider secrets, does not sign, and does not publish an app.
 [GitHub documents free standard public-repository compute](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 Larger runners and storage have separate billing; they are not enabled here.
 The signature-only support concurrency check runs in addition to, never instead
-of, the actual SDK-linked app build and all seven fixture tests.
+of, the actual SDK-linked app build and all eleven fixture tests.
 The workflow builds the app and test bundles once with `build-for-testing`, then
 runs every test from that build with `test-without-building`. These are separate
 steps within the same deadline, with no reduced selection or second build.
@@ -34,8 +34,9 @@ See `evidence/ios-fixture-pass-3e7cd40-2026-11-04/`.
 Later native-location shutdown changes keep authentication closed until the old
 startup/upload callbacks actually settle and connect the profile sign-out button.
 Their controlled local checks do not extend the earlier SDK/fixture acceptance.
-Both automated entries are pending again until this changed source passes the
-complete SDK-linked build and all eight fixture tests. See
+Both automated entries became pending again until that changed source passed the
+complete SDK-linked build and all eight fixture tests. The current inventory has
+since grown to eleven; see the current contact-transfer result below and
 `evidence/ios-location-shutdown-2026-11-04/`.
 
 The first run at `c1c2fa4` failed in support gateway compilation before UI tests.
@@ -57,8 +58,8 @@ the later account-refresh code, physical journeys or complete app flows. See
 `evidence/ios-fixture-pass-5582299-2026-11-04/`. Its recorded compiler warnings
 remain separate from the successful build/test result.
 
-A passing result would prove compilation against the declared SDK dependencies
-and seven fixture-screen checks, not authentication, transactions, conversation
+A current passing result would prove compilation against the declared SDK dependencies
+and eleven fixture-screen checks, not authentication, transactions, conversation
 delivery, GPS safety scenarios, physical iPhone behavior or release readiness.
 Failures remain failures; no automatic test retry or reduced test selection is used.
 
@@ -66,10 +67,17 @@ Local native logic checks passed on 4 November 2026 at source `6948862`. That
 Foundation-only run is not an iOS app build. The local computer has Command Line
 Tools but not full Xcode, so it cannot run the complete app or iPhone simulator.
 
-Source review also identifies incomplete iPhone conversation actions and saved
-emergency-contact management. These require implementation and behavioral proof;
-existing identifier checks cannot accept them. Keep all physical, operational,
-store and safety-audit evidence requirements open for both platforms.
+Saved emergency-contact management and verified-parent selection are now wired
+and locally checked, but still need their current SDK/UI run. Conversation actions
+remain incomplete. Keep all physical, operational, store and safety-audit evidence
+requirements open for both platforms.
+
+At `84c9b62`, run `41935572872` fails SDK compilation at the contact adapter's
+task-isolated dictionary transfer to a `sending` parameter. No fixture UI executes;
+disposal succeeds and the artifact inventory is empty. The typed-request candidate
+passes controlled local payload/signature checks, not an SDK build. The 50-minute
+deadline and all eleven UI cases are unchanged. See
+`evidence/ios-contact-request-2026-11-05/`.
 
 The account-refresh race comparison in `evidence/ios-account-refresh-2026-11-04/`
 reproduces late private data restoration after sign-out with the original AppState.

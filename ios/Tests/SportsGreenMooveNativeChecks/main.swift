@@ -4,6 +4,7 @@ try ledgerSummaryChecks()
 try checkEmergencyContactWire()
 await checkEmergencyContacts()
 try await checkGuardianContactSelection()
+try checkEmergencyContactRequests()
 await checkLocationShutdown()
 
 func check(_ condition: @autoclosure () -> Bool, _ message: String) {

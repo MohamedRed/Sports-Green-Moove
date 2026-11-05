@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The 84c9b62 iPhone SDK-linked build fails before every fixture UI test: the SDK's
+sending boundary rejects the task-isolated contact payload dictionary. Disposal
+succeeds, both capture steps are skipped and the artifact inventory is empty.
+The candidate replaces the dictionary parameter with a Sendable request and
+constructs a fresh payload at dispatch; ten exact payload variants and ten invalid
+inputs pass locally. Publish one short incomplete-iPhone note, not a successful
+SDK/UI or complete conversation claim. Preserve all prior flows, media, dates,
+tours, statuses, blockers, history and public access. The group conversation work
+remains incomplete and is not published as implemented. See
+`docs/release/evidence/ios-contact-request-2026-11-05/README.md`.
+
 The iPhone messages/reviews screen now uses immutable account-generation leases
 for inbox, pagination and rating requests. The baseline methods restore old
 private inbox content and rating feedback in the controlled reproduction; the

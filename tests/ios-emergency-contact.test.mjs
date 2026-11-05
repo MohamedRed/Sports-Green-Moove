@@ -27,7 +27,10 @@ test('the example number and static ride action are replaced by account-owned co
 
 test('private contact reads and writes use the exact server protocol and retain account ownership around the SDK', () => {
   const gateway = read(app + 'FirebaseEmergencyContactGateway.swift');
-  for (const name of ['getEmergencyContact', 'saveEmergencyContact', 'getCurrentChildRideEmergencyContact', 'getChildRideEmergencyContact']) assert(gateway.includes('"' + name + '"'));
+  const request = read(app + 'EmergencyContactRequest.swift');
+  for (const name of ['getEmergencyContact', 'saveEmergencyContact', 'getCurrentChildRideEmergencyContact', 'getChildRideEmergencyContact']) assert(request.includes('"' + name + '"'));
+  assert(gateway.includes('request: EmergencyContactRequest'));
+  assert(gateway.includes('httpsCallable(request.name).call(input)'));
   assert.equal((gateway.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
   assert.equal((gateway.match(/try Task.checkCancellation\(\)/g) ?? []).length, 2);
   assert.doesNotMatch(gateway, /collection\(|print\(|NSLog|retry|fallback/i);
