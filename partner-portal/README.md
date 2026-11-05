@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The iPhone search contract now rejects eight reproduced guessed-price/capacity/
+snapshot failures and sixty malformed response groups. Three actual server
+serializer outputs retain exact labels, endpoint data and a second-child/two-seat
+booking snapshot through the actual Swift gateway with scripted SDK callbacks.
+Four delayed boundaries, one pre-call denial and three direct nonfinite scores
+pass; full native logic/signature checks pass too. The optional service recheck
+does not execute because its configured Java prerequisite is unavailable. Publish
+one concise local-only search note, replacing no historical record/media/status/
+date/tour/blocker. The existing eleven cases, 50 minutes, capture bounds, public
+audience and current iPhone pending entries remain unchanged. Linux execution,
+native UI, real service/map and full booking/release acceptance remain open.
+See `docs/release/evidence/ios-search-contract-2026-11-05/README.md`.
+
 The a37 SDK build and all eleven synthetic iPhone screen cases pass, with
 successful disposal and zero artifacts. Publish a short simulation-only result,
 not real-service, physical or release acceptance. The later owned-search fix

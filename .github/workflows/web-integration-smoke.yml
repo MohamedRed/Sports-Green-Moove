@@ -10,6 +10,9 @@ on:
       - "tests/ios-ride-chat.test.mjs"
       - "tests/ios-search-ownership.test.mjs"
       - "scripts/qa/check-ios-owned-places.sh"
+      - "scripts/qa/check-ios-search-contract.mjs"
+      - "tests/fixtures/ios-search-contract/**"
+      - "tests/ios-search-contract.test.mjs"
       - "tests/fixtures/ios-search-callable/**"
       - "docs/release/evidence/ios-search-ownership-2026-11-05/**"
       - "tests/firestore-rules-lock.test.mjs"
@@ -696,6 +699,9 @@ on:
       - "tests/ios-ride-chat.test.mjs"
       - "tests/ios-search-ownership.test.mjs"
       - "scripts/qa/check-ios-owned-places.sh"
+      - "scripts/qa/check-ios-search-contract.mjs"
+      - "tests/fixtures/ios-search-contract/**"
+      - "tests/ios-search-contract.test.mjs"
       - "tests/fixtures/ios-search-callable/**"
       - "docs/release/evidence/ios-search-ownership-2026-11-05/**"
       - "tests/firestore-rules-lock.test.mjs"
@@ -1700,6 +1706,9 @@ jobs:
         run: |
           mkdir -p "${{ runner.temp }}/sgm-booking-wire"
           npm run test:booking-intent-wire
+
+      - name: Verify iPhone search-to-booking contract without provider calls
+        run: node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

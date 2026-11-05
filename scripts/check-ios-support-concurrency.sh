@@ -81,6 +81,8 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TripSearchWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/EncodedRouteValidation.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebasePlacesGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PlaceSearchWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift" \

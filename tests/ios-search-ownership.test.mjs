@@ -6,6 +6,7 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosSearchOwnership, iosSearchOwnershipProgress} from '../partner-portal/ios-search-ownership.mjs';
 import {iosA37FixturePass, iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.mjs';
+import {iosSearchContractProgress} from '../partner-portal/ios-search-contract.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path));
@@ -110,7 +111,11 @@ test('two concise scoped notes preserve old portal records and current release g
   for (const [key, descriptor, progress] of [['iosSearchOwnership', iosSearchOwnership, iosSearchOwnershipProgress], ['iosA37FixturePass', iosA37FixturePass, iosA37FixturePassProgress]]) {
     assert.deepEqual(content[key], descriptor); assert.deepEqual(content.updates.filter(row => row.source === progress.source), [progress]);
     assert.doesNotMatch(progress.title + progress.text, /Firebase|BrowserStack|Swift|SDK|Xcode|CI\b/i);
-    assert(partitionUpdates(content.updates).recent.some(row => row.source === progress.source));
+    const partition = partitionUpdates(content.updates);
+    if (key === 'iosSearchOwnership') {
+      assert(partition.previous.some(row => row.source === progress.source));
+      assert(partition.recent.some(row => row.source === iosSearchContractProgress.source && row.flow === progress.flow));
+    } else assert(partition.recent.some(row => row.source === progress.source));
   }
   const previousUpdates = partitionUpdates(content.updates).previous;
   for (const source of ['ios-membership-2026-11-05/README.md', 'ios-preparation-timeout-a226-2026-11-04/README.md']) {

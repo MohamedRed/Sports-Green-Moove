@@ -71,6 +71,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Validate iPhone emergency contact ownership and evidence scope')
     .filter(step => step.name !== 'Verify isolated membership discovery and review')
     .filter(step => step.name !== 'Verify current booking and ride chat authority' && step.name !== 'Validate rules configuration without cloud changes')
+    .filter(step => step.name !== 'Verify iPhone search-to-booking contract without provider calls')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -221,6 +222,8 @@ test('the unchanged required check only succeeds after all three complete groups
 
 test('the timeout correction preserves every current workload and artifact upload byte-for-byte', () => {
   const steps = smokeGroups.flatMap(key => workflow.jobs[key].steps);
+  assert.deepEqual(steps.filter(step => step.name === 'Verify iPhone search-to-booking contract without provider calls'),
+    [{name: 'Verify iPhone search-to-booking contract without provider calls', run: 'node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs'}]);
   const diagnostic = steps.filter(step => step.name === 'Test approved temporary network startup logging');
   assert.deepEqual(diagnostic, [{name: 'Test approved temporary network startup logging', run: 'node --test tests/network-startup-logging.test.mjs'}]);
   assert.deepEqual(steps.filter(step => step.name === 'Test approved invitation same-origin transport'),
@@ -234,7 +237,7 @@ test('the timeout correction preserves every current workload and artifact uploa
   assert.deepEqual(steps.filter(step => step.name === 'Validate iPhone emergency contact ownership and evidence scope'),
     [{name: 'Validate iPhone emergency contact ownership and evidence scope', run: 'node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs tests/ios-contact-request.test.mjs tests/ios-team-chat.test.mjs tests/ios-received-ratings.test.mjs tests/ios-build-audit.test.mjs tests/ios-membership.test.mjs tests/ios-profile-city.test.mjs'}]);
   for (const [rows, count, expected] of [
-    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations', 'Test readable status feedback and error colours', 'Test complete booking dates in enlarged native layouts', 'Validate bounded public-repository iPhone verification', 'Validate bounded node readiness and retained failure scope', 'Validate iPhone emergency contact ownership and evidence scope', 'Verify isolated membership discovery and review', 'Verify current booking and ride chat authority', 'Validate rules configuration without cloud changes'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
+    [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations', 'Test readable status feedback and error colours', 'Test complete booking dates in enlarged native layouts', 'Validate bounded public-repository iPhone verification', 'Validate bounded node readiness and retained failure scope', 'Validate iPhone emergency contact ownership and evidence scope', 'Verify isolated membership discovery and review', 'Verify current booking and ride chat authority', 'Validate rules configuration without cloud changes', 'Verify iPhone search-to-booking contract without provider calls'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
     [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],
   ]) {
     assert.equal(rows.length, count);

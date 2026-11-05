@@ -31,6 +31,7 @@ import {iosCurrentFixtureFailure} from './ios-current-fixture-failure.mjs';
 import {iosInputControls} from './ios-input-controls.mjs';
 import {iosRideChat} from './ios-ride-chat.mjs';
 import {iosSearchOwnership} from './ios-search-ownership.mjs';
+import {iosSearchContract} from './ios-search-contract.mjs';
 import {iosA37FixturePass} from './ios-a37-fixture-pass.mjs';
 
 export const iosCheckpoints = {
@@ -51,5 +52,6 @@ export const iosCheckpoints = {
   iosInputControls,
   iosRideChat,
   iosSearchOwnership,
+  iosSearchContract,
   iosA37FixturePass,
 };
