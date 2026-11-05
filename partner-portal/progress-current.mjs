@@ -35,6 +35,7 @@ import {iosMessageOwnershipProgress} from './ios-message-ownership.mjs';
 import {iosContactRequestProgress} from './ios-contact-request.mjs';
 import {iosTeamChatProgress} from './ios-team-chat.mjs';
 import {iosReceivedRatingsProgress} from './ios-received-ratings.mjs';
+import {iosBuildAuditProgress} from './ios-build-audit.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -127,6 +128,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosBuildAuditProgress,
   iosReceivedRatingsProgress,
   iosTeamChatProgress,
   iosContactRequestProgress,

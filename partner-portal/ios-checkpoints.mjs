@@ -24,6 +24,7 @@ import {iosMessageOwnership} from './ios-message-ownership.mjs';
 import {iosContactRequest} from './ios-contact-request.mjs';
 import {iosTeamChat} from './ios-team-chat.mjs';
 import {iosReceivedRatings} from './ios-received-ratings.mjs';
+import {iosBuildAudit} from './ios-build-audit.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -36,4 +37,5 @@ export const iosCheckpoints = {
   iosContactRequest,
   iosTeamChat,
   iosReceivedRatings,
+  iosBuildAudit,
 };

