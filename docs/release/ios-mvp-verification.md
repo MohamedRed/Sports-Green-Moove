@@ -79,6 +79,13 @@ passes controlled local payload/signature checks, not an SDK build. The 50-minut
 deadline and all eleven UI cases are unchanged. See
 `evidence/ios-contact-request-2026-11-05/`.
 
+The later team-conversation candidate wires directory selection, history,
+persisted drafts, stable-ID sending and visible-message reads. Its controlled
+logic and separate disposable-service rechecks pass; SDK compilation and the
+extended existing messages UI case remain unexecuted. All eleven cases and the
+same deadline/capture policy remain required. This is not notification, complete
+conversation, physical or release acceptance. See `evidence/ios-team-chat-2026-11-05/`.
+
 The account-refresh race comparison in `evidence/ios-account-refresh-2026-11-04/`
 reproduces late private data restoration after sign-out with the original AppState.
 The candidate passes local checks for atomic snapshots, revocation, account/role

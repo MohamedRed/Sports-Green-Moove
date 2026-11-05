@@ -5,6 +5,12 @@ try checkEmergencyContactWire()
 await checkEmergencyContacts()
 try await checkGuardianContactSelection()
 try checkEmergencyContactRequests()
+try await checkTeamChatState()
+await checkTeamChatBoundaries()
+try checkTeamChatTimeline()
+try await checkTeamChatDirectory()
+try checkTeamChatWire()
+try await checkTeamChatStorage()
 await checkLocationShutdown()
 
 func check(_ condition: @autoclosure () -> Bool, _ message: String) {

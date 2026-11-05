@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The iPhone team directory, conversation, persisted draft, explicit stable-ID send
+and visible-message read handling are now source-wired. Controlled native logic,
+96 delayed boundaries and isolated service rechecks pass; the eleven-case fixture
+inventory now includes the prepared team journey inside the existing messages
+case. Neither SDK compilation nor those screens have executed for this candidate.
+Publish one concise local-only note, no new media. Preserve all previous flows,
+statuses, dates, tours, blockers, history and public access. Notifications, full
+conversation acceptance and release remain unverified. The previous statement
+that group conversation work is not implemented describes that earlier source.
+See `docs/release/evidence/ios-team-chat-2026-11-05/README.md`.
+
 The 84c9b62 iPhone SDK-linked build fails before every fixture UI test: the SDK's
 sending boundary rejects the task-isolated contact payload dictionary. Disposal
 succeeds, both capture steps are skipped and the artifact inventory is empty.

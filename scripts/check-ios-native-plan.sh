@@ -10,6 +10,16 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GatewayContracts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatPolicy.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatDirectoryState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatTimeline.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatComposer.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactRequest.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift" \
@@ -76,6 +86,12 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/TeamChatStorageChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AuthenticationProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LocationSessionChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/LocationShutdownChecks.swift" \

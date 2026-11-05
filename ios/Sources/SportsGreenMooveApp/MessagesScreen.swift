@@ -13,9 +13,13 @@ private struct OwnedMessagesScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab = "chats"
     @State private var state: MessagesInboxState
+    @State private var teamPresented = false
+    private let access: AccountAccess
+    private let teamGateway: any TeamChatGateway
 
-    init(access: AccountAccess, gateway: any MessagesGateway) {
+    init(access: AccountAccess, gateway: any FirebaseGateway) {
         _state = State(initialValue: MessagesInboxState(access: access, gateway: gateway))
+        self.access = access; teamGateway = gateway
     }
 
     var body: some View {
@@ -28,6 +32,13 @@ private struct OwnedMessagesScreen: View {
                     .disabled(state.busy || !state.live).padding(.trailing, SGMSpace.padScreen)
             }
             MessageTabs(tabs: tabs, selected: selectedTab) { selectedTab = $0 }
+            if selectedTab == "chats" && state.live && TeamChatPolicy.permits(access) {
+                Button { teamPresented = true } label: {
+                    Label("Conversations d’équipe", systemImage: "person.3")
+                        .font(.sgmBody(16, weight: .semibold)).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                }.buttonStyle(.plain).foregroundStyle(SGM.textPrimary).disabled(state.busy)
+                    .padding(.horizontal, SGMSpace.padScreen).padding(.top, 12).accessibilityIdentifier("team-chat.entry")
+            }
             VStack(spacing: 10) {
                 if state.live {
                     if state.loading { ProgressView().accessibilityLabel("Chargement des messages") }
@@ -56,6 +67,7 @@ private struct OwnedMessagesScreen: View {
         .task(id: scenePhase) { if scenePhase == .active { await state.resume() } else { state.suspend() } }
         .onChange(of: scenePhase) { _, phase in if phase != .active { state.suspend() } }
         .onDisappear { state.close() }
+        .sheet(isPresented: $teamPresented) { TeamChatHost(access: access, gateway: teamGateway).id(access.context.id) }
     }
 
     private var tabs: [MessageTab] {

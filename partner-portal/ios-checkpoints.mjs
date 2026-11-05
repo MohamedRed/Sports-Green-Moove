@@ -22,6 +22,7 @@ import {iosSignOutFixturePass} from './ios-signout-fixture-pass.mjs';
 import {iosParentContact} from './ios-parent-contact.mjs';
 import {iosMessageOwnership} from './ios-message-ownership.mjs';
 import {iosContactRequest} from './ios-contact-request.mjs';
+import {iosTeamChat} from './ios-team-chat.mjs';
 
 export const iosCheckpoints = {
   iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
@@ -32,4 +33,5 @@ export const iosCheckpoints = {
   iosParentContact,
   iosMessageOwnership,
   iosContactRequest,
+  iosTeamChat,
 };

@@ -13,9 +13,14 @@ for module in FirebaseCore FirebaseFirestore FirebaseAuth FirebaseFunctions; do
     -emit-module -module-name "$module" "$source" -emit-module-path "$BUILD_DIR/$module.swiftmodule"
 done
 
-swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD_DIR" -typecheck \
+swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBUG -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseTeamChatGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/StripePaymentsGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/RidePaymentVerification.swift" \

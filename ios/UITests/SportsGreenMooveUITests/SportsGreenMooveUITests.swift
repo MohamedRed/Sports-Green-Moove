@@ -76,6 +76,7 @@ final class SportsGreenMooveUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["Aucun avis en attente."].waitForExistence(timeout: 6))
         XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
         captureApproved(.rating, in: app)
+        verifyTeamChat(in: app)
     }
 
     @MainActor func testSecondaryFlowIdentifiers() {
