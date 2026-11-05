@@ -6,6 +6,7 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosCurrentFixtureFailure, iosCurrentFixtureFailureProgress} from '../partner-portal/ios-current-fixture-failure.mjs';
 import {ios584FixtureResult, ios584FixtureResultProgress} from '../partner-portal/ios-584-fixture-result.mjs';
+import {ios6e89FixtureResult, ios6e89FixtureResultProgress} from '../partner-portal/ios-6e89-fixture-result.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -96,9 +97,48 @@ test('the fixture seed correction preserves real role clearing and every origina
 test('a short 584 result preserves every older flow, media reference, note and blocker without releasing either platform', () => {
   assert.deepEqual(content.ios584FixtureResult, ios584FixtureResult);
   assert.deepEqual(content.updates.filter(row => row.source === ios584FixtureResultProgress.source), [ios584FixtureResultProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === ios584FixtureResultProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === ios584FixtureResultProgress.source));
   assert.doesNotMatch(ios584FixtureResultProgress.title + ios584FixtureResultProgress.text, /Firebase|BrowserStack|SDK|Swift|Xcode|CI\b/i);
   const before = json('docs/release/evidence/ios-fixture-failure-584-2026-11-05/portal-before.json');
+  for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
+  for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
+  assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
+  for (const id of ['ios_sdk_build_ci', 'ios_fixture_ui_ci'])
+    assert.equal(json('docs/release/evidence-manifest.json').automatedUserFlowEvidence.items.find(row => row.id === id).status, 'pending');
+});
+
+test('6e89 completes below the unchanged deadline with nine passes and all four actual failure records', () => {
+  const dir = 'docs/release/evidence/ios-fixture-failure-6e89-2026-11-05/', result = json(ios6e89FixtureResult.source);
+  for (const row of result.records) assert.equal(sha(read(dir + row.file)), row.sha256);
+  for (const row of json(dir + 'source-sha256.json').files)
+    assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
+  assert.equal(result.sourceCommit, '6e898a90b23fc0c2ea8c951af02a7246c760ad84');
+  assert.equal(result.runId, 42096199969); assert.equal(result.jobId, 127490262040);
+  assert.equal(result.conclusion, 'failure'); assert.equal(result.sdkBuild, 'success');
+  assert.equal(result.fixtureStep, 'failure'); assert.equal(result.deadlineMinutes, 50); assert.equal(result.timedOut, false);
+  const job = json(dir + 'terminal-job.json');
+  assert.equal(job.status, 'completed'); assert.equal(job.conclusion, 'failure');
+  assert(new Date(job.completedAt) - new Date(job.startedAt) < 25 * 60_000);
+  assert.equal(job.steps.find(row => row.name === 'Dispose isolated simulator').conclusion, 'success');
+  const cases = json(dir + 'cases.json'); assert.equal(cases.length, 11);
+  assert.equal(cases.filter(row => row.status === 'passed').length, 9);
+  assert.deepEqual(cases.filter(row => row.status === 'failed').map(row => row.name), [
+    'testTrackingAndSeatChangesInvalidateTheAcceptedSelection', 'testPublishSearchAndBookingIdentifiers']);
+  assert.equal(cases.find(row => row.name === 'testPersonalContactRequiresReviewAndPersistsItsRemoval').status, 'passed');
+  assert.equal((read(dir + 'selected-failures.txt').match(/: error:/g) ?? []).length, 4);
+  assert.equal(json(dir + 'artifacts.json').total_count, 0);
+  for (const key of ['emergencyReliabilityAccepted', 'bookingUiCauseConfirmed', 'subsequentCandidateUiAccepted',
+    'physicalDeviceAccepted', 'releaseComplete']) assert.equal(result[key], false);
+});
+
+test('the latest simulation-only result keeps every older portal record and release requirement', () => {
+  assert.deepEqual(content.ios6e89FixtureResult, ios6e89FixtureResult);
+  assert.deepEqual(content.updates.filter(row => row.source === ios6e89FixtureResultProgress.source), [ios6e89FixtureResultProgress]);
+  assert(partitionUpdates(content.updates).recent.some(row => row.source === ios6e89FixtureResultProgress.source));
+  assert(ios6e89FixtureResultProgress.text.includes('simulation'));
+  assert.doesNotMatch(ios6e89FixtureResultProgress.title + ios6e89FixtureResultProgress.text, /Firebase|BrowserStack|SDK|Swift|Xcode|CI\b/i);
+  const before = json('docs/release/evidence/ios-fixture-failure-6e89-2026-11-05/portal-before.json');
+  assert.equal(before.updates.length, 445);
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
   for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
   assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);

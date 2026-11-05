@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 6e89 ARM gate finishes normally in under 25 minutes, with SDK success,
+nine passing and two failing iPhone cases (four assertion failures). Disposal
+succeeds and artifacts remain empty. The personal emergency-contact case passes
+in this run without the later navigation candidate; do not infer that candidate
+fixed it or claim reliability from one result. Booking confirmation and publication
+still fail. Publish one concise simulation-only nine-of-eleven note, preserving
+all earlier evidence, flow statuses/dates, media, tours, blockers and public access.
+The 35f seed/navigation/diagnostic changes are absent from this result and await
+their own gate. No test, deadline, capture limit, network or notification policy
+changes. See `docs/release/evidence/ios-fixture-failure-6e89-2026-11-05/`.
+
 The 584 SDK build passes and all eleven iPhone cases execute: eight pass and three
 fail with five assertions, before a subsequent whole-job deadline cancellation.
 Disposal succeeds and no artifacts exist. Publish one concise eight-of-eleven
