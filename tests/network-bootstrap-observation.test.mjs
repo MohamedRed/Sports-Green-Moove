@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import test from 'node:test';
 import { observeNetworkBootstrap, defaultSelectionLogProperties, parseLogEmissionProperty } from '../scripts/qa/network-bootstrap-observation.mjs';
 import {parseDisposableWifiReadiness} from '../scripts/qa/disposable-wifi-readiness.mjs';
@@ -164,6 +166,32 @@ test('unmet readiness times out with no test-app installation, forced network, s
   assert.equal(t.outcome().elapsedMs, 20); assert.equal(t.outcome().sampleCount, 4); assert.deepEqual(t.histories, ['before']);
   assert.equal(t.outcome().historyAfterCaptured, false);
 });
+test('sub-millisecond budget exhaustion before a command is a deadline, not an unavailable Android command', async () => {
+  let clockReads = 0, executions = 0;
+  const t = readinessTrial();
+  await assert.rejects(t.run({now: () => ++clockReads <= 2 ? 0 : 19.8,
+    execute: () => {executions++; throw new Error('No command may start after its integer timeout budget expires');}}), /fixed budget/);
+  assert.equal(executions, 0); assert.equal(t.outcome().sampleCount, 0);
+  assert.equal(t.outcome().failureKind, 'wifi-prerequisite-deadline');
+  assert.equal(t.outcome().commandBudgetExhausted, true); assert.equal(t.outcome().completed, false);
+});
+test('a wrapped history collector cannot disguise an exhausted command budget or leak private errors', async () => {
+  const t = readinessTrial(); let historyExecutions = 0;
+  await assert.rejects(t.run({execute: () => wifiState(false),
+    collectHistory: (_a, _s, _r, _p, _o, execute) => {
+      t.advance(20);
+      try { execute('adb', [], {}); historyExecutions++; } catch { throw new Error('PRIVATE_CREDENTIAL'); }
+    }}), error => /fixed budget/.test(error.message) && !error.message.includes('PRIVATE_CREDENTIAL'));
+  assert.equal(historyExecutions, 0); assert.equal(t.outcome().sampleCount, 1);
+  assert.equal(t.outcome().failureKind, 'wifi-prerequisite-deadline'); assert.equal(t.outcome().commandBudgetExhausted, true);
+});
+test('a real pre-deadline command failure remains unavailable, not a guessed timeout', async () => {
+  const t = readinessTrial(); let executions = 0;
+  await assert.rejects(t.run({execute: () => {executions++; throw new Error('PRIVATE_CREDENTIAL');}}),
+    error => !/fixed budget|PRIVATE_CREDENTIAL/.test(error.message));
+  assert.equal(executions, 1); assert.equal(t.outcome().failureKind, 'capability-command-unavailable');
+  assert.equal(t.outcome().commandBudgetExhausted, false);
+});
 test('late readiness and late history cannot turn an expired observation into acceptance', async () => {
   const t = readinessTrial();
   await assert.rejects(t.run({execute: () => {t.advance(21); return wifiState();}}), /fixed budget/);
@@ -200,4 +228,35 @@ test('focused entry checks passive Wi-Fi before installation while keeping the o
   assert(shell.indexOf('observe-network-bootstrap.mjs') < shell.indexOf('wait-disposable-wifi.mjs'));
   assert(shell.indexOf('wait-disposable-wifi.mjs') < shell.indexOf('configure-continuous-disposable.mjs'));
   assert(readFileSync('android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt', 'utf8').includes('compose.waitUntil(30_000)'));
+});
+
+test('actual startup DNS history and every capability sample remain verifiable without inventing an app failure or final command cause', () => {
+  const folder = 'docs/release/evidence/verification-followup-aac-2026-11-05/';
+  const read = path => readFileSync(folder + path), json = path => JSON.parse(read(path));
+  const sha = bytes => createHash('sha256').update(bytes).digest('hex'), report = json('summary.json');
+  assert.equal(read('.gitattributes').toString(), 'deadline-baseline.txt -text -whitespace\n');
+  for (const row of report.records) assert.equal(sha(read(row.file)), row.sha256);
+  const metadata = json('android-artifact.json'), archive = folder + 'android-artifact.zip';
+  assert.equal('sha256:' + sha(readFileSync(archive)), metadata.digest);
+  assert.equal(metadata.id, 13445937454); assert.equal(metadata.runId, 42091345380);
+  const zip = path => JSON.parse(execFileSync('unzip', ['-p', archive,
+    'focused-safety-ui/chat-network-recovery/network-readiness/' + path], {encoding: 'utf8'}));
+  const samples = Array.from({length: 60}, (_, i) => zip(`sample-${String(i).padStart(3, '0')}.json`));
+  assert.equal(samples.filter(row => row.active.transports.join(',') === 'wifi' && !row.active.validated).length, 5);
+  assert.equal(samples.filter(row => row.active.transports.join(',') === 'cellular' && row.active.validated).length, 55);
+  for (const [index, row] of samples.entries()) {
+    assert.equal(row.index, index); assert.equal(row.ready, false); assert.equal(row.testAppsAbsent, true);
+    assert(row.availableCapabilities.some(network => network.transports.includes('wifi') && !network.validated));
+    assert.equal(row.flowCompleted, false); assert.equal(row.identifiersRetained, false);
+  }
+  const history = json('android-validation-history.json');
+  const wifi = history.groups.find(row => row.transportMatched && row.transports.includes('wifi'));
+  assert.equal(wifi.events.filter(row => row.probe === 'dns' && row.result === 'failure').length, 2);
+  assert.equal(wifi.events.filter(row => row.errorKind === 'dns-resolution').length, 3);
+  const outcome = json('android-outcome.json'); assert.equal(outcome.failureKind, 'capability-command-unavailable');
+  assert.equal(Object.hasOwn(outcome, 'commandBudgetExhausted'), false);
+  assert.equal(report.deadlineClassificationRegressionReproduced, true); assert.equal(report.localDeadlineChecksPassed, true);
+  for (const key of ['androidAppFlowExecuted', 'androidNetworkRootCauseConfirmed', 'actualFailureReclassifiedRetroactively',
+    'wifiReadinessPredicateChanged', 'wifiBudgetIncreased', 'dnsConfigurationChanged', 'releaseComplete']) assert.equal(report[key], false);
+  for (const row of json('source-sha256.json').files) assert.equal(sha(readFileSync('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
 });

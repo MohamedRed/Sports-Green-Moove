@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "scripts/qa/wait-disposable-wifi.mjs",
+      "sha256": "af7473bbd6cb9914a1ea0676c1d34ce8d505987fad4dc835c376baa1869eba14"
+    },
+    {
+      "path": "tests/network-bootstrap-observation.test.mjs",
+      "sha256": "6fa0edc27335c6c30aed799f6adc2fa0e063855c2d736d2a86b554c345d35f2b"
+    },
+    {
+      "path": "scripts/qa/wait-disposable-wifi.mjs",
+      "commit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+      "sha256": "736e424ead91e855b0ed274da081a2539f576306753012b5df3d4144bc186eaf"
+    },
+    {
+      "path": "ios/project.yml",
+      "commit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+      "sha256": "630188a291754a30f168d4853560a21ed65305c4db437a7e25e1d720e9982908"
+    },
+    {
+      "path": "functions/src/domain/teamPushRegistration.ts",
+      "commit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+      "sha256": "df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13"
+    },
+    {
+      "path": "functions/src/services/teamPushProvider.ts",
+      "commit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+      "sha256": "34cd405a0bb24f338a4f7b97e472d925532d7c7cb1a69133b4aa5099fdd8bd22"
+    }
+  ]
+}

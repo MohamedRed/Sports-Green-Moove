@@ -1,0 +1,54 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1191f1395e33e3a3d1d06e6ea01fbf2d",
+  "phase": "before",
+  "recordedAt": "2026-11-05T19:18:22.290Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 1,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 5,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        }
+      ]
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}

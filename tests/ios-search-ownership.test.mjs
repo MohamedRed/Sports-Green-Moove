@@ -7,6 +7,7 @@ import {content} from '../partner-portal/content.mjs';
 import {iosSearchOwnership, iosSearchOwnershipProgress} from '../partner-portal/ios-search-ownership.mjs';
 import {iosA37FixturePass, iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.mjs';
 import {iosSearchContractProgress} from '../partner-portal/ios-search-contract.mjs';
+import {verificationFollowupProgress} from '../partner-portal/verification-followup.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path));
@@ -114,7 +115,8 @@ test('two concise scoped notes preserve old portal records and current release g
     const partition = partitionUpdates(content.updates);
     if (key === 'iosSearchOwnership') {
       assert(partition.previous.some(row => row.source === progress.source));
-      assert(partition.recent.some(row => row.source === iosSearchContractProgress.source && row.flow === progress.flow));
+      assert(partition.previous.some(row => row.source === iosSearchContractProgress.source && row.flow === progress.flow));
+      assert(partition.recent.some(row => row.source === verificationFollowupProgress.source && row.flow === progress.flow));
     } else assert(partition.recent.some(row => row.source === progress.source));
   }
   const previousUpdates = partitionUpdates(content.updates).previous;

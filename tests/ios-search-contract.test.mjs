@@ -7,6 +7,7 @@ import {content} from '../partner-portal/content.mjs';
 import {iosSearchContract, iosSearchContractProgress} from '../partner-portal/ios-search-contract.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 import {verificationBoundaries, verificationBoundariesProgress} from '../partner-portal/verification-boundaries.mjs';
+import {verificationFollowup, verificationFollowupProgress} from '../partner-portal/verification-followup.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = value => createHash('sha256').update(value).digest('hex');
@@ -114,7 +115,7 @@ test('the additional smoke executes after backend compilation while eleven iPhon
 test('the concise current note preserves historical content and never promotes the unexecuted service or current native release', () => {
   assert.deepEqual(content.iosSearchContract, iosSearchContract);
   assert.deepEqual(content.updates.filter(row => row.source === iosSearchContractProgress.source), [iosSearchContractProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosSearchContractProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === iosSearchContractProgress.source));
   assert.doesNotMatch(iosSearchContractProgress.title + iosSearchContractProgress.text, /Firebase|BrowserStack|Swift|SDK|Xcode|CI\b/i);
   const before = json(folder + 'portal-before.json');
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
@@ -178,4 +179,26 @@ test('one concise incomplete-test note preserves every historical flow, update, 
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
   for (const hash of before.updates) assert(content.updates.some(row => sha(JSON.stringify(row)) === hash));
   assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
+});
+
+test('the actual aac Linux contract step passes without accepting the whole workflow, native screens or missing iPhone push wiring', () => {
+  const dir = 'docs/release/evidence/verification-followup-aac-2026-11-05/';
+  const step = json(dir + 'linux-contract-step.json'), summary = json(dir + 'summary.json');
+  assert.equal(step.runId, 42091345475); assert.equal(step.jobId, 127469877249);
+  assert.equal(step.sourceCommit, 'aac8de64f2da97b638079103a77a02d2b367d83f');
+  assert.equal(step.status, 'completed'); assert.equal(step.conclusion, 'success');
+  assert.equal(summary.linuxControlledContractStepAccepted, true);
+  for (const key of ['wholeWorkflowAcceptedByThisRecord', 'nativeSdkAccepted', 'phoneAccepted']) assert.equal(step[key], false);
+  const files = json(dir + 'source-sha256.json').files;
+  const frozen = path => read('docs/release/evidence/source-archive/' + files.find(row => row.path === path && row.commit === step.sourceCommit).sha256 + '.txt');
+  assert.doesNotMatch(frozen('ios/project.yml'), /FirebaseMessaging/);
+  assert(frozen('functions/src/domain/teamPushRegistration.ts').includes('platform: z.literal("android")'));
+  assert.doesNotMatch(frozen('functions/src/services/teamPushProvider.ts'), /apns:/);
+  assert.equal(summary.iphoneClosedAppNotificationsImplemented, false); assert.equal(summary.notificationPolicyChanged, false);
+  for (const key of ['sdkBuildAccepted', 'fixtureUiAccepted', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(summary[key], false);
+  assert.deepEqual(content.verificationFollowup, verificationFollowup);
+  assert.deepEqual(content.updates.filter(row => row.source === verificationFollowupProgress.source), [verificationFollowupProgress]);
+  assert(partitionUpdates(content.updates).recent.some(row => row.source === verificationFollowupProgress.source));
+  assert.doesNotMatch(verificationFollowupProgress.title + verificationFollowupProgress.text,
+    /Firebase|BrowserStack|Android|Linux|Swift|SDK|Xcode|CI\b|DNS/i);
 });

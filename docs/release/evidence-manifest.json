@@ -367,8 +367,8 @@
       },
       {
         "id": "booking_ride_chat_access_revocation", "status": "pending",
-        "description": "Fresh-read rules and Android source observation pass isolated checks only. Require reviewed deployed rules matching the validated policy SHA and observed open-thread revocation, delayed paging/read callbacks, account/lifecycle cleanup and listener disposal on Android and iPhone. No production apply or native UI acceptance yet; iPhone booking/ride conversation remains unimplemented.",
-        "evidenceRefs": ["evidence/chat-source-access-2026-11-05/README.md", "../../infra/firestore-rules/README.md"]
+        "description": "Fresh-read rules and both native source implementations pass isolated checks only. Require reviewed deployed rules matching the validated policy SHA and observed open-thread revocation, delayed paging/read callbacks, account/lifecycle cleanup and listener disposal on Android and iPhone. The iPhone conversation is source-wired and has historical synthetic screen proof; no production apply, current complete native gate or real-service revocation acceptance is established.",
+        "evidenceRefs": ["evidence/chat-source-access-2026-11-05/README.md", "evidence/ios-ride-chat-2026-11-05/README.md", "evidence/ios-fixture-pass-a37-2026-11-05/README.md", "../../infra/firestore-rules/README.md"]
       },
       {
         "id": "team_push_signout_cleanup", "status": "pending",

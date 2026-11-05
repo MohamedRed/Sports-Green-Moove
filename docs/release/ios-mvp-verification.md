@@ -10,11 +10,14 @@ The PR user-flow verifier requires this separate check to succeed: missing,
 skipped, cancelled and failed runs are rejected. The old skipped routine lanes
 are retained for their original cost policy, not used as iPhone proof.
 
-The job runs only for a public repository on the standard `macos-26-intel` runner,
+The current candidate runs only for a public repository on the standard `macos-26` ARM runner,
 with read-only repository access and the approved 50-minute deadline. By default it uploads no artifacts,
 uses no cache or provider secrets, does not sign, and does not publish an app.
 [GitHub documents free standard public-repository compute](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 Larger runners and storage have separate billing; they are not enabled here.
+Older live runs keep their original Intel runner. The architecture change is a
+performance candidate, not an accepted improvement; cases, deadline and capture
+bounds are unchanged. See `evidence/verification-boundaries-2026-11-05/`.
 The signature-only support concurrency check runs in addition to, never instead
 of, the actual SDK-linked app build and all eleven fixture tests.
 The workflow builds the app and test bundles once with `build-for-testing`, then
@@ -62,6 +65,15 @@ A current passing result would prove compilation against the declared SDK depend
 and eleven fixture-screen checks, not authentication, transactions, conversation
 delivery, GPS safety scenarios, physical iPhone behavior or release readiness.
 Failures remain failures; no automatic test retry or reduced test selection is used.
+
+Closed-app team notifications remain a separate unimplemented iPhone path. At
+`aac8de6`, the project has no FirebaseMessaging product or Apple notification
+registration/receipt wiring; the server registration schema accepts Android only.
+Neither the eleven fixture cases nor an SDK build can accept this missing path.
+The owner is being asked to choose the display/privacy behavior before platform
+integration, because background delivery is not guaranteed after full closure.
+No requirement is waived and no automatic display fallback is approved. See
+`evidence/verification-followup-aac-2026-11-05/` and `../contracts/team-push-notifications.md`.
 
 Local native logic checks passed on 4 November 2026 at source `6948862`. That
 Foundation-only run is not an iOS app build. The local computer has Command Line

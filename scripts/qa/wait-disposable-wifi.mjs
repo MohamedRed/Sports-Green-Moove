@@ -30,10 +30,12 @@ export async function waitForDisposableWifi(output, env = process.env, {
     flowCompleted: false, physicalDevice: false, rootCauseFixed: false, budgetMs, intervalMs};
   save('started.json', {...base, recordedAt: new Date().toISOString(), completed: false});
   const start = now(), deadline = start + budgetMs, samples = [];
+  let commandBudgetExhausted = false;
+  const deadlineMessage = 'Validated default Wi-Fi prerequisite not observed within its fixed budget; no app flow was run';
   const adb = env.ANDROID_HOME ? `${env.ANDROID_HOME}/platform-tools/adb` : 'adb';
   const boundedExecute = (command, args, options) => {
     const remaining = Math.floor(deadline - now());
-    assert(remaining > 0, 'Disposable readiness budget exhausted');
+    if (remaining < 1) { commandBudgetExhausted = true; throw new Error(deadlineMessage); }
     return execute(command, args, {...options, timeout: Math.max(1, Math.min(options?.timeout ?? 5_000, remaining))});
   };
   let completed = false, failureKind = null, historyBeforeCaptured = false, historyAfterCaptured = false;
@@ -41,7 +43,7 @@ export async function waitForDisposableWifi(output, env = process.env, {
     while (now() < deadline && samples.length < Math.ceil(budgetMs / intervalMs) + 1) {
       let raw;
       try {raw = boundedExecute(adb, ['-s', serial, 'shell', 'dumpsys', 'connectivity'], {encoding: 'utf8',
-        timeout: Math.max(1, Math.min(5_000, Math.floor(deadline - now()))), maxBuffer: 2 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe']});}
+        timeout: 5_000, maxBuffer: 2 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe']});}
       catch {failureKind = 'capability-command-unavailable'; throw new Error('Disposable readiness observation failed; raw output withheld');}
       const sample = {index: samples.length, elapsedMs: Math.round(now() - start), recordedAt: new Date().toISOString(),
         ...parseDisposableWifiReadiness(raw)};
@@ -61,15 +63,16 @@ export async function waitForDisposableWifi(output, env = process.env, {
     }
     if (!completed) {
       failureKind = 'wifi-prerequisite-deadline';
-      throw new Error('Validated default Wi-Fi prerequisite not observed within its fixed budget; no app flow was run');
+      throw new Error(deadlineMessage);
     }
   } catch (error) {
+    if (commandBudgetExhausted) failureKind = 'wifi-prerequisite-deadline';
     failureKind ??= 'readiness-observation-invalid';
-    throw new Error(failureKind === 'wifi-prerequisite-deadline' ? error.message : 'Disposable readiness observation failed; raw output withheld');
+    throw new Error(failureKind === 'wifi-prerequisite-deadline' ? deadlineMessage : 'Disposable readiness observation failed; raw output withheld');
   } finally {
     save('outcome.json', {...base, recordedAt: new Date().toISOString(), elapsedMs: Math.round(now() - start),
       completed, ready: completed, failureKind, sampleCount: samples.length, initialReady: samples[0]?.ready ?? null,
-      historyBeforeCaptured, historyAfterCaptured});
+      historyBeforeCaptured, historyAfterCaptured, commandBudgetExhausted});
   }
   return {runId, completed, sampleCount: samples.length, initialReady: samples[0].ready};
 }

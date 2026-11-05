@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The actual aac Linux search contract step now passes. Publish one short automated-
+check note, not complete phone-flow acceptance. The failed Android prerequisite
+retains five unvalidated-Wi-Fi defaults, then fifty-five validated-cellular
+defaults, with Wi-Fi unvalidated throughout and historical DNS failures. Its final
+command cause is unknown. The candidate corrects a locally reproduced deadline
+classification race, not the network. Current iPhone closed-app notification
+wiring and its display policy remain open. Keep all prior flows/statuses/dates,
+media, tours, blockers, capture/runtime limits and public access unchanged. See
+`docs/release/evidence/verification-followup-aac-2026-11-05/`.
+
 The latest 9ae iPhone gate reaches its approved 50-minute limit during compilation;
 screen/capture steps are skipped, disposal succeeds and no artifacts remain. The
 584 Android chat trial stops before app installation on its passive Wi-Fi

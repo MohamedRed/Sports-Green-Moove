@@ -110,4 +110,7 @@ test('one concise local-only portal note preserves all historical flows and leav
     assert.equal(report[key], false);
   const item = json('docs/release/evidence-manifest.json').operationalUserFlowEvidence.items.find(row => row.id === 'booking_ride_chat_access_revocation');
   assert.equal(item.status, 'pending');
+  assert.doesNotMatch(item.description, /conversation remains unimplemented/);
+  assert(item.evidenceRefs.includes('evidence/ios-ride-chat-2026-11-05/README.md'));
+  assert(item.evidenceRefs.includes('evidence/ios-fixture-pass-a37-2026-11-05/README.md'));
 });

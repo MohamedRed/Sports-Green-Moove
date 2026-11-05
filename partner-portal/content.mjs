@@ -61,6 +61,7 @@ import { blockers } from './progress-blockers.mjs';
 import {sessionExitComponents} from './session-exit-components.mjs';
 import {bookingServerRecheck} from './booking-server-recheck.mjs';
 import {verificationBoundaries} from './verification-boundaries.mjs';
+import {verificationFollowup} from './verification-followup.mjs';
 
 const manual = 'docs/release/evidence/browserstack-2026-10-11/README.md';
 const replay = 'docs/release/evidence/browserstack-2026-10-13/README.md';
@@ -76,6 +77,7 @@ const local = (groups, checks, source = 'docs/release/evidence/local-2026-10-15/
 const shot = (file, alt) => ({ file, alt });
 
 export const content = {
+  verificationFollowup,
   verificationBoundaries,
   bookingServerRecheck,
   alertCaptureFailure,
