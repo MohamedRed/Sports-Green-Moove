@@ -2,6 +2,27 @@
 
 ## Current Publication Policy
 
+The d56 SDK build and all eleven original iPhone simulator cases now pass with
+successful disposal and no artifacts. Publish the exact source-bound result,
+not physical or live-service acceptance. The separate 38b input observation
+retains eight passes/three failures: the immediate editor value is partial but
+the later exact sent/reopened message succeeds. Complete-value/enabled waits
+preserve every original assertion and production/fixture behavior; they postdate
+d56 and require their own run. The separate 38b controlled radio recovery passes
+with an intact private draft, explicit retry, reply, two messages/two notification
+records/no duplicates, exact original archive and independent full cleanup. This
+is local-network proof, not physical tracking, push or whole-CI acceptance.
+The subsequent d56 replay fails its original network-preparation predicate:
+Wi-Fi is validated but the default data subscription/cellular callback is
+absent. No radio cut or retry executes; independent policy/host cleanup passes.
+Keep this later failure beside the successful run, without inventing its cause
+or claiming repeatability. See `chat-network-d56-preparation-2026-11-05`.
+Add two short nontechnical notes; move previous partial headlines into history
+without deleting any dated evidence, flows, media, tours or blockers. No new
+media, phone, provider call, audience/policy change or release acceptance.
+See the dated `ios-fixture-pass-d56`, `ios-input-commit-38b` and `chat-network-38b`
+evidence folders.
+
 The 35f gate builds and executes all eleven cases: nine pass, including publication;
 search-booking confirmation and one team-send enabled assertion fail. Disposal
 succeeds and artifacts remain empty. Its bounded accessibility dump shows Messages

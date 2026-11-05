@@ -172,7 +172,7 @@ test('later failed gates retain exact sources, cleanup and unknown causes instea
 test('one concise incomplete-test note preserves every historical flow, update, blocker and media reference', () => {
   assert.deepEqual(content.verificationBoundaries, verificationBoundaries);
   assert.deepEqual(content.updates.filter(row => row.source === verificationBoundariesProgress.source), [verificationBoundariesProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === verificationBoundariesProgress.source));
+  assert(partitionUpdates(content.updates).previous.some(row => row.source === verificationBoundariesProgress.source));
   assert.doesNotMatch(verificationBoundariesProgress.title + verificationBoundariesProgress.text,
     /Firebase|BrowserStack|Android|Swift|SDK|Xcode|CI\b|macos|runner/i);
   const before = json('docs/release/evidence/verification-boundaries-2026-11-05/portal-before.json');

@@ -4,6 +4,17 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/ios-chat-input-commit.test.mjs"
+      - "tests/chat-network-current.test.mjs"
+      - "scripts/qa/chat-network-current-evidence.mjs"
+      - "docs/release/evidence/chat-network-38b-2026-11-05/**"
+      - "docs/release/evidence/ios-input-commit-38b-2026-11-05/**"
+      - "docs/release/evidence/ios-fixture-pass-d56-2026-11-05/**"
+      - "scripts/qa/retain-current-chat-network.mjs"
+      - "scripts/qa/retain-ios-input-commit-evidence.mjs"
+      - "scripts/qa/retain-ios-d56-fixture-pass.mjs"
+      - "scripts/qa/retain-chat-network-d56-preparation.mjs"
+      - "docs/release/evidence/chat-network-d56-preparation-2026-11-05/**"
       - "tests/ios-navigation-viewport.test.mjs"
       - "tests/publication-price-input.test.mjs"
       - "scripts/qa/check-publication-price.mjs"
@@ -699,6 +710,17 @@ on:
     branches:
       - main
     paths:
+      - "tests/ios-chat-input-commit.test.mjs"
+      - "tests/chat-network-current.test.mjs"
+      - "scripts/qa/chat-network-current-evidence.mjs"
+      - "docs/release/evidence/chat-network-38b-2026-11-05/**"
+      - "docs/release/evidence/ios-input-commit-38b-2026-11-05/**"
+      - "docs/release/evidence/ios-fixture-pass-d56-2026-11-05/**"
+      - "scripts/qa/retain-current-chat-network.mjs"
+      - "scripts/qa/retain-ios-input-commit-evidence.mjs"
+      - "scripts/qa/retain-ios-d56-fixture-pass.mjs"
+      - "scripts/qa/retain-chat-network-d56-preparation.mjs"
+      - "docs/release/evidence/chat-network-d56-preparation-2026-11-05/**"
       - "tests/ios-navigation-viewport.test.mjs"
       - "tests/publication-price-input.test.mjs"
       - "scripts/qa/check-publication-price.mjs"
@@ -1727,6 +1749,9 @@ jobs:
 
       - name: Verify iPhone navigation viewport
         run: node --test tests/ios-navigation-viewport.test.mjs
+
+      - name: Verify current chat recovery and iPhone input commit
+        run: node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

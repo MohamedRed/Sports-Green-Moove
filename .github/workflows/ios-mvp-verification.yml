@@ -10,6 +10,7 @@ on:
         default: false
   pull_request:
     paths:
+      - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-navigation-viewport.test.mjs"
       - "ios/**"
       - "scripts/check-ios-native-plan.sh"

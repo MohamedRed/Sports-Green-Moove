@@ -1,0 +1,137 @@
+{
+  "runId": 42107112300,
+  "jobId": 127525202735,
+  "sourceCommit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+  "status": "completed",
+  "conclusion": "failure",
+  "startedAt": "2026-11-05T20:52:17Z",
+  "completedAt": "2026-11-05T21:17:50Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:52:18Z",
+      "completedAt": "2026-11-05T20:52:19Z"
+    },
+    {
+      "name": "Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:52:19Z",
+      "completedAt": "2026-11-05T20:52:28Z"
+    },
+    {
+      "name": "Inspect installed Apple tools",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:52:28Z",
+      "completedAt": "2026-11-05T20:52:33Z"
+    },
+    {
+      "name": "Run native logic checks",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:52:33Z",
+      "completedAt": "2026-11-05T20:54:03Z"
+    },
+    {
+      "name": "Check controlled location lifecycle without a device",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:03Z",
+      "completedAt": "2026-11-05T20:54:06Z"
+    },
+    {
+      "name": "Check actual permission continuation before SDK compilation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:06Z",
+      "completedAt": "2026-11-05T20:54:07Z"
+    },
+    {
+      "name": "Check controlled emergency phone boundary without opening Phone",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:07Z",
+      "completedAt": "2026-11-05T20:54:09Z"
+    },
+    {
+      "name": "Check support concurrency signature regressions",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:09Z",
+      "completedAt": "2026-11-05T20:54:21Z"
+    },
+    {
+      "name": "Check approved capture bounds with generated images",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:21Z",
+      "completedAt": "2026-11-05T20:54:23Z"
+    },
+    {
+      "name": "Install project generator",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:23Z",
+      "completedAt": "2026-11-05T20:54:28Z"
+    },
+    {
+      "name": "Generate SDK-linked app project",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:28Z",
+      "completedAt": "2026-11-05T20:54:28Z"
+    },
+    {
+      "name": "Create isolated iPhone simulator",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:28Z",
+      "completedAt": "2026-11-05T20:54:29Z"
+    },
+    {
+      "name": "Boot isolated simulator before compiling or testing",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:54:29Z",
+      "completedAt": "2026-11-05T20:55:56Z"
+    },
+    {
+      "name": "Compile app and all fixture test bundles",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T20:55:56Z",
+      "completedAt": "2026-11-05T21:06:55Z"
+    },
+    {
+      "name": "Run every built fixture test without rebuilding",
+      "conclusion": "failure",
+      "startedAt": "2026-11-05T21:06:55Z",
+      "completedAt": "2026-11-05T21:17:15Z"
+    },
+    {
+      "name": "Validate and collect only three approved synthetic captures",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T21:17:15Z",
+      "completedAt": "2026-11-05T21:17:15Z"
+    },
+    {
+      "name": "Retain approved iPhone captures for one day",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T21:17:15Z",
+      "completedAt": "2026-11-05T21:17:15Z"
+    },
+    {
+      "name": "Observe fixture startup phases after a failed test step",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T21:17:15Z",
+      "completedAt": "2026-11-05T21:17:18Z"
+    },
+    {
+      "name": "Dispose isolated simulator",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T21:17:18Z",
+      "completedAt": "2026-11-05T21:17:26Z"
+    },
+    {
+      "name": "Post Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T21:17:26Z",
+      "completedAt": "2026-11-05T21:17:29Z"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T21:17:29Z",
+      "completedAt": "2026-11-05T21:17:39Z"
+    }
+  ]
+}

@@ -74,6 +74,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Verify iPhone search-to-booking contract without provider calls')
     .filter(step => step.name !== 'Verify exact publication price input')
     .filter(step => step.name !== 'Verify iPhone navigation viewport')
+    .filter(step => step.name !== 'Verify current chat recovery and iPhone input commit')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -228,7 +229,10 @@ test('the timeout correction preserves every current workload and artifact uploa
     [{name: 'Verify exact publication price input', run: 'node scripts/qa/check-publication-price.mjs && node --test tests/publication-price-input.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify iPhone navigation viewport'),
     [{name: 'Verify iPhone navigation viewport', run: 'node --test tests/ios-navigation-viewport.test.mjs'}]);
-  const steps = currentSteps.filter(step => !['Verify exact publication price input', 'Verify iPhone navigation viewport'].includes(step.name));
+  assert.deepEqual(currentSteps.filter(step => step.name === 'Verify current chat recovery and iPhone input commit'),
+    [{name: 'Verify current chat recovery and iPhone input commit', run: 'node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs'}]);
+  const steps = currentSteps.filter(step => !['Verify exact publication price input', 'Verify iPhone navigation viewport',
+    'Verify current chat recovery and iPhone input commit'].includes(step.name));
   assert.deepEqual(steps.filter(step => step.name === 'Verify iPhone search-to-booking contract without provider calls'),
     [{name: 'Verify iPhone search-to-booking contract without provider calls', run: 'node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs'}]);
   const diagnostic = steps.filter(step => step.name === 'Test approved temporary network startup logging');

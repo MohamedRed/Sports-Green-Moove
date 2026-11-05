@@ -1,7 +1,11 @@
 import {rejectedCaptureRecheck} from './rejected-capture-probe.mjs';
 import {completeChecks} from './complete-checks.mjs';
+import {currentChatRecovery} from './current-chat-recovery.mjs';
+import {iosD56FixturePass} from './ios-d56-fixture-pass.mjs';
 
 export const nativeRechecks = {
+  currentChatRecovery,
+  iosD56FixturePass,
   completeChecks,
   rejectedCaptureRecheck,
   nativeClientClosureRecheck: {source: 'docs/release/evidence/native-admin-close-13a5b1e2-2026-10-24/summary.json', checkedAt: '2026-10-24',

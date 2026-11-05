@@ -99,7 +99,7 @@ test('Android Wi-Fi readiness and a separate image download failure are not chat
 test('the latest partial result replaces stale full-pass headlines without deleting any previous portal or release requirement', () => {
   assert.deepEqual(content.iosViewportRecheck, iosViewportRecheck);
   const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === iosViewportRecheckProgress.source));
+  assert(previous.some(row => row.source === iosViewportRecheckProgress.source));
   assert(previous.some(row => row.source === iosA37FixturePassProgress.source));
   assert(!recent.some(row => row.source === iosA37FixturePassProgress.source));
   assert(iosViewportRecheckProgress.text.includes('simulation'));

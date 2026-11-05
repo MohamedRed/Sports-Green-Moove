@@ -1,0 +1,43 @@
+{
+  "artifactId": 13455233548,
+  "sha256": "0076965dedc3babd21918cf73ea8a1d29b62525400eb8d51d21af41d350f4a43",
+  "bytes": 366341,
+  "members": [
+    {
+      "member": "local-ui-evidence/f4ba29f7496c1e16548c63a8f9340ec6/local-chat-network-ui.json",
+      "file": "local-chat-network-ui.json",
+      "bytes": 5200,
+      "sha256": "ee660417faa281e57d2a3e48727bee6b1f6b2ad01a70b452262d6e69037a793c"
+    },
+    {
+      "member": "local-ui-evidence/f4ba29f7496c1e16548c63a8f9340ec6/LocalChatNetworkFlowTest-instrumentation.txt",
+      "file": "instrumentation.txt",
+      "bytes": 1442,
+      "sha256": "a91e017a2caba5a6a78c8576e74092e6a8a981f77a5d12557f1be1c708807159"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/disposable-device-setup.json",
+      "file": "disposable-device-setup.json",
+      "bytes": 711,
+      "sha256": "b01c4c44cc224ff6177e6ff02cba42a9b0bd02026e7df905c9c227f0eb773cb0"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/disposable-device-restore.json",
+      "file": "disposable-device-restore.json",
+      "bytes": 378,
+      "sha256": "e0cf022be30001cf0cee177b7b5771b3b3f9286a6a211581bc33bacb3b42ca37"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/chat-network-recovery-suite-status.json",
+      "file": "chat-network-recovery-suite-status.json",
+      "bytes": 82,
+      "sha256": "7546255782463053b4a1ae6462a6c692fe853fc07504464678f84c43a49b7013"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/host-shutdown/complete.json",
+      "file": "host-shutdown.json",
+      "bytes": 397,
+      "sha256": "b02a35849fd1a48c37da5a2e0a5cc94a52b087652af6cdac8b717e151d208773"
+    }
+  ]
+}
