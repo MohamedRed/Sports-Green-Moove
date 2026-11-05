@@ -70,6 +70,11 @@ final class SportsGreenMooveUITests: XCTestCase {
         rating.tap()
         XCTAssertTrue(app.staticTexts["Avis envoyé."].waitForExistence(timeout: 6))
         XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
+        let refresh = app.buttons["messages.refresh"]
+        XCTAssertTrue(refresh.isEnabled)
+        refresh.tap()
+        XCTAssertTrue(app.staticTexts["Aucun avis en attente."].waitForExistence(timeout: 6))
+        XCTAssertFalse(app.descendants(matching: .any)["messages.rating-prompt.action"].exists)
         captureApproved(.rating, in: app)
     }
 

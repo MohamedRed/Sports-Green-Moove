@@ -10,7 +10,7 @@ protocol AuthGateway: Sendable {
     @MainActor func signOut() throws
 }
 
-protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, PendingReviewGateway, EmergencyContactGateway {
+protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, MessagesGateway, EmergencyContactGateway {
     var isConfigured: Bool { get }
     func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
     func resolvePlace(placeId: String) async throws -> ResolvedPlace
@@ -22,8 +22,6 @@ protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGate
     func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func endRide(rideSessionId: String, distanceMeters: Int, passengersSharing: Int) async throws -> RideCompletionSummary
-    func getInbox() async throws -> InboxSummary
-    func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String
     func createReport(submission: SupportSubmission) async throws -> String
     @MainActor func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws
     @MainActor func stopNativeLocationFallback(rideSessionId: String)

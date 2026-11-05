@@ -141,9 +141,9 @@ struct AppDataFixtureGateway: FirebaseGateway {
         }
         return try await unused.endRide(rideSessionId: rideSessionId, distanceMeters: distanceMeters, passengersSharing: passengersSharing)
     }
-    func getInbox() async throws -> InboxSummary { try await unused.getInbox() }
-    func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
-        try await unused.submitRating(rideSessionId: rideSessionId, ratedUserId: ratedUserId, score: score, comment: comment)
+    func getInbox(uid: String) async throws -> InboxSummary { try await unused.getInbox(uid: uid) }
+    func submitRating(uid: String, rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
+        try await unused.submitRating(uid: uid, rideSessionId: rideSessionId, ratedUserId: ratedUserId, score: score, comment: comment)
     }
     func createReport(submission: SupportSubmission) async throws -> String { try await unused.createReport(submission: submission) }
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
@@ -160,8 +160,8 @@ struct AppDataFixtureGateway: FirebaseGateway {
     func supportReport(uid: String, reportId: String, cursor: String?) async throws -> SupportDetail {
         try await unused.supportReport(uid: uid, reportId: reportId, cursor: cursor)
     }
-    func loadPendingReviews(cursor: String) async throws -> PendingReviewPage {
-        try await unused.loadPendingReviews(cursor: cursor)
+    func loadPendingReviews(uid: String, cursor: String) async throws -> PendingReviewPage {
+        try await unused.loadPendingReviews(uid: uid, cursor: cursor)
     }
 }
 

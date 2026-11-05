@@ -230,7 +230,7 @@ test('the timeout correction preserves every current workload and artifact uploa
   assert.deepEqual(steps.filter(step => step.name === 'Validate bounded node readiness and retained failure scope'),
     [{name: 'Validate bounded node readiness and retained failure scope', run: 'node --test tests/compose-node-readiness.test.mjs tests/guardian-window-observation.test.mjs'}]);
   assert.deepEqual(steps.filter(step => step.name === 'Validate iPhone emergency contact ownership and evidence scope'),
-    [{name: 'Validate iPhone emergency contact ownership and evidence scope', run: 'node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs'}]);
+    [{name: 'Validate iPhone emergency contact ownership and evidence scope', run: 'node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs'}]);
   for (const [rows, count, expected] of [
     [steps.filter(step => step.run && !setup.has(step.name) && !['Test approved temporary network startup logging', 'Test approved invitation same-origin transport', 'Test invitation-bound phone approval observations', 'Test readable status feedback and error colours', 'Test complete booking dates in enlarged native layouts', 'Validate bounded public-repository iPhone verification', 'Validate bounded node readiness and retained failure scope', 'Validate iPhone emergency contact ownership and evidence scope'].includes(step.name)), 153, '1c44659a0d8be19018d3e1957b84516c546cb55b3e8e797acd165626184d73a5'],
     [steps.filter(step => step.uses?.startsWith('actions/upload-artifact@')), 19, 'ac04ddc85195eb2f779e94230aca82bb8d5f1c78587bfb2cbfa7ae6b5d8c9824'],

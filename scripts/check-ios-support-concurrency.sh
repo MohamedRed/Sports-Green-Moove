@@ -43,6 +43,8 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInitializedProfile.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/SupportSubmission.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift" \

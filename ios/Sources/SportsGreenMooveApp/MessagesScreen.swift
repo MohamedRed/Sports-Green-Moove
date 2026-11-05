@@ -2,106 +2,90 @@ import SwiftUI
 
 struct MessagesScreen: View {
     @Environment(AppState.self) private var appState
+    var body: some View {
+        if let access = appState.accountAccess {
+            OwnedMessagesScreen(access: access, gateway: appState.firebase).id(access.context.id)
+        }
+    }
+}
+
+private struct OwnedMessagesScreen: View {
+    @Environment(\.scenePhase) private var scenePhase
     @State private var selectedTab = "chats"
-    @State private var inbox = InboxSummary()
-    @State private var loading = false
-    @State private var submittingReviewId: String?
-    @State private var error: String?
-    @State private var notice: String?
-    @State private var reviews = PendingReviewsState()
+    @State private var state: MessagesInboxState
+
+    init(access: AccountAccess, gateway: any MessagesGateway) {
+        _state = State(initialValue: MessagesInboxState(access: access, gateway: gateway))
+    }
 
     var body: some View {
         SGMScreen(spacing: 0, testID: UITestIdentifier.messagesScreen) {
-            SGMTopBar(title: "MESSAGES")
+            HStack {
+                SGMTopBar(title: "MESSAGES")
+                Button { Task { await state.refresh() } } label: {
+                    Image(systemName: "arrow.clockwise").frame(width: 44, height: 44)
+                }.accessibilityLabel("Actualiser les messages").accessibilityIdentifier("messages.refresh")
+                    .disabled(state.busy || !state.live).padding(.trailing, SGMSpace.padScreen)
+            }
             MessageTabs(tabs: tabs, selected: selectedTab) { selectedTab = $0 }
             VStack(spacing: 10) {
-                if loading {
-                    MessageEmptyCard(message: "Synchronisation de l'inbox...")
-                } else if let error {
-                    MessageEmptyCard(message: error)
-                } else {
-                    if let notice {
+                if state.live {
+                    if state.loading { ProgressView().accessibilityLabel("Chargement des messages") }
+                    if let error = state.error { MessageEmptyCard(message: error) }
+                    if let notice = state.notice {
                         MessageEmptyCard(message: notice)
                     }
-                    switch selectedTab {
-                    case "notifs":
-                        notificationContent
-                    case "avis":
-                        PendingReviewsContent(state: reviews, submittingId: submittingReviewId, gateway: appState.firebase) { review, score in
-                            Task { await submitReview(review, score: score) }
+                    if !state.loading && state.inbox.reviewsUserId != nil {
+                        switch selectedTab {
+                        case "notifs":
+                            notificationContent
+                        case "avis":
+                            PendingReviewsContent(state: state.reviews, submittingId: state.submittingReviewId,
+                                busy: !state.canSubmit, onMore: { Task { await state.more() } }) { review, score in
+                                Task { await state.submit(review, score: score) }
+                            }
+                        default:
+                            chatContent
                         }
-                    default:
-                        chatContent
                     }
                 }
             }
             .padding(.horizontal, SGMSpace.padScreen)
             .padding(.top, 14)
         }
-        .task { await loadInbox() }
-        .onDisappear { reviews.close() }
+        .task(id: scenePhase) { if scenePhase == .active { await state.resume() } else { state.suspend() } }
+        .onChange(of: scenePhase) { _, phase in if phase != .active { state.suspend() } }
+        .onDisappear { state.close() }
     }
 
     private var tabs: [MessageTab] {
         [
-            MessageTab(id: "notifs", label: "Notifs", count: inbox.notifications.filter(\.unread).count),
-            MessageTab(id: "chats", label: "Chats", count: inbox.chats.reduce(0) { $0 + $1.unreadCount }),
-            MessageTab(id: "avis", label: "Avis", count: reviews.items.count),
+            MessageTab(id: "notifs", label: "Notifs", count: state.live ? state.inbox.notifications.filter(\.unread).count : 0),
+            MessageTab(id: "chats", label: "Chats", count: state.live ? state.inbox.chats.reduce(0) { $0 + $1.unreadCount } : 0),
+            MessageTab(id: "avis", label: "Avis", count: state.live ? state.reviews.items.count : 0),
         ]
     }
 
     private var chatContent: some View {
         Group {
-            if inbox.chats.isEmpty {
+            if state.inbox.chats.isEmpty {
                 MessageEmptyCard(message: "Aucune conversation.")
             } else {
-                ForEach(inbox.chats) { ChatCard(chat: $0) }
+                ForEach(state.inbox.chats) { ChatCard(chat: $0) }
             }
         }
     }
 
     private var notificationContent: some View {
         Group {
-            if inbox.notifications.isEmpty {
+            if state.inbox.notifications.isEmpty {
                 MessageEmptyCard(message: "Aucune notification.")
             } else {
-                ForEach(inbox.notifications) { NotificationCard(notification: $0) }
+                ForEach(state.inbox.notifications) { NotificationCard(notification: $0) }
             }
         }
     }
 
-    private func loadInbox() async {
-        loading = true
-        error = nil
-        defer { loading = false }
-        do {
-            inbox = try await appState.firebase.getInbox()
-            try Task.checkCancellation()
-            reviews.replace(inbox)
-        } catch {
-            self.error = error.localizedDescription
-        }
-    }
-
-    private func submitReview(_ review: InboxReviewPrompt, score: Int) async {
-        submittingReviewId = review.id
-        error = nil
-        notice = nil
-        defer { submittingReviewId = nil }
-        do {
-            _ = try await appState.firebase.submitRating(
-                rideSessionId: review.rideSessionId,
-                ratedUserId: review.ratedUserId,
-                score: score,
-                comment: nil
-            )
-            try Task.checkCancellation()
-            reviews.submitted(review.id)
-            notice = "Avis envoyé."
-        } catch {
-            self.error = error.localizedDescription
-        }
-    }
 }
 
 private struct MessageTab: Identifiable, Hashable {

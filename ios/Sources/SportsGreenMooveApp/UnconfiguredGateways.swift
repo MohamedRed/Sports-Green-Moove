@@ -113,11 +113,11 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         .empty
     }
 
-    func getInbox() async throws -> InboxSummary {
+    func getInbox(uid: String) async throws -> InboxSummary {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
+    func submitRating(uid: String, rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
         _ = (rideSessionId, ratedUserId, score, comment)
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }

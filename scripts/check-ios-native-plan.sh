@@ -52,6 +52,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ReviewTripContextWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviews.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviewsState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/MessagesInboxState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PendingReviewWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/StripeConnectModels.swift" \
@@ -95,6 +97,7 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportStateChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportSubmissionChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PendingReviewChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/MessagesInboxChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/main.swift" \
   -o "${BUILD_DIR}/SportsGreenMooveNativeChecks"
 

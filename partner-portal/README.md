@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone messages/reviews screen now uses immutable account-generation leases
+for inbox, pagination and rating requests. The baseline methods restore old
+private inbox content and rating feedback in the controlled reproduction; the
+candidate denies forty-two delayed success/error boundaries. Unknown rating
+writes require an explicit fresh inbox read before another submission. Publish
+one concise local-only note with no new media or changed flow statuses/dates,
+tours, blockers, history or public access. The eleven-case SDK/UI gate, full
+conversation UI, native sign-out and release remain unverified. See
+`docs/release/evidence/ios-message-ownership-2026-11-05/README.md`.
+
 The verified-parent child-contact picker is now source-wired on iPhone. Its local
 protocol/pagination/privacy checks and twenty-four delayed boundaries pass; a new
 UI case is only prepared, bringing the complete fixture inventory to eleven.

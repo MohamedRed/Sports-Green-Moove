@@ -91,13 +91,13 @@
       {
         "id": "ios_sdk_build_ci",
         "status": "pending",
-        "description": "The SDK-linked build passes at 3e7cd40. The later native-location shutdown and profile sign-out changes require their own successful SDK-linked build; controlled local checks cannot accept this item.",
+        "description": "The source-bound SDK build passes at 4582c3a. Later emergency contacts, parent selection and message/review ownership still require their own successful SDK-linked build; controlled local checks cannot accept this item.",
         "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870"]
       },
       {
         "id": "ios_fixture_ui_ci",
         "status": "pending",
-        "description": "Seven fixture cases and disposal pass at 3e7cd40. The later profile sign-out case and changed location shutdown need a complete new fixture run. Physical and end-to-end iPhone flows remain unaccepted.",
+        "description": "Eight fixture cases and disposal pass at 4582c3a. The current eleven-case inventory, emergency/parent contact screens and message refresh assertions still require a complete new fixture run. Physical and end-to-end iPhone flows remain unaccepted.",
         "evidenceRefs": ["ios-mvp-verification.md", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/summary.json", "evidence/ios-fixture-pass-3e7cd40-2026-11-04/source-sha256.json", "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911781988/job/126862422870"]
       },
       {

@@ -20,7 +20,8 @@ test('both native clients expose continuation, parse account-bound pages and rem
   for (const source of [android, ios]) for (const expected of ['Continuer la recherche', 'Voir d’autres avis', 'messages.reviews.more'])
     assert(source.includes(expected));
   for (const source of [read('android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxState.kt'),
-    read('ios/Sources/SportsGreenMooveApp/MessagesScreen.swift')]) assert(source.includes('reviews.submitted('));
+    read('ios/Sources/SportsGreenMooveApp/MessagesInboxState.swift')]) assert(source.includes('reviews.submitted('));
+  assert(read('ios/Sources/SportsGreenMooveApp/MessagesScreen.swift').includes('state.submit(review, score: score)'));
   assert(read('android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidPendingReviewGateway.kt').includes('auth.currentUser?.uid != uid'));
   assert(read('ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift').includes('firebaseOwnedCall(uid: uid, name: name, input: data)'));
   assert.equal((read('ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift').match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);

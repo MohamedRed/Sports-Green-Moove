@@ -31,7 +31,8 @@ test('private contact reads and writes use the exact server protocol and retain 
   assert.equal((gateway.match(/Auth.auth\(\).currentUser\?\.uid == uid/g) ?? []).length, 2);
   assert.equal((gateway.match(/try Task.checkCancellation\(\)/g) ?? []).length, 2);
   assert.doesNotMatch(gateway, /collection\(|print\(|NSLog|retry|fallback/i);
-  assert(read(app + 'GatewayContracts.swift').includes('PendingReviewGateway, EmergencyContactGateway'));
+  assert(read(app + 'GatewayContracts.swift').includes('MessagesGateway, EmergencyContactGateway'));
+  assert(read(app + 'MessagesInboxState.swift').includes('protocol MessagesGateway: PendingReviewGateway'));
   const wire = read(app + 'EmergencyContactWire.swift');
   for (const fragment of ['CFBooleanGetTypeID()', 'expectedChildInstanceId', 'version > 0', 'data.keys.contains("contact")',
     'data["accountUserId"] as? String == uid', 'data["subjectId"] as? String == uid', 'revision > operation.expectedRevision']) assert(wire.includes(fragment));

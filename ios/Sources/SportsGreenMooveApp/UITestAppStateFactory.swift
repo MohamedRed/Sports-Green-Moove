@@ -181,7 +181,8 @@ private enum Fixtures {
     static let inbox = InboxSummary(
         notifications: [],
         chats: [InboxChatSummary(id: "chat-1", sourceType: "trip", sourceId: "trip-1", title: "Coach U8", preview: "Départ confirmé.", dateLabel: "16h12", unreadCount: 1, initials: "CO")],
-        reviews: [InboxReviewPrompt(id: "review-1", rideSessionId: "ride-session-1", ratedUserId: "driver-1", title: "Avis conducteur", prompt: "Notez le trajet.", initials: "DR")]
+        reviews: [InboxReviewPrompt(id: "ride-session-1_ui-user_driver-1", rideSessionId: "ride-session-1", ratedUserId: "driver-1", title: "Avis conducteur", prompt: "Notez le trajet.", initials: "DR")],
+        reviewsUserId: "ui-user"
     )
 }
 
@@ -227,8 +228,10 @@ struct UITestFirebaseGateway: FirebaseGateway {
     func getPayableBookings() async throws -> [PayableBookingSummary] { [Fixtures.payableBooking] }
     func getImpactSummary() async throws -> ImpactSummary { Fixtures.impact }
     func getRewardSummary() async throws -> RewardSummary { Fixtures.rewards }
-    func getInbox() async throws -> InboxSummary { Fixtures.inbox }
-    func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String { "rating-1" }
+    func getInbox(uid: String) async throws -> InboxSummary { Fixtures.inbox }
+    func submitRating(uid: String, rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
+        "\(rideSessionId)_\(uid)_\(ratedUserId)"
+    }
     func createReport(submission: SupportSubmission) async throws -> String { "report-1" }
     func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {}
     @MainActor func stopNativeLocationFallback(rideSessionId: String) {}

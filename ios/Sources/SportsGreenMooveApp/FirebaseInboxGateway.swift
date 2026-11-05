@@ -5,15 +5,13 @@ import FirebaseFunctions
 import FirebaseAuth
 
 extension FirebaseBackendGateway {
-    func getInbox() async throws -> InboxSummary {
-        guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+    func getInbox(uid: String) async throws -> InboxSummary {
         return try await inboxFunction("getInbox", data: [:], uid: uid) { payload in
             guard let inbox = payload["inbox"] as? [String: Any] else { throw ProviderConfigurationError(message: "Inbox manquante.") }
             return try mapInbox(inbox, uid: uid)
         }
     }
-    func loadPendingReviews(cursor: String) async throws -> PendingReviewPage {
-        guard let uid = Auth.auth().currentUser?.uid else { throw CancellationError() }
+    func loadPendingReviews(uid: String, cursor: String) async throws -> PendingReviewPage {
         return try await inboxFunction("getPendingReviews", data: ["cursor": cursor], uid: uid) { payload in
             let page = try PendingReviewWire.parse(payload, uid: uid)
             guard page.nextCursor != cursor else { throw ProviderConfigurationError(message: "Réponse avis invalide.") }
