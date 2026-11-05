@@ -1,5 +1,8 @@
 import Foundation
 
+try checkPlaceSearchWire()
+try await checkSearchOwnership()
+
 try checkRideChatWire()
 try checkRideChatDirectoryWire()
 try checkRideChatTimeline()

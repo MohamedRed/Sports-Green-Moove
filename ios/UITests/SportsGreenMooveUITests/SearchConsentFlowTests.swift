@@ -37,6 +37,7 @@ final class SearchConsentFlowTests: XCTestCase {
         app.buttons["search.seats.2"].tap()
         XCTAssertFalse(app.buttons["booking.request.action"].exists)
         XCTAssertEqual(consent.value as? String, "Accordé")
+        verifyOwnedChildBooking(in: app)
     }
 
     @MainActor private func launchSearch() -> XCUIApplication {

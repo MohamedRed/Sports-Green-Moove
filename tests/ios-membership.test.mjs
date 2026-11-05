@@ -5,6 +5,7 @@ import {test} from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosMembership, iosMembershipProgress, iosMembershipFixtureProgress} from '../partner-portal/ios-membership.mjs';
+import {iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -131,7 +132,9 @@ test('new request/review UI assertions preserve all eleven cases, the approved r
 test('concise local and actual fixture notes preserve release gaps and enter both web events and iPhone coverage', () => {
   assert.deepEqual(content.iosMembership, iosMembership);
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipProgress.source), [iosMembershipProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosMembershipProgress.source));
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert(previous.some(row => row.source === iosMembershipProgress.source));
+  assert(recent.some(row => row.source === iosA37FixturePassProgress.source && row.coversFlows.includes('clubs')));
   assert.deepEqual(content.updates.filter(row => row.source === iosMembershipFixtureProgress.source), [iosMembershipFixtureProgress]);
   assert(partitionUpdates(content.updates).previous.some(row => row.source === iosMembershipFixtureProgress.source));
   assert.equal(json(iosMembershipFixtureProgress.source).passed, 9);

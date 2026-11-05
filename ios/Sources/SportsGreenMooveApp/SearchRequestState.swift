@@ -1,7 +1,8 @@
 import Foundation
 
 struct SearchRequestContext: Hashable, Sendable {
-    let uid: String
+    let owner: AccountContext
+    var uid: String { owner.uid }
     let form: SearchFormState
     let origin: ResolvedPlace
     let destination: ResolvedPlace
@@ -33,10 +34,10 @@ struct SearchRequestState: Sendable {
         return request
     }
 
-    mutating func finish(_ request: Request, uid: String?, succeeded: Bool) -> Bool {
+    mutating func finish(_ request: Request, owner: AccountContext?, succeeded: Bool) -> Bool {
         guard pending == request else { return false }
         pending = nil
-        guard request.context.uid == uid else { completed = nil; return false }
+        guard request.context.owner == owner else { completed = nil; return false }
         completed = succeeded ? request.context : nil
         return true
     }

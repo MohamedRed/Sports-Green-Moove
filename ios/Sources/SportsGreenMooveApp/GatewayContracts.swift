@@ -12,12 +12,12 @@ protocol AuthGateway: Sendable {
 
 protocol FirebaseGateway: AppDataGateway, InitializedProfileGateway, SupportGateway, MessagesGateway, EmergencyContactGateway, TeamChatGateway, RideChatGateway, ReceivedRatingsGateway, MembershipGateway, ProfileCityGateway {
     var isConfigured: Bool { get }
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion]
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace
+    func suggestPlaces(uid: String, input: String) async throws -> [PlaceSuggestion]
+    func resolvePlace(uid: String, placeId: String) async throws -> ResolvedPlace
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary]
     func createTrip(draft: TripPublishDraft) async throws -> String
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String
-    func approveBooking(bookingId: String) async throws -> String
+    func requestBooking(uid: String, trip: TripSummary, childId: String?, seats: Int) async throws -> String
+    func approveBooking(uid: String, bookingId: String) async throws -> String
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot
     func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String
     func markDropoff(rideSessionId: String, bookingId: String, childId: String) async throws -> String

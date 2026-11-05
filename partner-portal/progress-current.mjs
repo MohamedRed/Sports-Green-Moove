@@ -38,10 +38,7 @@ import {iosReceivedRatingsProgress} from './ios-received-ratings.mjs';
 import {iosBuildAuditProgress} from './ios-build-audit.mjs';
 import {iosMembershipProgress, iosMembershipFixtureProgress} from './ios-membership.mjs';
 import {iosProfileCityProgress} from './ios-profile-city.mjs';
-import {chatSourceAccessProgress} from './chat-source-access.mjs';
-import {iosCurrentFixtureFailureProgress} from './ios-current-fixture-failure.mjs';
-import {iosInputControlsProgress} from './ios-input-controls.mjs';
-import {iosRideChatProgress} from './ios-ride-chat.mjs';
+import {latestIosProgress} from './progress-ios-latest.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -134,10 +131,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
-  iosRideChatProgress,
-  iosInputControlsProgress,
-  iosCurrentFixtureFailureProgress,
-  chatSourceAccessProgress,
+  ...latestIosProgress,
   iosProfileCityProgress,
   iosMembershipProgress,
   iosMembershipFixtureProgress,

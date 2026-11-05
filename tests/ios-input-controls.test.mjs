@@ -64,7 +64,10 @@ test('UI candidates preserve the real city button and full-size club target with
     const expected = row.path.endsWith('/SportsGreenMooveUITests.swift')
       ? original.replace('        verifyTeamChat(in: app)', '        verifyRideChat(in: app)\n        verifyTeamChat(in: app)')
         .replace('        assertExists("active-ride.emergency-contact", in: app)',
-          '        assertExists("active-ride.emergency-contact", in: app)\n        verifyActiveRideChat(in: app)') : original;
+          '        assertExists("active-ride.emergency-contact", in: app)\n        verifyActiveRideChat(in: app)')
+      : row.path.endsWith('/SearchConsentFlowTests.swift')
+        ? original.replace('        XCTAssertEqual(consent.value as? String, "Accordé")\n    }\n\n    @MainActor private func launchSearch',
+          '        XCTAssertEqual(consent.value as? String, "Accordé")\n        verifyOwnedChildBooking(in: app)\n    }\n\n    @MainActor private func launchSearch') : original;
     assert.equal(read(row.path), expected);
   }
 });

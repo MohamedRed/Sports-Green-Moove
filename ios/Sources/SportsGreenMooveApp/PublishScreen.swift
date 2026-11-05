@@ -46,8 +46,14 @@ struct PublishScreen: View {
                 controller: controller,
                 from: $from,
                 to: $to,
-                onSearchOrigin: { Task { await controller.suggestPlaces(input: from, target: .origin, firebase: appState.firebase, onError: setError) } },
-                onSearchDestination: { Task { await controller.suggestPlaces(input: to, target: .destination, firebase: appState.firebase, onError: setError) } },
+                onSearchOrigin: {
+                    let input = from
+                    Task { await controller.suggestPlaces(input: input, target: .origin, firebase: appState.firebase, onError: setError) }
+                },
+                onSearchDestination: {
+                    let input = to
+                    Task { await controller.suggestPlaces(input: input, target: .destination, firebase: appState.firebase, onError: setError) }
+                },
                 onSelectOrigin: { suggestion in Task { await controller.select(suggestion, target: .origin, firebase: appState.firebase, onError: setError) } },
                 onSelectDestination: { suggestion in Task { await controller.select(suggestion, target: .destination, firebase: appState.firebase, onError: setError) } },
                 onNext: nextFromPlaces

@@ -1,10 +1,18 @@
 import Foundation
 
+struct BookingProbeSubmission: Equatable, Sendable {
+    let uid: String
+    let trip: TripSummary
+    let childId: String?
+    let seats: Int
+}
+
 actor AppDataProbe {
     private let suspended: Set<Int>
     private var calls: [String] = []
     private var pending: [Int: CheckedContinuation<Void, Error>] = [:]
     private var observers: [(Int, CheckedContinuation<Void, Never>)] = []
+    private var submissions: [BookingProbeSubmission] = []
 
     init(suspended: Set<Int> = []) { self.suspended = suspended }
 
@@ -34,6 +42,8 @@ actor AppDataProbe {
     }
 
     func names() -> [String] { calls }
+    func capture(_ submission: BookingProbeSubmission) { submissions.append(submission) }
+    func capturedBookings() -> [BookingProbeSubmission] { submissions }
 
     private func notify() {
         let ready = observers.filter { $0.0 <= calls.count }
@@ -52,6 +62,8 @@ struct AppDataFixtureGateway: FirebaseGateway {
     var rides: RideLifecycleProbe? = nil
     var rideStops: RideLocalStops? = nil
     var publications: AppDataProbe? = nil
+    var searches: AppDataProbe? = nil
+    var searchResult: TripMatchSummary? = nil
     var bookings: AppDataProbe? = nil
     var bookingStatus = "approved"
     var expectedBookingTrip: TripSummary? = nil
@@ -89,26 +101,34 @@ struct AppDataFixtureGateway: FirebaseGateway {
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] {
         _ = try await probe.read("requests"); return []
     }
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
+    func suggestPlaces(uid: String, input: String) async throws -> [PlaceSuggestion] {
         if let publications {
             _ = try await publications.read("suggest")
             return [PlaceSuggestion(placeId: "isolated-origin", label: "Synthetic place", mainText: nil, secondaryText: nil)]
         }
-        return try await unused.suggestPlaces(input: input)
+        return try await unused.suggestPlaces(uid: uid, input: input)
     }
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
+    func resolvePlace(uid: String, placeId: String) async throws -> ResolvedPlace {
         if let publications { _ = try await publications.read("resolve"); return isolatedPublishDraft().origin }
-        return try await unused.resolvePlace(placeId: placeId)
+        return try await unused.resolvePlace(uid: uid, placeId: placeId)
     }
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] {
-        try await unused.searchTripMatches(criteria: criteria)
+        if let searches {
+            _ = try await searches.read("matches")
+            if let searchResult { return [searchResult] }
+            let trip = appDataTrip("isolated-search-trip")
+            return [.init(tripId: trip.id, score: 1, summary: trip, reasons: [], detourMinutes: nil, pickupDistanceMeters: nil)]
+        }
+        return try await unused.searchTripMatches(criteria: criteria)
     }
     func createTrip(draft: TripPublishDraft) async throws -> String {
         if let publications { _ = try await publications.read("publish"); return "isolated-trip" }
         return try await unused.createTrip(draft: draft)
     }
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+    func requestBooking(uid: String, trip: TripSummary, childId: String?, seats: Int) async throws -> String {
         if let bookings {
+            check(uid == "isolated-owner", "Booking gateway changed its originating account")
+            await bookings.capture(.init(uid: uid, trip: trip, childId: childId, seats: seats))
             if let expectedBookingTrip {
                 check(trip == expectedBookingTrip && childId == nil && seats == 1, "Trip action adopted freshly loaded terms")
             } else { check(childId == "isolated-child" && seats == 2, "Booking lost its captured child or seats") }
@@ -116,11 +136,12 @@ struct AppDataFixtureGateway: FirebaseGateway {
             if bookingReviewRequired { throw BookingReviewRequiredError() }
             return "isolated-booking"
         }
-        return try await unused.requestBooking(trip: trip, childId: childId, seats: seats)
+        return try await unused.requestBooking(uid: uid, trip: trip, childId: childId, seats: seats)
     }
-    func approveBooking(bookingId: String) async throws -> String {
+    func approveBooking(uid: String, bookingId: String) async throws -> String {
+        check(uid == "isolated-owner", "Booking approval changed its originating account")
         if let bookings { _ = try await bookings.read("approve"); return bookingStatus }
-        return try await unused.approveBooking(bookingId: bookingId)
+        return try await unused.approveBooking(uid: uid, bookingId: bookingId)
     }
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
         if let rides { try await rides.step("start-ride"); return isolatedRide() }

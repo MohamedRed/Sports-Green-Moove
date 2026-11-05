@@ -48,13 +48,13 @@ final class PublishController {
         }
 
         do {
-            let suggestions = try await firebase.suggestPlaces(input: input)
+            let suggestions = try await firebase.suggestPlaces(uid: access.context.uid, input: input)
             try requireCurrent(action)
             setSuggestions(suggestions, target: target)
             onError(nil)
         } catch {
             guard current(action) else { return }
-            onError(error.localizedDescription)
+            onError("Impossible de chercher cette adresse. Réessayez.")
         }
     }
 
@@ -62,7 +62,7 @@ final class PublishController {
         guard let action = begin() else { return }
         defer { finish(action) }
         do {
-            let place = try await firebase.resolvePlace(placeId: suggestion.placeId)
+            let place = try await firebase.resolvePlace(uid: access.context.uid, placeId: suggestion.placeId)
             try requireCurrent(action)
             if target == .origin {
                 origin = place
@@ -74,7 +74,7 @@ final class PublishController {
             onError(nil)
         } catch {
             guard current(action) else { return }
-            onError(error.localizedDescription)
+            onError("Impossible de confirmer cette adresse. Réessayez.")
         }
     }
 

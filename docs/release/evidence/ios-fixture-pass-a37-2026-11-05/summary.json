@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "source-bound-sdk-and-eleven-synthetic-iphone-screen-cases-not-current-search-or-physical",
+  "runId": 42064566624,
+  "jobId": 127375011844,
+  "sourceCommit": "a37cdbf263642d2a9a26a0af3cf2b0363886bb97",
+  "conclusion": "success",
+  "sdkBuild": "success",
+  "fixtureTests": "success",
+  "plannedCases": 11,
+  "passedCases": 11,
+  "failedCases": 0,
+  "deadlineMinutes": 50,
+  "disposal": "success",
+  "artifactCount": 0,
+  "newMedia": 0,
+  "sourceFixtureGateAccepted": true,
+  "currentSearchCandidateAccepted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "providerAuthenticationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "run.json",
+      "sha256": "b65d8d7166e29afeddddc3e14100521e14caafdc68205cf75ae475bb4fba6c06"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "f4cc18e32b9a7e49246c72601c9d811a2fda01d1fdb085b43a690e40f4bec114"
+    },
+    {
+      "file": "selected-tests.txt",
+      "sha256": "29d95ef87688aae828157faa9476712b4f05cbd9a4c9349c54ce9deb39412005"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "6eccf351294ba705cde39dc11976844ac51acfc09c487e9bc7b1025bf1ef6eed"
+    }
+  ]
+}

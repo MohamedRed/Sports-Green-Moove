@@ -35,8 +35,12 @@ func checkSearchConsent() {
 
     let origin = ResolvedPlace(placeId: "origin", label: "Origin", formattedAddress: "Isolated origin", lat: 50, lng: 4)
     let destination = ResolvedPlace(placeId: "destination", label: "Destination", formattedAddress: "Isolated destination", lat: 51, lng: 5)
+    func owner(_ uid: String) -> AccountContext {
+        .init(id: UUID(uuidString: uid == "parent-a" ? "00000000-0000-4000-8000-000000000001" : "00000000-0000-4000-8000-000000000002")!,
+            uid: uid, role: .parent, grantedRoles: [.parent])
+    }
     func context(_ next: SearchFormState = valid, uid: String = "parent-a", reverse: Bool = false) -> SearchRequestContext {
-        SearchRequestContext(uid: uid, form: next, origin: reverse ? destination : origin, destination: reverse ? origin : destination)
+        SearchRequestContext(owner: owner(uid), form: next, origin: reverse ? destination : origin, destination: reverse ? origin : destination)
     }
     let original = context()
     var requests = SearchRequestState()
@@ -44,12 +48,12 @@ func checkSearchConsent() {
     let first = requests.begin(original)!
     check(requests.pending == first && !requests.permitsBooking(original), "Pending search cannot authorise booking")
     requests.invalidate()
-    check(!requests.finish(first, uid: "parent-a", succeeded: true), "A revoked response is ignored")
+    check(!requests.finish(first, owner: owner("parent-a"), succeeded: true), "A revoked response is ignored")
     let second = requests.begin(original)!
     let latest = requests.begin(original)!
-    check(!requests.finish(second, uid: "parent-a", succeeded: false), "Old error cannot erase a newer search")
+    check(!requests.finish(second, owner: owner("parent-a"), succeeded: false), "Old error cannot erase a newer search")
     check(requests.pending == latest, "New search remains pending")
-    check(requests.finish(latest, uid: "parent-a", succeeded: true), "Current response accepted")
+    check(requests.finish(latest, owner: owner("parent-a"), succeeded: true), "Current response accepted")
     check(requests.pending == nil && requests.permitsBooking(original), "Current matching criteria can be booked")
 
     var changed = valid; changed.seatsNeeded = 2
@@ -61,10 +65,10 @@ func checkSearchConsent() {
     check(!requests.permitsBooking(context(uid: "parent-b")), "Another account cannot book the result")
     check(!requests.permitsBooking(context(reverse: true)), "Another route cannot reuse the result")
     let foreign = requests.begin(original)!
-    check(!requests.finish(foreign, uid: "parent-b", succeeded: true), "Changed account rejects a late response")
+    check(!requests.finish(foreign, owner: owner("parent-b"), succeeded: true), "Changed account rejects a late response")
     check(requests.pending == nil && !requests.permitsBooking(original), "Foreign response leaves no authority")
     let failed = requests.begin(original)!
-    check(requests.finish(failed, uid: "parent-a", succeeded: false), "Current error terminates pending work")
+    check(requests.finish(failed, owner: owner("parent-a"), succeeded: false), "Current error terminates pending work")
     check(!requests.permitsBooking(original), "A failed search cannot authorise a booking")
     check(requests.begin(context(uid: "")) == nil, "Empty account cannot start a search")
     changed = valid; changed.guardianConsent = false

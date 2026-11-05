@@ -5,6 +5,7 @@ import {test} from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosReceivedRatings, iosReceivedRatingsProgress} from '../partner-portal/ios-received-ratings.mjs';
+import {iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -101,7 +102,9 @@ test('the prepared profile assertions keep all eleven UI cases, captures and the
 test('the concise local-only portal note has web and iPhone gate coverage without accepting release evidence', () => {
   assert.deepEqual(content.iosReceivedRatings, iosReceivedRatings);
   assert.deepEqual(content.updates.filter(row => row.source === iosReceivedRatingsProgress.source), [iosReceivedRatingsProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === iosReceivedRatingsProgress.source));
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert(previous.some(row => row.source === iosReceivedRatingsProgress.source));
+  assert(recent.some(row => row.source === iosA37FixturePassProgress.source && row.coversFlows.includes('ratings')));
   assert.doesNotMatch(iosReceivedRatingsProgress.title + iosReceivedRatingsProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/i);
   const file = 'tests/ios-received-ratings.test.mjs';
   const web = parseDocument(read('.github/workflows/web-integration-smoke.yml')).toJSON();

@@ -8,6 +8,10 @@ on:
       - "tests/ios-current-fixture-result.test.mjs"
       - "tests/ios-input-controls.test.mjs"
       - "tests/ios-ride-chat.test.mjs"
+      - "tests/ios-search-ownership.test.mjs"
+      - "scripts/qa/check-ios-owned-places.sh"
+      - "tests/fixtures/ios-search-callable/**"
+      - "docs/release/evidence/ios-search-ownership-2026-11-05/**"
       - "tests/firestore-rules-lock.test.mjs"
       - "scripts/qa/check-ios-ride-chat-runtime.sh"
       - "tests/fixtures/ios-ride-chat-runtime/**"
@@ -690,6 +694,10 @@ on:
       - "tests/ios-current-fixture-result.test.mjs"
       - "tests/ios-input-controls.test.mjs"
       - "tests/ios-ride-chat.test.mjs"
+      - "tests/ios-search-ownership.test.mjs"
+      - "scripts/qa/check-ios-owned-places.sh"
+      - "tests/fixtures/ios-search-callable/**"
+      - "docs/release/evidence/ios-search-ownership-2026-11-05/**"
       - "tests/firestore-rules-lock.test.mjs"
       - "scripts/qa/check-ios-ride-chat-runtime.sh"
       - "tests/fixtures/ios-ride-chat-runtime/**"
@@ -1392,7 +1400,7 @@ jobs:
       - name: Validate required checks and report ordering
         run: npm run test:pr-user-flow-checks
       - name: Validate bounded public-repository iPhone verification
-        run: node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs tests/ios-location-shutdown.test.mjs
+        run: node --test tests/ios-mvp-workflow.test.mjs tests/ios-search-consent.test.mjs tests/ios-app-data.test.mjs tests/ios-authentication.test.mjs tests/ios-initialized-profile.test.mjs tests/ios-location-stop.test.mjs tests/ios-fixture-launch.test.mjs tests/ios-ride-ownership.test.mjs tests/ios-account-work.test.mjs tests/ios-approved-captures.test.mjs tests/ios-location-shutdown.test.mjs tests/ios-search-ownership.test.mjs
       - name: Validate complete smoke partitioning
         run: node --test tests/web-smoke-sharding.test.mjs
       - name: Validate bounded node readiness and retained failure scope

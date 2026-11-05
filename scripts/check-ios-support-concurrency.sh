@@ -56,6 +56,7 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseOwnedBookingGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ImpactRewardSummaries.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/LedgerSummaryWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PendingReviews.swift" \
@@ -80,6 +81,8 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBU
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebasePlacesGateway.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/PlaceSearchWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseBookingRequests.swift"
 printf '%s\n' 'Owned callable signature checks passed; this is not an SDK build or phone test.'

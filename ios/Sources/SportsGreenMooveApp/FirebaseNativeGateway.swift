@@ -42,14 +42,6 @@ struct FirebaseBackendGateway: FirebaseGateway {
         try await loadClubSummaries()
     }
 
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
-        _ = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
-        guard let terms = trip.bookingIntent else { throw BookingIntentError.unavailable }
-        let coordinator = BookingRequestCoordinator(store: try PendingBookingStore.platformStore(),
-            transport: FirebaseBookingRequestTransport(), currentUid: { Auth.auth().currentUser?.uid })
-        return try await coordinator.request(PendingBookingIntent(tripId: trip.id, childId: childId, seats: seats, terms: terms))
-    }
-
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
         try await withCheckedThrowingContinuation { continuation in
             let data: [String: Any] = ["tripId": tripId, "bookingIds": bookingIds]

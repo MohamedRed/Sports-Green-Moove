@@ -62,8 +62,3 @@ struct AccountAccess: Sendable {
         guard owns(work) else { throw CancellationError() }
     }
 }
-
-extension AppState {
-    var accountAccess: AccountAccess? { accountWork.access }
-    func refreshAccountScope() { accountWork.replace(session: session, role: selectedRole) }
-}

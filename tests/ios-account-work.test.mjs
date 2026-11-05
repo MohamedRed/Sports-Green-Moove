@@ -83,7 +83,7 @@ test('publication binds its controller and validates every delayed callback befo
   assert.match(controller, /init\(access: AccountAccess\)/);
   assert.match(controller, /guard active, pending == nil, access.context.role == \.driver/);
   assert.match(controller, /active && revision == action.revision && pending\?\.id == action.id && access.owns\(action.work\)/);
-  for (const call of ['firebase.suggestPlaces(input: input)', 'firebase.resolvePlace(placeId: suggestion.placeId)', 'firebase.createTrip(draft: draft)']) {
+  for (const call of ['firebase.suggestPlaces(uid: access.context.uid, input: input)', 'firebase.resolvePlace(uid: access.context.uid, placeId: suggestion.placeId)', 'firebase.createTrip(draft: draft)']) {
     assert(controller.includes('try await ' + call + '\n            try requireCurrent(action)'));
   }
   assert.match(controller, /onPublished: @escaping @MainActor \(AccountAccess\) async -> Void/);

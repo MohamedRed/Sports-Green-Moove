@@ -49,12 +49,12 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func listClubSummaries() async throws -> [ClubSummary] { [] }
 
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
+    func suggestPlaces(uid: String, input: String) async throws -> [PlaceSuggestion] {
         _ = input
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
     }
 
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
+    func resolvePlace(uid: String, placeId: String) async throws -> ResolvedPlace {
         _ = placeId
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
     }
@@ -69,14 +69,14 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+    func requestBooking(uid: String, trip: TripSummary, childId: String?, seats: Int) async throws -> String {
         _ = (trip, childId, seats)
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] { [] }
 
-    func approveBooking(bookingId: String) async throws -> String {
+    func approveBooking(uid: String, bookingId: String) async throws -> String {
         _ = bookingId
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }

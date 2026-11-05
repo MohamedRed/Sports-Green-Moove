@@ -106,7 +106,12 @@ private enum Fixtures {
         priceLabel: "4,00 EUR",
         passengerInitials: ["NO"],
         reasons: ["+6 min détour", "Même équipe U8"],
-        mapPreview: route
+        mapPreview: route,
+        bookingIntent: .init(terms: .init(departureAt: "2026-11-30T15:45:00Z", arrivalBy: nil,
+            origin: .init(lat: 50.715, lng: 4.612), destination: .init(lat: 50.669, lng: 4.567), priceCents: 400),
+            context: .init(driverUserId: "ui-driver", seatsTotal: 3, clubId: "club-royal", teamId: nil, category: "U8",
+                pickupRadiusM: nil, baggage: "medium", returnTrip: false, supportsVehicleTracking: true,
+                supportsChildTracking: true, appliedChangeId: nil))
     )
 
     static let match = TripMatchSummary(
@@ -213,13 +218,20 @@ struct UITestFirebaseGateway: FirebaseGateway {
     func searchTrips() async throws -> [TripSummary] { [Fixtures.trip] }
     func listChildren() async throws -> [ChildSummary] { [Fixtures.child, Fixtures.otherChild] }
     func listClubSummaries() async throws -> [ClubSummary] { Fixtures.clubs }
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] { [PlaceSuggestion(placeId: "place-1", label: input, mainText: input, secondaryText: "Belgique")] }
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace { Fixtures.origin }
+    func suggestPlaces(uid: String, input: String) async throws -> [PlaceSuggestion] { [PlaceSuggestion(placeId: "place-1", label: input, mainText: input, secondaryText: "Belgique")] }
+    func resolvePlace(uid: String, placeId: String) async throws -> ResolvedPlace { Fixtures.origin }
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] { [Fixtures.match] }
     func createTrip(draft: TripPublishDraft) async throws -> String { "trip-created" }
-    func requestBooking(trip: TripSummary, childId: String?, seats: Int) async throws -> String { "booking-created" }
+    func requestBooking(uid: String, trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+        guard uid == Fixtures.session.uid, trip == Fixtures.trip, (1...8).contains(seats), seats <= trip.seatsAvailable else { throw BookingIntentError.unavailable }
+        if let childId, ![Fixtures.child.id, Fixtures.otherChild.id].contains(childId) { throw BookingIntentError.unavailable }
+        _ = try bookingRequestPayload(trip: trip, childId: childId, seats: seats)
+        return "booking-\(childId ?? "adult")-\(seats)"
+    }
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] { [Fixtures.bookingRequest] }
-    func approveBooking(bookingId: String) async throws -> String { "approved" }
+    func approveBooking(uid: String, bookingId: String) async throws -> String {
+        guard uid == Fixtures.session.uid else { throw BookingRecoveryError.accountChanged }; return "approved"
+    }
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot { Fixtures.activeRide }
     func getActiveRide() async throws -> LiveRideSnapshot? { Fixtures.activeRide }
     func markPickup(rideSessionId: String, bookingId: String, childId: String) async throws -> String { "pickedUp" }

@@ -27,7 +27,7 @@ extension AppState {
         errorMessage = nil; noticeMessage = nil
         defer { bookingBusy = false; access.finish(work) }
         do {
-            let bookingId = try await firebase.requestBooking(trip: trip, childId: childId, seats: seats)
+            let bookingId = try await firebase.requestBooking(uid: access.context.uid, trip: trip, childId: childId, seats: seats)
             try access.requireCurrent(work)
             noticeMessage = "Demande envoyée: \(bookingId)"
         } catch {
@@ -49,7 +49,7 @@ extension AppState {
         errorMessage = nil; noticeMessage = nil
         defer { bookingBusy = false; access.finish(work) }
         do {
-            let status = try await firebase.approveBooking(bookingId: request.bookingId)
+            let status = try await firebase.approveBooking(uid: access.context.uid, bookingId: request.bookingId)
             try access.requireCurrent(work)
             guard status == "approved" else {
                 throw ProviderConfigurationError(message: "La réservation n'a pas été approuvée.")

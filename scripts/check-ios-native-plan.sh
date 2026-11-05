@@ -78,6 +78,8 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AuthSession.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchFormState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchRequestState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchActivityState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PlaceSearchWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AppState+Bookings.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/LogoutIntentStore.swift" \
@@ -116,6 +118,8 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchConsentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchAppStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SearchOwnershipChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PlaceSearchWireChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/UnusedRideChatGateway.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RideChatProbe.swift" \
@@ -172,3 +176,4 @@ swiftc \
 "${BUILD_DIR}/SportsGreenMooveNativeChecks"
 bash "${ROOT_DIR}/scripts/qa/check-ios-membership-fixture.sh"
 bash "${ROOT_DIR}/scripts/qa/check-ios-ride-chat-runtime.sh"
+bash "${ROOT_DIR}/scripts/qa/check-ios-owned-places.sh"

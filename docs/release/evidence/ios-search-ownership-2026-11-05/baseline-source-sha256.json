@@ -1,0 +1,56 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState.swift",
+      "sha256": "56145ee514e9ebca6c2ce766e07b66bbed3206ffe0d5138f826d1d5851ab5a7d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Search.swift",
+      "sha256": "6c84b3b2c72d41e7f164549fdec42537cb2832c925a098b3c9ec4baec97bafba"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AccountWorkScope.swift",
+      "sha256": "7d9526f77596caef3459d7702242e77d69e9816cf0bf47ef74424098c6475500"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchRequestState.swift",
+      "sha256": "13f0edf81d739f032975a80f5109f437b04a3f2d74040aee6a9b3313b6a5038e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchFormState.swift",
+      "sha256": "0354a3145333c6f68fe3460f30e7367a2cb44de3298878ee4be7db8265667254"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SearchScreen.swift",
+      "sha256": "0cf4940d74b0456a62ac1ce7aeb7c2b9059421cad59790b87e684d682810e35d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "cbcfc69076fc01d857d463a33c21b3b0441c40e6bb1ecf0e1f48495122f7b8e3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift",
+      "sha256": "c98efb1819171ef08bcc2b62e47e5582238f9035c174835f6573f89a4539d8d3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishController.swift",
+      "sha256": "e08d3e506943b3bb99ac660e7e3c54965ab33e64bbcd0d454d45b5f56d808c56"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "6dfb889c3dc7d6b0b8aad8a69239c7acd342a756bba01039d6bb1bf447560a32"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "f5b7bb78352a61dccf686ae539df381ff004db8e4041276fa8733666d04b035f"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "sha256": "175e0022cccceaf50a13a04ef157602d1a66aae02f2e937382d69884cdde880f"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/SearchOwnershipReproduction.swift",
+      "sha256": "5d78aeb5073aec7715ac2e909bfe6ba107eb44a757613b67817bc66c4db1735e"
+    }
+  ]
+}

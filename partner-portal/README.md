@@ -2,6 +2,19 @@
 
 ## Current Publication Policy
 
+The a37 SDK build and all eleven synthetic iPhone screen cases pass, with
+successful disposal and zero artifacts. Publish a short simulation-only result,
+not real-service, physical or release acceptance. The later owned-search fix
+retains a 22-restoration/24-unleased-callback negative reproduction and passes
+90 controlled boundaries, strict address parsing, fifteen scripted adapter
+callbacks and four pre-call denials. Its new second-child/two-seat screen assertion
+is only prepared inside the existing case. Publish one short local-only note;
+keep the current iPhone manifest pending and all eleven cases, 50 minutes and
+capture bounds unchanged. The Linux provider validation passes separately after
+the signed-lock repair, with no cloud operation or partner-facing technical note.
+Preserve all previous flows/statuses/dates, media, tours, blockers and public access.
+See the dated `ios-search-ownership` and `ios-fixture-pass-a37` evidence folders.
+
 The iPhone booking/ride conversation source is now wired end to end. Controlled
 state/storage/protocol checks, 84 delayed boundaries, eleven scripted thread
 adapter invalidations and nine separate disposable service groups pass. The

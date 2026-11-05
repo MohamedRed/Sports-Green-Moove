@@ -21,12 +21,6 @@ final class AppState {
             }
             if session?.uid != oldValue?.uid {
                 appDataRefreshId = nil
-                invalidateSearch()
-                searchPlaceRequests.removeAll()
-                searchOrigin = nil
-                searchDestination = nil
-                originSuggestions = []
-                destinationSuggestions = []
                 pendingRidePayment = nil
                 noticeMessage = nil
                 errorMessage = nil
@@ -52,8 +46,9 @@ final class AppState {
     var destinationSuggestions: [PlaceSuggestion] = []
     var searchMatches: [TripMatchSummary] = []
     var searchRequests = SearchRequestState()
+    let searchActivity = SearchActivityState()
     var searchPlaceRequests: [SearchPlaceTarget: UUID] = [:]
-    var searchLoading: Bool { searchRequests.pending != nil || !searchPlaceRequests.isEmpty }
+    var searchLoading: Bool { searchActivity.busy || searchRequests.pending != nil || !searchPlaceRequests.isEmpty }
     var loading = false
     var appDataRefreshId: UUID?
     var errorMessage: String?
@@ -73,6 +68,12 @@ final class AppState {
 
     var isConfigured: Bool {
         auth.isConfigured && firebase.isConfigured
+    }
+
+    var accountAccess: AccountAccess? { accountWork.access }
+    func refreshAccountScope() {
+        resetSearchSession()
+        accountWork.replace(session: session, role: selectedRole)
     }
 
     init(

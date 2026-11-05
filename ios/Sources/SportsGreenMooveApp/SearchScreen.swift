@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SearchScreen: View {
     @Environment(AppState.self) private var appState
+    @Environment(\.scenePhase) private var phase
     @State private var originInput = ""
     @State private var destinationInput = ""
     @State private var form = SearchFormState.initial()
@@ -16,16 +17,24 @@ struct SearchScreen: View {
                     text: $originInput,
                     selected: appState.searchOrigin,
                     suggestions: appState.originSuggestions,
-                    onSuggest: { Task { await appState.suggestPlaces(input: originInput, target: .origin) } },
-                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .origin) } }
+                    busy: !appState.searchActivity.available(.origin, access: access),
+                    onSuggest: {
+                        let input = originInput
+                        Task { await appState.suggestPlaces(input: input, target: .origin, access: access) }
+                    },
+                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .origin, access: access) } }
                 )
                 PlaceSearchField(
                     title: "Destination",
                     text: $destinationInput,
                     selected: appState.searchDestination,
                     suggestions: appState.destinationSuggestions,
-                    onSuggest: { Task { await appState.suggestPlaces(input: destinationInput, target: .destination) } },
-                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination) } }
+                    busy: !appState.searchActivity.available(.destination, access: access),
+                    onSuggest: {
+                        let input = destinationInput
+                        Task { await appState.suggestPlaces(input: input, target: .destination, access: access) }
+                    },
+                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination, access: access) } }
                 )
                 SearchTextField(title: "Date ISO", text: $form.desiredDepartureAtIso)
                 SearchChildSelector(
@@ -40,10 +49,11 @@ struct SearchScreen: View {
                     guardianConsent: $form.guardianConsent
                 )
                 SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET", testID: UITestIdentifier.searchAction) {
-                    if let request = appState.prepareSearch(form: form) {
+                    if let request = appState.prepareSearch(form: form, access: access) {
                         Task { await appState.runSearch(request) }
                     }
                 }
+                .disabled(!appState.searchActivity.available(.matches, access: access))
             }
             .padding(.horizontal, SGMSpace.padScreen)
 
@@ -54,7 +64,7 @@ struct SearchScreen: View {
                         let submittedForm = form
                         Task { await appState.requestSearchMatch(match, form: submittedForm, access: access) }
                     }
-                    .disabled(appState.bookingBusy)
+                    .disabled(appState.bookingBusy || appState.searchActivity.access?.context != access.context)
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {
                     Text("Choisissez un départ, une destination et lancez la recherche.")
@@ -83,7 +93,12 @@ struct SearchScreen: View {
             destinationInput = ""
             reconcileSelectedChild(appState.children)
         }
-        .onDisappear { appState.invalidateSearch() }
+        .task(id: SearchSceneKey(phase: phase, waiting: access.waitingForEarlierWork)) {
+            if phase == .active && !access.waitingForEarlierWork { appState.activateSearch(access: access) }
+            else { appState.suspendSearch(access: access) }
+        }
+        .onChange(of: phase) { _, next in if next != .active { appState.suspendSearch(access: access) } }
+        .onDisappear { appState.suspendSearch(access: access) }
     }
 
     private func reconcileSelectedChild(_ children: [ChildSummary]) {
@@ -92,11 +107,14 @@ struct SearchScreen: View {
     }
 }
 
+private struct SearchSceneKey: Equatable { let phase: ScenePhase; let waiting: Bool }
+
 private struct PlaceSearchField: View {
     let title: String
     @Binding var text: String
     let selected: ResolvedPlace?
     let suggestions: [PlaceSuggestion]
+    let busy: Bool
     let onSuggest: () -> Void
     let onSelect: (PlaceSuggestion) -> Void
 
@@ -105,6 +123,7 @@ private struct PlaceSearchField: View {
             HStack(spacing: 8) {
                 SearchTextField(title: title, text: $text)
                 SGMButton(title: "Chercher", variant: .ghost, full: false, action: onSuggest)
+                    .disabled(busy)
             }
             if let selected {
                 Text(selected.formattedAddress)
@@ -114,6 +133,7 @@ private struct PlaceSearchField: View {
             }
             ForEach(suggestions.prefix(4)) { suggestion in
                 SuggestionRow(suggestion: suggestion) { onSelect(suggestion) }
+                    .disabled(busy)
             }
         }
     }

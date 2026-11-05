@@ -44,7 +44,7 @@ test('search form owns consent reset and the screen invalidates every changed se
   for (const target of ['origin', 'destination']) {
     assert(screen.includes(`appState.invalidatePlace(.${target})`));
   }
-  assert.match(screen, /if let request = appState.prepareSearch\(form: form\)/);
+  assert.match(screen, /if let request = appState.prepareSearch\(form: form, access: access\)/);
   assert.match(screen, /Task \{ await appState.runSearch\(request\) \}/);
   assert.match(screen, /requestSearchMatch\(match, form: submittedForm, access: access\)/);
   assert.doesNotMatch(screen, /guardianConsent = true/);
@@ -53,16 +53,18 @@ test('search form owns consent reset and the screen invalidates every changed se
 test('request scope is checked before calls, response application and booking', () => {
   const state = read(base + 'AppState+Search.swift');
   assert.match(state, /form.validationMessage/);
-  assert.match(state, /searchRequests.pending == request, session\?\.uid == request.context.uid/);
-  assert.match(state, /searchRequests.finish\(request, uid: session\?\.uid, succeeded: true\)/);
-  assert.match(state, /searchRequests.finish\(request, uid: session\?\.uid, succeeded: false\)/);
-  assert.match(state, /searchRequests.permitsBooking\(SearchRequestContext\(uid: uid, form: form, origin: origin, destination: destination\)\)/);
+  assert.match(state, /searchRequests.pending == request, let access = searchActivity.access, access.context == request.context.owner/);
+  assert.match(state, /searchActivity.current\(action\), searchRequests.finish\(request, owner: access.context, succeeded: true\)/);
+  assert.match(state, /searchActivity.current\(action\), searchRequests.finish\(request, owner: access.context, succeeded: false\)/);
+  assert.match(state, /searchRequests.permitsBooking\(SearchRequestContext\(owner: access.context, form: form, origin: origin, destination: destination\)\)/);
   assert.match(state, /searchMatches.contains\(match\), match.tripId == match.summary.id/);
   const searchGateway = read(base + 'FirebaseSearchGateway.swift');
   assert.equal((searchGateway.match(/Auth.auth\(\).currentUser\?\.uid == criteria.requesterUserId/g) ?? []).length, 2);
   const app = read(base + 'AppState.swift');
-  const reset = app.slice(app.indexOf('if session?.uid != oldValue?.uid'), app.indexOf('var pendingRidePayment'));
-  for (const action of ['invalidateSearch()', 'searchPlaceRequests.removeAll()', 'searchOrigin = nil', 'searchDestination = nil']) {
+  assert(app.includes('appDataRefreshId = nil; invalidateRideWork(); refreshAccountScope()'));
+  assert(app.includes('resetSearchSession()\n        accountWork.replace(session: session, role: selectedRole)'));
+  const reset = state.slice(state.indexOf('func resetSearchSession()'), state.indexOf('func invalidateSearch()'));
+  for (const action of ['searchActivity.reset()', 'invalidateSearch()', 'searchPlaceRequests = [:]', 'searchOrigin = nil', 'searchDestination = nil']) {
     assert(reset.includes(action));
   }
   const wire = read(base + 'FirebaseBookingRequests.swift');

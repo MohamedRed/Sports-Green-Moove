@@ -5,50 +5,6 @@ import FirebaseAuth
 import FirebaseFunctions
 
 extension FirebaseBackendGateway {
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("suggestPlaces").call(["input": input]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let payload = result?.data as? [String: Any],
-                      let suggestions = payload["suggestions"] as? [[String: Any]]
-                else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Places invalide."))
-                    return
-                }
-
-                continuation.resume(returning: suggestions.compactMap(mapPlaceSuggestion))
-            }
-        }
-    }
-
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("resolvePlace").call(["placeId": placeId]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let payload = result?.data as? [String: Any],
-                      let place = payload["place"] as? [String: Any]
-                else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse Place Details invalide."))
-                    return
-                }
-
-                do {
-                    continuation.resume(returning: try mapResolvedPlace(place))
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
-    }
-
     func searchTripMatches(criteria: TripSearchCriteria) async throws -> [TripMatchSummary] {
         try Task.checkCancellation()
         guard !criteria.requesterUserId.isEmpty, Auth.auth().currentUser?.uid == criteria.requesterUserId else { throw CancellationError() }
@@ -94,38 +50,6 @@ private extension TripSearchCriteria {
         if let category, !category.isEmpty { payload["category"] = category }
         return payload
     }
-}
-
-private func mapPlaceSuggestion(_ data: [String: Any]) -> PlaceSuggestion? {
-    guard let placeId = data["placeId"] as? String,
-          let label = data["label"] as? String
-    else { return nil }
-
-    return PlaceSuggestion(
-        placeId: placeId,
-        label: label,
-        mainText: data["mainText"] as? String,
-        secondaryText: data["secondaryText"] as? String
-    )
-}
-
-private func mapResolvedPlace(_ data: [String: Any]) throws -> ResolvedPlace {
-    guard let placeId = data["placeId"] as? String,
-          let location = data["location"] as? [String: Any],
-          let lat = doubleValue(location["lat"]),
-          let lng = doubleValue(location["lng"])
-    else {
-        throw ProviderConfigurationError(message: "Coordonnées Place invalides.")
-    }
-
-    let label = data["label"] as? String ?? data["formattedAddress"] as? String ?? "Adresse"
-    return ResolvedPlace(
-        placeId: placeId,
-        label: label,
-        formattedAddress: data["formattedAddress"] as? String ?? label,
-        lat: lat,
-        lng: lng
-    )
 }
 
 private func mapTripMatch(_ data: [String: Any]) throws -> TripMatchSummary? {
