@@ -39,6 +39,7 @@ import {iosBuildAuditProgress} from './ios-build-audit.mjs';
 import {iosMembershipProgress, iosMembershipFixtureProgress} from './ios-membership.mjs';
 import {iosProfileCityProgress} from './ios-profile-city.mjs';
 import {latestReleaseProgress} from './progress-release-latest.mjs';
+import {iosMembershipRecheck964Progress} from './ios-membership-recheck-964.mjs';
 import {iosBuildTimeoutProgress} from './ios-build-timeout.mjs';
 import {feedbackTextProgress} from './feedback-text-progress.mjs';
 import {webFinalizationProgress} from './web-finalization-followup.mjs';
@@ -131,6 +132,7 @@ import {fullNativePassProgress} from './full-native-pass.mjs';
 import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
+  iosMembershipRecheck964Progress,
   ...latestReleaseProgress,
   iosProfileCityProgress,
   iosMembershipProgress,

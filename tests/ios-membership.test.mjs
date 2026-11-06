@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -9,6 +9,8 @@ import {content} from '../partner-portal/content.mjs';
 import {iosMembership, iosMembershipProgress, iosMembershipFixtureProgress} from '../partner-portal/ios-membership.mjs';
 import {iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
+import {validateIosFixtureRecheck} from '../scripts/qa/ios-fixture-recheck.mjs';
+import {iosMembershipRecheck964, iosMembershipRecheck964Progress} from '../partner-portal/ios-membership-recheck-964.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -19,6 +21,26 @@ const frozen = (path, commit) => {
   assert(row, path); const bytes = read('docs/release/evidence/source-archive/' + row.sha256 + '.txt');
   assert.equal(sha(bytes), row.sha256); return bytes;
 };
+
+test('the later ten-of-eleven failure is retained without inheriting an older successful gate', () => {
+  const reference = {source: iosMembershipRecheck964.source, sha256: sha(read(iosMembershipRecheck964.source))};
+  const result = validateIosFixtureRecheck(process.cwd(), reference);
+  assert.equal(result.passed, 10); assert.equal(result.failed, 1); assert.equal(result.assertionFailures, 2);
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert.deepEqual(content.iosMembershipRecheck964, iosMembershipRecheck964);
+  assert(recent.some(row => row.source === iosMembershipRecheck964Progress.source));
+  assert(previous.some(row => row.source.includes('ios-automated-acceptance-376addb')));
+  assert.doesNotMatch(iosMembershipRecheck964Progress.title + iosMembershipRecheck964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
+  assertCurrentIosAutomatedEvidence();
+});
+
+test('membership failure diagnosis preserves the exact original actions, assertions, waits and selectors', () => {
+  const path = 'ios/UITests/SportsGreenMooveUITests/MembershipFlowChecks.swift';
+  const source = json(iosMembershipRecheck964.checksums).files.find(row => row.path === path);
+  const original = read('docs/release/evidence/source-archive/' + source.sha256 + '.txt');
+  const current = read(path);
+  assert.notEqual(current, original); assert.equal(current, withMembershipFailureObservation(original));
+});
 
 test('club requests replace the local set with exact displayed requests and explicit server readback', () => {
   const view = read(app + 'GroupsScreen.swift'), state = read(app + 'ClubMembershipState.swift');

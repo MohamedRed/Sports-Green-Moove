@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import {checkOperationalPlatformEvidence} from './helpers/operational-platform-evidence.mjs';
 import {
   postponedSocialAuthEnvironmentVariables,
   requiredProviderEnvironmentVariables,
@@ -163,4 +164,5 @@ assert.ok(
   "Safety-audit evidence should report missing payment reconciliation exports.",
 );
 
+checkOperationalPlatformEvidence();
 console.log("Release gap report checks passed.");

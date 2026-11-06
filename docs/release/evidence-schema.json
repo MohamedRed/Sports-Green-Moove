@@ -48,7 +48,57 @@
     },
     "operationalUserFlowEvidence": {
       "type": "object",
-      "required": ["items"]
+      "required": ["items"],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "status", "description", "evidenceRefs"],
+            "allOf": [{
+              "if": { "properties": { "id": { "enum": [
+                "team_push_closed_app_delivery", "team_push_notification_tap", "team_push_current_account_isolation",
+                "team_push_revocation_suppression", "team_push_permission_lifecycle", "team_push_signout_cleanup",
+                "booking_ride_chat_access_revocation"
+              ] } } },
+              "then": {
+                "required": ["platformRuns"],
+                "properties": {
+                  "platformRuns": {
+                    "type": "array", "minItems": 2, "maxItems": 2,
+                    "items": { "$ref": "#/$defs/operationalPlatformRun" },
+                    "allOf": [
+                      { "contains": { "properties": { "platform": { "const": "ios" } } }, "minContains": 1 },
+                      { "contains": { "properties": { "platform": { "const": "android" } } }, "minContains": 1 }
+                    ]
+                  }
+                }
+              }
+            }]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "operationalPlatformRun": {
+      "type": "object", "additionalProperties": false, "required": ["platform", "status"],
+      "properties": {
+        "platform": { "enum": ["ios", "android"] },
+        "status": { "enum": ["pending", "passed", "failed"] },
+        "deviceKind": { "const": "physical" },
+        "deviceModel": { "type": "string", "minLength": 1 },
+        "osVersion": { "type": "string", "minLength": 1 },
+        "appBuild": { "type": "string", "minLength": 1 },
+        "tester": { "type": "string", "minLength": 1 },
+        "completedAt": { "type": "string", "format": "date-time" },
+        "observedResult": { "type": "string", "minLength": 1 },
+        "evidenceRefs": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      },
+      "allOf": [{
+        "if": { "properties": { "status": { "const": "passed" } } },
+        "then": { "required": ["deviceKind", "deviceModel", "osVersion", "appBuild", "tester", "completedAt", "observedResult", "evidenceRefs"] }
+      }]
     }
   }
 }

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -70,6 +70,7 @@ test('UI candidates preserve the real city button and full-size club target with
       : row.path.endsWith('/SearchConsentFlowTests.swift')
         ? original.replace('        XCTAssertEqual(consent.value as? String, "Accordé")\n    }\n\n    @MainActor private func launchSearch',
           '        XCTAssertEqual(consent.value as? String, "Accordé")\n        verifyOwnedChildBooking(in: app)\n    }\n\n    @MainActor private func launchSearch') : original;
+    if (row.path.endsWith('/MembershipFlowChecks.swift')) expected = withMembershipFailureObservation(expected);
     if (row.path.endsWith('/EmergencyContactFlowTests.swift')) {
       expected = original.replaceAll('        app.scrollViews.firstMatch.swipeDown()\n        app.buttons["emergency.back"].tap(); entry.tap()',
         '        returnToOptions(in: app); entry.tap()').replace(/\n}\n$/, `

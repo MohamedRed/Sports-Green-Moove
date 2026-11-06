@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import {operationalEvidenceGaps} from './release-operational-evidence.mjs';
 import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from './qa/ios-fixture-release-evidence.mjs';
 import {
   requiredAuditEvidence,
@@ -10,7 +11,6 @@ import {
   requiredProviderEnvironmentVariables,
   requiredProviders,
   requiredStoreEvidence,
-  requiredOperationalEvidence,
 } from "./release-evidence-requirements.mjs";
 
 const { manifestPath, automatedEvidencePath, secretInventoryPath, json } = parseArgs(process.argv.slice(2));
@@ -47,7 +47,8 @@ function buildReport(manifestResult, automatedResult, secretInventoryResult) {
   const realDeviceRuns = realDeviceGaps(manifest?.realDeviceRuns);
   const storeReviewEvidence = itemGaps(manifest?.storeReviewEvidence?.items, requiredStoreEvidence);
   const safetyAuditEvidence = itemGaps(manifest?.safetyAuditEvidence?.items, requiredAuditEvidence);
-  const operationalUserFlowEvidence = itemGaps(manifest?.operationalUserFlowEvidence?.items, requiredOperationalEvidence);
+  const operationalUserFlowEvidence = operationalEvidenceGaps(manifest?.operationalUserFlowEvidence?.items,
+    {manifestDir: dirname(resolve(manifestResult.path))});
 
   return {
     ok: [
@@ -242,6 +243,8 @@ function printTextReport(report) {
   printList("Missing store-review evidence", report.storeReviewEvidence.missing);
   printList("Missing safety-audit evidence", report.safetyAuditEvidence.missing);
   printList("Missing operational user-flow evidence", report.operationalUserFlowEvidence.missing);
+  for (const [platform, state] of Object.entries(report.operationalUserFlowEvidence.byPlatform))
+    printList(`Missing ${platform} operational device scenarios`, state.missing);
 }
 
 function printList(label, items) {

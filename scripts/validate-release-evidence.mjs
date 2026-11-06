@@ -2,6 +2,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, isAbsolute, resolve } from "node:path";
 import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from './qa/ios-fixture-release-evidence.mjs';
+import {operationalEvidenceGaps} from './release-operational-evidence.mjs';
 import {
   requiredAuditEvidence,
   requiredAutomatedFlowEvidence,
@@ -52,6 +53,7 @@ function validateManifest(data) {
   validateAuditEvidence(data.safetyAuditEvidence);
   requireObject(data.operationalUserFlowEvidence, "operationalUserFlowEvidence");
   validateEvidenceItems(data.operationalUserFlowEvidence?.items, "operationalUserFlowEvidence.items", requiredOperationalEvidence);
+  errors.push(...operationalEvidenceGaps(data.operationalUserFlowEvidence?.items, {manifestDir, allowPlaceholders}).issues);
 }
 
 function validatePostponedSocialAuth(providers) {

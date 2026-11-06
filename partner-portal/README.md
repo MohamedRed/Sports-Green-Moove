@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The later 964 iPhone recheck builds and executes all eleven cases: ten pass;
+membership approval is absent after selecting the review club. Cause remains
+unconfirmed. Disposal succeeds with no artifacts. Reopen only the two automated
+iPhone entries and preserve earlier successes and every other release requirement.
+Publish one short simulation-only membership note, moving the earlier iPhone
+success headline into history without changing old text, media, flows, dates,
+tours, blockers or public access. Additive failure-only accessibility diagnosis
+preserves the original assertions, eleven cases, deadline and capture limits.
+The separate operational gate now requires distinct physical iPhone and Android
+records for all six push scenarios and conversation revocation; both remain
+pending, not accepted by local validation. See `ios-fixture-recheck-9640d8b-2026-11-06`.
+
 The subsequent 04 iPhone gate again builds and passes all eleven original cases,
 with disposal successful, optional captures skipped and zero artifacts. Its full
 build-input inventory matches the successful 376 tree and strict current-source

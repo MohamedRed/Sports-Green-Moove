@@ -11,8 +11,10 @@ import {nativeNetwork959} from './native-network-959.mjs';
 import {ios376Acceptance} from './ios-376-acceptance.mjs';
 import {nativeCopy376} from './native-copy-376.mjs';
 import {ios04Recheck} from './ios-04-recheck.mjs';
+import {iosMembershipRecheck964} from './ios-membership-recheck-964.mjs';
 
 export const nativeRechecks = {
+  iosMembershipRecheck964,
   ios04Recheck,
   nativeCopy376,
   ios376Acceptance,

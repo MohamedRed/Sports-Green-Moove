@@ -28,10 +28,19 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+The later source `9640d8b` recheck, run `42273698326`, job `128084923176`,
+builds successfully and executes all eleven cases: ten pass; membership approval
+is absent after selecting the review club. Its cause remains unconfirmed.
+Disposal succeeds, optional captures are skipped and artifacts are empty. Only
+the two combined automated iPhone entries are reopened; all earlier successes
+and other release requirements remain. Bounded failure-only diagnosis does not
+accept a fix, change the original assertions or extend the 50-minute deadline.
+See `evidence/ios-fixture-recheck-9640d8b-2026-11-06/`.
+
 At `f61e0f7`, workflow `42116135548`, job `127556161432`, passes the SDK build,
 all eleven original screen cases and disposal. Captures are skipped and artifacts
-are empty. Exact current source/config/resource inputs match, so the two
-automated iPhone entries are accepted. This includes the bounded full-input
+are empty. At that checkpoint, exact source/config/resource inputs matched and
+the two automated iPhone entries were accepted. This includes the bounded full-input
 observations added after d56. Physical, operational, emergency phone handoff,
 live-service and complete release requirements remain open. See
 `evidence/ios-fixture-gate-f61e0f7-2026-11-05/` and

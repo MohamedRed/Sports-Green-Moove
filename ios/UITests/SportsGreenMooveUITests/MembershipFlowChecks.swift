@@ -14,9 +14,17 @@ import XCTest
     let entry = app.buttons["membership.review.entry"]
     XCTAssertTrue(entry.waitForExistence(timeout: 6)); entry.tap()
     let club = app.buttons["membership.review.club.club-tennis"]
-    XCTAssertTrue(club.waitForExistence(timeout: 6)); club.tap()
+    XCTAssertTrue(club.waitForExistence(timeout: 6))
+    print("SGM_MEMBERSHIP_CLUB_BEFORE_TAP enabled=\(club.isEnabled) hittable=\(club.isHittable) frame=\(club.frame)")
+    club.tap()
     let approve = app.buttons["membership.approve.ui-parent_club-tennis"]
-    XCTAssertTrue(approve.waitForExistence(timeout: 6)); approve.tap()
+    let appeared = approve.waitForExistence(timeout: 6)
+    if !appeared {
+        print("SGM_MEMBERSHIP_REVIEW_MISSING_BEGIN")
+        print(String(app.debugDescription.prefix(32_000)))
+        print("SGM_MEMBERSHIP_REVIEW_MISSING_END")
+    }
+    XCTAssertTrue(appeared); approve.tap()
     XCTAssertTrue(app.alerts.buttons["Accepter"].waitForExistence(timeout: 6)); app.alerts.buttons["Accepter"].tap()
     let status = app.staticTexts["membership.review.status.ui-parent_club-tennis"]
     XCTAssertTrue(status.waitForExistence(timeout: 6))

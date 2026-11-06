@@ -38,9 +38,10 @@ test('the exact acceptance snapshots change only two automated entries and retai
     for (const ref of prior.evidenceRefs) assert(row.evidenceRefs.includes(ref));
   }
 });
-test('the concise current simulation note supersedes pending headlines without deleting the old observations', () => {
+test('the historical simulation success remains intact after the later membership recheck', () => {
   const {recent, previous} = partitionUpdates(content.updates);
-  const note = recent.find(row => row.source === folder + 'README.md'); assert(note);
+  const note = previous.find(row => row.source === folder + 'README.md'); assert(note);
+  assert(recent.some(row => row.source === 'docs/release/evidence/ios-fixture-recheck-9640d8b-2026-11-06/README.md'));
   assert.match(note.text, /simulation/); assert.match(note.text, /restent à tester/);
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/);
   for (const source of ['ios-search-selection-2026-11-06', 'ios-fixture-gate-959e70b-2026-11-06', 'ios-fixture-recheck-385a6a4-2026-11-05'])

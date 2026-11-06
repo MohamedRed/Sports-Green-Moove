@@ -83,6 +83,28 @@ artifact.
 | `radar_webhook_delay` | Delay or disable Radar webhook delivery during an active ride, then restore it. Verify native Firebase fallback maintains live state. | Radar event export and Firestore/RTDB fallback export. |
 | `firebase_native_fallback` | Confirm native fallback writes `source = nativeFallback` points to `liveTrips/{rideSessionId}` while the ride is active. | `liveTrips` export containing vehicle or child native fallback points. |
 
+## Operational Device Evidence
+
+The six `team_push_*` items and `booking_ride_chat_access_revocation` require
+separate `platformRuns` for `ios` and `android` inside each operational item.
+An accepted item with only one platform must not close the two-platform requirement.
+The two server-side urgent-support channels remain separate, platform-independent
+items; they do not replace device notification or conversation-access proof.
+
+Pending runs can contain just `platform` and `status`. A passed run must record
+`deviceKind: "physical"`, `deviceModel`, `osVersion`, `appBuild`, `tester`, an ISO
+`completedAt`, `observedResult` and its own non-empty `evidenceRefs`. Cite reviewed
+phone/session evidence and matching sanitized service records where applicable.
+An emulator, SDK build, server unit result or provider acceptance is not physical
+operational evidence. Do not copy one platform's result onto the other.
+
+The final validator checks both platform records, metadata and artifact
+references; the gap reporter applies the same rules. Unknown or duplicate
+platforms, missing records, nonphysical runs and missing artifacts do not pass.
+The example's placeholder allowance does not relax the two-platform structure.
+These checks validate recorded evidence, not the truth of an unreviewed video or
+manual attestation. A maintainer must still inspect the linked results.
+
 ## Store Review Captures
 
 Capture screenshots and policy documents for every store review evidence item in

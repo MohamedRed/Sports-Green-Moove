@@ -55,9 +55,7 @@ export const requiredAuditEvidence = [
   "payment_reconciliation_event",
 ];
 
-export const requiredOperationalEvidence = [
-  "urgent_support_space_alert",
-  "urgent_support_email_receipt",
+export const requiredOperationalDeviceEvidence = [
   "team_push_closed_app_delivery",
   "team_push_notification_tap",
   "team_push_current_account_isolation",
@@ -65,6 +63,12 @@ export const requiredOperationalEvidence = [
   "team_push_permission_lifecycle",
   "team_push_signout_cleanup",
   "booking_ride_chat_access_revocation",
+];
+
+export const requiredOperationalEvidence = [
+  "urgent_support_space_alert",
+  "urgent_support_email_receipt",
+  ...requiredOperationalDeviceEvidence,
 ];
 
 export const requiredProviderEnvironmentVariables = [
