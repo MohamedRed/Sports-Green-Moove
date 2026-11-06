@@ -28,6 +28,15 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+At `d3c0f7a`, run `42305150736`, job `128192527345`, the SDK-linked build and
+all eleven original screen cases pass, including parent invitation and child
+code. Disposal succeeds and no artifacts are retained. Exact current build
+inputs and workflow match; only the two automated iPhone entries are accepted.
+The cc1 failure remains unchanged in history. This corrected UI observation does
+not establish the sole cause or repeatability, nor accept physical, operational,
+live-service or release requirements. See
+`evidence/ios-fixture-gate-d3c0f7a-2026-11-06/`.
+
 The later source `9640d8b` recheck, run `42273698326`, job `128084923176`,
 builds successfully and executes all eleven cases: ten pass; membership approval
 is absent after selecting the review club. Its cause remains unconfirmed.

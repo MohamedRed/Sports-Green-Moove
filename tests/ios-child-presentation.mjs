@@ -68,11 +68,12 @@ test('the new failed attempt changes only the two pending iPhone records and pre
   }
 });
 
-test('the portal keeps the child pass and parent failure distinct without accepting the correction', () => {
+test('the portal preserves the historical child pass and parent failure after the corrected gate', () => {
   assert.deepEqual(content.iosChildPresentation, iosChildPresentation);
   assert.equal(sha(read(iosChildPresentation.source)), iosChildPresentation.sha256);
   const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === iosChildPresentationProgress.source));
+  assert(previous.some(row => row.source === iosChildPresentationProgress.source));
+  assert(recent.some(row => row.source.includes('ios-fixture-gate-d3c0f7a')));
   assert(previous.some(row => row.source.includes('ios-child-binding-2026-11-06')));
   assert(previous.some(row => row.source.includes('ios-child-account-2026-11-06')));
   assert.match(iosChildPresentationProgress.text, /en simulation/); assert.match(iosChildPresentationProgress.text, /reste à retester/);

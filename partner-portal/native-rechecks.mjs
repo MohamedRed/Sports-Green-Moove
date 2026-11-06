@@ -20,8 +20,10 @@ import {nativeCutoff142} from './native-cutoff-142.mjs';
 import {iosChildBinding} from './ios-child-binding.mjs';
 import {nativeMatrix115, nativeRecheckCc1} from './native-matrix-115.mjs';
 import {iosChildPresentation, iosPresentationModules} from './ios-child-presentation.mjs';
+import {iosD3Acceptance} from './ios-d3-acceptance.mjs';
 
 export const nativeRechecks = {
+  iosD3Acceptance,
   iosPresentationModules,
   iosChildPresentation,
   nativeMatrix115,

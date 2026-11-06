@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './ios-d3-acceptance.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {resolve} from 'node:path';

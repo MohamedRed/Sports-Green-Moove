@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The corrected d3 iPhone gate builds and passes all eleven original cases,
+including parent invitation and child code, with successful disposal and no
+artifacts. Accept only the two current-input-bound automated entries, retaining
+all earlier failures and unrelated requirements. Publish one concise simulation
+result and move the pending-parent note into history unchanged. Preserve every
+flow, date, media item, tour, blocker and public access setting. This is not a
+controlled root-cause comparison, repeatability, physical or release acceptance.
+See `ios-fixture-gate-d3c0f7a-2026-11-06` and its scoped acceptance receipt.
+
 The presentation model initially introduces an account-scope dependency into the
 shared gateway DTO file; the original strict callable check reproduces that
 failure. Move its exact guard bytes to a separate presentation module, include it
