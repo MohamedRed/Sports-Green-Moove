@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "path": "scripts/qa/run-ordinary-android-ui.mjs",
+      "commit": "142789c9459a070e9789feb8fcc5b3265688729e",
+      "sha256": "2a05d95df6a9ce9c88602ca2d3e85a93d480a765d55ab3895c83db5132faefce"
+    },
+    {
+      "path": "scripts/qa/native-process-failure-evidence.mjs",
+      "commit": "142789c9459a070e9789feb8fcc5b3265688729e",
+      "sha256": "b29447a5c181eb6b6e026839da473268dc8f8f2851e733112c409ece0fe8d7a7"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt",
+      "commit": "142789c9459a070e9789feb8fcc5b3265688729e",
+      "sha256": "ac968d970c0e8cfcde4fe2f75c5d1e83fc8fd627ebf9d07e5dcf44acec3be1b6"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/OrdinaryCaseTimingListener.java",
+      "commit": "candidate",
+      "sha256": "99f5e3d51c2047dfa010974c66a7f7d1f74d7a686ed3dc9cf1b91a725dc6c267"
+    },
+    {
+      "path": "tests/fixtures/ordinary-case-timing/OrdinaryCaseTimingChecks.java",
+      "commit": "candidate",
+      "sha256": "1d9ea96ace69071974279c97c146ef33181f174457b83e9af80bf6b9b9dc5083"
+    },
+    {
+      "path": "scripts/qa/check-ordinary-case-timing.mjs",
+      "commit": "candidate",
+      "sha256": "5bc8c8dc164f9539d2391426c81388f3f82c94a93e2e44e4eb5d75f7cdccd931"
+    }
+  ]
+}

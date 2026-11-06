@@ -19,7 +19,7 @@ export function collectNativeProcessFailure({ adb, serial, directory, label, pas
     ['crash', ['logcat', '-d', '-b', 'crash', '-v', 'brief']],
     ['exit-info', ['shell', 'dumpsys', 'activity', 'exit-info', packageName]],
     ['process-log', ['logcat', '-d', '-b', 'main', '-b', 'system', '-t', '800', '-v', 'brief',
-      'ActivityManager:I', 'AndroidRuntime:E', 'libc:F', 'lmkd:I', '*:S']],
+      'ActivityManager:I', 'AndroidRuntime:E', 'libc:F', 'lmkd:I', 'SGMOrdinaryTiming:I', '*:S']],
     ['guest-memory', ['shell', 'cat', '/proc/meminfo']],
     ...packageOperationQueries,
   ];

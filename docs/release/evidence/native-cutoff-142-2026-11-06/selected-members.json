@@ -1,0 +1,676 @@
+{
+  "members": [
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/host-dns-before-launch.json",
+      "file": "wifi/host-dns-before-launch.json",
+      "encoding": "identity",
+      "originalBytes": 983,
+      "originalSha256": "277d79281ddbc37254ebb894ba180b84ab3a6558a6733b4eade9d5a4c5731723"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/outcome.json",
+      "file": "wifi/network-readiness/outcome.json",
+      "encoding": "identity",
+      "originalBytes": 728,
+      "originalSha256": "d532f0c4058559b6b0a03d47058fb9177d344ff2569366bb644701f76d3a914e"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/chat-network-validation-before.json",
+      "file": "wifi/network-readiness/chat-network-validation-before.json",
+      "encoding": "identity",
+      "originalBytes": 2375,
+      "originalSha256": "b5123b4dad7da588dfcb8aadef7247eb757f6439ee3670a0feaf1442d616e00c"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/host-dns-before-launch.json",
+      "file": "cutoff/host-dns-before-launch.json",
+      "encoding": "identity",
+      "originalBytes": 983,
+      "originalSha256": "ca20f955dc91657431f68b4869228464ab33522684f2372f6a35c9b2b1bb5f34"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/network-readiness/outcome.json",
+      "file": "cutoff/network-readiness/outcome.json",
+      "encoding": "identity",
+      "originalBytes": 698,
+      "originalSha256": "c227e094c878360e4ceb0e2c74d1790e52fded315b771bac090450107474d71b"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/network-readiness/chat-network-validation-before.json",
+      "file": "cutoff/network-readiness/chat-network-validation-before.json",
+      "encoding": "identity",
+      "originalBytes": 802,
+      "originalSha256": "a7f36c6d13f27fba1d0eaa4729b13a9f58bd52a6e4d9d89a22deb273a39f1b6b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-000.json",
+      "file": "wifi/network-readiness/sample-000.json",
+      "encoding": "identity",
+      "originalBytes": 1076,
+      "originalSha256": "69f58135bf23e6454469622114ff00e1adb964de15af8ebb45f2fa12852e6ae0"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-001.json",
+      "file": "wifi/network-readiness/sample-001.json",
+      "encoding": "identity",
+      "originalBytes": 1077,
+      "originalSha256": "99b9955eec25c613aafaa58fa59f072b077f258267d614fb427c883535a291bb"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-002.json",
+      "file": "wifi/network-readiness/sample-002.json",
+      "encoding": "identity",
+      "originalBytes": 1077,
+      "originalSha256": "b82ce2fac21d7454550632c5fd05ae9debba1c89643e6bb0a8187df5036d1623"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-004.json",
+      "file": "wifi/network-readiness/sample-004.json",
+      "encoding": "identity",
+      "originalBytes": 1078,
+      "originalSha256": "55b8c6720a318e07922576504dca6a640a4ae084c725df70fda87420dad23e8a"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-003.json",
+      "file": "wifi/network-readiness/sample-003.json",
+      "encoding": "identity",
+      "originalBytes": 1078,
+      "originalSha256": "61f1180b2e44ec87c4b7f8a2dbb87cdf491dbafe3505c979bbbded0c37308367"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-005.json",
+      "file": "wifi/network-readiness/sample-005.json",
+      "encoding": "identity",
+      "originalBytes": 1252,
+      "originalSha256": "ce461cf1246ce9afcb1ec1433ccafb659459056fc64db5109df07e4aaecfb0cf"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-006.json",
+      "file": "wifi/network-readiness/sample-006.json",
+      "encoding": "identity",
+      "originalBytes": 1254,
+      "originalSha256": "7d51f38b1bbead1659982ad78c9c46453f75f19f4a25d0555c99f512a946f43b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-007.json",
+      "file": "wifi/network-readiness/sample-007.json",
+      "encoding": "identity",
+      "originalBytes": 1254,
+      "originalSha256": "dcef605b3d529ac4c88b4376442020d461ff566d4e6c464cdfde9aff9eb09b6b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-008.json",
+      "file": "wifi/network-readiness/sample-008.json",
+      "encoding": "identity",
+      "originalBytes": 1254,
+      "originalSha256": "4269a22c3679f0eb35f681ffc5542f034e34480795f64a8e77ead59eb8d494b3"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-009.json",
+      "file": "wifi/network-readiness/sample-009.json",
+      "encoding": "identity",
+      "originalBytes": 1254,
+      "originalSha256": "481ee464038c712aa4f4acc9482f0e2ad10896eb8642c85f535edf3d3709a43f"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-010.json",
+      "file": "wifi/network-readiness/sample-010.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "8a53908092ccb0d9c84acb897a20f394b1dd4e2b8b7c7b488cb71061aa4cdc4f"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-011.json",
+      "file": "wifi/network-readiness/sample-011.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "8278265333a61b1aacc347d43aa05c0f30e118d3095bb0ecd2bd5abaadd9dc6b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-012.json",
+      "file": "wifi/network-readiness/sample-012.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "d8e16f40ea46c20e9b0c271a990c757e1ece1cceec1cfa02f3336e200e8e8d94"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-013.json",
+      "file": "wifi/network-readiness/sample-013.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "8187a141bbd639e17aab674ac240d54eea765a812ef04ed43357e3d27ecda36b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-014.json",
+      "file": "wifi/network-readiness/sample-014.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "f7417da25de5b5ece5fbba555db7cf38ed3020b4faa77ef2dfc4d05dea3b1a69"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-015.json",
+      "file": "wifi/network-readiness/sample-015.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "615bc623363e4a86578e5170adb2e53febb774424cd89cd4341b4712dc2fda39"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-016.json",
+      "file": "wifi/network-readiness/sample-016.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "462b2c5b00918d0c7c5992249af91a0c638b2e5675b14051091df124b6e002cd"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-017.json",
+      "file": "wifi/network-readiness/sample-017.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "a7b508f72b3bd1a7bbf4f4d7293d0356d825caadf4667b494b6c1c842da0995c"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-018.json",
+      "file": "wifi/network-readiness/sample-018.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "ac5aa77bcadbe54735f5cfd2c07aa9132bbf7f87e5860a1a9ea5e88e62d72e35"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-019.json",
+      "file": "wifi/network-readiness/sample-019.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "0948c2dff89f185cfeb5fa88a54d3ed3818f812c2113029d19872f906e66832f"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-020.json",
+      "file": "wifi/network-readiness/sample-020.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "ff4f1cc7e8767323210934b3f452cbe53bf5f9635239535b93976bb0a12278d5"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-021.json",
+      "file": "wifi/network-readiness/sample-021.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "5a0496ed28766c26d4470e8e37f3508967f11ed5dc8cdfdb6fb0d93e888a9ea3"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-022.json",
+      "file": "wifi/network-readiness/sample-022.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "c060dbdc004ddd1afbbe7f844dc0177b6f2098d5aa02a25fe7bb58410b9675b4"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-023.json",
+      "file": "wifi/network-readiness/sample-023.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "35de3a28f02546c556bed105128a7c1644032f0acc180af75146d89953afbd36"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-024.json",
+      "file": "wifi/network-readiness/sample-024.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "dffa1c109be4cfb78d253a5ca40ff8101ea6af92447128b788163548155f427d"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-025.json",
+      "file": "wifi/network-readiness/sample-025.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "b813393782b846179fac37c937bcd1eaecb4dd1ded84b53da2235ed7d5d0d3be"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-026.json",
+      "file": "wifi/network-readiness/sample-026.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "7f290cf5d09f7c3918887b835acedaf13d863407afdb9ed3d66b02491931c1a5"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-027.json",
+      "file": "wifi/network-readiness/sample-027.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "b6674aaf1cf16c9f1c64c3ee9ef20a23196bb8f946ec252a5a7b7be3a54528f6"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-028.json",
+      "file": "wifi/network-readiness/sample-028.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "6a44fed1f92e129f30a367d0f38b158b888c54feda1d521a4cf4167cd42cf30a"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-029.json",
+      "file": "wifi/network-readiness/sample-029.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "4a9f12cc7232b6b582e8b6357f089f3bb0a98523767d8810b38b6c536f56b200"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-030.json",
+      "file": "wifi/network-readiness/sample-030.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "19a39971819d25268876df9f5475a1c67ffea09ff1cc9d41d8591cbb7197178b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-031.json",
+      "file": "wifi/network-readiness/sample-031.json",
+      "encoding": "identity",
+      "originalBytes": 1255,
+      "originalSha256": "3eaa03a463d9e8a7f34507c2d630ef8561c168a19323483823dd450ffae607a7"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-032.json",
+      "file": "wifi/network-readiness/sample-032.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "7c930c6dc947cc3e26b8835d1ee6e61f830e6f86339ec8ab98cc878027e31477"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-033.json",
+      "file": "wifi/network-readiness/sample-033.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "560472bd9effaae499f4f23c96f32e561932f6e2a19c1ed90955f0dc16566aa2"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-034.json",
+      "file": "wifi/network-readiness/sample-034.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "a717791c7c0153846b00738f02e815dcafb9c272cf6fcae0edef409f2c1675e8"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-035.json",
+      "file": "wifi/network-readiness/sample-035.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "81da56611af3e59b8dc3476d19a159b725239db70ddb9e5189b94f8db133bc3a"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-036.json",
+      "file": "wifi/network-readiness/sample-036.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "6338806ad612398b0c5c9f495810d4e5e5b491134d037166da841cf003e2db6a"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-037.json",
+      "file": "wifi/network-readiness/sample-037.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "51c612bc18b035ca31147b9c0c83b4cfed57c14221948b8d84f9532761c20cfc"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-038.json",
+      "file": "wifi/network-readiness/sample-038.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "276fe7363cf5c5311d3cf83d7742dba5dd809856ae75846c6e083f79a8f7812d"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-039.json",
+      "file": "wifi/network-readiness/sample-039.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "10ac4b0ce93e64ded1a77ab3717617bc04a01ec91f6f6ff54e6332c33ec9a7c2"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-040.json",
+      "file": "wifi/network-readiness/sample-040.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "8e4ef91312fba8b8903292fc8d760b241ee08b4bb14b90e49cd384a50fca00e3"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-041.json",
+      "file": "wifi/network-readiness/sample-041.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "44679b7971b9001202c5d34805ea71172323114072ab9cf8f5ccf27c964f50d7"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-042.json",
+      "file": "wifi/network-readiness/sample-042.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "26c29c17ca831ad79fd40743324c9d6edd4be8a9fb7daad29076c84b4dda4a4b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-043.json",
+      "file": "wifi/network-readiness/sample-043.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "f131cf27a364fbf2579d94283fcda75a4015c6c605d2ecaf94302f6b2507d6ad"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-044.json",
+      "file": "wifi/network-readiness/sample-044.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "cd55167d9e442d18a21a5f5c11038e29f6b5927d255dcba56e758b980dbc584d"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-045.json",
+      "file": "wifi/network-readiness/sample-045.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "e8ca2b44bfad2b3cc19ef1a2a9c920ee24e6984381c7406f49033d2aa12b9a86"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-046.json",
+      "file": "wifi/network-readiness/sample-046.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "1948c5d848cbdf126f0eb6eae56e9660c2c057c77d04da567b859dcdd2d3d347"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-047.json",
+      "file": "wifi/network-readiness/sample-047.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "506f2e7b54105daac26af6497cbe1c6e45e5d51103562a8fc2ab4dcde917ee9f"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-048.json",
+      "file": "wifi/network-readiness/sample-048.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "d982074422146dd6e84116576911eb29bb8ac0004b2699a42fec6ccb791ab5c3"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-049.json",
+      "file": "wifi/network-readiness/sample-049.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "4767d3d24bc25a8defe3c0627a3bd9f3cd44a03897bcdff929030707a8ae8dfe"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-050.json",
+      "file": "wifi/network-readiness/sample-050.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "ec0f82058574500c9864928de7ee84e673475455a70d6e4b7f05f03186b8ab7e"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-051.json",
+      "file": "wifi/network-readiness/sample-051.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "0a3653e71701d6a1d8b5107f5971a98190d4c5554f780ddee9cf60600f14be18"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-052.json",
+      "file": "wifi/network-readiness/sample-052.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "dd77f855a8e9dbfe610b625dc28dcd25df7319a420ef29df8f64aa40ebc0d23b"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-053.json",
+      "file": "wifi/network-readiness/sample-053.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "fafa7bb6c1421f32976730e82699c3525aa87a7577482f12d1557088d2515b3e"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-054.json",
+      "file": "wifi/network-readiness/sample-054.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "8b3986ddb464e50a1cb5ab808dcfe057a319aeb6b29e029fd0e8040b35d81ba1"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-055.json",
+      "file": "wifi/network-readiness/sample-055.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "ee5352e66e7228e758de690ce1c5a9b7780893721b77028a6d5c35ad8776b822"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-056.json",
+      "file": "wifi/network-readiness/sample-056.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "121e17c86550a34b97618df60ada5fc33cdecb51112c3ad935afbbffcd61e242"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-057.json",
+      "file": "wifi/network-readiness/sample-057.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "842ff0be6e48cf511f3cefd71351b0b60ca744b2ce0b39469cdb5f6f124bdd26"
+    },
+    {
+      "artifactId": 13535194238,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-058.json",
+      "file": "wifi/network-readiness/sample-058.json",
+      "encoding": "identity",
+      "originalBytes": 1256,
+      "originalSha256": "dd8bb8f94f4c70162b758f6d72976caf72fb4ef85ac0b5114d1afcfc88088a9f"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-process.json",
+      "file": "cutoff/ordinary-process.json",
+      "encoding": "identity",
+      "originalBytes": 180,
+      "originalSha256": "c20a8ef4a3faac2fa4ae662cf8b320d4c0dfaef289ac6d12f5bc9e5275311805"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/disposable-device-setup.json.replay-stopped.json",
+      "file": "cutoff/disposable-device-setup.json.replay-stopped.json",
+      "encoding": "identity",
+      "originalBytes": 298,
+      "originalSha256": "c656c1bd2ca2fa0996d3be2973c751bf4ee04dcb0102956980f5780dd7c1e7e7"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "file": "cutoff/disposable-store-restore.json",
+      "encoding": "identity",
+      "originalBytes": 368,
+      "originalSha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "file": "cutoff/native-suite-status.json",
+      "encoding": "identity",
+      "originalBytes": 115,
+      "originalSha256": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-diagnostics.json",
+      "file": "cutoff/ordinary-failure/diagnostics.json",
+      "encoding": "identity",
+      "originalBytes": 1413,
+      "originalSha256": "b362b7e253a35af41a10f130161f794e9a70716c8af51f965a5a4bec39021743"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-crash.txt",
+      "file": "cutoff/ordinary-failure/crash.txt",
+      "encoding": "identity",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-exit-info.txt",
+      "file": "cutoff/ordinary-failure/exit-info.txt",
+      "encoding": "identity",
+      "originalBytes": 143,
+      "originalSha256": "6fa05d2c6e27bb719c411301731b1f66d4cf22e8b5312d99198bfec59f69b042"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-process-log.txt",
+      "file": "cutoff/ordinary-failure/process-log.txt",
+      "encoding": "identity",
+      "originalBytes": 153,
+      "originalSha256": "619cfa6731731c9cb8398cd3b8eb5a4559866636df2f9f7954294a9fcbdd6937"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-frozen-packages.txt",
+      "file": "cutoff/ordinary-failure/frozen-packages.txt",
+      "encoding": "identity",
+      "originalBytes": 27,
+      "originalSha256": "63fb65f7fa243eee9ee35a6e5beac1889102f5873c56d833fade34bb7e8cd470"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-install-sessions.txt",
+      "file": "cutoff/ordinary-failure/install-sessions.txt",
+      "encoding": "identity",
+      "originalBytes": 3622,
+      "originalSha256": "028a5de11cfc058596a82ff5ee0ac89a9e2a46810c4ebac23fd7cabe99b5f0f2"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-guest-memory.txt",
+      "file": "cutoff/ordinary-failure/guest-memory.txt",
+      "encoding": "identity",
+      "originalBytes": 1292,
+      "originalSha256": "f0cf18e8d6145b0f729b821bb7cf647085e3096d7082a49b096edc25a8dafa9e"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-failure/OrdinaryUiSuite-package-operations.txt",
+      "file": "cutoff/ordinary-failure/package-operations.txt",
+      "encoding": "identity",
+      "originalBytes": 0,
+      "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+      "file": "cutoff/ordinary-instrumentation.txt.gz",
+      "encoding": "gzip",
+      "originalBytes": 318333,
+      "originalSha256": "a3d1a93fde7ac2944dcc9dab5e198938830ee76d85f2aa60dad08634f59fca66"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/local-ui-evidence/f7e7eec1ece3b66c197f92b1a9e1e611/local-chat-network-ui.json",
+      "file": "cutoff/network/local-chat-network-ui.json",
+      "encoding": "identity",
+      "originalBytes": 5203,
+      "originalSha256": "84757f43167b3b5af24148e905341fae35ac2e114312a6bf1564026e36225fa7"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/local-ui-evidence/f7e7eec1ece3b66c197f92b1a9e1e611/chat-network-validation-before.json",
+      "file": "cutoff/network/chat-network-validation-before.json",
+      "encoding": "identity",
+      "originalBytes": 2333,
+      "originalSha256": "bd742168de707426384c22ba0e2fd17b4226b05179268e2bd6e08d406a5b9dfe"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/local-ui-evidence/f7e7eec1ece3b66c197f92b1a9e1e611/chat-network-validation-after.json",
+      "file": "cutoff/network/chat-network-validation-after.json",
+      "encoding": "identity",
+      "originalBytes": 2332,
+      "originalSha256": "a4ea975750f6010bb2e9edfc7a963e918236e5b0f96c4121c1f5483a977ff12f"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/local-ui-evidence/f7e7eec1ece3b66c197f92b1a9e1e611/chat-subscriptions-after.json",
+      "file": "cutoff/network/chat-subscriptions-after.json",
+      "encoding": "identity",
+      "originalBytes": 763,
+      "originalSha256": "c9cc9716b8da18e4f03c55061eaddd3f6d0f48ca3757481d75273caf9663be6c"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/local-ui-evidence/f7e7eec1ece3b66c197f92b1a9e1e611/chat-default-selection-after.json",
+      "file": "cutoff/network/chat-default-selection-after.json",
+      "encoding": "identity",
+      "originalBytes": 409,
+      "originalSha256": "f5483d71caa9a1037d2fcfdfa77b6e92243c83aa2461dd18a2624f3ef40d88b1"
+    },
+    {
+      "artifactId": 13539586865,
+      "member": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+      "file": "cutoff/host-shutdown.json",
+      "encoding": "identity",
+      "originalBytes": 397,
+      "originalSha256": "c72fa8b2363f5d1cc30edbc9ab3738f4fa2a42440f899a0d574516a41d6b46a1"
+    }
+  ]
+}

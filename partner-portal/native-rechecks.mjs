@@ -16,8 +16,10 @@ import {nativeMatrix964} from './native-matrix-964.mjs';
 import {ios0fbRecheck} from './ios-0fb-recheck.mjs';
 import {ios6fbAcceptance} from './ios-6fb-acceptance.mjs';
 import {iosChildAccount} from './ios-child-account.mjs';
+import {nativeCutoff142} from './native-cutoff-142.mjs';
 
 export const nativeRechecks = {
+  nativeCutoff142,
   iosChildAccount,
   ios6fbAcceptance,
   ios0fbRecheck,

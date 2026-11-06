@@ -18,6 +18,7 @@ const binding = JSON.parse(readFileSync(process.env.SGM_PREINSTALLED_TEST_APKS_R
 const adb = process.env.ANDROID_HOME ? `${process.env.ANDROID_HOME}/platform-tools/adb` : 'adb';
 const startedAt = performance.now();
 const result = spawnSync(adb, ['-s', device.serial, 'shell', 'am', 'instrument', '-w', '-r',
+  '-e', 'listener', 'be.sportgreenmoove.app.ui.OrdinaryCaseTimingListener',
   '-e', 'timeout_msec', '240000', '-e', 'sgmBlockInstallations', 'true',
   ...primaryCaptureDiagnosticArguments(process.env.SGM_PRIMARY_CAPTURE_DIAGNOSTICS),
   `be.sportgreenmoove.app.test/${disposableTestRunner}`],

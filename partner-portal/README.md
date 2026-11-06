@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The distinct 6fb Wi-Fi prerequisite failure and 142 ordinary host timeout remain
+unaccepted. Retain exact original archives/members, 350 starts/349 ends, network
+preparation failure, verified device policy and passive zombie observation.
+The hashed case-clock candidate compiles locally but has no device-emission proof.
+Publish one concise incomplete-simulation note; preserve all previous records,
+flows, dates, media, tours, blockers and public access. Do not invent a root cause
+or promote the candidate, restoration or isolated passes to whole-gate acceptance.
+No deadline, retry, assertion, phone, capture or release-scope change. See
+`native-cutoff-142-2026-11-06`.
+
 The iPhone child-account candidate wires verified-parent invitation create/status/
 revoke/share and explicit pairing approval, plus pure-child code creation from the
 location-independent contact path. Thirty-four malformed replies and seventy

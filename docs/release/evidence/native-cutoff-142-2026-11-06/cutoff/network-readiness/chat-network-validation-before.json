@@ -1,0 +1,30 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "35201182cde74d3df92b4aea59763f20",
+  "phase": "before",
+  "recordedAt": "2026-11-06T20:12:25.124Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 1,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 0,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": []
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}

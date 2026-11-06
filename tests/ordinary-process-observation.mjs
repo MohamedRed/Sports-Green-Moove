@@ -6,6 +6,7 @@ import {ordinaryProcessObservation, requireOrdinaryInstrumentation} from '../scr
 import {parseAndroidJUnitTranscript} from '../scripts/qa/android-junit-transcript.mjs';
 import {parseDocument} from 'yaml';
 import './ordinary-cutoff-evidence.mjs';
+import './ordinary-case-timing.mjs';
 
 const observe = result => ordinaryProcessObservation(result, {elapsedMs: 1234, stderr: ''});
 

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { XMLBuilder } from 'fast-xml-parser';
 
-const identifier = /^[A-Za-z_$][A-Za-z0-9_.$]*(?:\[[A-Za-z0-9_ .:-]{1,100}\])?$/;
+export const androidJUnitIdentifier = /^[A-Za-z_$][A-Za-z0-9_.$]*(?:\[[A-Za-z0-9_ .:-]{1,100}\])?$/;
 const integer = value => { assert(/^[1-9]\d{0,5}$/.test(value)); return Number(value); };
 
 export function parseAndroidJUnitTranscript(output) {
@@ -29,7 +29,7 @@ export function parseAndroidJUnitTranscript(output) {
       assert.deepEqual(Object.keys(packet), ['sgm_installations_blocked']); guardConfirmed = true; packet = {}; continue;
     }
     assert(guardConfirmed, 'The installation guard must be confirmed before any test');
-    assert.match(packet.class ?? '', identifier); assert.match(packet.test ?? '', identifier);
+    assert.match(packet.class ?? '', androidJUnitIdentifier); assert.match(packet.test ?? '', androidJUnitIdentifier);
     const total = integer(packet.numtests), current = integer(packet.current);
     if (announced === undefined) announced = total; else assert.equal(total, announced, 'Test inventory changed');
     assert(current <= total); assert([1, 0, -1, -2, -3, -4].includes(code), 'Unknown test status');
