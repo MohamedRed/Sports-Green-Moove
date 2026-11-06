@@ -26,18 +26,21 @@ struct ImpactScreen: View {
 
 struct RewardsScreen: View {
     @Environment(AppState.self) private var appState
+    let access: AccountAccess
 
     var body: some View {
         let summary = appState.rewardSummary
         OverlayListScreen(title: "RÉCOMPENSES", testID: UITestIdentifier.rewardsScreen) {
             OverlayHeroMetric(value: moneyLabel(summary.balanceCents), label: "Solde disponible", accent: SGM.orange)
-            SGMButton(title: "RETIRER MES GAINS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {}
+            SGMButton(title: "MES VERSEMENTS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {
+                appState.openRewardPayments(access: access)
+            }
             OverlayProgressRow(title: "Prochain palier", value: percentLabel(summary.progress), progress: CGFloat(summary.progress))
             ForEach(rewardTiers(summary)) { tier in
                 OverlayProgressRow(title: tier.label, value: tier.status, progress: tier.progress)
             }
             if summary.entries.isEmpty {
-                RewardHistoryRow(title: "Aucun mouvement enregistré", subtitle: "Reward ledger", meta: "0,00€", positive: true)
+                RewardHistoryRow(title: "Aucun mouvement enregistré", subtitle: "Historique", meta: "0,00€", positive: true)
             } else {
                 ForEach(summary.entries) { entry in
                     RewardHistoryRow(title: entry.title, subtitle: entry.dateLabel, meta: entry.amountLabel, positive: entry.positive)

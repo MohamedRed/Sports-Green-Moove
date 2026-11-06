@@ -14,7 +14,7 @@ enum UITestAppStateFactory {
 
     static func make(route: String) -> AppState {
         let signedIn = route != "auth"
-        let profile = route == "child-contact" ? Fixtures.childSession : route == "groups-review"
+        let profile = route == "rewards-parent" ? Fixtures.parentOnlySession : route == "child-contact" ? Fixtures.childSession : route == "groups-review"
             ? AuthSession(uid: "ui-user", email: "manager@example.test", displayName: "Responsable Démo", roles: [.clubManager]) : Fixtures.session
         let auth = UITestAuthGateway(session: signedIn ? profile : nil)
         let state = AppState(
@@ -58,7 +58,7 @@ enum UITestAppStateFactory {
             state.overlay = .groups
         case "impact":
             state.overlay = .impact
-        case "rewards":
+        case "rewards", "rewards-parent":
             state.overlay = .rewards
         case "options":
             state.overlay = .options
@@ -85,6 +85,7 @@ enum UITestAppStateFactory {
 }
 
 private enum Fixtures {
+    static let parentOnlySession = AuthSession(uid: "ui-parent-only", email: nil, displayName: "Parent Démo", roles: [.parent])
     static let childSession = AuthSession(uid: "ui-child-login", email: nil, displayName: "Enfant Démo", roles: [.child])
     static let session = AuthSession(uid: "ui-user", email: "parent@example.be", displayName: "Parent Démo",
         roles: [.parent, .driver])

@@ -28,6 +28,15 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+The later reward-navigation change replaces an empty rewards button action with
+the existing owned driver payment-settings route. Local native checks pass for
+granted, denied and stale actions without provider calls or transfers. The
+original secondary-screen case gains navigation and refusal assertions; all
+eleven cases and the 50-minute deadline remain. Both automated entries are
+pending again for these changed inputs. The d3 success below is retained as
+historical, not inherited as current acceptance. See
+`evidence/ios-reward-navigation-2026-11-06/`.
+
 At `d3c0f7a`, run `42305150736`, job `128192527345`, the SDK-linked build and
 all eleven original screen cases pass, including parent invitation and child
 code. Disposal succeeds and no artifacts are retained. Exact current build

@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift",
+      "commit": "80c6b44eaaff01fc4e0cf5789193c2a11328fbc2",
+      "sha256": "27ec9cea84e2f6c9492585021d7780e6c8c6318fba39e0b2846063c15b8a0217"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppState+Rewards.swift",
+      "commit": "candidate",
+      "sha256": "eefe7e0a2ebbef16c681f90450783876003dc89811f58595a48ec0977693f06d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ImpactRewardsScreens.swift",
+      "commit": "candidate",
+      "sha256": "57a3b3230d7566d38ca79748c468f37cde0ef0622c167bed700c27277e28caae"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppShell.swift",
+      "commit": "candidate",
+      "sha256": "e6884e10f86c444807a1c88fbc918859b20758a4205ed5d678f18a2c54d2b69e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "commit": "candidate",
+      "sha256": "72a7a4bd2cb8a768a977f5aae53037e7000912c0b9579904b7f59c5690979395"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "commit": "candidate",
+      "sha256": "15c5ff59504a91855131dafc326d0cafbf8815b32d2f4107b5878d83eb58b7b8"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RewardNavigationChecks.swift",
+      "commit": "candidate",
+      "sha256": "e8a5e84b8c69d97414852c02c31329e938fee11e88d98f40d7a8b9969f5e4eef"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "commit": "candidate",
+      "sha256": "125c5f999ce1374ecd5100e2786d8258c97307323d7d07853218331e6f7fe406"
+    }
+  ]
+}

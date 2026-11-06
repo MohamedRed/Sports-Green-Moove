@@ -2,6 +2,18 @@
 
 ## Current Publication Policy
 
+The iPhone rewards command was an empty closure. Wire it to the existing driver
+payment-settings destination with captured account-generation and screen guards,
+using the same granted-driver role behavior as Android, without initiating an
+account, onboarding link, payment or transfer. The label now describes the
+destination, not a completed withdrawal. Actual native checks cover two granted
+routes, four denials, invalid mixed roles and seven stale boundaries. Extend only
+the existing secondary-screen case; retain eleven cases, 50 minutes and zero
+default captures. Reopen only the two automated iPhone entries, retaining d3 and
+every negative reference. Publish a short local-only note, preserving old notes,
+flows, dates, media, tours, blockers and public access. SDK/UI and all broader
+requirements remain open. See `ios-reward-navigation-2026-11-06`.
+
 The corrected d3 iPhone gate builds and passes all eleven original cases,
 including parent invitation and child code, with successful disposal and no
 artifacts. Accept only the two current-input-bound automated entries, retaining

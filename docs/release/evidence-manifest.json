@@ -90,8 +90,8 @@
     "items": [
       {
         "id": "ios_sdk_build_ci",
-        "status": "passed",
-        "description": "SDK-linked app and all fixture bundles compile successfully at d3c0f7a. Exact current build inputs and unchanged workflow jobs match the successful source. Simulator-only automated acceptance; no physical or real-service acceptance.",
+        "status": "pending",
+        "description": "Historical d3 SDK and eleven-screen success retained. The new account-owned rewards-to-payments navigation needs its SDK build and complete eleven-screen gate; local logic checks do not accept native rendering, onboarding, transfers or release.",
         "evidenceRefs": [
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/source-sha256.json",
@@ -137,8 +137,8 @@
       },
       {
         "id": "ios_fixture_ui_ci",
-        "status": "passed",
-        "description": "All eleven original fixture screen cases and disposal pass at d3c0f7a, with no artifacts. Exact source, resources, case inventory and terminal transcript are retained. This does not accept physical, operational, emergency phone handoff or complete release flows.",
+        "status": "pending",
+        "description": "Historical d3 SDK and eleven-screen success retained. The new account-owned rewards-to-payments navigation needs its SDK build and complete eleven-screen gate; local logic checks do not accept native rendering, onboarding, transfers or release.",
         "evidenceRefs": [
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/source-sha256.json",

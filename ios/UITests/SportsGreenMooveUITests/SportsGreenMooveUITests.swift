@@ -104,6 +104,16 @@ final class SportsGreenMooveUITests: XCTestCase {
         app = launch(route: "rewards")
         assertExists("rewards.screen", in: app)
         assertExists("rewards.withdraw.action", in: app)
+        tapIdentifier("rewards.withdraw.action", in: app)
+        assertExists("payments.screen", in: app)
+        XCTAssertTrue(app.buttons["Continuer l'onboarding"].waitForExistence(timeout: 6))
+
+        app = launch(route: "rewards-parent")
+        tapIdentifier("rewards.withdraw.action", in: app)
+        XCTAssertTrue(app.alerts.staticTexts["Les versements nécessitent un profil conducteur validé."].waitForExistence(timeout: 6))
+        app.alerts.buttons["OK"].tap()
+        assertExists("rewards.screen", in: app)
+        XCTAssertFalse(app.descendants(matching: .any)["payments.screen"].exists)
 
         app = launch(route: "options")
         assertExists("options.screen", in: app)

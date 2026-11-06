@@ -109,7 +109,7 @@ struct AppShell: View {
         case .impact:
             ImpactScreen()
         case .rewards:
-            RewardsScreen()
+            RewardsScreen(access: access)
         case .options:
             OptionsScreen()
         case .payments:
