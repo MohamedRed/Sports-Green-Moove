@@ -19,9 +19,10 @@ import {iosChildAccount} from './ios-child-account.mjs';
 import {nativeCutoff142} from './native-cutoff-142.mjs';
 import {iosChildBinding} from './ios-child-binding.mjs';
 import {nativeMatrix115, nativeRecheckCc1} from './native-matrix-115.mjs';
-import {iosChildPresentation} from './ios-child-presentation.mjs';
+import {iosChildPresentation, iosPresentationModules} from './ios-child-presentation.mjs';
 
 export const nativeRechecks = {
+  iosPresentationModules,
   iosChildPresentation,
   nativeMatrix115,
   nativeRecheckCc1,

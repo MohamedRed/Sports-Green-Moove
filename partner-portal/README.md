@@ -2,6 +2,14 @@
 
 ## Current Publication Policy
 
+The presentation model initially introduces an account-scope dependency into the
+shared gateway DTO file; the original strict callable check reproduces that
+failure. Move its exact guard bytes to a separate presentation module, include it
+in the actual native plan, and keep the strict signature harness unchanged. Both
+checks pass locally; corrected SDK/UI remains pending. Retain before/after logs
+and source identities in `ios-presentation-modules-2026-11-06`. No extra public
+headline, media, flow, deadline or release acceptance accompanies this modular move.
+
 The cc1 iPhone recheck compiles and executes all eleven original cases: ten pass,
 including child code creation; the parent invitation sheet exposes only its back
 button, with three failures. Retain exact original cases, accessibility excerpt

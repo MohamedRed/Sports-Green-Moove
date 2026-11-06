@@ -8,6 +8,7 @@ import {iosChildAccount, iosChildAccountProgress} from '../partner-portal/ios-ch
 import {iosAutomatedEvidenceIds, assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import './ios-child-binding.mjs';
 import './ios-child-presentation.mjs';
+import './ios-presentation-modules.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = value => createHash('sha256').update(value).digest('hex');
@@ -41,7 +42,7 @@ test('private links are validated without persistence, secret reconstruction, au
 });
 
 function modelsContainAtomicTarget() {
-  const model = read(app + 'ChildAccountModels.swift'), host = read(app + 'GuardianContactPicker.swift');
+  const model = read(app + 'ChildAccountPresentation.swift'), host = read(app + 'GuardianContactPicker.swift');
   return model.includes('self = .parent(UUID(), try ChildAccountTarget(view: view))') &&
     host.includes('.sheet(item: $accountPresentation) { presentation in') &&
     host.includes('target: presentation.target') && !host.includes('managingAccount') && !host.includes('childTarget');

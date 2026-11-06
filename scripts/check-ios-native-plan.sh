@@ -55,6 +55,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountPresentation.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildInvitationWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountState.swift" \

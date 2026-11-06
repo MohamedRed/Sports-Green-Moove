@@ -35,14 +35,21 @@ test('the presentation transports an immutable target in one sheet item, not ind
   assert(host.includes('.sheet(item: $accountPresentation) { presentation in'));
   assert(host.includes('target: presentation.target')); assert(host.includes('.id(presentation.id)'));
   assert.doesNotMatch(host, /managingAccount|childTarget/);
-  const model = read('ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift').toString();
+  const model = read('ios/Sources/SportsGreenMooveApp/ChildAccountPresentation.swift').toString();
   for (const text of ['case parent(UUID, ChildAccountTarget)', 'view.ownerUid == access.context.uid',
     'access.context.grantedRoles == [.child]', 'self = .parent(UUID(), try ChildAccountTarget(view: view))']) assert(model.includes(text));
   assert.match(read(folder + 'native-checks.txt').toString(), /ChildAccountPresentationChecks passed:/);
   const sources = json(folder + 'source-sha256.json').files;
   for (const row of sources) {
     assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
-    if (row.commit === 'candidate') assert.equal(sha(read(row.path)), row.sha256);
+    if (row.commit === 'candidate') {
+      if (row.path.endsWith('/ChildAccountModels.swift')) {
+        const original = read('docs/release/evidence/source-archive/' + row.sha256 + '.txt').toString();
+        const presentation = model.replace('import Foundation\n\n', '');
+        assert(original.includes(presentation));
+        assert.equal(read(row.path).toString(), original.replace(presentation + '\n', ''));
+      } else assert.equal(sha(read(row.path)), row.sha256);
+    }
   }
 });
 
