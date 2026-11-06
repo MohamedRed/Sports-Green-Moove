@@ -90,6 +90,11 @@ test('UI candidates preserve the real city button and full-size club target with
         '    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)\n' +
         '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n');
     }
+    if (row.path.endsWith('/SearchConsentFlowTests.swift')) {
+      const checkpoint = '        consent.tap()\n        app.buttons["search.action"].tap()\n        XCTAssertTrue(app.buttons["booking.request.action"].waitForExistence(timeout: 6))';
+      assert(expected.includes(checkpoint));
+      expected = expected.replace(checkpoint, checkpoint.replace('timeout: 6))', 'timeout: 6), String(app.debugDescription.prefix(16_000)))'));
+    }
     assert.equal(read(row.path), expected);
   }
 });

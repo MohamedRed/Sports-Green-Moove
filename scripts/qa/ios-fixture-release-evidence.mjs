@@ -80,7 +80,7 @@ export function validateIosFixtureGate(root, reference, {matchCurrentSources = t
   for (const row of source.filter(row => row.path.startsWith('ios/')))
     assert.equal(inputs.find(input => input.path === row.path)?.sha256, row.sha256);
   if (matchCurrentSources) {
-    assert.deepEqual(inputs.map(row => row.path).sort(), iosBuildInputPaths(root));
+    assert.deepEqual(inputs.map(row => row.path).sort(), iosBuildInputPaths(root), 'Untested iPhone input inventory');
     for (const row of inputs) assert.equal(sha(readFileSync(resolve(root, row.path))), row.sha256, 'Untested iPhone input: ' + row.path);
     const current = parseDocument(readFileSync(resolve(root, workflowPath), 'utf8')).toJSON();
     for (const key of ['jobs', 'permissions', 'concurrency']) assert.deepEqual(current[key], workflow[key]);

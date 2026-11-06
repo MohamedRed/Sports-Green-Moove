@@ -79,6 +79,7 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/Models.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/AuthSession.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchFormState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchSelectionState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchRequestState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/SearchActivityState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/PlaceSearchWire.swift" \

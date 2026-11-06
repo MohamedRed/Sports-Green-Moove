@@ -5,6 +5,7 @@ import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
+import {assertIosFixtureWorkloadWithSelectionCheck} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -64,7 +65,7 @@ test('d56 builds and passes the original eleven screen cases without accepting t
   const workflow = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   assert.equal(workflow.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   const oldWorkflow = sourceBytes(json(passFolder + 'source-sha256.json').files.find(row => row.path === '.github/workflows/ios-mvp-verification.yml'));
-  assert.deepEqual(workflow.jobs, parseDocument(oldWorkflow).toJSON().jobs);
+  assertIosFixtureWorkloadWithSelectionCheck(workflow.jobs, parseDocument(oldWorkflow).toJSON().jobs);
 });
 test('the earlier full-pass simulation note and preceding failures remain in history', () => {
   const {previous} = partitionUpdates(content.updates);

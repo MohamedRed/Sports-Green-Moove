@@ -5,8 +5,12 @@ import {iosD56FixturePass} from './ios-d56-fixture-pass.mjs';
 import {iosAutomatedAcceptance} from './ios-automated-acceptance.mjs';
 import {iosLatestRecheck} from './ios-latest-recheck.mjs';
 import {protocolQuerySecurity} from './protocol-query-security.mjs';
+import {iosSearchSelection} from './ios-search-selection.mjs';
+import {ios959Recheck} from './ios-959-recheck.mjs';
 
 export const nativeRechecks = {
+  ios959Recheck,
+  iosSearchSelection,
   protocolQuerySecurity,
   iosLatestRecheck,
   iosAutomatedAcceptance,

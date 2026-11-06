@@ -3,53 +3,57 @@ import SwiftUI
 struct SearchScreen: View {
     @Environment(AppState.self) private var appState
     @Environment(\.scenePhase) private var phase
-    @State private var originInput = ""
-    @State private var destinationInput = ""
-    @State private var form = SearchFormState.initial()
+    @State private var selection: SearchSelectionState
     let access: AccountAccess
 
+    init(appState: AppState, access: AccountAccess) {
+        self.access = access
+        _selection = State(initialValue: SearchSelectionState(appState: appState, access: access))
+    }
+
     var body: some View {
+        @Bindable var selection = selection
         SGMScreen(spacing: 10, testID: UITestIdentifier.searchScreen) {
             SGMTopBar(title: "RECHERCHE", showsBack: true)
             VStack(spacing: 10) {
                 PlaceSearchField(
                     title: "Départ",
-                    text: $originInput,
+                    text: $selection.originInput,
                     selected: appState.searchOrigin,
                     suggestions: appState.originSuggestions,
                     busy: !appState.searchActivity.available(.origin, access: access),
                     onSuggest: {
-                        let input = originInput
+                        let input = selection.originInput
                         Task { await appState.suggestPlaces(input: input, target: .origin, access: access) }
                     },
                     onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .origin, access: access) } }
                 )
                 PlaceSearchField(
                     title: "Destination",
-                    text: $destinationInput,
+                    text: $selection.destinationInput,
                     selected: appState.searchDestination,
                     suggestions: appState.destinationSuggestions,
                     busy: !appState.searchActivity.available(.destination, access: access),
                     onSuggest: {
-                        let input = destinationInput
+                        let input = selection.destinationInput
                         Task { await appState.suggestPlaces(input: input, target: .destination, access: access) }
                     },
                     onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination, access: access) } }
                 )
-                SearchTextField(title: "Date ISO", text: $form.desiredDepartureAtIso)
+                SearchTextField(title: "Date ISO", text: $selection.form.desiredDepartureAtIso)
                 SearchChildSelector(
                     children: appState.children,
-                    selectedChildId: $form.childUserId
+                    selectedChildId: $selection.form.childUserId
                 )
                 SearchOptions(
-                    seatsNeeded: $form.seatsNeeded,
-                    baggage: $form.baggage,
-                    returnTrip: $form.returnTrip,
-                    childTracking: $form.requireChildTracking,
-                    guardianConsent: $form.guardianConsent
+                    seatsNeeded: $selection.form.seatsNeeded,
+                    baggage: $selection.form.baggage,
+                    returnTrip: $selection.form.returnTrip,
+                    childTracking: $selection.form.requireChildTracking,
+                    guardianConsent: $selection.form.guardianConsent
                 )
                 SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET", testID: UITestIdentifier.searchAction) {
-                    if let request = appState.prepareSearch(form: form, access: access) {
+                    if let request = appState.prepareSearch(form: selection.form, access: access) {
                         Task { await appState.runSearch(request) }
                     }
                 }
@@ -61,7 +65,7 @@ struct SearchScreen: View {
             VStack(spacing: 8) {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
-                        let submittedForm = form
+                        let submittedForm = selection.form
                         Task { await appState.requestSearchMatch(match, form: submittedForm, access: access) }
                     }
                     .disabled(appState.bookingBusy || appState.searchActivity.access?.context != access.context)
@@ -77,21 +81,13 @@ struct SearchScreen: View {
             .padding(.horizontal, SGMSpace.padScreen)
         }
         .onAppear {
-            reconcileSelectedChild(appState.children)
+            selection.reconcileChildren(appState.children)
         }
         .onChange(of: appState.children) { _, children in
-            reconcileSelectedChild(children)
+            selection.reconcileChildren(children)
         }
-        .onChange(of: form) { _, _ in appState.invalidateSearch() }
-        .onChange(of: originInput) { _, _ in appState.invalidatePlace(.origin) }
-        .onChange(of: destinationInput) { _, _ in appState.invalidatePlace(.destination) }
-        .onChange(of: appState.searchOrigin) { _, _ in appState.invalidateSearch() }
-        .onChange(of: appState.searchDestination) { _, _ in appState.invalidateSearch() }
         .onChange(of: appState.session?.uid) { _, _ in
-            form = .initial()
-            originInput = ""
-            destinationInput = ""
-            reconcileSelectedChild(appState.children)
+            selection.reset(children: appState.children)
         }
         .task(id: SearchSceneKey(phase: phase, waiting: access.waitingForEarlierWork)) {
             if phase == .active && !access.waitingForEarlierWork { appState.activateSearch(access: access) }
@@ -101,10 +97,6 @@ struct SearchScreen: View {
         .onDisappear { appState.suspendSearch(access: access) }
     }
 
-    private func reconcileSelectedChild(_ children: [ChildSummary]) {
-        guard !children.contains(where: { $0.id == form.childUserId }) else { return }
-        form.childUserId = children.first?.id
-    }
 }
 
 private struct SearchSceneKey: Equatable { let phase: ScenePhase; let waiting: Bool }

@@ -11,5 +11,7 @@ import {iosD56FixturePassProgress} from './ios-d56-fixture-pass.mjs';
 import {iosAutomatedAcceptanceProgress} from './ios-automated-acceptance.mjs';
 import {iosLatestRecheckProgress} from './ios-latest-recheck.mjs';
 import {protocolQuerySecurityProgress} from './protocol-query-security.mjs';
+import {iosSearchSelectionProgress} from './ios-search-selection.mjs';
+import {ios959RecheckProgress} from './ios-959-recheck.mjs';
 
-export const latestReleaseProgress = [protocolQuerySecurityProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];
+export const latestReleaseProgress = [iosSearchSelectionProgress, protocolQuerySecurityProgress, ios959RecheckProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];

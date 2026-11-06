@@ -35,7 +35,9 @@ test('latest terminal recheck retains ten passes, the single initial-search asse
   const cases = json(resolve(root, iosRecheckFolder, 'cases.json'));
   assert.deepEqual(cases.filter(row => row.status === 'failed').map(row => row.name), ['testTrackingAndSeatChangesInvalidateTheAcceptedSelection']);
   assert.match(readFileSync(resolve(root, iosRecheckFolder, 'selected-tests.txt'), 'utf8'), /SearchConsentFlowTests.swift:30: error:/);
-  assert.deepEqual(assertCurrentIosAutomatedEvidence(), {status: 'pending'});
+  const recorded = json(resolve(root, 'docs/release/evidence/ios-recheck-recording-385a6a4-2026-11-05/manifest-after.json'));
+  assert(recorded.automatedUserFlowEvidence.items.filter(row => iosAutomatedEvidenceIds.includes(row.id)).every(row => row.status === 'pending'));
+  assertCurrentIosAutomatedEvidence();
 });
 for (const [file, change] of [
   ['summary.json', row => row.passed = 11], ['summary.json', row => row.failed = 0],
@@ -50,9 +52,11 @@ for (const [file, change] of [
   const state = fixture(t); mutate(state, file, change); assert.throws(() => validateIosFixtureRecheck(state.root, state.reference));
 });
 test('changing a pending label back to passed cannot inherit the earlier successful gate', () => {
-  const manifest = json(resolve(root, 'docs/release/evidence-manifest.json'));
+  const manifest = json(resolve(root, 'docs/release/evidence/ios-recheck-recording-385a6a4-2026-11-05/manifest-after.json'));
   for (const row of manifest.automatedUserFlowEvidence.items.filter(row => iosAutomatedEvidenceIds.includes(row.id))) row.status = 'passed';
-  assert.throws(() => assertCurrentIosAutomatedEvidence(manifest), /later failed iPhone recheck/);
+  const proof = manifest.automatedUserFlowEvidence.items.find(row => row.id === iosAutomatedEvidenceIds[0]).fixtureGateProof;
+  assert.throws(() => assertIosPassPostdatesRecheck(root, reference, proof.source), /later failed iPhone recheck/);
+  assert.throws(() => assertCurrentIosAutomatedEvidence(manifest));
   manifest.automatedUserFlowEvidence.items.find(row => row.id === iosAutomatedEvidenceIds[0]).fixtureGateRecheck.sha256 = '0'.repeat(64);
   assert.throws(() => assertCurrentIosAutomatedEvidence(manifest));
 });
@@ -85,9 +89,9 @@ test('recording changes only current iPhone acceptance and preserves every histo
   assert.deepEqual(readFileSync(manifestPath), bytes);
   assert.deepEqual(readFileSync(resolve(state.root, priorName)), readFileSync(resolve(root, priorName)));
 });
-test('portal shows latest partial simulation result and keeps the earlier success in history', () => {
+test('portal retains the partial simulation result and earlier success without erasing either', () => {
   const {recent, previous} = partitionUpdates(content.updates);
-  const note = recent.find(row => row.source === iosRecheckFolder + '/README.md'); assert(note);
+  const note = [...recent, ...previous].find(row => row.source === iosRecheckFolder + '/README.md'); assert(note);
   assert.match(note.text, /10 essais sur 11.*simulation/); assert.match(note.text, /recherche/);
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|CI\b/);
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05/README.md'));

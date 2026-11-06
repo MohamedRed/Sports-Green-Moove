@@ -198,7 +198,8 @@ test('the actual aac Linux contract step passes without accepting the whole work
   for (const key of ['sdkBuildAccepted', 'fixtureUiAccepted', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(summary[key], false);
   assert.deepEqual(content.verificationFollowup, verificationFollowup);
   assert.deepEqual(content.updates.filter(row => row.source === verificationFollowupProgress.source), [verificationFollowupProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === verificationFollowupProgress.source));
+  const partition = partitionUpdates(content.updates);
+  assert([...partition.recent, ...partition.previous].some(row => row.source === verificationFollowupProgress.source));
   assert.doesNotMatch(verificationFollowupProgress.title + verificationFollowupProgress.text,
     /Firebase|BrowserStack|Android|Linux|Swift|SDK|Xcode|CI\b|DNS/i);
 });

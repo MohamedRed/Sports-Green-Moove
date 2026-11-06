@@ -39,12 +39,15 @@ test('search form owns consent reset and the screen invalidates every changed se
     assert(form.includes(`if ${field} != oldValue { guardianConsent = false }`));
   }
   const screen = read(base + 'SearchScreen.swift');
-  assert.match(screen, /@State private var form = SearchFormState.initial\(\)/);
-  assert.match(screen, /\.onChange\(of: form\) \{ _, _ in appState.invalidateSearch\(\) \}/);
+  assert.match(screen, /@State private var selection: SearchSelectionState/);
+  assert.match(screen, /@Bindable var selection = selection/);
+  const selection = read(base + 'SearchSelectionState.swift');
+  assert.match(selection, /if form != oldValue && access.isCurrent \{ appState.invalidateSearch\(\) \}/);
+  assert.doesNotMatch(screen, /\.onChange\(of: (?:form|originInput|destinationInput|appState\.searchOrigin|appState\.searchDestination)\)/);
   for (const target of ['origin', 'destination']) {
-    assert(screen.includes(`appState.invalidatePlace(.${target})`));
+    assert(selection.includes(`appState.invalidatePlace(.${target})`));
   }
-  assert.match(screen, /if let request = appState.prepareSearch\(form: form, access: access\)/);
+  assert.match(screen, /if let request = appState.prepareSearch\(form: selection.form, access: access\)/);
   assert.match(screen, /Task \{ await appState.runSearch\(request\) \}/);
   assert.match(screen, /requestSearchMatch\(match, form: submittedForm, access: access\)/);
   assert.doesNotMatch(screen, /guardianConsent = true/);

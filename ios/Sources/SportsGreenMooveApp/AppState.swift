@@ -40,8 +40,12 @@ final class AppState {
     var driverBookingRequests: [BookingRequestSummary] = []
     var impactSummary: ImpactSummary = .empty
     var rewardSummary: RewardSummary = .empty
-    var searchOrigin: ResolvedPlace?
-    var searchDestination: ResolvedPlace?
+    var searchOrigin: ResolvedPlace? {
+        didSet { if searchOrigin != oldValue { invalidateSearch() } }
+    }
+    var searchDestination: ResolvedPlace? {
+        didSet { if searchDestination != oldValue { invalidateSearch() } }
+    }
     var originSuggestions: [PlaceSuggestion] = []
     var destinationSuggestions: [PlaceSuggestion] = []
     var searchMatches: [TripMatchSummary] = []

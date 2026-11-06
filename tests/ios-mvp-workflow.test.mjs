@@ -66,6 +66,7 @@ test('iPhone verification is bounded public compute with only the approved one-d
 
 test('the runner-only allowance rejects changed workloads, limits, capture bounds and concurrency', () => {
   const baseline = structuredClone(workflow), original = baseline.jobs['ios-fixture-verification'];
+  original.steps = original.steps.filter(row => row.name !== 'Check immediate search selection invalidation');
   original['runs-on'] = 'macos-26-intel';
   original.steps.find(row => row.name === 'Inspect installed Apple tools').run = 'xcodebuild -version\nxcrun simctl list runtimes\n';
   assertUnchangedIosFixtureWorkload(workflow, baseline);

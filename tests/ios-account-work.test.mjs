@@ -28,7 +28,8 @@ test('booking actions retain their originating account and displayed terms throu
   for (const [screen, action] of [['HomeScreen', 'handleTripAction(trip: nextTrip, access: access)'],
     ['TripsScreen', 'approveBooking(request, access: access)'], ['SearchScreen', 'requestSearchMatch(match, form: submittedForm, access: access)']]) {
     assert(read(app + screen + '.swift').includes(action));
-    assert(read(app + 'AppShell.swift').includes(screen + '(access: access)'));
+    const argumentsText = screen === 'SearchScreen' ? '(appState: appState, access: access)' : '(access: access)';
+    assert(read(app + 'AppShell.swift').includes(screen + argumentsText));
   }
   assert(read('scripts/check-ios-native-plan.sh').includes('BookingOwnershipChecks.swift'));
   assert(read('ios/Tests/SportsGreenMooveNativeChecks/main.swift').includes('await checkBookingOwnership()'));

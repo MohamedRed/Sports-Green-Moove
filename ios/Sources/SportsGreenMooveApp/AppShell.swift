@@ -103,7 +103,7 @@ struct AppShell: View {
     private func overlayContent(_ overlay: AppOverlay, access: AccountAccess) -> some View {
         switch overlay {
         case .search:
-            SearchScreen(access: access)
+            SearchScreen(appState: appState, access: access)
         case .groups:
             GroupsScreen()
         case .impact:

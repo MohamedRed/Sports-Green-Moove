@@ -2,6 +2,26 @@
 
 ## Current Publication Policy
 
+The subsequent 959 iPhone gate passes all eleven original cases with SDK success,
+successful disposal and zero artifacts. Its complete Swift input inventory is
+identical to the earlier 385 ten-of-eleven failure: it predates the new selection
+state and does not prove that correction fixed the screen failure. Preserve both
+observations. Publish a short previous-version simulation note, retaining the
+failed note in history and keeping current acceptance pending. The separate full
+native workflow fails its main job; no whole-gate or release success is claimed.
+See `ios-fixture-gate-959e70b-2026-11-06`.
+
+The retained old selection callbacks erase newer searches in ten controlled
+orders. The synchronous selection state preserves ten new searches, revokes ten
+genuine edits and drains five obsolete responses. Same-value, reverted-edit,
+consent, reset and account-generation guards pass, as do full local native checks.
+The actual screen failure's cause remains unconfirmed. Publish a short local-only
+search note, preserving all flows, media, dated notes, blockers and public access.
+Keep current iPhone acceptance pending, eleven cases and 50 minutes unchanged;
+bounded synthetic accessibility diagnosis is added only on the original failing
+assertion. No phone, capture, provider request or release acceptance is added.
+See `ios-search-selection-2026-11-06`.
+
 The compatible parser patches reproduce six failures in twelve unchanged probes,
 then pass all twelve after a clean install. Backend units pass 623 cases, all
 workspaces build, and the fresh isolated service replay passes 24 groups with

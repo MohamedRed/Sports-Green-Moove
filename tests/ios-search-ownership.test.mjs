@@ -39,7 +39,7 @@ test('every search callback owns its full account/role/scene generation and reta
   assert(root.includes('resetSearchSession()\n        accountWork.replace(session: session, role: selectedRole)'));
   assert(root.includes('searchActivity.busy || searchRequests.pending != nil'));
   const screen = read(app + 'SearchScreen.swift');
-  for (const part of ['let input = originInput', 'let input = destinationInput', 'access: access)',
+  for (const part of ['let input = selection.originInput', 'let input = selection.destinationInput', 'access: access)',
     'appState.suspendSearch(access: access)', 'SearchSceneKey(phase: phase, waiting: access.waitingForEarlierWork)',
     '.disabled(!appState.searchActivity.available(.matches, access: access))']) assert(screen.includes(part));
 });
@@ -117,7 +117,7 @@ test('two concise scoped notes preserve old portal records and current release g
     if (key === 'iosSearchOwnership') {
       assert(partition.previous.some(row => row.source === progress.source));
       assert(partition.previous.some(row => row.source === iosSearchContractProgress.source && row.flow === progress.flow));
-      assert(partition.recent.some(row => row.source === verificationFollowupProgress.source && row.flow === progress.flow));
+      assert([...partition.recent, ...partition.previous].some(row => row.source === verificationFollowupProgress.source && row.flow === progress.flow));
     } else assert(partition.previous.some(row => row.source === progress.source));
   }
   const previousUpdates = partitionUpdates(content.updates).previous;

@@ -57,7 +57,7 @@ test('real eleven-case historical proof accepts only its exact source tree, incl
   const state = fixture(t), report = validateIosFixtureGate(state.root, state.reference);
   assert.equal(report.passedCases, 11); assert.equal(report.sourceCommit, 'd56cec66555cfb69a9f5ca336a637f99917376ed');
   assert.equal(assertCurrentIosAutomatedEvidence(passedManifest(state), {root: state.root}).status, 'passed');
-  assert.throws(() => validateIosFixtureGate(root, reference), /Untested iPhone input:.*RideChatFlowChecks/);
+  assert.throws(() => validateIosFixtureGate(root, reference), /Untested iPhone input/);
 });
 for (const [file, mutate] of [
   ['summary.json', row => row.passedCases = 8],
@@ -143,7 +143,7 @@ test('both real release commands reject an accepted label bound to a different i
     ['scripts/report-release-gaps.mjs', '--json', '--manifest', path],
     ['scripts/validate-release-evidence.mjs', '--allow-placeholders', path],
   ]) assert.throws(() => execFileSync(process.execPath, args, {cwd: root, stdio: 'pipe'}),
-    error => /Untested iPhone input:.*RideChatFlowChecks/.test(String(error.stderr)));
+    error => /Untested iPhone input/.test(String(error.stderr)));
 });
 test('actual f61 acceptance snapshots preserve every other requirement without freezing future manifest progress', () => {
   const base = resolve(root, 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05');

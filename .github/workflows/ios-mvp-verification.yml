@@ -86,6 +86,9 @@ jobs:
       - name: Run native logic checks
         run: bash scripts/check-ios-native-plan.sh
 
+      - name: Check immediate search selection invalidation
+        run: node scripts/qa/check-ios-search-selection.mjs
+
       - name: Check controlled location lifecycle without a device
         run: node scripts/qa/check-ios-location-provider.mjs
 

@@ -27,7 +27,7 @@ final class SearchConsentFlowTests: XCTestCase {
         XCTAssertTrue(consent.waitForExistence(timeout: 6))
         consent.tap()
         app.buttons["search.action"].tap()
-        XCTAssertTrue(app.buttons["booking.request.action"].waitForExistence(timeout: 6))
+        XCTAssertTrue(app.buttons["booking.request.action"].waitForExistence(timeout: 6), String(app.debugDescription.prefix(16_000)))
         app.buttons["search.child-tracking"].tap()
         XCTAssertEqual(consent.value as? String, "Non accordé")
         XCTAssertFalse(app.buttons["booking.request.action"].exists)

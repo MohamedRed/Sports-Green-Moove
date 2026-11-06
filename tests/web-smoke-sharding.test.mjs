@@ -77,6 +77,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Verify current chat recovery and iPhone input commit')
     .filter(step => step.name !== 'Verify source-bound iPhone release evidence')
     .filter(step => step.name !== 'Verify compatible protocol and payment query patches')
+    .filter(step => step.name !== 'Verify immediate search selection invalidation')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -237,9 +238,11 @@ test('the timeout correction preserves every current workload and artifact uploa
     [{name: 'Verify source-bound iPhone release evidence', run: 'node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify compatible protocol and payment query patches'),
     [{name: 'Verify compatible protocol and payment query patches', run: 'node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs'}]);
+  assert.deepEqual(currentSteps.filter(step => step.name === 'Verify immediate search selection invalidation'),
+    [{name: 'Verify immediate search selection invalidation', run: 'node scripts/qa/check-ios-search-selection.mjs && node --test tests/ios-search-selection.test.mjs'}]);
   const steps = currentSteps.filter(step => !['Verify exact publication price input', 'Verify iPhone navigation viewport',
     'Verify current chat recovery and iPhone input commit', 'Verify source-bound iPhone release evidence',
-    'Verify compatible protocol and payment query patches'].includes(step.name));
+    'Verify compatible protocol and payment query patches', 'Verify immediate search selection invalidation'].includes(step.name));
   assert.deepEqual(steps.filter(step => step.name === 'Verify iPhone search-to-booking contract without provider calls'),
     [{name: 'Verify iPhone search-to-booking contract without provider calls', run: 'node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs'}]);
   const diagnostic = steps.filter(step => step.name === 'Test approved temporary network startup logging');
