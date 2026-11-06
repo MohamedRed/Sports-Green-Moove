@@ -30,7 +30,8 @@ test('the later ten-of-eleven failure is retained without inheriting an older su
   const {recent, previous} = partitionUpdates(content.updates);
   assert.deepEqual(content.iosMembershipRecheck964, iosMembershipRecheck964);
   assert(previous.some(row => row.source === iosMembershipRecheck964Progress.source));
-  assert(recent.some(row => row.source === ios0fbRecheckProgress.source));
+  assert(previous.some(row => row.source === ios0fbRecheckProgress.source));
+  assert(recent.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
   assert(previous.some(row => row.source.includes('ios-automated-acceptance-376addb')));
   assert.doesNotMatch(iosMembershipRecheck964Progress.title + iosMembershipRecheck964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
   assertCurrentIosAutomatedEvidence();

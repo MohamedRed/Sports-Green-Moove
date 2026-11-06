@@ -4,6 +4,7 @@ import {existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync} from 'n
 import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds, validateIosFixtureGate} from './ios-fixture-release-evidence.mjs';
+import {iosFixtureIndexName} from './ios-fixture-index.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex'), json = value => JSON.stringify(value, null, 2) + '\n';
 export function acceptIosFixtureGate(root, source) {
@@ -14,7 +15,10 @@ export function acceptIosFixtureGate(root, source) {
   const manifest = JSON.parse(originalManifest), before = structuredClone(manifest), evidence = resolve(root, 'docs/release/evidence');
   const priorName = readdirSync(evidence).filter(name => /^automated-user-flow-evidence-.*\.json$/.test(name)).sort().at(-1);
   assert(priorName); const priorPath = resolve(evidence, priorName), priorBytes = readFileSync(priorPath), prior = JSON.parse(priorBytes);
-  const indexPath = resolve(evidence, `automated-user-flow-evidence-${proof.checkedAt}.json`); assert(!existsSync(indexPath));
+  const job = JSON.parse(readFileSync(resolve(root, source.replace(/summary\.json$/, 'terminal-job.json'))));
+  const indexName = iosFixtureIndexName(job, 'accepted');
+  assert(indexName > priorName, 'New evidence index must follow the inherited index');
+  const indexPath = resolve(evidence, indexName); assert(!existsSync(indexPath));
   const receiptFolder = resolve(evidence, `ios-automated-acceptance-${proof.sourceCommit.slice(0, 7)}-${proof.checkedAt}`);
   assert(!existsSync(receiptFolder));
   const proofFolder = source.replace(/\/summary\.json$/, '').replace('docs/release/', '');
@@ -50,7 +54,7 @@ export function acceptIosFixtureGate(root, source) {
     allOtherManifestSectionsPreserved: true, allOtherAutomatedEntriesPreserved: true,
     physicalDeviceAccepted: false, operationalEvidenceAccepted: false, releaseComplete: false}), {flag: 'wx'});
   writeFileSync(indexPath, json(index), {flag: 'wx'}); writeFileSync(manifestPath, json(manifest));
-  return {sourceCommit: proof.sourceCommit, accepted: iosAutomatedEvidenceIds,
+  return {sourceCommit: proof.sourceCommit, accepted: iosAutomatedEvidenceIds, indexSource: 'docs/release/evidence/' + indexName,
     currentBuildInputsMatched: true, previousEvidencePreserved: true, releaseComplete: false};
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href)

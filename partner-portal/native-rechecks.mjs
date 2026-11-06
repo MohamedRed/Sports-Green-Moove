@@ -14,8 +14,10 @@ import {ios04Recheck} from './ios-04-recheck.mjs';
 import {iosMembershipRecheck964} from './ios-membership-recheck-964.mjs';
 import {nativeMatrix964} from './native-matrix-964.mjs';
 import {ios0fbRecheck} from './ios-0fb-recheck.mjs';
+import {ios6fbAcceptance} from './ios-6fb-acceptance.mjs';
 
 export const nativeRechecks = {
+  ios6fbAcceptance,
   ios0fbRecheck,
   nativeMatrix964,
   iosMembershipRecheck964,

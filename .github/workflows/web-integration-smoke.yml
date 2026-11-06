@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "scripts/qa/ios-fixture-index.mjs"
+      - "tests/ios-fixture-index.test.mjs"
+      - "tests/ios-latest-gate-acceptance.test.mjs"
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
       - "tests/ios-current-fixture-acceptance.test.mjs"
@@ -744,6 +747,9 @@ on:
     branches:
       - main
     paths:
+      - "scripts/qa/ios-fixture-index.mjs"
+      - "tests/ios-fixture-index.test.mjs"
+      - "tests/ios-latest-gate-acceptance.test.mjs"
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
       - "tests/ios-current-fixture-acceptance.test.mjs"
@@ -1822,7 +1828,7 @@ jobs:
         run: node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs
 
       - name: Verify source-bound iPhone release evidence
-        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs
+        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs tests/ios-fixture-index.test.mjs tests/ios-latest-gate-acceptance.test.mjs
 
       - name: Verify compatible protocol and payment query patches
         run: node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs

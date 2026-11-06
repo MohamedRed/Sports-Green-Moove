@@ -32,7 +32,8 @@ test('the later completed 37-group native replay is distinct from its cancelled 
   assert.equal(content.nativeMatrix964.source, matrix964Folder + '/summary.json');
   const {recent, previous} = partitionUpdates(content.updates);
   assert(recent.some(row => row.source === nativeMatrix964Progress.source));
-  assert(recent.some(row => row.source.includes('ios-fixture-gate-0fb9968')));
+  assert(previous.some(row => row.source.includes('ios-fixture-gate-0fb9968')));
+  assert(recent.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
   assert(previous.some(row => row.source.includes('ios-fixture-recheck-9640d8b')));
   assert(previous.some(row => row.source.includes('native-copy-376addb')));
   assert.doesNotMatch(nativeMatrix964Progress.title + nativeMatrix964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);

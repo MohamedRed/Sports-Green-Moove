@@ -41,7 +41,8 @@ test('the exact acceptance snapshots change only two automated entries and retai
 test('the historical simulation success remains intact after the later membership recheck', () => {
   const {recent, previous} = partitionUpdates(content.updates);
   const note = previous.find(row => row.source === folder + 'README.md'); assert(note);
-  assert(recent.some(row => row.source === 'docs/release/evidence/ios-fixture-gate-0fb9968-2026-11-06/README.md'));
+  assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-gate-0fb9968-2026-11-06/README.md'));
+  assert(recent.some(row => row.source === 'docs/release/evidence/ios-fixture-gate-6fb6487-2026-11-06/README.md'));
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-recheck-9640d8b-2026-11-06/README.md'));
   assert.match(note.text, /simulation/); assert.match(note.text, /restent à tester/);
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/);

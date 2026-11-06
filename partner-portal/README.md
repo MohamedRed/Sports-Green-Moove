@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 6fb gate builds all bundles and passes all eleven original cases with
+successful disposal, no captures and no artifacts. Its exact current iOS inputs
+and workflow match. Accept only the two automated iPhone entries, retaining the
+964 failure and every other requirement. New cumulative indices use the terminal
+job timestamp and identity for both outcomes; never overwrite a same-day index.
+Publish one concise current-version simulation result, moving the 0fb headline
+into history without changing any prior text, media, flows, dates or public access.
+The membership failure cause remains unknown. Physical tracking, notifications,
+emergency phone handoff, operational and safety evidence remain open. See
+`ios-fixture-gate-6fb6487-2026-11-06` and its exact acceptance receipt.
+
 The later 0fb iPhone job builds and passes all eleven original cases, including
 membership review, with disposal and no artifacts. Its iOS input tree/workflow
 matches the source-964 failure exactly; cause and repeatability stay unconfirmed.

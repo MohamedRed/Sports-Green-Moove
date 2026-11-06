@@ -5,6 +5,7 @@ import {resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {validateIosFixtureRecheck} from './ios-fixture-recheck.mjs';
 import {assertCurrentIosAutomatedEvidence, iosAutomatedEvidenceIds} from './ios-fixture-release-evidence.mjs';
+import {iosFixtureIndexName} from './ios-fixture-index.mjs';
 
 const sha = bytes => createHash('sha256').update(bytes).digest('hex'), json = value => JSON.stringify(value, null, 2) + '\n';
 export function recordIosFixtureRecheck(root, source) {
@@ -14,7 +15,10 @@ export function recordIosFixtureRecheck(root, source) {
   const manifest = JSON.parse(beforeBytes), before = structuredClone(manifest);
   const priorName = readdirSync(evidence).filter(name => /^automated-user-flow-evidence-.*\.json$/.test(name)).sort().at(-1);
   assert(priorName); const priorBytes = readFileSync(resolve(evidence, priorName)), index = JSON.parse(priorBytes);
-  const indexPath = resolve(evidence, `automated-user-flow-evidence-${report.checkedAt}T-${report.sourceCommit.slice(0, 7)}-recheck.json`);
+  const job = JSON.parse(readFileSync(resolve(root, source.replace(/summary\.json$/, 'terminal-job.json'))));
+  const indexName = iosFixtureIndexName(job, 'recheck');
+  assert(indexName > priorName, 'New evidence index must follow the inherited index');
+  const indexPath = resolve(evidence, indexName);
   const receipt = resolve(evidence, `ios-recheck-recording-${report.sourceCommit.slice(0, 7)}-${report.checkedAt}`);
   assert(!existsSync(indexPath) && !existsSync(receipt));
   const url = `https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/${report.runId}/job/${report.jobId}`;

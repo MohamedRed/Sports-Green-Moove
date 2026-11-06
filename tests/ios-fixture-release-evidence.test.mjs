@@ -129,12 +129,28 @@ test('actual acceptance updates only the two verified entries and preserves ever
   for (const key of Object.keys(before).filter(key => !['generatedAt', 'automatedUserFlowEvidence'].includes(key))) assert.deepEqual(after[key], before[key]);
   const nonIos = rows => rows.filter(row => !iosAutomatedEvidenceIds.includes(row.id));
   assert.deepEqual(nonIos(after.automatedUserFlowEvidence.items), nonIos(before.automatedUserFlowEvidence.items));
-  const index = json(resolve(state.root, 'docs/release/evidence/automated-user-flow-evidence-2026-11-05.json'));
+  const index = json(resolve(state.root, result.indexSource));
   assert.deepEqual(nonIos(index.items), nonIos(prior.items)); assert.deepEqual(json(resolve(state.root, priorIndexPath)), prior);
   for (const row of after.automatedUserFlowEvidence.items.filter(row => iosAutomatedEvidenceIds.includes(row.id)))
     for (const ref of before.automatedUserFlowEvidence.items.find(old => old.id === row.id).evidenceRefs) assert(row.evidenceRefs.includes(ref));
   const bytes = readFileSync(resolve(state.root, manifestPath));
   assert.throws(() => acceptIosFixtureGate(state.root, reference.source)); assert.deepEqual(readFileSync(resolve(state.root, manifestPath)), bytes);
+});
+test('same-day acceptance retains the existing dated index and inherits the latest recheck', t => {
+  const state = fixture(t), manifestPath = 'docs/release/evidence-manifest.json';
+  cpSync(resolve(root, 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05/manifest-before.json'), resolve(state.root, manifestPath));
+  const evidence = 'docs/release/evidence/', dated = evidence + 'automated-user-flow-evidence-2026-11-05.json';
+  const recheck = evidence + 'automated-user-flow-evidence-2026-11-05T-385a6a4-recheck.json';
+  for (const path of [dated, recheck]) cpSync(resolve(root, path), resolve(state.root, path));
+  const original = [dated, recheck].map(path => readFileSync(resolve(state.root, path)));
+  const result = acceptIosFixtureGate(state.root, reference.source);
+  assert(result.indexSource > recheck);
+  const index = json(resolve(state.root, result.indexSource));
+  assert.deepEqual(index.inheritedEvidence, {source: recheck, sha256: sha(original[1])});
+  for (const [i, path] of [dated, recheck].entries()) assert.deepEqual(readFileSync(resolve(state.root, path)), original[i]);
+  const manifestBytes = readFileSync(resolve(state.root, manifestPath));
+  assert.throws(() => acceptIosFixtureGate(state.root, reference.source));
+  assert.deepEqual(readFileSync(resolve(state.root, manifestPath)), manifestBytes);
 });
 test('both real release commands reject an accepted label bound to a different iPhone source', t => {
   const state = fixture(t), path = resolve(state.root, 'claimed-current-manifest.json');
