@@ -2,6 +2,35 @@
 
 ## Current Publication Policy
 
+The current source 376 iPhone gate compiles and passes all eleven original screen
+cases, including the new selection state; disposal succeeds and artifacts remain
+empty. Exact build inputs and workflow jobs match the current tree. Accept only
+the two automated iPhone entries and a new cumulative index, retaining the 385
+negative recheck and every historical reference. Publish one short simulation
+note; move the earlier local-search/pending-version headlines into history without
+changing their original text, flows, media, dates, blockers or public access.
+This closes no physical, operational, emergency-handoff, safety or release gate.
+See `ios-fixture-gate-376addb-2026-11-06` and its scoped acceptance receipt.
+
+Source 376's web check fails because its extra native selection compile imports
+CryptoKit on Linux. Keep that exact mandatory compile in the existing macos-26
+iPhone job, before the unchanged eleven screen cases; run both source-evidence
+and runner-routing contracts in the web job instead. No Apple compatibility shim,
+compiler skip, fallback, deadline or native-workload change is introduced.
+
+The same 959 source passes isolated native chat radio recovery, private draft
+restoration, explicit retry and reply with two messages/two records/no duplicates,
+an exact original archive and independent teardown. Its full matrix stops before
+the radio cut: both requests and the data subscription exist, but the default is
+cellular and available Wi-Fi is unvalidated; bounded history records Wi-Fi DNS
+failures. Do not substitute the older missing-subscription failure or infer the
+underlying DNS cause. Add the existing passive pre-installation Wi-Fi prerequisite
+to the full matrix without changing any old command, test, predicate or deadline.
+Publish one concise paired-result note and retain all older notes/media/flows/
+blockers. A separate provider callback check times out remotely; two later public
+health GETs return 204, not full readiness, onboarding or payment acceptance.
+See `native-network-959-comparison-2026-11-06`. No new phone/media or DNS repair.
+
 The subsequent 959 iPhone gate passes all eleven original cases with SDK success,
 successful disposal and zero artifacts. Its complete Swift input inventory is
 identical to the earlier 385 ten-of-eleven failure: it predates the new selection

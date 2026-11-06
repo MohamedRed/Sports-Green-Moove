@@ -7,8 +7,12 @@ import {iosLatestRecheck} from './ios-latest-recheck.mjs';
 import {protocolQuerySecurity} from './protocol-query-security.mjs';
 import {iosSearchSelection} from './ios-search-selection.mjs';
 import {ios959Recheck} from './ios-959-recheck.mjs';
+import {nativeNetwork959} from './native-network-959.mjs';
+import {ios376Acceptance} from './ios-376-acceptance.mjs';
 
 export const nativeRechecks = {
+  ios376Acceptance,
+  nativeNetwork959,
   ios959Recheck,
   iosSearchSelection,
   protocolQuerySecurity,

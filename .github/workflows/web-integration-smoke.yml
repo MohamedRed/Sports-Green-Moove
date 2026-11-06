@@ -6,8 +6,11 @@ on:
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-current-fixture-acceptance.test.mjs"
+      - "docs/release/evidence/ios-automated-acceptance-376addb-2026-11-06/**"
       - "tests/ios-fixture-recheck.test.mjs"
       - "tests/ios-search-selection.test.mjs"
+      - "tests/ios-search-selection-runner.test.mjs"
       - "tests/fixtures/ios-search-selection/**"
       - "scripts/qa/*ios-search-selection*.mjs"
       - "docs/release/evidence/ios-search-selection-*/**"
@@ -647,6 +650,13 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/full-matrix-network-prerequisite.test.mjs"
+      - "tests/native-network-959-evidence.test.mjs"
+      - "scripts/qa/*native-network-959*.mjs"
+      - "scripts/qa/wait-disposable-wifi.mjs"
+      - "scripts/qa/disposable-wifi-readiness.mjs"
+      - "docs/release/evidence/native-network-959-comparison-2026-11-06/**"
+      - "docs/release/evidence/chat-network-959e70b-2026-11-06/**"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
       - "tests/native-followup-evidence.test.mjs"
@@ -728,8 +738,11 @@ on:
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-current-fixture-acceptance.test.mjs"
+      - "docs/release/evidence/ios-automated-acceptance-376addb-2026-11-06/**"
       - "tests/ios-fixture-recheck.test.mjs"
       - "tests/ios-search-selection.test.mjs"
+      - "tests/ios-search-selection-runner.test.mjs"
       - "tests/fixtures/ios-search-selection/**"
       - "scripts/qa/*ios-search-selection*.mjs"
       - "docs/release/evidence/ios-search-selection-*/**"
@@ -1362,6 +1375,13 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/full-matrix-network-prerequisite.test.mjs"
+      - "tests/native-network-959-evidence.test.mjs"
+      - "scripts/qa/*native-network-959*.mjs"
+      - "scripts/qa/wait-disposable-wifi.mjs"
+      - "scripts/qa/disposable-wifi-readiness.mjs"
+      - "docs/release/evidence/native-network-959-comparison-2026-11-06/**"
+      - "docs/release/evidence/chat-network-959e70b-2026-11-06/**"
       - "tests/local-network-validation-diagnostics.test.mjs"
       - "tests/chat-network-latest-evidence.test.mjs"
       - "tests/native-followup-evidence.test.mjs"
@@ -1792,7 +1812,10 @@ jobs:
         run: node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs
 
       - name: Verify immediate search selection invalidation
-        run: node scripts/qa/check-ios-search-selection.mjs && node --test tests/ios-search-selection.test.mjs
+        run: node --test tests/ios-search-selection.test.mjs tests/ios-search-selection-runner.test.mjs tests/ios-current-fixture-acceptance.test.mjs
+
+      - name: Verify full-matrix network prerequisite and paired recovery evidence
+        run: node --test tests/full-matrix-network-prerequisite.test.mjs tests/native-network-959-evidence.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

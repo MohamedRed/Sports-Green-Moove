@@ -214,7 +214,8 @@ test('command, parser and history failures stop once and never echo private cont
   }
 });
 test('unapproved cases, non-disposable devices and existing app state are refused before evidence writes', async () => {
-  for (const environment of [{}, {...env}, {...env, SGM_FOCUSED_UI_CASE: 'chat-network-recovery', SGM_LOCAL_DISPOSABLE_EMULATOR: 'false'}]) {
+  for (const environment of [{}, {...env, SGM_FOCUSED_UI_CASE: 'session-restoration'},
+    {...env, SGM_FOCUSED_UI_CASE: 'chat-network-recovery', SGM_LOCAL_DISPOSABLE_EMULATOR: 'false'}]) {
     const t = readinessTrial(); await assert.rejects(waitForDisposableWifi('/private/readiness', environment, t.deps));
     assert.equal(t.commands.length, 0); assert.equal(t.writes.length, 0);
   }

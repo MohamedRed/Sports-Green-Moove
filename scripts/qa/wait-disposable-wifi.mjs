@@ -13,7 +13,8 @@ export async function waitForDisposableWifi(output, env = process.env, {
   now = () => performance.now(), sleep = delay, id = () => randomBytes(16).toString('hex'),
   collectHistory = collectNetworkValidationDiagnostics, budgetMs = 180_000, intervalMs = 3_000,
 } = {}) {
-  assert.equal(env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true'); assert.equal(env.SGM_FOCUSED_UI_CASE, 'chat-network-recovery');
+  assert.equal(env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
+  assert(['chat-network-recovery', 'full-matrix'].includes(env.SGM_FOCUSED_UI_CASE));
   assert(isAbsolute(output ?? '') && !exists(output), 'Use a fresh pre-installation readiness directory');
   assert(Number.isSafeInteger(budgetMs) && budgetMs > 0 && budgetMs <= 180_000);
   assert(Number.isSafeInteger(intervalMs) && intervalMs > 0 && intervalMs <= 3_000);
