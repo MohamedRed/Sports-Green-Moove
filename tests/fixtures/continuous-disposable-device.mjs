@@ -43,6 +43,7 @@ export function continuousFixture(t, options = {}) {
   const shell = (...args) => {
     const { command } = record('shell', args);
     if (command === 'getprop ro.kernel.qemu') return '1';
+    if (command === 'ps -A -w -o NAME') return 'NAME\ninit\n';
     if (command === 'getprop ro.build.version.sdk') return '35';
     if (command === 'am get-current-user') return '0';
     if (command === 'pm get-user-restriction --user 0 no_install_apps') return String(state.blocked);

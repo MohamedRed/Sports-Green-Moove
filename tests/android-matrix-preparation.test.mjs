@@ -19,6 +19,62 @@ const replay = f => prepareMatrixReplay({ android: f.android, serial: f.device.s
 const fixture = t => continuousFixture(t, { case: 'full-matrix', storeWakes: true });
 const clearNames = f => f.events.filter(row => row.command.startsWith('pm clear ')).map(row => row.args[2]);
 
+function ordinaryWorkers(t, { stubborn = false, inventory } = {}) {
+  const f = fixture(t), names = Object.keys(ordinaryPackages);
+  f.prepareAndSave(); ordinary(f); const setupEvents = f.events.splice(0);
+  const live = new Set([...names, names[0] + ':worker', 'be.sportgreenmoove.app.local', 'unrelated.process']);
+  const original = f.device.shell;
+  f.device.shell = (...args) => {
+    if (args[0] === 'pm' && args[1] === 'clear')
+      assert(![...live].some(name => names.some(pkg => name === pkg || name.startsWith(pkg + ':'))),
+        'The next stage must not start while ordinary workers are alive');
+    const value = original(...args);
+    if (args.join(' ') === 'ps -A -w -o NAME') {
+      if (inventory instanceof Error) throw inventory;
+      return inventory ?? 'NAME\ninit\n' + [...live].join('\n');
+    }
+    if (args[0] === 'am' && args[1] === 'force-stop' && !stubborn)
+      for (const name of live) if (name === args[2] || name.startsWith(args[2] + ':')) live.delete(name);
+    return value;
+  };
+  return { f, live, names, setupEvents };
+}
+
+test('the full replay stops and verifies only owned ordinary workers before clearing local data', t => {
+  const { f, live, names, setupEvents } = ordinaryWorkers(t);
+  const result = replay(f);
+  assert.deepEqual([...live].sort(), ['be.sportgreenmoove.app.local', 'unrelated.process']);
+  const stops = f.events.filter(row => row.command.startsWith('am force-stop '));
+  assert.deepEqual(stops.map(row => row.args[2]), [...names].reverse());
+  assert(stops.every(row => row.blocked));
+  const stopReceipt = JSON.parse(readFileSync(f.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT + '.replay-stopped.json'));
+  assert.equal(stopReceipt.scope, 'ordinary-matrix-process-stop-not-flow-proof');
+  assert(!JSON.stringify(stopReceipt).includes('unrelated.process'));
+  assert(!JSON.stringify(stopReceipt).includes('be.sportgreenmoove.app.local'));
+  assert.deepEqual(stopReceipt.packages, names.map((packageName, index) => ({
+    packageName, beforeCount: index === 0 ? 2 : 1, afterCount: 0,
+  })));
+  assert.deepEqual(result.ordinaryProcessStop, stopReceipt);
+  assertNoGuardedInstallOrUnlock([...setupEvents, ...f.events]);
+  assert.deepEqual(clearNames(f), Object.keys(pinnedPackages));
+});
+
+for (const [label, options] of [
+  ['surviving ordinary worker', { stubborn: true }], ['empty inventory', { inventory: '' }],
+  ['wrong inventory header', { inventory: 'PID NAME\n12 unrelated.process' }],
+  ['malformed inventory', { inventory: 'NAME\npermission denied' }],
+  ['oversized inventory', { inventory: 'NAME\n' + 'x'.repeat(65536) }],
+  ['inventory transport error', { inventory: new Error('synthetic inventory error') }],
+]) test('full replay refuses to continue after ' + label, t => {
+  const { f } = ordinaryWorkers(t, options);
+  assert.throws(() => replay(f)); assert.deepEqual(clearNames(f), []);
+  assert(!existsSync(f.env.SGM_PREINSTALLED_TEST_APKS_RECEIPT + '.replay-stopped.json'));
+  const stops = () => f.events.filter(row => row.command.startsWith('am force-stop ')).length;
+  const before = stops();
+  assert.throws(() => replay(f), { code: 'EEXIST' }); assert.equal(stops(), before);
+  assert.deepEqual(clearNames(f), []);
+});
+
 test('ordinary instrumentation has no class, package, annotation or sharding filter and both CI gates cover this contract', () => {
   const source = readFileSync(new URL('../scripts/qa/run-ordinary-android-ui.mjs', import.meta.url), 'utf8');
   assert(source.includes("'instrument', '-w', '-r'")); assert(source.includes('be.sportgreenmoove.app.test/${disposableTestRunner}'));
@@ -66,6 +122,7 @@ for (const [label, mutate] of [
 ]) test(`full replay rejects ${label} without clearing or reinstalling`, t => {
   const f = fixture(t); f.prepareAndSave(); ordinary(f); mutate(f); f.events.length = 0;
   assert.throws(() => replay(f)); assert.deepEqual(clearNames(f), []);
+  assert(!f.events.some(row => row.command.startsWith('am force-stop ')));
   assert(!f.events.some(row => row.kind === 'command' || row.command.includes('SET_BLOCKED --ez blocked false')));
 });
 
