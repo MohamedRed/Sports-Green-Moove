@@ -80,6 +80,7 @@ test('all 111 original workload steps retain their exact commands, environments,
     .filter(step => step.name !== 'Verify immediate search selection invalidation')
     .filter(step => step.name !== 'Verify full-matrix network prerequisite and paired recovery evidence')
     .filter(step => step.name !== 'Verify retained primary-copy disconnect and independent consent stage')
+    .filter(step => step.name !== 'Validate passive host DNS observations')
     .map(step => JSON.stringify(step)).sort();
   // Semantic workload fingerprint captured from pushed pre-split source 82662bd.
   assert.equal(rows.length, 111);
@@ -246,11 +247,13 @@ test('the timeout correction preserves every current workload and artifact uploa
     [{name: 'Verify full-matrix network prerequisite and paired recovery evidence', run: 'node --test tests/full-matrix-network-prerequisite.test.mjs tests/native-network-959-evidence.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify retained primary-copy disconnect and independent consent stage'),
     [{name: 'Verify retained primary-copy disconnect and independent consent stage', run: 'node --test tests/native-copy-376-evidence.test.mjs'}]);
+  assert.deepEqual(currentSteps.filter(step => step.name === 'Validate passive host DNS observations'),
+    [{name: 'Validate passive host DNS observations', run: 'node --test tests/host-dns-configuration.test.mjs tests/host-dns-system-inputs.test.mjs tests/host-dns-filesystem.test.mjs tests/host-dns-observation.test.mjs tests/host-dns-workflow.test.mjs'}]);
   const steps = currentSteps.filter(step => !['Verify exact publication price input', 'Verify iPhone navigation viewport',
     'Verify current chat recovery and iPhone input commit', 'Verify source-bound iPhone release evidence',
     'Verify compatible protocol and payment query patches', 'Verify immediate search selection invalidation',
     'Verify full-matrix network prerequisite and paired recovery evidence',
-    'Verify retained primary-copy disconnect and independent consent stage'].includes(step.name));
+    'Verify retained primary-copy disconnect and independent consent stage', 'Validate passive host DNS observations'].includes(step.name));
   assert.deepEqual(steps.filter(step => step.name === 'Verify iPhone search-to-booking contract without provider calls'),
     [{name: 'Verify iPhone search-to-booking contract without provider calls', run: 'node scripts/qa/check-ios-search-contract.mjs && node --test tests/ios-search-contract.test.mjs'}]);
   const diagnostic = steps.filter(step => step.name === 'Test approved temporary network startup logging');

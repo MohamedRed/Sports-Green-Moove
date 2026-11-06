@@ -12,6 +12,7 @@ import { renderNetworkGateFolder, validateRenderNetworkGate } from '../scripts/q
 import { matrixRendererConfiguration } from '../scripts/qa/select-matrix-renderer.mjs';
 import {nativeTimeoutFolder, validateNativeTimeout, validateNativeBudgetFollowup} from '../scripts/qa/native-timeout-evidence.mjs';
 import {nativeBudgetExecutionFolder, validateNativeBudgetExecution} from '../scripts/qa/native-budget-execution-evidence.mjs';
+import {withoutHostDnsSteps} from './helpers/host-dns-workload.mjs';
 
 test('the executed fifty-minute budget retains the terminal primary-copy failure and independently restored device', () => {
   assert.deepEqual(validateNativeBudgetExecution(new URL('..', import.meta.url).pathname),
@@ -41,7 +42,7 @@ test('bounded preparation headroom and capacity reservation preserve every origi
   assert.deepEqual(validateNativeBudgetFollowup(new URL('..', import.meta.url).pathname),
     {fullGatePassed: true, groups: 37, nativeCases: 40, primaryCopies: 17, newBudgetApplied: false, releaseAccepted: false});
   const prior = YAML.parse(read(nativeTimeoutFolder + 'source-native-ci.yml.txt')).jobs['android-native-ui'];
-  const current = YAML.parse(read('.github/workflows/native-ci.yml')).jobs['android-native-ui'];
+  const current = withoutHostDnsSteps(YAML.parse(read('.github/workflows/native-ci.yml')).jobs)['android-native-ui'];
   const {'timeout-minutes': oldLimit, ...oldBody} = prior, {'timeout-minutes': newLimit, ...newBody} = current;
   const capacityName = 'Reserve disk space for the unchanged disposable Android device';
   assert.deepEqual(newBody.steps.filter(step => step.name === capacityName),

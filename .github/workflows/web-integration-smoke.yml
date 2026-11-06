@@ -650,6 +650,9 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "scripts/qa/*host-dns*.mjs"
+      - "tests/host-dns-*.test.mjs"
+      - "tests/helpers/host-dns-*.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "tests/native-network-959-evidence.test.mjs"
       - "tests/native-copy-376-evidence.test.mjs"
@@ -1378,6 +1381,9 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "scripts/qa/*host-dns*.mjs"
+      - "tests/host-dns-*.test.mjs"
+      - "tests/helpers/host-dns-*.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "tests/native-network-959-evidence.test.mjs"
       - "tests/native-copy-376-evidence.test.mjs"
@@ -1825,6 +1831,9 @@ jobs:
 
       - name: Verify retained primary-copy disconnect and independent consent stage
         run: node --test tests/native-copy-376-evidence.test.mjs
+
+      - name: Validate passive host DNS observations
+        run: node --test tests/host-dns-configuration.test.mjs tests/host-dns-system-inputs.test.mjs tests/host-dns-filesystem.test.mjs tests/host-dns-observation.test.mjs tests/host-dns-workflow.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

@@ -7,6 +7,7 @@ import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {network959Folder, network959Identity, validateNetwork959Evidence} from '../scripts/qa/native-network-959-evidence.mjs';
 import {content} from '../partner-portal/content.mjs';
+import {withoutHostDnsSteps} from './helpers/host-dns-workload.mjs';
 
 const root = resolve(import.meta.dirname, '..'), sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = path => readFileSync(resolve(root, path), 'utf8');
@@ -41,7 +42,7 @@ test('the full-matrix candidate adds only the existing passive prerequisite, pre
   assert(current.indexOf('observe-network-bootstrap.mjs') < current.indexOf('wait-disposable-wifi.mjs'));
   const workflowPath = '.github/workflows/native-ci.yml';
   const original = parseDocument(read('docs/release/evidence/source-archive/' + source.baseline[workflowPath] + '.txt')).toJSON();
-  const workflow = parseDocument(read(workflowPath)).toJSON(); assert.deepEqual(workflow.jobs, original.jobs);
+  const workflow = parseDocument(read(workflowPath)).toJSON(); assert.deepEqual(withoutHostDnsSteps(workflow.jobs), original.jobs);
   assert.equal(workflow.jobs['android-native-ui']['timeout-minutes'], 50);
 });
 test('the public note describes success and the separate incomplete run without technical names or new media', () => {

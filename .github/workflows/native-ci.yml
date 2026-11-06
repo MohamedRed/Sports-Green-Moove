@@ -176,6 +176,9 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "scripts/qa/*host-dns*.mjs"
+      - "tests/host-dns-*.test.mjs"
+      - "tests/helpers/host-dns-*.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "scripts/qa/wait-disposable-wifi.mjs"
       - "scripts/qa/disposable-wifi-readiness.mjs"
@@ -344,6 +347,9 @@ on:
       - "tests/local-modem-diagnostics.test.mjs"
       - "tests/local-default-selection-diagnostics.test.mjs"
       - "tests/network-bootstrap-observation.test.mjs"
+      - "scripts/qa/*host-dns*.mjs"
+      - "tests/host-dns-*.test.mjs"
+      - "tests/helpers/host-dns-*.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "scripts/qa/wait-disposable-wifi.mjs"
       - "scripts/qa/disposable-wifi-readiness.mjs"
@@ -404,6 +410,8 @@ jobs:
 
       - name: Validate sanitized host transport observations
         run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs
+      - name: Validate passive host DNS observations
+        run: node --test tests/host-dns-configuration.test.mjs tests/host-dns-system-inputs.test.mjs tests/host-dns-filesystem.test.mjs tests/host-dns-observation.test.mjs tests/host-dns-workflow.test.mjs
       - name: Test hosted Android disk capacity guard
         run: node --test tests/hosted-android-disk.test.mjs
 
@@ -542,6 +550,11 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
+
+      - name: Observe host DNS before disposable launch
+        env:
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+        run: node scripts/qa/observe-host-dns.mjs full-matrix
 
       - name: Run Android Compose UI tests
         uses: reactivecircus/android-emulator-runner@v2
