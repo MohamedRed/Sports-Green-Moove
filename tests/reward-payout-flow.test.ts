@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { Timestamp, type Firestore } from "firebase-admin/firestore";
 import type { issueRewardPayout as Callable } from "../functions/src/callables/payments.js";
+import { buildRewardPayoutTransferCreateParams } from "../functions/src/services/stripeConnect.js";
 import { createStripeWebhookFixtures, rewardPayoutTransfer, stripeEvent } from "./helpers/stripe-webhook-fixtures.js";
 
 const transfer = vi.hoisted(() => vi.fn());
@@ -138,10 +139,27 @@ describe("isolated reward payout accounting", () => {
     });
 
   it("serializes two same-source calls with the same provider identity and a single debit", async () => {
-    const results = await Promise.all([invoke(), invoke()]);
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => { release = resolve; });
+    const implementation = transfer.getMockImplementation()!;
+    transfer.mockImplementation(async (context) => { await gate; return implementation(context); });
+    const completion = Promise.allSettled([invoke(), invoke()]);
+    let results: Awaited<typeof completion>;
+    try {
+      await vi.waitFor(() => expect(transfer).toHaveBeenCalledTimes(2), { timeout: 10_000 });
+    } finally { release(); results = await completion; }
+    expect(results).toMatchObject([{ status: "fulfilled" }, { status: "fulfilled" }]);
     expect(results[0]).toEqual(results[1]);
     expect((await firestore.collection("rewardLedger").where("type", "==", "payout").get()).size).toBe(1);
-    expect(new Set(transfer.mock.calls.map(([context]) => JSON.stringify(context))).size).toBe(1);
+    const contexts = transfer.mock.calls.map(([context]) => context);
+    expect(contexts[0]).toEqual(contexts[1]);
+    const requests = contexts.map(buildRewardPayoutTransferCreateParams);
+    const expected = { idempotencyKey: "rewardPayout:driver-1:cycle-1", params: {
+      amount: 750, currency: "eur", destination: "acct_driver",
+      metadata: { userId: "driver-1", sourceId: "cycle-1", product: "sports-green-moove" },
+    } };
+    expect(requests).toEqual([expected, expected]);
+    expect(new Set(requests.map((request) => JSON.stringify(request))).size).toBe(1);
   }, 30_000);
 
   it("keeps different users' reservations independent", async () => {
