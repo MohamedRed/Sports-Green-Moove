@@ -13,11 +13,53 @@ import { resetDisposableTestApps } from '../scripts/qa/reset-disposable-local-ap
 import YAML from 'yaml';
 import { validatePreinstalledMatrixEvidence } from '../scripts/qa/native-preinstalled-matrix-evidence.mjs';
 import { nativeRechecks } from '../partner-portal/native-rechecks.mjs';
+import {matrix964Folder, validateMatrix964Evidence} from '../scripts/qa/native-matrix-964-evidence.mjs';
+import {createHash} from 'node:crypto';
+import {nativeMatrix964Progress} from '../partner-portal/native-matrix-964.mjs';
+import {content} from '../partner-portal/content.mjs';
+import {partitionUpdates} from '../partner-portal/src/render.js';
 
 const ordinary = f => preparePinnedApks({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
 const replay = f => prepareMatrixReplay({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
 const fixture = t => continuousFixture(t, { case: 'full-matrix', storeWakes: true });
 const clearNames = f => f.events.filter(row => row.command.startsWith('pm clear ')).map(row => row.args[2]);
+
+test('the later completed 37-group native replay is distinct from its cancelled workflow and newer source', () => {
+  const report = validateMatrix964Evidence(process.cwd());
+  assert.equal(report.nativeJobPassed, true); assert.equal(report.localFlowGroupsPassed, 37);
+  assert.equal(report.nativeReplayCasesPassed, 40); assert.equal(report.wholeWorkflowPassed, false);
+  assert.equal(report.ordinaryStopCandidateAccepted, false); assert.equal(report.physicalDeviceAccepted, false);
+  assert.equal(content.nativeMatrix964.source, matrix964Folder + '/summary.json');
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert(recent.some(row => row.source === nativeMatrix964Progress.source));
+  assert(recent.some(row => row.source.includes('ios-fixture-gate-0fb9968')));
+  assert(previous.some(row => row.source.includes('ios-fixture-recheck-9640d8b')));
+  assert(previous.some(row => row.source.includes('native-copy-376addb')));
+  assert.doesNotMatch(nativeMatrix964Progress.title + nativeMatrix964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
+});
+for (const [file, mutate] of [
+  ['summary.json', row => { row.wholeWorkflowPassed = true; }],
+  ['summary.json', row => { row.currentHeadAccepted = true; }],
+  ['summary.json', row => { row.ordinaryStopCandidateAccepted = true; }],
+  ['summary.json', row => { row.physicalDeviceAccepted = true; }],
+  ['suite-status.json', row => { row.localReplay = 1; }],
+  ['replay-results.json', row => { row.steps[0].status = 'failed'; }],
+  ['replay-results.json', row => { delete row.tripChangeInputs; }],
+  ['device-restoration.json', row => { row.restoration.launcher = false; }],
+  ['copies/adb-pull-trip-change-parent-confirmation.json', row => { row.stdout = ''; row.stderr = ''; }],
+  ['artifact-metadata.json', row => { row.digest = 'sha256:' + '0'.repeat(64); }],
+]) test('completed native evidence rejects resealed unsupported claims: ' + file + ' ' + mutate, t => {
+  const root = mkdtempSync(resolve(tmpdir(), 'sgm-matrix964-unit-')); t.after(() => rmSync(root, {recursive: true, force: true}));
+  const base = resolve(root, matrix964Folder); cpSync(resolve(process.cwd(), matrix964Folder), base, {recursive: true});
+  const path = resolve(base, file), value = JSON.parse(readFileSync(path)); mutate(value); writeFileSync(path, JSON.stringify(value));
+  const sha = file => createHash('sha256').update(readFileSync(resolve(base, file))).digest('hex');
+  const hashes = JSON.parse(readFileSync(resolve(base, 'artifact-sha256.json'))); hashes[file] = sha(file);
+  const archive = JSON.parse(readFileSync(resolve(base, 'original-archive.json'))), member = archive.members.find(row => row.file === file);
+  if (member) { member.sha256 = sha(file); member.bytes = readFileSync(path).length;
+    writeFileSync(resolve(base, 'original-archive.json'), JSON.stringify(archive)); hashes['original-archive.json'] = sha('original-archive.json'); }
+  writeFileSync(resolve(base, 'artifact-sha256.json'), JSON.stringify(hashes));
+  assert.throws(() => validateMatrix964Evidence(root));
+});
 
 function ordinaryWorkers(t, { stubborn = false, inventory } = {}) {
   const f = fixture(t), names = Object.keys(ordinaryPackages);

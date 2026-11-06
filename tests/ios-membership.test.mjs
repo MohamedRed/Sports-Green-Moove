@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
+import {assertCurrentIosAutomatedEvidence, validateIosFixtureGate} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -11,6 +11,7 @@ import {iosA37FixturePassProgress} from '../partner-portal/ios-a37-fixture-pass.
 import {partitionUpdates} from '../partner-portal/src/render.js';
 import {validateIosFixtureRecheck} from '../scripts/qa/ios-fixture-recheck.mjs';
 import {iosMembershipRecheck964, iosMembershipRecheck964Progress} from '../partner-portal/ios-membership-recheck-964.mjs';
+import {ios0fbRecheck, ios0fbRecheckProgress} from '../partner-portal/ios-0fb-recheck.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -28,10 +29,22 @@ test('the later ten-of-eleven failure is retained without inheriting an older su
   assert.equal(result.passed, 10); assert.equal(result.failed, 1); assert.equal(result.assertionFailures, 2);
   const {recent, previous} = partitionUpdates(content.updates);
   assert.deepEqual(content.iosMembershipRecheck964, iosMembershipRecheck964);
-  assert(recent.some(row => row.source === iosMembershipRecheck964Progress.source));
+  assert(previous.some(row => row.source === iosMembershipRecheck964Progress.source));
+  assert(recent.some(row => row.source === ios0fbRecheckProgress.source));
   assert(previous.some(row => row.source.includes('ios-automated-acceptance-376addb')));
   assert.doesNotMatch(iosMembershipRecheck964Progress.title + iosMembershipRecheck964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
   assertCurrentIosAutomatedEvidence();
+});
+
+test('the later unchanged-input pass postdates the membership failure without explaining its cause', () => {
+  const report = validateIosFixtureGate(process.cwd(), ios0fbRecheck, {matchCurrentSources: false});
+  assert.equal(report.passedCases, 11); assert.equal(report.failedCases, 0); assert.equal(report.artifactCount, 0);
+  const folder = 'docs/release/evidence/ios-fixture-gate-0fb9968-2026-11-06/';
+  const earlier = json('docs/release/evidence/ios-fixture-recheck-9640d8b-2026-11-06/terminal-job.json');
+  assert(Date.parse(json(folder + 'terminal-job.json').completedAt) > Date.parse(earlier.completedAt));
+  const original = json(iosMembershipRecheck964.checksums).files, later = json(ios0fbRecheck.checksums).files;
+  assert.deepEqual(later.map(row => [row.path, row.sha256]), original.map(row => [row.path, row.sha256]));
+  assert.equal(report.physicalDeviceAccepted, false); assert.equal(report.releaseComplete, false);
 });
 
 test('membership failure diagnosis preserves the exact original actions, assertions, waits and selectors', () => {

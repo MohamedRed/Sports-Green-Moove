@@ -1,0 +1,99 @@
+{
+  "sourceCommit": "0fb9968afecd3a8988c22db197f00159c140fa4f",
+  "runId": 42277045115,
+  "jobId": 128100638202,
+  "status": "completed",
+  "conclusion": "success",
+  "startedAt": "2026-11-06T19:18:13Z",
+  "completedAt": "2026-11-06T19:46:27Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Checkout",
+      "conclusion": "success"
+    },
+    {
+      "name": "Inspect installed Apple tools",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run native logic checks",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check immediate search selection invalidation",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check controlled location lifecycle without a device",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check actual permission continuation before SDK compilation",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check controlled emergency phone boundary without opening Phone",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check support concurrency signature regressions",
+      "conclusion": "success"
+    },
+    {
+      "name": "Check approved capture bounds with generated images",
+      "conclusion": "success"
+    },
+    {
+      "name": "Install project generator",
+      "conclusion": "success"
+    },
+    {
+      "name": "Generate SDK-linked app project",
+      "conclusion": "success"
+    },
+    {
+      "name": "Create isolated iPhone simulator",
+      "conclusion": "success"
+    },
+    {
+      "name": "Boot isolated simulator before compiling or testing",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile app and all fixture test bundles",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run every built fixture test without rebuilding",
+      "conclusion": "success"
+    },
+    {
+      "name": "Validate and collect only three approved synthetic captures",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Retain approved iPhone captures for one day",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Observe fixture startup phases after a failed test step",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Dispose isolated simulator",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Checkout",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

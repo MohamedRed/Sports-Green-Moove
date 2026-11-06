@@ -12,8 +12,12 @@ import {ios376Acceptance} from './ios-376-acceptance.mjs';
 import {nativeCopy376} from './native-copy-376.mjs';
 import {ios04Recheck} from './ios-04-recheck.mjs';
 import {iosMembershipRecheck964} from './ios-membership-recheck-964.mjs';
+import {nativeMatrix964} from './native-matrix-964.mjs';
+import {ios0fbRecheck} from './ios-0fb-recheck.mjs';
 
 export const nativeRechecks = {
+  ios0fbRecheck,
+  nativeMatrix964,
   iosMembershipRecheck964,
   ios04Recheck,
   nativeCopy376,

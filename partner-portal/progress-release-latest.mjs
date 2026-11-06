@@ -16,5 +16,8 @@ import {ios959RecheckProgress} from './ios-959-recheck.mjs';
 import {nativeNetwork959Progress} from './native-network-959.mjs';
 import {ios376AcceptanceProgress} from './ios-376-acceptance.mjs';
 import {nativeCopy376Progress} from './native-copy-376.mjs';
+import {nativeMatrix964Progress} from './native-matrix-964.mjs';
+import {ios0fbRecheckProgress} from './ios-0fb-recheck.mjs';
+import {iosMembershipRecheck964Progress} from './ios-membership-recheck-964.mjs';
 
-export const latestReleaseProgress = [nativeCopy376Progress, ios376AcceptanceProgress, nativeNetwork959Progress, iosSearchSelectionProgress, protocolQuerySecurityProgress, ios959RecheckProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];
+export const latestReleaseProgress = [ios0fbRecheckProgress, iosMembershipRecheck964Progress, nativeMatrix964Progress, nativeCopy376Progress, ios376AcceptanceProgress, nativeNetwork959Progress, iosSearchSelectionProgress, protocolQuerySecurityProgress, ios959RecheckProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];

@@ -2,6 +2,26 @@
 
 ## Current Publication Policy
 
+The later 0fb iPhone job builds and passes all eleven original cases, including
+membership review, with disposal and no artifacts. Its iOS input tree/workflow
+matches the source-964 failure exactly; cause and repeatability stay unconfirmed.
+Retain both outcomes and keep the current diagnostic candidate separate. Publish
+one short later-success simulation note and move the ten-of-eleven headline into
+history, preserving its exact text and every previous record/media/flow/date.
+Do not inherit this pass as current source acceptance or change physical,
+operational, safety, emergency or release requirements. See `ios-fixture-gate-0fb9968-2026-11-06`.
+
+The 964 completed native job verifies all 37 isolated groups, 40 native replay
+cases, 299 ordinary passes/55 skips/zero failures, 17 primary copies, four pinned
+APKs, restored device policy and passive emulator exit. Its workflow is cancelled;
+neither whole-workflow nor current-head acceptance follows. The initial local
+archive download failed for disk space; the later download matches the original
+33,157,663-byte artifact and digest. It is not a device-copy failure or native
+rerun. Publish one concise local-only result beside the open iPhone membership
+note. Preserve all old flows/statuses/dates, notes, media, tours, blockers and
+public access. No new media, physical/provider/safety acceptance or root-cause
+claim is added. This predates the ordinary-stop candidate. See `native-matrix-9640d8b-2026-11-06`.
+
 The later 964 iPhone recheck builds and executes all eleven cases: ten pass;
 membership approval is absent after selecting the review club. Cause remains
 unconfirmed. Disposal succeeds with no artifacts. Reopen only the two automated
