@@ -9,8 +9,12 @@ import {iosSearchSelection} from './ios-search-selection.mjs';
 import {ios959Recheck} from './ios-959-recheck.mjs';
 import {nativeNetwork959} from './native-network-959.mjs';
 import {ios376Acceptance} from './ios-376-acceptance.mjs';
+import {nativeCopy376} from './native-copy-376.mjs';
+import {ios04Recheck} from './ios-04-recheck.mjs';
 
 export const nativeRechecks = {
+  ios04Recheck,
+  nativeCopy376,
   ios376Acceptance,
   nativeNetwork959,
   ios959Recheck,

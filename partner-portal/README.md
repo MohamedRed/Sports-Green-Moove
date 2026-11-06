@@ -2,6 +2,25 @@
 
 ## Current Publication Policy
 
+The subsequent 04 iPhone gate again builds and passes all eleven original cases,
+with disposal successful, optional captures skipped and zero artifacts. Its full
+build-input inventory matches the successful 376 tree and strict current-source
+validation. Retain this second observation without a duplicate headline, index
+overwrite, physical/reliability claim or other manifest change. Existing dated
+failures remain. See `ios-fixture-gate-04c9fba-2026-11-06`.
+
+The 376 full native job verifies one three-account price-consent stage with its
+successful primary copy and persisted checks. The following time/address device
+case passes, but its primary copy exits during an actual PNG transfer; host/guest
+disconnect observations and three offline commands do not identify the underlying
+cause. Cleanup later copies 100 files; the input-stage and full-run reports remain
+absent. Retain exact archive size/digest/member receipts, stage/device distinction,
+restoration and passive host exit. Do not call this the older file-list failure,
+invent a restart or accept cleanup as primary success. Publish one concise consent
+simulation note, retaining all flows, historical notes/media/blockers and public
+access. No app, collector, retry, protocol, timeout or fallback change is made.
+See `native-copy-376addb-2026-11-06`.
+
 The current source 376 iPhone gate compiles and passes all eleven original screen
 cases, including the new selection state; disposal succeeds and artifacts remain
 empty. Exact build inputs and workflow jobs match the current tree. Accept only

@@ -1,0 +1,36 @@
+{
+  "sourceCommit": "04c9fba781897bb8e567475b845f42bcc7beb658",
+  "workflowId": 42266248833,
+  "jobId": 128058812440,
+  "status": "completed",
+  "conclusion": "failure",
+  "artifactId": 13526919229,
+  "bytes": 52662,
+  "sha256": "e9cb44a3df4cab7beffe3d887292159c45aa254d61bae6566e7eb3fc3232cffa",
+  "members": [
+    {
+      "member": "outputs/store-review-screenshots/network-readiness/outcome.json",
+      "file": "later-prerequisite-outcome.json",
+      "bytes": 727,
+      "sha256": "50c061a7d43404e4c69cbeeb849fdecf4e85efedebed0180d6385defbc82c307"
+    },
+    {
+      "member": "outputs/store-review-screenshots/network-readiness/sample-000.json",
+      "file": "later-prerequisite-sample-000.json",
+      "bytes": 1077,
+      "sha256": "4ba93a509e5061cdcd96d8c4d6c24ba034a7921724a16c256f71f91c52698d32"
+    },
+    {
+      "member": "outputs/store-review-screenshots/network-readiness/sample-058.json",
+      "file": "later-prerequisite-sample-058.json",
+      "bytes": 1256,
+      "sha256": "7ea0c2fe6770a81021a937686b365e2130edcb869676c2ad9d050da44bb0969f"
+    },
+    {
+      "member": "outputs/store-review-screenshots/network-readiness/chat-network-validation-before.json",
+      "file": "later-prerequisite-chat-network-validation-before.json",
+      "bytes": 1853,
+      "sha256": "f2b85717474de6402399c3a724019b0b972a86094acde0818e0d414865b6e19d"
+    }
+  ]
+}

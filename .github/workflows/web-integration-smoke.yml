@@ -652,6 +652,9 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "tests/native-network-959-evidence.test.mjs"
+      - "tests/native-copy-376-evidence.test.mjs"
+      - "scripts/qa/*native-copy-376*.mjs"
+      - "docs/release/evidence/native-copy-376addb-2026-11-06/**"
       - "scripts/qa/*native-network-959*.mjs"
       - "scripts/qa/wait-disposable-wifi.mjs"
       - "scripts/qa/disposable-wifi-readiness.mjs"
@@ -1377,6 +1380,9 @@ on:
       - "tests/network-bootstrap-observation.test.mjs"
       - "tests/full-matrix-network-prerequisite.test.mjs"
       - "tests/native-network-959-evidence.test.mjs"
+      - "tests/native-copy-376-evidence.test.mjs"
+      - "scripts/qa/*native-copy-376*.mjs"
+      - "docs/release/evidence/native-copy-376addb-2026-11-06/**"
       - "scripts/qa/*native-network-959*.mjs"
       - "scripts/qa/wait-disposable-wifi.mjs"
       - "scripts/qa/disposable-wifi-readiness.mjs"
@@ -1816,6 +1822,9 @@ jobs:
 
       - name: Verify full-matrix network prerequisite and paired recovery evidence
         run: node --test tests/full-matrix-network-prerequisite.test.mjs tests/native-network-959-evidence.test.mjs
+
+      - name: Verify retained primary-copy disconnect and independent consent stage
+        run: node --test tests/native-copy-376-evidence.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:
