@@ -41,7 +41,7 @@ for (const [file, mutate] of [
   hashes[file] = sha(bytes); writeFileSync(manifest, JSON.stringify(hashes));
   assert.throws(() => validate(temp));
 });
-test('new local result supersedes the preparation headline but preserves every previous flow, update and blocker', () => {
+test('historical local results stay intact while newer message work can occupy the overview', () => {
   const before = JSON.parse(readFileSync(resolve(root, folder, 'portal-before.json')));
   assert.equal(before.updates.length, 448);
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
@@ -49,7 +49,10 @@ test('new local result supersedes the preparation headline but preserves every p
   assert.equal(sha(JSON.stringify(content.blockers)), before.blockers);
   const {recent, previous} = partitionUpdates(content.updates);
   const news = previous.find(row => row.source === folder + 'README.md');
-  assert(recent.some(row => row.source === 'docs/release/evidence/native-network-959-comparison-2026-11-06/README.md'));
+  const historical = previous.find(row => row.source === 'docs/release/evidence/native-network-959-comparison-2026-11-06/README.md');
+  assert(historical);
+  const current = recent.find(row => [row.flow, ...(row.coversFlows ?? [])].includes('messages'));
+  assert(current && current.source !== historical.source && current.date >= historical.date);
   assert(news); assert.match(news.text, /téléphone réel/); assert.match(news.text, /local/);
   assert.doesNotMatch(news.title + news.text, /Firebase|BrowserStack|Android|SDK|CI\b/);
   assert.equal(content.flows.find(row => row.id === 'messages').status, 'partial');

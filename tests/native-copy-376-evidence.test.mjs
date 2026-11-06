@@ -40,8 +40,11 @@ for (const [file, change] of [
   const hashes = JSON.parse(readFileSync(resolve(base, 'artifact-sha256.json'))); hashes[file] = sha(readFileSync(path));
   writeFileSync(resolve(base, 'artifact-sha256.json'), JSON.stringify(hashes)); assert.throws(() => validateCopy376Evidence(temp));
 });
-test('the public note is limited to simulation and preserves both older failures and all flow states', () => {
-  const note = partitionUpdates(content.updates).recent.find(row => row.source === copy376Folder + 'README.md'); assert(note);
+test('the historical public note keeps its simulation scope after newer publication results arrive', () => {
+  const {recent, previous} = partitionUpdates(content.updates);
+  const note = previous.find(row => row.source === copy376Folder + 'README.md'); assert(note);
+  const current = recent.find(row => [row.flow, ...(row.coversFlows ?? [])].includes('publication'));
+  assert(current && current.source !== note.source && current.date >= note.date);
   assert.match(note.title, /simulation/); assert.match(note.text, /Deux accords, un refus.*retrait/);
   assert.match(note.text, /complet reste à terminer/); assert.equal(note.flow, 'publication');
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|adb|CI\b/);
