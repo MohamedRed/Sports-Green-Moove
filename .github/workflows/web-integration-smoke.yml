@@ -5,6 +5,8 @@ on:
   pull_request:
     paths:
       - "tests/ios-child-account.test.mjs"
+      - "tests/ios-child-binding.mjs"
+      - "docs/release/evidence/ios-child-binding-2026-11-06/**"
       - "ios/**/*ChildAccount*.swift"
       - "ios/**/*ChildInvitation*.swift"
       - "scripts/qa/record-ios-child-account-evidence.mjs"
@@ -758,6 +760,8 @@ on:
       - main
     paths:
       - "tests/ios-child-account.test.mjs"
+      - "tests/ios-child-binding.mjs"
+      - "docs/release/evidence/ios-child-binding-2026-11-06/**"
       - "ios/**/*ChildAccount*.swift"
       - "ios/**/*ChildInvitation*.swift"
       - "scripts/qa/record-ios-child-account-evidence.mjs"

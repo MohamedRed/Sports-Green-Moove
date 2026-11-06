@@ -40,7 +40,8 @@ test('latest acceptance changes only the two entries and preserves immutable sam
 test('the portal preserves the source-6fb simulation result after later input changes', () => {
   const {recent, previous} = partitionUpdates(content.updates);
   assert(previous.some(row => row.source === ios6fbAcceptanceProgress.source));
-  assert(recent.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(content.updates.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(recent.some(row => row.flow === 'child-emergency' || row.coversFlows?.includes('child-emergency')));
   for (const source of ['ios-fixture-gate-0fb9968', 'ios-fixture-recheck-9640d8b', 'ios-automated-acceptance-376addb'])
     assert(previous.some(row => row.source.includes(source)));
   assert.match(ios6fbAcceptanceProgress.text, /simulation/); assert.match(ios6fbAcceptanceProgress.text, /restent à vérifier/);

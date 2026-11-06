@@ -43,7 +43,8 @@ test('the historical simulation success remains intact after the later membershi
   const note = previous.find(row => row.source === folder + 'README.md'); assert(note);
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-gate-0fb9968-2026-11-06/README.md'));
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-gate-6fb6487-2026-11-06/README.md'));
-  assert(recent.some(row => row.source === 'docs/release/evidence/ios-child-account-2026-11-06/README.md'));
+  assert(content.updates.some(row => row.source === 'docs/release/evidence/ios-child-account-2026-11-06/README.md'));
+  assert(recent.some(row => row.flow === 'child-emergency' || row.coversFlows?.includes('child-emergency')));
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-recheck-9640d8b-2026-11-06/README.md'));
   assert.match(note.text, /simulation/); assert.match(note.text, /restent à tester/);
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/);

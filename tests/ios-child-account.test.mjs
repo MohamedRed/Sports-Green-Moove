@@ -6,6 +6,7 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosChildAccount, iosChildAccountProgress} from '../partner-portal/ios-child-account.mjs';
 import {iosAutomatedEvidenceIds, assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
+import './ios-child-binding.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = value => createHash('sha256').update(value).digest('hex');

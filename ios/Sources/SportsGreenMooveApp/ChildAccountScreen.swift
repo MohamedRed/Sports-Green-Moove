@@ -25,7 +25,7 @@ struct ChildAccountScreen: View {
                     Text("Lier le compte").font(.sgmBody(18, weight: .bold))
                     if state.approved { Text("Compte lié.").accessibilityIdentifier("child-account.approved") }
                     else {
-                        TextField("Code du compte enfant", text: Binding(get: { state.input }, set: state.edit))
+                        TextField("Code du compte enfant", text: Binding(get: { state.input }, set: { state.edit($0) }))
                             .textInputAutocapitalization(.never).autocorrectionDisabled().keyboardType(.asciiCapable)
                             .textFieldStyle(.roundedBorder).disabled(state.busy).accessibilityIdentifier("child-account.input")
                         Button("Autoriser la liaison") { Task { await state.approve() } }

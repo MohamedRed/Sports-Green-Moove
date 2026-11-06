@@ -34,7 +34,8 @@ test('the later completed 37-group native replay is distinct from its cancelled 
   assert(recent.some(row => row.source === nativeMatrix964Progress.source));
   assert(previous.some(row => row.source.includes('ios-fixture-gate-0fb9968')));
   assert(previous.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
-  assert(recent.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(content.updates.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(recent.some(row => row.flow === 'child-emergency' || row.coversFlows?.includes('child-emergency')));
   assert(previous.some(row => row.source.includes('ios-fixture-recheck-9640d8b')));
   assert(previous.some(row => row.source.includes('native-copy-376addb')));
   assert.doesNotMatch(nativeMatrix964Progress.title + nativeMatrix964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);

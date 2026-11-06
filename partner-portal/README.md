@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The new child-account SDK build terminates in compiler IR generation before any
+screen case, not at its fifty-minute deadline. Retain source-bound original crash
+lines and terminal metadata. The candidate changes only the guarded field's
+method-reference conversion to the established explicit closure pattern. Cause
+and correction still need a same-toolchain build and all eleven unchanged cases.
+Publish a short pending-correction note, retaining the previous local child note
+in history, Android interruption, all flows/dates/media/tours/blockers and public
+access. No SDK, connected journey, physical or release acceptance. See
+`ios-child-binding-2026-11-06`.
+
 The distinct 6fb Wi-Fi prerequisite failure and 142 ordinary host timeout remain
 unaccepted. Retain exact original archives/members, 350 starts/349 ends, network
 preparation failure, verified device policy and passive zombie observation.

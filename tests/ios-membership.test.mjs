@@ -32,7 +32,8 @@ test('the later ten-of-eleven failure is retained without inheriting an older su
   assert(previous.some(row => row.source === iosMembershipRecheck964Progress.source));
   assert(previous.some(row => row.source === ios0fbRecheckProgress.source));
   assert(previous.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
-  assert(recent.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(content.updates.some(row => row.source.includes('ios-child-account-2026-11-06')));
+  assert(recent.some(row => row.flow === 'child-emergency' || row.coversFlows?.includes('child-emergency')));
   assert(previous.some(row => row.source.includes('ios-automated-acceptance-376addb')));
   assert.doesNotMatch(iosMembershipRecheck964Progress.title + iosMembershipRecheck964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
   assertCurrentIosAutomatedEvidence();

@@ -17,8 +17,10 @@ import {ios0fbRecheck} from './ios-0fb-recheck.mjs';
 import {ios6fbAcceptance} from './ios-6fb-acceptance.mjs';
 import {iosChildAccount} from './ios-child-account.mjs';
 import {nativeCutoff142} from './native-cutoff-142.mjs';
+import {iosChildBinding} from './ios-child-binding.mjs';
 
 export const nativeRechecks = {
+  iosChildBinding,
   nativeCutoff142,
   iosChildAccount,
   ios6fbAcceptance,
