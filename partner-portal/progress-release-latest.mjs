@@ -9,5 +9,7 @@ import {iosViewportRecheckProgress} from './ios-viewport-recheck.mjs';
 import {currentChatRecoveryProgress} from './current-chat-recovery.mjs';
 import {iosD56FixturePassProgress} from './ios-d56-fixture-pass.mjs';
 import {iosAutomatedAcceptanceProgress} from './ios-automated-acceptance.mjs';
+import {iosLatestRecheckProgress} from './ios-latest-recheck.mjs';
+import {protocolQuerySecurityProgress} from './protocol-query-security.mjs';
 
-export const latestReleaseProgress = [iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];
+export const latestReleaseProgress = [protocolQuerySecurityProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];

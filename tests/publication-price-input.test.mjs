@@ -63,7 +63,8 @@ test('smoke runs the actual model and contract checks while preserving all exist
   assert(Object.values(workflow.jobs).some(job => job.steps?.some(step =>
     step.run === 'node scripts/qa/check-publication-price.mjs && node --test tests/publication-price-input.test.mjs')));
   assert.deepEqual(content.publicationPrice, publicationPrice);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === publicationPriceProgress.source));
+  const {recent, previous} = partitionUpdates(content.updates);
+  assert([...recent, ...previous].some(row => row.source === publicationPriceProgress.source));
   assert.doesNotMatch(publicationPriceProgress.title + publicationPriceProgress.text, /Firebase|BrowserStack|Android|SDK|Swift|BigDecimal|CI\b/);
   const before = json(dir + 'portal-before.json'); assert.equal(before.updates.length, 446);
   for (const row of before.flows) assert.equal(sha(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);

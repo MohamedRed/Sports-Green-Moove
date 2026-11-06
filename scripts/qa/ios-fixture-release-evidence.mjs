@@ -3,6 +3,7 @@ import {createHash} from 'node:crypto';
 import {readFileSync, readdirSync} from 'node:fs';
 import {posix, resolve} from 'node:path';
 import {parseDocument} from 'yaml';
+import {assertIosPassPostdatesRecheck, validateIosFixtureRecheck} from './ios-fixture-recheck.mjs';
 
 const repository = resolve(import.meta.dirname, '../..');
 export const iosAutomatedEvidenceIds = ['ios_sdk_build_ci', 'ios_fixture_ui_ci'];
@@ -93,10 +94,15 @@ export function assertCurrentIosAutomatedEvidence(manifest, {root = repository} 
     const rows = manifest.automatedUserFlowEvidence.items.filter(row => row.id === id); assert.equal(rows.length, 1); return rows[0];
   });
   for (const row of items) assert(['pending', 'passed'].includes(row.status));
+  const rechecks = items.map(row => row.fixtureGateRecheck);
+  if (rechecks.some(Boolean)) {
+    assert.deepEqual(rechecks[0], rechecks[1]); validateIosFixtureRecheck(root, rechecks[0]);
+  }
   if (items.every(row => row.status === 'pending')) return {status: 'pending'};
   assert(items.every(row => row.status === 'passed'), 'The complete fixture gate requires both source-bound entries');
   assert.deepEqual(items[0].fixtureGateProof, items[1].fixtureGateProof);
   const report = validateIosFixtureGate(root, items[0].fixtureGateProof);
+  if (rechecks[0]) assertIosPassPostdatesRecheck(root, rechecks[0], items[0].fixtureGateProof.source);
   const url = `https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/${report.runId}/job/${report.jobId}`;
   for (const row of items) {
     assert.equal(row.appSourceCommit, report.sourceCommit);

@@ -2,6 +2,25 @@
 
 ## Current Publication Policy
 
+The compatible parser patches reproduce six failures in twelve unchanged probes,
+then pass all twelve after a clean install. Backend units pass 623 cases, all
+workspaces build, and the fresh isolated service replay passes 24 groups with
+verified disposal. Retain the earlier interrupted attempt and rejected package
+plan separately. Whole-workspace findings drop 30 to 28, production moderate
+findings 10 to 8; five high findings remain. Publish a short local-only security
+note, preserving prior flows, dates, media, notes, blockers and public access.
+No exploit, production deployment, real payment, native fix or release is claimed.
+See `protocol-query-security-2026-11-06`.
+
+The later 385 recheck builds and executes all eleven iPhone cases: ten pass,
+the first search-result assertion fails. Disposal succeeds and artifacts are
+empty. Reopen only the two combined iPhone automated entries; preserve f61's
+historical success and all other manifest requirements and references. A later
+failed recheck must prevent simply relabelling the older proof as current pass.
+Publish a short ten-of-eleven simulation note, retaining the previous success
+in history. Cause is unconfirmed; no timeout, assertion, case, capture, audience,
+phone or release-scope change. See `ios-fixture-recheck-385a6a4-2026-11-05`.
+
 The f61 SDK build, all eleven original iPhone screen cases and disposal now pass,
 with captures skipped and zero artifacts. Its complete source/config/resource
 inventory and workflow jobs match the current tree. Strict proof validation

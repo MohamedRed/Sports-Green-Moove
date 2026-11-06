@@ -42,6 +42,13 @@ on:
       - "scripts/qa/ios-fixture-release-evidence.mjs"
       - "scripts/qa/accept-ios-fixture-gate.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-fixture-recheck.test.mjs"
+      - "tests/protocol-query-security*.test.mjs"
+      - "tests/helpers/protocol-query-security-probe.mjs"
+      - "scripts/qa/*protocol-query-security*.mjs"
+      - "docs/release/evidence/protocol-query-security-*/**"
+      - "scripts/qa/*ios-fixture-recheck.mjs"
+      - "docs/release/evidence/ios-fixture-recheck-*/**"
       - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
@@ -101,6 +108,13 @@ on:
       - "scripts/qa/ios-fixture-release-evidence.mjs"
       - "scripts/qa/accept-ios-fixture-gate.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-fixture-recheck.test.mjs"
+      - "tests/protocol-query-security*.test.mjs"
+      - "tests/helpers/protocol-query-security-probe.mjs"
+      - "scripts/qa/*protocol-query-security*.mjs"
+      - "docs/release/evidence/protocol-query-security-*/**"
+      - "scripts/qa/*ios-fixture-recheck.mjs"
+      - "docs/release/evidence/ios-fixture-recheck-*/**"
       - "scripts/validate-safety-audit-export.mjs"
       - "scripts/validate-release-evidence.mjs"
       - "scripts/verify-pr-user-flow-checks.mjs"
@@ -225,7 +239,10 @@ jobs:
         run: npm run test:release-gaps
 
       - name: Verify source-bound iPhone release evidence
-        run: node --test tests/ios-fixture-release-evidence.test.mjs
+        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs
+
+      - name: Verify compatible protocol and payment query patches
+        run: node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs
 
       - name: Validate PR user-flow check verifier
         run: npm run test:pr-user-flow-checks

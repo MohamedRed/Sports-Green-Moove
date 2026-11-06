@@ -6,6 +6,13 @@ on:
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-fixture-recheck.test.mjs"
+      - "tests/protocol-query-security*.test.mjs"
+      - "tests/helpers/protocol-query-security-probe.mjs"
+      - "scripts/qa/*protocol-query-security*.mjs"
+      - "docs/release/evidence/protocol-query-security-*/**"
+      - "scripts/qa/*ios-fixture-recheck.mjs"
+      - "docs/release/evidence/ios-fixture-recheck-*/**"
       - "scripts/qa/ios-fixture-release-evidence.mjs"
       - "scripts/qa/retain-ios-fixture-gate.mjs"
       - "scripts/qa/accept-ios-fixture-gate.mjs"
@@ -717,6 +724,13 @@ on:
     paths:
       - "tests/ios-chat-input-commit.test.mjs"
       - "tests/ios-fixture-release-evidence.test.mjs"
+      - "tests/ios-fixture-recheck.test.mjs"
+      - "tests/protocol-query-security*.test.mjs"
+      - "tests/helpers/protocol-query-security-probe.mjs"
+      - "scripts/qa/*protocol-query-security*.mjs"
+      - "docs/release/evidence/protocol-query-security-*/**"
+      - "scripts/qa/*ios-fixture-recheck.mjs"
+      - "docs/release/evidence/ios-fixture-recheck-*/**"
       - "scripts/qa/ios-fixture-release-evidence.mjs"
       - "scripts/qa/retain-ios-fixture-gate.mjs"
       - "scripts/qa/accept-ios-fixture-gate.mjs"
@@ -1764,7 +1778,10 @@ jobs:
         run: node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs
 
       - name: Verify source-bound iPhone release evidence
-        run: node --test tests/ios-fixture-release-evidence.test.mjs
+        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs
+
+      - name: Verify compatible protocol and payment query patches
+        run: node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs
 
       - name: Test displayed terms against current booking conditions
         env:

@@ -3,8 +3,12 @@ import {completeChecks} from './complete-checks.mjs';
 import {currentChatRecovery} from './current-chat-recovery.mjs';
 import {iosD56FixturePass} from './ios-d56-fixture-pass.mjs';
 import {iosAutomatedAcceptance} from './ios-automated-acceptance.mjs';
+import {iosLatestRecheck} from './ios-latest-recheck.mjs';
+import {protocolQuerySecurity} from './protocol-query-security.mjs';
 
 export const nativeRechecks = {
+  protocolQuerySecurity,
+  iosLatestRecheck,
   iosAutomatedAcceptance,
   currentChatRecovery,
   iosD56FixturePass,

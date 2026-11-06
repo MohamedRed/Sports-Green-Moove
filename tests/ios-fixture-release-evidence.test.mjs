@@ -45,6 +45,7 @@ function rehashMutation(state, file, mutate) {
 function passedManifest(state) {
   const manifest = json(resolve(root, 'docs/release/evidence-manifest.json')), report = json(resolve(state.base, 'summary.json'));
   for (const row of manifest.automatedUserFlowEvidence.items.filter(row => iosAutomatedEvidenceIds.includes(row.id))) {
+    delete row.fixtureGateRecheck;
     row.status = 'passed'; row.fixtureGateProof = state.reference; row.appSourceCommit = report.sourceCommit;
     row.evidenceRefs = [state.reference.source.replace('docs/release/', ''),
       `https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/${report.runId}/job/${report.jobId}`];
@@ -119,7 +120,8 @@ test('acceptance refuses the old tree before writing any current manifest or ind
 test('actual acceptance updates only the two verified entries and preserves every unrelated release requirement', t => {
   const state = fixture(t), manifestPath = 'docs/release/evidence-manifest.json';
   const priorIndexPath = 'docs/release/evidence/automated-user-flow-evidence-2026-11-04T-location-shutdown.json';
-  for (const path of [manifestPath, priorIndexPath]) cpSync(resolve(root, path), resolve(state.root, path));
+  cpSync(resolve(root, 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05/manifest-before.json'), resolve(state.root, manifestPath));
+  cpSync(resolve(root, priorIndexPath), resolve(state.root, priorIndexPath));
   const before = json(resolve(state.root, manifestPath)), prior = json(resolve(state.root, priorIndexPath));
   const result = acceptIosFixtureGate(state.root, reference.source); assert.deepEqual(result.accepted, iosAutomatedEvidenceIds);
   const after = json(resolve(state.root, manifestPath)); assert.equal(after.manifestStatus, 'in-progress');
@@ -159,7 +161,7 @@ test('actual f61 acceptance snapshots preserve every other requirement without f
   assert.equal(validateIosFixtureGate(root, receipt.fixtureGateProof, {matchCurrentSources: false}).passedCases, 11);
   assertCurrentIosAutomatedEvidence();
   const {recent, previous} = partitionUpdates(content.updates);
-  const note = recent.find(row => row.source === 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05/README.md');
+  const note = [...recent, ...previous].find(row => row.source === 'docs/release/evidence/ios-automated-acceptance-f61e0f7-2026-11-05/README.md');
   assert(note); assert.match(note.text, /simulation/); assert.match(note.text, /notifications/);
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|CI\b/);
   assert(previous.some(row => row.source === 'docs/release/evidence/ios-fixture-pass-d56-2026-11-05/README.md'));
