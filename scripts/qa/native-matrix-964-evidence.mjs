@@ -13,7 +13,7 @@ export const matrix964Identity = {source: '9640d8b65db123e753d1577eebd2e67595f16
   sha256: '3d9b16b06689f3fe17bd757be2e2b4e2a08b7be9780504467af6f5df2fb04f4b',
   session: '720a51b721240066395690578a7979fb'};
 const sha = bytes => createHash('sha256').update(bytes).digest('hex');
-const expectedSteps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
+export const expectedSteps = ['parent-app-ui', 'driver-approval-ui', 'landscape-login-ui', 'calendar-empty-consent-ui', 'theme-process-restart-ui',
   'ride-lifecycle-ui', 'ride-review-ui', 'ride-ledgers-ui', 'chat-conversation-ui', 'chat-directory-ui', 'search-input-ui',
   'search-session-ui', 'search-criteria-ui', 'search-retention-ui', 'multi-seat-sdk', 'reservation-decisions-ui', 'membership-refresh-ui',
   'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui',

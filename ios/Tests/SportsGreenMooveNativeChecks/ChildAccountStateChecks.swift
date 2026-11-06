@@ -2,6 +2,28 @@ import Foundation
 
 @MainActor func checkChildAccountStates() async throws {
     let (_, access) = emergencyAccess(), target = try isolatedChildTarget(), probe = ChildAccountProbe()
+    let selected = EmergencyContactView(ownerUid: access.context.uid, scope: .managed(.child(childId: target.childId, clubId: target.clubId)),
+        contact: nil, revision: 0, childId: target.childId, childInstanceId: target.childInstanceId,
+        childName: target.childName, clubName: "Club fictif")
+    let firstPresentation = try ChildAccountPresentation(access: access, view: selected)
+    let secondPresentation = try ChildAccountPresentation(access: access, view: selected)
+    check(firstPresentation.target == target && secondPresentation.target == target && firstPresentation.id != secondPresentation.id,
+        "Parent presentation lost its immutable target or reused a previous view state")
+    check((try? ChildAccountPresentation(access: access, view: nil)) == nil, "Parent opened an empty child presentation")
+    let (_, pureChild) = emergencyAccess(uid: "child-login", roles: [.child])
+    let childPresentation = try ChildAccountPresentation(access: pureChild, view: nil)
+    check(childPresentation.target == nil, "Child code presentation gained a parent target")
+    check((try? ChildAccountPresentation(access: pureChild, view: selected)) == nil, "Child gained a parent presentation")
+    for roles: [AppRole] in [[.driver], [.clubManager]] {
+        let (_, denied) = emergencyAccess(roles: roles)
+        check((try? ChildAccountPresentation(access: denied, view: selected)) == nil, "Non-parent opened a child invitation")
+        check((try? ChildAccountPresentation(access: denied, view: nil)) == nil, "Non-child opened a code presentation")
+    }
+    let (obsoleteScope, obsolete) = emergencyAccess(); obsoleteScope.clear()
+    check((try? ChildAccountPresentation(access: obsolete, view: selected)) == nil, "Obsolete account opened a child presentation")
+    let (_, foreignAccess) = emergencyAccess(uid: "foreign-parent")
+    check((try? ChildAccountPresentation(access: foreignAccess, view: selected)) == nil, "Foreign parent opened another account's child target")
+    print("ChildAccountPresentationChecks passed: immutable parent target, pure-child mode, fresh view identity, empty/foreign/role/obsolete-account denial; no screen rendering proof")
     let invitation = ChildInvitationState(access: access, target: target, gateway: probe, now: { isolatedChildNow })
     await invitation.create(); let initialCalls = await probe.calls
     check(initialCalls.isEmpty, "Invitation was created before authoritative status")

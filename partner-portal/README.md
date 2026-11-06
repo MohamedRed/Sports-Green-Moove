@@ -2,6 +2,27 @@
 
 ## Current Publication Policy
 
+The cc1 iPhone recheck compiles and executes all eleven original cases: ten pass,
+including child code creation; the parent invitation sheet exposes only its back
+button, with three failures. Retain exact original cases, accessibility excerpt
+and successful disposal/no artifacts. The candidate replaces independent target/
+boolean state with one immutable, role-bound sheet item, denying empty parent or
+foreign/obsolete targets. Actual local native checks pass; corrected SDK/UI and
+root-cause confirmation remain pending. Record only the two pending iPhone items
+against this latest failure, retaining every old proof and unrelated requirement.
+Publish a short simulation/pending-parent note, preserving old notes, flows,
+dates, media, tours, blockers and public access. See `ios-child-presentation-2026-11-06`.
+
+The full source-115 Android workflow and all eleven focused jobs pass: 354
+ordinary cases, 37 local groups, 40 replay cases, seventeen primary copies and
+verified cleanup. The later cc1 main job fails its pre-install Wi-Fi prerequisite;
+its focused startup case passes before primary-copy failure, then cleanup copies
+five files. Retain both outcomes without inheriting success as current-head or
+root-cause acceptance. Publish one short paired simulation note, preserving all
+old notes, flows, dates, media, tours, blockers and public access. No new media,
+physical tracking, closed-app delivery, provider or release proof. See
+`native-matrix-115fee1-2026-11-06` and `native-recheck-cc1e6d7-2026-11-06`.
+
 The new child-account SDK build terminates in compiler IR generation before any
 screen case, not at its fifty-minute deadline. Retain source-bound original crash
 lines and terminal metadata. The candidate changes only the guarded field's

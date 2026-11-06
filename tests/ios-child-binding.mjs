@@ -55,8 +55,10 @@ test('the portal shows the pending iPhone correction and distinct Android interr
   const {recent, previous} = partitionUpdates(content.updates);
   assert.deepEqual(content.iosChildBinding, iosChildBinding);
   assert.equal(sha(bytes(iosChildBinding.source)), iosChildBinding.sha256);
-  assert(recent.some(row => row.source === iosChildBindingProgress.source));
-  assert(recent.some(row => row.source.includes('native-cutoff-142-2026-11-06')));
+  assert(content.updates.some(row => row.source === iosChildBindingProgress.source));
+  assert(recent.some(row => row.flow === 'child-emergency' || row.coversFlows?.includes('child-emergency')));
+  assert(content.updates.some(row => row.source.includes('native-cutoff-142-2026-11-06')));
+  assert(recent.some(row => row.flow === 'native-startup' || row.coversFlows?.includes('native-startup')));
   for (const source of ['ios-child-account-2026-11-06', 'ios-fixture-gate-6fb6487', 'ios-fixture-recheck-9640d8b'])
     assert(previous.some(row => row.source.includes(source)));
   assert.equal(content.flows.length, 34);

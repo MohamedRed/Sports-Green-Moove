@@ -7,6 +7,7 @@ import {content} from '../partner-portal/content.mjs';
 import {iosChildAccount, iosChildAccountProgress} from '../partner-portal/ios-child-account.mjs';
 import {iosAutomatedEvidenceIds, assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import './ios-child-binding.mjs';
+import './ios-child-presentation.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
 const json = path => JSON.parse(read(path)), sha = value => createHash('sha256').update(value).digest('hex');
@@ -35,8 +36,16 @@ test('private links are validated without persistence, secret reconstruction, au
   assert(screen.includes('if let url = state.sharingURL()')); assert(screen.includes('UIActivityViewController(activityItems: [url]'));
   assert(screen.includes('state.suspend(); shared = nil'));
   assert(read(app + 'EmergencyContactScreen.swift').includes('child-account.entry.child'));
-  assert(read(app + 'GuardianContactPicker.swift').includes('try ChildAccountTarget(view: view)'));
+  assert(read(app + 'GuardianContactPicker.swift').includes('try ChildAccountPresentation(access: access, view: view)'));
+  assert(modelsContainAtomicTarget());
 });
+
+function modelsContainAtomicTarget() {
+  const model = read(app + 'ChildAccountModels.swift'), host = read(app + 'GuardianContactPicker.swift');
+  return model.includes('self = .parent(UUID(), try ChildAccountTarget(view: view))') &&
+    host.includes('.sheet(item: $accountPresentation) { presentation in') &&
+    host.includes('target: presentation.target') && !host.includes('managingAccount') && !host.includes('childTarget');
+}
 test('both original screen cases are strictly additive and keep the eleven-case inventory and deadline', () => {
   const sources = json('docs/release/evidence/ios-fixture-gate-6fb6487-2026-11-06/source-sha256.json').files;
   for (const [name, call] of [['EmergencyContactFlowTests.swift', 'checkChildCodeInExistingContactCase(app)'],

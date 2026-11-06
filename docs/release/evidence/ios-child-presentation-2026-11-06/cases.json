@@ -1,0 +1,68 @@
+[
+  {
+    "suite": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+    "name": "testChildContactOpensFromHomeWithoutTrackingOrEditing",
+    "status": "passed",
+    "seconds": 59.022
+  },
+  {
+    "suite": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+    "name": "testPersonalContactRequiresReviewAndPersistsItsRemoval",
+    "status": "passed",
+    "seconds": 42.768
+  },
+  {
+    "suite": "SportsGreenMooveUITests.ParentEmergencyContactFlowTests",
+    "name": "testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact",
+    "status": "failed",
+    "seconds": 104.647
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+    "name": "testExplicitConsentAndChildChangeInvalidateResults",
+    "status": "passed",
+    "seconds": 22.4
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+    "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection",
+    "status": "passed",
+    "seconds": 23.622
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SignOutFlowTests",
+    "name": "testProfileSignsOutToEmptyAuthentication",
+    "status": "passed",
+    "seconds": 26.751
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testActiveRideIdentifiers",
+    "status": "passed",
+    "seconds": 31.972
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testAuthFlowIdentifiers",
+    "status": "passed",
+    "seconds": 47.722
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testMessagesChatAndRatingIdentifiers",
+    "status": "passed",
+    "seconds": 71.858
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testPublishSearchAndBookingIdentifiers",
+    "status": "passed",
+    "seconds": 42.262
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testSecondaryFlowIdentifiers",
+    "status": "passed",
+    "seconds": 62.917
+  }
+]

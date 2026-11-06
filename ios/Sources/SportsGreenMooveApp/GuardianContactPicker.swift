@@ -6,8 +6,7 @@ struct EmergencyContactHost: View {
     @State private var selected: EmergencyContactScope
     @State private var picking = false
     @State private var editorId = UUID()
-    @State private var childTarget: ChildAccountTarget?
-    @State private var managingAccount = false
+    @State private var accountPresentation: ChildAccountPresentation?
 
     init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway & ChildAccountGateway) {
         self.access = access; self.gateway = gateway
@@ -21,14 +20,11 @@ struct EmergencyContactHost: View {
             EmergencyContactScreen(access: access, scope: selected, gateway: gateway,
                 onChooseTarget: parent ? { picking = true } : nil,
                 onManageAccount: { view in
-                    guard access.isCurrent else { return }
-                    if let view {
-                        do { childTarget = try ChildAccountTarget(view: view) } catch { return }
-                    } else { childTarget = nil }
-                    managingAccount = true
+                    do { accountPresentation = try ChildAccountPresentation(access: access, view: view) }
+                    catch { return }
                 }).id(editorId)
-        } }.sheet(isPresented: $managingAccount) {
-            ChildAccountScreen(access: access, target: childTarget, gateway: gateway).id(access.context.id)
+        } }.sheet(item: $accountPresentation) { presentation in
+            ChildAccountScreen(access: access, target: presentation.target, gateway: gateway).id(presentation.id)
         }
     }
     private func showEditor(_ scope: EmergencyContactScope) {

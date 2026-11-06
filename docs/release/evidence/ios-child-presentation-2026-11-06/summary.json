@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-06",
+  "sourceCommit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+  "runId": 42297306643,
+  "jobId": 128170594680,
+  "sdkBuild": "success",
+  "fixtureUi": "failure",
+  "casesExecuted": 11,
+  "passed": 10,
+  "failed": 1,
+  "assertionFailures": 3,
+  "childCodeCasePassed": true,
+  "parentInvitationCasePassed": false,
+  "disposal": "success",
+  "artifactCount": 0,
+  "deadlineMinutes": 50,
+  "nativePresentationChecksPassed": true,
+  "presentationCauseConfirmedByUiComparison": false,
+  "correctedSdkUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "faf124ebf27a1b48966fce7493ab8aec18f9449e9856b47490daf452cb482cf5"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "05f5ece0eb96f47b8db3135de3d4efd060c2b03f7d1b19ee187904817e4c74ec"
+    },
+    {
+      "file": "selected-tests.txt",
+      "sha256": "8d6a2c8243099a6ef2659d17d33a4fa9912175daa7b32fcc81ce1b4174f95b7d"
+    },
+    {
+      "file": "selected-accessibility.txt",
+      "sha256": "24def6835ad135383f55098aa2a7aad50bd16cad0ce2451fa67b6cecc5fc2730"
+    },
+    {
+      "file": "native-checks.txt",
+      "sha256": "e93298b008a653508d01e2b7750578910af613443e884d774520622ab2c2f568"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "072e18092310b04f178af286bfd56b44c521d4c0bc1816984261f8bb96bcef90"
+    }
+  ]
+}

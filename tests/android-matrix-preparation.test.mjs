@@ -18,6 +18,7 @@ import {createHash} from 'node:crypto';
 import {nativeMatrix964Progress} from '../partner-portal/native-matrix-964.mjs';
 import {content} from '../partner-portal/content.mjs';
 import {partitionUpdates} from '../partner-portal/src/render.js';
+import './native-matrix-115.mjs';
 
 const ordinary = f => preparePinnedApks({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
 const replay = f => prepareMatrixReplay({ android: f.android, serial: f.device.serial, env: f.env, device: f.device });
@@ -31,7 +32,8 @@ test('the later completed 37-group native replay is distinct from its cancelled 
   assert.equal(report.ordinaryStopCandidateAccepted, false); assert.equal(report.physicalDeviceAccepted, false);
   assert.equal(content.nativeMatrix964.source, matrix964Folder + '/summary.json');
   const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === nativeMatrix964Progress.source));
+  assert(content.updates.some(row => row.source === nativeMatrix964Progress.source));
+  assert(recent.some(row => row.flow === 'publication' || row.coversFlows?.includes('publication')));
   assert(previous.some(row => row.source.includes('ios-fixture-gate-0fb9968')));
   assert(previous.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
   assert(content.updates.some(row => row.source.includes('ios-child-account-2026-11-06')));

@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-06",
+  "sourceCommit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+  "runId": 42297306683,
+  "matrixStoppedBeforeAppFlow": true,
+  "startupComponentPassed": true,
+  "primaryStartupCopyPassed": false,
+  "cleanupCopyPassed": true,
+  "currentHeadAccepted": false,
+  "rootCauseConfirmed": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "newMediaPublished": false,
+  "records": [
+    {
+      "file": "matrix/artifact.json",
+      "sha256": "f4d1ec3290788d177e2df6f34bfdd737543eeff8425a8a040532e2ef0b457cb0"
+    },
+    {
+      "file": "matrix/job.json",
+      "sha256": "1ab6394066f4f498828a5cc4b2a632156d1615d6bf5b4bc820d835cf3aad65ac"
+    },
+    {
+      "file": "startup/artifact.json",
+      "sha256": "1de637debd97bbd1a2a8483e4d720cbfd6f0e3214e664432a198b487ba989002"
+    },
+    {
+      "file": "startup/job.json",
+      "sha256": "2751bb961685f02f37cd631ce3c541b00bbe74184b8ab86a178e3176a4793619"
+    },
+    {
+      "file": "matrix/host-dns-before-launch.json",
+      "sha256": "369a7979742c2a3425cc13be485d07518110cc051ea7fdb770142e95e2361052"
+    },
+    {
+      "file": "matrix/network-readiness/outcome.json",
+      "sha256": "982e64f23cf7460d1c5321392986de8dd7f190c75e868f33dbadd32a03f66f4c"
+    },
+    {
+      "file": "matrix/network-readiness/chat-network-validation-before.json",
+      "sha256": "ecefabedc70b74c4ace0ee2123b9b08323eac79b2b27abd7981a03eb9b5cd36a"
+    },
+    {
+      "file": "startup/LocalNativeTrackingStartupTest-instrumentation.txt",
+      "sha256": "ce56c061366cab4f649ae8fe69879c6a69bd7ef789f2b7497c6cb1db05da7f62"
+    },
+    {
+      "file": "startup/local-native-startup-device.json",
+      "sha256": "ce6f50e224fe783dafa885d20378198a22b981a95ca55de517d03fc504f6a364"
+    },
+    {
+      "file": "startup/adb-pull-native-startup.json",
+      "sha256": "14454515f7f9d4ff8ffc7c0bb5248ad4504238c8937e8084c946425288c17f9b"
+    },
+    {
+      "file": "startup/adb-pull-failure-cleanup.json",
+      "sha256": "048494934f04d023ef2b524ea2d5dd27cc0eac7bb6145a8071b4d895efc551be"
+    },
+    {
+      "file": "startup/adb-sync-native-startup-diagnostics.json",
+      "sha256": "620cafb9ed35ca5cc50a9215d709631c4d5fb53e6770534deb167c0aecca611c"
+    },
+    {
+      "file": "startup/disposable-device-restore.json",
+      "sha256": "c3d00e0e2adb85c90fd8e5a5094a63dfcec913cc6c0d5fe2460a904f43949cdc"
+    },
+    {
+      "file": "startup/native-startup-suite-status.json",
+      "sha256": "ce4c28b5d37a6325ff0635829ae4ec3d7c47b9869c17433a323cd1fa5983ce98"
+    },
+    {
+      "file": "startup/host-shutdown/complete.json",
+      "sha256": "316691e5b7baa92a6e2e8f6e3578a1ffed9867afd1422369387ce2d6db1c37e2"
+    },
+    {
+      "file": "original-archives.json",
+      "sha256": "9d82c0f63393d2e6f0f79dd5c7caf4cfe5759bb8f8c605477e869b90e0054118"
+    }
+  ]
+}
