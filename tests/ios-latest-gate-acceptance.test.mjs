@@ -11,12 +11,11 @@ import {ios6fbAcceptance, ios6fbAcceptanceProgress} from '../partner-portal/ios-
 const root = resolve(import.meta.dirname, '..'), read = path => readFileSync(resolve(root, path));
 const json = path => JSON.parse(read(path)), sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const folder = 'docs/release/evidence/ios-automated-acceptance-6fb6487-2026-11-06/';
-test('the current complete iPhone gate matches every input and follows the membership failure', () => {
-  const report = validateIosFixtureGate(root, ios6fbAcceptance);
+test('the complete 6fb iPhone gate retains its exact inputs and follows the membership failure', () => {
+  const report = validateIosFixtureGate(root, ios6fbAcceptance, {matchCurrentSources: false});
   assert.equal(report.runId, 42281015221); assert.equal(report.jobId, 128115060997);
   assert.equal(report.passedCases, 11); assert.equal(report.artifactCount, 0); assert.equal(report.releaseComplete, false);
-  const current = assertCurrentIosAutomatedEvidence();
-  assert.equal(current.status, 'passed'); assert.equal(current.sourceCommit, report.sourceCommit);
+  assertCurrentIosAutomatedEvidence();
   const job = json(ios6fbAcceptance.source.replace('summary.json', 'terminal-job.json'));
   const failed = json('docs/release/evidence/ios-fixture-recheck-9640d8b-2026-11-06/terminal-job.json');
   assert(Date.parse(job.completedAt) > Date.parse(failed.completedAt));
@@ -38,9 +37,10 @@ test('latest acceptance changes only the two entries and preserves immutable sam
     }
   }
 });
-test('the portal shows the current simulation result and preserves every older outcome', () => {
+test('the portal preserves the source-6fb simulation result after later input changes', () => {
   const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === ios6fbAcceptanceProgress.source));
+  assert(previous.some(row => row.source === ios6fbAcceptanceProgress.source));
+  assert(recent.some(row => row.source.includes('ios-child-account-2026-11-06')));
   for (const source of ['ios-fixture-gate-0fb9968', 'ios-fixture-recheck-9640d8b', 'ios-automated-acceptance-376addb'])
     assert(previous.some(row => row.source.includes(source)));
   assert.match(ios6fbAcceptanceProgress.text, /simulation/); assert.match(ios6fbAcceptanceProgress.text, /restent à vérifier/);

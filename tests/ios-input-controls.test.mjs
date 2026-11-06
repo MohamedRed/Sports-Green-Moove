@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withChildCodeChecks, withParentChildAccountChecks} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -96,6 +96,8 @@ test('UI candidates preserve the real city button and full-size club target with
       assert(expected.includes(checkpoint));
       expected = expected.replace(checkpoint, checkpoint.replace('timeout: 6))', 'timeout: 6), String(app.debugDescription.prefix(16_000)))'));
     }
+    if (row.path.endsWith('/EmergencyContactFlowTests.swift')) expected = withChildCodeChecks(expected);
+    if (row.path.endsWith('/ParentEmergencyContactFlowTests.swift')) expected = withParentChildAccountChecks(expected);
     assert.equal(read(row.path), expected);
   }
 });

@@ -16,6 +16,10 @@ done
 swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBUG -I "$BUILD_DIR" -typecheck \
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildAccountWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildInvitationWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseChildAccountGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ProfileCity.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseProfileCityGateway.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/UITestProfileCityGateway.swift" \

@@ -1,5 +1,18 @@
 import assert from 'node:assert/strict';
 
+export function withChildCodeChecks(original) {
+  const checkpoint = '        XCTAssertEqual(app.alerts.count, 0)\n';
+  assert.equal(original.split(checkpoint).length, 2);
+  return original.replace(checkpoint, checkpoint + '        checkChildCodeInExistingContactCase(app)\n');
+}
+
+export function withParentChildAccountChecks(original) {
+  const ending = '        XCTAssertFalse(app.buttons["emergency.phone.open"].exists)\n    }\n}\n';
+  assert.equal(original.split(ending).length, 2); assert(original.endsWith(ending));
+  return original.replace(ending, '        XCTAssertFalse(app.buttons["emergency.phone.open"].exists)\n' +
+    '        checkParentInvitationInExistingContactCase(app)\n    }\n}\n');
+}
+
 export function withMembershipFailureObservation(original) {
   const club = '    XCTAssertTrue(club.waitForExistence(timeout: 6)); club.tap()\n';
   const approve = '    XCTAssertTrue(approve.waitForExistence(timeout: 6)); approve.tap()\n';

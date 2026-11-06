@@ -29,12 +29,14 @@ struct EmergencyContactScreen: View {
     @State private var discard: DiscardAction?
     private let opener: any EmergencyPhoneOpening
     private let onChooseTarget: (() -> Void)?
+    private let onManageAccount: ((EmergencyContactView?) -> Void)?
     private enum DiscardAction { case close, refresh, chooseTarget }
 
     init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway,
-        opener: any EmergencyPhoneOpening = SystemEmergencyPhone(), onChooseTarget: (() -> Void)? = nil) {
+        opener: any EmergencyPhoneOpening = SystemEmergencyPhone(), onChooseTarget: (() -> Void)? = nil,
+        onManageAccount: ((EmergencyContactView?) -> Void)? = nil) {
         _state = State(initialValue: EmergencyContactState(access: access, scope: scope, gateway: gateway))
-        self.opener = opener; self.onChooseTarget = onChooseTarget
+        self.opener = opener; self.onChooseTarget = onChooseTarget; self.onManageAccount = onManageAccount
     }
     var body: some View {
         @Bindable var state = state
@@ -54,6 +56,10 @@ struct EmergencyContactScreen: View {
                 EmergencyContactReview(operation: operation, confirm: { Task { await state.confirmSave() } }, cancel: { state.cancelReview() })
             } else {
                 VStack(alignment: .leading, spacing: 20) {
+                    if state.scope.readOnly, let onManageAccount {
+                        Button("Lier mon compte") { onManageAccount(nil) }.frame(minHeight: 44)
+                            .disabled(!state.accountIsCurrent).accessibilityIdentifier("child-account.entry.child")
+                    }
                     if let onChooseTarget {
                         Button("Choisir un contact") { if state.dirty { discard = .chooseTarget } else { onChooseTarget() } }
                             .disabled(state.busy).accessibilityIdentifier("emergency.choose-target")
@@ -62,6 +68,10 @@ struct EmergencyContactScreen: View {
                     if let error = state.error { Text(error).foregroundStyle(SGM.textPrimary).accessibilityIdentifier("emergency.error") }
                     if let notice = state.notice { Text(notice).accessibilityIdentifier("emergency.notice") }
                     if let view = state.view {
+                        if state.canEdit, case .managed(.child) = view.scope, let onManageAccount {
+                            Button("Compte de l’enfant") { onManageAccount(view) }
+                                .disabled(state.busy || state.dirty).frame(minHeight: 44).accessibilityIdentifier("child-account.entry.parent")
+                        }
                         if let name = view.childName {
                             Text(name).font(.sgmBody(18, weight: .bold)).accessibilityIdentifier("emergency.subject.child")
                         }

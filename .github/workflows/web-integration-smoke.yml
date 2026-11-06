@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
+      - "tests/ios-child-account.test.mjs"
+      - "ios/**/*ChildAccount*.swift"
+      - "ios/**/*ChildInvitation*.swift"
+      - "scripts/qa/record-ios-child-account-evidence.mjs"
       - "scripts/qa/ios-fixture-index.mjs"
       - "tests/ios-fixture-index.test.mjs"
       - "tests/ios-latest-gate-acceptance.test.mjs"
@@ -747,6 +751,10 @@ on:
     branches:
       - main
     paths:
+      - "tests/ios-child-account.test.mjs"
+      - "ios/**/*ChildAccount*.swift"
+      - "ios/**/*ChildInvitation*.swift"
+      - "scripts/qa/record-ios-child-account-evidence.mjs"
       - "scripts/qa/ios-fixture-index.mjs"
       - "tests/ios-fixture-index.test.mjs"
       - "tests/ios-latest-gate-acceptance.test.mjs"
@@ -1520,7 +1528,7 @@ jobs:
       - name: Validate bounded node readiness and retained failure scope
         run: node --test tests/compose-node-readiness.test.mjs tests/guardian-window-observation.test.mjs
       - name: Validate iPhone emergency contact ownership and evidence scope
-        run: node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs tests/ios-contact-request.test.mjs tests/ios-team-chat.test.mjs tests/ios-received-ratings.test.mjs tests/ios-build-audit.test.mjs tests/ios-membership.test.mjs tests/ios-profile-city.test.mjs
+        run: node --test tests/ios-emergency-contact.test.mjs tests/ios-parent-contact.test.mjs tests/ios-message-ownership.test.mjs tests/ios-contact-request.test.mjs tests/ios-team-chat.test.mjs tests/ios-received-ratings.test.mjs tests/ios-build-audit.test.mjs tests/ios-membership.test.mjs tests/ios-profile-city.test.mjs tests/ios-child-account.test.mjs
       - name: Test isolated chat proof diagnostic
         run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
       - name: Test approved invitation private alias

@@ -206,6 +206,7 @@ private struct UITestAuthGateway: AuthGateway {
 }
 
 struct UITestFirebaseGateway: FirebaseGateway {
+    let childAccountsFixture = UITestChildAccounts()
     let emergencyFixture = UITestEmergencyContacts()
     func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
         identity.uid == Fixtures.childSession.uid ? Fixtures.childSession : Fixtures.session

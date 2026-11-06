@@ -2,6 +2,20 @@
 
 ## Current Publication Policy
 
+The iPhone child-account candidate wires verified-parent invitation create/status/
+revoke/share and explicit pairing approval, plus pure-child code creation from the
+location-independent contact path. Thirty-four malformed replies and seventy
+delayed operation boundaries pass, as do the full native plan and strict owned
+callable signatures. Two original screen cases are extended additively; the
+eleven-case inventory, workflow jobs, deadline and capture policy are unchanged.
+Reopen only the two automated iPhone entries for these new inputs. Keep every
+6fb success/964 failure reference and immutable index. Publish a short local-only
+note; move the previous current-source headline into history without changing
+flows, dates, media, tours, blockers or public access. Actual screen rendering,
+system sharing, the connected signup/approval journey, physical/operational/safety
+and release acceptance remain open. No paid resource or production write. See
+`ios-child-account-2026-11-06`.
+
 The later 6fb gate builds all bundles and passes all eleven original cases with
 successful disposal, no captures and no artifacts. Its exact current iOS inputs
 and workflow match. Accept only the two automated iPhone entries, retaining the

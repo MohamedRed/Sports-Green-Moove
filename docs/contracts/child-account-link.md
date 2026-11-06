@@ -14,6 +14,14 @@ protocol then links that login to its profile after explicit parent approval.
 
 ## Invitation-First Signup Candidate
 
+The 6 November iPhone candidate now provides the same parent invitation and
+explicit account-approval controls, and child code creation from the independent
+contact screen. Local native and strict callable checks pass; the new SDK-linked
+screens, system sharing and complete connected signup/approval remain unverified.
+Both automated iPhone release entries reopen for these changed inputs. See
+`../release/evidence/ios-child-account-2026-11-06/`. Earlier verification paragraphs
+below remain dated historical evidence, not current iPhone acceptance.
+
 - The currently verified parent selects an immutable child profile and creates
   a private HTTPS link. A random 256-bit secret is in the URL fragment, not the
   query string. Only its SHA-256 fingerprint is stored. Unclaimed links expire

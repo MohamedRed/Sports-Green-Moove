@@ -15,6 +15,7 @@ final class EmergencyContactFlowTests: XCTestCase {
         XCTAssertFalse(app.buttons["emergency.remove"].exists)
         XCTAssertTrue(app.buttons["emergency.phone.open"].isEnabled)
         XCTAssertEqual(app.alerts.count, 0)
+        checkChildCodeInExistingContactCase(app)
     }
     @MainActor func testPersonalContactRequiresReviewAndPersistsItsRemoval() {
         let app = XCUIApplication()

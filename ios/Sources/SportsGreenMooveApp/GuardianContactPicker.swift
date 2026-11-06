@@ -2,22 +2,33 @@ import SwiftUI
 
 struct EmergencyContactHost: View {
     let access: AccountAccess
-    let gateway: any EmergencyContactGateway
+    let gateway: any EmergencyContactGateway & ChildAccountGateway
     @State private var selected: EmergencyContactScope
     @State private var picking = false
     @State private var editorId = UUID()
+    @State private var childTarget: ChildAccountTarget?
+    @State private var managingAccount = false
 
-    init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway) {
+    init(access: AccountAccess, scope: EmergencyContactScope, gateway: any EmergencyContactGateway & ChildAccountGateway) {
         self.access = access; self.gateway = gateway
         _selected = State(initialValue: scope)
     }
     private var parent: Bool { access.context.role == .parent && !access.context.grantedRoles.contains(.child) }
     var body: some View {
-        if picking && parent {
+        Group { if picking && parent {
             GuardianContactPicker(access: access, gateway: gateway, onBack: { showEditor(selected) }, onChoose: { showEditor(.managed($0)) })
         } else {
             EmergencyContactScreen(access: access, scope: selected, gateway: gateway,
-                onChooseTarget: parent ? { picking = true } : nil).id(editorId)
+                onChooseTarget: parent ? { picking = true } : nil,
+                onManageAccount: { view in
+                    guard access.isCurrent else { return }
+                    if let view {
+                        do { childTarget = try ChildAccountTarget(view: view) } catch { return }
+                    } else { childTarget = nil }
+                    managingAccount = true
+                }).id(editorId)
+        } }.sheet(isPresented: $managingAccount) {
+            ChildAccountScreen(access: access, target: childTarget, gateway: gateway).id(access.context.id)
         }
     }
     private func showEditor(_ scope: EmergencyContactScope) {

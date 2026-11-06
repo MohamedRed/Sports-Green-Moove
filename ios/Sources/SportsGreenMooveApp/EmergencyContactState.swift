@@ -22,6 +22,7 @@ import Observation
     }
     var canEdit: Bool { live && allowedScope && !scope.readOnly && !access.context.grantedRoles.contains(.child) }
     var canDial: Bool { live && !busy && pending == nil && !dirty && view?.contact != nil }
+    var accountIsCurrent: Bool { live }
     var dirty: Bool { canEdit && view != nil && (name != (view?.contact?.name ?? "") || phone != (view?.contact?.phone ?? "")) }
     var canSave: Bool { canEdit && !busy && pending == nil && dirty && PersonalEmergencyContact(name: name, phone: phone).isValid }
     private var live: Bool { !closed && foreground && access.isCurrent }

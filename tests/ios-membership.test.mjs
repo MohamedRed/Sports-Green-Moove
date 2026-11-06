@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence, validateIosFixtureGate} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withParentChildAccountChecks} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -31,7 +31,8 @@ test('the later ten-of-eleven failure is retained without inheriting an older su
   assert.deepEqual(content.iosMembershipRecheck964, iosMembershipRecheck964);
   assert(previous.some(row => row.source === iosMembershipRecheck964Progress.source));
   assert(previous.some(row => row.source === ios0fbRecheckProgress.source));
-  assert(recent.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
+  assert(previous.some(row => row.source.includes('ios-fixture-gate-6fb6487')));
+  assert(recent.some(row => row.source.includes('ios-child-account-2026-11-06')));
   assert(previous.some(row => row.source.includes('ios-automated-acceptance-376addb')));
   assert.doesNotMatch(iosMembershipRecheck964Progress.title + iosMembershipRecheck964Progress.text, /Firebase|BrowserStack|Android|SDK|Swift|CI\b/i);
   assertCurrentIosAutomatedEvidence();
@@ -152,7 +153,7 @@ test('actual earlier SDK/UI failures preserve all eleven outcomes and lead to co
     const expected = file === 'TeamChatFlowChecks.swift' ? original.replace('    let send = app.buttons["team-chat.send"]\n',
       '    let send = app.buttons["team-chat.send"]\n' +
       '    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)\n' +
-      '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n') : original;
+      '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n') : withParentChildAccountChecks(original);
     assert.equal(read(path), expected);
   }
 });

@@ -90,8 +90,8 @@
     "items": [
       {
         "id": "ios_sdk_build_ci",
-        "status": "passed",
-        "description": "SDK-linked app and all fixture bundles compile successfully at 6fb6487. Exact current build inputs and unchanged workflow jobs match the successful source. Simulator-only automated acceptance; no physical or real-service acceptance.",
+        "status": "pending",
+        "description": "The 6fb6487 SDK success is retained. New iPhone child-account invitation and approval inputs require a fresh complete source-bound SDK and fixture gate; current acceptance is pending.",
         "evidenceRefs": [
           "evidence/ios-fixture-gate-6fb6487-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-6fb6487-2026-11-06/source-sha256.json",
@@ -131,8 +131,8 @@
       },
       {
         "id": "ios_fixture_ui_ci",
-        "status": "passed",
-        "description": "All eleven original fixture screen cases and disposal pass at 6fb6487, with no artifacts. Exact source, resources, case inventory and terminal transcript are retained. This does not accept physical, operational, emergency phone handoff or complete release flows.",
+        "status": "pending",
+        "description": "The eleven-case 6fb6487 success and prior failed rechecks are retained. Child-account invitation and approval changes require the complete current SDK-linked gate; no new screen, physical, operational or release acceptance is claimed.",
         "evidenceRefs": [
           "evidence/ios-fixture-gate-6fb6487-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-6fb6487-2026-11-06/source-sha256.json",

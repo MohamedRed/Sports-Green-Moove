@@ -50,5 +50,6 @@ final class ParentEmergencyContactFlowTests: XCTestCase {
         XCTAssertTrue(app.buttons["emergency.confirm"].waitForExistence(timeout: 6)); app.buttons["emergency.confirm"].tap()
         XCTAssertTrue(app.staticTexts["emergency.empty"].waitForExistence(timeout: 6))
         XCTAssertFalse(app.buttons["emergency.phone.open"].exists)
+        checkParentInvitationInExistingContactCase(app)
     }
 }

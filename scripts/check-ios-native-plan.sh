@@ -54,6 +54,18 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/TeamChatState.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildInvitationWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildInvitationState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredChildAccounts.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestChildAccounts.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/UnusedChildAccountGateway.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ChildAccountProbe.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ChildAccountWireChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ChildAccountStateChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ChildAccountBoundaryChecks.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactRequest.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/GuardianContactState.swift" \
