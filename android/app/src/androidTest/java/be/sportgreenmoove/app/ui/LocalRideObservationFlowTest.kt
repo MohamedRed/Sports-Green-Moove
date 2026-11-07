@@ -17,6 +17,7 @@ import androidx.compose.ui.test.performTextInput
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.uiautomator.UiDevice
 import be.sportgreenmoove.app.BuildConfig
 import be.sportgreenmoove.app.MainActivity
 import be.sportgreenmoove.app.services.AndroidRuntime
@@ -53,57 +54,63 @@ class LocalRideObservationFlowTest {
         }
         var waited = 0L
         var operations: Map<String, Int>? = null
-        ActivityScenario.launch(MainActivity::class.java).use { activity ->
-            waitFor(SgmTestTags.AuthEmailAction)
-            compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextInput(session.getString("parent"))
-            compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performTextInput(session.getString("password"))
-            compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
-            waitFor(SgmTestTags.HomeScreen)
-            compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick(); waitFor(SgmTestTags.ActiveRideResumeAction)
-            compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().performClick()
-            waitFor(SgmTestTags.ActiveRideVehicleUpdate)
-            val initialRide = runBlocking { runtime.firebase.getActiveRide() } ?: error("Expected the isolated active ride")
-            assertEquals(rideId, initialRide.rideSessionId)
-            compose.onNodeWithTag(SgmTestTags.ActiveRidePickupAction).assertDoesNotExist()
-            compose.onNodeWithTag(SgmTestTags.ActiveRideEndAction).assertDoesNotExist()
-            runBlocking { LocalRideObservationPeer.open(context, session, rideId) }.use { peer ->
-                val start = SystemClock.elapsedRealtime()
-                runBlocking { peer.point() }
-                compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideStaleWarning).fetchSemanticsNodes().isEmpty() }
-                capture("fresh")
-                activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
-                compose.waitUntil(60_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE }
-                waitFor(SgmTestTags.ActiveRideVehicleUpdate); capture("fresh-landscape", landscape = true)
-                activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
-                compose.waitUntil(60_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT }
+        LocalRideFailureObservation(context, UiDevice.getInstance(instrumentation), session).use { observation ->
+            ActivityScenario.launch(MainActivity::class.java).useWithFailureObservation({ activity ->
+                observation.retainFailure(activity.state.name)
+            }) { activity ->
+                waitFor(SgmTestTags.AuthEmailAction)
+                observation.phase(GuardianWindowPhase.ParentLogin)
+                compose.onNodeWithTag(SgmTestTags.AuthEmailInput).performTextInput(session.getString("parent"))
+                compose.onNodeWithTag(SgmTestTags.AuthPasswordInput).performTextInput(session.getString("password"))
+                compose.onNodeWithTag(SgmTestTags.AuthEmailAction).performScrollTo().performClick()
+                waitFor(SgmTestTags.HomeScreen)
+                observation.phase(GuardianWindowPhase.ParentHomeObserved)
+                compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick(); waitFor(SgmTestTags.ActiveRideResumeAction)
+                compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).performScrollTo().performClick()
                 waitFor(SgmTestTags.ActiveRideVehicleUpdate)
-                compose.waitForComposeNode(hasTestTag(SgmTestTags.ActiveRideStaleWarning), 110_000)
-                waited = SystemClock.elapsedRealtime() - start
-                assertTrue("Staleness must age in real elapsed time, not a fabricated clock", waited > 80_000)
-                capture("stale")
-                runBlocking { peer.point() }
-                compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideStaleWarning).fetchSemanticsNodes().isEmpty() }
-                capture("recovered")
-                runBlocking { peer.pickup(bookingId, childId) }; waitText("Prise en charge validée"); capture("pickup")
-                activity.moveToState(Lifecycle.State.CREATED); assertEquals(Lifecycle.State.CREATED, activity.state)
-                runBlocking { peer.dropoff(bookingId, childId) }
-                activity.moveToState(Lifecycle.State.RESUMED)
-                waitText("Dépose validée"); capture("resumed")
-                runBlocking { peer.complete() }; waitText("AUCUNE COURSE ACTIVE"); capture("ended")
-                compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
-                compose.onNodeWithText("PASSÉS").performClick()
-                compose.waitUntil(60_000) { runBlocking { runtime.firebase.searchTrips() }.any { it.id == initialRide.tripId && it.status == be.sportgreenmoove.app.data.TripStatus.Past } }
-                val trip = runBlocking { runtime.firebase.searchTrips() }.single { it.id == initialRide.tripId }
-                selectLocalTripMonth(compose, trip); waitText("Trajet suivi continu QA")
-                compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).assertDoesNotExist()
-                capture("history", SgmTestTags.TripsScreen)
-                assertEquals("sgm-qa-parent", FirebaseAuth.getInstance().currentUser?.uid)
-                assertEquals("sgm-qa-driver", peer.uid)
-                operations = peer.operations.toMap()
+                val initialRide = runBlocking { runtime.firebase.getActiveRide() } ?: error("Expected the isolated active ride")
+                assertEquals(rideId, initialRide.rideSessionId)
+                compose.onNodeWithTag(SgmTestTags.ActiveRidePickupAction).assertDoesNotExist()
+                compose.onNodeWithTag(SgmTestTags.ActiveRideEndAction).assertDoesNotExist()
+                runBlocking { LocalRideObservationPeer.open(context, session, rideId) }.use { peer ->
+                    val start = SystemClock.elapsedRealtime()
+                    runBlocking { peer.point() }
+                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideStaleWarning).fetchSemanticsNodes().isEmpty() }
+                    capture("fresh")
+                    activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
+                    compose.waitUntil(60_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE }
+                    waitFor(SgmTestTags.ActiveRideVehicleUpdate); capture("fresh-landscape", landscape = true)
+                    activity.onActivity { it.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT }
+                    compose.waitUntil(60_000) { context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT }
+                    waitFor(SgmTestTags.ActiveRideVehicleUpdate)
+                    compose.waitForComposeNode(hasTestTag(SgmTestTags.ActiveRideStaleWarning), 110_000)
+                    waited = SystemClock.elapsedRealtime() - start
+                    assertTrue("Staleness must age in real elapsed time, not a fabricated clock", waited > 80_000)
+                    capture("stale")
+                    runBlocking { peer.point() }
+                    compose.waitUntil(60_000) { compose.onAllNodesWithTag(SgmTestTags.ActiveRideStaleWarning).fetchSemanticsNodes().isEmpty() }
+                    capture("recovered")
+                    runBlocking { peer.pickup(bookingId, childId) }; waitText("Prise en charge validée"); capture("pickup")
+                    activity.moveToState(Lifecycle.State.CREATED); assertEquals(Lifecycle.State.CREATED, activity.state)
+                    runBlocking { peer.dropoff(bookingId, childId) }
+                    activity.moveToState(Lifecycle.State.RESUMED)
+                    waitText("Dépose validée"); capture("resumed")
+                    runBlocking { peer.complete() }; waitText("AUCUNE COURSE ACTIVE"); capture("ended")
+                    compose.onNodeWithTag(SgmTestTags.BottomNavTripsAction).performClick()
+                    compose.onNodeWithText("PASSÉS").performClick()
+                    compose.waitUntil(60_000) { runBlocking { runtime.firebase.searchTrips() }.any { it.id == initialRide.tripId && it.status == be.sportgreenmoove.app.data.TripStatus.Past } }
+                    val trip = runBlocking { runtime.firebase.searchTrips() }.single { it.id == initialRide.tripId }
+                    selectLocalTripMonth(compose, trip); waitText("Trajet suivi continu QA")
+                    compose.onNodeWithTag(SgmTestTags.ActiveRideResumeAction).assertDoesNotExist()
+                    capture("history", SgmTestTags.TripsScreen)
+                    assertEquals("sgm-qa-parent", FirebaseAuth.getInstance().currentUser?.uid)
+                    assertEquals("sgm-qa-driver", peer.uid)
+                    operations = peer.operations.toMap()
+                }
+                compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
+                compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick(); waitFor(SgmTestTags.AuthEmailAction)
+                assertNull(FirebaseAuth.getInstance().currentUser)
             }
-            compose.onNodeWithTag(SgmTestTags.BottomNavProfileAction).performClick()
-            compose.onNodeWithText("SE DÉCONNECTER").performScrollTo().performClick(); waitFor(SgmTestTags.AuthEmailAction)
-            assertNull(FirebaseAuth.getInstance().currentUser)
         }
         File(directory, "local-ride-observation-device.json").writeText(JSONObject()
             .put("scope", "local-ride-live-sdk-not-physical-gps").put("projectId", "demo-sgm-local-qa")

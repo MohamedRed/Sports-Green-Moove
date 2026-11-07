@@ -24,9 +24,11 @@ import {iosD3Acceptance} from './ios-d3-acceptance.mjs';
 import {iosRewardNavigation} from './ios-reward-navigation.mjs';
 import {iosParentReservations} from './ios-parent-reservations.mjs';
 import {iosConnectSelector} from './ios-connect-selector.mjs';
+import {nativeLoginRecheck} from './native-login-recheck.mjs';
 
 export const nativeRechecks = {
   iosConnectSelector,
+  nativeLoginRecheck,
   iosParentReservations,
   iosRewardNavigation,
   iosD3Acceptance,

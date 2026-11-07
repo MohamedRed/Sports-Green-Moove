@@ -23,6 +23,9 @@ on:
   pull_request:
     paths:
       - "tests/guardian-window-observation.test.mjs"
+      - "tests/native-login-recheck.mjs"
+      - "scripts/qa/retain-native-login-recheck.mjs"
+      - "docs/release/evidence/native-login-recheck-05cd3f7-2026-11-07/**"
       - "docs/release/evidence/guardian-window-observation-2026-11-04/**"
       - "tests/compose-node-readiness.test.mjs"
       - "docs/release/evidence/android-node-readiness-2026-11-04/**"
@@ -203,6 +206,9 @@ on:
       - main
     paths:
       - "tests/guardian-window-observation.test.mjs"
+      - "tests/native-login-recheck.mjs"
+      - "scripts/qa/retain-native-login-recheck.mjs"
+      - "docs/release/evidence/native-login-recheck-05cd3f7-2026-11-07/**"
       - "docs/release/evidence/guardian-window-observation-2026-11-04/**"
       - "tests/compose-node-readiness.test.mjs"
       - "docs/release/evidence/android-node-readiness-2026-11-04/**"

@@ -81,7 +81,9 @@ const paths = [...disposableApkSourceFiles, 'scripts/qa/run-local-ride-observati
     'ui/ActiveRideObservationState.kt', 'ui/ActiveRideObservationEffect.kt', 'ui/AppDataState.kt', 'ui/SportsGreenMooveApp.kt',
     'services/RideObservationGateway.kt', 'services/FirebaseAndroidRuntime.kt', 'services/FirebaseAndroidRideMappers.kt',
     'ui/MobileRoleSelectionEffect.kt', 'domain/RideObservationAge.kt', 'ui/RideMonitorScreen.kt', 'ui/TripsScreen.kt'].map((file) => 'android/app/src/main/java/be/sportgreenmoove/app/' + file),
-  ...['LocalRideObservationPeer.kt', 'LocalRideObservationFlowTest.kt', 'LocalUiCapture.kt'].map((file) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
+  ...['LocalRideObservationPeer.kt', 'LocalRideObservationFlowTest.kt', 'LocalUiCapture.kt',
+    'LocalRideFailureObservation.kt', 'ActivityWindowObservation.kt', 'SessionFailureObservation.kt']
+    .map((file) => 'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/' + file)];
 writeFileSync(resolve(directory, 'ride-observation-results.json'), JSON.stringify({
   scope: 'local-ride-live-sdk-not-physical-gps', projectId: 'demo-sgm-local-qa', runId: session.runId, testedAt: new Date().toISOString(),
   testCount: 1, nativeCaseCount: 1, steps: [{ id: 'ride-observation-ui', status: 'passed' }],

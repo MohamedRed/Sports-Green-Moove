@@ -89,7 +89,7 @@ export const content = {
   verificationBoundaries,
   bookingServerRecheck,
   alertCaptureFailure,
-  updatedAt: '2026-11-06',
+  updatedAt: '2026-11-07',
   lastVerifiedAt: '2026-11-05',
   nativeClockCiRecheck: {source: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/summary.json',
     checksums: 'docs/release/evidence/native-clock-ci-30e1ebe-2026-10-25/artifact-sha256.json', checkedAt: '2026-10-25'},

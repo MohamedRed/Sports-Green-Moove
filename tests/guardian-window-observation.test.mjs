@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './native-login-recheck.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';

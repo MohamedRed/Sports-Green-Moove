@@ -2,6 +2,17 @@
 
 ## Current Publication Policy
 
+The later 05 Android main job fails the Wi-Fi prerequisite before installation;
+its separate ride case fails the Home-screen wait after the login form, before
+tracking. Preserve both distinct outcomes and do not infer an authentication,
+network or product root cause from post-instrumentation shutdown. The bounded
+failure-only pre-close observer adds typed window state and one synthetic-parent
+authentication Boolean, not text, captures, probes or retries. It compiles
+locally; actual diagnostic execution and a successful ride remain pending.
+Publish one concise failed-attempt note while preserving all previous flows,
+dates, media, tours, blockers and public access. See
+`native-login-recheck-05cd3f7-2026-11-07`.
+
 The complete 05 iPhone gate compiles and executes ten passing cases plus one
 failed mixed-case Connect label query. Preserve all original outcomes and record
 only the two pending iPhone entries. Attach a stable identifier to the actual

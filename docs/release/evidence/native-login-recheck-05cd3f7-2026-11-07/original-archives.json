@@ -1,0 +1,104 @@
+{
+  "archives": [
+    {
+      "prefix": "matrix",
+      "id": 13549528101,
+      "job": 128218021359,
+      "bytes": 53277,
+      "sha256": "2a6b3e18b4d9764e83cbbcae7ccbd821341060d74bd605a42abe877c73daa28b"
+    },
+    {
+      "prefix": "ride",
+      "id": 13549902155,
+      "job": 128218021570,
+      "bytes": 9383,
+      "sha256": "4e88d5a3dd4044e086c8278bfb86bf7fb87a0dc5a92569803a3b3adc1d0d81e3"
+    }
+  ],
+  "members": [
+    {
+      "artifactId": 13549528101,
+      "member": "outputs/store-review-screenshots/host-dns-before-launch.json",
+      "file": "matrix/host-dns-before-launch.json",
+      "bytes": 983,
+      "sha256": "71a31f032496ff41990b10bd8389446a0fd191d48f3ab6a8bef738ac670b0398"
+    },
+    {
+      "artifactId": 13549528101,
+      "member": "outputs/store-review-screenshots/network-readiness/outcome.json",
+      "file": "matrix/network-readiness/outcome.json",
+      "bytes": 728,
+      "sha256": "42922b4f0b80518bd76b29f40afa275904b385f2e79855e97f277d1802e1f1c8"
+    },
+    {
+      "artifactId": 13549528101,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-000.json",
+      "file": "matrix/network-readiness/sample-000.json",
+      "bytes": 1076,
+      "sha256": "b71dc62ef00a35b1dae9aec1a88934e991846c28bdf7835cc04a8bb8ef31d279"
+    },
+    {
+      "artifactId": 13549528101,
+      "member": "outputs/store-review-screenshots/network-readiness/sample-058.json",
+      "file": "matrix/network-readiness/sample-058.json",
+      "bytes": 1256,
+      "sha256": "4ffdae604d6527b0dfc639024f2f0154aac9e506641408572fca8652cbf69578"
+    },
+    {
+      "artifactId": 13549528101,
+      "member": "outputs/store-review-screenshots/network-readiness/chat-network-validation-before.json",
+      "file": "matrix/network-readiness/chat-network-validation-before.json",
+      "bytes": 1853,
+      "sha256": "e53f3c0b0899e434f95e25d31f8e2eb62e0d18fdae7fb4d6fa7fceaa20823428"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "local-ui-evidence/6939188d5cbe560c8ab0dc62527ae163/LocalRideObservationFlowTest-instrumentation.txt",
+      "file": "ride/LocalRideObservationFlowTest-instrumentation.txt",
+      "bytes": 1840,
+      "sha256": "0faa38cc6da1e551dc43108a327c4131791842f31b88e66e04dbe82a0b55ae56"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "local-ui-evidence/6939188d5cbe560c8ab0dc62527ae163/LocalRideObservationFlowTest-diagnostics.json",
+      "file": "ride/LocalRideObservationFlowTest-diagnostics.json",
+      "bytes": 1523,
+      "sha256": "348d05cf8a789e70e7c50c55128962a0d5dff7486ac8007a39acde27c9b18888"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "local-ui-evidence/6939188d5cbe560c8ab0dc62527ae163/LocalRideObservationFlowTest-exit-info.txt",
+      "file": "ride/LocalRideObservationFlowTest-exit-info.txt",
+      "bytes": 608,
+      "sha256": "5e6c6a44b4d0ecf180a227b8872502329521ab62718f2af9ae69e91798a6eebc"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "local-ui-evidence/6939188d5cbe560c8ab0dc62527ae163/LocalRideObservationFlowTest-process-log.txt",
+      "file": "ride/LocalRideObservationFlowTest-process-log.txt",
+      "bytes": 1316,
+      "sha256": "a68d858398875fb7f5cb5b9bb6d3665a64ae29af4c1370b9e6fd111f0d42a1e6"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "focused-safety-ui/ride-observation/ride-observation-suite-status.json",
+      "file": "ride/ride-observation-suite-status.json",
+      "bytes": 77,
+      "sha256": "87c0a8ab4696721355dd407af437546247a0d2fc5cacf289162bf112b41a5553"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "focused-safety-ui/ride-observation/disposable-device-restore.json",
+      "file": "ride/disposable-device-restore.json",
+      "bytes": 373,
+      "sha256": "48e718fb8002e332fb45aa96cb5026090b548b7b145b628ae20648be32adbc14"
+    },
+    {
+      "artifactId": 13549902155,
+      "member": "focused-safety-ui/ride-observation/host-shutdown/complete.json",
+      "file": "ride/host-shutdown/complete.json",
+      "bytes": 392,
+      "sha256": "51e958ecd8bed8ffd4be765d3a791645f5293bec578f4e91c04b560b90bb52e5"
+    }
+  ]
+}
