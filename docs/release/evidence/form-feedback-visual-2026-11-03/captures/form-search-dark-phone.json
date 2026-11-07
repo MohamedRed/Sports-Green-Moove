@@ -1,0 +1,28 @@
+{
+  "scope": "form-feedback-components-not-auth-search-or-message-delivery-proof",
+  "case": "search-dark-phone",
+  "screen": "search",
+  "dark": true,
+  "widthDp": 320,
+  "heightDp": 700,
+  "density": 3,
+  "fontScale": 1.3,
+  "text": {
+    "label": "Recherche indisponible. Vos choix sont conservés. Réessayez.",
+    "measuredTextFits": true,
+    "contrastRatio": 8.470091498025255,
+    "measuredWidthPx": 840,
+    "measuredHeightPx": 119,
+    "measuredParagraphHeightPx": 119,
+    "lineCount": 2,
+    "lastLineEnd": 60
+  },
+  "completed": true,
+  "physicalDevice": false,
+  "backendCalls": false,
+  "mapsRendered": false,
+  "productionWrites": false,
+  "capturedAtEpochMillis": 1793697072358,
+  "viewportSha256": "0fda9e0e0f0f2b50a348e3e2f4e251882389c0508430c036966039baa5d6f019",
+  "windowSha256": "d0227406e75bf070f29a156126d045b59e235675344b39bd8718c338f4371399"
+}

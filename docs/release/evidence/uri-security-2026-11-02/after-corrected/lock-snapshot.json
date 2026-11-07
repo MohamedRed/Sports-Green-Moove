@@ -1,0 +1,30 @@
+{
+  "lockfileVersion": 3,
+  "wholeLockSha256": "43aec6706d28207bb62b680698e52f4fd32c30509c2a39220e95acce2c7c709a",
+  "fastUri": {
+    "version": "3.1.9",
+    "resolved": "https://registry.npmjs.org/fast-uri/-/fast-uri-3.1.9.tgz",
+    "integrity": "sha512-hS/0Wt3Ya043oKXs0sIxrMpKQITXhMLIrVAKKXi4gozGC9v7YRWVnXIZzjNPTO02M9BdxLCWqK1yRXgNziVyJQ==",
+    "dev": true,
+    "funding": [
+      {
+        "type": "github",
+        "url": "https://github.com/sponsors/fastify"
+      },
+      {
+        "type": "opencollective",
+        "url": "https://opencollective.com/fastify"
+      }
+    ],
+    "license": "BSD-3-Clause"
+  },
+  "otherPackagesSha256": "34a22e92835d5906308bd8ff8927ec2b44283aa84d07984a0a98b7960cce6a76",
+  "packageCount": 932,
+  "declarationsSha256": "5f43b3d19642d7c06c933e7a08c98556da0f1b90463f3eb06326f6d3e9482ddc",
+  "consumers": [
+    {
+      "path": "node_modules/ajv",
+      "range": "^3.0.1"
+    }
+  ]
+}

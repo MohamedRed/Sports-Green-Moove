@@ -1,0 +1,8 @@
+{
+  "scope": "ride-emergency-dialer-attempt-not-completed-flow",
+  "role": "driver",
+  "expectedPackageAppeared": true,
+  "observedPackage": "com.google.android.dialer",
+  "dialIntentCount": 1,
+  "directCallIntentCount": 0
+}

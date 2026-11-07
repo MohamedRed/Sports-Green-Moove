@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="be.sportgreenmoove.app.services.ActiveRideStartupTest" tests="102" failures="1" errors="0" skipped="20" time="274.51" timestamp="2026-10-17T13:40:16" hostname="localhost">
+  <properties>
+    <property name="device" value="emulator-5554 - 15" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="startAccessibleRideTrackingUsesNativeFallbackWhenRadarIsUnavailable" classname="be.sportgreenmoove.app.services.ActiveRideStartupTest" time="0.011" />
+  <testcase name="startTrackedRideStartsRadarAndNativeFallbackBeforeReturningLiveNotice" classname="be.sportgreenmoove.app.services.ActiveRideStartupTest" time="0.008" />
+  <testcase name="endTrackedRideStopsNativeFallbackAndRadarTracking" classname="be.sportgreenmoove.app.services.ActiveRideStartupTest" time="0.002" />
+  <testcase name="signOutDoesNotInitializeDisabledFacebookSdk" classname="be.sportgreenmoove.app.services.FacebookSignOutTest" time="0.002" />
+  <testcase name="narrowLargeTextKeepsSendingAndConfirmationInsideTheResult" classname="be.sportgreenmoove.app.ui.BookingFeedbackLayoutTest" time="3.894" />
+  <testcase name="retryIsARealCommandAndCannotRemainEnabledWhileAnotherRequestIsSending" classname="be.sportgreenmoove.app.ui.BookingFeedbackLayoutTest" time="1.987" />
+  <testcase name="reconstructedSemanticsCannotTurnAParentWidthIntoAClippedLabelClaim" classname="be.sportgreenmoove.app.ui.BookingFeedbackLayoutTest" time="1.537" />
+  <testcase name="narrowLargeTextKeepsTheReviewMessageAndSearchActionInsideTheScreen" classname="be.sportgreenmoove.app.ui.BookingReviewFlowTest" time="3.324" />
+  <testcase name="anUnrelatedFailureDoesNotPretendTheTripChanged" classname="be.sportgreenmoove.app.ui.BookingReviewFlowTest" time="2.144" />
+  <testcase name="aChangedTripRemovesTheOldActionUntilAFreshSearch" classname="be.sportgreenmoove.app.ui.BookingReviewFlowTest" time="2.676" />
+  <testcase name="inaccessibleDirectoryDoesNotPretendThereAreNoConversations" classname="be.sportgreenmoove.app.ui.ConversationDirectoryFlowTest" time="1.826" />
+  <testcase name="startsAnEmptyConversationFromItsReservationWithoutAnInventedFirstMessage" classname="be.sportgreenmoove.app.ui.ConversationDirectoryFlowTest" time="3.463" />
+  <testcase name="aConversationOpensSendsAndKeepsItsDraftWhenReturningToTheInbox" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="4.788" />
+  <testcase name="oversizedDraftsAndInaccessibleThreadsCannotSend" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="2.992" />
+  <testcase name="aRejectedRetryDoesNotReplaceAnUnconfirmedSend" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="4.307" />
+  <testcase name="uncertainSendsKeepTheirIdentityAndTextUntilTheRetryIsConfirmed" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="4.578" />
+  <testcase name="aDefinitiveRejectionLetsTheUserEditAndSubmitANewIntent" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="5.09" />
+  <testcase name="anUnavailableThreadShowsRetryInsteadOfAFabricatedEmptyConversation" classname="be.sportgreenmoove.app.ui.ConversationFlowTest" time="1.812" />
+  <testcase name="narrowLargeTextRowsKeepActionsInsideTheScreen" classname="be.sportgreenmoove.app.ui.GroupsLayoutTest" time="2.258" />
+  <testcase name="anErrorOffersRefreshWithoutStaleJoinControls" classname="be.sportgreenmoove.app.ui.GroupsLayoutTest" time="1.546" />
+  <testcase name="loadingAndErrorsCannotLookLikeAConfirmedEmptyList" classname="be.sportgreenmoove.app.ui.GroupsLayoutTest" time="1.505" />
+  <testcase name="dialogInputUsesItsOwnFocusedWindowAndRealKeyboard" classname="be.sportgreenmoove.app.ui.InputWindowReadinessTest" time="3.579" />
+  <testcase name="activityInputUsesItsOwnFocusedWindowAndRealKeyboard" classname="be.sportgreenmoove.app.ui.InputWindowReadinessTest" time="3.002" />
+  <testcase name="impactBackReturnsToProfile" classname="be.sportgreenmoove.app.ui.LedgerNavigationFlowTest" time="2.053" />
+  <testcase name="rewardsBackReturnsToProfile" classname="be.sportgreenmoove.app.ui.LedgerNavigationFlowTest" time="1.678" />
+  <testcase name="disposableEmailSignupReachesAuthenticatedHome" classname="be.sportgreenmoove.app.ui.LiveBackendAuthFlowTest" time="1.595">
+    <skipped />
+  </testcase>
+  <testcase name="isolatedParentLoginCalendarSupportAndSessionRestart" classname="be.sportgreenmoove.app.ui.LocalAppFlowTest" time="0.051">
+    <skipped />
+  </testcase>
+  <testcase name="parentCancelsPendingAndApprovedAndDriverDeclinesWithConfirmation" classname="be.sportgreenmoove.app.ui.LocalBookingDecisionsFlowTest" time="0.006">
+    <skipped />
+  </testcase>
+  <testcase name="recoverUnconfirmedBooking" classname="be.sportgreenmoove.app.ui.LocalBookingResponseLossTest" time="0.115">
+    <skipped />
+  </testcase>
+  <testcase name="prepareUnconfirmedBooking" classname="be.sportgreenmoove.app.ui.LocalBookingResponseLossTest" time="0.0">
+    <skipped />
+  </testcase>
+  <testcase name="theParentRetriesALostReplyAndTheConfirmedResultHasNoSecondSubmissionAction" classname="be.sportgreenmoove.app.ui.LocalBookingResponseLossUiTest" time="1.448">
+    <skipped />
+  </testcase>
+  <testcase name="everyRequiredConditionMustHoldInTheSameRecordedObservation" classname="be.sportgreenmoove.app.ui.LocalCellularObservationTest" time="0.001" />
+  <testcase name="activeCellularDoesNotMeanTheOldWifiNetworkHasLeftTheObservation" classname="be.sportgreenmoove.app.ui.LocalCellularObservationTest" time="0.0" />
+  <testcase name="twoWayConversationDraftHistoryLiveDeliveryAndAccessControl" classname="be.sportgreenmoove.app.ui.LocalChatFlowTest" time="0.127">
+    <skipped />
+  </testcase>
+  <testcase name="networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage" classname="be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest" time="0.001">
+    <skipped />
+  </testcase>
+  <testcase name="reopenConfirmedConversation" classname="be.sportgreenmoove.app.ui.LocalChatProcessRestartTest" time="0.053">
+    <skipped />
+  </testcase>
+  <testcase name="prepareConfirmedConversation" classname="be.sportgreenmoove.app.ui.LocalChatProcessRestartTest" time="0.025">
+    <skipped />
+  </testcase>
+  <testcase name="committedMessageSurvivesALostReplyAndRejectedRetryWithoutDuplication" classname="be.sportgreenmoove.app.ui.LocalChatResponseLossTest" time="1.486">
+    <skipped />
+  </testcase>
+  <testcase name="discoversOldConversationsAndStartsTheFirstExchangeFromAReservation" classname="be.sportgreenmoove.app.ui.LocalConversationDirectoryFlowTest" time="0.002">
+    <skipped />
+  </testcase>
+  <testcase name="driverApprovesPendingBookingAndSignsOut" classname="be.sportgreenmoove.app.ui.LocalDriverFlowTest" time="0.006">
+    <skipped />
+  </testcase>
+  <testcase name="bothActualNetworksAndWifiDefaultAreRequiredInTheRecordedObservation" classname="be.sportgreenmoove.app.ui.LocalInitialNetworkObservationTest" time="0.001" />
+  <testcase name="enabledWifiWithOnlyCellularInternetIsNotPreparedOrRestored" classname="be.sportgreenmoove.app.ui.LocalInitialNetworkObservationTest" time="0.007" />
+  <testcase name="landscapeLoginScrollsToInputsAndSubmit" classname="be.sportgreenmoove.app.ui.LocalLandscapeLoginTest" time="0.0">
+    <skipped />
+  </testcase>
+  <testcase name="requestDecisionRefreshRerequestRestartAndAnotherAccount" classname="be.sportgreenmoove.app.ui.LocalMembershipFlowTest" time="0.029">
+    <skipped />
+  </testcase>
+  <testcase name="nativeGatewayPersistsTheSelectedTwoSeats" classname="be.sportgreenmoove.app.ui.LocalMultiSeatSdkTest" time="0.009">
+    <skipped />
+  </testcase>
+  <testcase name="bothRequestsAreReleasedEvenWhenRestorationAndOneReleaseFail" classname="be.sportgreenmoove.app.ui.LocalNetworkCleanupTest" time="0.003" />
+  <testcase name="requestSetupFailureIsNotReplacedByCleanupFailure" classname="be.sportgreenmoove.app.ui.LocalNetworkCleanupTest" time="0.0" />
+  <testcase name="driverCompletesRideAndParentSubmitsReview" classname="be.sportgreenmoove.app.ui.LocalRideFlowTest" time="0.03">
+    <skipped />
+  </testcase>
+  <testcase name="savedThemeIsRestoredInANewAppProcess" classname="be.sportgreenmoove.app.ui.LocalThemeRestartTest" time="0.001">
+    <skipped />
+  </testcase>
+  <testcase name="driverCancelsAndParentSeesClosedReservationsAndPendingRefund" classname="be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest" time="0.0">
+    <skipped />
+  </testcase>
+  <testcase name="twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip" classname="be.sportgreenmoove.app.ui.LocalTripChangeFlowTest" time="0.002">
+    <skipped />
+  </testcase>
+  <testcase name="emptySearchDistinguishesInitialAndCompletedSearchWithUnselectedConsent" classname="be.sportgreenmoove.app.ui.LocalUiRegressionTest" time="1.956" />
+  <testcase name="calendarFiltersTripsAndNavigatesAcrossMonths" classname="be.sportgreenmoove.app.ui.LocalUiRegressionTest" time="1.926" />
+  <testcase name="busyDriverRowsDisableBothDecisions" classname="be.sportgreenmoove.app.ui.ReservationActionsUiTest" time="1.296" />
+  <testcase name="parentCancellationRequiresConfirmationAndFitsTheNarrowContentColumn" classname="be.sportgreenmoove.app.ui.ReservationActionsUiTest" time="2.643" />
+  <testcase name="observersHaveStatusesWithoutDriverActions" classname="be.sportgreenmoove.app.ui.RideAuthorityFlowTest" time="2.829" />
+  <testcase name="completedPassengerCannotBeConfirmedAgain" classname="be.sportgreenmoove.app.ui.RideAuthorityFlowTest" time="2.119" />
+  <testcase name="driverCannotDropOffOrCompleteBeforePickup" classname="be.sportgreenmoove.app.ui.RideAuthorityFlowTest" time="3.8" />
+  <testcase name="errorsTakePriorityOverAnOlderSuccessMessage" classname="be.sportgreenmoove.app.ui.RuntimeNoticeLayoutTest" time="1.677" />
+  <testcase name="messagesReserveSpaceAndRemainDismissible" classname="be.sportgreenmoove.app.ui.RuntimeNoticeLayoutTest" time="3.677" />
+  <testcase name="eachOptionChangeRemovesResultsAndRejectsThePreviousBookingAction" classname="be.sportgreenmoove.app.ui.SearchCriteriaFlowTest" time="11.24" />
+  <testcase name="navigationRetainsOptionsAndBookingUsesTheCompletedSelection" classname="be.sportgreenmoove.app.ui.SearchCriteriaFlowTest" time="6.768" />
+  <testcase name="publishSubmitFailureShowsFriendlyNetworkCopy" classname="be.sportgreenmoove.app.ui.SearchPublicationActionFlowTest" time="2.392" />
+  <testcase name="publishSubmitActionCreatesBackendDraft" classname="be.sportgreenmoove.app.ui.SearchPublicationActionFlowTest" time="1.696" />
+  <testcase name="searchActionsDispatchSelectedRideData" classname="be.sportgreenmoove.app.ui.SearchPublicationActionFlowTest" time="2.366" />
+  <testcase name="aNewSessionCannotReceiveThePreviousSearchStateOrPendingCallbacks" classname="be.sportgreenmoove.app.ui.SearchSessionFlowTest" time="4.988" />
+  <testcase name="editingASelectedPlaceCannotReuseItsOldCoordinates" classname="be.sportgreenmoove.app.ui.SearchSessionFlowTest" time="4.034" />
+  <testcase name="failedRestorationWaitsForExplicitRetryAndDoesNotPublishSignedOutState" classname="be.sportgreenmoove.app.ui.SessionRestorationFlowTest" time="2.087" />
+  <testcase name="pendingRestorationHasNoLoginRetryOrDisconnectActions" classname="be.sportgreenmoove.app.ui.SessionRestorationFlowTest" time="1.121" />
+  <testcase name="disconnectOnlyOccursAfterItsActualAction" classname="be.sportgreenmoove.app.ui.SessionRestorationFlowTest" time="1.34" />
+  <testcase name="narrowLargeTextFailureKeepsBothActionsReachable" classname="be.sportgreenmoove.app.ui.SessionRestorationFlowTest" time="1.885" />
+  <testcase name="activeRideStaleLocationShowsSafetyWarning" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="5.177" />
+  <testcase name="activeRideActionsDispatchPassengerAndSessionCallbacks" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="7.221" />
+  <testcase name="ratingActionSubmitsSelectedReviewScore" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="2.044" />
+  <testcase name="homeDashboardActionsDispatchTopLevelNavigation" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="2.466" />
+  <testcase name="groupJoinActionDispatchesSelectedClub" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.731" />
+  <testcase name="supportReportActionCreatesValidatedReport" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="3.211" />
+  <testcase name="paymentActionDispatchesSelectedBooking" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.634" />
+  <testcase name="activeRideResumeCardOpensLiveRideAfterAppRefresh" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.444" />
+  <testcase name="bookingApprovalActionDispatchesSelectedRequest" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.862" />
+  <testcase name="driverConnectActionDispatchesOnboardingCallback" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.971" />
+  <testcase name="rewardsWithdrawRoutesDriverToPayments" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.601" />
+  <testcase name="rewardsWithdrawRequiresDriverRole" classname="be.sportgreenmoove.app.ui.SportsGreenMooveActionFlowTest" time="1.832" />
+  <testcase name="secondaryPlanFlowsExposeNativeUiActions" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="2.105" />
+  <testcase name="bottomNavigationDispatchesTopLevelUserFlowDestinations" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="2.458" />
+  <testcase name="messagesChatAndRatingFlowsExposeNativeUiActions" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="1.503" />
+  <testcase name="activeRideSafetyFlowExposesNativeUiActions" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="5.882" />
+  <testcase name="authFlowExposesNativeUiActions" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="1.445" />
+  <testcase name="activeRidePermissionGateShowsBackgroundLocationDisclosureBeforeOsPrompt" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="2.526" />
+  <testcase name="profileRoleSelectorOnlyShowsGrantedRoles" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="1.344" />
+  <testcase name="publishingSearchAndBookingFlowsExposeNativeUiActions" classname="be.sportgreenmoove.app.ui.SportsGreenMooveUiFlowTest" time="2.404" />
+  <testcase name="capturesStoreReviewUserFlowScreenshots" classname="be.sportgreenmoove.app.ui.StoreReviewScreenshotTest" time="13.382" />
+  <testcase name="cancelledHistoryExposesItsStatusWithoutADisabledTripAction" classname="be.sportgreenmoove.app.ui.TripCancellationFlowTest" time="1.218" />
+  <testcase name="largeTextConfirmationRecoversUnknownOutcomeWithNoSecondWrite" classname="be.sportgreenmoove.app.ui.TripCancellationFlowTest" time="4.517" />
+  <testcase name="onlyTheOwningDriverCanOpenCancellationAndItDoesNotStartARide" classname="be.sportgreenmoove.app.ui.TripCancellationFlowTest" time="2.918" />
+  <testcase name="agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="12.279" />
+  <testcase name="refusalKeepsTheInitialTripWithoutCancellingTheBooking" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="9.908">
+    <failure>java.lang.AssertionError: Failed waiting for PixelCopy!
+at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmapFromPixelCopy(WindowCapture.android.kt:157)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmap(WindowCapture.android.kt:135)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0$0(WindowCapture.android.kt:51)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs(Unknown Source:0)
+at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.withDrawingEnabled(WindowCapture.android.kt:89)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0(WindowCapture.android.kt:47)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A(Unknown Source:0)
+at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.runWithRetryWhenNoData(WindowCapture.android.kt:64)
+at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage(WindowCapture.android.kt:45)
+at androidx.compose.ui.test.AndroidImageHelpers_androidKt.captureToImage(AndroidImageHelpers.android.kt:101)
+at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi(LocalUiCapture.kt:20)
+at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$default(LocalUiCapture.kt:12)
+at be.sportgreenmoove.app.ui.TripChangeFlowTest.capture(TripChangeFlowTest.kt:179)
+at be.sportgreenmoove.app.ui.TripChangeFlowTest.refusalKeepsTheInitialTripWithoutCancellingTheBooking(TripChangeFlowTest.kt:121)
+</failure>
+  </testcase>
+  <testcase name="largeTextParentSeesBothVersionsAndAcceptsWithoutApplying" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="9.966" />
+  <testcase name="provenApplicationNeverShowsTheStaleUnappliedMessageWhenRefreshFails" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="8.268" />
+  <testcase name="refreshRecoversAStoredProposalWithoutAnotherWriteWhenBothRepliesWereLost" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="9.774" />
+  <testcase name="parentOpensFromAffectedReservationAndKeepsTheRecordedRefusalVisible" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="9.845" />
+  <testcase name="owningDriverProposesChangedTermsWithoutStartingTheRide" classname="be.sportgreenmoove.app.ui.TripChangeFlowTest" time="10.836" />
+</testsuite>

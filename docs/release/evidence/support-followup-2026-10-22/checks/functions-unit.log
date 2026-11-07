@@ -1,0 +1,15 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run --run src/__tests__/support-reports.test.ts src/__tests__/reports.test.ts
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+
+ ✓ src/__tests__/reports.test.ts (2 tests) 3ms
+ ✓ src/__tests__/support-reports.test.ts (5 tests) 10ms
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  15:24:02
+   Duration  1.25s (transform 219ms, setup 0ms, collect 857ms, tests 13ms, environment 0ms, prepare 176ms)
+

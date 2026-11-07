@@ -1,0 +1,60 @@
+{
+  "scope": "typed-install-session-diagnostic-not-cause-or-flow-verification",
+  "sections": [
+    {
+      "kind": "active",
+      "sessions": []
+    },
+    {
+      "kind": "finalized",
+      "sessions": []
+    },
+    {
+      "kind": "historical",
+      "sessions": [
+        {
+          "id": 351504411,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792426775230,
+          "updatedMillis": 1792426786387,
+          "committedMillis": 1792426780742,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        },
+        {
+          "id": 199325415,
+          "mOriginalInstallerPackageName": "null",
+          "installerPackageName": "null",
+          "installInitiatingPackageName": "com.android.shell",
+          "createdMillis": 1792426786929,
+          "updatedMillis": 1792426788938,
+          "committedMillis": 1792426787508,
+          "appPackageName": "null",
+          "mCommitted": true,
+          "mSealed": true,
+          "mDestroyed": true,
+          "mFinalStatus": 1,
+          "mParentSessionId": -1,
+          "mSessionApplied": true,
+          "mSessionFailed": false,
+          "mSessionReady": false,
+          "mSessionErrorCode": 1
+        }
+      ]
+    },
+    {
+      "kind": "legacy",
+      "sessions": []
+    }
+  ]
+}

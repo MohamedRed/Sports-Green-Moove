@@ -1,0 +1,17 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cdb64c0f0c864c07e7c8fbe6fd51bcba",
+  "scope": "owned-runtime-disposal-not-flow-verification",
+  "trialPassed": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

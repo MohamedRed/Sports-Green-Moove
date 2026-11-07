@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-19T17:35:46.491Z" hostname="MRRs-MacBook-Air.local" time="0.015">
+  <properties/>
+  <testcase name="ownedHistoryDoesNotNeedActiveClubChoicesAndLoadingNeverWrites" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.003"/>
+  <testcase name="revokedOrChangedIdentityCannotRetainAnOldAction" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.001"/>
+  <testcase name="missingCapabilitiesNeverProduceAWrite" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.0"/>
+  <testcase name="confirmationUsesOnlyTheExactFreshlyReadObjectAndWithdrawsOnce" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.002"/>
+  <testcase name="aLostReplyNeverResubmitsAndOnlyAnExplicitReadRevealsTheCommittedWithdrawal" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.001"/>
+  <testcase name="backgroundingAndAccountReplacementClearPrivateRowsAndIgnoreLateReplies" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.003"/>
+  <testcase name="anAcknowledgedWithdrawalIsNotReportedAsUnsentWhenItsReadbackFails" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.001"/>
+  <testcase name="simultaneousConfirmationsAndPaginationCannotDuplicateAWrite" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.001"/>
+  <testcase name="failedRefreshClearsVisibleRowsAndDoesNotRetainAnOldConfirmation" classname="be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

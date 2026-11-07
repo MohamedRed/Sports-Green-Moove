@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e6f16834f97c8f08095cdcdea11f3e6a",
+  "recordedAt": "2026-10-26T21:55:55.015Z",
+  "result": {
+    "phase": "draft-returned",
+    "status": "passed",
+    "sharedRecordsUnchanged": true,
+    "accountClaimsUnchanged": true,
+    "liveDataUnchanged": true,
+    "proposalCreated": false,
+    "physicalUiProvenByThisCheckpoint": false,
+    "processStopProvenByThisCheckpoint": false,
+    "draftStorageProvenByThisCheckpoint": false
+  }
+}

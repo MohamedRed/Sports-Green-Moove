@@ -1,0 +1,353 @@
+
+> sports-green-moove@0.1.0 test:native-tracking-startup
+> node scripts/qa/run-local-native-startup-ui.mjs emulator-5572
+
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Starting emulators: auth, functions, firestore, database
+i  emulators: Detected demo project ID "demo-sgm-local-qa", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  database: Database Emulator logging to database-debug.log
+i  functions: Watching "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-eeffzR/functions" for Cloud Functions...
+⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+✔  functions: Using node@22 from host.
+Serving at port 8998
+
+✔  functions: Loaded functions definitions from source: applyTripChanges, approveBooking, cancelBooking, cancelTrip, createReport, createRidePaymentIntent, createStripeAccount, createStripeAccountLink, createTrip, createTripChangePaymentIntent, declineBooking, endRide, getActiveRide, getChatConversation, getEmergencyContact, getInbox, getMyGuardianVerification, getOwnedTeamEnrollmentView, getRidePaymentStatus, getTeamEnrollmentView, getTripCancellation, getTripChangeApplicationQuote, getTripChangeHistory, getTripChangePaymentStatus, getTripChangePreview, getTripChangeReview, initializeUserProfile, issueRewardPayout, listChatBookingOptions, listChatConversations, listClubGuardianVerifications, listClubMemberships, listDriverBookingRequests, listGuardianParentOptions, listGuardianReviewClubs, listMembershipReviewClubs, listMyGuardianVerifications, listOwnedTeamEnrollments, listReservations, listTeamEnrollmentOptions, listTeamEnrollmentReviewTeams, listTeamEnrollments, listTrips, markChatMessagesRead, markDropoff, markPickup, proposeTripChanges, radarWebhook, requestBooking, requestClubMembership, requestTeamEnrollment, resolveBookingRequest, resolvePlace, resolveTripChangeProposal, respondToTripChanges, reviewClubMembership, reviewReport, saveEmergencyContact, searchTrips, sendChatMessage, setUserRoles, startRide, stripeConnectRefresh, stripeConnectReturn, stripeWebhook, submitRating, suggestPlaces, transitionGuardianVerification, transitionTeamEnrollment, withdrawTripChanges, writeLocationBatch.
+✔  functions[us-central1-applyTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/applyTripChanges).
+✔  functions[us-central1-approveBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/approveBooking).
+✔  functions[us-central1-cancelBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelBooking).
+✔  functions[us-central1-cancelTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelTrip).
+✔  functions[us-central1-createReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createReport).
+✔  functions[us-central1-createRidePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createRidePaymentIntent).
+✔  functions[us-central1-createStripeAccount]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccount).
+✔  functions[us-central1-createStripeAccountLink]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccountLink).
+✔  functions[us-central1-createTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTrip).
+✔  functions[us-central1-createTripChangePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTripChangePaymentIntent).
+✔  functions[us-central1-declineBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/declineBooking).
+✔  functions[us-central1-endRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/endRide).
+✔  functions[us-central1-getActiveRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getActiveRide).
+✔  functions[us-central1-getChatConversation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChatConversation).
+✔  functions[us-central1-getEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getEmergencyContact).
+✔  functions[us-central1-getInbox]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getInbox).
+✔  functions[us-central1-getMyGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getMyGuardianVerification).
+✔  functions[us-central1-getOwnedTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getOwnedTeamEnrollmentView).
+✔  functions[us-central1-getRidePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getRidePaymentStatus).
+✔  functions[us-central1-getTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTeamEnrollmentView).
+✔  functions[us-central1-getTripCancellation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripCancellation).
+✔  functions[us-central1-getTripChangeApplicationQuote]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeApplicationQuote).
+✔  functions[us-central1-getTripChangeHistory]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeHistory).
+✔  functions[us-central1-getTripChangePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePaymentStatus).
+✔  functions[us-central1-getTripChangePreview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePreview).
+✔  functions[us-central1-getTripChangeReview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeReview).
+✔  functions[us-central1-initializeUserProfile]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/initializeUserProfile).
+✔  functions[us-central1-issueRewardPayout]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/issueRewardPayout).
+✔  functions[us-central1-listChatBookingOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatBookingOptions).
+✔  functions[us-central1-listChatConversations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatConversations).
+✔  functions[us-central1-listClubGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubGuardianVerifications).
+✔  functions[us-central1-listClubMemberships]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubMemberships).
+✔  functions[us-central1-listDriverBookingRequests]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listDriverBookingRequests).
+✔  functions[us-central1-listGuardianParentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianParentOptions).
+✔  functions[us-central1-listGuardianReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianReviewClubs).
+✔  functions[us-central1-listMembershipReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMembershipReviewClubs).
+✔  functions[us-central1-listMyGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMyGuardianVerifications).
+✔  functions[us-central1-listOwnedTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listOwnedTeamEnrollments).
+✔  functions[us-central1-listReservations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listReservations).
+✔  functions[us-central1-listTeamEnrollmentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentOptions).
+✔  functions[us-central1-listTeamEnrollmentReviewTeams]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentReviewTeams).
+✔  functions[us-central1-listTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollments).
+✔  functions[us-central1-listTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTrips).
+✔  functions[us-central1-markChatMessagesRead]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markChatMessagesRead).
+✔  functions[us-central1-markDropoff]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markDropoff).
+✔  functions[us-central1-markPickup]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markPickup).
+✔  functions[us-central1-proposeTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/proposeTripChanges).
+✔  functions[us-central1-radarWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/radarWebhook).
+✔  functions[us-central1-requestBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestBooking).
+✔  functions[us-central1-requestClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestClubMembership).
+✔  functions[us-central1-requestTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestTeamEnrollment).
+✔  functions[us-central1-resolveBookingRequest]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveBookingRequest).
+✔  functions[us-central1-resolvePlace]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolvePlace).
+✔  functions[us-central1-resolveTripChangeProposal]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveTripChangeProposal).
+✔  functions[us-central1-respondToTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/respondToTripChanges).
+✔  functions[us-central1-reviewClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewClubMembership).
+✔  functions[us-central1-reviewReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewReport).
+✔  functions[us-central1-saveEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/saveEmergencyContact).
+✔  functions[us-central1-searchTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/searchTrips).
+✔  functions[us-central1-sendChatMessage]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendChatMessage).
+✔  functions[us-central1-setUserRoles]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/setUserRoles).
+✔  functions[us-central1-startRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/startRide).
+✔  functions[us-central1-stripeConnectRefresh]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectRefresh).
+✔  functions[us-central1-stripeConnectReturn]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectReturn).
+✔  functions[us-central1-stripeWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeWebhook).
+✔  functions[us-central1-submitRating]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/submitRating).
+✔  functions[us-central1-suggestPlaces]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/suggestPlaces).
+✔  functions[us-central1-transitionGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionGuardianVerification).
+✔  functions[us-central1-transitionTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionTeamEnrollment).
+✔  functions[us-central1-withdrawTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/withdrawTripChanges).
+✔  functions[us-central1-writeLocationBatch]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/writeLocationBatch).
+i  Running script: "/Users/mrr/.hermes/node/bin/node" "/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-native-startup-ui.mjs"
+i  functions: Beginning execution of "us-central1-createTrip"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-createTrip" in 131.860791ms
+i  functions: Beginning execution of "us-central1-createTrip"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-createTrip" in 13.657833ms
+i  functions: Beginning execution of "us-central1-requestBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestBooking" in 113.26375ms
+i  functions: Beginning execution of "us-central1-approveBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-approveBooking" in 117.634541ms
+i  functions: Beginning execution of "us-central1-startRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-startRide" in 384.498708ms
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:processDebugAndroidTestManifest UP-TO-DATE
+> Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+> Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :app:processDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:compileDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugAndroidTestResources UP-TO-DATE
+> Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :app:processDebugAndroidTestResources UP-TO-DATE
+> Task :app:javaPreCompileDebugAndroidTest UP-TO-DATE
+> Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
+> Task :app:compileDebugAndroidTestShaders NO-SOURCE
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets UP-TO-DATE
+> Task :app:compressDebugAndroidTestAssets UP-TO-DATE
+> Task :app:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+> Task :app:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebugAndroidTest UP-TO-DATE
+> Task :app:mergeLibDexDebugAndroidTest UP-TO-DATE
+> Task :app:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+> Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebugAndroidTest UP-TO-DATE
+> Task :app:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:mergeProjectDexDebug
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebug
+> Task :app:compileDebugAndroidTestKotlin
+> Task :app:compileDebugAndroidTestJavaWithJavac UP-TO-DATE
+> Task :app:dexBuilderDebugAndroidTest
+> Task :app:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugAndroidTestJavaRes UP-TO-DATE
+> Task :app:mergeDebugAndroidTestJavaResource UP-TO-DATE
+> Task :app:mergeProjectDexDebugAndroidTest
+> Task :app:packageDebugAndroidTest
+> Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+> Task :app:assembleDebugAndroidTest
+
+BUILD SUCCESSFUL in 39s
+70 actionable tasks: 10 executed, 60 up-to-date
+Performing Streamed Install
+Success
+Performing Streamed Install
+Success
+Disposable credentials transferred to the local-only app sandbox.
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 1252.8205ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 937.239834ms
+i  functions: Beginning execution of "us-central1-listDriverBookingRequests"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listDriverBookingRequests" in 406.832291ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 386.919709ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 365.156584ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 89.066958ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 212.193042ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 309.692166ms
+i  functions: Finished "us-central1-initializeUserProfile" in 1155.178417ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 87.172583ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 51.585708ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 51.054375ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 63.081416ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 29.032625ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 79.214625ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 91.540792ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 118.787542ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 47.835875ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 88.733375ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 106.016125ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 55.1095ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 125.219208ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 131.302667ms
+i  functions: Beginning execution of "us-central1-writeLocationBatch"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-writeLocationBatch" in 58.722292ms
+i  functions: Beginning execution of "us-central1-getActiveRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getActiveRide" in 153.901541ms
+
+be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest:.
+
+Time: 52.522
+
+OK (1 test)
+
+
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+Error: 2 UNKNOWN: 
+    at callErrorFromStatus (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/call.js:32:19)
+    at Object.onReceiveStatus (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/client.js:193:76)
+    at Object.onReceiveStatus (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:367:141)
+    at Object.onReceiveStatus (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:327:181)
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/resolving-call.js:135:78
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+for call at
+    at ServiceClientImpl.makeUnaryRequest (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/client.js:161:32)
+    at ServiceClientImpl.<anonymous> (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/node_modules/@grpc/grpc-js/build/src/make-client.js:105:19)
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@google-cloud/firestore/build/src/v1/firestore_client.js:242:33
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/normalCalls/timeout.js:44:16
+    at repeat (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/normalCalls/retries.js:82:25)
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/normalCalls/retries.js:125:13
+    at OngoingCallPromise.call (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/call.js:67:27)
+    at NormalApiCaller.call (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/normalCalls/normalApiCaller.js:34:19)
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/google-gax/build/src/createApiCall.js:112:30
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+Caused by: Error
+    at _firestore._traceUtil.startActiveSpan (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@google-cloud/firestore/build/src/write-batch.js:438:27)
+    at /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@google-cloud/firestore/build/src/telemetry/enabled-trace-util.js:110:30
+    at NoopContextManager.with (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:14:19)
+    at ContextAPI.with (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@opentelemetry/api/build/src/api/context.js:51:46)
+    at NoopTracer.startActiveSpan (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:54:31)
+    at ProxyTracer.startActiveSpan (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:27:24)
+    at EnabledTraceUtil.startActiveSpan (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@google-cloud/firestore/build/src/telemetry/enabled-trace-util.js:102:28)
+    at WriteBatch.commit (/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/node_modules/@google-cloud/firestore/build/src/write-batch.js:436:43)
+    at cleanupRideObservationFixture (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-ride-observation-fixture.mjs:51:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  code: 2,
+  details: '',
+  metadata: Metadata {
+    internalRepr: Map(1) { 'content-type' => [ 'application/grpc' ] },
+    opaqueData: Map(0) {},
+    options: {}
+  },
+  note: 'Exception occurred in retry method that was not classified as transient'
+}
+
+Node.js v22.22.3
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  functions: Stopping Functions Emulator
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  eventarc: Stopping Eventarc Emulator
+i  tasks: Stopping Cloud Tasks Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script ""/Users/mrr/.hermes/node/bin/node" "/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-native-startup-ui.mjs"" exited with code 1
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:26
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+                                   ^
+
+Error: /Users/mrr/.hermes/node/bin/node failed (1)
+    at Object.run (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:26:36)
+    at runEmulatorEntry (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:54:11)
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/run-local-native-startup-ui.mjs:29:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.3

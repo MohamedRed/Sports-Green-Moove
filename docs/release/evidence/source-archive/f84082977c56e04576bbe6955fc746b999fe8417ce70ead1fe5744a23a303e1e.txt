@@ -1,0 +1,38 @@
+package be.sportgreenmoove.app.ui
+
+import android.graphics.Bitmap
+import android.os.Build
+import androidx.compose.ui.platform.ViewRootForTest
+import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.onRoot
+import androidx.test.platform.app.InstrumentationRegistry
+import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+
+internal fun captureNativeStartupDisplay(compose: ComposeTestRule, name: String) {
+    check(Build.VERSION.SDK_INT >= 29)
+    check(Regex("local-native-startup-[a-z-]+\\.png").matches(name))
+    compose.waitForIdle()
+    val view = checkNotNull(compose.onRoot().fetchSemanticsNode().root as? ViewRootForTest).view
+    val frame = CountDownLatch(1)
+    val committed = Runnable { frame.countDown() }
+    val observer = compose.runOnUiThread {
+        check(view.isAttachedToWindow && view.isHardwareAccelerated)
+        view.viewTreeObserver.also { it.registerFrameCommitCallback(committed); view.invalidate() }
+    }
+    try { check(frame.await(10, TimeUnit.SECONDS)) { "Native startup frame did not commit" } }
+    finally { compose.runOnUiThread { if (observer.isAlive) observer.unregisterFrameCommitCallback(committed) } }
+    val instrumentation = InstrumentationRegistry.getInstrumentation()
+    val bitmap = checkNotNull(instrumentation.uiAutomation.takeScreenshot()) { "Native startup display capture missing" }
+    try {
+        check(bitmap.width >= 300 && bitmap.height > bitmap.width)
+        val colors = mutableSetOf<Int>()
+        for (x in 0 until bitmap.width step 16) for (y in 0 until bitmap.height step 16) colors += bitmap.getPixel(x, y)
+        check(colors.size > 16) { "Blank native startup capture rejected" }
+        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
+        check(directory.isDirectory || directory.mkdirs())
+        val output = File(directory, name); check(!output.exists())
+        output.outputStream().use { check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
+    } finally { bitmap.recycle() }
+}

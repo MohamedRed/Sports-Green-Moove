@@ -1,0 +1,88 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9a9c1b943b9415cf245f3fb79aa8d37f",
+  "testedAt": "2026-10-22T11:47:57.444Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "statuses": [
+        "requested",
+        "requested"
+      ],
+      "noticeCount": 0,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "phase": "approved",
+      "statuses": [
+        "approved",
+        "requested"
+      ],
+      "noticeCount": 1,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "phase": "declined",
+      "statuses": [
+        "approved",
+        "declined"
+      ],
+      "noticeCount": 2,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "phase": "parent-inbox",
+      "statuses": [
+        "approved",
+        "declined"
+      ],
+      "noticeCount": 2,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "phase": "cancelled",
+      "statuses": [
+        "cancelled",
+        "declined"
+      ],
+      "noticeCount": 3,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "phase": "driver-inbox",
+      "statuses": [
+        "cancelled",
+        "declined"
+      ],
+      "noticeCount": 3,
+      "recipientIsolationVerified": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "pushDeliveryVerified": false
+    }
+  ],
+  "protectedRecordCount": 158,
+  "scope": "independent-booking-record-checkpoints-not-phone-ui-proof",
+  "adminClientClosed": true,
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "paymentExercised": false,
+  "pushDeliveryVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-booking-phone-session.mjs": "7ef2a1f73cb31691db28adadbb2501ddc9ac2a03b2964f6d10e674d99f8f96c4",
+    "scripts/qa/manual-booking-phone-checkpoints.mjs": "a8a0615b26765d71e47b3475d536970e771acc925e2cc53c14324863db9950f7",
+    "functions/src/callables/bookings.ts": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0",
+    "functions/src/callables/reservations.ts": "4a4d6916d729ed244c24adb905d0265e5ff2366b5a471b87931c3e63e8aa1ca9",
+    "functions/src/lib/bookingNotifications.ts": "c63d4bfdf2dc07d8e665c36bccffe5ccbfffc96234583df080d309903564b477"
+  }
+}

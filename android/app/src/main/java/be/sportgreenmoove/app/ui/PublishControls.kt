@@ -82,7 +82,8 @@ fun PublishToggleRow(label: String, selected: Boolean, onClick: () -> Unit) {
                 .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(999.dp))
                 .clickable(onClick = onClick),
         ) {
-            Box(Modifier.padding(start = if (selected) 22.dp else 2.dp, top = 2.dp).size(18.dp).clip(CircleShape).background(SgmColor.TextOnGreen))
+            Box(Modifier.padding(start = if (selected) 22.dp else 2.dp, top = 2.dp).size(18.dp).clip(CircleShape)
+                .background(if (selected) SgmColor.TextOnAccent else Sgm.colors.textSecondary))
         }
     }
 }
@@ -118,7 +119,7 @@ fun PublishTitle(text: String) = Text(text, style = SgmType.DisplayLG.copy(color
 @Composable
 fun PublishStepDot(value: Int, active: Boolean) {
     Box(Modifier.size(28.dp).clip(CircleShape).background(if (active) SgmColor.Green else Sgm.colors.bgCard).then(if (active) Modifier else Modifier.border(BorderStroke(1.dp, Sgm.colors.border), CircleShape)), contentAlignment = Alignment.Center) {
-        Text(value.toString(), style = SgmType.DisplayLG.copy(color = if (active) SgmColor.TextOnGreen else Sgm.colors.textMuted, fontSize = 14.sp))
+        Text(value.toString(), style = SgmType.DisplayLG.copy(color = if (active) SgmColor.TextOnAccent else Sgm.colors.textMuted, fontSize = 14.sp))
     }
 }
 

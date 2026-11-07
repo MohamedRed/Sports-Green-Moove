@@ -1,0 +1,24 @@
+{
+  "scope": "diagnostic-failed-location-order-replay-not-acceptance",
+  "accepted": false,
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f45a882b87d82e8c5cfb6dcc868f20a0",
+  "checks": [],
+  "observed": {
+    "expectedCapturedAt": 1792424954647,
+    "afterDelayedPoint": {
+      "accuracyM": 8,
+      "capturedAt": 1792424864647,
+      "lat": 50.715,
+      "lng": 4.5,
+      "rideSessionId": "imL1kLU0UzpLdorvhILH",
+      "role": "driver",
+      "source": "nativeFallback",
+      "uploadedAt": 1792424985487,
+      "userId": "sgm-qa-driver"
+    }
+  },
+  "failure": "A delayed upload must not replace a newer stored observation\n+ actual - expected\n\n  {\n    accuracyM: 8,\n+   capturedAt: 1792424864647,\n-   capturedAt: 1792424954647,\n    lat: 50.715,\n+   lng: 4.5,\n-   lng: 4.612,\n    rideSessionId: 'imL1kLU0UzpLdorvhILH',\n    role: 'driver',\n    source: 'nativeFallback',\n+   uploadedAt: 1792424985487,\n-   uploadedAt: 1792424985280,\n    userId: 'sgm-qa-driver'\n  }\n",
+  "physicalDevice": false,
+  "productionWrites": false
+}

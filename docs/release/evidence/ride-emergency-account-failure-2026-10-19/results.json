@@ -1,0 +1,39 @@
+{
+  "scope": "failed-local-native-ride-account-switch-not-completed-flow",
+  "sourceCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+  "runId": "788ab33597a64922b000ab19cd30f107",
+  "runUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39268716417",
+  "failedAt": "2026-10-19T14:39:20Z",
+  "nativeUiExecuted": true,
+  "journeyPassed": false,
+  "primarySuccessMarker": false,
+  "collectionScope": "failure-cleanup-only",
+  "observation": {
+    "scope": "active-ride-tracking-account-observation-not-flow-proof",
+    "runId": "788ab33597a64922b000ab19cd30f107",
+    "role": "parent",
+    "phase": "entry",
+    "authenticatedUid": "sgm-qa-parent",
+    "expectedRunning": false,
+    "observedRunning": true
+  },
+  "driverCapturesReviewed": true,
+  "driverDialOnlyObserved": true,
+  "parentContactJourneyExecuted": false,
+  "driverResumedTrackingVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "storeReviewAccepted": false,
+  "positionsDeliveredToParentProven": false,
+  "temporaryAdministrationRemoved": true,
+  "temporaryComponentRemoved": true,
+  "originalDeviceSettingsRestored": true,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt": "08897531ecc1a2e79978db1f39b51a25d721902b64b1e405a58489a2096c2080",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt": "937d93dec513dc57f0a35496aad91fdb19554c8f529968edd09b689a56356b9c",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "e497b0dc1c43a6a1c8ce1b307aa3320675b0f94906d1b1e9def7593182a85348",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "ac51f2a31dd9dd59ab402696ce19d754e4de2785ed49c12a554da6333b300a92",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "62f3c7618664035744fe4fe1d70c6e50205aa90ce7985c315da2c210d069d49c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "c0df122e7e4aec8dbe0d7afaaaac95a81ce36aac78c2e0f61c96aa784e8b155e"
+  }
+}

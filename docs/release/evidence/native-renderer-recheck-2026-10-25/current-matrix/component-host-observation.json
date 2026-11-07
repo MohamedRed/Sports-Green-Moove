@@ -1,0 +1,42 @@
+{
+  "scope": "sanitized-host-transport-observations-not-root-cause-or-flow-proof",
+  "phase": "component-transfer",
+  "observedAt": "2026-10-25T20:11:07.433Z",
+  "observations": [
+    {
+      "command": "version",
+      "completed": true,
+      "status": 0,
+      "signal": null,
+      "errorCode": null
+    },
+    {
+      "command": "devices -l",
+      "completed": true,
+      "status": 0,
+      "signal": null,
+      "errorCode": null
+    }
+  ],
+  "bridgeVersion": "1.0.41",
+  "platformToolsVersion": "37.0.1-15733141",
+  "emulatorStates": {
+    "device": 0,
+    "offline": 1,
+    "unauthorized": 0,
+    "other": 0
+  },
+  "daemonLog": {
+    "available": true,
+    "tailLimitBytes": 65536,
+    "signals": {
+      "killServer": 0,
+      "serverRestart": 0,
+      "transportOffline": 0,
+      "writeFailure": 0
+    }
+  },
+  "rawLogsRetained": false,
+  "deviceMutationRequested": false,
+  "retryPerformed": false
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.GroupsStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.921Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="anOlderRefreshCannotReplaceTheLatestMembership" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.002"></testcase>
+  <testcase name="initialLoadingIsNotAnEmptyResult" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.0"></testcase>
+  <testcase name="acknowledgedWriteAndFailedReadRetainTheAcknowledgementWithoutOldActions" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.002"></testcase>
+  <testcase name="concurrentRequestsAndReloadDuringSubmissionCannotDuplicateTheWrite" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.001"></testcase>
+  <testcase name="uncertainWriteRequiresAnExplicitRefreshBeforeAnotherAction" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.0"></testcase>
+  <testcase name="leavingAnAccountInvalidatesItsLateResponseAndCallback" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.001"></testcase>
+  <testcase name="cancellationDoesNotPublishOrBecomeAnError" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.002"></testcase>
+  <testcase name="closedRequestCannotReloadOrPublishInAnotherAccount" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.001"></testcase>
+  <testcase name="refreshReplacesPendingWithTheServerDecision" classname="be.sportgreenmoove.app.ui.GroupsStateTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

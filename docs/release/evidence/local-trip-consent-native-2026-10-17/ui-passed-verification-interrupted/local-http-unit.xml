@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="one-shot local requests survive a native-style host pause without replaying a POST" time="1.013784" classname="test"/>
+	<testcase name="the local-only request refuses external endpoints and cannot follow redirects" time="0.002157" classname="test"/>
+	<!-- tests 2 -->
+	<!-- suites 0 -->
+	<!-- pass 2 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 1151.868125 -->
+</testsuites>

@@ -1,0 +1,18 @@
+{
+  "scope": "failed-native-history-dialog-capture-not-complete-suite",
+  "sourceCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39250226581",
+  "tests": 154,
+  "skipped": 34,
+  "failures": 1,
+  "errors": 0,
+  "executed": 120,
+  "historyCases": 4,
+  "historyPassed": 3,
+  "historyFailed": 1,
+  "dialogCaptureSucceeded": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt": "5522d6832f0a520066ea03636662cbca8893719bda8bec50a8acdd132f586b37",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26"
+  }
+}

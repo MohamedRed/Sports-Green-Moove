@@ -1,4 +1,4 @@
-name: Android Appetize Demo
+name: Android Appetize Release Preview
 
 on:
   workflow_dispatch:
@@ -16,6 +16,7 @@ jobs:
   build-and-upload:
     name: Build Android APK and upload to Appetize
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     permissions:
       contents: read
@@ -24,6 +25,10 @@ jobs:
       APPETIZE_API_TOKEN: ${{ secrets.APPETIZE_API_TOKEN }}
       APPETIZE_PUBLIC_KEY: ${{ secrets.APPETIZE_PUBLIC_KEY }}
       FIREBASE_ANDROID_CONFIG_BASE64: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}
+      SGM_FACEBOOK_APP_ID: ${{ secrets.SGM_FACEBOOK_APP_ID }}
+      SGM_FACEBOOK_CLIENT_TOKEN: ${{ secrets.SGM_FACEBOOK_CLIENT_TOKEN }}
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+      SGM_RADAR_PUBLISHABLE_KEY: ${{ secrets.SGM_RADAR_PUBLISHABLE_KEY }}
       SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
       SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
 
@@ -37,6 +42,9 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
 
@@ -49,8 +57,21 @@ jobs:
           printf '%s' "$FIREBASE_ANDROID_CONFIG_BASE64" | base64 --decode > android/app/google-services.json
 
       - name: Build debug APK
+        timeout-minutes: 15
         working-directory: android
-        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
+        run: ./gradlew :app:assembleDebug --no-daemon --stacktrace --warning-mode all
+
+      - name: Upload Gradle diagnostics
+        if: ${{ failure() || cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-appetize-gradle-diagnostics
+          path: |
+            android/app/build/reports/**
+            android/app/build/outputs/logs/**
+            android/build/reports/**
+            ~/.gradle/daemon/**/daemon-*.out.log
+          if-no-files-found: ignore
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v7
@@ -76,7 +97,7 @@ jobs:
         if: ${{ steps.appetize.outputs.publicKey != '' }}
         run: |
           URL="https://appetize.io/app/${{ steps.appetize.outputs.publicKey }}"
-          echo "### Android Appetize demo" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Android Appetize release preview" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "$URL" >> "$GITHUB_STEP_SUMMARY"
           echo "APPETIZE_URL=$URL" >> "$GITHUB_ENV"

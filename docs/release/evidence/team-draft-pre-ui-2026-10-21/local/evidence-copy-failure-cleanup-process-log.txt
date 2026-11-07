@@ -1,0 +1,32 @@
+--------- beginning of main
+I/ActivityManager(  564): Test idle failed due to 6ca3978 4961:com.google.android.gms.persistent/u0a144 runnable at -5m59s220ms because CONTAINS_MANIFEST
+I/ActivityManager(  564): Test idle failed due to ce58108 1642:android.process.acore/u0a91 runnable at -1s854ms because NORMAL
+--------- beginning of system
+I/ActivityManager(  564): Finished processing BOOT_COMPLETED for u0
+W/ActivityManager(  564): Unable to start service Intent { act=android.intent.action.QUICKSTEP_SERVICE pkg=com.google.android.apps.nexuslauncher } U=0: not found
+I/ActivityManager(  564): Waited long enough for: ServiceRecord{f517bca u0 com.google.android.gms/.icing.service.IndexWorkerService c:com.google.android.gms}
+I/ActivityManager(  564): Test idle failed due to 6ca3978 4961:com.google.android.gms.persistent/u0a144 runnable at -4m23s988ms because CONTAINS_MANIFEST
+W/ActivityManager(  564): pid 4687 com.google.android.gms sent binder code 46 with flags 2 to frozen apps and got error -2147483646
+W/ActivityManager(  564): pid 4897 com.google.android.googlequicksearchbox:search sent binder code 46 with flags 2 to frozen apps and got error -2147483646
+W/ActivityManager(  564): pid 4533 com.google.android.partnersetup sent binder code 46 with flags 2 to frozen apps and got error -2147483646
+I/ActivityManager(  564): Test idle failed due to 876a297 1398:com.google.android.apps.wellbeing/u0a143 runnable at +1m55s714ms because CACHED
+I/ActivityManager(  564): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: start instr
+W/ActivityManager(  564): Slow operation: 241ms so far, now at startProcess: asking zygote to start proc
+W/ActivityManager(  564): Slow operation: 1316ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  564): Slow operation: 1586ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  564): Slow operation: 1587ms so far, now at startProcess: building log message
+I/ActivityManager(  564): Start proc 5171:be.sportgreenmoove.app.local/u0a208 for added application be.sportgreenmoove.app.local
+W/ActivityManager(  564): Slow operation: 1587ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  564): Slow operation: 1588ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  564): Test idle failed due to 16ed66a 564:system/1000 runnable at -2m0s134ms because PERSISTENT
+I/ActivityManager(  564): Test idle failed due to 16ed66a 564:system/1000 runnable at -2m3s287ms because PERSISTENT
+W/ActivityManager(  564): Process ProcessRecord{e3143d3 5171:be.sportgreenmoove.app.local/u0a208} failed to attach
+I/ActivityManager(  564): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst
+E/ActivityManager(  564): Unable to freeze binder for 5171: java.lang.RuntimeException: Unable to freeze/unfreeze binder
+I/ActivityManager(  564): Killing 5171:be.sportgreenmoove.app.local/u0a208 (adj -10000): stop be.sportgreenmoove.app.local due to finished inst
+I/ActivityManager(  564): Test idle failed due to 876a297 1398:com.google.android.apps.wellbeing/u0a143 runnable at +1m37s769ms because CACHED
+W/ActivityManager(  564): pid 4533 com.google.android.partnersetup sent binder code 46 with flags 2 to frozen apps and got error -2147483646
+W/ActivityManager(  564): pid 1476 com.google.android.googlequicksearchbox:interactor sent binder code 46 with flags 2 to frozen apps and got error -2147483646
+W/ActivityManager(  564): pid 564 system sent binder code 2 with flags 1 to frozen apps and got error -32
+I/ActivityManager(  564): Test idle failed due to 876a297 1398:com.google.android.apps.wellbeing/u0a143 runnable at +1m31s395ms because CACHED
+I/ActivityManager(  564): Test idle failed due to 876a297 1398:com.google.android.apps.wellbeing/u0a143 runnable at -34s183ms because NORMAL

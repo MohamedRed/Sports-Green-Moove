@@ -1,0 +1,221 @@
+Browser tab: 1621933508, Title: "App Live Dashboard", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea App Live Dashboard, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		636 container header
+			637 container
+				638 button Description: Skip to main content, ID: skip-navigation-button
+				639 text 🛠️ QA Action Labs | 29th Oct: Turn your IDE into an AI-powered QA workspace. Build QA agents live in 90 mins.
+				640 link Description: Register for free →, Value: browserstack.com/webinars/ai-powered-qa-workspace?utm_source=growth_ads&utm_medium=hellobar&utm_campaign=WBN-QA-Action-Labs-29th-Oct-2026&utm_campaigncode=701OW0000132G86YAE&utm_term=dash_app_live_hb
+				641 container Promotional notification menu
+					642 button Close promotional notification
+						643 image accept-promo-notification-cross
+				644 link Description: Browserstack logo, Help: BrowserStack, Value: app-live.browserstack.com/, ID: bs-header-logo
+				645 container Product
+					646 content list
+						647 link Description: App Live, Value: app-live.browserstack.com/start
+						648 link Description: Live, Value: live.browserstack.com/dashboard, ID: live_cross_product_explore
+						649 link Description: App Automate, Value: app-automate.browserstack.com/, ID: app_automate_cross_product_explore
+						650 link Description: Test Management, Value: test-management.browserstack.com/, ID: test_management_cross_product_explore
+						651 container more-panel-parent
+							652 pop up button (collapsed) Description: Products, Secondary Actions: Expand
+				653 content list primary-menu
+					654 link Description: Invite team, Help: Invite, Value: browserstack.com/accounts/manage-users, ID: invite-link
+					655 link Description: Plans and pricing, Help: Pricing, Value: browserstack.com/accounts/subscriptions?product=app-live
+					656 pop up button (collapsed) Description: Get help, ID: help-menu-toggle, Secondary Actions: Expand
+					657 pop up button (collapsed) Description: Account, ID: account-menu-toggle, Secondary Actions: Expand
+					658 button Description: Beamer, ID: beamer-notification-toggle
+					659 button Search
+					660 link Description: Upgrade, Value: app-live.browserstack.com/dashboard#, ID: upgrade-modal-cta__header
+			661 container product sidenav
+				662 checkbox Description: app products, Value: 1, ID: sidenav-app-products
+					663 image
+				664 link Description: Manual Testing, App Live, Subscribed, Active Product, Value: app-live.browserstack.com/
+				665 link Description: Manual Testing, App Accessibility Testing, Value: app-accessibility.browserstack.com/
+				666 link Description: Test Automation, App Automate, Value: app-automate.browserstack.com/
+				667 link Description: Test Automation, App Percy, Value: percy.io/api/auth/start-sso
+				668 link Description: Test Automation, App Low Code Automation, Value: app-low-code.browserstack.com/
+				669 link Description: Test Automation, Test Companion, Value: browserstack.com/docs/test-companion/get-started/installation-guide
+				670 link Description: Management & Optimization, Test Management, Value: test-management.browserstack.com/
+				671 link Description: Management & Optimization, Test Management for Jira, Value: marketplace.atlassian.com/apps/1741353933/browserstack-test-management-for-jira
+				672 link Description: Management & Optimization, Test Reporting & Analytics, Value: automation.browserstack.com/
+				673 link Description: Management & Optimization, Quality Engineering Insights, Value: quality-engineering-insights.browserstack.com/
+				674 link Description: API Testing, Requestly, Value: requestly.com/
+				675 button Contact Sales
+					676 image
+					677 text Contact Sales
+		44 container
+			45 container content
+				678 container app-live-dashboard-wrapper-react
+					679 container
+						680 container
+							681 container upload-app-instructions
+								682 image
+									683 text i
+								684 container
+									685 text Upload your  .ipa, .apk, .aab  files here.
+							686 button Back to Select Source
+							687 heading Uploaded Apps, Value: 3
+								688 text Uploaded Apps
+							689 button Upload button - click to upload mobile application file from your computer (supported formats: APK, AAB, or IPA)
+							690 button URL upload button - click to upload mobile application via URL from remote server or cloud storage location
+							691 container Search uploaded applications
+								692 container
+									693 text field (settable) ID: uploadedAppsSearchBar, Description: search input field for uploaded applications - search by filename, version number, or uploader name - type to filter results
+							694 pop up button (collapsed) Description: Recent (Default) , ID: sort-by-dropdown, Secondary Actions: Expand
+								695 container
+									696 text Recent (Default)
+									697 image Arrow Down Icon
+							698 pop up button (collapsed) Description: All Apps, ID: filter-by-dropdown, Secondary Actions: Expand
+								699 container
+									700 text All Apps
+									701 image Arrow Down Icon
+							702 button Delete button - permanently remove selected applications from uploaded apps list - click to delete
+								703 image Delete uploaded app
+							704 container upload-and-list
+								705 table grid
+									706 container
+										707 row sgm-support-call-trace-000ed178-dirty-20261022.apk v0.1.0 22 minutes ago by me App Settings for sgm-support-call-trace-000ed178-dirty-20261022.apk Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion
+											708 cell (selected) sgm-support-call-trace-000ed178-dirty-20261022.apk
+												782 text sgm-support-call-trace-000ed178-dirty-20261022.apk
+												783 text v0.1.0 22 minutes ago by me
+												784 container
+													785 button App Settings for sgm-support-call-trace-000ed178-dirty-20261022.apk
+														786 image Settings
+													787 checkbox (settable, integer) Description: Select sgm-support-call-trace-000ed178-dirty-20261022.apk for deletion, Value: 0
+										710 row sgm-support-recovery-isolated-bafc9d0-20261022.apk v0.1.0 2 hours ago by me Select sgm-support-recovery-isolated-bafc9d0-20261022.apk for deletion
+											711 cell (selectable) sgm-support-recovery-isolated-bafc9d0-20261022.apk
+												788 text sgm-support-recovery-isolated-bafc9d0-20261022.apk
+												789 text v0.1.0 2 hours ago by me
+												712 checkbox (settable, integer) Description: Select sgm-support-recovery-isolated-bafc9d0-20261022.apk for deletion, Value: 0
+										713 row sgm-support-followup-isolated-e23809a-20261022.apk v0.1.0 7 hours ago by me Select sgm-support-followup-isolated-e23809a-20261022.apk for deletion
+											714 cell (selectable) sgm-support-followup-isolated-e23809a-20261022.apk
+												790 text sgm-support-followup-isolated-e23809a-20261022.apk
+												791 text v0.1.0 7 hours ago by me
+												715 checkbox (settable, integer) Description: Select sgm-support-followup-isolated-e23809a-20261022.apk for deletion, Value: 0
+										716 row sgm-team-reads-isolated-458318c-20261021.apk v0.1.0 23 hours ago by me Select sgm-team-reads-isolated-458318c-20261021.apk for deletion
+											717 cell (selectable) sgm-team-reads-isolated-458318c-20261021.apk
+												792 text sgm-team-reads-isolated-458318c-20261021.apk
+												793 text v0.1.0 23 hours ago by me
+												718 checkbox (settable, integer) Description: Select sgm-team-reads-isolated-458318c-20261021.apk for deletion, Value: 0
+										719 row sgm-team-chat-isolated-70daee2-20261021.apk v0.1.0 Yesterday at 17:45 by me Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion
+											720 cell (selectable) sgm-team-chat-isolated-70daee2-20261021.apk
+												794 text sgm-team-chat-isolated-70daee2-20261021.apk
+												795 text v0.1.0 Yesterday at 17:45 by me
+												721 checkbox (settable, integer) Description: Select sgm-team-chat-isolated-70daee2-20261021.apk for deletion, Value: 0
+										722 row sgm-emergency-isolated-c710048-20261021.apk v0.1.0 Yesterday at 0:07 by me Select sgm-emergency-isolated-c710048-20261021.apk for deletion
+											723 cell (selectable) sgm-emergency-isolated-c710048-20261021.apk
+												796 text sgm-emergency-isolated-c710048-20261021.apk
+												797 text v0.1.0 Yesterday at 0:07 by me
+												724 checkbox (settable, integer) Description: Select sgm-emergency-isolated-c710048-20261021.apk for deletion, Value: 0
+										725 row app-debug.apk v0.1.0 Oct 19 at 14:58 by me Select app-debug.apk for deletion
+											726 cell (selectable) app-debug.apk
+												798 text app-debug.apk
+												799 text v0.1.0 Oct 19 at 14:58 by me
+												727 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+										728 row app-debug.apk v0.1.0 Oct 19 at 14:28 by me Select app-debug.apk for deletion
+											729 cell (selectable) app-debug.apk
+												800 text app-debug.apk
+												801 text v0.1.0 Oct 19 at 14:28 by me
+												730 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+										731 row sgm-emergency-isolated-685c508-20261019.apk v0.1.0 Oct 19 at 13:32 by me Select sgm-emergency-isolated-685c508-20261019.apk for deletion
+											732 cell (selectable) sgm-emergency-isolated-685c508-20261019.apk
+												802 text sgm-emergency-isolated-685c508-20261019.apk
+												803 text v0.1.0 Oct 19 at 13:32 by me
+												733 checkbox (settable, integer) Description: Select sgm-emergency-isolated-685c508-20261019.apk for deletion, Value: 0
+										734 row app-debug.apk v0.1.0 Oct 19 at 13:32 by me Select app-debug.apk for deletion
+											735 cell (selectable) app-debug.apk
+												804 text app-debug.apk
+												805 text v0.1.0 Oct 19 at 13:32 by me
+												736 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+										737 row app-debug.apk v0.1.0 Oct 19 at 12:59 by me Select app-debug.apk for deletion
+											738 cell (selectable) app-debug.apk
+												806 text app-debug.apk
+												807 text v0.1.0 Oct 19 at 12:59 by me
+												739 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+										740 row app-debug.apk v0.1.0 Oct 19 at 12:15 by me Select app-debug.apk for deletion
+											741 cell (selectable) app-debug.apk
+												808 text app-debug.apk
+												809 text v0.1.0 Oct 19 at 12:15 by me
+												742 checkbox (settable, integer) Description: Select app-debug.apk for deletion, Value: 0
+						743 container rf-browser-list-wrapper
+							744 tab group
+								745 tab (selected, settable, boolean) Description: Android Real Devices, Value: 1
+								746 tab (selectable, settable, boolean) Description: iOS Real Devices, Value: 0
+							747 container
+								748 toolbar
+									749 tab group
+										750 tab (selected, settable, boolean) No SIM, ID: base-tabs-tab-0, Value: 1
+No SIM
+										751 tab (selectable, settable, boolean) SIM PRO, ID: base-tabs-tab-1, Value: 0
+SIM
+PRO
+								752 tab group
+									753 tab (selectable, settable, boolean) Samsung (32), Value: 0
+Samsung
+(
+32
+)
+									754 tab (selected, settable, boolean) Google (16), Value: 1
+Google
+(
+16
+)
+									755 tab (selectable, settable, boolean) OnePlus (4), Value: 0
+OnePlus
+(
+4
+)
+									756 tab (selectable, settable, boolean) Motorola (5), Value: 0
+Motorola
+(
+5
+)
+									757 tab (selectable, settable, boolean) Vivo (6), Value: 0
+Vivo
+(
+6
+)
+									758 tab (selectable, settable, boolean) Oppo (5), Value: 0
+Oppo
+(
+5
+)
+									759 tab (selectable, settable, boolean) Xiaomi (5), Value: 0
+Xiaomi
+(
+5
+)
+									760 tab (selectable, settable, boolean) Realme (4), Value: 0
+Realme
+(
+4
+)
+									761 tab (selectable, settable, boolean) Huawei (2), Value: 0
+Huawei
+(
+2
+)
+								762 content list
+									763 button Description: Pixel 6 12, ID: device-item-link-Pixel-6-12
+									764 button Description: Pixel 9 15, ID: device-item-link-Pixel-9-15
+									765 button Description: Pixel 9 Pro XL 15, ID: device-item-link-Pixel-9-Pro-XL-15
+									766 button Description: Pixel 9 Pro 15, ID: device-item-link-Pixel-9-Pro-15
+									767 button Description: Pixel 10 16, ID: device-item-link-Pixel-10-16
+									768 button Description: Pixel 7 13, ID: device-item-link-Pixel-7-13
+									769 button Description: Pixel 8 Pro 14, ID: device-item-link-Pixel-8-Pro-14
+									770 button Description: Pixel 10 Pro 16, ID: device-item-link-Pixel-10-Pro-16
+									771 button Description: Pixel 10 Pro XL 16, ID: device-item-link-Pixel-10-Pro-XL-16
+									772 button Description: Pixel 11 Pro XL 17, ID: device-item-link-Pixel-11-Pro-XL-17
+									773 button Description: Pixel 11 Pro 17, ID: device-item-link-Pixel-11-Pro-17
+									774 button Description: Pixel 11 17, ID: device-item-link-Pixel-11-17
+									775 button Description: Pixel 9 17, ID: device-item-link-Pixel-9-17
+									776 button Description: Pixel 7 Pro 13, ID: device-item-link-Pixel-7-Pro-13
+									777 button Description: Pixel 9 16, ID: device-item-link-Pixel-9-16
+									778 button Description: Pixel 8 14, ID: device-item-link-Pixel-8-14
+						779 text Still managing tests manually?  Create and manage test cases  90% faster  with  AI powered  Test Management.
+						780 link Description: See it in action, Value: browserstack.com/os/worlds-1-test-case-management-software?utm_source=growth_ads&utm_medium=dashboard&utm_campaign=growth_cross_sell&utm_campaigncode=701OW00000TkTJKYA3&utm_term=persistent_banner_app_live&utm_content=app_live_banner_paid
+						781 button Banner Close
+				463 text ;
+		635 text No user apps found to uninstall.
+
+The focused UI element is 0 AXWebArea App Live Dashboard, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1

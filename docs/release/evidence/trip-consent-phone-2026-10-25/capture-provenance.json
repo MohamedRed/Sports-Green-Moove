@@ -1,0 +1,23 @@
+{
+  "nativeExports": [
+    {
+      "file": "captures/draft-private.png",
+      "originalFilename": "screenshot-Google Pixel 9 Pro-15.0.png",
+      "captureTimeDisplayed": "2026-10-25T11:24",
+      "savedFileMtime": "2026-10-25T11:24:23.122Z",
+      "sha256": "ca4a00fa7735b88c753b1d662e7c080b7102c414cde90cda41c5950d2ecba515",
+      "width": 960,
+      "height": 2142,
+      "unaltered": true
+    }
+  ],
+  "secondExport": {
+    "attemptedAfter": "draft-returned",
+    "downloadEventObserved": false,
+    "savePanelObserved": true,
+    "saveButtonEnabled": false,
+    "cancelled": true,
+    "acceptedNativeFile": false
+  },
+  "viewportCapturesAreNotNativeExports": true
+}

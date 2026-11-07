@@ -1,0 +1,62 @@
+{
+  "scope": "physical-session-visual-accent-controls-not-full-accessibility-or-payment",
+  "reviewedAt": "2026-10-30",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bc508ae0a4d7abf8284bb5372e5468b0",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "androidVersion": "15.0",
+    "physicalDevice": true
+  },
+  "apk": {
+    "filename": "sgm-accent-controls-20261030.apk",
+    "sha256": "d0e3daa86874e6f0d2aa6f4e8765dc820c1dc0062e501de0d62f7f0cdad6a5a2",
+    "packageId": "be.sportgreenmoove.app.local",
+    "sourceHead": "753f0a42f0d62e81caa316b979b9a256c81e1751",
+    "cleanCheckoutAttested": false,
+    "workingTreeSourcesRetained": true,
+    "installedBytesIndependentlyVerified": false
+  },
+  "phases": [
+    "home",
+    "search-light",
+    "search-dark",
+    "trips-dark",
+    "rewards-dark",
+    "rewards-light",
+    "signed-out"
+  ],
+  "published": [
+    "search-light",
+    "search-dark",
+    "trips-dark",
+    "rewards-dark",
+    "rewards-light"
+  ],
+  "visualOverlapObserved": false,
+  "nativeScreenshotExports": false,
+  "actualUiFlowsExecuted": true,
+  "withdrawalInvoked": false,
+  "realPaymentExercised": false,
+  "mapRequests": 0,
+  "productionWrites": false,
+  "iosUiExecuted": false,
+  "screenReaderVerified": false,
+  "fullAppAccessibilityAccepted": false,
+  "gradientContrastAccepted": false,
+  "warningErrorTextAccepted": false,
+  "releaseAccepted": false,
+  "helperScope": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "forceLocal": false,
+    "requestLogging": false,
+    "aliasEnabled": false,
+    "invitationPagePortEnabled": false
+  },
+  "preparationFailuresAcceptedAsProductFailures": false
+}

@@ -1,0 +1,107 @@
+{
+  "scope": "local-monotonic-clock-startup-not-physical-gps",
+  "clockProtocolVersion": 2,
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a1e434e727364215567e88ef98d2f723",
+  "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+  "capturedAt": 1794001201430,
+  "driverUid": "sgm-qa-driver",
+  "receipts": {
+    "first": {
+      "receipts": [
+        {
+          "role": "driver",
+          "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+          "capturedAt": 1794001201430,
+          "status": "written"
+        }
+      ],
+      "serverTimeMs": 1794001202925,
+      "ignored": 0,
+      "written": 1
+    },
+    "duplicate": {
+      "receipts": [
+        {
+          "role": "driver",
+          "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+          "capturedAt": 1794001201430,
+          "status": "retained"
+        }
+      ],
+      "serverTimeMs": 1794001202996,
+      "ignored": 1,
+      "written": 0
+    },
+    "future": {
+      "receipts": [
+        {
+          "role": "driver",
+          "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+          "capturedAt": 1794087606455,
+          "status": "invalid"
+        }
+      ],
+      "serverTimeMs": 1794001206484,
+      "ignored": 1,
+      "written": 0
+    }
+  },
+  "points": {
+    "retainedStart": {
+      "accuracyM": 5,
+      "role": "driver",
+      "lng": 4.6167,
+      "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+      "capturedAt": 1794001201430,
+      "uploadedAt": 1794001202715,
+      "source": "nativeFallback",
+      "userId": "sgm-qa-driver",
+      "lat": 50.7167
+    },
+    "wallAhead": {
+      "accuracyM": 5,
+      "captureClock": "serverElapsedRealtime",
+      "role": "driver",
+      "lng": 4.6167,
+      "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+      "capturedAt": 1794001206986,
+      "uploadedAt": 1794001207199,
+      "source": "nativeFallback",
+      "deviceCapturedAt": 1794087606355,
+      "userId": "sgm-qa-driver",
+      "lat": 50.7167
+    },
+    "wallBehind": {
+      "accuracyM": 5,
+      "captureClock": "serverElapsedRealtime",
+      "role": "driver",
+      "lng": 4.6167,
+      "rideSessionId": "nhzIcq6QUuMLKCgpQQsu",
+      "capturedAt": 1794001209463,
+      "uploadedAt": 1794001209758,
+      "source": "nativeFallback",
+      "deviceCapturedAt": 1793914808810,
+      "userId": "sgm-qa-driver",
+      "lat": 50.7167
+    }
+  },
+  "screenshots": {
+    "local-native-startup-started.png": "46b2040b29a5f08751aa83293b9843c25999caccbf5c76b9be49845d89ef8df5",
+    "local-native-startup-ahead.png": "a0d23473b50d733bdcf371bfc077fef62da6e54aadf63bb20530bb23d6838708",
+    "local-native-startup-resumed.png": "46b2040b29a5f08751aa83293b9843c25999caccbf5c76b9be49845d89ef8df5",
+    "local-native-startup-signed-out.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8"
+  },
+  "captureMethod": "render-enabled-decor-window-pixel-copy",
+  "retainedStarted": true,
+  "futureUploadRejected": true,
+  "wallAheadStarted": true,
+  "wallBehindResumed": true,
+  "serviceStoppedOnSignOut": true,
+  "mockModeRestored": true,
+  "driverSignedOut": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "mapMovementVerified": false
+}

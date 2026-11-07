@@ -1,0 +1,63 @@
+{
+  "scope": "independent-simulated-gps-record-checkpoints-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "54a5ea3a8592cd65877ccbeb03b5a617",
+  "testedAt": "2026-10-25T13:01:33.881Z",
+  "completed": false,
+  "fixture": {
+    "tripId": "3Gixz5oftkH9IpqEKuhD",
+    "bookingId": "Iq3gVpl7yVzZ6FEKiHiz",
+    "driverUid": "sgm-qa-driver",
+    "parentUid": "sgm-qa-parent"
+  },
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "rideId": null,
+      "vehicle": null,
+      "allOtherRootRecordsAndClaimsUnchanged": true,
+      "productionWrites": false,
+      "simulatedLocations": true,
+      "childTrackingProven": false,
+      "realMovementProven": false,
+      "phoneUiProven": false,
+      "paymentExercised": false,
+      "routeProviderRequests": 0
+    },
+    {
+      "phase": "foreground-first",
+      "rideId": "TZbAldH8Sw10ysEyWJwD",
+      "vehicle": {
+        "accuracyM": 1,
+        "capturedAt": 1792932908678,
+        "lat": 50.7167,
+        "lng": 4.6167,
+        "rideSessionId": "TZbAldH8Sw10ysEyWJwD",
+        "role": "driver",
+        "source": "nativeFallback",
+        "uploadedAt": 1792932908867,
+        "userId": "sgm-qa-driver"
+      },
+      "allOtherRootRecordsAndClaimsUnchanged": true,
+      "productionWrites": false,
+      "simulatedLocations": true,
+      "childTrackingProven": false,
+      "realMovementProven": false,
+      "phoneUiProven": false,
+      "paymentExercised": false,
+      "routeProviderRequests": 0
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "phoneUiProven": false,
+  "realMovementProven": false,
+  "childTrackingProven": false,
+  "productionWrites": false,
+  "routeProviderRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/manual-tracking-phone-session.mjs": "d54c54f842f1afe88eea6a6474ad2d84b76d1c766dd675c51a28499372b335f0",
+    "scripts/qa/tracking-phone-checkpoints.mjs": "95bf48d2b0c68c03b83e9f5c86ab1bfb6aca5398f38ef572d3d14773a4735d78",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

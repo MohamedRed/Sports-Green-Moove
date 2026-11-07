@@ -1,0 +1,156 @@
+{
+  "headRefOid": "95d008152ee843e24c7dc8bf75ca1bcdbeba0cd8",
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1",
+  "statusCheckRollup": [
+    {
+      "name": "Functions and Firebase rules",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155750/job/121579831547"
+    },
+    {
+      "name": "Native UI flow coverage",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832418"
+    },
+    {
+      "name": "Production provider secret validation",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155788/job/121579831730"
+    },
+    {
+      "name": "Functions, admin, and website checks",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155748/job/121579831824"
+    },
+    {
+      "name": "Android native unit tests",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832588"
+    },
+    {
+      "name": "Store readiness static checks",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155788/job/121579832306"
+    },
+    {
+      "name": "People and safety service smoke",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155748/job/121579832432"
+    },
+    {
+      "name": "Android native UI tests",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832539"
+    },
+    {
+      "name": "Functions, admin, and website smoke",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155748/job/121587921344"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832867"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833143"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832988"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832560"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833030"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833037"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833161"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833152"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833089"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832832"
+    },
+    {
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121584343125"
+    },
+    {
+      "name": "Android approved real-map UI integration",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834617"
+    },
+    {
+      "name": "Android approved vehicle-map UI",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579833862"
+    },
+    {
+      "name": "Android approved parent search and booking",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834152"
+    },
+    {
+      "name": "iOS native checks",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834353"
+    },
+    {
+      "name": "iOS native UI tests",
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834168"
+    }
+  ]
+}

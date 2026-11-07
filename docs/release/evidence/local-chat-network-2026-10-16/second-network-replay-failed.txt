@@ -1,0 +1,23 @@
+
+be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest:
+Error in networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.waitForText(LocalChatNetworkFlowTest.kt:183)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.waitForText$default(LocalChatNetworkFlowTest.kt:182)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:59)
+
+
+Time: 66.891
+There was 1 failure:
+1) networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.waitForText(LocalChatNetworkFlowTest.kt:183)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.waitForText$default(LocalChatNetworkFlowTest.kt:182)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:59)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1

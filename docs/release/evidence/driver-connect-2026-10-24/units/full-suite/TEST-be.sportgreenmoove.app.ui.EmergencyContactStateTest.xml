@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.EmergencyContactStateTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.403Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="anotherOwnerOrAnUnexpectedTargetCannotPopulateTheEditor" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="aChildTargetNeedsItsOwnCurrentIdentityAndCannotKeepThePreviousAdultsContact" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="acknowledgedSaveCannotPopulateTheEditorFromARecreatedChildReadback" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="invalidAndLocalNumbersCannotBeSavedOrDialed" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="onlyTheReadRevisionAndValidatedTrimmedContactAreSaved" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="childSavesCarryOnlyTheIdentityFromTheDisplayedRead" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="closingAnAccountDiscardsLateContactDetails" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="aLostReplyClearsTheContactAndRequiresAnExplicitReadWithoutAnotherSave" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="aRevokedChildReadClearsPreviouslyVisiblePrivateDetails" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="aRecreatedChildWithTheSameContactAndVersionNeedsAnotherTapBeforeDialing" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="unsavedEditsCannotBeDialedAndFailedFreshAuthorityClearsTheNumber" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="aLateLaunchResultCannotRestoreAnotherAccountsNotice" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="aChangedNumberNeverOpensWithoutANewTap" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="dialingReadsAgainAndOpensOnlyTheUnchangedSavedContact" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="aMissingDialerRetainsTheContactWithoutClaimingThatACallConnected" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="removalUsesTheExactDisplayedViewAndRetainsItsNewRevision" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="anAcknowledgedSaveWithFailedReadIsNotReportedAsUnsent" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="absenceIsExplicitButReadFailureNeverLooksLikeAnEmptyContact" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.001"/>
+  <testcase name="aSimultaneousSecondSaveCannotRepeatTheOperation" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <testcase name="leavingTheForegroundClearsDetailsAndResumingNeedsAFreshRead" classname="be.sportgreenmoove.app.ui.EmergencyContactStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

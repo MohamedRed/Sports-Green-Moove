@@ -1,0 +1,70 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+
+ ✓ src/__tests__/location-freshness.test.ts (10 tests) 4ms
+ ✓ src/__tests__/client-trips.test.ts (5 tests) 37ms
+ ✓ src/__tests__/booking-request-identity.test.ts (5 tests) 25ms
+ ✓ src/__tests__/chat-index-bootstrap.test.ts (1 test) 644ms
+   ✓ loads Firestore-only history preparation without a Realtime Database URL or credential request  643ms
+ ✓ src/__tests__/chat-directory-cursor.test.ts (3 tests) 20ms
+ ✓ src/__tests__/client-trip-dates.test.ts (15 tests) 141ms
+ ✓ src/__tests__/booking-request-transaction.test.ts (13 tests) 141ms
+ ✓ src/__tests__/inbox.test.ts (3 tests) 58ms
+ ✓ src/__tests__/booking-notifications.test.ts (3 tests) 7ms
+ ✓ src/__tests__/google-routes.test.ts (6 tests) 11ms
+ ✓ src/__tests__/stripe-onboarding.test.ts (20 tests) 22ms
+ ✓ src/__tests__/client-bookings.test.ts (1 test) 44ms
+ ✓ src/__tests__/booking-intent-wire.test.ts (3 tests) 78ms
+ ✓ src/__tests__/booking-intent.test.ts (27 tests) 78ms
+ ✓ src/__tests__/team-enrollment.test.ts (7 tests) 103ms
+ ✓ src/__tests__/stripe-payments.test.ts (12 tests) 9ms
+ ✓ src/__tests__/access.test.ts (4 tests) 5ms
+ ✓ src/__tests__/trip-change-history.test.ts (3 tests) 9ms
+ ✓ src/__tests__/trip-change-contract.test.ts (15 tests) 44ms
+ ✓ src/__tests__/stripe-onboarding-http.test.ts (6 tests) 19ms
+ ✓ src/__tests__/guardian-verification.test.ts (5 tests) 8ms
+ ✓ src/__tests__/locations.test.ts (6 tests) 16ms
+ ✓ src/__tests__/reservations.test.ts (5 tests) 10ms
+ ✓ src/__tests__/trip-change-payments.test.ts (17 tests) 27ms
+ ✓ src/__tests__/emergency-contact.test.ts (10 tests) 33ms
+ ✓ src/__tests__/radar.test.ts (4 tests) 6ms
+ ✓ src/__tests__/ride-payment-status.test.ts (25 tests) 7ms
+ ✓ src/__tests__/membership-page-cursor.test.ts (6 tests) 20ms
+ ✓ src/__tests__/live-location-order.test.ts (22 tests) 13ms
+ ✓ src/__tests__/trip-change-application.test.ts (17 tests) 9ms
+ ✓ src/__tests__/children.test.ts (2 tests) 4ms
+ ✓ src/__tests__/callable-validation.test.ts (4 tests) 15ms
+ ✓ src/__tests__/team-conversation.test.ts (3 tests) 11ms
+ ✓ src/__tests__/team-conversation-read.test.ts (4 tests) 25ms
+ ✓ src/__tests__/membership-review.test.ts (4 tests) 8ms
+ ✓ src/__tests__/publish-trip.test.ts (4 tests) 6ms
+ ✓ src/__tests__/google-places.test.ts (3 tests) 9ms
+ ✓ src/__tests__/support-reports.test.ts (5 tests) 44ms
+ ✓ src/__tests__/trip-change-resolution.test.ts (2 tests) 8ms
+ ✓ src/__tests__/ride-completion-ledger.test.ts (3 tests) 8ms
+ ✓ src/__tests__/matching.test.ts (9 tests) 6ms
+ ✓ src/__tests__/live-location-receipts.test.ts (11 tests) 10ms
+ ✓ src/__tests__/chat-inbox.test.ts (6 tests) 32ms
+ ✓ src/__tests__/chat-departure-date.test.ts (3 tests) 12ms
+ ✓ src/__tests__/search-access.test.ts (3 tests) 4ms
+ ✓ src/__tests__/firestore-retry-settings.test.ts (1 test) 4ms
+ ✓ src/__tests__/live-trips-write.test.ts (3 tests) 6ms
+ ✓ src/__tests__/co2-rewards.test.ts (3 tests) 2ms
+ ✓ src/__tests__/chat-delivery.test.ts (3 tests) 8ms
+ ✓ src/__tests__/passenger-transition.test.ts (4 tests) 18ms
+ ✓ src/__tests__/ride-audit.test.ts (3 tests) 3ms
+ ✓ src/__tests__/reports.test.ts (2 tests) 4ms
+ ✓ src/__tests__/vehicle-map-point.test.ts (6 tests) 11ms
+ ✓ src/__tests__/ride-observation.test.ts (2 tests) 2ms
+ ✓ src/__tests__/auth-roles.test.ts (6 tests) 6ms
+ ✓ src/__tests__/memberships.test.ts (3 tests) 4ms
+
+ Test Files  56 passed (56)
+      Tests  381 passed (381)
+   Start at  15:31:08
+   Duration  6.08s (transform 1.96s, setup 0ms, collect 18.94s, tests 1.92s, environment 12ms, prepare 6.71s)
+

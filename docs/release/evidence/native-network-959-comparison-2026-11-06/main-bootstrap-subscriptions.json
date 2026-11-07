@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e2c5adc727ceca3e2d225a2a223a9fe3",
+  "phase": "before",
+  "scope": "read-only-disposable-subscription-summary",
+  "recordedAt": "2026-11-06T16:26:01.041Z",
+  "modemCount": 1,
+  "allSubscriptionsLoaded": true,
+  "defaultSubscriptionValid": {
+    "defaultSubId": true,
+    "defaultVoiceSubId": false,
+    "defaultDataSubId": false,
+    "activeDataSubId": false,
+    "defaultSmsSubId": false
+  },
+  "mappedSlotCount": 1,
+  "supportedSlotCount": 1,
+  "simStates": [
+    "LOADED"
+  ],
+  "recognizedEventCount": 7,
+  "eventsTruncated": false,
+  "events": [
+    "subscription-inactive",
+    "sim-NOT_READY",
+    "subscription-inactive",
+    "sim-READY",
+    "mapping-single",
+    "sim-LOADED",
+    "mapping-single"
+  ]
+}

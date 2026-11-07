@@ -1,0 +1,73 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import ts from 'typescript';
+import { parseDocument } from 'yaml';
+
+const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const compiled = ts.transpileModule(read('admin/src/childInvitationLink.ts'), {
+  compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext },
+}).outputText;
+const { takeChildInvitationToken, invitationSignupError } = await import('data:text/javascript;base64,' + Buffer.from(compiled).toString('base64'));
+test('the public invitation takes only a fragment secret and removes it from browser history', () => {
+  const calls = [], history = { replaceState: (...args) => calls.push(args) }, token = 'a'.repeat(64);
+  assert.equal(takeChildInvitationToken({ pathname: '/child-invitation', hash: '#' + token, search: '' }, history), token);
+  assert.deepEqual(calls, [[null, '', '/child-invitation']]);
+  for (const input of [{ hash: '#short', search: '' }, { hash: '#%61' + token, search: '' },
+    { hash: '#' + token, search: '?email=child@example.test' }, { hash: '', search: '' }])
+    assert.equal(takeChildInvitationToken({ pathname: '/child-invitation', ...input }, history), null);
+});
+test('signup errors never echo a credential, response body, token or provider diagnostic', () => {
+  const secret = 'sensitive-synthetic-value';
+  for (const code of ['functions/already-exists', 'functions/resource-exhausted', 'functions/failed-precondition',
+    'functions/permission-denied', 'functions/unavailable', undefined]) {
+    const message = invitationSignupError({ code, message: secret });
+    assert(!message.includes(secret)); assert(!message.includes('Firebase')); assert(!message.includes('BrowserStack'));
+  }
+});
+test('invitation signup is isolated from existing admin credentials and cannot initialize an adult profile', () => {
+  const gateway = read('admin/src/childInvitationGateway.ts'), page = read('admin/src/ChildInvitationPage.tsx');
+  for (const value of ['child-invitation-signup', 'inMemoryPersistence', 'if (auth.currentUser)', 'redeemChildInvitation',
+    'value.parentApprovalRequired !== true', 'demo-sgm-local-qa']) assert(gateway.includes(value));
+  for (const value of ['initializeUserProfile', 'createUserWithEmailAndPassword', 'localStorage', 'sessionStorage', 'console.'])
+    assert(!gateway.includes(value) && !page.includes(value));
+  assert(page.includes('submitting.current')); assert(page.includes('setPassword("")'));
+  assert(page.includes('password !== confirmation')); assert(page.includes('password.length < 12'));
+  assert(page.includes('href="sports-green-moove://account"'));
+  const main = read('admin/src/main.tsx');
+  assert(main.indexOf('import("./ChildInvitationPage")') < main.indexOf('import("./App")'));
+});
+test('accounts remain disabled until server-owned child roles and profile have been written', () => {
+  const auth = read('functions/src/services/childInvitationAuth.ts'), redeem = read('functions/src/services/childInvitationRedemption.ts');
+  assert(auth.includes('disabled: true')); assert(auth.includes('roleKeys: ["child"]'));
+  assert(!auth.includes('password: false')); assert(!auth.includes('setCustomUserClaims(uid, { roleKeys: ["parent"]'));
+  assert(redeem.indexOf('transaction.create(accountRef') < redeem.indexOf('await enableInvitedChildAccount('));
+  assert(redeem.indexOf('transaction.create(userRef') < redeem.indexOf('await enableInvitedChildAccount('));
+  assert(redeem.includes('invitation.requestDigest !== requestDigest')); assert(redeem.includes('attemptCount ?? 0) >= 5'));
+  assert(!redeem.includes('transaction.create(linkRef'));
+  const approval = read('functions/src/services/childAccountApproval.ts');
+  for (const field of ['childId', 'clubId', 'childInstanceId']) assert(approval.includes(`invitation.get("${field}")`));
+});
+test('parent share state is in memory, account fenced, expiry checked and cannot replay a late background response', () => {
+  const path = 'android/app/src/main/java/be/sportgreenmoove/app/';
+  const state = read(path + 'ui/ChildInvitationState.kt'), gateway = read(path + 'services/FirebaseAndroidChildInvitationGateway.kt');
+  for (const value of ['private var link:', 'fun leaveForeground()', 'link = null', 'ticket != generation',
+    'validateInvitationLink', 'it > now()', 'setOf("provisioning", "accepted")']) assert(state.includes(value));
+  assert(gateway.includes('auth.currentUser?.uid != uid')); assert.equal((gateway.match(/requireSession\(uid\)/g) ?? []).length, 2);
+  for (const value of ['SharedPreferences', 'rememberSaveable', 'Log.', 'println']) assert(!state.includes(value));
+  const dialog = read(path + 'ui/ChildInvitationDialog.kt');
+  assert(dialog.includes('Intent.ACTION_SEND')); assert(dialog.includes('Intent.EXTRA_TEXT, link'));
+  assert(!dialog.includes('Text(link')); assert(!dialog.includes('Text(value.url'));
+});
+test('both service CI lanes execute the invitation trial and retain its original disposal report', () => {
+  for (const file of ['backend-ci.yml', 'web-integration-smoke.yml']) {
+    const workflow = parseDocument(read('.github/workflows/' + file)).toJSON();
+    const steps = Object.values(workflow.jobs).flatMap(job => job.steps ?? []);
+    assert(steps.some(step => step.run === 'npm run test:child-invitation && node --test tests/child-invitation-contract.test.mjs'));
+    const upload = steps.find(step => step.with?.name === 'child-invitation-results');
+    assert(upload); assert.equal(upload.with['if-no-files-found'], 'error');
+    assert(upload.with.path.endsWith('/child-invitation.json*'));
+  }
+  const rules = read('tests/child-account-link-rules.test.ts');
+  for (const name of ['childAccountInvitations', 'childAccountInvitationOwners', 'childAccountInvitationAccounts']) assert(rules.includes(name));
+});

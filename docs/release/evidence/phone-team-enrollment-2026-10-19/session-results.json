@@ -1,0 +1,90 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4f0c53407d28b65556fb8782828a63a9",
+  "testedAt": "2026-10-19T10:26:31.777Z",
+  "scope": "manual-team-persisted-checkpoints-not-ui-or-release-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "self-requested",
+      "selfStatus": "requested",
+      "selfRevision": 1,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 1
+    },
+    {
+      "phase": "self-refused",
+      "selfStatus": "refused",
+      "selfRevision": 2,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 2
+    },
+    {
+      "phase": "self-requested-again",
+      "selfStatus": "requested",
+      "selfRevision": 3,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 3
+    },
+    {
+      "phase": "self-approved",
+      "selfStatus": "approved",
+      "selfRevision": 4,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 4
+    },
+    {
+      "phase": "self-withdrawn",
+      "selfStatus": "withdrawn",
+      "selfRevision": 5,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 5
+    },
+    {
+      "phase": "child-requested",
+      "selfStatus": "withdrawn",
+      "selfRevision": 5,
+      "childStatus": "requested",
+      "childRevision": 1,
+      "enrollmentCount": 2,
+      "eventCount": 6
+    },
+    {
+      "phase": "child-approved",
+      "selfStatus": "withdrawn",
+      "selfRevision": 5,
+      "childStatus": "approved",
+      "childRevision": 2,
+      "enrollmentCount": 2,
+      "eventCount": 7
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-phone-session.mjs": "5b7f52c2e9bbe9a05618637c913523ec8a56f5f8ddb0f4b28ae8eb76df48759a",
+    "scripts/qa/manual-team-phone-checkpoints.mjs": "b2ac7a6463799ac2503e35210212a01635d191a67bc2829d8f40d2573704e1d7",
+    "scripts/qa/local-team-native-fixture.mjs": "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1",
+    "functions/src/services/teamEnrollment.ts": "823258bcbfe7f04d1d9827a3674043f9c05d810a6c2e6c584d39192e01d6f45d",
+    "functions/src/services/teamEnrollmentViews.ts": "ac9b1561b63960f03091fd04f638be37b62fb421505a0d1d1404cfb4539e2851",
+    "functions/src/services/teamEnrollmentAuthority.ts": "b2d9ce8f12972fd88e797a4acb3323c8f73e09c501c2e644386c03cc52b9e8e0",
+    "functions/src/services/teamEnrollmentReview.ts": "03ddcb0c221ccce3e223fd666ccbde2b404fb038e5d16152c3a4e6bd1dc81ebd",
+    "admin/src/TeamReviewPanel.tsx": "bd40bc85fa5b310d57e57fa479125f7adf9aa79f983ccda47f0e78d10e7d7974",
+    "admin/src/TeamReviewController.ts": "2c329cb276cbb685d30b97d3451b0e0a708aaede207d7bd5f5678c4ebd5f1a84",
+    "admin/src/teamReviewGateway.ts": "520ca2cd79124b3c9fdfa95d5e264698be9d63c75e998f2eee293626280fc0ba",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentRoute.kt": "52e801f96d22fa52c37a3f0dada555d3531e6a53dd3dd21e49f38069deff07f5",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentScreen.kt": "8c173b9bf07f7ddc41887916679db481ea06c14184782976790ecc748930d561"
+  },
+  "fixtureCleanupVerified": true,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "teamChatImplemented": false
+}

@@ -1,0 +1,24 @@
+2026-11-05T03:58:23.5730400Z ** TEST BUILD SUCCEEDED **
+2026-11-05T04:00:33.7545190Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' passed (29.372 seconds).
+2026-11-05T04:01:24.0085520Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' passed (50.281 seconds).
+2026-11-05T04:01:51.8676920Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift:16: error: -[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact] : XCTAssertTrue failed
+2026-11-05T04:01:54.9514990Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift:16: error: -[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact] : Failed to tap "Continuer la modification" Button: No matches found for Elements matching predicate '"Continuer la modification" IN identifiers' from input {(
+2026-11-05T04:01:56.1900210Z     Button, label: 'Annuler les modifications',
+2026-11-05T04:01:56.3048620Z     Button, label: 'Abandonner les modifications'
+2026-11-05T04:01:58.5476800Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' failed (31.271 seconds).
+2026-11-05T04:02:15.1320450Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (19.844 seconds).
+2026-11-05T04:03:00.9680360Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (45.844 seconds).
+2026-11-05T04:03:48.8641520Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' passed (47.887 seconds).
+2026-11-05T04:04:08.6815180Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (19.836 seconds).
+2026-11-05T04:04:55.9526380Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (47.211 seconds).
+2026-11-05T04:05:39.7097950Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift:16: error: -[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers] : Failed to tap "team-chat.back" Button: No matches found for Elements matching predicate '"team-chat.back" IN identifiers' from input {(
+2026-11-05T04:05:41.1610320Z     Button, identifier: 'team-chat.entry', label: 'Conversations d’équipe',
+2026-11-05T04:05:41.2652930Z     Button, identifier: 'team-chat.thread', label: 'Retour',
+2026-11-05T04:05:41.3660730Z     Button, identifier: 'team-chat.thread', label: 'Actualiser',
+2026-11-05T04:05:41.4664080Z     Button, identifier: 'team-chat.send', label: 'Envoyer le message',
+2026-11-05T04:05:41.7720400Z     Button, identifier: 'team-chat.earlier', label: 'Messages précédents'
+2026-11-05T04:05:43.4361740Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' failed (47.369 seconds).
+2026-11-05T04:06:36.8565980Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (53.544 seconds).
+2026-11-05T04:08:18.0650230Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' passed (101.248 seconds).
+2026-11-05T04:08:18.6454440Z 	 Executed 11 tests, with 3 failures (0 unexpected) in 493.706 (493.743) seconds
+2026-11-05T04:08:18.8434440Z 	 Executed 11 tests, with 3 failures (0 unexpected) in 493.706 (493.756) seconds

@@ -1,0 +1,1283 @@
+{
+  "scope": "isolated-generated-file-transfer-not-user-flow-or-release-proof",
+  "runId": "e496454dfced66f60fc784d071d534e9",
+  "startedAt": "2026-10-31T23:05:14.357Z",
+  "plannedTrials": 32,
+  "trials": [
+    {
+      "index": 0,
+      "startedAt": "2026-10-31T23:05:15.273Z",
+      "elapsedMs": 64,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 1,
+      "startedAt": "2026-10-31T23:05:15.345Z",
+      "elapsedMs": 186,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 2,
+      "startedAt": "2026-10-31T23:05:15.544Z",
+      "elapsedMs": 185,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 3,
+      "startedAt": "2026-10-31T23:05:15.737Z",
+      "elapsedMs": 923,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 749,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 4,
+      "startedAt": "2026-10-31T23:05:16.668Z",
+      "elapsedMs": 121,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 5,
+      "startedAt": "2026-10-31T23:05:16.799Z",
+      "elapsedMs": 164,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 6,
+      "startedAt": "2026-10-31T23:05:16.971Z",
+      "elapsedMs": 64,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 7,
+      "startedAt": "2026-10-31T23:05:17.045Z",
+      "elapsedMs": 56,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 8,
+      "startedAt": "2026-10-31T23:05:17.106Z",
+      "elapsedMs": 62,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 9,
+      "startedAt": "2026-10-31T23:05:17.174Z",
+      "elapsedMs": 53,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 10,
+      "startedAt": "2026-10-31T23:05:17.233Z",
+      "elapsedMs": 57,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 11,
+      "startedAt": "2026-10-31T23:05:17.296Z",
+      "elapsedMs": 86,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 12,
+      "startedAt": "2026-10-31T23:05:17.387Z",
+      "elapsedMs": 57,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 13,
+      "startedAt": "2026-10-31T23:05:17.451Z",
+      "elapsedMs": 65,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 14,
+      "startedAt": "2026-10-31T23:05:17.528Z",
+      "elapsedMs": 145,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 15,
+      "startedAt": "2026-10-31T23:05:17.681Z",
+      "elapsedMs": 69,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 16,
+      "startedAt": "2026-10-31T23:05:17.757Z",
+      "elapsedMs": 44,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 17,
+      "startedAt": "2026-10-31T23:05:17.809Z",
+      "elapsedMs": 62,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 18,
+      "startedAt": "2026-10-31T23:05:17.877Z",
+      "elapsedMs": 224,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 19,
+      "startedAt": "2026-10-31T23:05:18.123Z",
+      "elapsedMs": 149,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 20,
+      "startedAt": "2026-10-31T23:05:18.279Z",
+      "elapsedMs": 103,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 21,
+      "startedAt": "2026-10-31T23:05:18.390Z",
+      "elapsedMs": 101,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 22,
+      "startedAt": "2026-10-31T23:05:18.499Z",
+      "elapsedMs": 61,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 23,
+      "startedAt": "2026-10-31T23:05:18.567Z",
+      "elapsedMs": 86,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 24,
+      "startedAt": "2026-10-31T23:05:18.665Z",
+      "elapsedMs": 122,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 25,
+      "startedAt": "2026-10-31T23:05:18.795Z",
+      "elapsedMs": 65,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 26,
+      "startedAt": "2026-10-31T23:05:18.867Z",
+      "elapsedMs": 106,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 27,
+      "startedAt": "2026-10-31T23:05:18.990Z",
+      "elapsedMs": 51,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 28,
+      "startedAt": "2026-10-31T23:05:19.048Z",
+      "elapsedMs": 94,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 29,
+      "startedAt": "2026-10-31T23:05:19.150Z",
+      "elapsedMs": 103,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 30,
+      "startedAt": "2026-10-31T23:05:19.259Z",
+      "elapsedMs": 65,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 31,
+      "startedAt": "2026-10-31T23:05:19.332Z",
+      "elapsedMs": 92,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    }
+  ],
+  "completed": true,
+  "stage": "transfers",
+  "appInstalled": false,
+  "accountsUsed": false,
+  "retryPerformed": false,
+  "alternateTransportUsed": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "lastPreparationCommand": {
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "signals": {
+      "deviceOffline": false,
+      "deviceMissing": false,
+      "transportClosed": false,
+      "permissionDenied": false,
+      "noSpace": false,
+      "timedOut": false
+    },
+    "outputCoverage": {
+      "present": true,
+      "byteCount": 794,
+      "recognizedFailure": false,
+      "unclassifiedFailure": false
+    }
+  },
+  "fixtures": [
+    {
+      "name": "generated-0.bin",
+      "size": 147456,
+      "sha256": "9219b687fd77ebb22508440dda7f968a513757900bc4c929f267c975d39421fb"
+    },
+    {
+      "name": "generated-1.bin",
+      "size": 1048576,
+      "sha256": "bd4b1243f73ff22af148e79dedd3c3762edbfb07cff9dfb5564fc91ee3ca97f4"
+    },
+    {
+      "name": "generated-2.bin",
+      "size": 4194304,
+      "sha256": "73304ab4faefbce1c997f4f904bb4ac4bdd748ef0dd8776e0a17a478112c0c13"
+    }
+  ],
+  "hostBefore": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-31T23:05:15.030Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 4,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        5045
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 253,
+      "events": [
+        {
+          "timestampLocal": "10-31 23:05:06.450",
+          "pid": 5045,
+          "tid": 5053,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 5045,
+        "startedAtLocal": "Sat Oct 31 23:04:47 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "atomicObservation": false,
+      "processes": [
+        {
+          "pid": 5045,
+          "startTicks": "33926",
+          "stateBefore": "S",
+          "stateAfter": "S",
+          "parentPidBefore": 1,
+          "parentPidAfter": 1,
+          "connections": [
+            {
+              "inode": "35707",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "36473",
+              "state": "01",
+              "listening": false,
+              "localPort": 54663,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "traceBefore": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 1,
+      "transportWriteFailed": 0
+    }
+  },
+  "emulatorBefore": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-10-31T23:05:15.049Z",
+    "monotonicMs": 786.893203,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4935,
+      "startedTicks": "32925",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "35683",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35684",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35679",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35680",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "38574",
+        "state": "01",
+        "listening": false,
+        "localPort": 5555,
+        "remotePort": 54663,
+        "localAddress": "loopback",
+        "remoteAddress": "loopback"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "guestBefore": {
+    "scope": "read-only-disposable-guest-identity-and-adbd-events-not-continuity-or-root-cause",
+    "observedAt": "2026-10-31T23:05:15.273Z",
+    "completed": true,
+    "identity": {
+      "bootIdSha256": "1fc6185a0871431a4dfadc1cc7c18867238f7697660584aa008285e1d80abf91",
+      "pid": 1880,
+      "startedTicks": "3099"
+    },
+    "commands": [
+      {
+        "id": "boot-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-pid",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "boot-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-events",
+        "completed": true,
+        "reason": null
+      }
+    ],
+    "events": {
+      "rawLogsRetained": false,
+      "eventLimit": 64,
+      "matchedEventCount": 0,
+      "droppedEventCount": 0,
+      "events": []
+    },
+    "rawLogsRetained": false,
+    "rawBootIdRetained": false,
+    "argumentsRead": false,
+    "environmentRead": false,
+    "deviceMutationRequested": false,
+    "retryPerformed": false,
+    "continuityProven": false,
+    "rootCauseConfirmed": false
+  },
+  "traceAfter": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 1,
+      "transportWriteFailed": 0
+    }
+  },
+  "hostAfter": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-31T23:05:19.433Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        5045
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 0,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 436,
+      "events": []
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 5045,
+        "startedAtLocal": "Sat Oct 31 23:04:47 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "atomicObservation": false,
+      "processes": [
+        {
+          "pid": 5045,
+          "startTicks": "33926",
+          "stateBefore": "S",
+          "stateAfter": "S",
+          "parentPidBefore": 1,
+          "parentPidAfter": 1,
+          "connections": [
+            {
+              "inode": "35707",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "36473",
+              "state": "01",
+              "listening": false,
+              "localPort": 54663,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "emulatorAfter": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-10-31T23:05:19.457Z",
+    "monotonicMs": 5194.079167,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4935,
+      "startedTicks": "32925",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "35683",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35684",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35679",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35680",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "38574",
+        "state": "01",
+        "listening": false,
+        "localPort": 5555,
+        "remotePort": 54663,
+        "localAddress": "loopback",
+        "remoteAddress": "loopback"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "guestAfter": {
+    "scope": "read-only-disposable-guest-identity-and-adbd-events-not-continuity-or-root-cause",
+    "observedAt": "2026-10-31T23:05:19.644Z",
+    "completed": true,
+    "identity": {
+      "bootIdSha256": "1fc6185a0871431a4dfadc1cc7c18867238f7697660584aa008285e1d80abf91",
+      "pid": 1880,
+      "startedTicks": "3099"
+    },
+    "commands": [
+      {
+        "id": "boot-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-pid",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "boot-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-events",
+        "completed": true,
+        "reason": null
+      }
+    ],
+    "events": {
+      "rawLogsRetained": false,
+      "eventLimit": 64,
+      "matchedEventCount": 0,
+      "droppedEventCount": 0,
+      "events": []
+    },
+    "rawLogsRetained": false,
+    "rawBootIdRetained": false,
+    "argumentsRead": false,
+    "environmentRead": false,
+    "deviceMutationRequested": false,
+    "retryPerformed": false,
+    "continuityProven": false,
+    "rootCauseConfirmed": false
+  },
+  "guestComparison": {
+    "scope": "sampled-guest-identities-not-continuous-lifecycle-proof",
+    "sameBootObserved": true,
+    "sameAdbdBirthObserved": true,
+    "continuityProven": false,
+    "rootCauseConfirmed": false,
+    "releaseAccepted": false
+  },
+  "cleanup": {
+    "remoteCreatedOrPartiallyCreated": true,
+    "removed": true,
+    "absenceVerified": true
+  },
+  "finishedAt": "2026-10-31T23:05:19.802Z",
+  "success": true
+}

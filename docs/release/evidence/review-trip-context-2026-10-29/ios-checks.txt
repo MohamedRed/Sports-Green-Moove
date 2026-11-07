@@ -1,0 +1,12 @@
+
+> sports-green-moove@0.1.0 test:ios-native
+> bash scripts/check-ios-native-plan.sh
+
+Ledger summary wire checks passed; no iOS UI or provider integration implied.
+TripDateLabelChecks passed: 30 date/time pairs across 3 device timezones
+RidePaymentChecks passed
+SupportChecks passed
+SupportStateChecks passed
+SupportSubmissionChecks passed: persistence, explicit retry, immutability, account isolation, bound receipts and fail-closed storage
+PendingReviewChecks passed
+SportsGreenMooveNativeChecks passed

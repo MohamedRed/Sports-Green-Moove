@@ -1,0 +1,27 @@
+{
+  "scope": "booking-date-components-not-transaction-or-physical-proof",
+  "case": "payments-unknown-light-phone",
+  "screen": "payments",
+  "dateKind": "unknown",
+  "dark": false,
+  "widthDp": 320,
+  "heightDp": 700,
+  "density": 3,
+  "fontScale": 1.3,
+  "text": {
+    "dateLabel": "DATE À CONFIRMER · --h-- · 2 places",
+    "boundsInRoot": "Rect.fromLTRB(330.0, 1126.0, 651.0, 1308.0)",
+    "layoutCount": 1,
+    "overflow": false,
+    "contrastRatio": 4.637437556587171
+  },
+  "layoutAssertionsPassed": true,
+  "physicalDevice": false,
+  "backendCalls": false,
+  "mapsRendered": false,
+  "productionWrites": false,
+  "capturedAtEpochMillis": 1793688297723,
+  "viewportSha256": "a06d77496f815849bff7703325cbfe244663e02f5319373f32418db7c7e5c3ac",
+  "windowSha256": "ffd4bb14f8093bf9b4c3f5fb53c53dc7312ba97cb3f99c02cda2e397a3a0b5d4",
+  "completed": true
+}

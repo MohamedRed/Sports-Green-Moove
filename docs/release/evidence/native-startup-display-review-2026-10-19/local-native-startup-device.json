@@ -1,0 +1,51 @@
+{
+  "scope": "local-fused-mock-startup-not-physical-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9966872bedd4334866db3c5584a2281c",
+  "rideSessionId": "hESmQSwARI00FH4f9D4h",
+  "capturedAt": 1792433146820,
+  "driverUid": "sgm-qa-driver",
+  "receipts": {
+    "first": {
+      "receipts": [
+        {
+          "role": "driver",
+          "rideSessionId": "hESmQSwARI00FH4f9D4h",
+          "capturedAt": 1792433146820,
+          "status": "written"
+        }
+      ],
+      "ignored": 0,
+      "written": 1
+    },
+    "duplicate": {
+      "receipts": [
+        {
+          "role": "driver",
+          "rideSessionId": "hESmQSwARI00FH4f9D4h",
+          "capturedAt": 1792433146820,
+          "status": "retained"
+        }
+      ],
+      "ignored": 1,
+      "written": 0
+    }
+  },
+  "screenshots": {
+    "local-native-startup-started.png": "e0928f131098ad32a897e03863872b76cb4663442b01e9d4220f3e89fdce8d50",
+    "local-native-startup-invalid.png": "f498cd9463c9c6fdbe786b92be36b114296ac85603c584258fa098cf829ac7c0",
+    "local-native-startup-resumed.png": "52cbcf72f5592c079f7012aefffc7287b9bc739452946d8e983cd08977eb3667",
+    "local-native-startup-signed-out.png": "a7a8c0d0002f3fa9f20bcc2589cd28ebfb96a4ad43c0a09a610162bbf6fbad78"
+  },
+  "captureMethod": "frame-committed-native-display",
+  "duplicateStarted": true,
+  "invalidPreventedStart": true,
+  "duplicateResumed": true,
+  "serviceStoppedOnSignOut": true,
+  "mockModeRestored": true,
+  "driverSignedOut": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "mapMovementVerified": false
+}

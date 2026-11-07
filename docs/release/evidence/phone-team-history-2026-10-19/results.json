@@ -1,0 +1,42 @@
+{
+  "scope": "physical-android-owned-team-history-with-isolated-services",
+  "method": "manual-native-ui-with-independent-persisted-checkpoints",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6ff541fda69369710b0b2f632b752e1e",
+  "sourceCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+  "appSha256": "461bae514e7d45af39f5381ed6f0929b2f94e168e1d2735c7044d0c72815d03f",
+  "testedAt": "2026-10-19T12:24:15.944Z",
+  "device": { "model": "Google Pixel 8", "os": "Android 14" },
+  "physicalDevice": true,
+  "nativeUiObserved": true,
+  "guardianLossReadOnlyObserved": true,
+  "confirmationCancelledWithoutWrite": true,
+  "leftAndReopenedScreen": true,
+  "explicitRefreshObserved": true,
+  "managerDecisions": "isolated-fixture-preparation-through-sdk-not-manager-ui",
+  "captureMethod": "device-only-crops-from-unchanged-browser-context-images-not-native-pixel-export",
+  "phoneCaptureRectangle": { "x": 613, "y": 111, "width": 275, "height": 610 },
+  "captures": [
+    "history-list.png", "history-load-more.png", "history-page-2.png",
+    "history-self-approved.png", "history-confirmation.png", "history-kept-approved.png",
+    "history-withdrawn.png", "history-child-read-only.png", "history-entry.png",
+    "history-club-choices.png", "history-refreshed-list.png", "history-refreshed.png"
+  ],
+  "steps": [
+    { "id": "history-list", "status": "passed" },
+    { "id": "history-page-2", "status": "passed" },
+    { "id": "history-withdrawn", "status": "passed" },
+    { "id": "history-child-read-only", "status": "passed" },
+    { "id": "history-refreshed", "status": "passed" }
+  ],
+  "fullProcessRestartProven": false,
+  "managerUiProvenByThisRun": false,
+  "guardianRevocationThroughUiProven": false,
+  "teamChatImplemented": false,
+  "trackingVerified": false,
+  "paymentExercised": false,
+  "twoPhoneFlowVerified": false,
+  "videoCaptured": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false
+}

@@ -1,0 +1,156 @@
+{
+  "runId": "719c96e0834ae3e85a56eb98c881b76a",
+  "testedAt": "2026-10-17T02:46:07.012Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "controlled-local-production-handlers-not-phone-ui",
+  "sourceSha256": "7db9d768a91f95e32f2e1ad720e36e0ea8f93f921e1b5e64b603c23f75c39044",
+  "passed": false,
+  "failure": {
+    "message": "Unexpected conflict: 3",
+    "code": "ERR_ASSERTION"
+  },
+  "rounds": 1,
+  "cases": [
+    {
+      "round": 0,
+      "tripId": "sgm-qa-controlled-contention-0",
+      "bookingId": "sgm-qa-controlled-contention-0-booking",
+      "reads": [
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "bookings/sgm-qa-controlled-contention-0-booking",
+          "phase": "completed"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-0",
+          "phase": "requested"
+        },
+        {
+          "operation": "approval",
+          "path": "trips/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "tripCancellations/sgm-qa-controlled-contention-0",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "rideSessions",
+          "phase": "completed"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "requested"
+        },
+        {
+          "operation": "cancellation",
+          "path": "bookings",
+          "phase": "failed",
+          "code": 3,
+          "message": "3 INVALID_ARGUMENT: Transaction is invalid or closed."
+        }
+      ],
+      "rpc": [
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "approval",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/BatchGetDocuments",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 0,
+          "details": ""
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 10,
+          "details": "Transaction lock timeout."
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 3,
+          "details": "Transaction is invalid or closed."
+        },
+        {
+          "operation": "cancellation",
+          "method": "/google.firestore.v1.Firestore/RunQuery",
+          "code": 3,
+          "details": "Transaction is invalid or closed."
+        }
+      ],
+      "gateTimedOut": false,
+      "outcomes": [
+        {
+          "status": "rejected",
+          "code": 3,
+          "message": "3 INVALID_ARGUMENT: Transaction is invalid or closed."
+        },
+        {
+          "status": "fulfilled",
+          "result": {
+            "bookingId": "sgm-qa-controlled-contention-0-booking",
+            "status": "approved"
+          }
+        }
+      ],
+      "tripStatus": "published",
+      "bookingStatus": "approved",
+      "seatsAvailable": 3,
+      "notificationCount": 1,
+      "cancellationReceiptExists": false
+    }
+  ],
+  "livePayment": false,
+  "productionDeployed": false
+}

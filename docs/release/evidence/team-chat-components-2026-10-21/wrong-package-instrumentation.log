@@ -1,0 +1,58 @@
+android.util.AndroidException: INSTRUMENTATION_FAILED: be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner
+	at com.android.commands.am.Instrument.run(Instrument.java:543)
+	at com.android.commands.am.Am.runInstrument(Am.java:213)
+	at com.android.commands.am.Am.onRun(Am.java:85)
+	at com.android.internal.os.BaseCommand.run(BaseCommand.java:62)
+	at com.android.commands.am.Am.main(Am.java:54)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:369)
+Partial captures unavailable; original component failure preserved.
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /Users/mrr/Library/Android/sdk/platform-tools/adb -s emulator-5554 shell am instrument -w -e timeout_msec 180000 -e sgmBlockInstallations true -e class be.sportgreenmoove.app.ui.TeamConversationFlowTest be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner
+android.util.AndroidException: INSTRUMENTATION_FAILED: be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner
+	at com.android.commands.am.Instrument.run(Instrument.java:543)
+	at com.android.commands.am.Am.runInstrument(Am.java:213)
+	at com.android.commands.am.Am.onRun(Am.java:85)
+	at com.android.internal.os.BaseCommand.run(BaseCommand.java:62)
+	at com.android.commands.am.Am.main(Am.java:54)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:369)
+
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at checkExecSyncError (node:child_process:916:11)
+    at execFileSync (node:child_process:952:15)
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/run-team-chat-components.mjs:39:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'android.util.AndroidException: INSTRUMENTATION_FAILED: be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner\n' +
+      '\tat com.android.commands.am.Instrument.run(Instrument.java:543)\n' +
+      '\tat com.android.commands.am.Am.runInstrument(Am.java:213)\n' +
+      '\tat com.android.commands.am.Am.onRun(Am.java:85)\n' +
+      '\tat com.android.internal.os.BaseCommand.run(BaseCommand.java:62)\n' +
+      '\tat com.android.commands.am.Am.main(Am.java:54)\n' +
+      '\tat com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)\n' +
+      '\tat com.android.internal.os.RuntimeInit.main(RuntimeInit.java:369)\n'
+  ],
+  pid: 67481,
+  stdout: '',
+  stderr: 'android.util.AndroidException: INSTRUMENTATION_FAILED: be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner\n' +
+    '\tat com.android.commands.am.Instrument.run(Instrument.java:543)\n' +
+    '\tat com.android.commands.am.Am.runInstrument(Am.java:213)\n' +
+    '\tat com.android.commands.am.Am.onRun(Am.java:85)\n' +
+    '\tat com.android.internal.os.BaseCommand.run(BaseCommand.java:62)\n' +
+    '\tat com.android.commands.am.Am.main(Am.java:54)\n' +
+    '\tat com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)\n' +
+    '\tat com.android.internal.os.RuntimeInit.main(RuntimeInit.java:369)\n'
+}
+
+Node.js v22.22.3

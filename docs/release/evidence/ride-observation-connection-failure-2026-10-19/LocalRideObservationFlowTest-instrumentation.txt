@@ -1,0 +1,21 @@
+
+be.sportgreenmoove.app.ui.LocalRideObservationFlowTest:
+Error in parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(be.sportgreenmoove.app.ui.LocalRideObservationFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(LocalRideObservationFlowTest.kt:83)
+
+
+Time: 170.267
+There was 1 failure:
+1) parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(be.sportgreenmoove.app.ui.LocalRideObservationFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRideObservationFlowTest.parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide(LocalRideObservationFlowTest.kt:83)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

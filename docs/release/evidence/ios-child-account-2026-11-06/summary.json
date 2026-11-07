@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-06",
+  "recordedAt": "2026-11-06T20:34:48.172Z",
+  "nativePlanExitCode": 0,
+  "signaturesExitCode": 0,
+  "malformedResponsesRejected": 34,
+  "delayedBoundaries": 70,
+  "originalFixtureCases": 11,
+  "extraFixtureCases": 0,
+  "existingCaseExtensions": 2,
+  "deadlineMinutes": 50,
+  "onlyIosAcceptanceReopened": true,
+  "priorSuccessAndFailureReferencesPreserved": true,
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "systemShareExecuted": false,
+  "connectedChildSignupAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "native-checks.log",
+      "sha256": "71380fcc50e10808bff87e6037ca3bfb1c645aeed48d5ea2e6fc76590de726c9"
+    },
+    {
+      "file": "signature-checks.log",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "manifest-before.json",
+      "sha256": "21b988a1a2d12eb121b8609949d92c0d37abbac8e678b3b2298a3c0b035d4af2"
+    },
+    {
+      "file": "manifest-after.json",
+      "sha256": "404848444f6cb6e3913efec6b0ed3319a332f8251bf6840f5821fb763d272903"
+    },
+    {
+      "file": "index-after.json",
+      "sha256": "804a7cefb17c01646214b876ee7ae7f1e8396f6ab314be1770318fc7016a03a8"
+    },
+    {
+      "file": "build-input-sha256.json",
+      "sha256": "5a468378dfb4b7595a6c8fd0dc28763e42fcf5715e1b61cfc31fb045b28a9f91"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		2 container
+			3 container content
+				4 container in-session-device-react
+					5 container
+					6 container
+						7 image
+						8 button Add Device
+							9 text Add Device
+							10 text PRO
+				11 text ;
+				89 container debugger
+					90 text DevTools -  ADB Shell
+					91 button Download logs, ID: devtool-download-logs
+					92 button Dock to bottom, ID: devtool-change-orientation
+					93 button Collapse, ID: devtool-toggle
+					107 container
+						108 text pixel9Pro:/ $  pm list packages be.sportgreenmoove.app.local
+					109 text command invalid or not supported: pm list packages be.sportgreenmoove.app.local
+					110 link Description: Refer to the supported commands, Value: browserstack.com/docs/app-live/adb-commands
+					94 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
+					95 container
+						96 text To know more about supported commands, refer to 
+						97 link Description: this documentation, Value: browserstack.com/docs/app-live/adb-commands
+					98 link Resize Component
+						99 text ||
+					100 tab group
+						101 tab (selectable, settable, boolean) Description: Logs, Value: 0
+						102 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+						103 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						104 text Inspect
+						105 tab (selectable, settable, boolean) Description: Network, Value: 0
+						106 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				22 content list
+					23 button Description: Switch Device, ID: switchBrowser
+					24 container
+						25 button (disabled) Description: Local testing, ID: appLiveToolbarLocalTesting
+							26 image
+							27 image open content menu
+							28 text Local testing
+					29 menu zoomFeature
+						30 Description: zoom out, ID: zoom-out
+						31 Description: zoom in, ID: zoom-in
+						32 text Zoom
+					33 button Description: Record Session, ID: appLiveVideoRecording
+					34 button Description: DevTools, ID: showDebuggingOptions
+					35 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					36 button open content menu Settings, ID: appLiveSessionSettings
+						37 image open content menu
+						38 text Settings
+					39 button Description: Stop Session, ID: appLiveStopSession
+						40 image
+						41 text Stop Session
+				42 container vertical-toolbar-react
+					43 container vertical-toolbar-draggable
+						44 container
+							45 button toolbar drag icon
+							46 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						47 toolbar
+							48 content list
+								49 button Description: Add Device, ID: app-live-add-device
+									50 container app-live-add-device-lead-text-wrapper
+										51 text Add Device PRO
+								52 button Description: Show Home Screen, ID: dockHomeScreen
+									53 text Show Home Screen
+								54 container volume-buttons-lead-text-wrapper
+									55 text Volume
+									56 container volumeButtons
+										57 button - Volume Decrease
+										58 button (disabled) + Volume Increase
+								59 button Description: View Open Apps, ID: view-open-apps
+									60 text View Open Apps
+								61 button Description: Install New App, ID: switch-app
+									62 text Install New App
+								63 checkbox Description: Profile Performance, Value: 0
+									64 text Profile Performance
+									65 text PRO
+								66 button Description: Capture Screenshot, ID: get-screenshot
+									67 text Capture Screenshot
+								68 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									69 text Kill/Uninstall
+								70 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									71 container android-settings-lead-text-wrapper
+										72 text Android Settings PRO New
+								73 button Rotate Device, ID: dockOrientationRealAndroid
+									74 text Rotate Device
+								75 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									76 text Change Location
+								77 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									78 text Throttle Network
+								79 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									80 text Files & Media
+								81 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									82 text Change Language
+								83 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									84 text Screen Reader
+								85 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									86 text Google Pixel 9 Pro
+									87 text v15.0
+		88 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 94 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 

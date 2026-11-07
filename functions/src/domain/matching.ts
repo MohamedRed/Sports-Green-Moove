@@ -21,6 +21,7 @@ export class RouteUnavailableError extends Error {
 
 export function passesHardFilters(request: SearchRequest, trip: Trip): boolean {
   if (trip.status !== "published") return false;
+  if (trip.pendingChangeId) return false;
   if (!trip.driverVerified) return false;
   if (!request.guardianConsent) return false;
   if (!isWithinDepartureWindow(request, trip)) return false;

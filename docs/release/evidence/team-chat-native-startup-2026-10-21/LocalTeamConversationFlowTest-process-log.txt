@@ -1,0 +1,46 @@
+--------- beginning of system
+W/ActivityManager(  531): Unable to start service Intent { act=android.intent.action.QUICKSTEP_SERVICE pkg=com.google.android.apps.nexuslauncher } U=0: not found
+I/ActivityManager(  531): Background started FGS: Allowed [callingPackage: com.android.vending; callingUid: 10141; uidState: TRNB; uidBFSL: n/a; intent: Intent { dat=vpaservice://startvpafordeferredsetupnotification/... cmp=com.android.vending/com.google.android.finsky.setup.VpaService }; code:BACKGROUND_ACTIVITY_PERMISSION; tempAllowListReason:<,reasonCode:SYSTEM_ALLOW_LISTED,duration:9223372036854775807,callingUid:-1>; targetSdkVersion:34; callerTargetSdkVersion:34; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+W/ActivityManager(  531): Background start not allowed: service Intent { dat=vpaservice://startvpafordeferredsetupnotification/... cmp=com.android.vending/com.google.android.finsky.setup.VpaService } to com.android.vending/com.google.android.finsky.setup.VpaService from pid=5119 uid=10141 pkg=com.android.vending startFg?=true
+I/ActivityManager(  531): Collecting stacks for pid 5677 into temporary file temp_anr_5750815018490597291.txt
+I/ActivityManager(  531): dumpStackTraces pids=null
+I/ActivityManager(  531): Dumping to /data/anr/anr_2026-10-21-13-49-48-324
+I/ActivityManager(  531): dumpStackTraces nativepids=null
+I/ActivityManager(  531): dumpStackTraces extraPids=null
+I/ActivityManager(  531): Done dumping
+E/ActivityManager(  531): ANR in be.sportgreenmoove.app.local
+E/ActivityManager(  531): PID: 5677
+E/ActivityManager(  531): Reason: Process ProcessRecord{5e033a1 5677:be.sportgreenmoove.app.local/u0a208} failed to complete startup
+E/ActivityManager(  531): ErrorId: ffea6c04-ed16-45d2-a86b-1530f4e03f43
+E/ActivityManager(  531): Frozen: false
+E/ActivityManager(  531): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager(  531): ----- Output from /proc/pressure/memory -----
+E/ActivityManager(  531): some avg10=27.16 avg60=16.57 avg300=12.05 total=66392634
+E/ActivityManager(  531): full avg10=5.06 avg60=3.24 avg300=1.88 total=11830815
+E/ActivityManager(  531): ----- End output from /proc/pressure/memory -----
+E/ActivityManager(  531): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager(  531): some avg10=92.49 avg60=92.85 avg300=69.91 total=378621771
+E/ActivityManager(  531): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager(  531): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager(  531): ----- Output from /proc/pressure/io -----
+E/ActivityManager(  531): some avg10=14.40 avg60=8.51 avg300=6.53 total=42133128
+E/ActivityManager(  531): full avg10=0.00 avg60=0.00 avg300=0.29 total=4192662
+E/ActivityManager(  531): ----- End output from /proc/pressure/io -----
+E/ActivityManager(  531): 
+E/ActivityManager(  531): CPU usage from 37262ms to -20ms ago (2026-10-21 13:49:10.834 to 2026-10-21 13:49:48.116):
+E/ActivityManager(  531):   29% 531/system_server: 17% user + 12% kernel / faults: 63115 minor 276 major
+E/ActivityManager(  531):   25% 5119/com.android.vending: 12% user + 12% kernel / faults: 71222 minor 448 major
+E/ActivityManager(  531):   13% 4246/com.google.android.gms.persistent: 9.3% user + 4.1% kernel / faults: 40610 minor 46 major
+E/ActivityManager(  531):   11% 3690/com.android.settings: 5.4% user + 6.2% kernel / faults: 9442 minor 93 major
+E/ActivityManager(  531):   11% 44/kswapd0: 0% user + 11% kernel
+E/ActivityManager(  531):   9.3% 3877/com.google.android.gms: 6.9% user + 2.3% kernel / faults: 28525 minor 12 major
+E/ActivityManager(  531):   7.3% 5162/com.google.android.apps.messaging: 5.4% user + 1.8% kernel / faults: 26984 minor 130 major
+E/ActivityManager(  531):   7% 383/surfaceflinger: 3.9% user + 3% kernel / faults: 2015 minor 4 major
+E/ActivityManager(  531):   6.5% 362/android.hardware.graphics.composer3-service.ranchu: 0.7% user + 5.7% kernel / faults: 272 minor 64 major
+E/ActivityManager(  531):   2.3% 34/kcompactd0: 0% user + 2.3% kernel
+E/ActivityManager(  531): 100% TOTAL: 47% user + 46% kernel + 4.7% irq + 0.5% softirq
+E/ActivityManager(  531): CPU usage from 422646ms to 422646ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager(  531): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager(  531): Killing 5677:be.sportgreenmoove.app.local/u0a208 (adj 0): bg anr
+W/ActivityManager(  531): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner}
+I/ActivityManager(  531): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst

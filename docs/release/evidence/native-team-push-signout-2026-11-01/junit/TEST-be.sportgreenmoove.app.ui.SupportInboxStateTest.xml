@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SupportInboxStateTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.501Z" hostname="local-test-host" time="0.007">
+  <properties></properties>
+  <testcase name="navigatingAwayIgnoresAnOlderDetailResponse" classname="be.sportgreenmoove.app.ui.SupportInboxStateTest" time="0.002"></testcase>
+  <testcase name="explicitPaginationAndDetailReturnUseTheSameOwner" classname="be.sportgreenmoove.app.ui.SupportInboxStateTest" time="0.001"></testcase>
+  <testcase name="closedAccountIgnoresPendingReplyAndNeverReadsAgain" classname="be.sportgreenmoove.app.ui.SupportInboxStateTest" time="0.001"></testcase>
+  <testcase name="staleOrRepeatedPagesFailClosedUntilExplicitRefresh" classname="be.sportgreenmoove.app.ui.SupportInboxStateTest" time="0.001"></testcase>
+  <testcase name="incompleteHistoryOrChangedReportNeedsRefresh" classname="be.sportgreenmoove.app.ui.SupportInboxStateTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

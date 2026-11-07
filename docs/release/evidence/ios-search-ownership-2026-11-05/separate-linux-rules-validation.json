@@ -1,0 +1,37 @@
+{
+  "conclusion": "success",
+  "head": "a188fcadfb236e4f3a0114ef8d11bdfe9e15e078",
+  "rules": [
+    {
+      "id": 127392808399,
+      "name": "Functions, admin, and website checks",
+      "steps": [
+        {
+          "completedAt": "2026-11-05T17:03:13Z",
+          "conclusion": "success",
+          "name": "Validate rules configuration without cloud changes",
+          "number": 67,
+          "startedAt": "2026-11-05T17:03:10Z",
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "id": 127392808421,
+      "name": "People and safety service smoke",
+      "steps": []
+    },
+    {
+      "id": 127392808648,
+      "name": "Guardian, child, and tracking service smoke",
+      "steps": []
+    },
+    {
+      "id": 127407465210,
+      "name": "Functions, admin, and website smoke",
+      "steps": []
+    }
+  ],
+  "runId": 42069406520,
+  "status": "completed"
+}

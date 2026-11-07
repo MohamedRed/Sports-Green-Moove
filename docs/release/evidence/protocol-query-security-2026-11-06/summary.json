@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-06",
+  "baselineCommit": "385a6a4418848b46f4ea522c2903ee22be8b1ee6",
+  "scope": "compatible-parser-patches-and-local-compatibility-not-release-clearance",
+  "directManifestsUnchanged": true,
+  "applicationSourcesUnchanged": true,
+  "existingRangesRespected": true,
+  "regressionsBefore": {
+    "passed": 6,
+    "failed": 6
+  },
+  "regressionsAfter": {
+    "passed": 12,
+    "failed": 0
+  },
+  "backendUnitCases": 623,
+  "allWorkspaceFindingsBefore": 30,
+  "allWorkspaceFindingsAfter": 28,
+  "remainingHighFindings": 5,
+  "productionFindingsBefore": 10,
+  "productionFindingsAfter": 8,
+  "interruptedServiceAttemptAccepted": false,
+  "interruptedServiceCauseConfirmed": false,
+  "initialHarnessCorrection": "Use actual RPC service methods before the corrected baseline; the initial harness failure is not a vulnerability.",
+  "allSecurityFindingsResolved": false,
+  "productionExploitProven": false,
+  "productionDeployed": false,
+  "realPayments": false,
+  "physicalDeviceAccepted": false,
+  "nativeInstabilityRepaired": false,
+  "releaseComplete": false,
+  "serviceGroups": 24,
+  "serviceReplayAccepted": true,
+  "isolatedEnvironmentDestroyed": true,
+  "paymentCases": 78,
+  "rulesCases": 219,
+  "notificationCases": 20,
+  "cloudProviderFlowAccepted": false
+}

@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-23",
+  "scope": "completed-isolated-native-replay-not-root-cause-or-release",
+  "sourceCommit": "0f91172f5340ae77696afda54d60ac923a3506a9",
+  "ciRunId": 39999878585,
+  "nativeGroupsPassed": 36,
+  "nativeCasesPassed": 38,
+  "ordinaryCasesPassed": 154,
+  "ordinaryCasesSkipped": 50,
+  "primaryCopiesPassed": 16,
+  "focusedJobsPassed": 11,
+  "fullCiPassed": true,
+  "deviceRestorationVerified": true,
+  "hostExitVerified": true,
+  "earlierTransportRootCauseConfirmed": false,
+  "newMediaAccepted": false,
+  "physicalTrackingAccepted": false,
+  "realPaymentsExercised": false,
+  "productionWrites": false,
+  "releaseComplete": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": 13043247915,
+  "node_id": "MDg6QXJ0aWZhY3QxMzA0MzI0NzkxNQ==",
+  "name": "android-focused-safety-ui-session-disconnect",
+  "size_in_bytes": 11391,
+  "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13043247915",
+  "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13043247915/zip",
+  "expired": false,
+  "digest": "sha256:ff1e93b17e424142fdc16afeb8ee33131d7aaa0dc7973a888eac0d5d86d21acd",
+  "created_at": "2026-10-31T12:50:58Z",
+  "updated_at": "2026-10-31T12:50:58Z",
+  "expires_at": "2027-01-29T12:43:44Z",
+  "workflow_run": {
+    "id": 41202387345,
+    "repository_id": 1265168151,
+    "head_repository_id": 1265168151,
+    "head_branch": "codex/implement-plan",
+    "head_sha": "51c183e7af60a79c3096d55e65eb0b33ce1b0d26"
+  }
+}

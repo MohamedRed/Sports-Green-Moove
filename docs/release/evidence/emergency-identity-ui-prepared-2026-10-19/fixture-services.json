@@ -1,0 +1,25 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4daaccb65ad33aea8059a7df54e82ad0",
+  "testedAt": "2026-10-19T21:57:56.808Z",
+  "scope": "local-services-not-native-ui",
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "claimsUnchanged": true,
+    "baselineCollectionCount": 15,
+    "contactCount": 2,
+    "contactOperationCount": 2,
+    "guardianEventCount": 5,
+    "oldContactPreserved": true
+  },
+  "sourceFiles": {
+    "scripts/qa/local-emergency-identity-fixture-suite.mjs": "b758f2e5f23c825d9f409054774102e4fdd4dd56f0e417e849edec6d04d5a45c",
+    "scripts/qa/emergency-identity-fixture.mjs": "2e6b958a6fabcf97e1f2ed468586f4539768dbc9061d15e13cd75779a2519eb2",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865"
+  }
+}

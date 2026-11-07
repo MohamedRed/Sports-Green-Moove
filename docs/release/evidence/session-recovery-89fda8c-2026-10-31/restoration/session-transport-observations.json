@@ -1,0 +1,109 @@
+{
+  "scope": "read-only-local-session-transport-not-flow-verification",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b197c7575d68ed9fd69375f586b8ce59",
+  "networkSettingsChanged": false,
+  "authenticationRetried": false,
+  "observations": [
+    {
+      "phase": "before-sign-in",
+      "elapsedRealtimeMs": 132925,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ],
+      "tcp": [
+        {
+          "service": "auth",
+          "port": 9099,
+          "connected": true,
+          "failureKind": null
+        },
+        {
+          "service": "functions",
+          "port": 5001,
+          "connected": true,
+          "failureKind": null
+        },
+        {
+          "service": "controlled-proxy",
+          "port": 36579,
+          "connected": true,
+          "failureKind": null
+        }
+      ]
+    },
+    {
+      "phase": "signed-in",
+      "elapsedRealtimeMs": 137829,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "launching-app",
+      "elapsedRealtimeMs": 137835,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "initial-error",
+      "elapsedRealtimeMs": 142117,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "rotated-error",
+      "elapsedRealtimeMs": 144557,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "recovered",
+      "elapsedRealtimeMs": 155252,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "restored",
+      "elapsedRealtimeMs": 158518,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "identity-verified",
+      "elapsedRealtimeMs": 160914,
+      "activeNetwork": true,
+      "internetCapability": true,
+      "validatedCapability": true,
+      "transports": [
+        "wifi"
+      ]
+    }
+  ]
+}

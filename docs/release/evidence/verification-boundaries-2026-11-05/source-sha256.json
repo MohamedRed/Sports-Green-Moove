@@ -1,0 +1,16 @@
+{
+  "files": [
+    {
+      "path": "tests/fixtures/ios-search-contract/main.swift",
+      "sha256": "2818ea31dd576323410b5546b96f4d3f0b6545508fc873cb9379ea47989200d0"
+    },
+    {
+      "path": "scripts/qa/disposable-wifi-readiness.mjs",
+      "sha256": "58618b06bb46f5e500a51758b77f7426e07a02750119f9ce99ced7a1180b92ae"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "f6f1e25f39adf16aae489473b582d60739dc4a53c983f1cfe6baf03c46a26631"
+    }
+  ]
+}

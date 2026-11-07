@@ -1,0 +1,50 @@
+name: Chat Proof Diagnostic
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/chat-proof-diagnostic.yml"
+      - "scripts/diagnostics/ci-proof-resources.mjs"
+      - "scripts/diagnostics/chat-proof-media-probe.mjs"
+      - "scripts/diagnostics/run-chat-proof-diagnostic.mjs"
+      - "tests/chat-proof-diagnostic.test.mjs"
+      - "scripts/lib/exact-pixel-frames.mjs"
+      - "scripts/lib/session-image-crop.mjs"
+      - "partner-portal/chat-proof-rgb-validation.mjs"
+      - "docs/release/evidence/chat-proof-rgb-normalization-2026-11-01/**"
+      - "tests/chat-proof-rgb-normalization.test.mjs"
+      - "tests/chat-receipt-loss*.test.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    name: Isolated chat proof (not primary smoke)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check observer boundaries without starting any service
+        run: node --test tests/chat-proof-diagnostic.test.mjs tests/chat-proof-rgb-normalization.test.mjs
+      - name: Verify portable original crops, then run the primary three-file command
+        env:
+          SGM_CHAT_PROOF_DIAGNOSTIC_DIR: ${{ runner.temp }}/chat-proof-diagnostic
+        run: node scripts/diagnostics/run-chat-proof-diagnostic.mjs
+      - name: Retain allowlisted resource observations and exact command outcomes
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-proof-diagnostic
+          path: |
+            ${{ runner.temp }}/chat-proof-diagnostic/resources.jsonl
+            ${{ runner.temp }}/chat-proof-diagnostic/result.json
+          if-no-files-found: error

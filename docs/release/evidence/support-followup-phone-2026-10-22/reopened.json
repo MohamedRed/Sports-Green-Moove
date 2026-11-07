@@ -1,0 +1,149 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "recordedAt": "2026-10-22T14:58:50.979Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "replyIds": [
+      "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+      "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44"
+    ],
+    "foreignReadDenied": false,
+    "reportId": "GlFQk50tS4zVLQraH13W"
+  },
+  "input": {
+    "subjectType": "other",
+    "reason": "Support suivi QA",
+    "description": "Je souhaite suivre cette demande de test.",
+    "emergency": false
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "subjectType": "other",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "reporterUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792680759,
+          "_nanoseconds": 263000000
+        },
+        "reviewNote": "INTERNAL-SUPPORT-FOLLOWUP-QA",
+        "reviewedByUserId": "sgm-qa-admin",
+        "reviewEvents": [
+          {
+            "status": "reviewing",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": "INTERNAL-SUPPORT-FOLLOWUP-QA",
+            "reviewedAt": {
+              "_seconds": 1792680880,
+              "_nanoseconds": 984000000
+            }
+          }
+        ],
+        "publicReplyCount": 2,
+        "reviewedAt": {
+          "_seconds": 1792680926,
+          "_nanoseconds": 114000000
+        },
+        "lastPublicReply": {
+          "id": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+          "text": "Votre demande est maintenant resolue.",
+          "sequence": 2,
+          "sentAt": {
+            "_seconds": 1792680926,
+            "_nanoseconds": 114000000
+          }
+        },
+        "closedAt": {
+          "_seconds": 1792680926,
+          "_nanoseconds": 114000000
+        },
+        "status": "closed",
+        "updatedAt": {
+          "_seconds": 1792680926,
+          "_nanoseconds": 114000000
+        }
+      }
+    ],
+    "replies": [
+      {
+        "id": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+        "text": "Votre demande est maintenant resolue.",
+        "sequence": 2,
+        "sentAt": {
+          "_seconds": 1792680926,
+          "_nanoseconds": 114000000
+        },
+        "authorUid": "sgm-qa-admin",
+        "previousStatus": "reviewing",
+        "status": "closed"
+      },
+      {
+        "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+        "text": "Votre demande est prise en charge.",
+        "sequence": 1,
+        "sentAt": {
+          "_seconds": 1792680881,
+          "_nanoseconds": 774000000
+        },
+        "authorUid": "sgm-qa-admin",
+        "previousStatus": "reviewing",
+        "status": "reviewing"
+      }
+    ],
+    "notifications": [],
+    "requesterView": {
+      "report": {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "status": "closed",
+        "createdAtMillis": 1792680759263,
+        "updatedAtMillis": 1792680926114,
+        "replyCount": 2,
+        "lastReply": {
+          "id": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+          "text": "Votre demande est maintenant resolue.",
+          "sequence": 2,
+          "sentAtMillis": 1792680926114
+        }
+      },
+      "replies": {
+        "items": [
+          {
+            "id": "736066a1395fb98c7f17175dccdd98301ae91e41cbab924484b54d1592033b44",
+            "text": "Votre demande est maintenant resolue.",
+            "sequence": 2,
+            "sentAtMillis": 1792680926114
+          },
+          {
+            "id": "a28b499bf8f12c216afba497466c4e4a375fa607adc91793055abd3110db28af",
+            "text": "Votre demande est prise en charge.",
+            "sequence": 1,
+            "sentAtMillis": 1792680881774
+          }
+        ],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null
+  },
+  "result": {
+    "phase": "reopened",
+    "reportId": "GlFQk50tS4zVLQraH13W",
+    "reportCount": 1,
+    "replyCount": 2,
+    "status": "closed",
+    "privateNotesAbsentFromRequesterView": true,
+    "foreignAccountChecked": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminResponsesViaService": 2
+}

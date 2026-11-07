@@ -1,0 +1,10 @@
+								861 row 10-25 18:42:23.205 I/SGM.RideObservation(23389): observer=1 sequence=10 elapsedMs=277980 event=RideCached
+								864 row 10-25 18:43:55.342 I/SGM.RideObservation(23389): observer=1 sequence=11 elapsedMs=370117 event=RideServer
+								867 row 10-25 18:43:55.343 I/SGM.RideObservation(23389): observer=1 sequence=12 elapsedMs=370117 event=FetchStarted
+								870 row 10-25 18:43:55.641 I/SGM.RideObservation(23389): observer=1 sequence=13 elapsedMs=370415 event=FetchCompleted
+								873 row 10-25 18:45:35.333 I/SGM.RideObservation(23389): observer=1 sequence=14 elapsedMs=470107 event=Closed
+								876 row 10-25 18:46:17.843 I/SGM.RideObservation(23389): observer=2 sequence=1 elapsedMs=1 event=Opened
+								879 row 10-25 18:46:17.863 I/SGM.RideObservation(23389): observer=2 sequence=2 elapsedMs=20 event=RideServer
+								882 row 10-25 18:46:17.863 I/SGM.RideObservation(23389): observer=2 sequence=3 elapsedMs=20 event=Connected connected=false
+								885 row 10-25 18:46:17.863 I/SGM.RideObservation(23389): observer=2 sequence=4 elapsedMs=20 event=FetchStarted
+								888 row 10-25 18:46:18.017 I/SGM.RideObservation(23389): observer=2 sequence=5 elapsedMs=174 event=FetchCompleted

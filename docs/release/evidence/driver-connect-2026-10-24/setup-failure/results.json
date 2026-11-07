@@ -1,0 +1,28 @@
+{
+  "scope": "android-compose-connect-components-no-backend-or-provider",
+  "testedAt": "2026-10-24T15:52:45.167Z",
+  "phase": "red",
+  "avd": "sgm_connect_red_20261024",
+  "completed": false,
+  "expectedCases": 3,
+  "sourceFiles": {
+    "scripts/qa/run-connect-components.mjs": "55c7926c225a6df47811d9c6d9feef059dd3cdf646e29114c54795ff87886889",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt": "96a103b56aa65961a9ee6450e9eb173494747a2a56251fbfdf6d4afd51ae1a82",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsConnectCard.kt": "c206165d64cfefdd208e0b503c169572c24216efc280ee65bef880a31dc169f2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsRoute.kt": "4efde77d8806b07a02c518b762ceb7b58af25ad1022661759516261b594418e2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "22b624bea1ddd0aad1037b2e2b1e37d9a157c17f971a458734752a704df8b06b"
+  },
+  "apkHashes": {
+    "apk/debug/app-debug.apk": "3c620f5d8074947b18bcc60da2ef6c5f597c09bafa0eba3150cdc1db76c0e976",
+    "apk/androidTest/debug/app-debug-androidTest.apk": "d7263ba8ca65e25509c3e395a6c2d40961eb5502938854829626845b8f7202b8"
+  },
+  "transcriptSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "packagesRemoved": false,
+  "providerRequests": 0,
+  "backendRequests": 0,
+  "physicalDevice": false,
+  "realOnboarding": false,
+  "productionWrites": false,
+  "administrationUsed": false,
+  "failure": "AssertionError"
+}

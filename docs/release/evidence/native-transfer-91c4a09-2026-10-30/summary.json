@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "91c4a09fa70a7d4e0d2537f46000767275ca83ba",
+  "scope": "failed-new-budget-gate-with-primary-transfer-interruption-not-timeout-or-release-proof",
+  "outerBudgetMinutes": 50,
+  "mainJobSeconds": 1237,
+  "ordinaryPassed": 205,
+  "partialReplayCasesPassed": 29,
+  "successfulPrimaryCopies": 10,
+  "focusedJobsPassed": 11,
+  "deviceRestorationVerified": true,
+  "fullGatePassed": false,
+  "completeReplayAccepted": false,
+  "rootCauseConfirmed": false,
+  "physicalDeviceAccepted": false,
+  "releaseAccepted": false,
+  "publicMedia": []
+}

@@ -1,0 +1,31 @@
+{
+  "scope": "android-compose-connect-components-no-backend-or-provider",
+  "testedAt": "2026-10-24T16:26:57.196Z",
+  "phase": "green",
+  "avd": "sgm_connect_green_20261024_4",
+  "completed": true,
+  "expectedCases": 4,
+  "sourceFiles": {
+    "scripts/qa/run-connect-components.mjs": "761c6134a050e97fec28ae659d545dd8f2aaeddbf69948cfc4b2a24d34016866",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt": "1bfd8a33bb3572b6f8db44589571d3409a14fe2847bbc535328d2f2d4877afaa",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsConnectCard.kt": "3364f4f108c2c03028986280f99d8320aa21187aa5c322ad1faf621c2c513012",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsRoute.kt": "51eee8141770a7c76a9867ee404da9143de52335ef664dbc6cc5b1118e4ba8ba",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "65ad9961f21493f221e3cbc99c1d28bcd352ca9d876d72462ba2faa50ceb0750",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt": "c66606b03870be6bf94e6d3577bb566a93eb02fb0e74e17cf0e23611d2cff7d6",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt": "1102af0f87a762c5ccbcbbdec7399cacb196b35e18a60b624913c75c8b74249d",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt": "16af36919e3c151bd8546f217244e4b574a2fdddadbf13b7c1fd6567981c2350",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt": "a24ba0e918551be4f4f5978f97b99c6976c839928941ab724849039d2bcba7d7"
+  },
+  "apkHashes": {
+    "apk/debug/app-debug.apk": "4b2965e492964408aefae1a89948f515c2ad9c1bbe27ff4f7d887309c8d94a27",
+    "apk/androidTest/debug/app-debug-androidTest.apk": "ff676be1854a3ec946bf9e5414560e43acc583d591c32d8ec70b2f347810dec8"
+  },
+  "transcriptSha256": "ff2aae17324459a56d4e2e60f75b5df017fc967d2915fbaebb67e6e25e88a6ff",
+  "packagesRemoved": true,
+  "providerRequests": 0,
+  "backendRequests": 0,
+  "physicalDevice": false,
+  "realOnboarding": false,
+  "productionWrites": false,
+  "administrationUsed": false
+}

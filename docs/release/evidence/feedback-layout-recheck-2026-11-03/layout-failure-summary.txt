@@ -1,0 +1,28 @@
+There were 6 failures:
+1) feedbackTextFitsActualComponents[notices-light-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: notices-light-wide/review.submission.error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:98)
+2) feedbackTextFitsActualComponents[notices-dark-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: notices-dark-wide/review.submission.error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:98)
+3) feedbackTextFitsActualComponents[input-light-phone](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.AssertionError: Assert failed: The component with TestTag = 'feedback.material-error' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:95)
+4) feedbackTextFitsActualComponents[input-light-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.AssertionError: Assert failed: The component with TestTag = 'feedback.material-error' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:95)
+5) feedbackTextFitsActualComponents[input-dark-phone](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.AssertionError: Assert failed: The component with TestTag = 'feedback.material-error' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:95)
+6) feedbackTextFitsActualComponents[input-dark-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.AssertionError: Assert failed: The component with TestTag = 'feedback.material-error' is not displayed!
+	at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:95)
+
+FAILURES!!!
+Tests run: 315,  Failures: 6
+
+

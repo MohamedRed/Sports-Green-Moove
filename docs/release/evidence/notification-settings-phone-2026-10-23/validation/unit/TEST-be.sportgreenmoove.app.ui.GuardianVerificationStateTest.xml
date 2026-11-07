@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:07:18.006Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="aChangedSelectionAndAnOldViewCannotSendAnotherChildsRequest" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.002"/>
+  <testcase name="closingAnAccountClearsAllListsAndDiscardsLateResults" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.001"/>
+  <testcase name="simultaneousConfirmationAndRefreshCannotDuplicateAWrite" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.001"/>
+  <testcase name="lostReplyNeedsReadOnlyRecoveryAndDoesNotRepeatTheSubmission" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.0"/>
+  <testcase name="selectionRequiresAPointReadAndOnlyItsDisplayedRevisionIsSent" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.001"/>
+  <testcase name="verificationCanOnlyBeRemovedOrRerequestedAccordingToCurrentCapabilities" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.0"/>
+  <testcase name="historyOpensItsActualRevisionEvenWhenNotInTheFirstChoicePage" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.001"/>
+  <testcase name="acknowledgedWriteIsNotCalledUnsentWhenItsReadFails" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.0"/>
+  <testcase name="missingIdentityCannotBeNewlyVerifiedThroughARequest" classname="be.sportgreenmoove.app.ui.GuardianVerificationStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

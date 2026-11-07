@@ -1,0 +1,15 @@
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-android-shell.mjs:12
+      throw new Error(`Disposable Android setup command failed (${code}; exit ${status}).`);
+            ^
+
+Error: Disposable Android setup command failed (PROCESS_ERROR; exit 1).
+    at run (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-android-shell.mjs:12:13)
+    at shell (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-android-shell.mjs:20:40)
+    at stopped (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-store-pause.mjs:13:17)
+    at prepareContinuousDevice (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:28:27)
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/configure-continuous-disposable.mjs:3:34
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.3

@@ -1,0 +1,45 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "581b257773505a49a48df782d33a86fd",
+  "testedAt": "2026-10-28T14:27:15.814Z",
+  "scope": "manual-team-persisted-checkpoints-not-ui-or-release-proof",
+  "completed": false,
+  "checkpoints": [
+    {
+      "phase": "self-requested",
+      "selfStatus": "requested",
+      "selfRevision": 1,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 1
+    },
+    {
+      "phase": "self-refused",
+      "selfStatus": "refused",
+      "selfRevision": 2,
+      "childStatus": null,
+      "childRevision": 0,
+      "enrollmentCount": 1,
+      "eventCount": 2
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-phone-session.mjs": "5b7f52c2e9bbe9a05618637c913523ec8a56f5f8ddb0f4b28ae8eb76df48759a",
+    "scripts/qa/manual-team-phone-checkpoints.mjs": "b2ac7a6463799ac2503e35210212a01635d191a67bc2829d8f40d2573704e1d7",
+    "scripts/qa/local-team-native-fixture.mjs": "827826594de591323a44f674e76ed95920d4a4478c287c5640ff4cafc0e17f00",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/services/teamEnrollmentViews.ts": "a2406d4b2209bea911595f6024265aff93bac7873bb19bef8b972c59081251cc",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollmentReview.ts": "b03b0800ae19f5541f0554733e7e0d2336be49d3bb8d53740dd44b099801c76c",
+    "admin/src/TeamReviewPanel.tsx": "bd40bc85fa5b310d57e57fa479125f7adf9aa79f983ccda47f0e78d10e7d7974",
+    "admin/src/TeamReviewController.ts": "2c329cb276cbb685d30b97d3451b0e0a708aaede207d7bd5f5678c4ebd5f1a84",
+    "admin/src/teamReviewGateway.ts": "520ca2cd79124b3c9fdfa95d5e264698be9d63c75e998f2eee293626280fc0ba",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentRoute.kt": "f214df30f3c1b7576b51f428a0b312cd8d604e6f6c019195b39a51d879424530",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentScreen.kt": "950babd50249e9681af91dec00d534f62b8eb432174fe9fde8f8f0621785df44"
+  },
+  "fixtureCleanupVerified": true,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "teamChatImplemented": false
+}

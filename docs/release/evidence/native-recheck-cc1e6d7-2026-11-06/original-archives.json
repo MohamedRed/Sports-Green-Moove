@@ -1,0 +1,97 @@
+{
+  "archives": [
+    {
+      "prefix": "matrix",
+      "id": 13542339539,
+      "job": 128165783151,
+      "bytes": 53283,
+      "sha256": "29ad3e29f2841e5c73c60b6516add409a8eda6e74fb2392119f06f083530faa6"
+    },
+    {
+      "prefix": "startup",
+      "id": 13542344202,
+      "job": 128165783832,
+      "bytes": 1363529,
+      "sha256": "cb5a1fc2684a5e9c30d758e28a64f2677c52ca8eb23d0750daf78243da9f3cbf"
+    }
+  ],
+  "members": [
+    {
+      "artifactId": 13542339539,
+      "member": "outputs/store-review-screenshots/host-dns-before-launch.json",
+      "file": "matrix/host-dns-before-launch.json",
+      "bytes": 983,
+      "sha256": "369a7979742c2a3425cc13be485d07518110cc051ea7fdb770142e95e2361052"
+    },
+    {
+      "artifactId": 13542339539,
+      "member": "outputs/store-review-screenshots/network-readiness/outcome.json",
+      "file": "matrix/network-readiness/outcome.json",
+      "bytes": 728,
+      "sha256": "982e64f23cf7460d1c5321392986de8dd7f190c75e868f33dbadd32a03f66f4c"
+    },
+    {
+      "artifactId": 13542339539,
+      "member": "outputs/store-review-screenshots/network-readiness/chat-network-validation-before.json",
+      "file": "matrix/network-readiness/chat-network-validation-before.json",
+      "bytes": 1330,
+      "sha256": "ecefabedc70b74c4ace0ee2123b9b08323eac79b2b27abd7981a03eb9b5cd36a"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "local-ui-evidence/a1e434e727364215567e88ef98d2f723/LocalNativeTrackingStartupTest-instrumentation.txt",
+      "file": "startup/LocalNativeTrackingStartupTest-instrumentation.txt",
+      "bytes": 175,
+      "sha256": "ce56c061366cab4f649ae8fe69879c6a69bd7ef789f2b7497c6cb1db05da7f62"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "local-ui-evidence/a1e434e727364215567e88ef98d2f723/local-native-startup-device.json",
+      "file": "startup/local-native-startup-device.json",
+      "bytes": 3141,
+      "sha256": "ce6f50e224fe783dafa885d20378198a22b981a95ca55de517d03fc504f6a364"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "local-ui-evidence/a1e434e727364215567e88ef98d2f723/adb-pull-native-startup.json",
+      "file": "startup/adb-pull-native-startup.json",
+      "bytes": 6507,
+      "sha256": "14454515f7f9d4ff8ffc7c0bb5248ad4504238c8937e8084c946425288c17f9b"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "local-ui-evidence/a1e434e727364215567e88ef98d2f723/adb-pull-failure-cleanup.json",
+      "file": "startup/adb-pull-failure-cleanup.json",
+      "bytes": 7161,
+      "sha256": "048494934f04d023ef2b524ea2d5dd27cc0eac7bb6145a8071b4d895efc551be"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "local-ui-evidence/a1e434e727364215567e88ef98d2f723/adb-sync-native-startup-diagnostics.json",
+      "file": "startup/adb-sync-native-startup-diagnostics.json",
+      "bytes": 2328,
+      "sha256": "620cafb9ed35ca5cc50a9215d709631c4d5fb53e6770534deb167c0aecca611c"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "focused-safety-ui/native-startup/disposable-device-restore.json",
+      "file": "startup/disposable-device-restore.json",
+      "bytes": 371,
+      "sha256": "c3d00e0e2adb85c90fd8e5a5094a63dfcec913cc6c0d5fe2460a904f43949cdc"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "focused-safety-ui/native-startup/native-startup-suite-status.json",
+      "file": "startup/native-startup-suite-status.json",
+      "bytes": 75,
+      "sha256": "ce4c28b5d37a6325ff0635829ae4ec3d7c47b9869c17433a323cd1fa5983ce98"
+    },
+    {
+      "artifactId": 13542344202,
+      "member": "focused-safety-ui/native-startup/host-shutdown/complete.json",
+      "file": "startup/host-shutdown/complete.json",
+      "bytes": 397,
+      "sha256": "316691e5b7baa92a6e2e8f6e3578a1ffed9867afd1422369387ce2d6db1c37e2"
+    }
+  ]
+}

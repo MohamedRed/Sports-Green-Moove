@@ -1,0 +1,189 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a82ed7a3ce4dc3a3221f36df294696c9",
+  "phase": "confirmed-restart",
+  "recordedAt": "2026-10-29T20:55:55.613Z",
+  "hostBefore": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-29T20:55:54.865Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        3819
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 0,
+      "events": [
+        {
+          "timestampLocal": "10-29 20:39:48.371",
+          "pid": 3819,
+          "tid": 3827,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 3819,
+        "startedAtLocal": "Thu Oct 29 20:39:32 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "processes": [
+        {
+          "pid": 3819,
+          "startTicks": "31444",
+          "connections": [
+            {
+              "inode": "22663",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "22771",
+              "state": "01",
+              "listening": false,
+              "localPort": 51301,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "hostAfter": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-29T20:55:55.598Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        3819
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 0,
+      "events": [
+        {
+          "timestampLocal": "10-29 20:39:48.371",
+          "pid": 3819,
+          "tid": 3827,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 3819,
+        "startedAtLocal": "Thu Oct 29 20:39:32 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "processes": [
+        {
+          "pid": 3819,
+          "startTicks": "31444",
+          "connections": [
+            {
+              "inode": "22663",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "22771",
+              "state": "01",
+              "listening": false,
+              "localPort": 51301,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "scope": "local-adb-file-sync-command-not-flow-verification",
+  "serial": "emulator-5554",
+  "version": "Android Debug Bridge version 1.0.41\nVersion 37.0.1-15733141\nInstalled as /usr/local/lib/android/sdk/platform-tools/adb\nRunning on Linux 7.0.0-1017-azure (x86_64)\n",
+  "status": 0,
+  "signal": null,
+  "errorCode": null,
+  "stdout": "",
+  "stderr": "10-29 20:55:54.893  7211  7211 D adb     : adb_client.cpp:355 adb_connect: service: host-serial:emulator-5554:features\n10-29 20:55:54.893  7211  7211 D adb     : adb_client.cpp:157 _adb_connect: host:version\n10-29 20:55:54.893  7211  7211 D adb     : adb_client.cpp:157 _adb_connect: host-serial:emulator-5554:features\n10-29 20:55:54.894  7211  7211 D adb     : adb_client.cpp:355 adb_connect: service: sync:\n10-29 20:55:54.894  7211  7211 D adb     : adb_client.cpp:157 _adb_connect: sync:\n10-29 20:55:54.894  7211  7211 D adb     : adb_client.cpp:116 Switch transport in progress: host:tport:serial:emulator-5554\n/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/./: 131 files pulled, 0 skipped. 21.3 MB/s (15627886 bytes in 0.699s)\n",
+  "completed": true
+}

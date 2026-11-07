@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-23",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "65daf701a9ae609e0cfde11012a80dbe",
+  "scope": "physical-android-notification-read-and-sequential-account-switch-with-isolated-backend",
+  "appSourceCommit": "87082b10b44db59943089a21f82606f5a153be2b",
+  "observerSourceWasUncommitted": true,
+  "actualPhoneReadPassed": true,
+  "actualAccountSwitchPassed": true,
+  "parentReturnPassed": true,
+  "checkpointsPassed": 4,
+  "protectedRecordCount": 167,
+  "captures": [
+    "unread",
+    "read",
+    "driver",
+    "parent-return"
+  ],
+  "processDeathAccepted": false,
+  "nativeProcessIdsMeasured": false,
+  "pushDeliveryAccepted": false,
+  "physicalTrackingAccepted": false,
+  "productionWrites": false,
+  "realMapsUsed": false,
+  "realPaymentsUsed": false,
+  "iosAccepted": false,
+  "videoAccepted": false,
+  "releaseComplete": false,
+  "lifecycleAttempt": "Provider Kill App(s) displayed a force-kill-in-progress notice, but the stream remained on the same screen and process death was not measured. The reopened checkpoint establishes account return only.",
+  "inputPreparation": "Remote keyboard focus and symbol forwarding required on-screen keyboard input. These preparation attempts are not accepted as flow results or published media."
+}

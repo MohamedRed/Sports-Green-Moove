@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TripChangeMappingTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.745Z" hostname="local-test-host" time="0.009">
+  <properties></properties>
+  <testcase name="readOnlyResolutionRequiresExactRequestAndExplicitAbsence" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.002"></testcase>
+  <testcase name="fullReviewIsStrictAndScopedToTheRequestedTripAndProposal" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.003"></testcase>
+  <testcase name="quoteHasBoundedServerRouteAndExpiry" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.001"></testcase>
+  <testcase name="invalidCountsStatesAndForeignBalancesAreRejected" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.001"></testcase>
+  <testcase name="receiptRequiresExactActorRequestRevisionAndQuote" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.001"></testcase>
+  <testcase name="malformedTermsFailClosedWithoutCoercion" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.001"></testcase>
+  <testcase name="exactPayloadsBindAllWritesWithoutClientAuthority" classname="be.sportgreenmoove.app.services.TripChangeMappingTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

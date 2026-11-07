@@ -1,0 +1,321 @@
+{
+  "scope": "independent-search-departure-records-not-phone-ui-or-search-results",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4d142924e3a1ef46d51a9e9c68070304",
+  "completed": true,
+  "failure": false,
+  "checkpoints": [
+    {
+      "phase": "before",
+      "recordedAt": "2026-10-31T11:36:07.604Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "home",
+      "recordedAt": "2026-10-31T11:53:49.923Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "initial",
+      "recordedAt": "2026-10-31T11:54:12.057Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "calendar-open",
+      "recordedAt": "2026-10-31T11:54:24.127Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "calendar-cancelled",
+      "recordedAt": "2026-10-31T11:54:36.449Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "date-chosen",
+      "recordedAt": "2026-10-31T11:54:54.473Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "clock-open",
+      "recordedAt": "2026-10-31T11:55:03.393Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "clock-chosen",
+      "recordedAt": "2026-10-31T11:55:20.552Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "navigated-back",
+      "recordedAt": "2026-10-31T11:55:28.764Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "search-reopened",
+      "recordedAt": "2026-10-31T11:55:41.603Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "dark",
+      "recordedAt": "2026-10-31T11:55:50.848Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    },
+    {
+      "phase": "signed-out",
+      "recordedAt": "2026-10-31T11:56:24.457Z",
+      "isolation": {
+        "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+        "allUserClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "collections": {
+          "bookings": 3,
+          "chatInboxes": 4,
+          "children": 1,
+          "clubs": 3,
+          "co2Ledger": 1,
+          "memberships": 10,
+          "messages": 121,
+          "notifications": 1,
+          "reports": 1,
+          "rewardLedger": 1,
+          "teams": 1,
+          "trips": 2,
+          "users": 9
+        },
+        "accountCount": 5
+      }
+    }
+  ],
+  "observedAt": "2026-10-31T11:56:24.472Z",
+  "physicalUiProven": false,
+  "searchSubmitted": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/manual-search-departure-phone.mjs": "b3f0dee6b2642bde982df6ca8abd8a2a7556b99ec420640daff5ce555c9bc2eb",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

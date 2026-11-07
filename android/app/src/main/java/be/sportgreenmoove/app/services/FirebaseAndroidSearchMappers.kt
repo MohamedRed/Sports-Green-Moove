@@ -6,6 +6,7 @@ import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.data.TripStatus
 import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.data.BookingIntentSnapshot
 import kotlin.math.round
 
 internal fun TripSearchCriteria.toCallablePayload(): Map<String, Any> {
@@ -53,8 +54,12 @@ internal fun mapResolvedPlace(data: Map<*, *>): ResolvedPlace {
 
 internal fun mapTripMatch(data: Map<*, *>): TripMatchSummary? {
     val tripId = data["tripId"] as? String ?: return null
-    val summary = (data["summary"] as? Map<*, *>)?.let(::mapClientTripSummary) ?: return null
+    val summaryData = data["summary"] as? Map<*, *> ?: return null
     val route = data["route"] as? Map<*, *>
+    val summary = mapClientTripSummary(summaryData).copy(
+        mapPreview = mapRoutePreviewFromMatchData(summaryData, route),
+    )
+    check(summary.id == tripId) { "Identité du trajet incohérente." }
     val detourSeconds = (route?.get("detourDurationSeconds") as? Number)?.toInt()
     return TripMatchSummary(
         tripId = tripId,
@@ -88,5 +93,7 @@ private fun mapClientTripSummary(data: Map<*, *>): TripSummary {
             "pending" -> TripStatus.Pending
             else -> TripStatus.Upcoming
         },
+        mapPreview = mapRoutePreviewFromTripData(data) ?: mapRoutePreviewFromMatchData(data, null),
+        bookingIntent = (data["bookingIntent"] as? Map<*, *>)?.let(BookingIntentSnapshot::fromCallablePayload),
     )
 }

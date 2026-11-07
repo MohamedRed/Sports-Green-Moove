@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "Actual AppState payment callbacks with suspended synthetic gateways; no SDK presentation",
+  "baseline": {
+    "sourceCommit": "a23cb9d67f6163156150dbfd320aff7e7ae95835",
+    "exitCode": 133,
+    "restoredNotice": true,
+    "followupReads": 7,
+    "log": "baseline.txt",
+    "logSha256": "d40c8eb7c9f4ff0fda14b42b9d43b4044485c7b9e1018484bb0e51660922aac1"
+  },
+  "candidate": {
+    "exitCode": 0,
+    "restoredNotice": false,
+    "followupReads": 0,
+    "delayedPaymentCases": 24,
+    "currentServerStates": 5,
+    "explicitRetryAccepted": true,
+    "log": "native-checks.txt",
+    "logSha256": "8e2a429eb7c8c40fe169ac0d14665fc4f3337b0cabe6ed8f899c47326f0a21da"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "sdkPaymentPresentationAccepted": false,
+  "fullSignOutAccepted": false,
+  "completeTransportDrainAccepted": false,
+  "livePayment": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

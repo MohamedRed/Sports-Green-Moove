@@ -1,0 +1,27 @@
+{
+  "scope": "local-team-draft-process-restart-not-physical-or-push",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "dff11797d92ef705427df64db10f4458",
+  "firstProcessId": 5117,
+  "secondProcessId": 5552,
+  "processId": 5768,
+  "messageId": "d80fc6d7fb1e4bbff4eb5e8cf3ec5b046b611345ac50f08de3287a6d156122e1",
+  "draftRestored": true,
+  "explicitSendIndependentlyRead": true,
+  "acknowledgedDraftCleared": true,
+  "otherAccountDraftEmpty": true,
+  "parentSignedOut": true,
+  "completed": true,
+  "screenshots": {
+    "team-draft-before.png": "1bd4e9ba463ff53571847b8c9ec9f230bf1a0f8b6f343cd6a5471f8874599f66",
+    "team-draft-before-window.png": "bc681a615a226c160c395236eda9fc643949b1fe2088ca46573b1af54cd8a4bc",
+    "team-draft-reopened.png": "7db43ee21bba98572946fb6e64df348661e4391f3348bfc3677fed2efeb360ff",
+    "team-draft-reopened-window.png": "487f2ac707da6200d85088df4ce8a05af787fe973ba639faefef52e0fae1fdea",
+    "team-draft-sent.png": "1fc9e0f3270c9d3f11ab4e343ea66d630578549b29312c54433c6d1628746944",
+    "team-draft-sent-window.png": "9bfacae3daa5b4d0fef810669ec8463095bf95a265a0e2700450fb4a72df2485",
+    "team-draft-cleared.png": "5ecadf0e1f18ca78f62756bae36d1b7b5901ee71d62866a4fe9291ff3d7eeeb9",
+    "team-draft-cleared-window.png": "f7b95992d6947a8a8fccdedddc660be1811bb7970a1ebafcab3c00d99948248e",
+    "team-draft-other-account.png": "6af872a9c367201fc74c54f40fdadf93e2fa4ec46a1e32c93ec6d73e0603b6f2",
+    "team-draft-other-account-window.png": "93b708b21a9701d82323c9cf6d494295613540b739a0673452da5caaf4231bc3"
+  }
+}

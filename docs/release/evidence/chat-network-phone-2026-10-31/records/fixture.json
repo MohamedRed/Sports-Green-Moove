@@ -1,0 +1,13 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d7c994e5008757e4d45e068d427a762a",
+  "fixture": {
+    "tripId": "ATTA1HE7JN7FvqEHOyMv",
+    "bookingId": "WJ0kDlvLbO6XL4VZzS5b",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "replyRequestId": "503ba80d-322c-4a3d-b6d2-e91b29c7db5e"
+  },
+  "fixtureSubmittedChatMessages": 0,
+  "fixtureMethod": "isolated-sdk-booking-not-phone-booking-proof"
+}

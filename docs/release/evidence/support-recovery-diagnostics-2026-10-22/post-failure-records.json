@@ -1,0 +1,125 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "dd4d9ddf504d4ce6f4adb0ff01892b7c",
+  "recordedAt": "2026-10-22T20:38:05.064Z",
+  "scope": "post-failure-request-integrity-and-operator-journal-not-accepted-phone-recovery",
+  "reports": [
+    {
+      "id": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+      "subjectType": "other",
+      "subjectId": null,
+      "reason": "Support coupure QA",
+      "description": "Demande de test avant une coupure.",
+      "emergency": true,
+      "reporterUserId": "sgm-qa-parent",
+      "status": "open",
+      "publicReplyCount": 0,
+      "lastPublicReply": null,
+      "createdAt": {
+        "_seconds": 1792700493,
+        "_nanoseconds": 824000000
+      },
+      "updatedAt": {
+        "_seconds": 1792700493,
+        "_nanoseconds": 824000000
+      }
+    }
+  ],
+  "operations": [
+    {
+      "id": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "fda4bda5-ca1b-4916-929e-bd96f33213e5",
+      "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+      "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+      "createdAt": {
+        "_seconds": 1792700493,
+        "_nanoseconds": 824000000
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "runId": "dd4d9ddf504d4ce6f4adb0ff01892b7c",
+      "recordedAt": "2026-10-22T20:21:33.873Z",
+      "receipt": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "clientRequestId": "fda4bda5-ca1b-4916-929e-bd96f33213e5",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": false
+      },
+      "committed": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "operationId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    },
+    {
+      "runId": "dd4d9ddf504d4ce6f4adb0ff01892b7c",
+      "recordedAt": "2026-10-22T20:22:11.180Z",
+      "receipt": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "clientRequestId": "fda4bda5-ca1b-4916-929e-bd96f33213e5",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": true
+      },
+      "committed": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "operationId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    },
+    {
+      "runId": "dd4d9ddf504d4ce6f4adb0ff01892b7c",
+      "recordedAt": "2026-10-22T20:25:53.280Z",
+      "receipt": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "clientRequestId": "fda4bda5-ca1b-4916-929e-bd96f33213e5",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": true
+      },
+      "committed": {
+        "reportId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "operationId": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    }
+  ],
+  "view": {
+    "report": {
+      "id": "e207c4bc49d3c4f8d91fc189d3b103e9a4996e6d2d19a1052528a2b29a56df6c",
+      "reason": "Support coupure QA",
+      "description": "Demande de test avant une coupure.",
+      "emergency": true,
+      "status": "open",
+      "createdAtMillis": 1792700493824,
+      "updatedAtMillis": 1792700493824,
+      "replyCount": 0,
+      "lastReply": null
+    },
+    "replies": {
+      "items": [],
+      "nextCursor": null
+    }
+  },
+  "foreignList": {
+    "items": [],
+    "nextCursor": null
+  },
+  "foreignReadDenied": true,
+  "originalRequestAndOperationUnchanged": true,
+  "recordedNativeSendActions": 1,
+  "noRecordedSecondNativeInputBeforeReplay": true,
+  "operatorJournalIsIndependentDeviceTrace": false,
+  "gateExpired": true,
+  "flowAccepted": false,
+  "processRestartVerified": false,
+  "explicitRetryVerified": false,
+  "productionWrites": false
+}

@@ -1,0 +1,24 @@
+{
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "credentialRemoved": true,
+  "helperDirectoryRemoved": true,
+  "observerClosed": true,
+  "phoneSessionStopped": true,
+  "dashboardObservedAfterStop": true,
+  "finalPhoneSignOutVerified": false,
+  "appUninstallVerified": false,
+  "launcherAbsenceVerified": false,
+  "portsClosed": [
+    5001,
+    8080,
+    9000,
+    9099,
+    45690,
+    45691
+  ],
+  "chromeRestarted": false,
+  "personalDevicesChanged": false,
+  "globalPhoneSettingsChanged": false,
+  "administrationPolicyChanged": false
+}

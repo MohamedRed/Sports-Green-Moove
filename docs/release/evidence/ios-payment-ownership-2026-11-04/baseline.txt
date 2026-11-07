@@ -1,0 +1,5 @@
+Ride logout reproduction: restored=false, calls=start-ride
+Publish logout reproduction: restoredNotice=false
+Payment logout reproduction: restoredNotice=true, followups=7
+SportsGreenMooveNativeChecks/main.swift:7: Fatal error: Old payment response changed the reauthenticated account
+scripts/check-ios-native-plan.sh: line 81: 82998 Trace/BPT trap: 5       "${BUILD_DIR}/SportsGreenMooveNativeChecks"

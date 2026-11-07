@@ -1,0 +1,19 @@
+{
+  "scope": "reviewed-local-read-components-not-connected-or-physical",
+  "reviewedAt": "2026-10-21",
+  "published": {
+    "team-read-verified-count": "team-read-count-narrow.png",
+    "team-read-verified-visible": "team-read-visible-window.png",
+    "team-read-verified-error": "team-read-error.png",
+    "team-read-verified-retry": "team-read-retry.png",
+    "team-read-verified-revoked": "team-read-revoked.png"
+  },
+  "excluded": {
+    "team-read-visible.png": "The root export partially omits the heading; the original window export is complete."
+  },
+  "fullAppSystemInsetsVerified": false,
+  "connectedExchangeVerified": false,
+  "notificationsVerified": false,
+  "physicalDeviceVerified": false,
+  "videoRecorded": false
+}

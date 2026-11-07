@@ -1,0 +1,29 @@
+{
+  "scope": "manual-session-ui-observations-separate-from-independent-records",
+  "accountsTested": 2,
+  "syntheticContentOnly": true,
+  "sessionCapturesApproved": true,
+  "publicAudienceUnchanged": true,
+  "historyHidden": true,
+  "singleNewPrompt": true,
+  "driverSentFiveStars": true,
+  "hiddenAfterNavigation": true,
+  "parentOwnRequestsVisible": true,
+  "parentSentFiveStars": true,
+  "blankLoginAfterSignOut": true,
+  "remoteClipboardReplaced": true,
+  "localClipboardRestored": true,
+  "idleDashboardAfterStop": true,
+  "restartMethod": "navigation-only-no-process-stop",
+  "notes": [
+    "One physical phone; driver and parent signed in sequentially.",
+    "104 original ratings and 27 completed rides were fixture-prepared, not completed through phone UI.",
+    "Both additional five-star ratings were tapped through the phone; the observer submitted neither.",
+    "Seven original JPEG session-window crops, not native exports or video.",
+    "The earlier helper expired during login preparation. A new scoped helper was connected before successful login; this is not app network-recovery proof.",
+    "The existing isolated APK was selected by observed filename. Installed bytes were not independently hashed.",
+    "Adult review UI, inbox state and mapping files have no diff between the APK source baseline and current source baseline.",
+    "The private fixture password was overwritten in the remote clipboard with test-session-ended; the initial empty local clipboard was restored.",
+    "No account creation, ride completion, process restart, received-rating display, maps, real payment or release claim is made."
+  ]
+}

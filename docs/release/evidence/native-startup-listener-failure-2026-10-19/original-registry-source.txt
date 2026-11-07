@@ -1,0 +1,33 @@
+package be.sportgreenmoove.app.services
+
+internal class RideObservationSubscriptionRegistry {
+    private var revision = 0L
+    private var nextId = 0L
+    private val subscriptions = mutableMapOf<Long, () -> Unit>()
+
+    @Synchronized fun currentRevision(): Long = revision
+
+    fun register(expectedRevision: Long, stop: () -> Unit): () -> Unit {
+        val id = synchronized(this) {
+            if (expectedRevision == revision) (++nextId).also { subscriptions[it] = stop } else null
+        }
+        if (id == null) stop()
+        return { synchronized(this) { subscriptions.remove(id) }; Unit }
+    }
+
+    fun revoke() {
+        val pending = synchronized(this) {
+            revision += 1
+            subscriptions.values.toList().also { subscriptions.clear() }
+        }
+        var failure: Exception? = null
+        for (stop in pending) {
+            try { stop() } catch (error: Exception) {
+                if (failure == null) failure = error else failure.addSuppressed(error)
+            }
+        }
+        failure?.let { throw it }
+    }
+}
+
+internal val rideObservationSubscriptions = RideObservationSubscriptionRegistry()

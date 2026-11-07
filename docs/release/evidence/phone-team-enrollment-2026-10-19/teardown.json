@@ -1,0 +1,17 @@
+{
+  "scope": "observed-team-phone-test-resource-cleanup-not-release-proof",
+  "recordedAt": "2026-10-19T10:31:09.457Z",
+  "loopbackPortsRefused": [
+    5001,
+    8080,
+    9000,
+    9099,
+    5181
+  ],
+  "privateSessionFileRemoved": true,
+  "fixtureCleanupVerified": true,
+  "phoneReleasedObserved": true,
+  "tunnelDisconnectedObserved": true,
+  "helperProcessesStopped": true,
+  "clipboardRestoredObserved": true
+}

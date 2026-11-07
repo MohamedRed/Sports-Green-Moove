@@ -1,0 +1,51 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalSessionDisconnectTest:
+Error in disconnectFromFailedRestoration(be.sportgreenmoove.app.ui.LocalSessionDisconnectTest):
+com.google.firebase.FirebaseException: An internal error has occurred. [ Failed to connect to /10.0.2.2:9099 ]
+	at com.google.android.gms.internal.firebase-auth-api.zzadz.zza(com.google.firebase:firebase-auth@@24.1.0:18)
+	at com.google.android.gms.internal.firebase-auth-api.zzaex.zza(com.google.firebase:firebase-auth@@24.1.0:21)
+	at com.google.android.gms.internal.firebase-auth-api.zzaeq.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaes.zza(com.google.firebase:firebase-auth@@24.1.0:71)
+	at com.google.android.gms.internal.firebase-auth-api.zzadx.zza(com.google.firebase:firebase-auth@@24.1.0:46)
+	at com.google.android.gms.internal.firebase-auth-api.zzaae.zza(com.google.firebase:firebase-auth@@24.1.0:3)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:72)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:193)
+	at com.google.android.gms.internal.firebase-auth-api.zzaad.zzb(com.google.firebase:firebase-auth@@24.1.0:188)
+	at com.google.android.gms.internal.firebase-auth-api.zzadw.zzb(com.google.firebase:firebase-auth@@24.1.0:174)
+	at com.google.android.gms.internal.firebase-auth-api.zzade.zza(com.google.firebase:firebase-auth@@24.1.0:16)
+	at com.google.android.gms.internal.firebase-auth-api.zzaez.run(com.google.firebase:firebase-auth@@24.1.0:3)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at com.google.firebase.concurrent.CustomThreadFactory.lambda$newThread$0$com-google-firebase-concurrent-CustomThreadFactory(CustomThreadFactory.java:47)
+	at com.google.firebase.concurrent.CustomThreadFactory$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.lang.Thread.run(Thread.java:1012)
+
+
+Time: 0.387
+There was 1 failure:
+1) disconnectFromFailedRestoration(be.sportgreenmoove.app.ui.LocalSessionDisconnectTest)
+com.google.firebase.FirebaseException: An internal error has occurred. [ Failed to connect to /10.0.2.2:9099 ]
+	at com.google.android.gms.internal.firebase-auth-api.zzadz.zza(com.google.firebase:firebase-auth@@24.1.0:18)
+	at com.google.android.gms.internal.firebase-auth-api.zzaex.zza(com.google.firebase:firebase-auth@@24.1.0:21)
+	at com.google.android.gms.internal.firebase-auth-api.zzaeq.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaes.zza(com.google.firebase:firebase-auth@@24.1.0:71)
+	at com.google.android.gms.internal.firebase-auth-api.zzadx.zza(com.google.firebase:firebase-auth@@24.1.0:46)
+	at com.google.android.gms.internal.firebase-auth-api.zzaae.zza(com.google.firebase:firebase-auth@@24.1.0:3)
+	at com.google.android.gms.internal.firebase-auth-api.zzafg.zza(com.google.firebase:firebase-auth@@24.1.0:72)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:193)
+	at com.google.android.gms.internal.firebase-auth-api.zzaad.zzb(com.google.firebase:firebase-auth@@24.1.0:188)
+	at com.google.android.gms.internal.firebase-auth-api.zzadw.zzb(com.google.firebase:firebase-auth@@24.1.0:174)
+	at com.google.android.gms.internal.firebase-auth-api.zzade.zza(com.google.firebase:firebase-auth@@24.1.0:16)
+	at com.google.android.gms.internal.firebase-auth-api.zzaez.run(com.google.firebase:firebase-auth@@24.1.0:3)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+	at com.google.firebase.concurrent.CustomThreadFactory.lambda$newThread$0$com-google-firebase-concurrent-CustomThreadFactory(CustomThreadFactory.java:47)
+	at com.google.firebase.concurrent.CustomThreadFactory$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+	at java.lang.Thread.run(Thread.java:1012)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.NotificationReadStateTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.274Z" hostname="local-test-host" time="0.009">
+  <properties></properties>
+  <testcase name="leavingOrSwitchingAccountDropsLateResponsesAndPrivateState" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.003"></testcase>
+  <testcase name="failureRemainsUnreadUntilExplicitRetryOfTheSameNotice" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.0"></testcase>
+  <testcase name="aStaleRefreshCannotRestoreUnreadAfterConfirmedAcknowledgement" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <testcase name="alreadyReadNoticesDoNotWrite" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <testcase name="cancellationIsPropagatedWithoutAnInventedReadOrError" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <testcase name="readAppearsOnlyAfterConfirmationAndDoubleTapsAreIgnored" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <testcase name="aFreshServerReadResolvesALostReplyWithoutAnotherWrite" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <testcase name="lateFailureCannotUndoAnIndependentServerConfirmation" classname="be.sportgreenmoove.app.ui.NotificationReadStateTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

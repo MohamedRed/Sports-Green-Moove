@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "owned-iphone-booking-ride-chat-local-not-sdk-ui-or-provider",
+  "records": [
+    {
+      "file": "42043418025-run.json",
+      "sha256": "43d6be3f589e11f23f7122fb5a61d9ed6a9f83c22f109e2f6b57da9e2949bd4d"
+    },
+    {
+      "file": "42043418025-artifacts.json",
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "file": "42043418025-selected.txt",
+      "sha256": "bdf1f829d52784b83827164e72f031c9e6722f522a750e0f9a01127d4ad5ca3f"
+    },
+    {
+      "file": "42043418025-cases.json",
+      "sha256": "8899f8f37bd421f96c953a25345055e09dd41e56d1a7f6e6a187041f801ed296"
+    },
+    {
+      "file": "42047085995-run.json",
+      "sha256": "c8fbdb0958202b12b19f33fadb4073eb425a743e9a7d585748c576118b749f22"
+    },
+    {
+      "file": "42047085995-artifacts.json",
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "file": "42047085995-selected.txt",
+      "sha256": "10cf19e8417a98013461c59465199475cd78952d66d23269a0f5ecf7eb7b941d"
+    },
+    {
+      "file": "42047085995-cases.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "file": "native-result.txt",
+      "sha256": "a1bc5e0f130ad35619cdb4f4189851bd80ecfff3d88fc1e89c8876fcda1353eb"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "syntax-result.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "adapter-runtime-result.txt",
+      "sha256": "c7b0b696dadef043c83e4a3601f0aa23c516a3b32d375b9ea3c3641e9911c97a"
+    },
+    {
+      "file": "services.json",
+      "sha256": "7761f65ad6981a649bd4da800a8056efaddde5d2cb6eaef53601a308e08fc893"
+    }
+  ],
+  "previousRuns": [
+    {
+      "runId": 42043418025,
+      "commit": "62f5365485e4e8550231c1d6b2ac8206a2e3a92b",
+      "conclusion": "cancelled",
+      "sdkBuild": "success",
+      "fixtureStep": "cancelled",
+      "plannedCases": 11,
+      "completedCases": 7,
+      "passedCases": 6,
+      "failedCases": 1,
+      "disposal": "success",
+      "artifactCount": 0
+    },
+    {
+      "runId": 42047085995,
+      "commit": "31a64a773c93701eab72c21886876466e3fe1d2a",
+      "conclusion": "failure",
+      "sdkBuild": "failure",
+      "fixtureStep": "skipped",
+      "plannedCases": 11,
+      "completedCases": 0,
+      "passedCases": 0,
+      "failedCases": 0,
+      "disposal": "success",
+      "artifactCount": 0
+    }
+  ],
+  "controlledDelayedBoundaries": 84,
+  "scriptedThreadAdapterInvalidations": 11,
+  "separateServiceGroups": 9,
+  "localChecks": {
+    "nativeExitCode": 0,
+    "signatureExitCode": 0,
+    "syntaxExitCode": 0,
+    "adapterRuntimeExitCode": 0
+  },
+  "nativeImplementationWired": true,
+  "fixtureCases": 11,
+  "deadlineMinutes": 50,
+  "originalAssertionsRetained": true,
+  "sdkLinkedBuildAccepted": false,
+  "nativeUiAccepted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "notificationsAccepted": false,
+  "releaseComplete": false,
+  "newPhoneSessions": 0,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "newMedia": 0
+}

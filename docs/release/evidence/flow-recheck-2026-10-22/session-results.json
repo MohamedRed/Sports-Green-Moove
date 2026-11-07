@@ -1,0 +1,21 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5963e8be57990f438a5b650d62a3e2d6",
+  "testedAt": "2026-10-22T00:18:22.971Z",
+  "completed": false,
+  "checkpoints": [],
+  "protectedRecordCount": 0,
+  "scope": "independent-booking-record-checkpoints-not-phone-ui-proof",
+  "adminClientClosed": true,
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "paymentExercised": false,
+  "pushDeliveryVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-booking-phone-session.mjs": "b4b3cb5fbf1a701b97cffc1759f1b55bf093857d672370ae612c4ab5dd012cdb",
+    "scripts/qa/manual-booking-phone-checkpoints.mjs": "e1d50981354a4c9258c8f345c43d64213ecb719d7cc66ae1794621d6754203d5",
+    "functions/src/callables/bookings.ts": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0",
+    "functions/src/callables/reservations.ts": "4a4d6916d729ed244c24adb905d0265e5ff2366b5a471b87931c3e63e8aa1ca9",
+    "functions/src/lib/bookingNotifications.ts": "c63d4bfdf2dc07d8e665c36bccffe5ccbfffc96234583df080d309903564b477"
+  }
+}

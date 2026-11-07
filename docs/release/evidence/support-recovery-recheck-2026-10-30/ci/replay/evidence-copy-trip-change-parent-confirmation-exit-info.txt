@@ -1,0 +1,68 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 1970-01-01 00:00:00.000
+  package: be.sportgreenmoove.app.local
+    Historical Process Exit for uid=10212
+        ApplicationExitInfo #0:
+          timestamp=2026-10-30 15:45:42.475 pid=12035 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #1:
+          timestamp=2026-10-30 15:44:51.592 pid=11866 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #2:
+          timestamp=2026-10-30 15:44:26.019 pid=11699 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #3:
+          timestamp=2026-10-30 15:44:02.632 pid=11522 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #4:
+          timestamp=2026-10-30 15:43:35.909 pid=11321 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #5:
+          timestamp=2026-10-30 15:42:56.238 pid=11050 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #6:
+          timestamp=2026-10-30 15:42:04.799 pid=10892 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #7:
+          timestamp=2026-10-30 15:41:55.589 pid=10780 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #8:
+          timestamp=2026-10-30 15:41:52.388 pid=10653 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #9:
+          timestamp=2026-10-30 15:41:48.749 pid=10551 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #10:
+          timestamp=2026-10-30 15:41:45.790 pid=10419 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #11:
+          timestamp=2026-10-30 15:41:38.070 pid=10148 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #12:
+          timestamp=2026-10-30 15:40:41.008 pid=10009 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #13:
+          timestamp=2026-10-30 15:40:32.203 pid=9832 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #14:
+          timestamp=2026-10-30 15:40:07.699 pid=9610 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #15:
+          timestamp=2026-10-30 15:39:31.241 pid=9289 realUid=10212 packageUid=10212 definingUid=10212 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null

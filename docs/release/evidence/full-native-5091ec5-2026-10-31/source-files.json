@@ -1,0 +1,12 @@
+{
+  "native": {
+    ".github/workflows/native-ci.yml": "9a034966138d0e1dc8bd3bf497c443c77751db129dbaa500031f471f5423e083",
+    ".github/workflows/native-focused-ui.yml": "a4f5be5c3bf78554a2ccd74beed7f7849f1c0afb97d9db1b04c1cebe52be20eb",
+    "scripts/qa/collect-local-ui-evidence.mjs": "85ac5dd65e99e13be20c966fa8e8cc70b391fc08a20f511ac3bff8a66b7ecca0"
+  },
+  "probe": {
+    ".github/workflows/android-transport-probe.yml": "a39d2a306ebad749e9a046b884a5569f5893502bfbdda1bd55e97790426f1015",
+    "scripts/diagnostics/adb-transfer-probe.mjs": "d7938caf9d5a8b700b6e1bd26e05f9c85bb1bae02816cb66f229f00552b1febb",
+    "scripts/diagnostics/adb-transfer-guest.mjs": "8baaf1a9f366c8d32f8c11d55bb69de23c7d1a7e342f484ba59ac957cfeb850c"
+  }
+}

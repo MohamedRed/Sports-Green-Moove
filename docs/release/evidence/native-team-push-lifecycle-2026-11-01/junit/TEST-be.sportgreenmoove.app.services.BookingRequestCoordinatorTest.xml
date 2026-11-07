@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:43:53.414Z" hostname="local-test-host" time="0.031">
+  <properties></properties>
+  <testcase name="failedResolutionKeepsTheOldIdentityAndDoesNotSubmitChangedDetails" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.003"></testcase>
+  <testcase name="aLateAcknowledgementCannotRemoveADifferentPendingOperation" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="aCommittedOldIntentDoesNotSilentlySendTheChangedSelection" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.0"></testcase>
+  <testcase name="accountsHaveSeparateIdentitiesAndAChangedAccountCannotAcknowledgeAnOldRequest" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.005"></testcase>
+  <testcase name="aCachedIdentityAfterFailedDiskWriteCannotBypassDurabilityOnRetry" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="anAcknowledgedNewExplicitOperationReceivesANewIdentity" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="aRecoveredClosedBookingDoesNotPretendANewRequestWasSent" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="storageFailurePreventsAnyNetworkSubmission" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="aLostReplySurvivesGatewayRecreationAndRetainsSeatsChildAndTerms" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.014"></testcase>
+  <testcase name="malformedOrMismatchedAcknowledgementsCannotClearThePendingIdentity" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <testcase name="changedDetailsResolveTheOldAttemptBeforeCreatingANewOne" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

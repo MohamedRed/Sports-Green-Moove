@@ -1,0 +1,13 @@
+{
+  "runId": "644b0af26dff97be7e8bb291766f4cc4",
+  "sourceCommit": "04ce4d4f073e2ba7c406e1adfe0ee6d57b433997",
+  "checkedAt": "2026-10-27",
+  "scope": "two-reviewed-original-windows-not-all-captures-or-physical-proof",
+  "published": {
+    "chat-network-isolated-draft": "captures/local-chat-network-unconfirmed.png",
+    "chat-network-isolated-reply": "captures/local-chat-network-received.png"
+  },
+  "excluded": {
+    "local-chat-network-recovered.png": "Incomplete window redraw; not published."
+  }
+}

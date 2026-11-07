@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: the CLI-resolved gzip stream closes when the client aborts a real response
+ok 1 - the CLI-resolved gzip stream closes when the client aborts a real response
+  ---
+  duration_ms: 119.825208
+  type: 'test'
+  ...
+# Subtest: normal gzip responses preserve every payload byte and close their stream
+ok 2 - normal gzip responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 117.686084
+  type: 'test'
+  ...
+# Subtest: the CLI-resolved deflate stream closes when the client aborts a real response
+ok 3 - the CLI-resolved deflate stream closes when the client aborts a real response
+  ---
+  duration_ms: 117.550208
+  type: 'test'
+  ...
+# Subtest: normal deflate responses preserve every payload byte and close their stream
+ok 4 - normal deflate responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 118.876833
+  type: 'test'
+  ...
+# Subtest: the CLI-resolved br stream closes when the client aborts a real response
+ok 5 - the CLI-resolved br stream closes when the client aborts a real response
+  ---
+  duration_ms: 144.34975
+  type: 'test'
+  ...
+# Subtest: normal br responses preserve every payload byte and close their stream
+ok 6 - normal br responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 118.523334
+  type: 'test'
+  ...
+# Subtest: identity responses stay uncompressed and preserve every byte
+ok 7 - identity responses stay uncompressed and preserve every byte
+  ---
+  duration_ms: 112.890083
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 941.45625

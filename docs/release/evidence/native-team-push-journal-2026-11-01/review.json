@@ -1,0 +1,51 @@
+{
+  "scope": "native-registration-journal-jvm-and-build-only",
+  "startedAt": "2026-11-01T14:04:56.937Z",
+  "testedAt": "2026-11-01T14:05:25.669Z",
+  "sourceUnchangedDuringBuild": true,
+  "unitTests": 722,
+  "unitSuites": 108,
+  "focusedUnitTests": 27,
+  "focusedSuites": {
+    "TeamPushJournalTest": 15,
+    "TeamPushStorageTest": 6,
+    "TeamPushRegistrationWireTest": 6
+  },
+  "appCompiled": true,
+  "instrumentationCompiled": true,
+  "instrumentationExecuted": false,
+  "nativeLifecycleImplemented": false,
+  "realPhoneTokenRegistered": false,
+  "dispatcherImplemented": false,
+  "pushDeliveryVerified": false,
+  "tapNavigationVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "providerSends": 0,
+  "mapRequests": 0,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamPushRegistration.kt": "a875994c74f1d3efc09ae5c141db7fac72061425c1ae53c7c56c18975f0b3c29",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamPushJournal.kt": "5690c08b2dd21413cccdf868a14b88e457c4480688d9a3a0a40b2c056c31dd88",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamPushRecordCodec.kt": "e719c6d53b18ee54b2af0b7d9349d2a460341da0425733eeb4c9c1af45d7dc48",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FileTeamPushStorage.kt": "d9b55bffafb2c358feb3c005d46766d7e67f3772ca37a0e5cbcd6fd090095e02",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidTeamPushJournal.kt": "7ef22911127184ee03780b3e05de5828abb622163fbe18d115c2eb3b4426b1b5",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamPushRegistration.kt": "3e57816db955e657d1172326fd1600b227c7b7b848a1eb3b6813b0f619bc31e9",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/TeamPushJournalTest.kt": "0c829cb91c7268d42c20be39fe00eca893542d2a5ac94cd261f928c1da2f8873",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/TeamPushStorageTest.kt": "6fb8f325fbee057583609766eb69de3206149a2ca3b84a8861d956f60d64947a",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/TeamPushRegistrationWireTest.kt": "b17ae6b92c69572014cdd30acaece7e4f31b594dcd6f496f38c829faeb03a23c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamPushPrivateStorageTest.kt": "3f2fcd65026521560459db34ccc800feb5036cc158272bf3ea0e05e9a359a8ed",
+    "android/app/build.gradle.kts": "1e3cc17d735d23476dee4ba65648827af6875a32b3bd99cf9e20c812d3603458",
+    "android/app/src/main/AndroidManifest.xml": "a86971ce2f36fa2548cad3f8612ae14131b01628d5c91526096b317a78e8b59b",
+    "functions/src/domain/teamPushRegistration.ts": "df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13",
+    "functions/src/domain/chatReference.ts": "871e92b4994694137c8c9c5b8b4217a3405623256366784fef36bad2a9074491"
+  },
+  "apk": {
+    "sha256": "5003b168314ce2c7dd9011e171f300b2a7ba1fdfd4eb0226fc95f93d41431394",
+    "bytes": 34529896
+  },
+  "testApk": {
+    "sha256": "e5809230ea8f0d483e02c86f25112f5779a13ccf7473db09a363c3e551c38613",
+    "bytes": 2721053
+  }
+}

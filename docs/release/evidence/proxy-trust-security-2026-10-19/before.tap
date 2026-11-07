@@ -1,0 +1,102 @@
+TAP version 13
+# Subtest: the server dependency rejects public IPv4 peers in short mapped IPv6 trust subnets
+not ok 1 - the server dependency rejects public IPv4 peers in short mapped IPv6 trust subnets
+  ---
+  duration_ms: 1.775083
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/proxy-trust-security.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/proxy-trust-security.test.mjs:13:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: a native IPv6 trust prefix does not trust an IPv4 peer
+not ok 2 - a native IPv6 trust prefix does not trust an IPv4 peer
+  ---
+  duration_ms: 0.231083
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/proxy-trust-security.test.mjs:17:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/proxy-trust-security.test.mjs:19:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: correctly scoped mapped and plain IPv4 trust prefixes retain their behavior
+ok 3 - correctly scoped mapped and plain IPv4 trust prefixes retain their behavior
+  ---
+  duration_ms: 0.219125
+  type: 'test'
+  ...
+# Subtest: the actual server Express dependency ignores a forged forwarded address from an untrusted peer
+not ok 4 - the actual server Express dependency ignores a forged forwarded address from an untrusted peer
+  ---
+  duration_ms: 80.394209
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/tests/proxy-trust-security.test.mjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   ip: '198.51.100.7',
+    +   ips: [
+    +     '198.51.100.7'
+    +   ]
+    -   ip: '127.0.0.1',
+    -   ips: []
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    ip: '127.0.0.1'
+    ips:
+  actual:
+    ip: '198.51.100.7'
+    ips:
+      0: '198.51.100.7'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/tests/proxy-trust-security.test.mjs:52:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 1
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 153.011583

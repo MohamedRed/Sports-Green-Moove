@@ -1,0 +1,144 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "a226b3e265c78f58d56af892a666ae2778afc50b",
+  "runId": 41920203720,
+  "jobId": 126890382856,
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41920203720/job/126890382856",
+  "status": "completed",
+  "conclusion": "cancelled",
+  "configuredMinutes": 50,
+  "startedAt": "2026-11-04T21:53:10Z",
+  "completedAt": "2026-11-04T22:45:16Z",
+  "terminationAnnotation": "The job has exceeded the maximum execution time of 50m0s",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:53:11Z",
+      "completedAt": "2026-11-04T21:53:13Z"
+    },
+    {
+      "name": "Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:53:13Z",
+      "completedAt": "2026-11-04T21:53:36Z"
+    },
+    {
+      "name": "Inspect installed Apple tools",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:53:36Z",
+      "completedAt": "2026-11-04T21:55:08Z"
+    },
+    {
+      "name": "Run native logic checks",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:55:08Z",
+      "completedAt": "2026-11-04T21:56:24Z"
+    },
+    {
+      "name": "Check controlled location lifecycle without a device",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:56:24Z",
+      "completedAt": "2026-11-04T21:56:34Z"
+    },
+    {
+      "name": "Check actual permission continuation before SDK compilation",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:56:34Z",
+      "completedAt": "2026-11-04T21:56:36Z"
+    },
+    {
+      "name": "Check support concurrency signature regressions",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:56:36Z",
+      "completedAt": "2026-11-04T21:56:54Z"
+    },
+    {
+      "name": "Check approved capture bounds with generated images",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:56:54Z",
+      "completedAt": "2026-11-04T21:56:59Z"
+    },
+    {
+      "name": "Install project generator",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:56:59Z",
+      "completedAt": "2026-11-04T21:57:06Z"
+    },
+    {
+      "name": "Generate SDK-linked app project",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:57:06Z",
+      "completedAt": "2026-11-04T21:57:06Z"
+    },
+    {
+      "name": "Create isolated iPhone simulator",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:57:06Z",
+      "completedAt": "2026-11-04T21:57:07Z"
+    },
+    {
+      "name": "Boot isolated simulator before compiling or testing",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T21:57:07Z",
+      "completedAt": "2026-11-04T22:03:12Z"
+    },
+    {
+      "name": "Compile app and all fixture test bundles",
+      "conclusion": "cancelled",
+      "startedAt": "2026-11-04T22:03:14Z",
+      "completedAt": "2026-11-04T22:43:52Z"
+    },
+    {
+      "name": "Run every built fixture test without rebuilding",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T22:43:52Z",
+      "completedAt": "2026-11-04T22:43:52Z"
+    },
+    {
+      "name": "Validate and collect only three approved synthetic captures",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T22:43:52Z",
+      "completedAt": "2026-11-04T22:43:52Z"
+    },
+    {
+      "name": "Retain approved iPhone captures for one day",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T22:43:52Z",
+      "completedAt": "2026-11-04T22:43:52Z"
+    },
+    {
+      "name": "Observe fixture startup phases after a failed test step",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-04T22:43:52Z",
+      "completedAt": "2026-11-04T22:43:52Z"
+    },
+    {
+      "name": "Dispose isolated simulator",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T22:43:52Z",
+      "completedAt": "2026-11-04T22:44:32Z"
+    },
+    {
+      "name": "Post Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T22:44:32Z",
+      "completedAt": "2026-11-04T22:44:42Z"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success",
+      "startedAt": "2026-11-04T22:44:42Z",
+      "completedAt": "2026-11-04T22:44:53Z"
+    }
+  ],
+  "privateOriginalLogSha256": "af9e3e0ff5ede09358e9b546cce01a891748b74f14ccf3160791c324b52e10d9",
+  "privateOriginalLogBytes": 5778017,
+  "artifactCount": 0,
+  "iosSourceUnchangedFrom3e": true,
+  "underlyingBuildSlownessCause": "unknown",
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

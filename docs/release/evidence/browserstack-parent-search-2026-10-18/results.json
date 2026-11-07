@@ -1,0 +1,23 @@
+{
+  "scope": "physical-android-parent-search-validation-with-isolated-services",
+  "method": "manual-native-ui-with-independent-persisted-checkpoint",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5070540bdf1f5f01ef679661a5acb050",
+  "testedAt": "2026-10-18T11:45:10.771Z",
+  "sourceCommit": "a4e933d20d9219a4e0fdcb266cfb9cb31d8619f4",
+  "appSha256": "3fe75d6404f557d61bc7a3a0f21ad1c58df6c97894d5bb171e754ff280299bca",
+  "parentUserId": "v9AX5g4c5Tmf2JFLokjQ2cf7H6E6",
+  "device": { "model": "Google Pixel 8", "os": "Android 14", "service": "BrowserStack App Live" },
+  "physicalDevice": true,
+  "driverNativeUi": false,
+  "paymentExercised": false,
+  "productionDataWritten": false,
+  "childBookingVerified": false,
+  "guardianConsentEventVerified": false,
+  "trackingVerified": false,
+  "twoPhoneFlowVerified": false,
+  "videoCaptured": false,
+  "realMapsVerified": false,
+  "steps": ["parent-session-relaunch", "child-two-seat-selection", "guardian-consent-reset", "incomplete-search-blocked"],
+  "captures": ["phone-session-restored.png", "phone-child-two-seats-consent.png", "phone-child-consent-reset.png", "phone-child-incomplete-search.png"]
+}

@@ -1,0 +1,266 @@
+import SwiftUI
+
+struct MessagesScreen: View {
+    @Environment(AppState.self) private var appState
+    @State private var selectedTab = "chats"
+    @State private var inbox = InboxSummary()
+    @State private var loading = false
+    @State private var submittingReviewId: String?
+    @State private var error: String?
+    @State private var notice: String?
+    @State private var reviews = PendingReviewsState()
+
+    var body: some View {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.messagesScreen) {
+            SGMTopBar(title: "MESSAGES")
+            MessageTabs(tabs: tabs, selected: selectedTab) { selectedTab = $0 }
+            VStack(spacing: 10) {
+                if loading {
+                    MessageEmptyCard(message: "Synchronisation de l'inbox...")
+                } else if let error {
+                    MessageEmptyCard(message: error)
+                } else {
+                    if let notice {
+                        MessageEmptyCard(message: notice)
+                    }
+                    switch selectedTab {
+                    case "notifs":
+                        notificationContent
+                    case "avis":
+                        PendingReviewsContent(state: reviews, submittingId: submittingReviewId, gateway: appState.firebase) { review, score in
+                            Task { await submitReview(review, score: score) }
+                        }
+                    default:
+                        chatContent
+                    }
+                }
+            }
+            .padding(.horizontal, SGMSpace.padScreen)
+            .padding(.top, 14)
+        }
+        .task { await loadInbox() }
+        .onDisappear { reviews.close() }
+    }
+
+    private var tabs: [MessageTab] {
+        [
+            MessageTab(id: "notifs", label: "Notifs", count: inbox.notifications.filter(\.unread).count),
+            MessageTab(id: "chats", label: "Chats", count: inbox.chats.reduce(0) { $0 + $1.unreadCount }),
+            MessageTab(id: "avis", label: "Avis", count: reviews.items.count),
+        ]
+    }
+
+    private var chatContent: some View {
+        Group {
+            if inbox.chats.isEmpty {
+                MessageEmptyCard(message: "Aucune conversation.")
+            } else {
+                ForEach(inbox.chats) { ChatCard(chat: $0) }
+            }
+        }
+    }
+
+    private var notificationContent: some View {
+        Group {
+            if inbox.notifications.isEmpty {
+                MessageEmptyCard(message: "Aucune notification.")
+            } else {
+                ForEach(inbox.notifications) { NotificationCard(notification: $0) }
+            }
+        }
+    }
+
+    private func loadInbox() async {
+        loading = true
+        error = nil
+        defer { loading = false }
+        do {
+            inbox = try await appState.firebase.getInbox()
+            try Task.checkCancellation()
+            reviews.replace(inbox)
+        } catch {
+            self.error = error.localizedDescription
+        }
+    }
+
+    private func submitReview(_ review: InboxReviewPrompt, score: Int) async {
+        submittingReviewId = review.id
+        error = nil
+        notice = nil
+        defer { submittingReviewId = nil }
+        do {
+            _ = try await appState.firebase.submitRating(
+                rideSessionId: review.rideSessionId,
+                ratedUserId: review.ratedUserId,
+                score: score,
+                comment: nil
+            )
+            try Task.checkCancellation()
+            reviews.submitted(review.id)
+            notice = "Avis envoyé."
+        } catch {
+            self.error = error.localizedDescription
+        }
+    }
+}
+
+private struct MessageTab: Identifiable, Hashable {
+    let id: String
+    let label: String
+    let count: Int
+}
+
+private struct MessageTabs: View {
+    let tabs: [MessageTab]
+    let selected: String
+    var onSelect: (String) -> Void
+
+    var body: some View {
+        HStack(spacing: 6) {
+            ForEach(tabs) { tab in
+                SGMChip(text: tab.label, selected: selected == tab.id, badge: tab.count > 0 ? "\(tab.count)" : nil, testID: tab.testID) {
+                    onSelect(tab.id)
+                }
+            }
+        }
+        .padding(.horizontal, SGMSpace.padScreen)
+        .padding(.top, 12)
+    }
+}
+
+private struct ChatCard: View {
+    let chat: InboxChatSummary
+
+    var body: some View {
+        HStack(spacing: 10) {
+            SGMAvatar(initials: chat.initials, size: 40)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(chat.title)
+                    .font(.sgmBody(15, weight: .semibold))
+                    .foregroundStyle(SGM.textPrimary)
+                    .lineLimit(1)
+                Text(chat.preview)
+                    .font(.sgmBody(12))
+                    .foregroundStyle(SGM.textMuted)
+                    .lineLimit(1)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 4) {
+                Text(chat.dateLabel)
+                    .font(.sgmBody(10, weight: .medium))
+                    .foregroundStyle(SGM.textMuted)
+                if chat.unreadCount > 0 {
+                    Text("\(chat.unreadCount)")
+                        .font(.sgmBody(10, weight: .bold))
+                        .foregroundStyle(SGM.textOnGreen)
+                        .frame(width: 18, height: 18)
+                        .background(SGM.green, in: Circle())
+                }
+            }
+        }
+        .messageCardStyle()
+    }
+}
+
+private struct NotificationCard: View {
+    let notification: InboxNotificationSummary
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 10) {
+            SGMAvatar(initials: notification.initials, size: 36, muted: !notification.unread)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(notification.title)
+                    .font(.sgmBody(12, weight: .bold))
+                    .tracking(.sgmWide(for: 12))
+                    .foregroundStyle(notification.unread ? SGM.green : SGM.textMuted)
+                Text(notification.body)
+                    .font(.sgmBody(13, weight: notification.unread ? .semibold : .regular))
+                    .foregroundStyle(SGM.textPrimary)
+                Text(notification.dateLabel)
+                    .font(.sgmBody(10, weight: .medium))
+                    .foregroundStyle(SGM.textMuted)
+            }
+            Spacer()
+            if notification.unread {
+                Circle().fill(SGM.green).frame(width: 8, height: 8).padding(.top, 4)
+            }
+        }
+        .messageCardStyle()
+    }
+}
+
+struct ReviewCard: View {
+    let review: InboxReviewPrompt
+    let submitting: Bool
+    let onRate: (Int) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 10) {
+                SGMAvatar(initials: review.initials, size: 36)
+                Text(review.title)
+                    .font(.sgmBody(13, weight: .bold))
+                    .foregroundStyle(SGM.textPrimary)
+            }
+            if let trip = review.tripContext {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(trip.title).font(.sgmBody(14, weight: .semibold)).foregroundStyle(SGM.textPrimary)
+                    Text(trip.departureLabel).font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
+                }
+            } else {
+                Text("Détails du trajet indisponibles").font(.sgmBody(13)).foregroundStyle(SGM.textSecondary)
+            }
+            Text(review.prompt)
+                .font(.sgmBody(13))
+                .foregroundStyle(SGM.textSecondary)
+            Text(submitting ? "Envoi de l'avis..." : "Touchez une note.")
+                .font(.sgmBody(11, weight: .semibold))
+                .foregroundStyle(SGM.textMuted)
+            HStack(spacing: 4) {
+                ForEach(1...5, id: \.self) { score in
+                    Button {
+                        onRate(score)
+                    } label: {
+                        SGMIconView(icon: .star, size: 18, color: SGM.orange)
+                    }
+                    .buttonStyle(.plain)
+                    .sgmUITestIdentifier("\(UITestIdentifier.ratingPromptAction).\(score)")
+                    .disabled(submitting)
+                }
+            }
+        }
+        .messageCardStyle()
+        .sgmUITestIdentifier(UITestIdentifier.ratingPromptAction)
+    }
+}
+
+private extension MessageTab {
+    var testID: String? {
+        switch id {
+        case "chats": UITestIdentifier.chatTab
+        case "avis": UITestIdentifier.ratingTab
+        default: nil
+        }
+    }
+}
+
+struct MessageEmptyCard: View {
+    let message: String
+
+    var body: some View {
+        Text(message)
+            .font(.sgmBody(13, weight: .semibold))
+            .foregroundStyle(SGM.textMuted)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .messageCardStyle()
+    }
+}
+
+private extension View {
+    func messageCardStyle() -> some View {
+        padding(.horizontal, 14)
+            .padding(.vertical, 12)
+            .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).stroke(SGM.border, lineWidth: 1))
+    }
+}

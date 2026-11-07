@@ -1,0 +1,15 @@
+{
+  "scope": "failed-draft-storage-error-component-capture-not-complete-ui-or-physical-proof",
+  "sourceCommit": "eae253539b8db3fe01ece51f08ebb8b5d26b49c5",
+  "testedAt": "2026-10-21T17:03:35Z",
+  "componentCases": {
+    "executed": 2,
+    "passed": 1,
+    "failed": 1
+  },
+  "publishedCaptures": [],
+  "correctedNativeUiVerified": false,
+  "fullNativeSuiteVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false
+}

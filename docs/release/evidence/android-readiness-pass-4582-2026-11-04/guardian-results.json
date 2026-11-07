@@ -1,0 +1,79 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c2ad9ba592702863e81fe32d343bcbce",
+  "testedAt": "2026-11-04T22:45:12.051Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "guardian-parent-ui",
+      "status": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "id": "parent-request-ui",
+      "status": "passed"
+    },
+    {
+      "id": "cancel-without-write",
+      "status": "passed"
+    },
+    {
+      "id": "stale-withdrawal-refused",
+      "status": "passed"
+    },
+    {
+      "id": "manager-refusal-reopen",
+      "status": "passed"
+    },
+    {
+      "id": "manager-verified-visible",
+      "status": "passed"
+    },
+    {
+      "id": "activity-recreation-fresh-read",
+      "status": "passed"
+    },
+    {
+      "id": "parent-withdraw-reopen-manager-revoke",
+      "status": "passed"
+    },
+    {
+      "id": "account-isolation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "guardian-parent-requested.png": "228eb79c79f7fd82c42b20398e9cebb7804b31a7a9f45a151d43d33afa54af50",
+    "guardian-parent-verified.png": "a80fe0a0950ce8a2cbd832dd34b9b84bf65fdf87862b8c92a81a8e998337a8c4",
+    "guardian-parent-restored.png": "1913b3ee497f1948d169a232cea9cfde9c7a79822fcff46dabab4aefda305c4a",
+    "guardian-parent-revoked.png": "b5d30727b515f5f9490adbdee7932b2b2d8cea6f457f2ecbc4b8716fccb50729",
+    "guardian-parent-other-account.png": "abbb796ba5be681a933065b9bb65214dd6517a49b58424601dbc64837ab5bdde"
+  },
+  "transcriptSha256": "5d4d32faae677e3b3e04237e9d8bbbf3dae2b0b7d14b50770bc6aed01cc4b763",
+  "verificationId": "fda5de0a86a2268b8857958808958627500564e585ea225c3af9bfbcaf1ee080",
+  "status": "revoked",
+  "revision": 8,
+  "auditEventCount": 8,
+  "managerDecisionMethod": "authenticated-local-sdk-not-management-ui",
+  "physicalDevice": false,
+  "productionWrites": false,
+  "teamChatImplemented": false,
+  "childEmergencyImplemented": false,
+  "sourceFiles": {
+    "functions/src/services/guardianParent.ts": "c59048e4f93dc6d2f795d64f8d6e0830d2821319ec8d700a354469a5dd657668",
+    "functions/src/callables/guardianParent.ts": "c9b49992059af50c45691a04d1f49e9946868c8a497d554d9cc354957792eacb",
+    "android/app/src/main/java/be/sportgreenmoove/app/data/GuardianVerificationModels.kt": "62390d34f7e9f747cd19d6f27cf6f73681fa743d45dbe1a32f9c370d7ea81ce6",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGuardianGateway.kt": "e2068c3ed18f5df69fd9eeefcec93d999869ef9f34dfe8aba84bf55e9bcfeadd",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt": "19882f35c2c75302928933caead64de874ecea4226119680a429648e57057eeb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationState.kt": "617dbca2fb9c369876c86b91443408b3ec33e17b89b541749de6ef46cc98ef3b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianPageState.kt": "e1ba4e47a0a135dbc097c26dbcf86426ef793790178e424eae484971713b23bd",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationScreen.kt": "65d42b7b8a0197bda5e5402f9b408dc762919ac15f757bf9d30f4946c937ee1a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationDialogs.kt": "b7c1cccacf64abc57b01f3b4a309a6415daa8ee4aa5a25a21c5ebd20e079866d",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GuardianVerificationRoute.kt": "ff30ce9aec2fbc4d9f6193510d647d7642642ec175a08460d030653c59c4d8cb",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianVerificationFlowTest.kt": "ffa6836147dc170294d32ed6ad373cb18b25226eb2e6bfb26b52a00880676d1c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianPeer.kt": "e647ee7a89d90a855c31157bc56c58ed0d2cc6455e0b438080b1c2c96e6e547e"
+  }
+}

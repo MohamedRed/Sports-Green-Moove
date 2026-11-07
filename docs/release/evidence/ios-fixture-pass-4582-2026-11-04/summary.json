@@ -1,0 +1,112 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "4582c3a45a107e59cc94185b1509fcc12b449935",
+  "runId": 41924948921,
+  "jobId": 126917403610,
+  "status": "completed",
+  "conclusion": "success",
+  "startedAt": "2026-11-04T22:45:22Z",
+  "completedAt": "2026-11-04T23:30:45Z",
+  "configuredMinutes": 50,
+  "scope": "source-bound-eight-synthetic-fixture-cases-not-new-emergency-or-physical-proof",
+  "build": {
+    "name": "Compile app and all fixture test bundles",
+    "conclusion": "success",
+    "startedAt": "2026-11-04T22:54:51Z",
+    "completedAt": "2026-11-04T23:23:31Z"
+  },
+  "fixtureExecution": {
+    "name": "Run every built fixture test without rebuilding",
+    "conclusion": "success",
+    "startedAt": "2026-11-04T23:23:31Z",
+    "completedAt": "2026-11-04T23:29:46Z"
+  },
+  "simulatorDisposal": {
+    "name": "Dispose isolated simulator",
+    "conclusion": "success",
+    "startedAt": "2026-11-04T23:29:46Z",
+    "completedAt": "2026-11-04T23:30:24Z"
+  },
+  "captureCollection": {
+    "name": "Validate and collect only three approved synthetic captures",
+    "conclusion": "skipped",
+    "startedAt": "2026-11-04T23:29:46Z",
+    "completedAt": "2026-11-04T23:29:46Z"
+  },
+  "captureUpload": {
+    "name": "Retain approved iPhone captures for one day",
+    "conclusion": "skipped",
+    "startedAt": "2026-11-04T23:29:46Z",
+    "completedAt": "2026-11-04T23:29:46Z"
+  },
+  "fixtureSuite": {
+    "executed": 8,
+    "passed": 8,
+    "failed": 0,
+    "cases": [
+      {
+        "suite": "SearchConsentFlowTests",
+        "name": "testExplicitConsentAndChildChangeInvalidateResults",
+        "result": "passed",
+        "durationSeconds": 35.097
+      },
+      {
+        "suite": "SearchConsentFlowTests",
+        "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection",
+        "result": "passed",
+        "durationSeconds": 21.571
+      },
+      {
+        "suite": "SignOutFlowTests",
+        "name": "testProfileSignsOutToEmptyAuthentication",
+        "result": "passed",
+        "durationSeconds": 41.877
+      },
+      {
+        "suite": "SportsGreenMooveUITests",
+        "name": "testActiveRideIdentifiers",
+        "result": "passed",
+        "durationSeconds": 17.077
+      },
+      {
+        "suite": "SportsGreenMooveUITests",
+        "name": "testAuthFlowIdentifiers",
+        "result": "passed",
+        "durationSeconds": 40.061
+      },
+      {
+        "suite": "SportsGreenMooveUITests",
+        "name": "testMessagesChatAndRatingIdentifiers",
+        "result": "passed",
+        "durationSeconds": 21.434
+      },
+      {
+        "suite": "SportsGreenMooveUITests",
+        "name": "testPublishSearchAndBookingIdentifiers",
+        "result": "passed",
+        "durationSeconds": 53.85
+      },
+      {
+        "suite": "SportsGreenMooveUITests",
+        "name": "testSecondaryFlowIdentifiers",
+        "result": "passed",
+        "durationSeconds": 68.621
+      }
+    ]
+  },
+  "artifactCount": 0,
+  "provenance": {
+    "privateOriginalLogSha256": "0d7508b3b8ed394d2dd3ce39d9747a240627788a4f69c6b00dad4bcbc4708907",
+    "privateOriginalLogBytes": 6876794,
+    "selectedResult": "fixture-results.txt",
+    "selectedResultSha256": "bbd047daa2d09fcfd488b604f1349f458106c5142ec8002eb20ec207c741c866",
+    "selection": "unchanged-original-result-lines"
+  },
+  "testedSourceSdkBuildAccepted": true,
+  "testedSourceFixtureGateAccepted": true,
+  "currentEmergencyCandidateAccepted": false,
+  "completeProviderTeardownAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

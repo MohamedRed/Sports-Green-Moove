@@ -1,0 +1,406 @@
+{
+  "runId": "dc542336f2f240b8fe24d961ff1f2d3e",
+  "projectId": "demo-sgm-local-qa",
+  "completed": true,
+  "checks": [
+    {
+      "phase": "parent-ready",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "originalCommittedIdentityPreserved": false,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "conversation-open",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "originalCommittedIdentityPreserved": false,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "receipt-lost",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "recovery-ready",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "parent-confirmed",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "parent-reopened",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "driver-visible",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "originalCommittedIdentityPreserved": true,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    }
+  ],
+  "failedCheckpoint": null,
+  "failureKind": null,
+  "proxy": {
+    "runId": "dc542336f2f240b8fe24d961ff1f2d3e",
+    "scope": "isolated-post-commit-callable-reply-loss-not-radio-loss-or-phone-ui-proof",
+    "phase": "recover",
+    "attempts": [
+      {
+        "phase": "armed",
+        "clientMessageId": "e00acf30-0609-4a92-9819-89b689b67470",
+        "messageId": "1c57bdac5a13dd4c05bb5f57ffb4455da2de0c48db447c4e5e61b74c0dd5aae4",
+        "upstreamStatus": 200,
+        "upstreamAcknowledged": true,
+        "commitIndependentlyVerified": true,
+        "responseReleased": false,
+        "observedAt": "2026-11-01T22:49:02.412Z"
+      }
+    ],
+    "requests": [
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "requestBooking",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "approveBooking",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatBookingOptions",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getChatConversation",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "sendChatMessage",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getChatConversation",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getProfileCity",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listDriverBookingRequests",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getNotificationInbox",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getChatConversation",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "markChatMessagesRead",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getProfileCity",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "recover",
+        "upstreamStatus": 200,
+        "failed": false
+      }
+    ],
+    "failed": false
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "fixtureSubmittedChatMessages": 0,
+  "controllerSubmittedChatMessages": false,
+  "phoneUiProvenByObserver": false,
+  "physicalRadioLossProvenByObserver": false,
+  "installedBytesIndependentlyVerified": false,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceApkSha256": "507c3fa6bb2e9bdc6139162b2cd4d6dd2de1770f876b0dfce7395a8c9c9b8c17",
+  "sourceFiles": {
+    "scripts/qa/manual-chat-receipt-loss-session.mjs": "f95095708dac3e0eeffeabd0f6665d365d19a2365f001a2d4d6cd210dca36764",
+    "scripts/qa/chat-receipt-loss-proxy.mjs": "335d8c9d9a8938e050dc1b954729be2c50940d3c945ea945c96dfd1ee6a5c6f7",
+    "scripts/qa/chat-receipt-loss-checkpoints.mjs": "ec8c3ef13632aab1cb0c117797ea2e5f304e51099dd7d2c31042c1da74f8a716",
+    "scripts/qa/chat-network-phone-checkpoints.mjs": "940acf8dd787d8cf45aa206c1fcae97000fff30302c1bf08f15fc9b878269592",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "functions/src/callables/messages.ts": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6",
+    "functions/src/callables/chatRead.ts": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5"
+  },
+  "sourceFilesUnchanged": true
+}

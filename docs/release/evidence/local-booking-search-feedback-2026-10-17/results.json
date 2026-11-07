@@ -1,0 +1,20 @@
+{
+  "runId": "24b052f6ff3d35f8c5959449379c6b7f",
+  "testedAt": "2026-10-17T08:34:18.966Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-ui-not-physical-device",
+  "recordType": "derived-scoped-stage-summary-not-full-run-result",
+  "sourceCommit": "9fe107960e36e7c61c817c988193e149e80a530a",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39017050031",
+  "fullRunCompleted": false,
+  "steps": [{ "id": "booking-response-loss-search-ui", "status": "passed" }],
+  "receipts": ["booking-ui-recheck.json", "native-booking-ui-recheck.txt", "booking-ui-collection-recheck.json"],
+  "captureSourceRunId": "9c36b2e83bed87a618800ae0a4211d42",
+  "limits": [
+    "Only the isolated search-screen retry stage is summarized; matching and places are explicitly stubbed.",
+    "The timestamp is the original evidence collection time, not a newly executed test.",
+    "The complete replay failed later at network preparation; no complete 24-case pass is claimed.",
+    "The two published captures retain the earlier successful screen stage on the same date.",
+    "No process restart, full navigation, physical-device verification or live payment is claimed by this screen stage."
+  ]
+}

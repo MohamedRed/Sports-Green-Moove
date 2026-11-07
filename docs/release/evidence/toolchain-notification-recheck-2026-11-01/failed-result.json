@@ -1,0 +1,693 @@
+{
+  "scope": "isolated-generated-file-transfer-not-user-flow-or-release-proof",
+  "runId": "2b21b4a62d41bf838ef5d30bb316acb8",
+  "startedAt": "2026-11-01T21:46:40.978Z",
+  "plannedTrials": 32,
+  "trials": [
+    {
+      "index": 0,
+      "startedAt": "2026-11-01T21:46:41.567Z",
+      "elapsedMs": 54,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 1,
+      "startedAt": "2026-11-01T21:46:41.629Z",
+      "elapsedMs": 44,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 2,
+      "startedAt": "2026-11-01T21:46:41.680Z",
+      "elapsedMs": 116,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 3,
+      "startedAt": "2026-11-01T21:46:41.802Z",
+      "elapsedMs": 144,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 4,
+      "startedAt": "2026-11-01T21:46:41.952Z",
+      "elapsedMs": 91,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 5,
+      "startedAt": "2026-11-01T21:46:42.049Z",
+      "elapsedMs": 222,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 6,
+      "startedAt": "2026-11-01T21:46:42.281Z",
+      "elapsedMs": 302,
+      "status": 1,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 713,
+        "recognizedFailure": false,
+        "unclassifiedFailure": true
+      },
+      "commandCompleted": false,
+      "integrityVerified": false
+    }
+  ],
+  "completed": false,
+  "stage": "transfers",
+  "appInstalled": false,
+  "accountsUsed": false,
+  "retryPerformed": false,
+  "alternateTransportUsed": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "lastPreparationCommand": {
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "signals": {
+      "deviceOffline": false,
+      "deviceMissing": false,
+      "transportClosed": false,
+      "permissionDenied": false,
+      "noSpace": false,
+      "timedOut": false
+    },
+    "outputCoverage": {
+      "present": true,
+      "byteCount": 794,
+      "recognizedFailure": false,
+      "unclassifiedFailure": false
+    }
+  },
+  "fixtures": [
+    {
+      "name": "generated-0.bin",
+      "size": 147456,
+      "sha256": "f1ef0bdb4c0775d49520334559c0b9f210e821cc9565690488e8496a4b429499"
+    },
+    {
+      "name": "generated-1.bin",
+      "size": 1048576,
+      "sha256": "305cc0592a1722b31b42bf6c990ebefe32b9286c3e9f2915edee7843204563aa"
+    },
+    {
+      "name": "generated-2.bin",
+      "size": 4194304,
+      "sha256": "41d8b9656fc56e97f03c30ef40a6b79b8c77b921fab449b0bac5895a64ad3c79"
+    }
+  ],
+  "hostBefore": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-11-01T21:46:41.371Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 4,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        4942,
+        5020
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 245,
+      "events": [
+        {
+          "timestampLocal": "11-01 21:46:34.516",
+          "pid": 5020,
+          "tid": 5028,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 4942,
+        "startedAtLocal": "Sun Nov 1 21:46:07 2026"
+      },
+      {
+        "pid": 5020,
+        "startedAtLocal": "Sun Nov 1 21:46:17 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": false,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "atomicObservation": false,
+      "processes": [
+        {
+          "pid": 5020,
+          "startTicks": "10514",
+          "stateBefore": "S",
+          "stateAfter": "S",
+          "parentPidBefore": 1,
+          "parentPidAfter": 1,
+          "connections": [
+            {
+              "inode": "34531",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "36866",
+              "state": "01",
+              "listening": false,
+              "localPort": 33743,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 1,
+      "unavailableReason": "process-observation-incomplete"
+    }
+  },
+  "traceBefore": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 1,
+      "transportWriteFailed": 0
+    }
+  },
+  "emulatorBefore": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-11-01T21:46:41.395Z",
+    "monotonicMs": 510.367048,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4913,
+      "startedTicks": "9513",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "35600",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35601",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35596",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35597",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35702",
+        "state": "01",
+        "listening": false,
+        "localPort": 5555,
+        "remotePort": 33743,
+        "localAddress": "loopback",
+        "remoteAddress": "loopback"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "guestBefore": {
+    "scope": "read-only-disposable-guest-identity-and-adbd-events-not-continuity-or-root-cause",
+    "observedAt": "2026-11-01T21:46:41.567Z",
+    "completed": true,
+    "identity": {
+      "bootIdSha256": "bd15ccebb87d99cb250224b1483ad7c28e0ed967fce9302456058b571fe37221",
+      "pid": 1841,
+      "startedTicks": "2703"
+    },
+    "commands": [
+      {
+        "id": "boot-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-pid",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-before",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "boot-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-stat-after",
+        "completed": true,
+        "reason": null
+      },
+      {
+        "id": "adbd-events",
+        "completed": true,
+        "reason": null
+      }
+    ],
+    "events": {
+      "rawLogsRetained": false,
+      "eventLimit": 64,
+      "matchedEventCount": 0,
+      "droppedEventCount": 0,
+      "events": []
+    },
+    "rawLogsRetained": false,
+    "rawBootIdRetained": false,
+    "argumentsRead": false,
+    "environmentRead": false,
+    "deviceMutationRequested": false,
+    "retryPerformed": false,
+    "continuityProven": false,
+    "rootCauseConfirmed": false
+  },
+  "traceAfter": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 1,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 1,
+      "transportReadFailed": 2,
+      "transportWriteFailed": 0
+    }
+  },
+  "hostAfter": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-11-01T21:46:42.587Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        4942,
+        5020
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 450,
+      "events": [
+        {
+          "timestampLocal": "11-01 21:46:42.580",
+          "pid": 5020,
+          "tid": 5086,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 4942,
+        "startedAtLocal": "Sun Nov 1 21:46:07 2026"
+      },
+      {
+        "pid": 5020,
+        "startedAtLocal": "Sun Nov 1 21:46:17 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": false,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "atomicObservation": false,
+      "processes": [
+        {
+          "pid": 5020,
+          "startTicks": "10514",
+          "stateBefore": "S",
+          "stateAfter": "S",
+          "parentPidBefore": 1,
+          "parentPidAfter": 1,
+          "connections": [
+            {
+              "inode": "34531",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 1,
+      "unavailableReason": "process-observation-incomplete"
+    }
+  },
+  "emulatorAfter": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-11-01T21:46:42.605Z",
+    "monotonicMs": 1719.476273,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4913,
+      "startedTicks": "9513",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "35600",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35601",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35596",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "35597",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "guestAfter": {
+    "scope": "read-only-disposable-guest-identity-and-adbd-events-not-continuity-or-root-cause",
+    "observedAt": "2026-11-01T21:46:43.362Z",
+    "completed": false,
+    "identity": null,
+    "commands": [
+      {
+        "id": "boot-before",
+        "completed": false,
+        "reason": "device-offline"
+      },
+      {
+        "id": "adbd-pid",
+        "completed": false,
+        "reason": "device-offline"
+      },
+      {
+        "id": "boot-after",
+        "completed": false,
+        "reason": "device-offline"
+      },
+      {
+        "id": "adbd-events",
+        "completed": true,
+        "reason": null
+      }
+    ],
+    "events": {
+      "rawLogsRetained": false,
+      "eventLimit": 64,
+      "matchedEventCount": 3,
+      "droppedEventCount": 0,
+      "events": [
+        {
+          "timestampLocal": "11-01 21:46:43.152",
+          "pid": 1841,
+          "tid": 2464,
+          "connection": 17,
+          "kind": "read-thread-started"
+        },
+        {
+          "timestampLocal": "11-01 21:46:43.152",
+          "pid": 1841,
+          "tid": 1841,
+          "connection": 17,
+          "kind": "already-offline"
+        },
+        {
+          "timestampLocal": "11-01 21:46:43.152",
+          "pid": 1841,
+          "tid": 2465,
+          "connection": 17,
+          "kind": "write-thread-started"
+        }
+      ]
+    },
+    "rawLogsRetained": false,
+    "rawBootIdRetained": false,
+    "argumentsRead": false,
+    "environmentRead": false,
+    "deviceMutationRequested": false,
+    "retryPerformed": false,
+    "continuityProven": false,
+    "rootCauseConfirmed": false
+  },
+  "guestComparison": {
+    "scope": "sampled-guest-identities-not-continuous-lifecycle-proof",
+    "sameBootObserved": null,
+    "sameAdbdBirthObserved": null,
+    "continuityProven": false,
+    "rootCauseConfirmed": false,
+    "releaseAccepted": false
+  },
+  "cleanup": {
+    "remoteCreatedOrPartiallyCreated": true,
+    "removed": true,
+    "absenceVerified": true
+  },
+  "finishedAt": "2026-11-01T21:46:43.586Z",
+  "success": false
+}

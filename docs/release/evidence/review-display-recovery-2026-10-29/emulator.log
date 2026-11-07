@@ -1,0 +1,8 @@
+INFO         | Android emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)
+INFO         | Graphics backend: gfxstream
+INFO         | AVD sgm_atd_api35_small has path /Users/mrr/.android/avd/../avd/sgm_atd_api35_small.avd
+INFO         | trying to check whether /Users/mrr/Library/Android/sdk is a valid sdk root
+WARNING      | /Users/mrr/Library/Android/sdk/system-images/android-35/google_atd/arm64-v8a/ is not a valid directory.
+WARNING      | emulator has searched the above paths but found no valid sdk root directory.
+FATAL        | Broken AVD system path. Check your ANDROID_SDK_ROOT value [/Users/mrr/Library/Android/sdk]!
+

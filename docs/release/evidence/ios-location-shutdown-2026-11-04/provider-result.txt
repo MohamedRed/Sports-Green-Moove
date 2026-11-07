@@ -1,0 +1,7 @@
+candidate
+startResult=cancelled
+continuousStartsAfterStop=0
+localStopCalls=1
+initialUploads=1
+Controlled provider drain passed: delayed initial success/error, two continuous uploads, partial completion, two waiters, cancelled waiter, old callback suppression and idle shutdown; no device or network used
+Controlled provider lifecycle passed: permission stop, capture stop, cancellation, serialized starts, exact-ride stop, old-manager isolation and upload failure; no device or network used

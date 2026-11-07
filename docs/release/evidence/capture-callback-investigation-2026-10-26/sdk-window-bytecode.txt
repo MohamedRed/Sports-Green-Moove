@@ -1,0 +1,312 @@
+Compiled from "WindowCapture.android.kt"
+public final class androidx.compose.ui.test.android.WindowCapture_androidKt {
+  public static final androidx.compose.ui.graphics.ImageBitmap captureRegionToImage(android.view.Window, androidx.compose.ui.test.TestContext, android.graphics.Rect);
+    Code:
+       0: new           #12                 // class kotlin/jvm/internal/Ref$ObjectRef
+       3: dup
+       4: invokespecial #16                 // Method kotlin/jvm/internal/Ref$ObjectRef."<init>":()V
+       7: astore_3
+       8: aload_3
+       9: aload_0
+      10: aload_1
+      11: aload_2
+      12: invokedynamic #36,  0             // InvokeDynamic #0:invoke:(Lkotlin/jvm/internal/Ref$ObjectRef;Landroid/view/Window;Landroidx/compose/ui/test/TestContext;Landroid/graphics/Rect;)Lkotlin/jvm/functions/Function0;
+      17: invokestatic  #40                 // Method runWithRetryWhenNoData:(Lkotlin/jvm/functions/Function0;)V
+      20: aload_3
+      21: getfield      #44                 // Field kotlin/jvm/internal/Ref$ObjectRef.element:Ljava/lang/Object;
+      24: ifnonnull     36
+      27: ldc           #46                 // String imageBitmap
+      29: invokestatic  #52                 // Method kotlin/jvm/internal/Intrinsics.throwUninitializedPropertyAccessException:(Ljava/lang/String;)V
+      32: aconst_null
+      33: goto          43
+      36: aload_3
+      37: getfield      #44                 // Field kotlin/jvm/internal/Ref$ObjectRef.element:Ljava/lang/Object;
+      40: checkcast     #54                 // class androidx/compose/ui/graphics/ImageBitmap
+      43: areturn
+
+  public static final void runWithRetryWhenNoData(kotlin.jvm.functions.Function0<kotlin.Unit>);
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iconst_1
+       3: istore_2
+       4: iload_2
+       5: ifeq          79
+       8: nop
+       9: iconst_0
+      10: istore_2
+      11: aload_0
+      12: invokeinterface #69,  1           // InterfaceMethod kotlin/jvm/functions/Function0.invoke:()Ljava/lang/Object;
+      17: pop
+      18: iinc          1, 1
+      21: goto          4
+      24: astore_3
+      25: aload_3
+      26: invokevirtual #73                 // Method androidx/compose/ui/test/android/PixelCopyException.getCopyResultStatus:()I
+      29: iconst_3
+      30: if_icmpne     52
+      33: iload_1
+      34: iconst_2
+      35: if_icmplt     52
+      38: new           #65                 // class androidx/compose/ui/test/android/PixelCopyException
+      41: dup
+      42: aload_3
+      43: invokevirtual #73                 // Method androidx/compose/ui/test/android/PixelCopyException.getCopyResultStatus:()I
+      46: ldc           #75                 // String PixelCopy failed with result ERROR_SOURCE_NO_DATA after 3 retry attempts!
+      48: invokespecial #78                 // Method androidx/compose/ui/test/android/PixelCopyException."<init>":(ILjava/lang/String;)V
+      51: athrow
+      52: aload_3
+      53: invokevirtual #73                 // Method androidx/compose/ui/test/android/PixelCopyException.getCopyResultStatus:()I
+      56: iconst_3
+      57: if_icmpne     65
+      60: iconst_1
+      61: istore_2
+      62: goto          67
+      65: aload_3
+      66: athrow
+      67: iinc          1, 1
+      70: goto          4
+      73: astore_3
+      74: iinc          1, 1
+      77: aload_3
+      78: athrow
+      79: return
+    Exception table:
+       from    to  target type
+           8    18    24   Class androidx/compose/ui/test/android/PixelCopyException
+           8    18    73   any
+          24    67    73   any
+          73    74    73   any
+
+  private static final <R> R withDrawingEnabled(kotlin.jvm.functions.Function0<? extends R>);
+    Code:
+       0: invokestatic  #97                 // Method androidx/test/platform/graphics/HardwareRendererCompat.isDrawingEnabled:()Z
+       3: istore_1
+       4: nop
+       5: iload_1
+       6: ifne          13
+       9: iconst_1
+      10: invokestatic  #101                // Method androidx/test/platform/graphics/HardwareRendererCompat.setDrawingEnabled:(Z)V
+      13: aload_0
+      14: invokeinterface #69,  1           // InterfaceMethod kotlin/jvm/functions/Function0.invoke:()Ljava/lang/Object;
+      19: astore_2
+      20: iload_1
+      21: ifne          28
+      24: iconst_0
+      25: invokestatic  #101                // Method androidx/test/platform/graphics/HardwareRendererCompat.setDrawingEnabled:(Z)V
+      28: aload_2
+      29: areturn
+      30: astore_3
+      31: iload_1
+      32: ifne          39
+      35: iconst_0
+      36: invokestatic  #101                // Method androidx/test/platform/graphics/HardwareRendererCompat.setDrawingEnabled:(Z)V
+      39: aload_3
+      40: athrow
+    Exception table:
+       from    to  target type
+           4    20    30   any
+          30    31    30   any
+
+  public static final void forceRedraw(android.view.View, androidx.compose.ui.test.TestContext);
+    Code:
+       0: new           #107                // class kotlin/jvm/internal/Ref$BooleanRef
+       3: dup
+       4: invokespecial #108                // Method kotlin/jvm/internal/Ref$BooleanRef."<init>":()V
+       7: astore_2
+       8: aload_0
+       9: invokevirtual #114                // Method android/view/View.getHandler:()Landroid/os/Handler;
+      12: aload_0
+      13: aload_2
+      14: invokedynamic #124,  0            // InvokeDynamic #1:run:(Landroid/view/View;Lkotlin/jvm/internal/Ref$BooleanRef;)Ljava/lang/Runnable;
+      19: invokevirtual #130                // Method android/os/Handler.post:(Ljava/lang/Runnable;)Z
+      22: pop
+      23: aload_1
+      24: invokevirtual #136                // Method androidx/compose/ui/test/TestContext.getTestOwner$ui_test:()Landroidx/compose/ui/test/TestOwner;
+      27: invokeinterface #142,  1          // InterfaceMethod androidx/compose/ui/test/TestOwner.getMainClock:()Landroidx/compose/ui/test/MainTestClock;
+      32: ldc2_w        #143                // long 2000l
+      35: aload_2
+      36: invokedynamic #154,  0            // InvokeDynamic #2:invoke:(Lkotlin/jvm/internal/Ref$BooleanRef;)Lkotlin/jvm/functions/Function0;
+      41: invokestatic  #158                // Method waitUntil:(Landroidx/compose/ui/test/MainTestClock;JLkotlin/jvm/functions/Function0;)V
+      44: return
+
+  private static final android.graphics.Bitmap generateBitmap(android.view.Window, android.graphics.Rect);
+    Code:
+       0: aload_1
+       1: invokevirtual #169                // Method android/graphics/Rect.width:()I
+       4: aload_1
+       5: invokevirtual #172                // Method android/graphics/Rect.height:()I
+       8: getstatic     #178                // Field android/graphics/Bitmap$Config.ARGB_8888:Landroid/graphics/Bitmap$Config;
+      11: invokestatic  #184                // Method android/graphics/Bitmap.createBitmap:(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;
+      14: astore_2
+      15: aload_0
+      16: aload_1
+      17: aload_2
+      18: invokestatic  #188                // Method generateBitmapFromPixelCopy:(Landroid/view/Window;Landroid/graphics/Rect;Landroid/graphics/Bitmap;)V
+      21: aload_2
+      22: areturn
+
+  private static final void generateBitmapFromPixelCopy(android.view.Window, android.graphics.Rect, android.graphics.Bitmap);
+    Code:
+       0: new           #193                // class java/util/concurrent/CountDownLatch
+       3: dup
+       4: iconst_1
+       5: invokespecial #196                // Method java/util/concurrent/CountDownLatch."<init>":(I)V
+       8: astore_3
+       9: new           #198                // class kotlin/jvm/internal/Ref$IntRef
+      12: dup
+      13: invokespecial #199                // Method kotlin/jvm/internal/Ref$IntRef."<init>":()V
+      16: astore        4
+      18: aload         4
+      20: aload_3
+      21: invokedynamic #209,  0            // InvokeDynamic #3:onPixelCopyFinished:(Lkotlin/jvm/internal/Ref$IntRef;Ljava/util/concurrent/CountDownLatch;)Landroid/view/PixelCopy$OnPixelCopyFinishedListener;
+      26: astore        5
+      28: getstatic     #215                // Field androidx/compose/ui/test/android/PixelCopyHelper.INSTANCE:Landroidx/compose/ui/test/android/PixelCopyHelper;
+      31: aload_0
+      32: aload_1
+      33: aload_2
+      34: aload         5
+      36: new           #126                // class android/os/Handler
+      39: dup
+      40: invokestatic  #221                // Method android/os/Looper.getMainLooper:()Landroid/os/Looper;
+      43: invokespecial #224                // Method android/os/Handler."<init>":(Landroid/os/Looper;)V
+      46: invokevirtual #228                // Method androidx/compose/ui/test/android/PixelCopyHelper.request:(Landroid/view/Window;Landroid/graphics/Rect;Landroid/graphics/Bitmap;Landroid/view/PixelCopy$OnPixelCopyFinishedListener;Landroid/os/Handler;)V
+      49: aload_3
+      50: lconst_1
+      51: getstatic     #234                // Field java/util/concurrent/TimeUnit.SECONDS:Ljava/util/concurrent/TimeUnit;
+      54: invokevirtual #238                // Method java/util/concurrent/CountDownLatch.await:(JLjava/util/concurrent/TimeUnit;)Z
+      57: ifne          70
+      60: new           #240                // class java/lang/AssertionError
+      63: dup
+      64: ldc           #242                // String Failed waiting for PixelCopy!
+      66: invokespecial #245                // Method java/lang/AssertionError."<init>":(Ljava/lang/Object;)V
+      69: athrow
+      70: aload         4
+      72: getfield      #247                // Field kotlin/jvm/internal/Ref$IntRef.element:I
+      75: ifeq          94
+      78: new           #65                 // class androidx/compose/ui/test/android/PixelCopyException
+      81: dup
+      82: aload         4
+      84: getfield      #247                // Field kotlin/jvm/internal/Ref$IntRef.element:I
+      87: aconst_null
+      88: iconst_2
+      89: aconst_null
+      90: invokespecial #250                // Method androidx/compose/ui/test/android/PixelCopyException."<init>":(ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+      93: athrow
+      94: return
+
+  private static final void waitUntil(androidx.compose.ui.test.MainTestClock, long, kotlin.jvm.functions.Function0<java.lang.Boolean>);
+    Code:
+       0: invokestatic  #266                // Method java/lang/System.nanoTime:()J
+       3: lstore        4
+       5: aload_3
+       6: invokeinterface #69,  1           // InterfaceMethod kotlin/jvm/functions/Function0.invoke:()Ljava/lang/Object;
+      11: checkcast     #268                // class java/lang/Boolean
+      14: invokevirtual #271                // Method java/lang/Boolean.booleanValue:()Z
+      17: ifne          91
+      20: aload_0
+      21: invokeinterface #276,  1          // InterfaceMethod androidx/compose/ui/test/MainTestClock.getAutoAdvance:()Z
+      26: ifeq          35
+      29: aload_0
+      30: invokeinterface #279,  1          // InterfaceMethod androidx/compose/ui/test/MainTestClock.advanceTimeByFrame:()V
+      35: ldc2_w        #280                // long 10l
+      38: invokestatic  #287                // Method java/lang/Thread.sleep:(J)V
+      41: invokestatic  #266                // Method java/lang/System.nanoTime:()J
+      44: lload         4
+      46: lsub
+      47: lload_1
+      48: ldc_w         #288                // int 1000000
+      51: i2l
+      52: lmul
+      53: lcmp
+      54: ifle          5
+      57: new           #290                // class androidx/compose/ui/test/ComposeTimeoutException
+      60: dup
+      61: new           #292                // class java/lang/StringBuilder
+      64: dup
+      65: invokespecial #293                // Method java/lang/StringBuilder."<init>":()V
+      68: ldc_w         #295                // String Condition still not satisfied after
+      71: invokevirtual #299                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      74: lload_1
+      75: invokevirtual #302                // Method java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+      78: ldc_w         #304                // String  ms
+      81: invokevirtual #299                // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      84: invokevirtual #308                // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      87: invokespecial #310                // Method androidx/compose/ui/test/ComposeTimeoutException."<init>":(Ljava/lang/String;)V
+      90: athrow
+      91: return
+
+  private static final kotlin.Unit captureRegionToImage$lambda$0(kotlin.jvm.internal.Ref$ObjectRef, android.view.Window, androidx.compose.ui.test.TestContext, android.graphics.Rect);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: invokedynamic #325,  0            // InvokeDynamic #4:invoke:(Landroid/view/Window;Landroidx/compose/ui/test/TestContext;Landroid/graphics/Rect;)Lkotlin/jvm/functions/Function0;
+       9: invokestatic  #327                // Method withDrawingEnabled:(Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+      12: putfield      #44                 // Field kotlin/jvm/internal/Ref$ObjectRef.element:Ljava/lang/Object;
+      15: getstatic     #332                // Field kotlin/Unit.INSTANCE:Lkotlin/Unit;
+      18: areturn
+
+  private static final androidx.compose.ui.graphics.ImageBitmap captureRegionToImage$lambda$0$0(android.view.Window, androidx.compose.ui.test.TestContext, android.graphics.Rect);
+    Code:
+       0: aload_0
+       1: invokevirtual #342                // Method android/view/Window.getDecorView:()Landroid/view/View;
+       4: aload_1
+       5: invokestatic  #344                // Method forceRedraw:(Landroid/view/View;Landroidx/compose/ui/test/TestContext;)V
+       8: aload_0
+       9: aload_2
+      10: invokestatic  #346                // Method generateBitmap:(Landroid/view/Window;Landroid/graphics/Rect;)Landroid/graphics/Bitmap;
+      13: invokestatic  #352                // Method androidx/compose/ui/graphics/AndroidImageBitmap_androidKt.asImageBitmap:(Landroid/graphics/Bitmap;)Landroidx/compose/ui/graphics/ImageBitmap;
+      16: areturn
+
+  private static final void forceRedraw$lambda$0(android.view.View, kotlin.jvm.internal.Ref$BooleanRef);
+    Code:
+       0: getstatic     #357                // Field android/os/Build$VERSION.SDK_INT:I
+       3: bipush        29
+       5: if_icmplt     34
+       8: aload_0
+       9: invokevirtual #360                // Method android/view/View.isHardwareAccelerated:()Z
+      12: ifeq          34
+      15: getstatic     #365                // Field androidx/compose/ui/test/android/FrameCommitCallbackHelper.INSTANCE:Landroidx/compose/ui/test/android/FrameCommitCallbackHelper;
+      18: aload_0
+      19: invokevirtual #369                // Method android/view/View.getViewTreeObserver:()Landroid/view/ViewTreeObserver;
+      22: aload_1
+      23: invokedynamic #377,  0            // InvokeDynamic #5:run:(Lkotlin/jvm/internal/Ref$BooleanRef;)Ljava/lang/Runnable;
+      28: invokevirtual #381                // Method androidx/compose/ui/test/android/FrameCommitCallbackHelper.registerFrameCommitCallback:(Landroid/view/ViewTreeObserver;Ljava/lang/Runnable;)V
+      31: goto          53
+      34: aload_0
+      35: invokevirtual #369                // Method android/view/View.getViewTreeObserver:()Landroid/view/ViewTreeObserver;
+      38: new           #383                // class androidx/compose/ui/test/android/WindowCapture_androidKt$forceRedraw$1$2
+      41: dup
+      42: aload_0
+      43: aload_1
+      44: invokespecial #385                // Method androidx/compose/ui/test/android/WindowCapture_androidKt$forceRedraw$1$2."<init>":(Landroid/view/View;Lkotlin/jvm/internal/Ref$BooleanRef;)V
+      47: checkcast     #387                // class android/view/ViewTreeObserver$OnDrawListener
+      50: invokevirtual #393                // Method android/view/ViewTreeObserver.addOnDrawListener:(Landroid/view/ViewTreeObserver$OnDrawListener;)V
+      53: aload_0
+      54: invokevirtual #396                // Method android/view/View.invalidate:()V
+      57: return
+
+  private static final void forceRedraw$lambda$0$0(kotlin.jvm.internal.Ref$BooleanRef);
+    Code:
+       0: aload_0
+       1: iconst_1
+       2: putfield      #400                // Field kotlin/jvm/internal/Ref$BooleanRef.element:Z
+       5: return
+
+  private static final boolean forceRedraw$lambda$1(kotlin.jvm.internal.Ref$BooleanRef);
+    Code:
+       0: aload_0
+       1: getfield      #400                // Field kotlin/jvm/internal/Ref$BooleanRef.element:Z
+       4: ireturn
+
+  private static final void generateBitmapFromPixelCopy$lambda$0(kotlin.jvm.internal.Ref$IntRef, java.util.concurrent.CountDownLatch, int);
+    Code:
+       0: aload_0
+       1: iload_2
+       2: putfield      #247                // Field kotlin/jvm/internal/Ref$IntRef.element:I
+       5: aload_1
+       6: invokevirtual #403                // Method java/util/concurrent/CountDownLatch.countDown:()V
+       9: return
+}

@@ -1,0 +1,305 @@
+{
+  "headRefOid": "9fd5bf3e599017e114cf530afb72e47c47e68cdd",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:42:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718414/job/126222881137",
+      "name": "Generated-file transport (not release)",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Android Transport Diagnostic"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:53:45Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718514/job/126222880537",
+      "name": "Functions and Firebase rules",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Backend CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:41:16Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718208/job/126222881298",
+      "name": "Isolated chat proof (not primary smoke)",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Chat Proof Diagnostic"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:42:32Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881349",
+      "name": "Native UI flow coverage",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:40:33Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718195/job/126222880699",
+      "name": "Production provider secret validation",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Release Readiness"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T22:04:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718250/job/126222881972",
+      "name": "Functions, admin, and website checks",
+      "startedAt": "2026-11-03T21:41:18Z",
+      "status": "COMPLETED",
+      "workflowName": "Web Integration Smoke"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718414/job/126222884173",
+      "name": "network-startup-logging",
+      "startedAt": "2026-11-03T21:39:05Z",
+      "status": "COMPLETED",
+      "workflowName": "Android Transport Diagnostic"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:43:29Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222880901",
+      "name": "Android native unit tests",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:41:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718195/job/126222880355",
+      "name": "Store readiness static checks",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Release Readiness"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:51:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718250/job/126222881911",
+      "name": "People and safety service smoke",
+      "startedAt": "2026-11-03T21:40:35Z",
+      "status": "COMPLETED",
+      "workflowName": "Web Integration Smoke"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T22:03:01Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881365",
+      "name": "Android native UI tests",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:52:23Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718250/job/126222881316",
+      "name": "Guardian, child, and tracking service smoke",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Web Integration Smoke"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:50:28Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881843",
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "startedAt": "2026-11-03T21:39:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T22:04:38Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718250/job/126236084963",
+      "name": "Functions, admin, and website smoke",
+      "startedAt": "2026-11-03T22:04:36Z",
+      "status": "COMPLETED",
+      "workflowName": "Web Integration Smoke"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:51:34Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881444",
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:49:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881888",
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:49:38Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881875",
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:52:06Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881836",
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "startedAt": "2026-11-03T21:39:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:48:41Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881845",
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "startedAt": "2026-11-03T21:39:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:47:22Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881823",
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:49:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881935",
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:49:47Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881883",
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:49:39Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881981",
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "startedAt": "2026-11-03T21:39:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:48:14Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222881988",
+      "name": "Android focused safety UI tests / Isolated chat-network-recovery",
+      "startedAt": "2026-11-03T21:39:07Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:52:13Z",
+      "conclusion": "FAILURE",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126229598505",
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "startedAt": "2026-11-03T21:52:09Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222883175",
+      "name": "Android approved real-map UI integration",
+      "startedAt": "2026-11-03T21:39:05Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222883852",
+      "name": "Android approved vehicle-map UI",
+      "startedAt": "2026-11-03T21:39:05Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222883249",
+      "name": "Android approved parent search and booking",
+      "startedAt": "2026-11-03T21:39:05Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222935705",
+      "name": "iOS native checks",
+      "startedAt": "2026-11-03T21:39:11Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-03T21:39:05Z",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41723718194/job/126222883309",
+      "name": "iOS native UI tests",
+      "startedAt": "2026-11-03T21:39:05Z",
+      "status": "COMPLETED",
+      "workflowName": "Native CI"
+    }
+  ]
+}

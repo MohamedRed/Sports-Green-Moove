@@ -1,0 +1,17 @@
+--------- beginning of system
+I/ActivityManager(  544): Force stopping com.google.android.gms appid=10144 user=-1: installPackageLI
+I/ActivityManager(  544): Killing 3612:com.google.android.apps.messaging/u0a139 (adj 250): stop com.google.android.gms due to installPackageLI
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.apps.messaging/androidx.work.impl.background.systemjob.SystemJobService in 1000ms for connection
+E/ActivityManager(  544): Unable to freeze binder for 3642: -11
+I/ActivityManager(  544): Killing 1148:com.google.android.gms.persistent/u0a144 (adj 0): stop com.google.android.gms due to installPackageLI
+I/ActivityManager(  544): Killing 2233:com.google.android.gms.unstable/u0a144 (adj 925): stop com.google.android.gms due to installPackageLI
+I/ActivityManager(  544): Killing 3642:com.google.android.gms.ui/u0a144 (adj 975): stop com.google.android.gms due to installPackageLI
+I/ActivityManager(  544): Killing 1357:com.google.android.gms/u0a144 (adj 100): stop com.google.android.gms due to installPackageLI
+I/ActivityManager(  544): Killing 8279:be.sportgreenmoove.app.local/u0a211 (adj 0): stop com.google.android.gms due to installPackageLI
+W/ActivityManager(  544): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/androidx.test.runner.AndroidJUnitRunner}
+I/ActivityManager(  544): Force stopping be.sportgreenmoove.app.local appid=10211 user=0: finished inst
+W/ActivityManager(  544): setHasOverlayUi called on unknown pid: 8279
+W/ActivityManager(  544): pid 544 system sent binder code 18 with flags 1 to frozen apps and got error -32
+W/ActivityManager(  544): Error shutting down UiAutomationConnection
+I/ActivityManager(  544): Start proc 8384:com.google.android.apps.messaging/u0a139 for service {com.google.android.apps.messaging/androidx.work.impl.background.systemjob.SystemJobService}
+W/ActivityManager(  544): pid 544 system sent binder code 7 with flags 1 to frozen apps and got error -32

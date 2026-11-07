@@ -1,0 +1,41 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cf039238f2a240e3aadbe6a367514fad",
+  "phase": "trip-consent-restart",
+  "recordedAt": "2026-10-26T20:14:38.815Z",
+  "scope": "read-only-sync-failure-diagnostics-not-copy-or-flow-verification",
+  "observations": [
+    {
+      "id": "directory-stat",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "shell-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "sync-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: error: failed to get feature set: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "storage-service-log",
+      "collected": true,
+      "value": "--------- beginning of main\n10-26 20:14:37.755  1964  1964 I adbd    : Remote process closed the socket (on MSG_PEEK)\n10-26 20:14:37.865  1964  2070 I adbd    : host-16: connection terminated: write failed\n10-26 20:14:37.869  1964  1964 I adbd    : host-16: offline\n10-26 20:14:37.869  1964  1964 I adbd    : destroying transport host-16\n10-26 20:14:37.876  1964  1964 I adbd    : BlockingConnectionAdapter(host-16): stopping\n10-26 20:14:37.876  1964  2069 I adbd    : host-16: read failed: Success\n10-26 20:14:37.877  1964  1964 I adbd    : BlockingConnectionAdapter(host-16): stopped\n10-26 20:14:37.877  1964  1964 I adbd    : BlockingConnectionAdapter(host-16): destructing\n10-26 20:14:37.877  1964  1964 I adbd    : BlockingConnectionAdapter(host-16): already stopped\n10-26 20:14:38.397  1964 13537 I adbd    : host-17: read thread spawning\n10-26 20:14:38.397  1964 13538 I adbd    : host-17: write thread spawning\n10-26 20:14:38.397  1964  1964 I adbd    : host-17: already offline\n10-26 20:14:38.397  1964  1964 I adbd    : Calling send_auth_request...\n10-26 20:14:38.402  1964  1964 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys\n10-26 20:14:38.414  1964  1964 I adbd    : adb client authorized\n"
+    }
+  ]
+}

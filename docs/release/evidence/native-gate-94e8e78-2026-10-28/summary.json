@@ -1,0 +1,18 @@
+{
+  "scope": "complete-enabled-native-ci-not-physical-or-release-acceptance",
+  "checkedAt": "2026-10-28",
+  "sourceCommit": "94e8e78a8fc38c65c3516053cd108bd5e7ad3b67",
+  "ciRunId": 40758810301,
+  "ordinary": {
+    "passed": 187,
+    "skipped": 54,
+    "failed": 0
+  },
+  "physicalDeviceAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "earlierTransportRootCauseConfirmed": false,
+  "realPaymentsExercised": false,
+  "safetyAuditAccepted": false,
+  "newMediaAccepted": false
+}

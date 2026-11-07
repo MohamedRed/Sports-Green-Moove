@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f72bc877e21c84d7cb7dab2072421e9e",
+  "testedAt": "2026-10-29T16:53:51.764Z",
+  "scope": "authenticated-isolated-review-history-not-phone-or-production",
+  "completed": false,
+  "steps": [
+    {
+      "id": "104-immutable-ratings-created-through-authenticated-callable",
+      "status": "passed"
+    },
+    {
+      "id": "submitted-reviews-do-not-reappear-beyond-the-first-100-ratings",
+      "status": "failed",
+      "error": "ERR_ASSERTION"
+    }
+  ],
+  "observations": [
+    {
+      "phase": "104-rated",
+      "displayedAlreadyRatedPrompts": 1,
+      "displayedIds": [
+        "sgm-review-history-025_sgm-qa-driver_sgm-qa-parent"
+      ]
+    }
+  ],
+  "ratingsSubmitted": 104,
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "phoneUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/run-local-review-history.mjs": "ebde1551e7b6904104d1deb02293f3c46779e6597030a836d70074304193c97e",
+    "scripts/qa/local-review-history.mjs": "9ed612732e21a32faf3b784679140118bff81671d320bbffd3063c374de1bd15",
+    "functions/src/callables/inbox.ts": "6883853b00d17e5372a34e33c1970787d317ac7b2e5d478221379e3443de39b1",
+    "functions/src/domain/inbox.ts": "85ebfc1216b77a99be92a096ccbf033fb9974f22dd05efeed4835c4eecc220e9",
+    "functions/src/callables/feedback.ts": "0486e01d2261c74792a9b5272a76be7797fb9c11ef0debbc713adf6ffe0f2fba"
+  },
+  "execution": {
+    "baselineCommit": "4c73caa24aa7f4bc4ee394790052db336f671425",
+    "inboxSourceSha256": "9eceeb4feadfa7ef3686206ce4ea3db20049e812c699fc3f558ed851531a7f7b",
+    "inboxModuleSha256": "62a4257a7a4a21a1e0b8c92ec44da35983c6b95cecd7cd7bf61550c2f2c21332"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

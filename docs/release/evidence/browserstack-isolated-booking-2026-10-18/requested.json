@@ -1,0 +1,23 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "edd9407bfe61370693403d569b5dfcd4",
+  "recordedAt": "2026-10-18T11:01:34.380Z",
+  "scope": "independent-local-persisted-checkpoint-not-native-ui-or-two-phone-proof",
+  "phase": "requested",
+  "parentUserId": "37twdqno1xb9YHoE88cwEaFIZKKL",
+  "parentEmail": "phone-20261018@example.test",
+  "parentRoles": [
+    "parent"
+  ],
+  "bookingId": "5Kvit8fft3gOM9o1IcQm",
+  "tripId": "f2DTRcNKBr9TQDVyLDiT",
+  "driverUserId": "sgm-qa-driver",
+  "status": "requested",
+  "seats": 1,
+  "seatsAvailable": 4,
+  "requestReceiptCount": 1,
+  "bookingCount": 1,
+  "notifications": [],
+  "paymentExercised": false,
+  "productionDataWritten": false
+}

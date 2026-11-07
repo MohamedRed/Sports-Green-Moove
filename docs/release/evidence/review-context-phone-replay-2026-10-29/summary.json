@@ -1,0 +1,21 @@
+{
+  "scope": "physical-android-contextual-reviews-with-auth-and-process-recovery-not-release",
+  "checkedAt": "2026-10-29",
+  "sourceCommit": "22640188e3e528edadc7feb34027b2d187543cad",
+  "phoneCheckpoints": 8,
+  "gate": {
+    "ordinaryPassed": 196,
+    "ordinarySkipped": 54,
+    "replayCases": 40,
+    "primaryCopies": 17,
+    "contextualComponentCases": 3
+  },
+  "realNetworkLossVerified": false,
+  "iosUiExecuted": false,
+  "installedBytesIndependentlyVerified": false,
+  "realPayments": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "earlierInputRootCauseConfirmed": false,
+  "mapRequests": 0
+}

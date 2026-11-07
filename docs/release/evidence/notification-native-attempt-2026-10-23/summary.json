@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "3a5b5d3ddf4cbda20601ece9eeaf56c144a4ca53",
+  "runId": "3e42efe016098e083ae64186229781b7",
+  "scope": "terminal-notification-native-attempt-with-failed-primary-collection-not-full-replay",
+  "ordinaryPassed": 157,
+  "ordinarySkipped": 52,
+  "ordinaryFailed": 1,
+  "notificationComponentCasesPassed": 4,
+  "notificationNativeStagesExecuted": 2,
+  "primaryCollectionAccepted": false,
+  "connectedStageAccepted": false,
+  "fullReplayAccepted": false,
+  "workflowPassed": false,
+  "newMediaAccepted": false,
+  "physicalPhoneAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "collectorCause": "The notification-read-restart phase was not registered in the collector allowlist. It rejects before issuing a primary copy.",
+  "ordinaryFailure": "TripChangeFlowTest.agreementStillRequiresRouteAndApplicationAndDoesNotClaimSettlement times out in Compose captureToImage/forceRedraw. Its underlying drawing cause is not established.",
+  "earlierAttempt": "87082b10 stopped at a whole-string matcher before reading. Explicit substring matching corrected that test; all four component cases execute and pass in this later run."
+}

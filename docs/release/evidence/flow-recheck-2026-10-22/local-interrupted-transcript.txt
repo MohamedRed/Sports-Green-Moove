@@ -1,0 +1,25 @@
+fixtures: passed
+ride-lifecycle: passed
+publication: passed
+booking-cancellation: passed
+last-seat-concurrency: passed
+multi-seat-booking: passed
+messages-notifications: passed
+ride-audit-ledgers: passed
+ratings: passed
+club-request: passed
+support-request: passed
+ride-passenger-safety: passed
+chat-delivery-safety: passed
+chat-post-commit-response-loss: passed
+chat-directory-safety: passed
+reservation-decisions: passed
+membership-review: passed
+trip-capacity-ownership: passed
+team-ownership: passed
+trip-cancellation: passed
+trip-details-ownership: passed
+trip-change-parent-confirmation: passed
+i  Your function timed out after ~60s. To configure this timeout, see
+i  Request to function failed: Error: socket hang up
+trip-change-application: failed

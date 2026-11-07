@@ -1,0 +1,29 @@
+{
+  "scope": "form-feedback-foregrounds-and-compiled-native-plan-not-rendered-or-flow-proof",
+  "sourceBaseCommit": "09008cb4388a50b937e0eda86c01942cc0590dbd",
+  "beforeCases": 10,
+  "beforeFailures": 5,
+  "afterCases": 10,
+  "afterFailures": 0,
+  "captureCases": [
+    "auth-light-phone", "auth-light-wide", "auth-dark-phone", "auth-dark-wide",
+    "search-light-phone", "search-light-wide", "search-dark-phone", "search-dark-wide",
+    "chat-error-light-phone", "chat-error-light-wide", "chat-error-dark-phone", "chat-error-dark-wide",
+    "chat-limit-light-phone", "chat-limit-light-wide", "chat-limit-dark-phone", "chat-limit-dark-wide",
+    "chat-sending-light-phone", "chat-sending-light-wide", "chat-sending-dark-phone", "chat-sending-dark-wide"
+  ],
+  "nativePlanCompiled": true,
+  "nativeCasesPlanned": 4,
+  "nativeViewportsPlanned": 20,
+  "nativeLayoutsExecuted": false,
+  "physicalDeviceAccepted": false,
+  "authenticationAccepted": false,
+  "searchAccepted": false,
+  "messageDeliveryAccepted": false,
+  "fullAppAccessibilityAccepted": false,
+  "releaseAccepted": false,
+  "fallbackAdded": false,
+  "deadlineChanged": false,
+  "thresholdReduced": false,
+  "publishedMedia": []
+}

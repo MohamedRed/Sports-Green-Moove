@@ -1,0 +1,9 @@
+{
+  "scripts/diagnostics/adb-transfer-probe.mjs": "77ad1d977052b0233463144d6c43556aa1c65b03be202b0ac8e0918b6015a58a",
+  "scripts/diagnostics/adb-transfer-outcome.mjs": "143df3f19aa276a7e78a06d7f842af9f8b51c1b1176d3c45cbfe265c885d1c1e",
+  "scripts/diagnostics/run-adb-transfer-probe.mjs": "48deffc91460bcaeb604cee79110ed52a18d7fecedb38621a41132e506f18f10",
+  "scripts/qa/adb-host-health.mjs": "028d850c5fdddcd8db72a34de7fe5d580bbb322b8258406f613007500a5e71e6",
+  "scripts/qa/adb-host-sockets.mjs": "f303ed830c8f0c96f1ddca0c968df1828ee59936fcfc84828cb58003a5a51363",
+  "scripts/qa/emulator-host-observation.mjs": "8d895d99bf668075bffccd7a9556e8c474fa44c0fd6144fdfd333a2e7a7d73d0",
+  "scripts/diagnostics/adb-transfer-emulator.mjs": "e35c6ed2e286e14c9a3e97873bd684400dbfd21c3a9bc024d197e7c116ccbabf"
+}

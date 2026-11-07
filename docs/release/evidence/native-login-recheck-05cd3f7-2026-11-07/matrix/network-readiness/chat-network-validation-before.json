@@ -1,0 +1,77 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a01bcc1686c88d6aeac766779ca9bcfd",
+  "phase": "before",
+  "recordedAt": "2026-11-06T23:48:48.789Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 1,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 10,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "dns",
+          "result": "failure"
+        },
+        {
+          "probe": "https",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "http",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        },
+        {
+          "probe": "fallback",
+          "result": "exception",
+          "errorKind": "dns-resolution"
+        }
+      ]
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}

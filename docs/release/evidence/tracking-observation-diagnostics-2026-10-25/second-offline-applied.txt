@@ -1,0 +1,142 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+1 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	2 container bd-dashboard
+		45 container
+			46 container content
+				152 container in-session-device-react
+					153 container
+					154 container
+						155 image
+						156 button Add Device
+							157 text Add Device
+							158 text PRO
+					532 container flashlight-hidden
+				149 text ;
+				151 container debugger
+					160 text DevTools -  Logcat
+					161 button Download logs, ID: devtool-download-logs
+					162 button Dock to bottom, ID: devtool-change-orientation
+					163 button Collapse, ID: devtool-toggle
+					473 container device-logs
+						474 container
+							475 text be.sportgreenmoove.app.local
+							476 text field Description: Device logs dropdown, ID: react-select-4-input
+						477 container
+							478 text Info
+							479 text field Description: Log type dropwdown, ID: react-select-5-input
+						480 container
+							481 link Description: Clear logs, Value: app-live.browserstack.com/dashboard#
+							482 link Description: Pause logs, Value: app-live.browserstack.com/dashboard#
+							483 link Description: Wrap, Value: app-live.browserstack.com/dashboard#
+						484 container
+							485 search text field (settable) Description: Search Logs, Value: SGM.RideObservation
+							486 image
+							487 checkbox (settable, integer) Description: Use regex search, Value: 0, ID: search-regex-box
+							488 text Regex
+						489 table grid
+							490 container
+								509 row 10-25 18:37:45.227 I/SGM.RideObservation(23389): observer=1 sequence=1 elapsedMs=1 event=Opened
+									510 cell
+										511 text 10-25 18:37:45.227 I/ SGM.RideObservation (23389): observer=1 sequence=1 elapsedMs=1 event=Opened
+								512 row 10-25 18:37:45.240 I/SGM.RideObservation(23389): observer=1 sequence=2 elapsedMs=14 event=Connected connected=false
+									513 cell
+										514 text 10-25 18:37:45.240 I/ SGM.RideObservation (23389): observer=1 sequence=2 elapsedMs=14 event=Connected connected=false
+								515 row 10-25 18:37:45.486 I/SGM.RideObservation(23389): observer=1 sequence=3 elapsedMs=260 event=RideServer
+									516 cell
+										517 text 10-25 18:37:45.486 I/ SGM.RideObservation (23389): observer=1 sequence=3 elapsedMs=260 event=RideServer
+								518 row 10-25 18:37:45.486 I/SGM.RideObservation(23389): observer=1 sequence=4 elapsedMs=260 event=FetchStarted
+									519 cell
+										520 text 10-25 18:37:45.486 I/ SGM.RideObservation (23389): observer=1 sequence=4 elapsedMs=260 event=FetchStarted
+								521 row 10-25 18:37:45.641 I/SGM.RideObservation(23389): observer=1 sequence=5 elapsedMs=415 event=FetchCompleted
+									522 cell
+										523 text 10-25 18:37:45.641 I/ SGM.RideObservation (23389): observer=1 sequence=5 elapsedMs=415 event=FetchCompleted
+								533 row 10-25 18:42:08.748 I/SGM.RideObservation(23389): observer=1 sequence=6 elapsedMs=263522 event=RideCached
+									534 cell
+										535 text 10-25 18:42:08.748 I/ SGM.RideObservation (23389): observer=1 sequence=6 elapsedMs=263522 event=RideCached
+								536 row 10-25 18:42:11.460 I/SGM.RideObservation(23389): observer=1 sequence=7 elapsedMs=266234 event=RideServer
+									537 cell
+										538 text 10-25 18:42:11.460 I/ SGM.RideObservation (23389): observer=1 sequence=7 elapsedMs=266234 event=RideServer
+								539 row 10-25 18:42:11.462 I/SGM.RideObservation(23389): observer=1 sequence=8 elapsedMs=266236 event=FetchStarted
+									540 cell
+										541 text 10-25 18:42:11.462 I/ SGM.RideObservation (23389): observer=1 sequence=8 elapsedMs=266236 event=FetchStarted
+								542 row 10-25 18:42:11.775 I/SGM.RideObservation(23389): observer=1 sequence=9 elapsedMs=266550 event=FetchCompleted
+									543 cell
+										544 text 10-25 18:42:11.775 I/ SGM.RideObservation (23389): observer=1 sequence=9 elapsedMs=266550 event=FetchCompleted
+					524 link Resize Component
+						545 text ||
+					526 tab group
+						527 tab (selected, settable, boolean) Description: Logs, Value: 1
+						528 tab (selectable, settable, boolean) Description: ADB Shell, Value: 0
+						529 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						530 tab (selectable, disabled, settable, boolean) Description: Network, Value: 0
+						531 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				403 content list
+					404 button Description: Switch Device, ID: switchBrowser
+					405 container
+						406 button (disabled) Description: Local testing, ID: appLiveToolbarLocalTesting
+							407 image
+							408 image open content menu
+							409 text Local testing
+					410 menu zoomFeature
+						411 Description: zoom out, ID: zoom-out
+						412 Description: zoom in, ID: zoom-in
+						413 text Zoom
+					414 button Description: Record Session, ID: appLiveVideoRecording
+					415 button Description: DevTools, ID: showDebuggingOptions
+					416 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					417 button Description: Settings, ID: appLiveSessionSettings
+						418 image open content menu
+						419 text Settings
+					420 button Description: Stop Session, ID: appLiveStopSession
+						421 image
+						422 text Stop Session
+				303 container vertical-toolbar-react
+					304 container vertical-toolbar-draggable
+						305 container
+							423 button toolbar drag icon
+							307 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						308 toolbar
+							309 content list
+								424 button Description: Add Device, ID: app-live-add-device
+									425 container app-live-add-device-lead-text-wrapper
+										426 text Add Device PRO
+								427 button Description: Show Home Screen, ID: dockHomeScreen
+									428 text Show Home Screen
+								429 container volume-buttons-lead-text-wrapper
+									430 text Volume
+									431 container volumeButtons
+										432 button - Volume Decrease
+										433 button (disabled) + Volume Increase
+								434 button Description: View Open Apps, ID: view-open-apps
+									435 text View Open Apps
+								436 button Description: Install New App, ID: switch-app
+									437 text Install New App
+								438 checkbox Description: Profile Performance, Value: 0
+									439 text Profile Performance
+									440 text PRO
+								441 button Description: Capture Screenshot, ID: get-screenshot
+									442 text Capture Screenshot
+								443 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									444 text Kill/Uninstall
+								445 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									446 container android-settings-lead-text-wrapper
+										447 text Android Settings PRO New
+								448 button Rotate Device, ID: dockOrientationRealAndroid
+									449 text Rotate Device
+								450 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									451 text Change Location
+								452 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									453 text Throttle Network
+								454 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									455 text Files & Media
+								456 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									457 text Change Language
+								458 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									459 text Screen Reader
+								460 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									461 text Google Pixel 9 Pro
+									462 text v15.0
+		546 text Network condition changes have been applied. The device is now offline.
+
+The focused UI element is 532 container flashlight-hidden

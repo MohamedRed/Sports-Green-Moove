@@ -1,0 +1,39 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+  "scope": "native-ui-trip-consent-recovery-matrix",
+  "stage": "before",
+  "completed": true,
+  "actorUserId": "sgm-qa-parent",
+  "processId": 13304,
+  "records": [
+    {
+      "kind": "pending",
+      "tripId": "S8oV60GEjxUC8qVOK981",
+      "bookingId": "ia5p4t41sf03oDk3dXXZ",
+      "proposalId": "e86a18ea18347b658d9dffa5603fce819b4fdf030fbedbf8e2d39954a6f14c9e",
+      "prepared": true
+    },
+    {
+      "kind": "partial",
+      "tripId": "85THpVHmezuBXpQ8Z8kP",
+      "bookingId": "BsbrhpGAlKD6czczzR4Y",
+      "proposalId": "42c86d0a41532f35acecb9cd7d2905d3ac32edc386c3c16e2d72edcfabd69ce4",
+      "prepared": true
+    },
+    {
+      "kind": "declined",
+      "tripId": "2IbY0pLLMjM0sA9qd1eS",
+      "bookingId": "f2mpgvaFbll1dUtr14Kv",
+      "proposalId": "1f8ad5fb8d4abb92bb66405cbf2e1630b2560aa20d4d4c690117079e774a0d4b",
+      "prepared": true
+    },
+    {
+      "kind": "withdrawn",
+      "tripId": "r9VWtbAnhyJ9ZJnbpBie",
+      "bookingId": "ZEVaJ4EZOoSLJulgr14X",
+      "proposalId": "9bb39942b9273dcc84e274374a701caa4c8ffc7e4c38ce2e9ff9d480d4db4113",
+      "prepared": true
+    }
+  ]
+}

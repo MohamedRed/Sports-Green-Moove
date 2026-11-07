@@ -1,0 +1,15 @@
+{
+  "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13063250481/zip",
+  "digest": "sha256:d8be247272598d28fe70831a092c5f875753c901ddab98337c311278bb71c6bd",
+  "expired": false,
+  "id": 13063250481,
+  "name": "android-focused-safety-ui-chat-network-recovery",
+  "size_in_bytes": 370856,
+  "workflow_run": {
+    "head_branch": "codex/implement-plan",
+    "head_repository_id": 1265168151,
+    "head_sha": "8447897a4afcbeb0808660cb7f8addd9e2f66850",
+    "id": 41254990765,
+    "repository_id": 1265168151
+  }
+}

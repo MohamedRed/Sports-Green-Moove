@@ -1,0 +1,116 @@
+{
+  "exportType": "sports-green-moove.safety-audit",
+  "exportedAt": "2026-10-11T13:02:11.154Z",
+  "projectId": "sports-green-moove-prod",
+  "rideSessions": [
+    {
+      "id": "rideSession-1",
+      "tripId": "trip-1",
+      "bookingIds": [
+        "booking-1"
+      ],
+      "driverUserId": "user-1",
+      "participantUserIds": [
+        "user-2"
+      ],
+      "childUserIds": [
+        "child-1"
+      ],
+      "status": "completed",
+      "startedAt": "2026-10-11T13:01:34.269Z",
+      "completedAt": "2026-10-11T13:02:03.790Z",
+      "passengers": [
+        {
+          "bookingId": "booking-1",
+          "childId": "child-1",
+          "parentUserId": "user-2",
+          "pickupStatus": "pickedUp",
+          "dropoffStatus": "droppedOff"
+        }
+      ],
+      "auditEvents": [
+        {
+          "id": "auditEvent-1",
+          "source": "manual",
+          "eventType": "passengerPickup",
+          "action": "pickup",
+          "bookingId": "booking-1",
+          "childId": "child-1",
+          "userId": "user-1",
+          "capturedAt": "2026-10-11T13:01:52.862Z",
+          "recordedAt": "2026-10-11T13:01:52.862Z"
+        },
+        {
+          "id": "auditEvent-2",
+          "source": "manual",
+          "eventType": "passengerDropoff",
+          "action": "dropoff",
+          "bookingId": "booking-1",
+          "childId": "child-1",
+          "userId": "user-1",
+          "capturedAt": "2026-10-11T13:01:59.130Z",
+          "recordedAt": "2026-10-11T13:01:59.130Z"
+        }
+      ]
+    }
+  ],
+  "liveTrips": {
+    "rideSession-1": {
+      "meta": {
+        "tripId": "trip-1",
+        "driverUserId": "user-1",
+        "status": "completed",
+        "startedAt": "2026-10-11T13:01:34.556Z",
+        "completedAt": "2026-10-11T13:02:04.797Z"
+      },
+      "vehicle": {
+        "userId": "user-1",
+        "source": "nativeFallback",
+        "role": "driver",
+        "accuracyM": 12,
+        "capturedAt": "2026-10-11T13:01:35.785Z",
+        "uploadedAt": "2026-10-11T13:01:39.626Z"
+      },
+      "children": {
+        "child-1": {
+          "userId": "user-3",
+          "source": "nativeFallback",
+          "role": "child",
+          "accuracyM": 18,
+          "capturedAt": "2026-10-11T13:01:36.785Z",
+          "uploadedAt": "2026-10-11T13:01:41.257Z"
+        }
+      }
+    }
+  },
+  "childProfiles": [
+    {
+      "id": "child-1",
+      "guardianConsent": true,
+      "trackingEnabled": true,
+      "guardianUserIds": [
+        "user-2"
+      ],
+      "clubIds": [
+        "club-1"
+      ],
+      "teamIds": [
+        "team-1"
+      ],
+      "createdAt": "2026-10-11T13:00:55.852Z",
+      "updatedAt": "2026-10-11T13:00:55.852Z"
+    }
+  ],
+  "rewardLedger": [
+    {
+      "id": "ledger-1",
+      "type": "co2Bonus",
+      "amountCents": 19,
+      "currency": "eur",
+      "userId": "user-1",
+      "sourceId": "source-1",
+      "createdAt": "2026-10-11T13:02:03.790Z"
+    }
+  ],
+  "releaseScopeNote": "Disposable live smoke export: proves guardian consent, pickup/dropoff, and native fallback telemetry for this run only. It does not close Radar provider, payment reconciliation, or physical real-device release gates."
+}

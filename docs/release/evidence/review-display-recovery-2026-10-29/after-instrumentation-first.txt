@@ -1,0 +1,115 @@
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest:
+INSTRUMENTATION_STATUS: test=failedReadCannotLookLikeZeroReviewsAndRetryDoesNotKeepAStaleScore
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=failedReadCannotLookLikeZeroReviewsAndRetryDoesNotKeepAStaleScore
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Review value must wrap without clipping: 4,9 / 5
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest.maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh(ReceivedRatingsFlowTest.kt:68)
+
+INSTRUMENTATION_STATUS: stream=
+Error in maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh(be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest):
+java.lang.AssertionError: Review value must wrap without clipping: 4,9 / 5
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest.maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh(ReceivedRatingsFlowTest.kt:68)
+
+INSTRUMENTATION_STATUS: test=maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=showsOnlyMeanAndCountAndSwitchesAccountsWithoutLeakingTheOldScore
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=showsOnlyMeanAndCountAndSwitchesAccountsWithoutLeakingTheOldScore
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest:
+INSTRUMENTATION_STATUS: test=changingAccountsClearsThePriorAccountsPendingPage
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=changingAccountsClearsThePriorAccountsPendingPage
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=emptyRatedPagesContinueToARealReviewAndSubmissionRemovesItWithoutResettingTheList
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=emptyRatedPagesContinueToARealReviewAndSubmissionRemovesItWithoutResettingTheList
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=pageFailureKeepsVisibleReviewsAndAnExplicitRetryCanReachTheEnd
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=6
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=pageFailureKeepsVisibleReviewsAndAnExplicitRetryCanReachTheEnd
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.334
+There was 1 failure:
+1) maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh(be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest)
+java.lang.AssertionError: Review value must wrap without clipping: 4,9 / 5
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest.maximumCountFitsNarrowWidthAndLargeFontsWithoutCoveringRefresh(ReceivedRatingsFlowTest.kt:68)
+
+FAILURES!!!
+Tests run: 6,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

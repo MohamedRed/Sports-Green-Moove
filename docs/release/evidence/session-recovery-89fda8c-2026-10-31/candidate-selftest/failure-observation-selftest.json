@@ -1,0 +1,22 @@
+{
+  "scope": "android-instrumented-failure-observation-selftests-not-session-flow",
+  "observedAt": "2026-10-31T22:01:07.518Z",
+  "nativeCases": 3,
+  "passed": 3,
+  "failed": 0,
+  "transcriptSha256": "c15c34dafb37c411747b41bb7feab979becf36e4656ff5fefd8b46f93fa64670",
+  "installedApkDigestsVerified": {
+    "be.sportgreenmoove.app.local": "78645f43bc157b1b85b2b0d955b8a5f89e6f6b70c02c6494d616a65dc2bb3925",
+    "be.sportgreenmoove.app.local.test": "809780d44d1b0d2d1eab1e17dcac78a3f25559af44935e032e83f6c4ed48f0ab"
+  },
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservation.kt": "3ab15567d85a3e13bb39434cd2dd48cf2e01a3d7cb397801222640294d72aa0c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservationTest.kt": "0aabca8502bbe0d9ea93c9e3aebe112c88af576a4b4f8b60811dbb7f91df151a"
+  },
+  "physicalDevice": false,
+  "backendUsed": false,
+  "sessionRecoveryAccepted": false,
+  "productionWrites": false,
+  "mapsRequests": 0,
+  "releaseAccepted": false
+}

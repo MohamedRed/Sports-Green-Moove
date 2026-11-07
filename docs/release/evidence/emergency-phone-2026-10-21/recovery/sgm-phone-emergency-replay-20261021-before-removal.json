@@ -1,0 +1,17 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "aa535a6e790d689cb7b913157dd3d204",
+  "scope": "independent-phone-contact-recovery-not-dialer-or-complete-primary-sequence",
+  "phase": "before-removal",
+  "recordedAt": "2026-10-21T00:52:48.161Z",
+  "childInstanceId": "c2481f22224bc9b0d4971ba709f94b741fd80e41d664efe80d5842cba4342a68",
+  "stateDigest": "2fa8eb8ec503039301b8088bf5a75e8ca14dca814ec537cf3d919f87ba2cd745",
+  "adultRevision": 1,
+  "childRevision": 1,
+  "operationCount": 2,
+  "guardianStatus": "revoked",
+  "primarySequenceCompleted": false,
+  "dialerHandoffProven": false,
+  "storeReviewAccepted": false,
+  "releaseTrackingAccepted": false
+}

@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-06",
+  "priorSourceCommit": "b0aa2821cf4e7f8959d994b39a0ecab494324ef5",
+  "signatureFailureReproduced": true,
+  "originalSignatureHarnessPreserved": true,
+  "signatureChecksPassed": true,
+  "nativePlanPassed": true,
+  "presentationGuardBytesPreserved": true,
+  "sharedDtoAccountDependencyRemoved": true,
+  "sdkUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "signatures-before.txt",
+      "sha256": "11166512b394b29afda5c37210510b0f5b564a724d3ff3a30bdfc89fe4bb0220"
+    },
+    {
+      "file": "signatures-after.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "native-checks.txt",
+      "sha256": "e93298b008a653508d01e2b7750578910af613443e884d774520622ab2c2f568"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "12eaf3ad0e2e4fead835058b1d27cd2236aac89760c6454b47a870b7d4598d41"
+    }
+  ]
+}

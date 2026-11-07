@@ -1,0 +1,190 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1c9a3ae3275052e6affd22ec84f42df7",
+  "testedAt": "2026-10-19T21:39:02.418Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "team-enrollment-authority-not-conversation-or-native-ui",
+  "testCount": 20,
+  "checks": [
+    {
+      "id": "anonymous-child-and-admin-only-accounts-cannot-manage-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "read-only-view-binds-self-and-does-not-create-an-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "legacy-team-arrays-and-declared-parent-links-never-count-as-team-approval",
+      "status": "passed"
+    },
+    {
+      "id": "adult-request-is-versioned-private-and-never-self-approved",
+      "status": "passed"
+    },
+    {
+      "id": "manager-authority-comes-from-the-teams-stored-club-not-extra-claims-or-input",
+      "status": "passed"
+    },
+    {
+      "id": "only-current-manager-approval-grants-status-and-idempotent-replay-does-not-write",
+      "status": "passed"
+    },
+    {
+      "id": "old-approval-replay-never-revives-a-revoked-team-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-manager-decisions-and-stale-revisions-cannot-both-commit",
+      "status": "passed"
+    },
+    {
+      "id": "owned-withdrawal-remains-available-after-club-loss-but-not-to-another-account",
+      "status": "passed"
+    },
+    {
+      "id": "refused-requests-reopen-with-new-revisions-and-operation-identity-is-payload-bound",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-child-request-and-separate-team-approval-do-not-alter-guardian-or-club-records",
+      "status": "passed"
+    },
+    {
+      "id": "child-and-parent-membership-link-archive-and-team-state-loss-block-all-new-grants",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-parent-authority-blocks-pending-approval-without-turning-history-into-a-grant",
+      "status": "passed"
+    },
+    {
+      "id": "another-verified-parent-can-see-the-child-enrollment-but-cannot-withdraw-the-requesters-decision",
+      "status": "passed"
+    },
+    {
+      "id": "team-recreation-cannot-inherit-approval-even-with-a-forged-createdAt-field",
+      "status": "passed"
+    },
+    {
+      "id": "team-name-edit-preserves-identity-while-club-transfer-cannot-reuse-a-viewed-approval",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-profiles-require-new-parent-verification-and-new-enrollment-identities",
+      "status": "passed"
+    },
+    {
+      "id": "private-enrollment-and-audit-collections-deny-direct-client-access-including-admin",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-private-records-fail-closed-and-never-look-like-missing-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "manager-pages-are-bounded-and-cursors-cannot-cross-account-or-team-scope",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "anonymous-child-and-admin-only-accounts-cannot-manage-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "read-only-view-binds-self-and-does-not-create-an-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "legacy-team-arrays-and-declared-parent-links-never-count-as-team-approval",
+      "status": "passed"
+    },
+    {
+      "id": "adult-request-is-versioned-private-and-never-self-approved",
+      "status": "passed"
+    },
+    {
+      "id": "manager-authority-comes-from-the-teams-stored-club-not-extra-claims-or-input",
+      "status": "passed"
+    },
+    {
+      "id": "only-current-manager-approval-grants-status-and-idempotent-replay-does-not-write",
+      "status": "passed"
+    },
+    {
+      "id": "old-approval-replay-never-revives-a-revoked-team-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-manager-decisions-and-stale-revisions-cannot-both-commit",
+      "status": "passed"
+    },
+    {
+      "id": "owned-withdrawal-remains-available-after-club-loss-but-not-to-another-account",
+      "status": "passed"
+    },
+    {
+      "id": "refused-requests-reopen-with-new-revisions-and-operation-identity-is-payload-bound",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-child-request-and-separate-team-approval-do-not-alter-guardian-or-club-records",
+      "status": "passed"
+    },
+    {
+      "id": "child-and-parent-membership-link-archive-and-team-state-loss-block-all-new-grants",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-parent-authority-blocks-pending-approval-without-turning-history-into-a-grant",
+      "status": "passed"
+    },
+    {
+      "id": "another-verified-parent-can-see-the-child-enrollment-but-cannot-withdraw-the-requesters-decision",
+      "status": "passed"
+    },
+    {
+      "id": "team-recreation-cannot-inherit-approval-even-with-a-forged-createdAt-field",
+      "status": "passed"
+    },
+    {
+      "id": "team-name-edit-preserves-identity-while-club-transfer-cannot-reuse-a-viewed-approval",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-profiles-require-new-parent-verification-and-new-enrollment-identities",
+      "status": "passed"
+    },
+    {
+      "id": "private-enrollment-and-audit-collections-deny-direct-client-access-including-admin",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-private-records-fail-closed-and-never-look-like-missing-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "manager-pages-are-bounded-and-cursors-cannot-cross-account-or-team-scope",
+      "status": "passed"
+    }
+  ],
+  "teamChatImplemented": false,
+  "nativeUiExecuted": false,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "providerRequests": 0,
+  "paginationFixtureRows": 21,
+  "sourceFiles": {
+    "functions/src/domain/teamEnrollment.ts": "ac715ec1017d2353fcda844b998213f0ccd12625246f63e4d2717f113bb166ea",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/services/teamEnrollmentViews.ts": "a2406d4b2209bea911595f6024265aff93bac7873bb19bef8b972c59081251cc",
+    "functions/src/callables/teamEnrollment.ts": "0c3e3aa7e3245ee0eea5af12ff971cc90a5689b5213d75fdda4fa18cbde82b82",
+    "functions/src/__tests__/team-enrollment.test.ts": "88933c912542a02162745570fccc67128b23317236f1db191e396ae91a4c7323",
+    "scripts/qa/local-team-enrollment-fixtures.mjs": "a28b1dd07418bb9d8630f1e46433a6ccee1bb5c02decb280039ee00c8ca43bfb",
+    "scripts/qa/local-team-enrollment-suite.mjs": "2d6d50ff8a1e98ae24042ddb246e3519d0c9eeb22c5d73d69c10038e3be16722",
+    "scripts/qa/run-local-team-enrollment.mjs": "7878aae9925457977d63aebfd1372ccf379a42e88d3d0eaeed3a4dd3e554db78",
+    "firestore.rules": "a6e78a25abced2ec048b13491691edffa3f11301d1cac3de0e53d8a0af3037fb"
+  }
+}

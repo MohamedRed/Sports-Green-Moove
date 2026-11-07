@@ -1,0 +1,22 @@
+{
+  "scope": "host-entry-not-phone-connectivity-proof",
+  "observedAt": "2026-10-31T22:29:43.721Z",
+  "rows": [
+    {
+      "host": "127.0.0.1",
+      "port": 4185,
+      "status": 302,
+      "redirectPath": "/child-invitation",
+      "invitationFragmentPresent": true,
+      "invitationFragmentRetained": false
+    },
+    {
+      "host": "localhost",
+      "port": 4185,
+      "status": 302,
+      "redirectPath": "/child-invitation",
+      "invitationFragmentPresent": true,
+      "invitationFragmentRetained": false
+    }
+  ]
+}

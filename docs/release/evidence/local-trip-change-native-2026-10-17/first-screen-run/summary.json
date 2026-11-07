@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "c7f8ec045535f8a3034a638261e6a17d6ef7077b",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39025520745",
+  "report": "general-ui.xml",
+  "timestamp": "2026-10-17T10:47:38",
+  "suite": { "tests": 95, "failures": 2, "errors": 0, "skipped": 19 },
+  "componentClass": "be.sportgreenmoove.app.ui.TripChangeFlowTest",
+  "component": { "tests": 7, "passed": 5, "failures": 2, "errors": 0, "skipped": 0 },
+  "fullIsolatedReplayStarted": false,
+  "failures": [
+    {
+      "case": "refreshRecoversAStoredProposalWithoutAnotherWriteWhenBothRepliesWereLost",
+      "observed": "Timed out waiting for the initial uncertain-result error after submitting the price change.",
+      "diagnosis": "Keyboard and input readiness was not established before the action. The corrected test must be executed; this report does not establish recovery success."
+    },
+    {
+      "case": "parentOpensFromAffectedReservationAndKeepsTheRecordedRefusalVisible",
+      "observed": "Scroll action failed because the standalone reservation host had no scroll ancestor.",
+      "diagnosis": "The test omitted the scroll container used by the actual trips screen."
+    }
+  ]
+}

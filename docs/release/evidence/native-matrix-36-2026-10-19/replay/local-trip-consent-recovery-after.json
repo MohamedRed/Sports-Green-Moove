@@ -1,0 +1,63 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+  "scope": "native-ui-trip-consent-recovery-matrix",
+  "stage": "after",
+  "completed": true,
+  "actorUserId": "sgm-qa-parent",
+  "processId": 11102,
+  "sessionRestoredWithoutLogin": true,
+  "records": [
+    {
+      "kind": "pending",
+      "tripId": "xy68ohtiJAtagTgQO53R",
+      "bookingId": "9mE37LsTbed6nbEei6Y8",
+      "proposalId": "7e5070966be9444ccc7e928f55861683cd18b16479618b45751b1fca8384434b",
+      "parentStateRestored": true,
+      "refreshUnchanged": true,
+      "originalProposalRestored": true,
+      "secondParentScoped": true,
+      "driverStateRestored": true
+    },
+    {
+      "kind": "partial",
+      "tripId": "06ELr3UZ5blrp8YPEW5S",
+      "bookingId": "nVjNJDzLCY0txIBXpC5r",
+      "proposalId": "7be035060b2ccd87bcd7bb516b77b1da404171fc09ba035d88c083fe43ce84b5",
+      "parentStateRestored": true,
+      "refreshUnchanged": true,
+      "originalProposalRestored": true,
+      "secondParentScoped": true,
+      "driverStateRestored": true
+    },
+    {
+      "kind": "declined",
+      "tripId": "WibGdZqE3qZ3cE9OwfCL",
+      "bookingId": "bpKiWfnKHkDcA6CEX2hB",
+      "proposalId": "2c83c1507aedd7de90e86f41d7eb641cdb7613259369be1060348966d551e164",
+      "parentStateRestored": true,
+      "refreshUnchanged": true,
+      "closedActionsAbsent": true,
+      "parentHistoryRestored": true,
+      "secondParentScoped": true,
+      "secondParentHistoryScoped": true,
+      "driverHistoryRestored": true,
+      "driverStateRestored": true
+    },
+    {
+      "kind": "withdrawn",
+      "tripId": "GECQr6OvRimajGJYecZF",
+      "bookingId": "5Ktlf8iEIa9qUXg2IP05",
+      "proposalId": "4f111536a9267aefa68848bc700d56e3d4bab1462457c678a051337e42b85883",
+      "parentStateRestored": true,
+      "refreshUnchanged": true,
+      "closedActionsAbsent": true,
+      "parentHistoryRestored": true,
+      "secondParentScoped": true,
+      "secondParentHistoryScoped": true,
+      "driverHistoryRestored": true,
+      "driverStateRestored": true
+    }
+  ],
+  "endedAsUserId": "sgm-qa-driver"
+}

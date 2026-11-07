@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.ReviewTripContextParserTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.559Z" hostname="local-test-host" time="0.002">
+  <properties></properties>
+  <testcase name="parsesTheActualContextWithoutChangingItsDateOrTitle" classname="be.sportgreenmoove.app.services.ReviewTripContextParserTest" time="0.001"></testcase>
+  <testcase name="acceptsExplicitUnavailableStateButNeverMissingMalformedOrPartialDetails" classname="be.sportgreenmoove.app.services.ReviewTripContextParserTest" time="0.001"></testcase>
+  <testcase name="parsesTheSameContextFromInboxAndContinuationWithoutAcceptingAnotherReviewOwner" classname="be.sportgreenmoove.app.services.ReviewTripContextParserTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

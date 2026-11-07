@@ -1,0 +1,15 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5070540bdf1f5f01ef679661a5acb050",
+  "preparedAt": "2026-10-18T11:40:06.216Z",
+  "parentUserId": "v9AX5g4c5Tmf2JFLokjQ2cf7H6E6",
+  "parentEmail": "phone-child-20261018@example.test",
+  "parentRoles": [
+    "parent"
+  ],
+  "childId": "sgm-qa-phone-child-20261018",
+  "childDisplayName": "Lina QA telephone",
+  "scope": "sdk-prepared-guardian-fixture-not-consent-ui-proof",
+  "paymentExercised": false,
+  "productionDataWritten": false
+}

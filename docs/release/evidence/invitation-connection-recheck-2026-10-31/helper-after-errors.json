@@ -1,0 +1,20 @@
+{
+  "scope": "host-process-and-listener-observation-not-end-to-end-tunnel-proof",
+  "observedAt": "2026-10-31T22:31:34.285Z",
+  "processRows": [
+    {
+      "pid": 8528,
+      "ppid": 8411,
+      "state": "S"
+    },
+    {
+      "pid": 8534,
+      "ppid": 8528,
+      "state": "S"
+    }
+  ],
+  "localPageListenerObserved": true,
+  "helperListenerObserved": true,
+  "networkSettingsChanged": false,
+  "rootCauseConfirmed": false
+}

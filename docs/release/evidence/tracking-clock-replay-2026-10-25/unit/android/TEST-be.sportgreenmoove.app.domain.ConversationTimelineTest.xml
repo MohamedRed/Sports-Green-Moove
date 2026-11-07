@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.ConversationTimelineTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:25.437Z" hostname="MRRs-MacBook-Air.local" time="0.172">
+  <properties/>
+  <testcase name="aBurstLargerThanTheLiveWindowCanBeLoadedWithoutLosingOlderHistory" classname="be.sportgreenmoove.app.domain.ConversationTimelineTest" time="0.056"/>
+  <testcase name="earlierPagesAndReadUpdatesKeepOneOrderedCopyOfEveryMessage" classname="be.sportgreenmoove.app.domain.ConversationTimelineTest" time="0.014"/>
+  <testcase name="equalTimestampMessagesUseNanosecondsAndStableDocumentIdOrder" classname="be.sportgreenmoove.app.domain.ConversationTimelineTest" time="0.099"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

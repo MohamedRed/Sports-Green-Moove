@@ -1,0 +1,116 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { basename, dirname, resolve } from 'node:path';
+import { validateNativeCaptureRecheck } from './native-capture-recheck-evidence.mjs';
+import { validateNativeCopyRecheck } from './native-copy-recheck-evidence.mjs';
+import { validateSupportProcessRestartPhone } from './support-process-restart-phone-evidence.mjs';
+import { validateNativeTerminalRecheck } from './native-terminal-recheck-evidence.mjs';
+import { validateNativeBootRecheck } from './native-boot-recheck-evidence.mjs';
+import { validatePreinstalledMatrixEvidence } from './native-preinstalled-matrix-evidence.mjs';
+import { validateNativeTransferRecheck } from './native-transfer-recheck-evidence.mjs';
+import { validateFocusedPreparationEvidence } from './native-focused-preparation-evidence.mjs';
+import { validateNativeNetworkPreparation } from './native-network-preparation-evidence.mjs';
+import { validateNativeRideCompletionRecheck } from './native-ride-completion-recheck-evidence.mjs';
+import { validatePassengerObservationOwnership } from './passenger-observation-ownership-evidence.mjs';
+import { validateNativeScheduleCollectionRecheck } from './native-schedule-collection-recheck-evidence.mjs';
+import { validateRideCompletionRecheck } from './ride-completion-recheck-evidence.mjs';
+import { validateNativeCopyCe282274 } from './native-copy-ce282274-evidence.mjs';
+import { validateNativeReplay0f91172f } from './native-replay-0f91172f-evidence.mjs';
+import { validateNotificationNativeAttempt } from './notification-native-attempt-evidence.mjs';
+import { validateNotificationNativeRecovery } from './notification-native-recovery-evidence.mjs';
+import { validateNativePaymentHeadRecheck } from './native-payment-head-evidence.mjs';
+import { validateNativeScheduleCopy } from './native-schedule-copy-evidence.mjs';
+import { validateAdminClientLifecycle } from './admin-client-lifecycle-evidence.mjs';
+import { validateSystemPhonePrerequisite } from './system-phone-prerequisite-evidence.mjs';
+import { validateBoundedValidation } from './bounded-validation-evidence.mjs';
+import { validateNativeAdminClose } from './native-admin-close-evidence.mjs';
+
+export function validateFlowRecheck(root, record) {
+  const base = dirname(resolve(root, record.source)), read = name => readFileSync(resolve(base, name), 'utf8');
+  assert.equal(resolve(root, record.checksums), resolve(base, 'artifact-sha256.json'));
+  const json = name => JSON.parse(read(name)), report = json('summary.json');
+  assert.equal(report.reviewedAt, record.checkedAt);
+  assert.equal(report.scope, 'terminal-ci-service-recheck-and-incomplete-native-phone-attempts');
+  assert.equal(report.sourceCommit, '87ec649ea41d0203ea591bc3a4b5380c881c2b0c');
+  for (const key of ['fullNativeReplayCompleted', 'newPhoneFlowCompleted', 'physicalTrackingAccepted', 'productionWrites', 'releaseComplete'])
+    assert.equal(report[key], false, key);
+  assert.deepEqual(report.newCapturesAccepted, []); assert.equal(report.serviceGroupsPassed, 24);
+  const web = json('web-run.json'), native = json('native-run.json');
+  for (const run of [web, native]) { assert.equal(run.headSha, report.sourceCommit); assert.equal(run.status, 'completed'); }
+  assert.equal(web.databaseId, 39691040870); assert.equal(web.conclusion, 'success');
+  const webJob = web.jobs.find(job => job.databaseId === 119536999659); assert.equal(webJob.conclusion, 'success');
+  assert.equal(webJob.steps.find(step => step.name === 'Test isolated multi-person flows').conclusion, 'success');
+  const expected = ['fixtures', 'ride-lifecycle', 'publication', 'booking-cancellation', 'last-seat-concurrency', 'multi-seat-booking',
+    'messages-notifications', 'ride-audit-ledgers', 'ratings', 'club-request', 'support-request', 'ride-passenger-safety',
+    'chat-delivery-safety', 'chat-post-commit-response-loss', 'chat-directory-safety', 'reservation-decisions', 'membership-review',
+    'trip-capacity-ownership', 'team-ownership', 'trip-cancellation', 'trip-details-ownership', 'trip-change-parent-confirmation',
+    'trip-change-application', 'trip-change-supplement'];
+  const lines = read('service-transcript.txt').trim().split('\n'); assert.equal(lines.length, 25);
+  assert.deepEqual(lines.slice(0, 24).map(line => /Z ([a-z-]+): passed$/.exec(line)?.[1]), expected);
+  assert.match(lines[24], /Local QA: 24\/24 groups passed\. Evidence saved\.$/);
+  assert.equal(native.databaseId, 39691040962); assert.equal(native.conclusion, 'failure');
+  assert.equal(native.jobs.find(job => job.name === 'Android native UI tests').conclusion, 'failure');
+  const focused = native.jobs.filter(job => job.name.startsWith('Android focused safety UI tests / '));
+  assert.equal(focused.length, 11); assert(focused.every(job => job.conclusion === 'success'));
+  const failed = json('adb-pull-trip-consent-recovery.json'), recovered = json('adb-pull-failure-cleanup.json');
+  assert.equal(failed.runId, '33d063637a59367f67318a001c48565e'); assert.equal(failed.completed, false); assert.equal(failed.status, 1);
+  assert.equal(recovered.runId, failed.runId); assert.equal(recovered.completed, true); assert.match(recovered.stderr, /108 files pulled/);
+  const diagnostics = json('adb-sync-trip-consent-recovery-diagnostics.json'); assert.equal(diagnostics.runId, failed.runId);
+  assert(diagnostics.observations.some(item => item.stderr?.includes('device offline')));
+  const phone = json('session-results.json'); assert.equal(phone.completed, false); assert.deepEqual(phone.checkpoints, []);
+  assert.equal(phone.adminClientClosed, true); assert.equal(phone.productionWrites, false);
+  assert.equal(report.phoneHelperOutcome.code, 126); assert.equal(report.phoneHelperOutcome.rootCauseEstablished, false);
+  assert.equal(report.phoneHelperOutcome.verboseDiagnosticApproved, false); assert.equal(report.phoneHelperOutcome.ownedGroupExitVerified, true);
+  const startup = json('startup-diagnostic.json');
+  assert.equal(startup.startupOnlyApproved, true); assert.equal(startup.requestLoggingEnabled, false);
+  assert.equal(startup.normalVerbosity, 0); assert.equal(startup.code, 126); assert.equal(startup.rootCauseEstablished, false);
+  assert.equal(startup.helperDirectoryRemoved, true); assert.equal(startup.startupOutputBytes, 196);
+  assert.match(startup.startupOutput, /Skipping initialisation of configuration console/);
+  const cleanup = json('cleanup.json'); assert(Object.values(cleanup.removed).every(value => value === true));
+  assert.equal(cleanup.phoneSessionStopped, true); assert.equal(cleanup.phonePolicyChanged, false);
+  assert.deepEqual(cleanup.endpoints, {host: '127.0.0.1', ports: [9099,8080,9000,5001], closed: true});
+  for (const [file, hash] of Object.entries(json('artifact-sha256.json'))) {
+    assert.equal(basename(file), file); assert.match(hash, /^[a-f0-9]{64}$/);
+    assert.equal(createHash('sha256').update(read(file)).digest('hex'), hash, file);
+  }
+  return report;
+}
+
+export function validateCurrentNativeBlocker(root, content) {
+  validateBoundedValidation(root, content.boundedValidationRecheck);
+  validateSystemPhonePrerequisite(root, content.flows.find(row => row.id === 'emergency-contact').dialerPackageRecheck);
+  validateNotificationNativeAttempt(root, content.notificationNativeAttempt);
+  validateNotificationNativeRecovery(root, content.notificationNativeRecovery);
+  validateNativePaymentHeadRecheck(root, content.nativePaymentHeadRecheck);
+  validateNativeScheduleCopy(root, content.nativeScheduleCopyRecheck);
+  validateAdminClientLifecycle(root, content.adminClientLifecycleRecheck);
+  validateNativeAdminClose(root, content.nativeClientClosureRecheck);
+  assert.equal(content.blockers.find(row => row.id === 'notification-native-replay'), undefined);
+  validateNativeReplay0f91172f(root, content.completedNativeReplayRecheck);
+  validateNativeCopyCe282274(root, content.latestNativeCopyRecheck, content.blockers);
+  validateNativeCaptureRecheck(root, content.nativeCaptureRecheck);
+  validateNativeCopyRecheck(root, content.nativeCopyRecheck);
+  const record = content.nativeReplayRecheck, report = validateSupportProcessRestartPhone(root, record.source);
+  assert.equal(record.checkedAt, report.checkedAt);
+  assert.equal(resolve(root, record.checksums), resolve(root, dirname(record.source), 'artifact-sha256.json'));
+  const latest = validateNativeTerminalRecheck(root, content.nativeTerminalRecheck);
+  const boot = validateNativeBootRecheck(root, content.nativeBootRecheck);
+  const matrix = validatePreinstalledMatrixEvidence(root, content.nativeMatrixRecheck);
+  const transfer = validateNativeTransferRecheck(root, content.nativeTransferRecheck);
+  const preparation = validateFocusedPreparationEvidence(root, content.nativeFocusedPreparationRecheck);
+  validateNativeNetworkPreparation(root, content.nativeNetworkPreparationRecheck);
+  validateNativeRideCompletionRecheck(root, content.nativeRideCompletionRecheck);
+  validatePassengerObservationOwnership(root, content.passengerStatusOwnershipRecheck);
+  validateNativeScheduleCollectionRecheck(root, content.nativeScheduleCollectionRecheck);
+  const completed = validateRideCompletionRecheck(root, content.rideCompletionRecheck);
+  const blocker = content.blockers.find(item => item.id === 'test-device-stability');
+  assert.equal(blocker, undefined, 'The completed replay must not retain its superseded blocker');
+  assert.equal(report.fullCiPassed, false); assert.equal(latest.fullCiPassed, false);
+  assert.equal(boot.fullCiPassed, false); assert.equal(boot.matrixExecuted, false);
+  assert.equal(matrix.fullCiPassed, false); assert.equal(matrix.localFlowGroupsPassed, 36);
+  assert.equal(transfer.fullCiPassed, false); assert.equal(transfer.fullNativeReplayCompleted, false);
+  assert.equal(preparation.fullCiPassed, false); assert.equal(preparation.matrixJobPassed, true);
+  assert.equal(completed.fullCiPassed, true); assert.equal(completed.releaseComplete, false);
+  return completed;
+}

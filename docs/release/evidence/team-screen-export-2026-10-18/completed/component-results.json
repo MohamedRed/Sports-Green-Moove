@@ -1,0 +1,41 @@
+{
+  "projectId": null,
+  "scope": "local-native-component-ui-not-physical-device",
+  "testedAt": "2026-10-18T21:26:49Z",
+  "sourceCommit": "0cb8e4c4cfdcc51f25201bfe1af8a90ec7bd3b36",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39167178722",
+  "testCount": 4,
+  "steps": [
+    { "id": "anUncertainReplyHasNoActionUntilTheUserReadsAgain", "status": "passed" },
+    { "id": "aReviewedRequestNeedsConfirmationAndNeverApprovesItself", "status": "passed" },
+    { "id": "theParentSelectsAVerifiedChildWithoutChangingTheTeamOrAnotherSubject", "status": "passed" },
+    { "id": "approvedWithdrawalIsConfirmedAndNarrowLargeTextRemainsWithinItsScreen", "status": "passed" }
+  ],
+  "applicationBackendConnected": false,
+  "gateway": "in-memory-fixture",
+  "fullAppReplay": false,
+  "physicalDevice": false,
+  "realProviderOutcomesVerified": false,
+  "componentSuiteCompleted": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "artifacts": {
+    "ordinary-tests.xml": "fe765fccd98df651aab51d402719d8524aadac17158af5ed3de4a8a80407b862",
+    "local-replay.json": "a25a89cbe551ba181030e5a9d0dfb8da04a72e7ef75b96e9910f8bf9c101b836",
+    "native-suite-status.json": "4f0522dbdf13e10918920a0897e5c328173ef29ba7898485f5700b0e0fd8402b",
+    "disposable-store-restore.json": "73564ddb421cb24c6d831c744ff6a94d0a8708bcd99871a55c8dafe5c7098768",
+    "team-requested.png": "28cfc16d7252a5ae8683d768edcb9b0ac17b88d815f14abe4571682eb4a055e7",
+    "team-requested-window.png": "e442e89609c78f45b19a2921917f259c70fd4f153a3dfe639be8c31e5c329edb",
+    "team-approved-narrow.png": "874547c259f37c24400a20614db96b75bce6f1146dbbe6e04a2970c4b5d6d311",
+    "team-approved-narrow-window.png": "63d2a4db6c78eab2ac0312cbfd1583a446100512f0866903e5dbe8ef4bc0cf88"
+  },
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentState.kt": "bab73fcf3a7c766ca4e22e0d26cc15d962f9006e9f23ca21efc9679e1a0bd68a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentRoute.kt": "52e801f96d22fa52c37a3f0dada555d3531e6a53dd3dd21e49f38069deff07f5",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentScreen.kt": "8c173b9bf07f7ddc41887916679db481ea06c14184782976790ecc748930d561",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentOptionDialog.kt": "a83db87852cde83c5adbd49527ceceab413b68a1828362953874b623bcd5af61",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt": "0094b2d02f0e02385d8218948f087bc1427476218cbcc1d1288fc7646abf2717",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26"
+  }
+}

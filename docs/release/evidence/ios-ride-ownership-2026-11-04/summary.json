@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-04",
+  "baseline": {
+    "sourceCommit": "9936e6512889f3ab1cace4931513460951fef37b",
+    "log": "baseline.txt",
+    "logSha256": "d60de89ea25b897d552c26572ab9988b265b1a2a6940926085ebdfcc266ae1e2",
+    "exitCode": 133,
+    "restoredRide": true,
+    "calls": [
+      "start-ride",
+      "radar",
+      "native-start"
+    ],
+    "fullHistoricalBuildAccepted": false
+  },
+  "candidate": {
+    "log": "native-checks.txt",
+    "logSha256": "b148c94eef6b0dab4100b1e8a94857a33109514a4bbb450f954562b9c66f6473",
+    "exitCode": 0,
+    "restoredRide": false,
+    "calls": [
+      "start-ride"
+    ],
+    "startupBoundaryCases": 72,
+    "permissionRevocationCases": 2,
+    "passengerAndEndRevocationCases": 8
+  },
+  "signatures": {
+    "log": "signatures.txt",
+    "logSha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83",
+    "exitCode": 0
+  },
+  "retainedDrafts": [
+    {
+      "log": "test-compile-draft-failure.txt",
+      "logSha256": "d96b9f2fd76cc8fb0dc8d7cd207e24bfbda52b2735772de813562b3ceffee886",
+      "exitCode": 1
+    },
+    {
+      "log": "matrix-draft-failure.txt",
+      "logSha256": "08c3289c882afe287c28e4ae03acb8833158f7f9359b620f0d9a4aff3da6f30b",
+      "exitCode": 133
+    }
+  ],
+  "localStopScope": "Controlled gateway invocation counters, not real device services",
+  "sdkLinkedBuildAccepted": false,
+  "fullSignOutAccepted": false,
+  "issuedNetworkRequestCancellationAccepted": false,
+  "physicalGpsEvidenceAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

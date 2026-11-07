@@ -1,0 +1,514 @@
+{
+  "baselineCommit": "3e7cd40e62798ba503c383e044e25231dc3072bd",
+  "transformation": "positive-merged-tree-numeric-timeout-only",
+  "files": [
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/AuthTestInteractions.kt",
+      "waits": 1,
+      "baselineSha256": "cf5e7f27de3a78b2d06975f01300dd0c7f27a6dda6ef3d4974479c5e4cc4750e",
+      "candidateSha256": "f218446f310fdfb9e974075ced1d34a5ad86bb037309b5f2bedaf4fe9477501a",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildAccountLinkFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "b015c992807bd55b37d54ac58842bcd48d5a8c97c88dbbb995408c942299ebe5",
+      "candidateSha256": "6d4834800db3bda65df63e6a70a9efbd30964bc7545f412ea258b0450aed9e37",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildEmergencyPermissionFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "ae406c1f4a9f276845f1dc2816c2a5cfa6e11293df9d289b2df4698ff8531de8",
+      "candidateSha256": "deff0c54c0a9a391c24a443d42d09e7b42b4891a22455150ce8a88194053b7b6",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildInvitationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "97fe2a7efefcd9da4cb80e63db31f55bddf1a1bd1cd06b4a6f6a9fa447197c3f",
+      "candidateSha256": "80871c6a511cb7cd43d8f43a859dfc1edbce73aa6980f11cebac9391c1df4c25",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "c637dfad00d169c66eac7d5cf5d5799156f20364058c31b0cdee24a2891b7fb7",
+      "candidateSha256": "674bc5c2784bc35e63305b98fc6c326a935098931aa18744804412c67535d5a2",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationDirectoryFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "aeffb96feb163f4e2821cdefd520289d7ed8ec00c17c0a5a3bd78b3621e744f6",
+      "candidateSha256": "1aa96d2c29ba19264d6716d01bae00353f7229d5d0d8ae63be7a6e08cccf1a7c",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationDraftFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "754255e5c72fdba1f6f80031eb399300508a4c3232daba8b1e436d059e0bba92",
+      "candidateSha256": "7ec454d2cd05f2d52b0e4bb058bfe412a608c7e853909f56fcf865079e077831",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "d878afec76bdda02cfaf9aad657dff2405f0b818879a243601d8fda2c8bc080c",
+      "candidateSha256": "0d1fb9d81f5421ea48b32432d8ff903e6dd2df046d6be03a3aeea171693546d9",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "e6fe46f3433019e989c7e5844e9b7e7442df24546aaa290c8077f6cfbbfedcb9",
+      "candidateSha256": "0816407808a8a910a8b7431e5bba7494696e029dea03cda3431dccc5faf82f39",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalAppFlowTest.kt",
+      "waits": 5,
+      "baselineSha256": "169d2d974cdc4efcbfec312d15cf701130424a458f87c7b10ba14a859589a228",
+      "candidateSha256": "4c3c92009b77929abf9168701c0c3e90ac6583c32fc795d3319f6a88f65bfdb7",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalBookingDecisionsFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "e9d915fae6436cbf7e7072112b95992c7d6e21247e3cbe1fa87e1b9bc66482d8",
+      "candidateSha256": "bdc67b549405fc800ea6a13d1d6f4e151c4f3758da75ce4ea575f3fda75181fd",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "d95472415857fdce96fc52fbbcf549ed4288fb9a5a7bf8bda0e5a1217773e8e9",
+      "candidateSha256": "d764edb98b8503019e3e9ad4998658d2c54c65f5e26541c918d43de3cf0c7d9d",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "a5293f3abf5880aab211d2c4ca2e47f80564709401452926ba449fa5ef66e380",
+      "candidateSha256": "349ee6bc1824445dd3c872ee26f5f54fcc6380534efa4d085ab6bd3d25fbc9f7",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatProcessRestartTest.kt",
+      "waits": 2,
+      "baselineSha256": "ba88b0c15d934df9e0cf3faf57c7a010b96d29f5434fd2d2445b0cc0bd5db25a",
+      "candidateSha256": "9356e8962b268f23008ced6fc62a99fdd01baf8e48c12cde273fe2ac63796a0a",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatResponseLossTest.kt",
+      "waits": 1,
+      "baselineSha256": "1be1d2c753148c7a1795b29d62fb806700f83f5911c63e514e218727c17ce5d3",
+      "candidateSha256": "f838826d80cafe3c1c3d91a522d5370945f14b4c622a573964589985b3924118",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatSendInteraction.kt",
+      "waits": 1,
+      "baselineSha256": "3745d79a172a1f45af67d4abaa22830f9aee21da56c66a11846f996b88523c15",
+      "candidateSha256": "d69b9615e603bc4948a127405547aefe97b94a2c725ec99187bf09a188632409",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalConversationDirectoryFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "6148de29eb512cc209f845a545f495d09d4cbf229de4a94a89fbaf6859130f65",
+      "candidateSha256": "3434eb1dd431d68c4b40e32afc0bbdc304734e41842b796dfd1facb123fc04e7",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalDriverFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "28c63f9c3e365af3601512d6bdf0d4c0fadb1c454c7bb7061ce0feff8b1dfc67",
+      "candidateSha256": "8d546a8ab8188e5fb3e6362e527ae9cc1a8894abf86d9380490b35bcb3804c3d",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "772610752b6c8437053a884a4cd5b4cf01e14ee5ff5f526e62eb3196a4fe0e8c",
+      "candidateSha256": "91a0b4b785305aaa09688a4da961d94c4e1394b7a2942fed88f157f621b3201a",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyIdentityFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "102340a2512dc1a764bf55eedb2b529b46d5d5268f32ce63cfea9cd3afef08b3",
+      "candidateSha256": "66dc9566a6f67e29d75f37031b385cd9f2c7cdef20a472d95da401864434b7c4",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianVerificationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "985ea0b6acf9bfc9137ce0f3174d197050774a25047e98f1cc0b25353867d34a",
+      "candidateSha256": "ffa6836147dc170294d32ed6ad373cb18b25226eb2e6bfb26b52a00880676d1c",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalLandscapeLoginTest.kt",
+      "waits": 1,
+      "baselineSha256": "4e1bef877efe71c26d98b636645784125bebfab9cfb75914db6584d06efb27f7",
+      "candidateSha256": "8bd076af750ef5d887f15a4e2027d7f642438ff793184f2662c269535d9f8c68",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalLedgerHistoryFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "f1cc18345152f78cc66ff675a1d45be873f4faf8f37326443b56ca6c05f25e59",
+      "candidateSha256": "9f8fbcf5bd610f9e207a31cb7e0a737835b19cfd5d3c446d6052440eb27fd00e",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMembershipFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "789f9ddd37baa0863cf8521e726a78ae040a20f223ac38d75edbcb790239b72e",
+      "candidateSha256": "e272b460872505a6181a4191f9f5a28fbe950e79376c79f89618ecaef89c9e78",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt",
+      "waits": 1,
+      "baselineSha256": "670c6bbbd87adfb02f6e7779264b893f4a5180c57f974e0f68a4b8164689b808",
+      "candidateSha256": "91d5e129b7eb3f909b6d53fb2126912b6368e833869ed9254fc3e93e8711d36b",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNotificationReadFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "2b55b050b7d42e633210da7fd8c131eb9ef9bd7a8a796e979d985681968fe140",
+      "candidateSha256": "4d5baa4dfd4f435f06db918417e9789196a1488edcf38bf949b5de0393c87d32",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalParentSearchBookingTest.kt",
+      "waits": 2,
+      "baselineSha256": "553e41ce461348f735c51d671bc70a4e63c127dea7597834f424b135287d8520",
+      "candidateSha256": "1656465680e180cc3794aa1fe8019bc6b7a94f99803215e30c83fb146be1bc86",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalProfileCityFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "f70cd984f52cf62729a021bac042251242588f89138cb6e53b869218f09b144b",
+      "candidateSha256": "339419ac611432af1411d95ca63356eecaa13edbfd9ffb8bb271ff9948181b23",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt",
+      "waits": 2,
+      "baselineSha256": "8562fddd60373a2264f63a7a8c945271177529e5e9d0cfa86975bcaeb3b4eded",
+      "candidateSha256": "c1832fa489c3d50db826be608c99c2586f6cb19472c01dc70ebead59ebad548e",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "f7721b202e4813551737797f5407c988c82978ad01dcd5be054bd3df147ba609",
+      "candidateSha256": "318b3bc20779b39c0cf3f2b4f07b9255c3b640bcea34614a81ca7e2a5b70d898",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt",
+      "waits": 1,
+      "baselineSha256": "51383bb4ba392de6cb9fc930f7914ee2dacd0f1c1e295c24e87d677ed941d7db",
+      "candidateSha256": "91c8943659e24d6dd2f28f08867ce66aee61f70bd7e1fa256a8c1d088a84bde8",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "08897531ecc1a2e79978db1f39b51a25d721902b64b1e405a58489a2096c2080",
+      "candidateSha256": "609431adb17e86d071e8967e295a3c1920846b9fe2ba70dbe5950250027d6ca6",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "85241654dd5ef07e83769b3fae60f3bfe16f1cc925fb00832633752828bd8358",
+      "candidateSha256": "aaea0961058703d8773c317ce5334f8728d82b3cd030e6258d0b1fe8aa64cde2",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionDisconnectTest.kt",
+      "waits": 1,
+      "baselineSha256": "93983ea6babe601d6a6448ead32d6a123919f89b430dd9dca0e81887992fa2ce",
+      "candidateSha256": "004712aa32f8e8a69313951398868d52f31c85e008263561b5bd7e99122b8460",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionRestorationTest.kt",
+      "waits": 1,
+      "baselineSha256": "c0431829f904e4e529e90824b52a38f46f615b4c462b02eef8a7b25dcbe54eed",
+      "candidateSha256": "8f0e6fd05e76e60f0db7804d93abf20060c5fb5e194636497515920b6e6abb89",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatUi.kt",
+      "waits": 1,
+      "baselineSha256": "5055d76b629aab137e6e6409dbd4d5f400dce8fc326331335573ccf014e806f0",
+      "candidateSha256": "5615b88f6ecfa215b6858704d7dd993c47f11da5b4292ff084fdf56f4835fe4e",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "84c26428e564093664849ed4a80985f3e8788a87c8d3b82aeeb94e375995b025",
+      "candidateSha256": "663a0d3d918ba462b20767cfe271c1155dc4ada8df42adca450496d08a43c375",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalThemeRestartTest.kt",
+      "waits": 1,
+      "baselineSha256": "3f76a04576d772b7fd4e3d8d68addb282135d6034e1d37c704fdcf47cfd82933",
+      "candidateSha256": "24909f09640090161f463f19c3b64ddaa37234567c77eb1fc0d7c31c6c2c6976",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripCancellationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "20953c03326513715b33caa781ad8e32f715a034d577a0e248f94b3c80bac648",
+      "candidateSha256": "c7968d8f87a76b3fdd7bb374b4129b04e93914fe5f1033b6280b8848c5824415",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "a39a14d89ab1f59abb08991f7600cab59b4b98c39777e4a035ec4a3b91779410",
+      "candidateSha256": "00cf28b40976e6d55b7b6b558ad4a65652fa6ac1929fef9d2a08b46fc851d14e",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeInputsFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "fed39c3e8f67debae88f3b6fb5df6ece38a89e7b76f9a3e8645c119e9fc0a82d",
+      "candidateSha256": "cf09743f13a3c7064e03f376840b31b079a54d25a3ebd2410715b6b139915733",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeScheduleFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "5ea6890471fd84c3c46e0003531e29bed38cad72ff945b56e24ad23c89f8854f",
+      "candidateSha256": "8fda8819e7817abd5e76ec455cc536e338aa68a4863dd619e46e22a19f8f091d",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripConsentRecoveryTest.kt",
+      "waits": 1,
+      "baselineSha256": "772add5d8f02b01b1c09a134bd0473367718bbc4b943f16700c119724e56790d",
+      "candidateSha256": "e372c3a5128fbc0bdeced2a406538cee63438cd9c44edc4d6203e11faae250c2",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripConsentRestartTest.kt",
+      "waits": 1,
+      "baselineSha256": "0ddf50276e06bc5fa1a43ec151761b0f6c190337111c9a7940b1291ae029ef6b",
+      "candidateSha256": "813be81acda1391c4c026991b7043b1d791d8465b9c41a9a2fde398238035400",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripDraftRestartTest.kt",
+      "waits": 1,
+      "baselineSha256": "48d080d33d09d65146b87250a5730207dda9decde7ef86a9e4afdd045d6af994",
+      "candidateSha256": "9ce9f0a5aa5fa9b8b066d35b600ce355e27b62d9204fdf33badf045960efcbe5",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripHistoryAssertions.kt",
+      "waits": 2,
+      "baselineSha256": "a35c8873abc74a95d9fd2c49d1939d89a9d6fbbc1fae656818cfe3835c4dedb1",
+      "candidateSha256": "f6aa1eb0117d404b55e4d5990f1da488ab4a798eeb18efcb9d4a4a810bebafee",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripScheduleDraftRestartTest.kt",
+      "waits": 1,
+      "baselineSha256": "7dc3bd0982439bdefe007a89d5854b981af7629fb3b8aa0018a94adb0da83a22",
+      "candidateSha256": "34264f84ccbeb59da334f4fe38054ecdd1c1d1c1c8d2ebe8c6a778cc1b7903e1",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalVehicleMapFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "73de7e0f90e63ba8f75c8b7f42c2337bdc6ba1540baf92f4a5b9d87a04cabe43",
+      "candidateSha256": "77b31fa00d48852a7f613b3a99f3ed34f00184ccb5b1beb26d9323673a96861c",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MessagesNotificationRetryFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "0ba2111726f606952cee709758dd63fc2ae4c5e09be8c2a3fc7f2248d485dd84",
+      "candidateSha256": "162d44ab5142ae694dc7c27d22bd63881b545897a8750fab66583e17a7390883",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NativeTeamMessageInput.kt",
+      "waits": 1,
+      "baselineSha256": "d5e3c8fc3fa708b61b85cd13e8cddadca12392712f55826ac085b57f39acfa11",
+      "candidateSha256": "6f12fdf2fbbaf594cd0dc84b8c507e7251ae88f6068ed24bbe448f3b83c6a162",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationInboxFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "6e3061508e8645fca21386867c87e477c90404f91136ea51f1c30d1536594de2",
+      "candidateSha256": "e46b001a2b6bea2d59b73c8a96cc9d66a9af3cf04b6658c9dede71938469eb39",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PendingReviewPaginationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "9486d3dbfd554ab10b2fc04184aabad2893ce68e8f73dee7bc5cd217b24cd853",
+      "candidateSha256": "92b95b4beaed893d48be8ff0db1c46c9f1d6f0c4e1fcf02dfecb23f7ebc0e4c5",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ProfileCityFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "7c9472e56a8b34acfbea2df51821b330364a4d44509d4a3276d2d59ea4b269fa",
+      "candidateSha256": "30bedcc79daeaebb495a425d5b0d88810bccd6eac9c9320d9342a1e9cc853bee",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReceivedRatingsFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "a8025bb27a98f6e025658985fd166ae233b44a4847716dbb9342ecad6cf33eb0",
+      "candidateSha256": "c4888037590c1243cf76c10ee804be3e7c0cd903e7f1acfa09a5ce73f699c3e7",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReservationActionsUiTest.kt",
+      "waits": 2,
+      "baselineSha256": "1231f3eb45341ba18a9f9bea6d2be22d1fc9b7de42ccbdcb42c863b6640b97e0",
+      "candidateSha256": "4ca9c060643094a38ae6f785df7c1fbda38f6fcfac3eff10140327526751f5b0",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReviewSubmissionRecoveryFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "f8716956d14690387e65d93b20d58db6c86f9b6a244d99acce80ede3f7cef864",
+      "candidateSha256": "9b866c92b5863eece5d1f405c703a6d33d1d4882405c4db050408b654847099c",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchCriteriaFlowTest.kt",
+      "waits": 2,
+      "baselineSha256": "6ca8f32ec9803e82b0368eae4d5129ab78ddca71f3372db2c6715b557898aca3",
+      "candidateSha256": "ccc3473f4dcff55a8901537bb0f18db711841ed6026d5b24755a1c804e783a03",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchSessionFlowTest.kt",
+      "waits": 3,
+      "baselineSha256": "c071b986f4b78e49c1a8e0e5698c1b977c66166ed8301846992ad7b86c69e9a4",
+      "candidateSha256": "d650ae38dd004a7b3bafd257d4ccf8f9b31568131456eb1a948c36d4246bffdf",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionRestorationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "c60904f9b282e95ee5dbbc0b7054a87f694226b0c63680c274a94478321f17a3",
+      "candidateSha256": "a9d142959c587bf2a2fffc0583a21a56c7f57b042779c8601c0602d54598ef13",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionShutdownFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "7868857b6658036af9a425b319368fc95582c5bbf53ab4ad83b7ba57066efdcc",
+      "candidateSha256": "2762898de67ca196a0789ef99cb7e10c97d0a0bfbd3c40b74f634030965147ce",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportInboxFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "0cbb92aebbaaf3168462d69c0a332011d290334413b965f6a8bc0ead09792dc5",
+      "candidateSha256": "e88ef54358dee66f9497cc588d540f0b9d89bfd4762c0631c17250cb38d668e2",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationDraftFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "f3af2bf8973dc13949cdea6876919900c7bb456a6877d92ee42329d71166e607",
+      "candidateSha256": "90cb0b791f7129269ceb0290965ef6e75b90e6c788a6ffb79117ebb7383170e4",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "e53bfb2c37ed106338fe7c3167fe6b59cb7f1e7f5d71c11202a8fb6d4f257866",
+      "candidateSha256": "766d0ed317f8b217b502d77f432e0e8170b71f844dc377e9b237adde4fd04f10",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationReadFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "7029eb4b24ebaf37c5b3077ab5de62311c16ab7c5a36e36d4a71f9c73dd1a46a",
+      "candidateSha256": "32c147a09236f67a5161f925b4cdeb28171f110526105e740da04b8c210111af",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "bcc64c68f0a6409a7816cf97926159257e7dda6757cc6b03282666c8fb83e9ea",
+      "candidateSha256": "9a26425eaefb50ff28caffadb98e308df6398c4d2312f385ab073fd992491b6a",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "aba64fba09a24d815940b3480a80ec607f272786c40d2b07fdac0504a3a18c5d",
+      "candidateSha256": "9e10efd5563a24d490b2345bd2d5ff7e89a08c1a78133a1c4fb596d0284c334a",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamPushOpenFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "d6bf9ed4e4310c7bf033c9b0d036d8709be2a049f2ad5da169edff6ee16a056e",
+      "candidateSha256": "72e748ae7ef87d1906046a55d85eb363502203180a7db6df4c055635a3755619",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripCancellationFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "09a3befa3f8543de06990c917d6dcde2383aa6ace9212a0f5ea05d5c6453ce54",
+      "candidateSha256": "26de661f2873cc61199e5f5a994bdd5bf4707acd81cc49bdee744d78adadcb55",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "1f1e5be3363b7331ca3b7b4a413c3eb4644307e5c0a4b2fc67a7d4e67bc36463",
+      "candidateSha256": "ab62281632ef2df6dd493793f6c1bde20460309ca0577812933517e154b03804",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripDraftPersistenceFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "2f669868fd1c0fb69d83b6decf9e7942fc7f30cb5426b0eb22d820e0d100a8ea",
+      "candidateSha256": "9a6e7d8dc60b5b44cd583f6b20fdd122215bc72c729cbf399c00dbb0eee6ab26",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt",
+      "waits": 1,
+      "baselineSha256": "26c5cb0f723a829cfa666528cd1aecb955a15ffe76d4e1401015f0a4eea432d3",
+      "candidateSha256": "ac968d970c0e8cfcde4fe2f75c5d1e83fc8fd627ebf9d07e5dcf44acec3be1b6",
+      "fullFileTransformationMatches": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ComposeNodeReadiness.kt",
+      "candidateSha256": "8df2973d36a77fe8cd60ee9b0e63560f337117350064cc5007b08837dda42948",
+      "new": true
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ComposeNodeReadinessTest.kt",
+      "candidateSha256": "989c3b2d4f64fdd52b29cad462950f008fd25543ebfb069016f2da1723cf2a0e",
+      "new": true
+    }
+  ],
+  "waits": 101
+}

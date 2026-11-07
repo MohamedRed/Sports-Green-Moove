@@ -1,0 +1,13 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "201438ab42cb5ccd80e0269f1964ae42",
+  "phase": "after",
+  "scope": "read-only-disposable-default-selection-history",
+  "recordedAt": "2026-10-19T11:09:58.664Z",
+  "source": "bounded-controller-log-history-not-current-os-state",
+  "recognizedEventCount": 0,
+  "unrecognizedMessageCount": 0,
+  "eventsTruncated": false,
+  "events": [],
+  "lastReadiness": null
+}

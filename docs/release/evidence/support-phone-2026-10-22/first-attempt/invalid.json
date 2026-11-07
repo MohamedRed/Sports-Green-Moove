@@ -1,0 +1,28 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b945a331490c718b3e3f8fb05ad3a9a0",
+  "recordedAt": "2026-10-22T12:30:22.033Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin"
+  },
+  "input": {
+    "reason": "Support telephone QA",
+    "description": "Demande isolee envoyee depuis le telephone de test.",
+    "subjectType": "other",
+    "emergency": false
+  },
+  "state": {
+    "reports": [],
+    "notifications": []
+  },
+  "result": {
+    "phase": "invalid",
+    "reportCount": 0,
+    "status": null,
+    "requesterResponseRecorded": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminReviewViaService": false
+}

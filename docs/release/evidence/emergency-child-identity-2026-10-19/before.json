@@ -1,0 +1,30 @@
+{
+  "scope": "isolated-security-reproduction-not-passing-emergency-flow",
+  "runId": "600e8ad25946e88a78b2c4976f009bc3",
+  "testedAt": "2026-10-19T12:57:47.547Z",
+  "projectId": "demo-sgm-local-qa",
+  "childImmutableIdentityChanged": true,
+  "beforeReverification": {
+    "allowed": true,
+    "oldContactReturned": true
+  },
+  "replay": {
+    "allowed": true,
+    "replayed": true
+  },
+  "afterReverification": {
+    "allowed": true,
+    "oldContactReturned": true
+  },
+  "vulnerableBehaviorReproduced": true,
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/domain/emergencyContact.ts": "78b908560e7a0d11f7224d5dea87b1ddc0bac5855a359af02f778fbc989f1f5f",
+    "functions/src/services/emergencyContactAuthority.ts": "2ae6bd92bfe3f7fa899b6b58ea1a058839394ff592924e3bbeabc8fe4f3c15bf",
+    "functions/src/services/emergencyContact.ts": "3c11bfe0cc071dec62a95c73e8a5c93e254c1fb8e428c8813f1d7df1d874d03f",
+    "scripts/qa/local-emergency-identity-probe.mjs": "0f1ebdd08ea78605bc02b8de233fc56cd2ff261c89137c518a89e2b9e64be05f"
+  }
+}

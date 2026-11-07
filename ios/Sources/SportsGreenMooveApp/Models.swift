@@ -10,11 +10,6 @@ enum AppRole: String, CaseIterable, Identifiable, Codable, Sendable {
     var id: String { rawValue }
 }
 
-struct AuthSession: Hashable, Sendable {
-    let uid: String
-    let email: String?
-}
-
 enum AppTab: String, CaseIterable, Identifiable, Sendable {
     case home
     case trips
@@ -47,7 +42,7 @@ enum AppOverlay: String, Identifiable, Sendable {
     var id: String { rawValue }
 }
 
-enum TripStatus: String, Hashable, Sendable {
+public enum TripStatus: String, Hashable, Sendable {
     case upcoming
     case past
     case pending
@@ -69,6 +64,8 @@ struct TripSummary: Identifiable, Hashable, Sendable {
     let passengerInitials: [String]
     let reasons: [String]
     let status: TripStatus
+    let mapPreview: MapRoutePreview?
+    let bookingIntent: BookingIntentSnapshot?
 
     init(
         id: String,
@@ -85,7 +82,9 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         priceLabel: String,
         passengerInitials: [String] = [],
         reasons: [String],
-        status: TripStatus = .upcoming
+        status: TripStatus = .upcoming,
+        mapPreview: MapRoutePreview? = nil,
+        bookingIntent: BookingIntentSnapshot? = nil
     ) {
         self.id = id
         self.title = title
@@ -102,6 +101,25 @@ struct TripSummary: Identifiable, Hashable, Sendable {
         self.passengerInitials = passengerInitials
         self.reasons = reasons
         self.status = status
+        self.mapPreview = mapPreview
+        self.bookingIntent = bookingIntent
+    }
+}
+
+struct MapPoint: Codable, Hashable, Sendable {
+    let lat: Double
+    let lng: Double
+}
+
+struct MapRoutePreview: Hashable, Sendable {
+    let start: MapPoint
+    let end: MapPoint
+    let encodedPolyline: String?
+
+    init(start: MapPoint, end: MapPoint, encodedPolyline: String? = nil) {
+        self.start = start
+        self.end = end
+        self.encodedPolyline = encodedPolyline
     }
 }
 
@@ -123,6 +141,7 @@ struct ResolvedPlace: Hashable, Sendable {
 }
 
 struct TripSearchCriteria: Hashable, Sendable {
+    let requesterUserId: String
     let origin: ResolvedPlace
     let destination: ResolvedPlace
     let desiredDepartureAtIso: String
@@ -173,23 +192,14 @@ struct BookingRequestSummary: Identifiable, Hashable, Sendable {
     var id: String { bookingId }
 }
 
-enum SearchPlaceTarget: Sendable, Equatable {
+enum SearchPlaceTarget: Sendable, Hashable {
     case origin
     case destination
 }
 
-struct SearchFormState: Hashable, Sendable {
-    let desiredDepartureAtIso: String
-    let seatsNeeded: Int
-    let baggage: String
-    let returnTrip: Bool
-    let requireChildTracking: Bool
-    let guardianConsent: Bool
-    var childUserId: String?
-}
-
 struct LiveRideSnapshot: Hashable, Sendable {
     let rideSessionId: String
+    let tripId: String?
     let status: String
     let vehicleLastUpdateLabel: String
     let childLastUpdateLabel: String?
@@ -238,8 +248,9 @@ struct PaymentSheetConfig: Hashable, Sendable {
 
 struct InboxSummary: Hashable, Sendable {
     var notifications: [InboxNotificationSummary] = []
-    var chats: [InboxChatSummary] = []
     var reviews: [InboxReviewPrompt] = []
+    var reviewsNextCursor: String? = nil
+    var reviewsUserId: String? = nil
 }
 
 struct InboxNotificationSummary: Identifiable, Hashable, Sendable {
@@ -248,25 +259,5 @@ struct InboxNotificationSummary: Identifiable, Hashable, Sendable {
     let body: String
     let dateLabel: String
     let unread: Bool
-    let initials: String
-}
-
-struct InboxChatSummary: Identifiable, Hashable, Sendable {
-    let id: String
-    let sourceType: String
-    let sourceId: String
-    let title: String
-    let preview: String
-    let dateLabel: String
-    let unreadCount: Int
-    let initials: String
-}
-
-struct InboxReviewPrompt: Identifiable, Hashable, Sendable {
-    let id: String
-    let rideSessionId: String
-    let ratedUserId: String
-    let title: String
-    let prompt: String
     let initials: String
 }

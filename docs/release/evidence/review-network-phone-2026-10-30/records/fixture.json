@@ -1,0 +1,24 @@
+{
+  "runId": "9a534e9d1a4cdad80702b95c7236866c",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "selectedRideId": "sgm-network-review-29",
+    "rides": [
+      {
+        "id": "sgm-network-review-28",
+        "tripId": "sgm-network-trip-28",
+        "departureAt": "2026-10-28T17:45:00Z",
+        "departureLabel": "28 octobre 2026 à 18:45"
+      },
+      {
+        "id": "sgm-network-review-29",
+        "tripId": "sgm-network-trip-29",
+        "departureAt": "2026-10-29T17:45:00Z",
+        "departureLabel": "29 octobre 2026 à 18:45"
+      }
+    ]
+  },
+  "scope": "two-completed-fixture-rides-not-phone-ride-or-network-proof",
+  "fixtureSubmittedRatings": 0
+}

@@ -1,0 +1,104 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "20279b4bdd61652fed7df5aa7bce6cda",
+  "testedAt": "2026-10-23T23:32:40.828Z",
+  "scope": "independent-booking-request-notice-checkpoints-not-phone-ui-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "protectedRecordCount": 159,
+      "requestExists": false,
+      "physicalUiProven": false
+    },
+    {
+      "phase": "parent-requested",
+      "bookingId": "r3bKUuLrNdZD4TQJfBBx",
+      "noticeId": "bookingDecision_16500009246dc69be072a4a8a0e27925fd52d70e4efb15c5b36bd59aa8e2b12d",
+      "receiptId": "ceaacb3c99e36247b187d78682a7fb9d50694764d8283aab9c2578aa3f5be0bc",
+      "protectedRecordCount": 159,
+      "requestExists": true,
+      "noticeRead": false,
+      "readAtMillis": null,
+      "accountsIsolated": true,
+      "capacityUnchanged": true,
+      "physicalUiProven": false,
+      "pushDeliveryProven": false
+    },
+    {
+      "phase": "driver-unread",
+      "bookingId": "r3bKUuLrNdZD4TQJfBBx",
+      "noticeId": "bookingDecision_16500009246dc69be072a4a8a0e27925fd52d70e4efb15c5b36bd59aa8e2b12d",
+      "receiptId": "ceaacb3c99e36247b187d78682a7fb9d50694764d8283aab9c2578aa3f5be0bc",
+      "protectedRecordCount": 159,
+      "requestExists": true,
+      "noticeRead": false,
+      "readAtMillis": null,
+      "accountsIsolated": true,
+      "capacityUnchanged": true,
+      "physicalUiProven": false,
+      "pushDeliveryProven": false
+    },
+    {
+      "phase": "driver-read",
+      "bookingId": "r3bKUuLrNdZD4TQJfBBx",
+      "noticeId": "bookingDecision_16500009246dc69be072a4a8a0e27925fd52d70e4efb15c5b36bd59aa8e2b12d",
+      "receiptId": "ceaacb3c99e36247b187d78682a7fb9d50694764d8283aab9c2578aa3f5be0bc",
+      "protectedRecordCount": 159,
+      "requestExists": true,
+      "noticeRead": true,
+      "readAtMillis": 1792798130268,
+      "accountsIsolated": true,
+      "capacityUnchanged": true,
+      "physicalUiProven": false,
+      "pushDeliveryProven": false
+    },
+    {
+      "phase": "parent-returned",
+      "bookingId": "r3bKUuLrNdZD4TQJfBBx",
+      "noticeId": "bookingDecision_16500009246dc69be072a4a8a0e27925fd52d70e4efb15c5b36bd59aa8e2b12d",
+      "receiptId": "ceaacb3c99e36247b187d78682a7fb9d50694764d8283aab9c2578aa3f5be0bc",
+      "protectedRecordCount": 159,
+      "requestExists": true,
+      "noticeRead": true,
+      "readAtMillis": 1792798130268,
+      "accountsIsolated": true,
+      "capacityUnchanged": true,
+      "physicalUiProven": false,
+      "pushDeliveryProven": false
+    },
+    {
+      "phase": "driver-returned",
+      "bookingId": "r3bKUuLrNdZD4TQJfBBx",
+      "noticeId": "bookingDecision_16500009246dc69be072a4a8a0e27925fd52d70e4efb15c5b36bd59aa8e2b12d",
+      "receiptId": "ceaacb3c99e36247b187d78682a7fb9d50694764d8283aab9c2578aa3f5be0bc",
+      "protectedRecordCount": 159,
+      "requestExists": true,
+      "noticeRead": true,
+      "readAtMillis": 1792798130268,
+      "accountsIsolated": true,
+      "capacityUnchanged": true,
+      "physicalUiProven": false,
+      "pushDeliveryProven": false
+    }
+  ],
+  "fixture": {
+    "tripId": "OyyCfMYyQUW53tU2iWCp",
+    "title": "Demande conducteur QA",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver"
+  },
+  "protectedRecordCount": 159,
+  "adminClientClosed": true,
+  "physicalUiProven": false,
+  "wholeProcessRestartProven": false,
+  "pushDeliveryProven": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "scripts/qa/manual-booking-request-phone-session.mjs": "fc2029ebbb7935c871ce7018f5d5a6e3a503db7c4bb11128ae02c05739a25db5",
+    "scripts/qa/booking-request-phone-checkpoints.mjs": "e8cd7572df09608a230eaf3e144c899f6d0180743cc296323ada692650584422",
+    "functions/src/callables/bookingRequests.ts": "257af593b77ffc601e007d052021af923ec1cabc2567caf6a53ef31561e3b0f2",
+    "functions/src/lib/bookingNotifications.ts": "c63d4bfdf2dc07d8e665c36bccffe5ccbfffc96234583df080d309903564b477",
+    "functions/src/callables/notificationRead.ts": "2bd44abcdbe8941f53cbe9283a3ee647ae3258ed602e05064a3a084e6926dafe"
+  }
+}

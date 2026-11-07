@@ -1,0 +1,228 @@
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Starting emulators: auth, functions, firestore, database
+i  emulators: Detected demo project ID "demo-sgm-local-qa", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  database: Database Emulator logging to database-debug.log
+i  functions: Watching "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-XqMsV2/functions" for Cloud Functions...
+⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+✔  functions: Using node@22 from host.
+Serving at port 8560
+
+✔  functions: Loaded functions definitions from source: applyTripChanges, approveBooking, cancelBooking, cancelTrip, createReport, createRidePaymentIntent, createStripeAccount, createStripeAccountLink, createTrip, createTripChangePaymentIntent, declineBooking, endRide, getActiveRide, getChatConversation, getChildRideEmergencyContact, getEmergencyContact, getInbox, getMyGuardianVerification, getOwnedTeamEnrollmentView, getRidePaymentStatus, getTeamChatMessages, getTeamEnrollmentView, getTripCancellation, getTripChangeApplicationQuote, getTripChangeHistory, getTripChangePaymentStatus, getTripChangePreview, getTripChangeReview, initializeUserProfile, issueRewardPayout, listChatBookingOptions, listChatConversations, listClubGuardianVerifications, listClubMemberships, listDriverBookingRequests, listGuardianParentOptions, listGuardianReviewClubs, listMembershipReviewClubs, listMyGuardianVerifications, listOwnedTeamEnrollments, listReservations, listTeamChatOptions, listTeamEnrollmentOptions, listTeamEnrollmentReviewTeams, listTeamEnrollments, listTrips, markChatMessagesRead, markDropoff, markPickup, proposeTripChanges, radarWebhook, requestBooking, requestClubMembership, requestTeamEnrollment, resolveBookingRequest, resolvePlace, resolveTripChangeProposal, respondToTripChanges, reviewClubMembership, reviewReport, saveEmergencyContact, searchTrips, sendChatMessage, sendTeamChatMessage, setUserRoles, startRide, stripeConnectRefresh, stripeConnectReturn, stripeWebhook, submitRating, suggestPlaces, transitionGuardianVerification, transitionTeamEnrollment, withdrawTripChanges, writeLocationBatch.
+✔  functions[us-central1-applyTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/applyTripChanges).
+✔  functions[us-central1-approveBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/approveBooking).
+✔  functions[us-central1-cancelBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelBooking).
+✔  functions[us-central1-cancelTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelTrip).
+✔  functions[us-central1-createReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createReport).
+✔  functions[us-central1-createRidePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createRidePaymentIntent).
+✔  functions[us-central1-createStripeAccount]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccount).
+✔  functions[us-central1-createStripeAccountLink]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccountLink).
+✔  functions[us-central1-createTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTrip).
+✔  functions[us-central1-createTripChangePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTripChangePaymentIntent).
+✔  functions[us-central1-declineBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/declineBooking).
+✔  functions[us-central1-endRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/endRide).
+✔  functions[us-central1-getActiveRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getActiveRide).
+✔  functions[us-central1-getChatConversation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChatConversation).
+✔  functions[us-central1-getChildRideEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChildRideEmergencyContact).
+✔  functions[us-central1-getEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getEmergencyContact).
+✔  functions[us-central1-getInbox]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getInbox).
+✔  functions[us-central1-getMyGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getMyGuardianVerification).
+✔  functions[us-central1-getOwnedTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getOwnedTeamEnrollmentView).
+✔  functions[us-central1-getRidePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getRidePaymentStatus).
+✔  functions[us-central1-getTeamChatMessages]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTeamChatMessages).
+✔  functions[us-central1-getTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTeamEnrollmentView).
+✔  functions[us-central1-getTripCancellation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripCancellation).
+✔  functions[us-central1-getTripChangeApplicationQuote]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeApplicationQuote).
+✔  functions[us-central1-getTripChangeHistory]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeHistory).
+✔  functions[us-central1-getTripChangePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePaymentStatus).
+✔  functions[us-central1-getTripChangePreview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePreview).
+✔  functions[us-central1-getTripChangeReview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeReview).
+✔  functions[us-central1-initializeUserProfile]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/initializeUserProfile).
+✔  functions[us-central1-issueRewardPayout]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/issueRewardPayout).
+✔  functions[us-central1-listChatBookingOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatBookingOptions).
+✔  functions[us-central1-listChatConversations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatConversations).
+✔  functions[us-central1-listClubGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubGuardianVerifications).
+✔  functions[us-central1-listClubMemberships]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubMemberships).
+✔  functions[us-central1-listDriverBookingRequests]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listDriverBookingRequests).
+✔  functions[us-central1-listGuardianParentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianParentOptions).
+✔  functions[us-central1-listGuardianReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianReviewClubs).
+✔  functions[us-central1-listMembershipReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMembershipReviewClubs).
+✔  functions[us-central1-listMyGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMyGuardianVerifications).
+✔  functions[us-central1-listOwnedTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listOwnedTeamEnrollments).
+✔  functions[us-central1-listReservations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listReservations).
+✔  functions[us-central1-listTeamChatOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamChatOptions).
+✔  functions[us-central1-listTeamEnrollmentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentOptions).
+✔  functions[us-central1-listTeamEnrollmentReviewTeams]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentReviewTeams).
+✔  functions[us-central1-listTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollments).
+✔  functions[us-central1-listTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTrips).
+✔  functions[us-central1-markChatMessagesRead]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markChatMessagesRead).
+✔  functions[us-central1-markDropoff]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markDropoff).
+✔  functions[us-central1-markPickup]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markPickup).
+✔  functions[us-central1-proposeTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/proposeTripChanges).
+✔  functions[us-central1-radarWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/radarWebhook).
+✔  functions[us-central1-requestBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestBooking).
+✔  functions[us-central1-requestClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestClubMembership).
+✔  functions[us-central1-requestTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestTeamEnrollment).
+✔  functions[us-central1-resolveBookingRequest]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveBookingRequest).
+✔  functions[us-central1-resolvePlace]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolvePlace).
+✔  functions[us-central1-resolveTripChangeProposal]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveTripChangeProposal).
+✔  functions[us-central1-respondToTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/respondToTripChanges).
+✔  functions[us-central1-reviewClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewClubMembership).
+✔  functions[us-central1-reviewReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewReport).
+✔  functions[us-central1-saveEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/saveEmergencyContact).
+✔  functions[us-central1-searchTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/searchTrips).
+✔  functions[us-central1-sendChatMessage]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendChatMessage).
+✔  functions[us-central1-sendTeamChatMessage]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendTeamChatMessage).
+✔  functions[us-central1-setUserRoles]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/setUserRoles).
+✔  functions[us-central1-startRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/startRide).
+✔  functions[us-central1-stripeConnectRefresh]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectRefresh).
+✔  functions[us-central1-stripeConnectReturn]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectReturn).
+✔  functions[us-central1-stripeWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeWebhook).
+✔  functions[us-central1-submitRating]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/submitRating).
+✔  functions[us-central1-suggestPlaces]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/suggestPlaces).
+✔  functions[us-central1-transitionGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionGuardianVerification).
+✔  functions[us-central1-transitionTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionTeamEnrollment).
+✔  functions[us-central1-withdrawTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/withdrawTripChanges).
+✔  functions[us-central1-writeLocationBatch]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/writeLocationBatch).
+i  Running script: exec '/Users/mrr/.hermes/node/bin/node' '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-team-conversation-ui.mjs'
+i  functions: Beginning execution of "us-central1-createTrip"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-createTrip" in 299.44325ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 250.430042ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 30.141875ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 23.296584ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 34.929583ms
+i  functions: Beginning execution of "us-central1-initializeUserProfile"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-initializeUserProfile" in 23.067875ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 176.900958ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 314.229875ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 276.805584ms
+i  functions: Beginning execution of "us-central1-sendTeamChatMessage"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-sendTeamChatMessage" in 264.383708ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 142.169709ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 34.874667ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 22.156958ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 37.704666ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 510.968833ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 424.674791ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 250.479583ms
+i  functions: Beginning execution of "us-central1-sendTeamChatMessage"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-sendTeamChatMessage" in 369.465167ms
+Disposable credentials transferred to the local-only app sandbox.
+INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0
+
+Partial team conversation captures unavailable.
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-team-conversation-ui.mjs:47
+  failure = new Error(String(error.message ?? 'Connected team conversation trial failed')
+            ^
+
+Error: Local Android instrumentation failed
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-team-conversation-ui.mjs:47:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.22.3
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  functions: Stopping Functions Emulator
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  eventarc: Stopping Eventarc Emulator
+i  tasks: Stopping Cloud Tasks Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "exec '/Users/mrr/.hermes/node/bin/node' '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-team-conversation-ui.mjs'" exited with code 1
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:27
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+                                   ^
+
+Error: /Users/mrr/.hermes/node/bin/node failed (1)
+    at Object.run (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:27:36)
+    at runEmulatorEntry (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/local-runtime.mjs:55:11)
+    at runIsolatedRideUi (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/run-isolated-ride-ui.mjs:45:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/run-local-team-conversation-ui.mjs:2:1
+
+Node.js v22.22.3
+file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:89
+  if (errors.length) throw Object.assign(new AggregateError(errors, 'Single-case device verification or restoration failed'), { receipt: result });
+                                         ^
+
+AggregateError: Single-case device verification or restoration failed
+    at restoreContinuousDevice (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:89:42)
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/restore-continuous-disposable.mjs:5:34
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  receipt: {
+    scope: 'single-case-device-restoration-not-flow-proof',
+    case: 'team-conversation',
+    observed: { continuousGuardVerified: false, storeStopped: false },
+    restored: true,
+    verified: false,
+    restoration: {
+      localPackagesRemoved: true,
+      background: true,
+      stopped: true,
+      launcher: true,
+      installAdmin: {
+        authorizationRemoved: true,
+        componentRemoved: true,
+        originalPolicyRestored: true
+      }
+    }
+  },
+  [errors]: [
+    Error: Disposable Android setup command failed (PROCESS_ERROR; exit 1).
+        at run (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-android-shell.mjs:12:13)
+        at shell (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/disposable-android-shell.mjs:20:40)
+        at androidMapsPrerequisites (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/android-maps-prerequisites.mjs:11:18)
+        at assertContinuousDevice (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/preinstalled-disposable-apks.mjs:58:20)
+        at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:80:54
+        at check (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:78:26)
+        at restoreContinuousDevice (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/continuous-disposable-device.mjs:80:3)
+        at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/restore-continuous-disposable.mjs:5:34
+        at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+        at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+  ]
+}
+
+Node.js v22.22.3

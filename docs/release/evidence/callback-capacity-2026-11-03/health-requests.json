@@ -1,0 +1,32 @@
+{
+  "scope": "read-only-production-health-request-log-selection-not-customer-or-payment-data",
+  "filter": "resource.type=\"cloud_run_revision\" AND (resource.labels.service_name=\"stripeconnectreturn\" OR resource.labels.service_name=\"stripeconnectrefresh\") AND timestamp>=\"2026-11-03T10:02:15Z\" AND timestamp<=\"2026-11-03T10:03:30Z\" AND httpRequest.requestMethod=\"GET\" AND httpRequest.requestUrl:\"health=1\"",
+  "complete": true,
+  "observedAt": "2026-11-03T10:18:23.837Z",
+  "entries": [
+    {
+      "timestamp": "2026-11-03T10:02:31.043870Z",
+      "service": "stripeconnectrefresh",
+      "status": 204,
+      "latency": "3.074608245s",
+      "method": "GET"
+    },
+    {
+      "timestamp": "2026-11-03T10:02:31.046725Z",
+      "service": "stripeconnectreturn",
+      "status": 500,
+      "latency": "0s",
+      "method": "GET"
+    },
+    {
+      "timestamp": "2026-11-03T10:02:43.380061Z",
+      "service": "stripeconnectreturn",
+      "status": 204,
+      "latency": "2.339068347s",
+      "method": "GET"
+    }
+  ],
+  "rawBodiesRetained": false,
+  "requestUrlsRetained": false,
+  "providerCredentialsRetained": false
+}

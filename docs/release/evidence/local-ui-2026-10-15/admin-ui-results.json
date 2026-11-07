@@ -1,0 +1,12 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "testedAt": "2026-10-15",
+  "scope": "local-ui-not-physical-device",
+  "method": "manual-browser-ui",
+  "steps": [
+    { "id": "support-review-ui", "status": "passed" },
+    { "id": "admin-access-boundary-ui", "status": "passed" }
+  ],
+  "capture": "local-support-reviewed.png",
+  "limits": ["Synthetic accounts and local services only; no physical-device or production evidence."]
+}

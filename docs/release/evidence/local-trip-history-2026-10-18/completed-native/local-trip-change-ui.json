@@ -1,0 +1,14 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fa5204526c51182f1de9203112d01814",
+  "scope": "native-three-account-trip-consent-ui",
+  "completed": true,
+  "confirmedTripId": "FrxKe1WJY59NEoGADbLA",
+  "declinedTripId": "aTjvWEZA7gshTyRnDurj",
+  "withdrawnTripId": "yvYN9y6IU3kChqV9UUtg",
+  "firstParentPending": true,
+  "secondParentConfirmed": true,
+  "refusalVisible": true,
+  "withdrawalVisible": true,
+  "routeRequiredBeforeApplication": true
+}

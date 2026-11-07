@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.095Z" hostname="MRRs-MacBook-Air.local" time="0.001">
+  <properties/>
+  <testcase name="logoutAndReloginToTheSameUidCannotReviveAnOldLeaseOrPendingIntent" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="replacingTheRideInvalidatesAlreadyQueuedBatches" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="signedOutCallbacksAreRejectedBeforeTheAuthListenerRuns" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="anotherAccountCannotUseThePreviousDriverLease" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="clearingAServiceCannotBeUndoneByAnOldQueuedBatch" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="noImplicitDriverOrAnonymousOrParentTrackingIsAccepted" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.001"/>
+  <testcase name="childTrackingStillRequiresItsOwnCurrentIdentity" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <testcase name="sameAuthorizedStartIsIdempotent" classname="be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

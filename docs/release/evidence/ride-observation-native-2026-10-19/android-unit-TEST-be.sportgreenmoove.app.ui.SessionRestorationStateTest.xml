@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SessionRestorationStateTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-19T16:56:48.294Z" hostname="MRRs-MacBook-Air.local" time="0.039">
+  <properties/>
+  <testcase name="failedDisconnectDoesNotPublishSignedOutState" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.009"/>
+  <testcase name="explicitRetryRestoresTheSameIdentityOnce" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.01"/>
+  <testcase name="transportFailureNeverBecomesSignedOutOrAutomaticallyRetries" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.002"/>
+  <testcase name="disposalRejectsLateNonCancellableResults" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.004"/>
+  <testcase name="genuineSignedOutStateIsDeliveredOnlyAfterSuccessfulRead" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.004"/>
+  <testcase name="inFlightReadBlocksAdditionalReadsRetryAndDisconnect" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.005"/>
+  <testcase name="lifecycleCancellationIsPropagatedNotDisplayedAsFailure" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.001"/>
+  <testcase name="disconnectIsAnExplicitActionNotAnErrorFallback" classname="be.sportgreenmoove.app.ui.SessionRestorationStateTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

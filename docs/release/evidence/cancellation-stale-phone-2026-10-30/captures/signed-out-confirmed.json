@@ -1,0 +1,16 @@
+{
+  "phase": "signed-out-confirmed",
+  "capturedAt": "2026-10-30T19:35:45.077Z",
+  "original": "signed-out-confirmed.jpg",
+  "originalSha256": "a4ee48257ff88d7a50bf3fed0caac81acfb2150eb4eb0a02f044b883b3b5dcae",
+  "cropSha256": "1950688f6c209760e5c6182a2245eea28b0be45975d65111d114e14091cd7148",
+  "crop": {
+    "left": 649,
+    "top": 107,
+    "width": 254,
+    "height": 564
+  },
+  "originalWidth": 1440,
+  "originalHeight": 722,
+  "source": "session-window-not-native-device-export"
+}

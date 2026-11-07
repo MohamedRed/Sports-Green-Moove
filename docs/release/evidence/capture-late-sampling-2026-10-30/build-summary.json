@@ -1,0 +1,13 @@
+{
+  "scope": "compiled-new-observer-not-runtime-execution",
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt": "9829b78e47805628bcf1a0efe30fb49d027504fbf488d7bdef70955497477db4",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "de77b536a59e293abf0fbace6eb40e6d7c0d91928e97ab44a8a2a0cd94f7a7b3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnosticsTest.kt": "9e35cdee05c0efefffc1be950a6f78895527591aafaaa92d73d46081ab03ff4d"
+  },
+  "sourceApkSha256": "465ebd99253373087fad99ae37db4943713172f95d61ace7490cc48a2dd25950",
+  "buildLogSha256": "644a0352948e301067bc21de12634ec78dcac31e08e6e3c815b89b8fda7c92d0",
+  "apkModifiedAt": "2026-10-30T10:31:37.649Z",
+  "buildPassed": true,
+  "newScheduleRuntimeExecuted": false
+}

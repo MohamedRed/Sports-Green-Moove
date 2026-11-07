@@ -1,0 +1,14 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1c89c695696a0749269414d3a732b18a",
+  "scope": "native-ui-provider-and-persisted-evidence-join-not-physical-device",
+  "status": "passed",
+  "testedAt": "2026-10-18T12:06:15.265Z",
+  "approvedRequestLimit": 5,
+  "nativeUi": true,
+  "mapDisplayVerified": true,
+  "mapFramingVerified": true,
+  "physicalDevice": false,
+  "paymentExercised": false,
+  "productionDataWritten": false
+}

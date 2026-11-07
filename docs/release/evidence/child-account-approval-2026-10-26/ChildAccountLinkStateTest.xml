@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-26T02:34:13.241Z" hostname="MRRs-MacBook-Air.local" time="0.144">
+  <properties/>
+  <testcase name="networkFailureNeedsAnExplicitParentRetryAndNeverShowsSuccess" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.129"/>
+  <testcase name="parentApprovalUsesTheSelectedImmutableIdentityAndClearsThePairingSecret" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="expiryRemovesTheCodeRatherThanKeepingItVisibleAsUsable" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.002"/>
+  <testcase name="creatingACodeNeverApprovesAnAccountOrUsesTheParentEndpoint" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="aSelfLinkReceiptCannotApproveTheParentAccount" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="childCodeMustBelongToTheCurrentAccountAndBeUnexpired" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="anUnrelatedReceiptCannotConfirmTheSelectedChild" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="parentCannotRequestAChildCodeOrSubmitAnInvalidTruncatedCode" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="aLateCodeCannotReappearAfterLeavingForeground" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.003"/>
+  <testcase name="leavingTheDialogErasesInputAndPreventsFutureOperations" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

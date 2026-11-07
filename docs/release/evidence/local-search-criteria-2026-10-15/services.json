@@ -1,0 +1,101 @@
+{
+  "runId": "f8e5aa4a79b17bec8b70cf7023108e97",
+  "testedAt": "2026-10-15T23:53:41.108Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-booking",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "7FSokZvgtRctVh7UBt1F",
+    "bookingId": "QliDKBxVm1xQX5D81Qsm",
+    "rideSessionId": "kWK9FrX7WgGJ6WvtG5zB",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "scenarios": {
+    "multiSeat": {
+      "requestedSeats": 2,
+      "seatsBefore": 4,
+      "seatsAfterApproval": 2,
+      "seatsAfterCancellation": 4,
+      "repeatedCancellationRejected": true,
+      "livePayment": false
+    }
+  },
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Club approval/rejection, trip editing/cancellation and refund settlement remain unverified."
+  ]
+}

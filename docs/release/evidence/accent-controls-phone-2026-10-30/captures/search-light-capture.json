@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "search-light",
+  "capturedAt": "2026-10-30T21:30:36.121Z",
+  "original": {
+    "file": "search-light-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "d7804606af20a1aa87cbd3d949b89351cac9785cd674e0e08e267ad3980688be"
+  },
+  "crop": {
+    "file": "search-light.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "9af9914059ac8060129dccc809d525562c4bfd8a377992bc0ec05c68b40e28ba"
+  },
+  "rescaled": false,
+  "redacted": false
+}

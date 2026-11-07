@@ -1,0 +1,74 @@
+{
+  "scope": "local-ride-live-sdk-not-physical-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f55ccc25592f78e39a48d17f0dd6c89a",
+  "testedAt": "2026-10-19T20:07:58.776Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "ride-observation-ui",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "local-ride-observation-fresh.png": "358f1ab5db2086c8b300b5e34efe756db5141215698b2b1968f5e5bfed49d30a",
+    "local-ride-observation-fresh-landscape.png": "948b7ccdbfa1b7dc1ae05c3c8ec3746860a6d4569c1272bb971d3252d27013e6",
+    "local-ride-observation-stale.png": "9867dfc86d336e4636a2ed25be2e352c7ed3e3c5500febefddc8324907c790a3",
+    "local-ride-observation-recovered.png": "358f1ab5db2086c8b300b5e34efe756db5141215698b2b1968f5e5bfed49d30a",
+    "local-ride-observation-pickup.png": "e857cd7cd13bc099901ffe457b6884d0db3dcf19ee38302d0b595a607beaa1f5",
+    "local-ride-observation-resumed.png": "fa0dc2eb9cb134c3362906fa4e35682f9fdf768ea6b13bc659f6d0577dbec811",
+    "local-ride-observation-ended.png": "ac9be1ee923e80d5feba023a5a096a9012686d80a2dd7e0ffccb3cf29596f863",
+    "local-ride-observation-history.png": "42a06d9f68aa1d5d2620057a3a436dbe63e1bc3325d171a0f721e3d398eab2af"
+  },
+  "staleWaitElapsedMs": 90079,
+  "stored": {
+    "auditEventCount": 2,
+    "bookingCount": 1,
+    "co2LedgerCount": 1,
+    "completionVerified": true,
+    "claimsUnchanged": true
+  },
+  "transcriptSha256": "939f1dcaf85e168b523e66ca8440df39f61c76f8029a092c8251b53ecb50656d",
+  "primaryEvidencePhase": "ride-observation",
+  "fixture": {
+    "tripId": "ANINgP76oiWi5w8teAuI",
+    "bookingId": "E7fUAtKsn0zYbPkHBqTd",
+    "rideSessionId": "kbEZEFJVmsFoe8QfiiWl",
+    "childId": "sgm-qa-child-lina"
+  },
+  "isolatedFixtureCleanupVerified": true,
+  "adminClientClosed": true,
+  "nativeUiExecuted": true,
+  "storeReviewAccepted": false,
+  "safetyAuditAccepted": false,
+  "realNetworkLossVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "mapMovementVerified": false,
+  "providerTrackingVerified": false,
+  "sourceFiles": {
+    "scripts/qa/local-ride-observation-ui.mjs": "d7b0263abd26794926f9709006cc52219f4036aeb57e627ec3a8ece7e678e423",
+    "scripts/qa/local-ride-observation-fixture.mjs": "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b",
+    "functions/src/callables/rides.ts": "5bebb623bc9d0896f5df29e4ef7bb810d38e40ffad61772eef47302fc00fcec6",
+    "functions/src/lib/activeRideLookup.ts": "95d00e584373f011bebf1641871ed143de76ed056716e80eb6a64d08de5ea075",
+    "functions/src/lib/clientTrips.ts": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd",
+    "android/app/src/main/java/be/sportgreenmoove/app/data/RideObservation.kt": "4a1b7c04c6aee94ded46b68336f3e737d7ad0fcac593ed67cc0865376b2fb754",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt": "a72df20683fc21b5de4a98adbfca7d19ccd4816711e6c83fdef1f2a0d1abe01b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationWire.kt": "902d42a1f1bbd0f2a4e0b41d5bfb1dee71aed1507fec8138e4808f0c1b307821",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationState.kt": "0575530896872f5c73480f1b2f15d3646e33cb561aa973f0a57a68fd4d0b2a87",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationEffect.kt": "42cccedc52914608b9ac1599aedca2c6a233b0f6cfbbff3a642c49f2428770e3",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt": "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "2acb67e8a44df6f945fb76b4b1d9c22c0a825c3fee989579f5712306b33ed41f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationGateway.kt": "5c7e923f2dd9ebda6c631a04dce9a1edb5f44d575ef90de398c3b5f6d2154c60",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "19f8cb998c19406fee4cd6c85b1c02305b3660741181e78edf93f34bb01c534a",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideMappers.kt": "9dda3c2c64fe4eaf68df4a43396eed58d78faae7046059f097b468cd648b8edc",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/MobileRoleSelectionEffect.kt": "7ae05f3ab8f95a19cd4691e6830a976cbc68f65e4468d0fe77aa2efa6ccaf968",
+    "android/app/src/main/java/be/sportgreenmoove/app/domain/RideObservationAge.kt": "85dc1b9ee619617eeb38e8200bac6a15430adc6d77815f7aed43fa1640113742",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt": "9e3a3bfad54f28bfadaf6729cdc2999e71791bb3fc508f1446888cc4e7529ff2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt": "5a3e42c4aacf71bea982957cd095b8c67b6fff84c632e5465661a5a6ba54fb6d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt": "3c6b4e0739031d8645c75cfbc48b029f9647990cc1eb7f9191a308e35495f847",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationFlowTest.kt": "85241654dd5ef07e83769b3fae60f3bfe16f1cc925fb00832633752828bd8358",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26"
+  }
+}

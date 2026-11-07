@@ -1,0 +1,130 @@
+{
+  "baseCommit": "9a44bf44be810e382c5d784ce9b38166ec18d9b9",
+  "sources": [
+    {
+      "path": "functions/src/domain/supportReports.ts",
+      "file": "source/functions/src/domain/supportReports.ts",
+      "sha256": "db830231be90a75420cf5a697761fcb30a5dd37c29a4968a299537f1e153950e"
+    },
+    {
+      "path": "functions/src/services/supportReports.ts",
+      "file": "source/functions/src/services/supportReports.ts",
+      "sha256": "ff132be5d6d46ae7d5007fab32e1432b6f7bddc7bf7a8802fc5e5169c8550d51"
+    },
+    {
+      "path": "functions/src/callables/supportReports.ts",
+      "file": "source/functions/src/callables/supportReports.ts",
+      "sha256": "38090d7b0f403e46c91c7129fd1f9a3bccaaee934ff524c1d9f6ee3554da02aa"
+    },
+    {
+      "path": "functions/src/callables/feedback.ts",
+      "file": "source/functions/src/callables/feedback.ts",
+      "sha256": "06aac2cda2dbcb7c19e93f76118ed1aa4f08067f8858693ab96b80a62f9e000f"
+    },
+    {
+      "path": "functions/src/__tests__/support-reports.test.ts",
+      "file": "source/functions/src/__tests__/support-reports.test.ts",
+      "sha256": "0fd98f5bce2fe8ba5cda335b8af08cfc1b6d844fa1e0be6275bd4781bbe3f695"
+    },
+    {
+      "path": "firestore.indexes.json",
+      "file": "source/firestore.indexes.json",
+      "sha256": "14c396e3a3532d928381c1fd8b5ba999626594d753cb94325f2c000ddd84ada1"
+    },
+    {
+      "path": "admin/src/ReportReplyForm.tsx",
+      "file": "source/admin/src/ReportReplyForm.tsx",
+      "sha256": "a44981098bbe760c6ee59e928a68ea61da77cd4c6c4bd732c0f8686f72f5849b"
+    },
+    {
+      "path": "admin/src/supportReplies.ts",
+      "file": "source/admin/src/supportReplies.ts",
+      "sha256": "9a47dac53aed7c8a6da1595659332570becb57b06c90c847c2447b7bbf7c8922"
+    },
+    {
+      "path": "admin/src/ReportsTable.tsx",
+      "file": "source/admin/src/ReportsTable.tsx",
+      "sha256": "f3d5e369f30da2092efac6d2a3e33156c08c6c9d596262abfa3235dd3fc18ed2"
+    },
+    {
+      "path": "admin/src/controls.css",
+      "file": "source/admin/src/controls.css",
+      "sha256": "b4a8adc58e7b8bd3f22da9fb0650dc8e920d3c27fa342b5fac78cbab6f3dbb1c"
+    },
+    {
+      "path": "scripts/qa/local-support-followup-suite.mjs",
+      "file": "source/scripts/qa/local-support-followup-suite.mjs",
+      "sha256": "3ca789f934976b8ec2d3c06ff2fdd354661f26a281db72de1cf18920e808b706"
+    },
+    {
+      "path": "scripts/qa/local-support-followup-browser.mjs",
+      "file": "source/scripts/qa/local-support-followup-browser.mjs",
+      "sha256": "5faec23cce51a0eebcc9fcb12f8f096ab81fc43ae23bfaa162395f9f3be8c70f"
+    },
+    {
+      "path": "scripts/qa/run-local-support-followup.mjs",
+      "file": "source/scripts/qa/run-local-support-followup.mjs",
+      "sha256": "53b6299fad3ab37d45ac22410f3dfeced6177d9e33139cc2d68cf8a51c76a507"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/data/SupportModels.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/data/SupportModels.kt",
+      "sha256": "82e498f06276bc3ae3a132ad7123c2fba37c439f33f648f4027c7482c2fd797b"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/services/SupportWire.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/services/SupportWire.kt",
+      "sha256": "46308b40a4001d2c1f51aa9cb66658a973e70c46f7fc3e2dd007edbea762df07"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/services/SupportGateway.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/services/SupportGateway.kt",
+      "sha256": "732bedf1d0846e3bfa537747f0b212da7792f02990e7849cb7afcd3cfa1db022"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidSupportGateway.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidSupportGateway.kt",
+      "sha256": "f4511e365ce8a9afc79c284d22c14ef66723af68835706992df127fd2529773d"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxState.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxState.kt",
+      "sha256": "d62cde3e810058cae6bed3e9183af88a95afbd2942520c97087a15ed17d73050"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxScreen.kt",
+      "file": "source/android/app/src/main/java/be/sportgreenmoove/app/ui/SupportInboxScreen.kt",
+      "sha256": "94c6c019cfa5ede3cd6c67c3b9be267320ae8e58d88cb2568cb2213eb296705b"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportInboxFlowTest.kt",
+      "file": "source/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportInboxFlowTest.kt",
+      "sha256": "2234dfc5880585f39e1e31771d1655eef99f551e73c0075bb26fd8e6dfd065e8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportModels.swift",
+      "file": "source/ios/Sources/SportsGreenMooveApp/SupportModels.swift",
+      "sha256": "71e4e1655c78d209f81b25c0891b9b3c261d51d6aa0c21a5573135a951672e7f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportWire.swift",
+      "file": "source/ios/Sources/SportsGreenMooveApp/SupportWire.swift",
+      "sha256": "d40033d87a6c0de5de299505484f5321cd4d6ffc31bba88c5e18ea77b9fc577e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxState.swift",
+      "file": "source/ios/Sources/SportsGreenMooveApp/SupportInboxState.swift",
+      "sha256": "94ef2cc1baee0b159de11e250d1fd87c328e51402a6e1a89fb0ab29a0cbe9f85"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SupportInboxScreen.swift",
+      "file": "source/ios/Sources/SportsGreenMooveApp/SupportInboxScreen.swift",
+      "sha256": "9513d65295ad7bc9828c0a6302e1fac61970a29170e21828f4e15959ebe89644"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift",
+      "file": "source/ios/Sources/SportsGreenMooveApp/FirebaseSupportGateway.swift",
+      "sha256": "2b2c4106f3768918559f7fac739ca012b2f3715ba910ce8d44f1143fcfce7477"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+OK (1 test)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.5799930Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.5812130Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.5830091Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7746479Z pull: building file list...
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7800337Z adb: error: failed to get feature set: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7805432Z Could not collect local UI diagnostic captures.
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7834474Z adb: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7862722Z node:internal/errors:983
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7863367Z   const err = new Error(message);
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7863888Z               ^
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7864115Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7865423Z Error: Command failed: /usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell appops set be.sportgreenmoove.app.local android:mock_location default
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7867051Z     at genericNodeError (node:internal/errors:983:15)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7867946Z     at wrappedFn (node:internal/errors:537:14)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7868872Z     at checkExecSyncError (node:child_process:916:11)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7869979Z     at execFileSync (node:child_process:952:15)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7871325Z     at run (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:22:32)
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7873011Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:95:3
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7874412Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7875134Z   status: 1,
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7875506Z   signal: null,
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7875991Z   output: [ null, null, null ],
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7876592Z   pid: 5184,
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7876984Z   stdout: null,
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7877330Z   stderr: null
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7877661Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7877832Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7878009Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-16T08:56:25.7969534Z 

@@ -1,0 +1,75 @@
+{
+  "testedAt": "2026-10-23T12:06:09.876Z",
+  "scope": "actual-isolated-management-browser-not-native-phone-or-real-email",
+  "viewportChecks": [
+    {
+      "width": 1440,
+      "configurationVisible": true,
+      "ordinaryRows": 50,
+      "pageWidth": 1440,
+      "sectionWidth": 1134,
+      "tableWidth": 1096,
+      "urgentRows": 1,
+      "viewport": 1440
+    },
+    {
+      "width": 768,
+      "configurationVisible": true,
+      "ordinaryRows": 50,
+      "pageWidth": 768,
+      "sectionWidth": 712,
+      "tableWidth": 674,
+      "urgentRows": 1,
+      "viewport": 768
+    },
+    {
+      "width": 390,
+      "configurationVisible": true,
+      "ordinaryRows": 50,
+      "pageWidth": 390,
+      "sectionWidth": 354,
+      "tableWidth": 316,
+      "urgentRows": 1,
+      "viewport": 390
+    },
+    {
+      "width": 320,
+      "configurationVisible": true,
+      "ordinaryRows": 50,
+      "pageWidth": 320,
+      "sectionWidth": 284,
+      "tableWidth": 246,
+      "urgentRows": 1,
+      "viewport": 320
+    }
+  ],
+  "checks": [
+    {
+      "id": "live-urgent-appears-without-reload",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-unconfigured-email-retry-does-not-claim-delivery",
+      "status": "passed"
+    },
+    {
+      "id": "review-with-empty-note-retains-active-urgent-alert",
+      "status": "passed"
+    },
+    {
+      "id": "close-with-empty-note-removes-active-urgent-alert",
+      "status": "passed"
+    },
+    {
+      "id": "closed-email-reference-opens-report-outside-fifty-row-window",
+      "status": "passed"
+    },
+    {
+      "id": "club-manager-sees-no-support-alert-or-linked-report",
+      "status": "passed"
+    }
+  ],
+  "realEmailSent": false,
+  "productionDeployed": false,
+  "physicalDevice": false
+}

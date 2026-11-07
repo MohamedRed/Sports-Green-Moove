@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-29T18:29:43.173Z" hostname="MRRs-MacBook-Air.local" time="0.003">
+  <properties/>
+  <testcase name="repeatedRefreshWhileWaitingCannotReadTwice" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.001"/>
+  <testcase name="cancellationPropagatesWithoutLeavingAnInventedEmptySummary" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.001"/>
+  <testcase name="closingDiscardsAnOldAccountsLateResponse" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.001"/>
+  <testcase name="zeroAndHistoricalRatingsAreReadWithoutInventingAScore" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.0"/>
+  <testcase name="failureClearsTheOldScoreAndExplicitRetryReadsFreshData" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.0"/>
+  <testcase name="foreignResultFailsClosed" classname="be.sportgreenmoove.app.ui.ReceivedRatingsStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

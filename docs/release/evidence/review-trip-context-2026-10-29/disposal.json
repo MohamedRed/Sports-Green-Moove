@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-10-29T20:55:44.211Z",
+  "ownedEmulatorProcessAbsent": true,
+  "ownedAdbProcessAbsent": true,
+  "noLocalRuntimeDirectories": true,
+  "ports": [
+    {
+      "port": 5001,
+      "available": true
+    },
+    {
+      "port": 8080,
+      "available": true
+    },
+    {
+      "port": 9000,
+      "available": true
+    },
+    {
+      "port": 9099,
+      "available": true
+    },
+    {
+      "port": 45690,
+      "available": true
+    },
+    {
+      "port": 45691,
+      "available": true
+    },
+    {
+      "port": 5582,
+      "available": true
+    },
+    {
+      "port": 5037,
+      "available": true
+    }
+  ]
+}

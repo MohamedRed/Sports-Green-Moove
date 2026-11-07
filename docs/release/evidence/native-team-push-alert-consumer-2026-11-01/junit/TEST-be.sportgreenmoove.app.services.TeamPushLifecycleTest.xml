@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushLifecycleTest" tests="21" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:45.672Z" hostname="local-test-host" time="0.073">
+  <properties></properties>
+  <testcase name="signoutBlocksReactivationEvenBeforeFirebaseHasClearedItsCurrentUser" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.008"></testcase>
+  <testcase name="signedOutInstallationsNeverGenerateAToken" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="returningToTheSameAccountCannotConsumeThePriorSessionsTokenCallback" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.004"></testcase>
+  <testcase name="losingAdultEligibilityRemovesAnAlreadyConfirmedBinding" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="aTokenRetrievalFinishingAfterAnAccountChangeCannotCreateAPendingCommand" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.007"></testcase>
+  <testcase name="aFailedCallableCannotManufactureAConfirmedRegistration" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.003"></testcase>
+  <testcase name="tokenRefreshUsesANewerRevisionAndConfirmsOnlyTheNewToken" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="missingOrMixedChildClaimsNeverBecomeAnAdultRegistration" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.001"></testcase>
+  <testcase name="deniedPermissionRemovesOnlyThisInstallationAndDeletesTheProviderToken" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="aLostActivationResponseRetriesThePersistedCommandBeforeAnyNewTokenRetrieval" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.004"></testcase>
+  <testcase name="anOfflineLogoutDoesNotReplayThePreviousOwnersRemovalAsTheNextUser" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.003"></testcase>
+  <testcase name="aStaleSdkDeletionCompletionCannotUnlockANewerAccount" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.005"></testcase>
+  <testcase name="signoutDuringTokenRetrievalCannotBindTheOldSession" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.004"></testcase>
+  <testcase name="aLostRemovalResponseStillDeletesTheTokenAndRetainsTheExactRetry" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.003"></testcase>
+  <testcase name="childOrUninitializedClaimsDoNotAcquireAToken" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.001"></testcase>
+  <testcase name="aServerAcknowledgementFinishingAfterAnAccountChangeCannotConfirmTheOldAccount" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="aGrantedAdultRegistersAndOrdinaryResumeDoesNotAllocateAnotherRevision" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <testcase name="failedTokenFetchCannotLeaveAutomaticRegistrationEnabled" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.007"></testcase>
+  <testcase name="concurrentLifecycleEventsShareTheSameInFlightRegistration" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.004"></testcase>
+  <testcase name="permissionGrantAfterRemovalUsesAFreshRevision" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.003"></testcase>
+  <testcase name="failedProviderDeletionPreventsAnotherAccountFromFetchingOrBindingAToken" classname="be.sportgreenmoove.app.services.TeamPushLifecycleTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

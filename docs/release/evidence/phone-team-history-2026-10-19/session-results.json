@@ -1,0 +1,89 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6ff541fda69369710b0b2f632b752e1e",
+  "testedAt": "2026-10-19T12:24:15.944Z",
+  "scope": "manual-history-persisted-checkpoints-not-ui-or-release-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "history-list",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 2,
+      "selfStatus": "approved",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-page-2",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 2,
+      "selfStatus": "approved",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-withdrawn",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-child-read-only",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-refreshed",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-history-session.mjs": "62b6ae845e191292a399685e3d25a14981054b46d61ee7bfde4abf7d24032169",
+    "scripts/qa/manual-team-history-checkpoints.mjs": "20193834ff8a637f602a89d9ce382c7c951d896a3fbd78a55d4f72014485a968",
+    "scripts/qa/manual-team-history-fixture.mjs": "11a6c5860d06fb74d34d7f5f92b815fcbbfe3356901ce34e3430567ad50331d8",
+    "functions/src/services/teamEnrollmentHistory.ts": "9d5fc75b482133cba630705bd396056bc538c2a0e95889838a633dfdc7d91881",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentHistoryWire.kt": "955678f8cdd76d7ef19d1287f21148cb68837ffd81b51bb76a2c04d36f4bec1f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamEnrollmentGateway.kt": "c472f8b73ed381206fcc9ece3acda23710cd0c51337e9a8f72d4b3bed9d17745",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryState.kt": "738582a338d7de42fc24952484d7540c1ec51dda473faba3f5e13c42d1e675e9",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryRoute.kt": "b8b0dbe4ae3556760721898c36e1ebf479d34e25a63a4f2e290ad09611ebd78b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryScreen.kt": "10cdf7d21a9623a283a018059074cf4a7975252e11d0f9723d6c30bef7f03787"
+  },
+  "fixtureCleanupVerified": true,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "teamChatImplemented": false
+}

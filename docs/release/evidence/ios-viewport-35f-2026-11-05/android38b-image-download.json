@@ -1,0 +1,10 @@
+{
+  "runId": 42107112226,
+  "jobId": 127524723322,
+  "sourceCommit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+  "conclusion": "failure",
+  "failedStep": "Install the selected device image before reserving storage",
+  "selectedError": "2026-11-05T20:57:06.7681053Z Warning: An error occurred while preparing SDK package Google Play Intel x86_64 Atom System Image: Error reading Zip content from a SeekableByteChannel.",
+  "appFlowExecuted": false,
+  "downloadCauseConfirmed": false
+}

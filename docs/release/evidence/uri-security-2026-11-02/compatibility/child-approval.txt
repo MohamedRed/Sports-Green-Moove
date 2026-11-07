@@ -1,0 +1,40 @@
+
+> sports-green-moove@0.1.0 test:child-account-approval
+> node scripts/qa/run-local-child-emergency.mjs approval
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(typeof output === 'string' && isAbsolute(output) && !existsSync(output) && !existsSync(output + '.artifacts'))
+
+    at file://<repo>/scripts/qa/run-local-child-emergency.mjs:11:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.22.0
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Local service exited unsuccessfully
+    at superviseLocalProcess (file://<repo>/scripts/qa/supervised-local-process.mjs:54:7)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file://<repo>/scripts/qa/run-uri-compatibility.mjs:19:20 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple',
+  groupExitVerified: true
+}
+
+Node.js v22.22.0

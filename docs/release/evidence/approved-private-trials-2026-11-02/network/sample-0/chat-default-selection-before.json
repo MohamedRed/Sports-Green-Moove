@@ -1,0 +1,75 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "46022c6011b6926519ee735db37cfd20",
+  "phase": "before",
+  "scope": "read-only-disposable-default-selection-history",
+  "recordedAt": "2026-11-02T18:43:17.965Z",
+  "source": "bounded-controller-log-history-not-current-os-state",
+  "recognizedEventCount": 12,
+  "unrecognizedMessageCount": 1,
+  "eventsTruncated": false,
+  "events": [
+    {
+      "type": "subscriptions-changed"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "update-defaults"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "primary-list-change",
+      "change": 0
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "carrier-configuration-change"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "update-defaults"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "primary-list-change",
+      "change": 0
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": true,
+      "satelliteEnabledOrEnabling": false
+    }
+  ],
+  "lastReadiness": {
+    "type": "readiness",
+    "subscriptionsInitialized": true,
+    "carrierConfigurationsLoaded": true,
+    "satelliteEnabledOrEnabling": false
+  }
+}

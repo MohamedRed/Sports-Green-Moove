@@ -1,0 +1,21 @@
+{
+  "scope": "local-android-decoder-unit-not-native-or-sdk-continuation",
+  "testedAt": "2026-10-18T21:04:15.532Z",
+  "unitCaseCount": 4,
+  "nativeUiExecuted": false,
+  "sdkConnectedContinuationProven": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "artifacts": {
+    "android-token-unit-tests.xml": "707d69a8589227833f8c0a13cb3c2bcb4988a24fdc8790b99bdd31056c7d9214"
+  },
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt": "e60c2abd93478e0364d21e79b9ce0c83bc5da04e0cfb2d9a4e0da09157651a31",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt": "19882f35c2c75302928933caead64de874ecea4226119680a429648e57057eeb",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentWire.kt": "4aa6f6ed3ec90695d254977e014e6c662a84af43db8ec68aa8972240e0793e62",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/MembershipPageTokenTest.kt": "a756cf27aa75666b8a356bc554d548eac45c8f39da4771fc9b4ef9915a5f980b",
+    "admin/src/membershipPageToken.ts": "9a3eb0ca08b6bd7a4e2c88ff0c809192506f416211a75614ac76f3992200ced7",
+    "admin/src/guardianReviewWire.ts": "f4665771b9d87657398d97a9a38738418681f430c3e03f05a020230b823e8897",
+    "admin/src/membershipReviewGateway.ts": "35a4d6bc0bf7ca231f5c05ebb1fe1e8a8a50444248afa609227537719045a29f"
+  }
+}

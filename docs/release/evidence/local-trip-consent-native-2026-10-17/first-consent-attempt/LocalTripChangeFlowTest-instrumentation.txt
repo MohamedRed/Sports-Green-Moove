@@ -1,0 +1,45 @@
+
+be.sportgreenmoove.app.ui.LocalTripChangeFlowTest:
+Error in twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip(be.sportgreenmoove.app.ui.LocalTripChangeFlowTest):
+java.lang.AssertionError: Failed to assert the following: (is enabled)
+Semantics of the node:
+Node #979 at (l=90.0, t=2137.0, r=990.0, b=2232.0)px, Tag: 'reservation.change.momh037gVx4eyFY0ACtQ'
+Shape = 'RectangleShape'
+Text = '[VOIR LA MODIFICATION DU TRAJET]'
+[Disabled]
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 5 siblings
+Selector used: (TestTag = 'reservation.change.momh037gVx4eyFY0ACtQ')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalTripChangeFlowTest.openReservation(LocalTripChangeFlowTest.kt:128)
+	at be.sportgreenmoove.app.ui.LocalTripChangeFlowTest.twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip(LocalTripChangeFlowTest.kt:57)
+
+
+Time: 27.376
+There was 1 failure:
+1) twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip(be.sportgreenmoove.app.ui.LocalTripChangeFlowTest)
+java.lang.AssertionError: Failed to assert the following: (is enabled)
+Semantics of the node:
+Node #979 at (l=90.0, t=2137.0, r=990.0, b=2232.0)px, Tag: 'reservation.change.momh037gVx4eyFY0ACtQ'
+Shape = 'RectangleShape'
+Text = '[VOIR LA MODIFICATION DU TRAJET]'
+[Disabled]
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 5 siblings
+Selector used: (TestTag = 'reservation.change.momh037gVx4eyFY0ACtQ')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertIsEnabled(Assertions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalTripChangeFlowTest.openReservation(LocalTripChangeFlowTest.kt:128)
+	at be.sportgreenmoove.app.ui.LocalTripChangeFlowTest.twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip(LocalTripChangeFlowTest.kt:57)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

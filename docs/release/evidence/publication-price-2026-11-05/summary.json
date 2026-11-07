@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-11-05",
+  "baselineCommit": "85ec9e9274344eefaf7ce63eef36869a22da3489",
+  "swiftBaselineWrongCents": true,
+  "swiftBaselineTrappingInputs": 3,
+  "androidBaselineInvalidFreeTripReproduced": true,
+  "swiftExactCentAmounts": 100001,
+  "androidExactCentAmounts": 100001,
+  "androidUnitSuites": 120,
+  "androidUnitCases": 846,
+  "androidUnitFailures": 0,
+  "localNativeChecks": "passed",
+  "focusedSwiftCheck": "passed",
+  "invalidPricesRejected": true,
+  "blankPublicationPriceRemainsFree": true,
+  "tripEditingBlankStillRejected": true,
+  "currentNativeScreenAccepted": false,
+  "publicationAuthorityAccepted": false,
+  "physicalDeviceAccepted": false,
+  "commissionPolicyChanged": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "swift-baseline.json",
+      "sha256": "2dacfac31f8c5451160c8b6d60aab2a0e1a40d8a15c3be638818d25f6e929e00"
+    },
+    {
+      "file": "android-baseline.json",
+      "sha256": "6baed7e0d7508a74447d59448f405211561761d820c4a7e4cefd88c37d941303"
+    },
+    {
+      "file": "android-recheck.json",
+      "sha256": "658bf6e5adfcf1dfe082bcd5dba547bed23fed4730fc41fbb262cd828c58c7a1"
+    },
+    {
+      "file": "native-recheck.txt",
+      "sha256": "bb4dae0bee8a4d8270f31b6f80daa0c3e4e70a7d12b40416848fdb3a5b983c46"
+    },
+    {
+      "file": "swift-focused.txt",
+      "sha256": "d55112eb78f213e91eebd0c8e2f03426e928118f3bfa954ebea983997bf7221d"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "04f69dad0a84d69b250dbc3d6321299aaf3b668a274d4c11c97e7a182bc7e5d3"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "352316037dc482fcd21e63ed8875e1ad5473f294fa0429addf8d32f3d3aac03a"
+    }
+  ]
+}

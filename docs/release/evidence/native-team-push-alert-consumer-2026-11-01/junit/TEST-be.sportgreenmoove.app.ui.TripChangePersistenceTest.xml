@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripChangePersistenceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.657Z" hostname="local-test-host" time="0.016">
+  <properties></properties>
+  <testcase name="requestPersistenceFailurePreventsNetworkWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.003"></testcase>
+  <testcase name="failedSaveKeepsTypedInputAndBlocksSubmissionUntilExplicitRetry" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"></testcase>
+  <testcase name="unknownProposalIsResolvedAfterReopeningWithoutAnotherSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.003"></testcase>
+  <testcase name="parentReviewsNeverAccessDriverDraftStorage" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"></testcase>
+  <testcase name="openingUnrelatedClosedHistoryNeverDeletesAnUnsentDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"></testcase>
+  <testcase name="editedInputDoesNotKeepAnObsoleteUnrecordedSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.002"></testcase>
+  <testcase name="accountAndTripScopesNeverLoadEachOthersDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"></testcase>
+  <testcase name="failedReadDoesNotCreateAnEmptyDraftOrWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"></testcase>
+  <testcase name="staleDraftIsRetainedButCannotBeSubmittedUntilExplicitlyReplaced" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.002"></testcase>
+  <testcase name="rawInvalidFieldsSurviveNewStateWithoutWritesToTheTrip" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"></testcase>
+  <testcase name="unrecordedRequestCanOnlyBeResentExplicitlyWithSameIdentity" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

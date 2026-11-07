@@ -1,0 +1,38 @@
+{
+  "scope": "android-jvm-unit-tests-not-screen-execution",
+  "sourceCommit": "274ac79f620dd7041c537cb0693badf1c3cc9fa0",
+  "command": "./gradlew :app:testDebugUnitTest :app:compileDebugAndroidTestKotlin --no-daemon",
+  "totals": {
+    "tests": 193,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "focused": [
+    {
+      "suite": "be.sportgreenmoove.app.services.TripChangeMappingTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reportWrittenAt": "2026-10-17T10:24:53.273Z"
+    },
+    {
+      "suite": "be.sportgreenmoove.app.ui.TripChangeDraftTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reportWrittenAt": "2026-10-17T10:24:53.275Z"
+    },
+    {
+      "suite": "be.sportgreenmoove.app.ui.TripChangeStateTest",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "reportWrittenAt": "2026-10-17T10:24:53.272Z"
+    }
+  ],
+  "instrumentedScreensExecuted": false
+}

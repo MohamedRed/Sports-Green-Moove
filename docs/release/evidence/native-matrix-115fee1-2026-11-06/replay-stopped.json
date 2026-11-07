@@ -1,0 +1,15 @@
+{
+  "scope": "ordinary-matrix-process-stop-not-flow-proof",
+  "packages": [
+    {
+      "packageName": "be.sportgreenmoove.app",
+      "beforeCount": 0,
+      "afterCount": 0
+    },
+    {
+      "packageName": "be.sportgreenmoove.app.test",
+      "beforeCount": 1,
+      "afterCount": 0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-11-01T09:44:15.544Z",
+  "scope": "owned-local-runtime-and-observed-phone-release-not-independent-package-absence",
+  "backendPid": 53451,
+  "helperPid": 53546,
+  "ownedProcessesAbsent": true,
+  "privateSessionRemoved": true,
+  "helperHandoffRemoved": true,
+  "phoneReleaseDashboardObserved": true,
+  "providerUninstallReportedSuccess": true,
+  "installedPackageAbsenceIndependentlyVerified": false,
+  "runtimeDirectoryAbsenceIndependentlyBound": false,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "clipboardCleared": true,
+  "originalClipboardRestored": false,
+  "realAccountsModified": false,
+  "productionWrites": false
+}

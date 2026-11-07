@@ -1,0 +1,40 @@
+{
+  "scope": "physical-android-team-parent-and-management-ui-with-isolated-services",
+  "method": "manual-two-interface-ui-with-independent-persisted-checkpoints",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4f0c53407d28b65556fb8782828a63a9",
+  "testedAt": "2026-10-19T10:26:31.777Z",
+  "sourceCommit": "21190ff46ae631901d45c2f33f04ea97def263e6",
+  "appSha256": "6fc824d795aa7c737ffcf35ab294596922f97403909e680fcea8bde316eda64e",
+  "device": { "model": "Google Pixel 8", "os": "Android 14" },
+  "physicalDevice": true,
+  "managerUiProven": true,
+  "parentNativeUiProven": true,
+  "captureMethod": "browser-viewport-device-rectangle-not-native-pixel-export",
+  "phoneCaptureRectangle": { "x": 614, "y": 112, "width": 274, "height": 610 },
+  "guardianPreparation": "two-authenticated-isolated-fixture-transitions-not-management-ui",
+  "steps": [
+    { "id": "self-requested", "status": "passed" },
+    { "id": "self-refused", "status": "passed" },
+    { "id": "self-requested-again", "status": "passed" },
+    { "id": "self-approved", "status": "passed" },
+    { "id": "self-withdrawn", "status": "passed" },
+    { "id": "child-requested", "status": "passed" },
+    { "id": "child-approved", "status": "passed" }
+  ],
+  "captures": [
+    "phone-self-requested.jpg", "phone-self-refused.jpg", "phone-self-requested-again.jpg",
+    "phone-self-approved.jpg", "phone-self-withdrawn.jpg", "phone-child-requested.jpg", "phone-child-approved.jpg",
+    "manager-self-requested.jpg", "manager-self-approved.jpg", "manager-self-withdrawn.jpg",
+    "manager-child-confirmation.jpg", "manager-child-approved.jpg"
+  ],
+  "productionWrites": false,
+  "fullProcessRestartProven": false,
+  "guardianRevocationPhoneProven": false,
+  "teamChatImplemented": false,
+  "trackingVerified": false,
+  "paymentExercised": false,
+  "twoPhoneFlowVerified": false,
+  "videoCaptured": false,
+  "releaseEvidenceAccepted": false
+}

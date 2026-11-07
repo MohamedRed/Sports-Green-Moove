@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SessionShutdownStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.482Z" hostname="local-test-host" time="0.015">
+  <properties></properties>
+  <testcase name="offlineNotificationCleanupIsPendingRatherThanAFalseFailedLocalLogout" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.001"></testcase>
+  <testcase name="aPreparationFailureStillFinishesTheUiWithoutExposingPrivateExceptionText" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.002"></testcase>
+  <testcase name="cancelledPreparationAlwaysClearsAuthBeforeTheUiBecomesAvailable" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.003"></testcase>
+  <testcase name="aBeforeHookFailureCannotSkipTheActualSessionTermination" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.001"></testcase>
+  <testcase name="duplicateActionsDoNotDuplicatePreparationAndBeforeRunsBeforeTheFirstSuspend" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.003"></testcase>
+  <testcase name="evenAnAlreadyCancelledUiScopeCannotDiscardTheLogoutAction" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.001"></testcase>
+  <testcase name="aNonResponsiveGatewayCannotHoldTheUiOrSkipItsForcedAuthCleanup" classname="be.sportgreenmoove.app.ui.SessionShutdownStateTest" time="0.003"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

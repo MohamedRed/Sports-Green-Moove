@@ -1,0 +1,414 @@
+{
+  "runId": "23e00d110115b6fadf275d1ed917bac0",
+  "testedAt": "2026-10-16T14:55:27.947Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-booking",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-post-commit-response-loss",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    },
+    {
+      "id": "reservation-decisions",
+      "status": "passed"
+    },
+    {
+      "id": "membership-review",
+      "status": "passed"
+    },
+    {
+      "id": "trip-capacity-ownership",
+      "status": "passed"
+    },
+    {
+      "id": "team-ownership",
+      "status": "passed"
+    },
+    {
+      "id": "trip-cancellation",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "ImijNVKMfpVh37S3a7XU",
+    "bookingId": "3r1PE7in1OXgTsgPbh3v",
+    "rideSessionId": "6NvozWKs5zkG6imZNVHf",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "scenarios": {
+    "multiSeat": {
+      "requestedSeats": 2,
+      "seatsBefore": 4,
+      "seatsAfterApproval": 2,
+      "seatsAfterCancellation": 4,
+      "repeatedCancellationRejected": true,
+      "livePayment": false
+    }
+  },
+  "reservationDecisions": {
+    "declinedSeatsBefore": 4,
+    "declinedSeatsAfter": 4,
+    "declineNotificationCount": 1,
+    "cancellationSeatsBefore": 2,
+    "cancellationSeatsAfter": 4,
+    "concurrentCancellationWinners": 1,
+    "concurrentDecisionWinners": 1,
+    "historicalBookingsPerRole": 25,
+    "activePassengerCancellationRejected": true,
+    "malformedActiveRideRejected": true,
+    "livePayment": false
+  },
+  "membershipReview": {
+    "concurrentDecisionWinners": 1,
+    "approvedCount": 2,
+    "rejectedCount": 1,
+    "auditCount": 3,
+    "notificationCount": 3,
+    "memberCountBefore": 3,
+    "memberCountAfter": 5,
+    "paginatedHistory": 25,
+    "paginatedManagedClubs": 26,
+    "foreignManagerRejected": true,
+    "revokedManagerRejected": true,
+    "staleRerequestRejected": true,
+    "roleEscalation": false,
+    "livePush": false
+  },
+  "tripCapacity": {
+    "requestedSeats": 2,
+    "seatsAfterApproval": 2,
+    "rejectedOwnerMutations": 7,
+    "rejectedOtherActors": 3,
+    "titleEditAllowed": true,
+    "seatsAfterCancellation": 4,
+    "repeatedCancellationRejected": true,
+    "method": "authenticated-local-firestore-and-callable-with-persisted-checks",
+    "livePayment": false,
+    "nativeUi": false
+  },
+  "chatResponseLoss": {
+    "method": "http-response-discarded-after-independent-commit-verification",
+    "sourceId": "O2JpMkJiHRfxYldZbYf3",
+    "clientMessageId": "ac687685-b719-4503-9e91-6b0db6df95a1",
+    "firstError": {
+      "code": "ECONNRESET",
+      "responseReceived": false
+    },
+    "attempts": [
+      {
+        "number": 1,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": true,
+        "commit": {
+          "messageId": "ffdcd8741e33fdaafe3a783bc162de453840fb447a9050ddd55fa1744cfb4473",
+          "createdAtMillis": 1792162501261,
+          "notificationId": "chat_8bb08bb27748659fabaa021810ea79b120eaa570a06956b9fd0456959b7632ad",
+          "messageCount": 1,
+          "notificationCount": 1,
+          "recipientUserId": "sgm-qa-driver"
+        }
+      },
+      {
+        "number": 2,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      },
+      {
+        "number": 3,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      },
+      {
+        "number": 4,
+        "upstreamStatus": 409,
+        "acknowledgementDropped": false
+      }
+    ],
+    "messageId": "ffdcd8741e33fdaafe3a783bc162de453840fb447a9050ddd55fa1744cfb4473",
+    "notificationId": "chat_8bb08bb27748659fabaa021810ea79b120eaa570a06956b9fd0456959b7632ad",
+    "createdAtMillis": 1792162501261,
+    "messageCount": 1,
+    "notificationCount": 1,
+    "duplicateMessages": 0,
+    "unreadAfterRead": 0,
+    "changedBodyRejected": true,
+    "outsiderRejected": true,
+    "limits": [
+      "Service HTTP transport only; no native composer, pending-ID restoration, physical phone or push delivery verified."
+    ]
+  },
+  "teamOwnership": {
+    "method": "authenticated-local-firestore-rest-with-independent-persisted-checks",
+    "sourceTeamId": "gdcIsfeWIrNJaFHrKYqP",
+    "sourceClubId": "0nFCB2A7I10qaLoqZA1Q",
+    "managerClubId": "sgm-qa-club-green-wavre",
+    "deniedMutations": 10,
+    "attempts": [
+      {
+        "kind": "foreign-club-patch-takeover",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "foreign-club-document-replacement",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "foreign-club-atomic-commit-takeover",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "foreign-club-name-edit",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "foreign-club-delete",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "non-manager-takeover",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "non-manager-takeover",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "signed-out-takeover",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "two-club-manager-reassignment",
+        "status": 403,
+        "unchanged": true
+      },
+      {
+        "kind": "disabled-manager-edit",
+        "status": 403,
+        "unchanged": true
+      }
+    ],
+    "foreignTeamUnchanged": true,
+    "scopedNameEditAllowed": true,
+    "twoClubReassignmentDenied": true,
+    "disabledManagerDenied": true,
+    "nativeUi": false,
+    "productionDeployed": false,
+    "limits": [
+      "Team ownership boundary only; no team assignment, guardian enrollment or team conversation is implemented or verified."
+    ]
+  },
+  "tripCancellation": {
+    "method": "authenticated-local-callable-http-with-independent-persisted-checks",
+    "tripId": "6UobwW39LnNh4kbwfcHM",
+    "receipt": {
+      "tripId": "6UobwW39LnNh4kbwfcHM",
+      "requestId": "be172ee2-aaad-4c4a-b0d0-46579be9bac6",
+      "expectedRevision": "b31d96f11c60b92f0d95cfc8883038f09983d81803a384082581529104c5d69c",
+      "reason": "Annulation de contrôle local",
+      "actorUserId": "sgm-qa-driver",
+      "cancelledAt": "2026-10-16T14:55:18.890Z",
+      "bookingIds": [
+        "VmVqBNwroQG1rNaX47IN",
+        "i2mp2ObyHAVc7RpRqGjI",
+        "ol0H0wkNev8hM5vf3njD"
+      ],
+      "refundPendingCount": 1,
+      "seatsAvailable": 3,
+      "status": "cancelled",
+      "bookingCount": 3
+    },
+    "savedTrip": {
+      "status": "cancelled",
+      "seatsAvailable": 3,
+      "seatsTotal": 4,
+      "cancelledByUserId": "sgm-qa-driver",
+      "cancelledAt": "2026-10-16T14:55:18.890Z"
+    },
+    "reservations": [
+      {
+        "bookingId": "VmVqBNwroQG1rNaX47IN",
+        "status": "cancelled",
+        "refundStatus": "notRequired",
+        "cancelledAt": "2026-10-16T14:55:18.890Z",
+        "cancelledByUserId": "sgm-qa-driver"
+      },
+      {
+        "bookingId": "i2mp2ObyHAVc7RpRqGjI",
+        "status": "cancelled",
+        "refundStatus": "pending",
+        "cancelledAt": "2026-10-16T14:55:18.890Z",
+        "cancelledByUserId": "sgm-qa-driver"
+      },
+      {
+        "bookingId": "ol0H0wkNev8hM5vf3njD",
+        "status": "cancelled",
+        "refundStatus": "notRequired",
+        "cancelledAt": "2026-10-16T14:55:18.890Z",
+        "cancelledByUserId": "sgm-qa-driver"
+      }
+    ],
+    "notifications": [
+      {
+        "id": "tripCancelled_2117f8a94bcd3e78f704536808570e557dca2b4378eff15f1371f4d3bd25c8f8",
+        "userId": "sgm-qa-outsider",
+        "bookingIds": [
+          "VmVqBNwroQG1rNaX47IN"
+        ]
+      },
+      {
+        "id": "tripCancelled_7aa9ab9419597c9837e9825f2cf329e7ba163986762c047b329a2fe649977288",
+        "userId": "sgm-qa-parent",
+        "bookingIds": [
+          "i2mp2ObyHAVc7RpRqGjI",
+          "ol0H0wkNev8hM5vf3njD"
+        ]
+      }
+    ],
+    "bookingIds": [
+      "VmVqBNwroQG1rNaX47IN",
+      "i2mp2ObyHAVc7RpRqGjI",
+      "ol0H0wkNev8hM5vf3njD"
+    ],
+    "bookingCount": 3,
+    "notificationCount": 2,
+    "refundPendingCount": 1,
+    "seatsInitiallyOffered": 3,
+    "seatsAfterApproval": 1,
+    "seatsAfterCancellation": 3,
+    "repeatedAndConcurrentRequestsIdempotent": true,
+    "closedReservationUnchanged": true,
+    "staleBookingApprovalPaymentRejected": true,
+    "malformedMetadataRejected": true,
+    "resourceLimitRejectedAtomically": true,
+    "hundredReservationsCancelledAtomically": true,
+    "cancelledReservationsVisibleToParents": true,
+    "parentInboxNotificationsVerified": true,
+    "races": {
+      "crossDriverDenied": true,
+      "explicitAdminCancellationRecorded": true,
+      "closedTripsRejected": true,
+      "activeRideAndOrphanRejected": true,
+      "outcomes": [
+        {
+          "action": "requestBooking",
+          "tripStatus": "cancelled",
+          "activeBookingCount": 0,
+          "results": [
+            "confirmed",
+            "ABORTED"
+          ],
+          "consistent": true
+        },
+        {
+          "action": "approveBooking",
+          "tripStatus": "cancelled",
+          "activeBookingCount": 0,
+          "results": [
+            "FAILED_PRECONDITION",
+            "confirmed"
+          ],
+          "consistent": true
+        },
+        {
+          "action": "startRide",
+          "tripStatus": "published",
+          "activeBookingCount": 0,
+          "results": [
+            "confirmed",
+            "FAILED_PRECONDITION"
+          ],
+          "consistent": true
+        }
+      ]
+    },
+    "nativeUi": false,
+    "livePayment": false,
+    "refundIssued": false,
+    "productionDeployed": false
+  },
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Trip editing, the trip cancellation app screen and refund settlement require separate evidence."
+  ]
+}

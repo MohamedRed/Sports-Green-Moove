@@ -1,0 +1,107 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4a8dacec7af7b733b6cdf75e98c423b1",
+  "testedAt": "2026-10-21T12:03:19.970Z",
+  "scope": "local-team-conversation-services-not-native-or-phone-ui",
+  "steps": [
+    {
+      "id": "active-club-member-without-team-approval-denied",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-joins-approved-child-team-without-earlier-history",
+      "status": "passed"
+    },
+    {
+      "id": "current-parent-sees-new-team-message-only",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-retry-commits-once-and-different-content-is-rejected",
+      "status": "passed"
+    },
+    {
+      "id": "direct-client-document-read-cannot-bypass-admission-filter",
+      "status": "passed"
+    },
+    {
+      "id": "equal-timestamp-pages-have-no-duplicates-or-pre-arrival-messages",
+      "status": "passed"
+    },
+    {
+      "id": "guardian-revocation-denies-read-pagination-send-and-replay",
+      "status": "passed"
+    },
+    {
+      "id": "new-parent-verification-starts-new-history-and-invalidates-old-cursor",
+      "status": "passed"
+    },
+    {
+      "id": "child-club-rejoining-resets-parent-history",
+      "status": "passed"
+    },
+    {
+      "id": "current-child-profile-denied-despite-stale-adult-token",
+      "status": "passed"
+    },
+    {
+      "id": "child-token-cannot-be-bypassed-with-mixed-adult-roles",
+      "status": "passed"
+    },
+    {
+      "id": "child-login-link-cannot-be-bypassed-with-adult-roles",
+      "status": "passed"
+    },
+    {
+      "id": "second-independently-verified-parent-is-included-with-its-own-history-boundary",
+      "status": "passed"
+    },
+    {
+      "id": "manager-team-revocation-removes-parent-and-adult-access",
+      "status": "passed"
+    },
+    {
+      "id": "adult-team-reapproval-does-not-recover-prior-history",
+      "status": "passed"
+    },
+    {
+      "id": "oversized-team-is-rejected-without-partial-audience-or-new-message",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-does-not-inherit-team-parent-authorization",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-team-cannot-inherit-old-enrollment-or-message-history",
+      "status": "passed"
+    }
+  ],
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "notificationsVerified": false,
+  "protectedBaselinePreserved": true,
+  "adminClientClosed": true,
+  "sourceFiles": {
+    "functions/src/domain/teamConversation.ts": "b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a",
+    "functions/src/services/teamConversationAuthority.ts": "e5e11764043d7838708e9682acdb9d416b2720c5bb52366c1875421020c4ecec",
+    "functions/src/services/teamConversation.ts": "f75d80c05d73ebd730eaf871b5ba071b96938c43d8dc8c2dfb0c4378159a4937",
+    "functions/src/callables/teamConversation.ts": "4d585d25de0dd51ba55f8ac6ad6495e48c67dc70fcb7fe6eec71e8dc55cd036c",
+    "firestore.rules": "856f694bf27d8c3c279353b2b282555d56f6e3be8485c76ed4df2ba8300791d9",
+    "scripts/qa/local-team-conversation-suite.mjs": "d5251019e978d47904f320daef05ad105744afe46470caf9dd5f894212cbab49",
+    "scripts/qa/run-local-team-conversation.mjs": "fe6a0c40eff386525469860c179e7fe9e4fbea6c5b18fd236f974518a73ae37e"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

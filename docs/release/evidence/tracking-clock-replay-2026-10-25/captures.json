@@ -1,0 +1,65 @@
+{
+  "public": [
+    "foreground-first",
+    "foreground-returned",
+    "signed-out-stable"
+  ],
+  "files": {
+    "background-home": {
+      "sha256": "c52942ad1c9529dab1a1bd608ffbd4b3ccab1c1b2d01a9e5cd7c10e821c7f79d",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "background-moved": {
+      "sha256": "2a00b613ce42217b2c7db4dfb679814959ab5b37adf820e2183a093035933187",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "foreground-first": {
+      "sha256": "aa4eb013cf0cb3cef5886f77297dec4078cc85c95b74f28a1cf48d4960c58b7d",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "foreground-moved": {
+      "sha256": "6e0ae284daf1bc4c779a5073ce3cfc89fbe8673878d153ad27fe8c4829f7398f",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "foreground-returned": {
+      "sha256": "5769ffea43936a4ecfadd11a5338ad96db31ee2f78473d81a2ab81b04c9495e6",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "signed-out-stable": {
+      "sha256": "30cb25248045246b7a748d9fb05576913f070e76a2e5df305a9471762696e8c5",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "signed-out": {
+      "sha256": "d5c9543273b33735cbf7a461982bd8c9725d36cd0b9c2a9032f09b6eb4f9a875",
+      "width": 253,
+      "height": 564,
+      "format": "jpeg",
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    }
+  }
+}

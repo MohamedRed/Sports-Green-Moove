@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: the server dependency rejects public IPv4 peers in short mapped IPv6 trust subnets
+ok 1 - the server dependency rejects public IPv4 peers in short mapped IPv6 trust subnets
+  ---
+  duration_ms: 1.471333
+  type: 'test'
+  ...
+# Subtest: a native IPv6 trust prefix does not trust an IPv4 peer
+ok 2 - a native IPv6 trust prefix does not trust an IPv4 peer
+  ---
+  duration_ms: 0.26875
+  type: 'test'
+  ...
+# Subtest: correctly scoped mapped and plain IPv4 trust prefixes retain their behavior
+ok 3 - correctly scoped mapped and plain IPv4 trust prefixes retain their behavior
+  ---
+  duration_ms: 0.233875
+  type: 'test'
+  ...
+# Subtest: the actual server Express dependency ignores a forged forwarded address from an untrusted peer
+ok 4 - the actual server Express dependency ignores a forged forwarded address from an untrusted peer
+  ---
+  duration_ms: 161.383166
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 233.135917

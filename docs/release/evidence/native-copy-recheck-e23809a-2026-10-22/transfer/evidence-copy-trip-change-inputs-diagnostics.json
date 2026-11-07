@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "3916f21ed1105803278e706c37cb3ce1",
+  "label": "evidence-copy-trip-change-inputs",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-22T15:02:06.744Z",
+  "host": {
+    "totalMemoryBytes": 16760344576,
+    "freeMemoryBytes": 5044785152,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "evidence-copy-trip-change-inputs-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

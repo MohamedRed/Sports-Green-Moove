@@ -51,14 +51,34 @@ npm install
 npm run build
 ```
 
-Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Firestore trip reads, booking requests, inbox reads, payments, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
+6. Run native plan checks:
+
+```sh
+npm run test:android-native
+npm run test:android-ui-build
+npm run test:ios-native
+npm run test:native-ui-coverage
+npm run test:provider-readiness
+npm run test:release-evidence-template
+```
+
+Run `npm run test:android-ui` on an emulator or CI runner to execute the Android Compose UI tests for the native flow selectors. Native CI also generates the Xcode project and runs the iOS XCUITest flow suite on a simulator.
+
+Native projects now include the first real Firebase vertical slice: email/password Auth, Google Auth, Facebook Auth, Firestore trip reads, booking requests, inbox reads, payments, native Google Maps active-ride route previews, and ride-session start/read through Cloud Functions. Add Firebase app credentials before device builds that need live data:
 
 - iOS local/CI: `GoogleService-Info.plist`
 - Android local/CI: `android/app/google-services.json`
 - GitHub Actions: set `FIREBASE_IOS_CONFIG_BASE64` and/or `FIREBASE_ANDROID_CONFIG_BASE64`
 - iOS Google Auth: set `SGM_GOOGLE_REVERSED_CLIENT_ID` to the reversed client id from `GoogleService-Info.plist`
+- Facebook Auth: enable the Facebook provider in Firebase Auth, register the bundle/package identifiers in Meta for Developers, and set `SGM_FACEBOOK_APP_ID` plus `SGM_FACEBOOK_CLIENT_TOKEN`
+- Google Maps route previews: set `SGM_GOOGLE_MAPS_ANDROID_API_KEY` and `SGM_GOOGLE_MAPS_IOS_API_KEY`
 
-Facebook Auth, Google Maps native screens, provider production keys, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`.
+Provider production keys, simulator/device UI automation runs, and real-device release evidence remain required before production release. Native store-readiness evidence is tracked in `docs/release/store-readiness.md`, and physical device execution follows `docs/release/real-device-test-protocol.md`. Public-launch approval requires a real manifest derived from `docs/release/evidence-manifest.example.json`:
+
+```sh
+npm run validate:provider-readiness
+npm run validate:release-evidence -- docs/release/evidence-manifest.json
+```
 
 ## Design System
 

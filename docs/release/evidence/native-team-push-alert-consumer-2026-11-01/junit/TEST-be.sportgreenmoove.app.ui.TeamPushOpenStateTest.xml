@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.590Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="cancellationDoesNotBecomeAnAvailableResultOrAnAutomaticRetry" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.002"></testcase>
+  <testcase name="aDifferentAccountChildOrMissingGatewayCannotResolveTheRequest" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.002"></testcase>
+  <testcase name="closingTheRouteRejectsALateResultAndFutureLoads" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.002"></testcase>
+  <testcase name="noPrivateTeamTargetExistsBeforeTheActualAuthorityReceipt" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.002"></testcase>
+  <testcase name="failedReadRemainsRetryableUntilAnotherActualResultArrives" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.001"></testcase>
+  <testcase name="suppressionAndExplicitAuthorityWithdrawalHaveNoRetryOrTarget" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.001"></testcase>
+  <testcase name="returningFromBackgroundRequiresAnotherReceiptAndCannotAcceptTheOldAttempt" classname="be.sportgreenmoove.app.ui.TeamPushOpenStateTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

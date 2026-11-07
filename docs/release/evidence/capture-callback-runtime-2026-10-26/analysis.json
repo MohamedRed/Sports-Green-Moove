@@ -1,0 +1,28 @@
+{
+  "scope": "passing-instrumented-ci-not-failure-reproduction-or-root-cause-proof",
+  "head": "f06c61df32127a317684bbeba6924ddbdfbf1acd",
+  "nativeRunId": 40335351161,
+  "contractCasesExecuted": 4,
+  "runtimeTimingCollected": true,
+  "failureReproduced": false,
+  "rootCauseProven": false,
+  "primaryApiModified": false,
+  "primaryDeadlineModified": false,
+  "outerRetryAdded": false,
+  "alternateCaptureAdded": false,
+  "physicalDevice": false,
+  "newScreenshotsAccepted": false,
+  "releaseAccepted": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "de77b536a59e293abf0fbace6eb40e6d7c0d91928e97ab44a8a2a0cd94f7a7b3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt": "2a3d36fe9e0751c50128dd4ca17bd0d21dbe51a7bf78ca06ea65c8297c89f584",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnosticsTest.kt": "953d5339f48d6907daef892e59cdfbc0e1642c064c3a3b9f1502641b52287bae",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "c06ae8c7493cb80727d7ecdf694c16ab58f63d760d1140584fcc20a99841530d",
+    "scripts/qa/primary-capture-diagnostic-schema.mjs": "b64412804bde9dfbc2c9a67a7ec8af2910a5a63edf7e196a9e03e40cd9fd85ad",
+    "scripts/qa/collect-primary-capture-diagnostics.mjs": "90f30acd17747142d3c05af9185813da6ebb81542f029b69b9b5818eea6fd673",
+    "scripts/qa/run-ordinary-android-ui.mjs": "0336219bb17b421e33200953c663689651851f5665df4800f7d64d75741a7259",
+    "tests/primary-capture-diagnostics.test.mjs": "0d765c4fb9a2bdb25262353dc8e2db1d5ba85dec92cf3ca85f88df25b8ed750c",
+    ".github/workflows/native-ci.yml": "6ef7b1f43eb5d1fe9216472b51ff1d980b65773a65fe8ca12763eba807580886",
+    ".github/workflows/web-integration-smoke.yml": "738e04fbe298263204eeaa1b32b707154fc2706651e1ad04e101b0dd4acc7c15"
+  }
+}

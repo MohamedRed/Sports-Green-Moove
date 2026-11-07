@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-25T18:26:34.939Z" hostname="MRRs-MacBook-Air.local" time="0.008">
+  <properties/>
+  <testcase name="newCriteriaDiscardThePreviousConfirmationButDoNotSubmitAnything" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="aPendingRequestStillRejectsRepeatedTapsUntilItsReplyArrives" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="aReplyFromAnEarlierSearchCannotMarkTheNewSelectionConfirmed" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="aDefinitiveBusinessRejectionIsNotLabelledAsAnUnconfirmedRetry" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="aConfirmedResultCannotSubmitAgainFromTheSameSearch" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="anExplicitNewSearchDoesNotInventASingleBookingBusinessRestriction" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="closingTheAccountClearsFeedbackAndRejectsADelayedSuccessfulReply" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <testcase name="aFailedReplyRemainsExplicitlyRetryableWithoutPretendingItSucceeded" classname="be.sportgreenmoove.app.ui.SearchBookingFeedbackTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

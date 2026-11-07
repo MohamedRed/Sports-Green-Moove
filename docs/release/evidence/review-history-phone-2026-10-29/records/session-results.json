@@ -1,0 +1,104 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c281d6268102a59c92bf5501ae0a4a9c",
+  "testedAt": "2026-10-29T17:51:00.876Z",
+  "scope": "independent-phone-review-records-not-ui-or-release-proof",
+  "completed": true,
+  "checks": [
+    {
+      "phase": "history-hidden",
+      "status": "passed",
+      "ratingCount": 104,
+      "driverPrompts": 0,
+      "parentPrompts": 26,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "new-prompt",
+      "status": "passed",
+      "ratingCount": 104,
+      "driverPrompts": 1,
+      "parentPrompts": 27,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "driver-rated",
+      "status": "passed",
+      "ratingCount": 105,
+      "driverPrompts": 0,
+      "parentPrompts": 27,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "driver-returned",
+      "status": "passed",
+      "ratingCount": 105,
+      "driverPrompts": 0,
+      "parentPrompts": 27,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "parent-prompt",
+      "status": "passed",
+      "ratingCount": 105,
+      "driverPrompts": 0,
+      "parentPrompts": 27,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "parent-rated",
+      "status": "passed",
+      "ratingCount": 106,
+      "driverPrompts": 0,
+      "parentPrompts": 26,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "ratingCount": 106,
+      "driverPrompts": 0,
+      "parentPrompts": 26,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "productionWrites": false,
+      "protectedRecordCount": 158,
+      "originalClaimsUnchanged": true
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/manual-review-history-phone-session.mjs": "7453f7d34551eb6acbd9f41c37d58ce093f8ff70fc4992726492057a23802423",
+    "scripts/qa/review-history-phone-checkpoints.mjs": "124ba3e5b7068387cfb2078b06d4cd0c1bdd484b86c1c58fa6808b334c9e8be7",
+    "scripts/qa/review-history-fixture.mjs": "6a59290095137647ec0eeb0098e2fb3178e559bfff696b1639f470da51cc73b7",
+    "functions/src/callables/inbox.ts": "6883853b00d17e5372a34e33c1970787d317ac7b2e5d478221379e3443de39b1",
+    "functions/src/callables/feedback.ts": "0486e01d2261c74792a9b5272a76be7797fb9c11ef0debbc713adf6ffe0f2fba"
+  }
+}

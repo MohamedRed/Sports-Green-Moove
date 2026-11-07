@@ -1,0 +1,18 @@
+{
+  "verifiedAt": "2026-10-21T22:30:18.492Z",
+  "privateSessionRemoved": true,
+  "privateHandoffRemoved": true,
+  "ownedRuntimeRemoved": true,
+  "ownedProcessesAbsent": true,
+  "loopbackPortsRefused": [
+    5001,
+    8080,
+    9000,
+    9099
+  ],
+  "devicePolicyChanged": false,
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "controllerExitCode": 0,
+  "packageInventoryIndependentlyRead": false
+}

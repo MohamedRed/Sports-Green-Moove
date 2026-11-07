@@ -1,0 +1,30 @@
+{
+  "scope": "manual-review-of-session-window-ui-separate-from-independent-stored-checkpoints",
+  "accountsTested": 3,
+  "syntheticContentOnly": true,
+  "sessionCapturesApproved": true,
+  "publicAudienceUnchanged": true,
+  "stopMethod": "provider-kill-apps-with-independent-package-process-measurements",
+  "blankReasonConfirmationDisabled": true,
+  "dismissalKeptTrip": true,
+  "reasonConfirmed": true,
+  "cancelledAcknowledgement": true,
+  "cancelledTripHasNoCancelAction": true,
+  "cancelledTripRestoredAfterNewProcess": true,
+  "firstParentChildTwoSeatsCancelled": true,
+  "firstParentOlderClosedBookingVisible": true,
+  "firstParentNoticeVisible": true,
+  "secondParentOnlyOwnOneSeatCancelled": true,
+  "secondParentOnlyOwnNoticeVisible": true,
+  "blankLoginAfterSignOut": true,
+  "uninstallAcknowledgementObserved": true,
+  "idleDashboardAfterStop": true,
+  "notes": [
+    "Opening and dismissal were reviewed before explicit confirmation. The exact cancellation reason was pasted through the phone keyboard clipboard suggestion.",
+    "The keyboard initially mapped @ to 2. The synthetic email was corrected before successful authentication. An incorrect-password attempt was retained as an operator input issue, not an app flow pass.",
+    "A benign clipboard overlay opened an unused system share sheet. It was dismissed without sending anything before parent reservation inspection.",
+    "The pidof command was unsupported. Its original console response is retained; supported package-scoped dumpsys meminfo measured PID 20860, no process and PID 29199.",
+    "Both notices were displayed without tapping their mark-read actions. This is in-app visibility, not push delivery.",
+    "The fixture prepared booking approval through authenticated local services. This run proves cancellation UI, not booking creation or payment through the phone."
+  ]
+}

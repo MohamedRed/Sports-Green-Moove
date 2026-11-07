@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.419Z" hostname="local-test-host" time="0.008">
+  <properties></properties>
+  <testcase name="changingAPlaceInvalidatesItsCoordinatesAndPendingMatches" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.002"></testcase>
+  <testcase name="aClosedControllerCannotDispatchAnyOldHandler" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.001"></testcase>
+  <testcase name="loadingRemainsTrueUntilBothPlaceRequestsFinish" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.002"></testcase>
+  <testcase name="closeClearsCachedPlacesResultsAndSearchStatus" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.001"></testcase>
+  <testcase name="closeRejectsAResolutionThatIgnoresCancellation" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.002"></testcase>
+  <testcase name="anActiveFailureIsReportedWithoutInventingAPlace" classname="be.sportgreenmoove.app.ui.SearchControllerLifecycleTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

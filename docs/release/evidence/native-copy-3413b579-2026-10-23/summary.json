@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "3413b579ac5c8cb3c5a4a7f172b74aa5ad339d4a",
+  "scope": "terminal-schedule-primary-copy-offline-observation-not-root-cause-or-full-replay",
+  "ordinaryPassed": 159,
+  "ordinarySkipped": 52,
+  "ordinaryFailed": 0,
+  "focusedJobsPassed": 10,
+  "cleanupFilesPulled": 102,
+  "deviceRestorationVerified": true,
+  "hostExitVerified": true,
+  "deviceOfflineObserved": true,
+  "fullReplayAccepted": false,
+  "primaryCopyAccepted": false,
+  "rootCauseConfirmed": false,
+  "earlierStartupCauseConfirmed": false,
+  "physicalTrackingAccepted": false,
+  "newMediaPublished": false,
+  "productionWrites": false,
+  "releaseComplete": false
+}

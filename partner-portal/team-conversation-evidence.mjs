@@ -1,0 +1,134 @@
+import assert from 'node:assert/strict';
+import { dirname } from 'node:path';
+import { validateTeamChatNativeAttempt } from '../scripts/qa/team-chat-native-attempt.mjs';
+import { validateRetainedTeamChatConnected } from '../scripts/qa/team-chat-connected-retained.mjs';
+import { validateRetainedTeamChatAccess } from '../scripts/qa/team-chat-access-evidence.mjs';
+import { validateRetainedTeamAccessAttempt } from '../scripts/qa/team-access-native-attempt.mjs';
+import { validateRetainedTeamAccessNative } from '../scripts/qa/team-access-native-retained.mjs';
+import { validateTeamDraftNativeAttempt } from '../scripts/qa/team-draft-native-attempt.mjs';
+import { validateTeamDraftLoss } from '../scripts/qa/team-draft-loss-evidence.mjs';
+import { validateRetainedTeamDraft } from '../scripts/qa/team-draft-native-retained.mjs';
+import { validateTeamDraftErrorCaptureAttempt } from '../scripts/qa/team-draft-error-capture-attempt.mjs';
+import { validateTeamDraftErrorComponents } from '../scripts/qa/team-draft-error-components.mjs';
+import { validateTeamDraftPhone } from '../scripts/qa/team-draft-phone-evidence.mjs';
+import { validateRetainedTeamReads } from '../scripts/qa/team-read-retained-evidence.mjs';
+import { validateRetainedConnectedTeamReads } from '../scripts/qa/team-read-connected-evidence.mjs';
+import { validateTeamReadComponentAttempt } from '../scripts/qa/team-read-component-attempt.mjs';
+import { validateRetainedTeamReadComponents } from '../scripts/qa/team-read-component-evidence.mjs';
+import { validateTeamReadPhone } from '../scripts/qa/team-read-phone-evidence.mjs';
+import { validateTeamAuthorityPhone } from '../scripts/qa/team-authority-phone-evidence.mjs';
+import {validateRetainedTeamAlerts} from '../scripts/qa/team-alert-evidence.mjs';
+import {validateNotificationInboxPhone} from '../scripts/qa/notification-inbox-phone-evidence.mjs';
+import {validateNotificationRetryPhone} from '../scripts/qa/notification-retry-phone-evidence.mjs';
+import {validateTeamPushRegistration} from '../scripts/qa/team-push-registration-evidence.mjs';
+import {validateTeamAccountRegressions} from '../scripts/qa/team-account-regressions-evidence.mjs';
+import {validateNativeTeamPushJournal} from '../scripts/qa/native-team-push-journal-evidence.mjs';
+import {validateNativeTeamPushLifecycle} from '../scripts/qa/native-team-push-lifecycle-evidence.mjs';
+import {validateTeamPushAlertAuthorization} from './team-push-alert-validation.mjs';
+import {validateNativeTeamAlertConsumer} from './team-push-native-consumer-validation.mjs';
+import {validateNativeAlertFirstRun} from './native-alert-first-run-validation.mjs';
+import {validateTeamPushDispatch} from './team-push-dispatch-validation.mjs';
+
+export function validateTeamConversationRecords(root, flow, captures) {
+  if(flow.pushDispatch){
+    const run=validateTeamPushDispatch(root,dirname(flow.pushDispatch.source));
+    assert.equal(flow.pushDispatch.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+  }
+  if(flow.pushFirstNativeAttempt){
+    const run=validateNativeAlertFirstRun(root,dirname(flow.pushFirstNativeAttempt.source));
+    assert.equal(flow.pushFirstNativeAttempt.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+    assert.match(flow.remaining,/notifications app fermée.*téléphones/);
+  }
+  if(flow.pushNativeConsumer){
+    const run=validateNativeTeamAlertConsumer(root,dirname(flow.pushNativeConsumer.source));
+    assert.equal(flow.pushNativeConsumer.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+    assert.match(flow.remaining,/notifications app fermée.*téléphones/);
+  }
+  if(flow.pushAlertAuthorization){
+    const run=validateTeamPushAlertAuthorization(root,dirname(flow.pushAlertAuthorization.source));
+    assert.equal(flow.pushAlertAuthorization.checkedAt,run.testedAt.slice(0,10));
+    assert.equal(flow.latestEvidence,'phone');assert.equal(flow.status,'partial');
+    assert.match(flow.remaining,/notifications app fermée.*téléphones/);
+  }
+  if (flow.pushLifecycle) {
+    const run = validateNativeTeamPushLifecycle(root, dirname(flow.pushLifecycle.source));
+    assert.equal(flow.pushLifecycle.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+  }
+  if (flow.pushJournal) {
+    const run = validateNativeTeamPushJournal(root, dirname(flow.pushJournal.source));
+    assert.equal(flow.pushJournal.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+  }
+  if (flow.pushRegistration) {
+    const run = validateTeamPushRegistration(root, dirname(flow.pushRegistration.source));
+    assert.equal(flow.pushRegistration.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.latestEvidence, 'phone'); assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    const regressions = validateTeamAccountRegressions(root, dirname(flow.pushRegressions.source));
+    assert.equal(regressions.testedAt.slice(0,10), flow.pushRegressions.checkedAt);
+  }
+  if (flow.retryPhone) {
+    const run = validateNotificationRetryPhone(root, dirname(flow.retryPhone.source));
+    assert.equal(flow.retryPhone.checkedAt, run.testedAt.slice(0, 10));
+    assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-alert-retry-')).map(image => image.file).sort(),
+      Object.keys(run.publishedCaptures).sort());
+    for (const [id, file] of Object.entries(run.publishedCaptures))
+      assert.equal(captures[id], dirname(flow.retryPhone.source) + '/' + file);
+  }
+  if (flow.alertPhone) {
+    const run = validateNotificationInboxPhone(root, flow.alertPhone.source);
+    assert.equal(flow.checkedAt, flow.alertPhone.checkedAt);
+    assert.equal(run.testedAt.slice(0, 10), flow.alertPhone.checkedAt);
+    assert.equal(flow.status, 'partial');
+    assert.match(flow.remaining, /notifications app fermée.*téléphones/);
+    assert.deepEqual(flow.images.filter(image => image.file.startsWith('team-alert-phone-')).map(image => image.file).sort(),
+      Object.keys(run.publishedCaptures).sort());
+    for (const [id, file] of Object.entries(run.publishedCaptures))
+      assert.equal(captures[id], dirname(flow.alertPhone.source) + '/' + file);
+  }
+  if(flow.alertServices) {
+    const run=validateRetainedTeamAlerts(root,flow.alertServices.source);
+    assert.equal(flow.id,'team-conversation');assert.equal(flow.status,'partial');
+    assert.equal(run.testedAt.slice(0,10),flow.alertServices.checkedAt);
+    assert.equal(flow.checkedAt,'2026-11-01');assert.equal(flow.phone.checkedAt,'2026-10-21');assert.equal(flow.latestEvidence,'phone');
+    assert.match(flow.remaining,/notifications.*téléphones/);
+  }
+  if (flow.readComponents) assert.equal(flow.latestEvidence, flow.readPhone ? 'phone' : 'local');
+  const records = [
+    [flow.attempt, validateTeamChatNativeAttempt, 'team-chat-native-'],
+    [flow.connected, validateRetainedTeamChatConnected, 'team-chat-connected-'],
+    [flow.accessChanges, validateRetainedTeamChatAccess, null],
+    [flow.readServices, validateRetainedTeamReads, null],
+    [flow.readConnected, validateRetainedConnectedTeamReads, null],
+    [flow.readAttempt, validateTeamReadComponentAttempt, null],
+    [flow.readComponents, validateRetainedTeamReadComponents, 'team-read-verified-'],
+    [flow.readPhone, validateTeamReadPhone, 'team-read-phone-'],
+    [flow.authorityPhone, validateTeamAuthorityPhone, 'team-authority-phone-'],
+    [flow.accessAttempt, validateRetainedTeamAccessAttempt, 'team-access-attempt-'],
+    [flow.nativeAccess, validateRetainedTeamAccessNative, 'team-access-verified-'],
+    [flow.draftAttempt, validateTeamDraftNativeAttempt, null],
+    [flow.draftRegression, validateTeamDraftLoss, 'team-draft-loss-'],
+    [flow.draftRestart, validateRetainedTeamDraft, 'team-draft-verified-'],
+    [flow.draftErrorChecks, validateTeamDraftErrorCaptureAttempt, null],
+    [flow.draftErrorRecovery, validateTeamDraftErrorComponents, 'team-draft-errors-'],
+    [flow.id === 'team-conversation' ? flow.phone : null, validateTeamDraftPhone, 'team-draft-phone-'],
+  ];
+  for (const [record, validate, prefix] of records) {
+    if (!record) continue;
+    assert.equal(flow.id, 'team-conversation'); assert.equal(flow.status, 'partial');
+    const run = validate(root, record.source); assert.equal(run.testedAt.slice(0, 10), record.checkedAt);
+    if (prefix) {
+      assert.deepEqual(flow.images.filter(image => image.file.startsWith(prefix)).map(image => image.file).sort(),
+        Object.keys(run.publishedCaptures).sort());
+      for (const [id, file] of Object.entries(run.publishedCaptures)) assert.equal(captures[id], dirname(record.source) + '/' + file);
+    }
+  }
+}

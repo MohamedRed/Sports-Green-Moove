@@ -1,0 +1,20 @@
+{
+  "id": 13041841273,
+  "node_id": "MDg6QXJ0aWZhY3QxMzA0MTg0MTI3Mw==",
+  "name": "android-connected-ui-test-results",
+  "size_in_bytes": 25983614,
+  "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13041841273",
+  "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13041841273/zip",
+  "expired": false,
+  "digest": "sha256:d372faedc180741776a3b10c05162e86f923d0a648e37170437c551c7bea7575",
+  "created_at": "2026-10-31T11:51:09Z",
+  "updated_at": "2026-10-31T11:51:09Z",
+  "expires_at": "2027-01-29T11:22:14Z",
+  "workflow_run": {
+    "id": 41196576936,
+    "repository_id": 1265168151,
+    "head_repository_id": 1265168151,
+    "head_branch": "codex/implement-plan",
+    "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1"
+  }
+}

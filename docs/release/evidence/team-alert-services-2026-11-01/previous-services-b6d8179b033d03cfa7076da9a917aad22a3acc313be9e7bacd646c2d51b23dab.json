@@ -1,0 +1,92 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a5ce901ca5670b462238e5e936981f86",
+  "testedAt": "2026-11-01T08:36:52.690Z",
+  "scope": "local-team-alerts-and-pending-push-envelope-not-native-or-push-delivery",
+  "completed": true,
+  "steps": [
+    {
+      "id": "concurrent-send-creates-two-eligible-generic-alerts-and-one-pending-push-envelope",
+      "status": "passed"
+    },
+    {
+      "id": "sender-unverified-parent-child-claims-child-profile-linked-login-disabled-and-club-only-manager-excluded",
+      "status": "passed"
+    },
+    {
+      "id": "same-intent-retry-and-conflicting-content-never-duplicate-alerts-or-push-envelope",
+      "status": "passed"
+    },
+    {
+      "id": "inbox-alert-is-visible-and-owned-alert-read-does-not-acknowledge-team-message",
+      "status": "passed"
+    },
+    {
+      "id": "push-envelope-is-not-readable-by-a-recipient-through-client-database-access",
+      "status": "passed"
+    },
+    {
+      "id": "guardian-revocation-and-new-verification-hide-earlier-alerts-and-reject-old-read-requests",
+      "status": "passed"
+    },
+    {
+      "id": "newly-verified-parent-receives-only-subsequent-alerts",
+      "status": "passed"
+    },
+    {
+      "id": "excessive-audience-rejects-before-any-message-alert-or-push-envelope-write",
+      "status": "passed"
+    },
+    {
+      "id": "two-qualifying-children-do-not-duplicate-a-parent-alert",
+      "status": "passed"
+    },
+    {
+      "id": "one-qualifying-child-preserves-access-and-removing-the-last-hides-alerts",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-and-recreated-team-cannot-recover-earlier-alerts",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "phoneTokenRegistered": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceFiles": {
+    "functions/src/domain/teamConversationAlerts.ts": "694885c4087669dffca3874a57049f92c56d3c857f4cf835faef115958bca790",
+    "functions/src/services/teamConversationAlerts.ts": "5996d1a79d9ef876ef3187800c29cd40d871b08a6a085046c5feeee287694df2",
+    "functions/src/domain/inbox.ts": "5e4b1465df655a27ccb34d4f64892209ac5696a6c7f48ab8a20a7e964010cbf3",
+    "firestore.rules": "65b6c9f9a61f02aa9d347a4c329b3a2e078d347632b54e12d79dbc545c0e3f1d",
+    "firestore.indexes.json": "311d85b6f149f8b6b74aedf782b0a2149415d2197d95a71866cd3484bed9766c",
+    "scripts/qa/run-local-team-conversation.mjs": "659d1b71c80fa2e85d61778d12c70d318377da4a9e9bc60f6ae8ea05a0d3ab57",
+    "functions/src/services/teamNotificationAccess.ts": "d91a8410993b9d5de6df2014c4a22bed7bec9853b46c57fdcf6c258ae289e2db",
+    "functions/src/services/teamConversationAuthority.ts": "f29e0f3c2b9835de17c14fe7611eab7ecb60c99696958aeeb11808c66cd9bc00",
+    "functions/src/services/teamConversation.ts": "e9ee8522c7aaaa98f0b350f79fcfa129709d01ad0614ee9d830223a641793d23",
+    "functions/src/callables/inbox.ts": "bd5b9de58c3a3b2729da09ddc5ea20b4ae50485ee28f7c12ffe64da3e4796664",
+    "functions/src/callables/notificationRead.ts": "4a3d5c90c054b38b53f7c64496db89db3a5624a58d07db77b4fbdd940be7a012",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "scripts/qa/local-team-alert-suite.mjs": "b17639a3df3197a31690b7821e70439f8e67fa5bd4124b5a263db6167217604b"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

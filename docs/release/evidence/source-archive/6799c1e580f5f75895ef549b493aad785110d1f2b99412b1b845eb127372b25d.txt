@@ -1,0 +1,173 @@
+import SwiftUI
+
+struct AuthScreen: View {
+    @Environment(AppState.self) private var appState
+    @State private var mode = AuthMode.signIn
+    @State private var name = ""
+    @State private var email = ""
+    @State private var password = ""
+
+    var body: some View {
+        SGMScreen(spacing: 12, bottomPadding: 28, testID: UITestIdentifier.authScreen) {
+            AuthHero()
+            VStack(spacing: 12) {
+                HStack(spacing: 6) {
+                    SGMChip(text: "Se connecter", selected: mode == .signIn) { mode = .signIn }
+                    SGMChip(text: "S'inscrire", selected: mode == .signUp) { mode = .signUp }
+                }
+                if mode == .signUp {
+                    AuthField(title: "Nom et prénom", text: $name)
+                }
+                AuthField(title: "votre@email.be", text: $email)
+                    .keyboardType(.emailAddress)
+                    .textContentType(.username)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .sgmUITestIdentifier(UITestIdentifier.authEmailField)
+                AuthField(title: "Mot de passe", text: $password, isSecure: true)
+                    .textContentType(mode == .signUp ? .newPassword : .password)
+                    .submitLabel(.done)
+                    .sgmUITestIdentifier(UITestIdentifier.authPasswordField)
+                SGMButton(title: mode == .signIn ? "SE CONNECTER" : "CRÉER MON COMPTE", testID: UITestIdentifier.authEmailAction) {
+                    let submitted = (mode: mode, name: name, email: email, password: password)
+                    Task {
+                        if submitted.mode == .signIn {
+                            await appState.signIn(email: submitted.email, password: submitted.password)
+                        } else {
+                            await appState.signUp(name: submitted.name, email: submitted.email, password: submitted.password)
+                        }
+                    }
+                }
+                .opacity(appState.authenticating ? 0.62 : 1)
+                AuthDivider()
+                HStack(spacing: 10) {
+                    SocialAuthButton(title: "Facebook", testID: UITestIdentifier.authFacebookAction) {
+                        Task { await appState.signInWithFacebook() }
+                    }
+                    SocialAuthButton(title: "Google", testID: UITestIdentifier.authGoogleAction) {
+                        Task { await appState.signInWithGoogle() }
+                    }
+                }
+            }
+            .padding(.horizontal, SGMSpace.padScreen)
+            .disabled(appState.authenticating)
+            if appState.authenticating && !appState.authenticationCleanupRequired {
+                ProgressView(appState.authenticationStatus)
+            }
+            if appState.authenticationCleanupRequired {
+                SGMButton(title: "Réessayer la déconnexion", variant: .ghost) { appState.signOut() }
+                    .padding(.horizontal, SGMSpace.padScreen)
+            } else if appState.authenticationRestoreFailed {
+                SGMButton(title: "Réessayer", variant: .ghost) { Task { await appState.bootstrap() } }
+                    .disabled(appState.authenticating)
+                    .padding(.horizontal, SGMSpace.padScreen)
+            }
+        }
+    }
+}
+
+private struct AuthDivider: View {
+    var body: some View {
+        HStack(spacing: 10) {
+            Rectangle().fill(SGM.border).frame(height: 1)
+            Text("OU CONTINUER AVEC")
+                .font(.sgmBody(11, weight: .semibold))
+                .foregroundStyle(SGM.textMuted)
+            Rectangle().fill(SGM.border).frame(height: 1)
+        }
+    }
+}
+
+private struct SocialAuthButton: View {
+    let title: String
+    let testID: String
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(.sgmBody(13, weight: .bold))
+                .foregroundStyle(SGM.textPrimary)
+                .frame(maxWidth: .infinity)
+                .frame(height: 46)
+                .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
+                .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
+        }
+        .buttonStyle(.plain)
+        .sgmUITestIdentifier(testID)
+    }
+}
+
+private enum AuthMode: Sendable {
+    case signIn
+    case signUp
+}
+
+private struct AuthHero: View {
+    var body: some View {
+        ZStack {
+            SGM.heroGradient
+            SGMGridTexture()
+            VStack(spacing: 12) {
+                Wordmark()
+                Text("COVOITURAGE SPORTIF & CULTUREL")
+                    .font(.sgmBody(12, weight: .bold))
+                    .tracking(.sgmWide(for: 12))
+                    .foregroundStyle(SGM.green)
+                Text("REJOIGNEZ LA\nGREEN RÉVOLUTION\nDU SPORT")
+                    .font(.sgmDisplay(32))
+                    .tracking(.sgmWide(for: 32))
+                    .foregroundStyle(SGM.textOnGreen)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(-2)
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 34)
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: 250)
+    }
+}
+
+private struct AuthField: View {
+    let title: String
+    @Binding var text: String
+    var isSecure = false
+
+    var body: some View {
+        Group {
+            if isSecure {
+                SecureField(title, text: $text)
+            } else {
+                TextField(title, text: $text)
+            }
+        }
+        .font(.sgmBody(14, weight: .medium))
+        .foregroundStyle(SGM.textPrimary)
+        .padding(.horizontal, 16)
+        .frame(height: 48)
+        .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: SGMRadius.md, style: .continuous).stroke(SGM.border, lineWidth: 1))
+    }
+}
+
+struct ConfigurationRequiredScreen: View {
+    var body: some View {
+        SGMScreen(spacing: 12, bottomPadding: 28, testID: UITestIdentifier.configurationRequired) {
+            SGMTopBar(title: "CONFIGURATION")
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Connexion indisponible")
+                    .font(.sgmDisplay(28))
+                    .tracking(.sgmWide(for: 28))
+                    .foregroundStyle(SGM.textPrimary)
+                Text("Le service de connexion n’est pas prêt. Réessayez plus tard.")
+                    .font(.sgmBody(14, weight: .medium))
+                    .foregroundStyle(SGM.textSecondary)
+            }
+            .padding(18)
+            .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
+            .padding(.horizontal, SGMSpace.padScreen)
+        }
+    }
+}

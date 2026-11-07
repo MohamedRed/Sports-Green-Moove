@@ -1,0 +1,11 @@
+{
+  "head": "385a6a4418848b46f4ea522c2903ee22be8b1ee6",
+  "hashes": {
+    "package.json": "9c0ce86cbd17a9127f7d474bbdb19804772dd91c4177ac817b87733032b7e522",
+    "functions/package.json": "96be6df057ccc29aedb24da156681619903e6122d27ead4f29fcef82aee69898",
+    "admin/package.json": "099703cc31904d501f1325f4408f0dca77356e5d776f8fbbf28abb5434058219",
+    "website/package.json": "8db5d8734dbc5a9d7941971279bf83e38b0116ce40bdfa0da0e3d460e188937b",
+    "tests/protocol-query-security.test.mjs": "10bc4e4407ddd05486dcb36f773941d1431c033c0249467130f5900acbd8aafe",
+    "tests/helpers/protocol-query-security-probe.mjs": "6d8cc542630855e0e048b2d105fc7e640815aca3a8f5e72a89740f7cdbf91484"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "scope": "source-bound-unit-tests-not-native-or-physical-evidence",
+  "testedAt": "2026-10-19",
+  "android": {
+    "tests": 388,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "functions": {
+    "tests": 352,
+    "failures": 0,
+    "errors": 0
+  },
+  "sourceFiles": {
+    "functions/src/lib/liveTrips.ts": "3c34120f897ddb06b6e03df6db3bc1be9231bdc781714a0c7d916ffb5d86552a",
+    "functions/src/callables/locations.ts": "67439e178bd4ddd62e8f4799180d2a3a5abfc806a4e10a0e908777a4a7e869e7",
+    "functions/src/domain/liveLocationOrder.ts": "92b57416091ac03c774888e0f91e6ccff12656e90dccff58dfe7b7b4f2e4400e",
+    "functions/src/__tests__/live-location-receipts.test.ts": "88b3c254530891426b6d86f0269b7048fa0e397200787279c084113b9aa641a4",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "68d7931931f5811057e3da894e3c6f1031c5bf87787d19b6392b67dafd207bd9",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt": "c969343bed48178342abcc1c32f0a5b6e6fb07819bd74a3d021ddbea70cd6bcf",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationAcknowledgement.kt": "f9669bf5f21a773786bdd679576ca5d4c373da67ba72ce8cf9382ad53ef73e2d",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt": "634cabe8fa71bcacba1c8e7061245ddbbbf1b68d63fc106021d78d21650d1cb3",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/NativeLocationAcknowledgementTest.kt": "4ad3f3811b3651ad14960f61d14b877013f9b409e875a231072957c3de82343f",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/ActiveRideResumeActionTest.kt": "cd8c5382ee1aae78779db54e9601625f84b85b85fd7c5f683c45ee4a37ecad7f"
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "releaseAcceptance": false
+}

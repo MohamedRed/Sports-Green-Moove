@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "compiled-prefailure-window-observation-not-root-cause-or-flow-repair",
+  "baseline": {
+    "runId": 41920203762,
+    "jobId": 126890385415,
+    "sourceCommit": "a226b3e265c78f58d56af892a666ae2778afc50b",
+    "artifactId": 13367313439,
+    "entry": "outputs/local-ui-evidence/2f12d18f1d8de815f95a17a93d8b1aea/LocalGuardianVerificationFlowTest-process-log.txt",
+    "log": "previous-process-log.txt",
+    "logSha256": "e002f75c5491b65cfcf3290eda47be538dc948dee06b447293b2d176ea505cc0",
+    "archiveSha256": "3e0766efb54a682855897d2ceb3ff632d9ea0d375c70120c7ad384656bf1e2df",
+    "observationAfterInstrumentationFinished": true,
+    "underlyingRootLossCause": "unknown"
+  },
+  "candidate": {
+    "mainThreadDeadlineMs": 2000,
+    "maxEvents": 48,
+    "maxVisitedViews": 512,
+    "nativeRegressionCases": 3,
+    "originalWaitsAndActionsPreserved": true,
+    "observationBeforeActivityClose": true,
+    "productionAppCodeChanged": false,
+    "retainedFramesAreCountsOnly": true,
+    "builds": [
+      {
+        "mode": "debug",
+        "targetPackage": "be.sportgreenmoove.app",
+        "exitCode": 0,
+        "offline": true,
+        "log": "debug-build.txt",
+        "logSha256": "cf9aefc74ed6f31419a95d600e6a3c3aac0b645f01d6618c33b220950694ba6c",
+        "apkSha256": "345219a68ad22950576039613bb2096cfdd625bf82b7ff7a081fceb135f96db3",
+        "apkBytes": 2046211,
+        "dexMembers": [
+          "Lbe/sportgreenmoove/app/ui/ActivityWindowObservation;",
+          "Lbe/sportgreenmoove/app/ui/LocalGuardianWindowObservation;",
+          "Lbe/sportgreenmoove/app/ui/ActivityWindowObservationTest;",
+          "observationPrecedesCloseWithoutExportingTheDisplayedText",
+          "closingUnregistersCallbacksAndRejectsLaterObservation",
+          "anUnavailableMainThreadIsReportedWithoutWaitingForItToRecover"
+        ]
+      },
+      {
+        "mode": "isolated",
+        "targetPackage": "be.sportgreenmoove.app.local",
+        "exitCode": 0,
+        "offline": true,
+        "log": "isolated-build.txt",
+        "logSha256": "673e882f5a50a092f2aec6d92f3117723fe20ce0453df197b333128b1a97b0f5",
+        "apkSha256": "cb5452ddfb1c741d700b44462b682c4856f361f8342c0231e2b4cf0f6ba28fc4",
+        "apkBytes": 2044095,
+        "dexMembers": [
+          "Lbe/sportgreenmoove/app/ui/ActivityWindowObservation;",
+          "Lbe/sportgreenmoove/app/ui/LocalGuardianWindowObservation;",
+          "Lbe/sportgreenmoove/app/ui/ActivityWindowObservationTest;",
+          "observationPrecedesCloseWithoutExportingTheDisplayedText",
+          "closingUnregistersCallbacksAndRejectsLaterObservation",
+          "anUnavailableMainThreadIsReportedWithoutWaitingForItToRecover"
+        ]
+      }
+    ]
+  },
+  "nativeRegressionExecutionAccepted": false,
+  "parentFlowAccepted": false,
+  "rootCauseConfirmed": false,
+  "wholeGateAccepted": false,
+  "newScreenshots": false,
+  "uiTextExported": false,
+  "newProviderRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "releaseComplete": false
+}

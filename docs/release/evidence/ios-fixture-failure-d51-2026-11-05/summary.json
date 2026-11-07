@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "terminal-sdk-build-and-fixture-results-not-real-service-or-physical",
+  "outcomes": [
+    {
+      "runId": 42026680118,
+      "commit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+      "conclusion": "cancelled",
+      "sdkBuild": "success",
+      "fixtureCasesCompleted": 1,
+      "passedCases": 1,
+      "failedCases": 0,
+      "plannedCases": 11,
+      "disposal": "success",
+      "artifactCount": 0
+    },
+    {
+      "runId": 42030107261,
+      "commit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+      "conclusion": "failure",
+      "sdkBuild": "success",
+      "fixtureCasesCompleted": 11,
+      "passedCases": 8,
+      "failedCases": 3,
+      "plannedCases": 11,
+      "disposal": "success",
+      "artifactCount": 0
+    }
+  ],
+  "records": [
+    {
+      "file": "eef-run.json",
+      "sha256": "f42e895ad75f0c5fbc0eb6b0114049896f2ec61ea66b76eb603ff9adbba5d367"
+    },
+    {
+      "file": "eef-selected-tests.txt",
+      "sha256": "4f4aae7d5c57878530d5796af46e8a7603e5e0ec3a83eb5cd100ce5d4574794c"
+    },
+    {
+      "file": "eef-artifacts.json",
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "file": "eef-cases.json",
+      "sha256": "f2b4af334e907f4b3ead142e42ba2127fc16b4148b8bfeb5dd5879a121e3c0a3"
+    },
+    {
+      "file": "d51-run.json",
+      "sha256": "ecc7d641e77634b02699f9899fa6d4b2c9f9e1ed93092dccc635e21a5c5346c8"
+    },
+    {
+      "file": "d51-selected-tests.txt",
+      "sha256": "f254aefef5fb7a8149f54fa5ef15929b06bd2f521d1d060863921b7c0cd9b3c8"
+    },
+    {
+      "file": "d51-artifacts.json",
+      "sha256": "f7417e1fb877d3f5934f143cc38ad9e2905476e8f5ac6776507d09441efcd6f6"
+    },
+    {
+      "file": "d51-cases.json",
+      "sha256": "9c0398e82578322d5731ab3b3a2da07837e20e7c92d57b0ae9c21c35e31e6130"
+    }
+  ],
+  "deadlineMinutes": 50,
+  "plannedCases": 11,
+  "newMedia": 0,
+  "fullFixtureGateAccepted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false
+}

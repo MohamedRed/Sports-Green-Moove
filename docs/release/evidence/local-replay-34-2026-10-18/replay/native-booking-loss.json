@@ -1,0 +1,62 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+  "scope": "native-sdk-booking-response-loss-not-ui",
+  "tripId": "pR7fmP2SyrynXWtCXXDf",
+  "attempts": [
+    {
+      "number": 1,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": true,
+      "commit": {
+        "bookingId": "3SC44F2lioRm9VycMuxW",
+        "clientRequestId": "cddda8a9-48dd-4707-8679-c66bbe74a83d",
+        "bookingCount": 1,
+        "receiptCount": 1,
+        "createdAtMillis": 1792347959543
+      }
+    },
+    {
+      "number": 2,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    }
+  ],
+  "before": {
+    "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+    "projectId": "demo-sgm-local-qa",
+    "scope": "native-sdk-booking-response-loss-not-ui",
+    "tripId": "pR7fmP2SyrynXWtCXXDf",
+    "processId": 11505,
+    "clientRequestId": "cddda8a9-48dd-4707-8679-c66bbe74a83d",
+    "replyUnconfirmed": true,
+    "pendingIdentityPersisted": true
+  },
+  "stopped": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+    "scope": "disposable-local-app-force-stop",
+    "appId": "be.sportgreenmoove.app.local",
+    "preparedProcessId": 11505,
+    "observedBeforePid": null,
+    "forceStopIssued": true,
+    "noProcessAfterStop": true
+  },
+  "after": {
+    "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+    "projectId": "demo-sgm-local-qa",
+    "scope": "native-sdk-booking-response-loss-not-ui",
+    "tripId": "pR7fmP2SyrynXWtCXXDf",
+    "processId": 11604,
+    "previousProcessId": 11505,
+    "clientRequestId": "cddda8a9-48dd-4707-8679-c66bbe74a83d",
+    "bookingId": "3SC44F2lioRm9VycMuxW",
+    "pendingClearedAfterAcknowledgement": true,
+    "completed": true
+  },
+  "bookingCount": 1,
+  "receiptCount": 1,
+  "completed": true,
+  "livePayment": false,
+  "productionDeployed": false
+}

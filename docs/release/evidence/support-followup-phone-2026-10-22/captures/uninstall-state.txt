@@ -1,0 +1,82 @@
+Browser tab: 1621933415, Title: "Google Pixel 9 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				187 container in-session-device-react
+					188 container
+					189 container
+						190 image
+						191 button Add Device
+							192 text Add Device
+							193 text PRO
+				183 text ;
+				410 content list
+					411 button Description: Switch Device, ID: switchBrowser
+					412 container
+						413 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							414 image
+							415 image open content menu
+							416 text Local testing
+					417 menu zoomFeature
+						418 Description: zoom out, ID: zoom-out
+						419 Description: zoom in, ID: zoom-in
+						420 text Zoom
+					421 button Description: Record Session, ID: appLiveVideoRecording
+					422 button (disabled) Description: DevTools, ID: showDebuggingOptions
+					423 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					424 button open content menu Settings, ID: appLiveSessionSettings
+						425 image open content menu
+						426 text Settings
+					427 button Description: Stop Session, ID: appLiveStopSession
+						428 image
+						429 text Stop Session
+				281 container vertical-toolbar-react
+					282 container vertical-toolbar-draggable
+						283 container
+							430 button toolbar drag icon
+							285 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						286 toolbar
+							287 content list
+								431 button Description: Add Device, ID: app-live-add-device
+									432 container app-live-add-device-lead-text-wrapper
+										433 text Add Device PRO
+								434 button Description: Show Home Screen, ID: dockHomeScreen
+									435 text Show Home Screen
+								436 container volume-buttons-lead-text-wrapper
+									437 text Volume
+									438 container volumeButtons
+										439 button - Volume Decrease
+										440 button (disabled) + Volume Increase
+								441 button Description: View Open Apps, ID: view-open-apps
+									442 text View Open Apps
+								443 button Description: Install New App, ID: switch-app
+									444 text Install New App
+								445 checkbox Description: Profile Performance, Value: 0
+									446 text Profile Performance
+									447 text PRO
+								448 button Description: Capture Screenshot, ID: get-screenshot
+									449 text Capture Screenshot
+								450 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									451 text Kill/Uninstall
+								452 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									453 container android-settings-lead-text-wrapper
+										454 text Android Settings PRO New
+								455 button Rotate Device, ID: dockOrientationRealAndroid
+									456 text Rotate Device
+								457 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									458 text Change Location
+								459 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									460 text Throttle Network
+								461 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									462 text Files & Media
+								463 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									464 text Change Language
+								465 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									466 text Screen Reader
+								467 button (collapsed) Description: Device info: Google Pixel 9, v15.0, ID: device-info, Secondary Actions: Expand
+									468 text Google Pixel 9
+									469 text v15.0
+		409 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 0 AXWebArea Google Pixel 9 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1

@@ -1,0 +1,41 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6d4f0e6388a5822277fd9260367df03a",
+  "testedAt": "2026-10-19T22:08:10.786Z",
+  "scope": "local-services-not-native-ui",
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "adminClientClosed": true,
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "claimsUnchanged": true,
+    "baselineCollectionCount": 15,
+    "contactCount": 2,
+    "contactOperationCount": 2,
+    "guardianEventCount": 5,
+    "oldContactPreserved": true
+  },
+  "sourceFiles": {
+    "scripts/qa/local-emergency-identity-fixture-suite.mjs": "0c32c075c91cecd8a83e73cf59c10861c02a05cc85db75a44c5feb90b8be6ef9",
+    "scripts/qa/run-emergency-identity-fixture.mjs": "f81f48995605c2017fc1a7ff6427f97f6824cdb3ecd12dee61d3bd8a58597645",
+    "scripts/qa/emergency-identity-fixture.mjs": "1da49a5eca1e2916f39f9a55dbf3d564e9819a065f01c8bb851e6cff4711d5e5",
+    "scripts/qa/emergency-identity-profile-isolation.mjs": "6606701f995b9052247ab13fcc05ac2ddbd20f4d39ff0117e1e5604e48f24350",
+    "functions/src/callables/adminUsers.ts": "2202e40dd485eded5e6d4aa6e6001e5f197f0ffb1be20f17f7d224272d826e80",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorCliExitedSuccessfully": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

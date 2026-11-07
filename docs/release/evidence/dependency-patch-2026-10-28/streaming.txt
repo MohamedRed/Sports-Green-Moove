@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: the installed query transport otherwise retries ABORTED with the same request
+ok 1 - the installed query transport otherwise retries ABORTED with the same request
+  ---
+  duration_ms: 2653.097292
+  type: 'test'
+  ...
+# Subtest: status-aware transport returns 10 without replaying the RPC
+ok 2 - status-aware transport returns 10 without replaying the RPC
+  ---
+  duration_ms: 2.187375
+  type: 'test'
+  ...
+# Subtest: status-aware transport returns 3 without replaying the RPC
+ok 3 - status-aware transport returns 3 without replaying the RPC
+  ---
+  duration_ms: 1.416334
+  type: 'test'
+  ...
+# Subtest: status-aware transport returns 7 without replaying the RPC
+ok 4 - status-aware transport returns 7 without replaying the RPC
+  ---
+  duration_ms: 1.209209
+  type: 'test'
+  ...
+# Subtest: status-aware transport returns 5 without replaying the RPC
+ok 5 - status-aware transport returns 5 without replaying the RPC
+  ---
+  duration_ms: 2.522834
+  type: 'test'
+  ...
+# Subtest: configured transient status handling still permits a bounded UNAVAILABLE retry
+ok 6 - configured transient status handling still permits a bounded UNAVAILABLE retry
+  ---
+  duration_ms: 4.8745
+  type: 'test'
+  ...
+# Subtest: the shared client enables this installed transport policy without alternative providers or extra transaction retries
+ok 7 - the shared client enables this installed transport policy without alternative providers or extra transaction retries
+  ---
+  duration_ms: 0.425333
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3029.241583

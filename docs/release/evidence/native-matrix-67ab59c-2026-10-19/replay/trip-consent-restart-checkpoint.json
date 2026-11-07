@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c523d9964eedfab26927ba88f9fad1",
+  "tripId": "VEjS1BAGug8HriCFdpRj",
+  "bookingId": "JHig3qlugiLlmEnR1BsI",
+  "scope": "persisted-confirmed-trip-consent-before-process-boundary",
+  "proposalId": "2329dc17891f427314f53ce514c1ad5b61fcd3a45d4dc88650619d4dfa40a608",
+  "decisionCount": 1,
+  "notificationCount": 3,
+  "hashes": {
+    "trip": "8be190da2e3e9a11c5fe18ab46633cef742ae3b8b426975e18d24b0aea3f992e",
+    "booking": "613783ba4c6ff3bef8a214ea0c6a1a0efa63011510fac9f6a71da81fa69f9f5f",
+    "proposal": "851fb3d30ad0c79b65470efe915ac962963a87166024b8a9d3289b12af68d6f0",
+    "notifications": "4c53f4d0b2aebb3476724a5bf932a393425873c3e8b6563eae2e01b5f01ed40f"
+  }
+}

@@ -1,0 +1,55 @@
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugBuildConfig
+> Task :app:processDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :app:compileDebugNavigationResources
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:javaPreCompileDebug
+> Task :app:processDebugAndroidTestManifest
+> Task :app:generateDebugAndroidTestBuildConfig
+> Task :app:processDebugAndroidTestNavigationResources
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:compileDebugAndroidTestNavigationResources
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:generateDebugAndroidTestResources
+> Task :app:parseDebugLocalResources
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:processDebugManifestForPackage
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:mergeDebugResources
+> Task :app:processDebugAndroidTestResources
+> Task :app:processDebugResources
+> Task :app:compileDebugKotlin
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleDebugClassesToCompileJar
+
+> Task :app:compileDebugUnitTestKotlin
+w: file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/app/src/test/java/be/sportgreenmoove/app/services/BookingIntentMappingTest.kt:19:40 Unnecessary non-null assertion (!!) on a non-null receiver of type 'BookingIntentSnapshot'.
+
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+
+> Task :app:compileDebugAndroidTestKotlin
+w: file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatFlowTest.kt:129:71 Unnecessary non-null assertion (!!) on a non-null receiver of type 'String'.
+w: file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt:90:49 'val allNetworks: Array<(out) Network!>' is deprecated. Deprecated in Java.
+w: file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt:120:51 'val allNetworks: Array<(out) Network!>' is deprecated. Deprecated in Java.
+w: file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt:21:85 Unnecessary non-null assertion (!!) on a non-null receiver of type 'Throwable'.
+
+> Task :app:testDebugUnitTest
+
+BUILD SUCCESSFUL in 33s
+37 actionable tasks: 37 executed

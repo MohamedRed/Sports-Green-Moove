@@ -13,13 +13,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,43 +30,22 @@ import be.sportgreenmoove.app.design.SgmColor
 import be.sportgreenmoove.app.design.SgmRadius
 import be.sportgreenmoove.app.design.SgmType
 import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.FileSupportSubmissionStore
+import java.io.File
 import kotlinx.coroutines.launch
 
 @Composable
-fun OptionsReportCard(firebase: FirebaseGateway) {
-    val scope = rememberCoroutineScope()
-    var reason by remember { mutableStateOf("Sécurité") }
-    var description by remember { mutableStateOf("") }
-    var emergency by remember { mutableStateOf(false) }
-    var submitting by remember { mutableStateOf(false) }
-    var message by remember { mutableStateOf<String?>(null) }
+fun OptionsReportCard(uid: String, firebase: FirebaseGateway) {
+    val context = LocalContext.current
+    val state = remember(uid, firebase) { SupportSubmissionState(uid,
+        FileSupportSubmissionStore(File(context.noBackupFilesDir, "pending-support")), firebase::createReport) }
+    DisposableEffect(state) { onDispose { state.close() } }
+    SupportSubmissionCard(state)
+}
 
-    fun submit() {
-        if (submitting) return
-        if (reason.trim().length < 2 || description.trim().length < 5) {
-            message = "Ajoutez une raison et une description précise."
-            return
-        }
-        scope.launch {
-            submitting = true
-            message = null
-            runCatching {
-                firebase.createReport(
-                    subjectType = "other",
-                    subjectId = null,
-                    reason = reason.trim(),
-                    description = description.trim(),
-                    emergency = emergency,
-                )
-            }.onSuccess { reportId ->
-                description = ""
-                message = "Signalement envoyé: $reportId"
-            }.onFailure { error ->
-                message = error.message ?: "Signalement impossible."
-            }
-            submitting = false
-        }
-    }
+@Composable
+internal fun SupportSubmissionCard(state: SupportSubmissionState) {
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -76,21 +57,29 @@ fun OptionsReportCard(firebase: FirebaseGateway) {
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Text("SIGNALER AU SUPPORT", style = SgmType.DisplayLG.copy(color = Sgm.colors.textPrimary, fontSize = 18.sp))
-        OptionsReportInput("Raison", reason, { reason = it }, singleLine = true)
-        OptionsReportInput("Description", description, { description = it }, singleLine = false)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            V2Chip("Urgent", selected = emergency, onClick = { emergency = !emergency }, modifier = Modifier.weight(1f))
-            V2Chip("Support", selected = true, modifier = Modifier.weight(1f))
+        OptionsReportInput("Raison", state.reason, state::reason, state.editable, singleLine = true, testTag = SgmTestTags.SupportReportReasonInput)
+        OptionsReportInput("Description", state.description, state::description, state.editable, singleLine = false, testTag = SgmTestTags.SupportReportDescriptionInput)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("Urgent", modifier = Modifier.weight(1f), style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary))
+            Switch(checked = state.emergency, onCheckedChange = state::emergency, enabled = state.editable,
+                colors = SwitchDefaults.colors(checkedThumbColor = SgmColor.TextOnGreen, checkedTrackColor = SgmColor.GreenDark,
+                    uncheckedThumbColor = Sgm.colors.textSecondary, uncheckedTrackColor = Sgm.colors.bgInput,
+                    uncheckedBorderColor = Sgm.colors.borderStrong, disabledCheckedThumbColor = SgmColor.TextOnGreen,
+                    disabledCheckedTrackColor = SgmColor.GreenDark.copy(alpha = 0.6f)),
+                modifier = Modifier.sgmTestTag("support.urgent"))
         }
-        V2Button(if (submitting) "ENVOI..." else "ENVOYER", onClick = ::submit, full = true)
-        message?.let {
-            Text(it, style = SgmType.BodyXS.copy(color = if (it.startsWith("Signalement")) SgmColor.Green else SgmColor.Orange, fontSize = 12.sp, fontWeight = FontWeight.Bold))
+        V2Button(if (state.busy) "ENVOI..." else if (state.pending != null || !state.ready) "RÉESSAYER" else "ENVOYER",
+            onClick = { if (!state.ready) state.restore() else scope.launch { state.submit() } }, enabled = !state.busy,
+            full = true, testTag = SgmTestTags.SupportReportAction)
+        state.message?.let {
+            Text(it, modifier = Modifier.sgmTestTag("support.submission.message"),
+                style = SgmType.BodyXS.copy(color = Sgm.colors.textPrimary, fontSize = 12.sp, fontWeight = FontWeight.Bold))
         }
     }
 }
 
 @Composable
-private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, singleLine: Boolean) {
+private fun OptionsReportInput(label: String, value: String, onValue: (String) -> Unit, enabled: Boolean, singleLine: Boolean, testTag: String) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -103,9 +92,10 @@ private fun OptionsReportInput(label: String, value: String, onValue: (String) -
         BasicTextField(
             value = value,
             onValueChange = onValue,
+            enabled = enabled,
             textStyle = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Medium),
             singleLine = singleLine,
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().sgmTestTag(testTag),
         )
     }
 }

@@ -1,0 +1,268 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ActiveRideChatEntry.swift",
+      "sha256": "35adfeb7f783a7316f4f9bb6227cd6f51bc2e69e1541ee579455d2ad7fdfad1a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRideChatGateway.swift",
+      "sha256": "869aaddceaabcb27aa3c00b73dac28391f82c5e3026b8c14e885bf145a10295a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRideChatInboxWatch.swift",
+      "sha256": "b09c3d140a81a2b5ca77d3470f0fbf69021b9a2f423c92c27c6dca63b264644f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRideChatSnapshots.swift",
+      "sha256": "614f06eb5b91bd864ca580b96dac34f4e3bb1b3d092bd85c73bef0c6bcc1789a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseRideChatThreadWatch.swift",
+      "sha256": "d1e7d92735e2102363da5b30bbd62b773e8c3ac6f13b82e54110c5facc3d3c84"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PrivateChatDraftFiles.swift",
+      "sha256": "0e13c2d19a7b14e6ad36a26d34801688905a84ff920771261ab198ee254ddf8e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatBookingState.swift",
+      "sha256": "1f10b2bc0cd067c354e6a243cd18d3c0811b25cbe44550f8451941c9dd624340"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatBookingView.swift",
+      "sha256": "0c6a7b06925ae63a23aee1c5c77d08edeceff434bbbd1cb7354ec0ce3cce064a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatCallbackClock.swift",
+      "sha256": "a3c7c95d9c98663516a9b8b9a7ff41870ef60b0ecfb3a1fa09923ed06d97b5ce"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatComposer.swift",
+      "sha256": "a78db99d59fa2c75b7c3a0541baaa0992fbe03649c7f62c8ac00b5bfe16ac956"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatDirectoryContent.swift",
+      "sha256": "a38b0b730c42b227494ee8f87766bda9300af51ea8c2da4cd4386f3c95a862a2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatDirectoryState.swift",
+      "sha256": "9270ca089520180445f2f03f0a69ea26b1a115374d61a51065d7c02df70879c2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatDirectoryTimeline.swift",
+      "sha256": "566802f0778e9b6ec9a099d0be5bfa501a9266ae562bdec31dfb53f8f41da0ab"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatDirectoryWire.swift",
+      "sha256": "7d44e805fa414c68c6eb8d59cb15c47dbee0a19a1c257829caf9410fed02f29a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatDraftStore.swift",
+      "sha256": "0727bf412da9b298b277dcac67135d2b17da3e7e3ad7c8bc808cfd1473bded51"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatEntry.swift",
+      "sha256": "f270cf05704849c5bd53c521276f7b15c3186f62082d6c6771b086fa512ce294"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatIdentity.swift",
+      "sha256": "bd61dcb55117a7dbc614ec39167d9c31db5732360073c88c2e5d7fa9ab5b5417"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatMessageViews.swift",
+      "sha256": "59d05e00ad05305850dc63c03dc11515de029d43b14ac210a628768d9fca4f1a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatMessageWire.swift",
+      "sha256": "a7e64db77bd5973d20e0d8c879bada38fd364456286a1623785f06b8852acd3c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatModels.swift",
+      "sha256": "78c428cbdd7fafe7b7b5c62df4a4d4f560dd97ed15ad6c8c3c399e198e354a5f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatRequest.swift",
+      "sha256": "b94bee2f94617333164e01a4dbb001562739989f56d0f3cfd6ae99dc6a3493d1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatSourcePolicy.swift",
+      "sha256": "0733b4ca0a3b005491c18f9b347d70cf9a8a39ecd00dfc3e617f1689e652ba2f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatThreadState.swift",
+      "sha256": "db8e64e6547252480103f567275bc12a1b6c73e40e6b0f2c6f92a1000d2848c6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatThreadView.swift",
+      "sha256": "f18e930e5b27bec56e4b6e341bc69b82e0129233dc6cea7d0bd3f7afd8826e76"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatTimeline.swift",
+      "sha256": "ff83a07d8be4fc3b5474a4aaa176a05601c8322332891d5c861d1ffb8b1281a9"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatWire.swift",
+      "sha256": "8a9ff15063df0d3015558dc7d92b233a3211aa7df82122304d7149b8a4088630"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestRideChat.swift",
+      "sha256": "f13f2830becf62b90ad0ccfd33a2aeee0c3117b22bdee5a8d293fba535a89c84"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestRideChatWatches.swift",
+      "sha256": "686ee20b5fa8b3342ef57c7464346df416c62cc8812caf12bdd9fdf500fb191d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredRideChatGateway.swift",
+      "sha256": "c37a3a2b8020f06d7fd184776b90db92214f5aa3c8bfafdfa06db3ec7f91ce2a"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatBoundaryChecks.swift",
+      "sha256": "431ad15375f1f17f6377a22a805cf372cd4916062431c65747544740f0f46365"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatDirectoryChecks.swift",
+      "sha256": "4327fdcb9a482837df32427c89a9fc42250313fad2dc0a84061388bb4d4c6ae1"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatDirectoryWireChecks.swift",
+      "sha256": "60b71470417bd7fcb5f19b5f706ad540615cfd8ce7be9c9529cc8df778c172ea"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatProbe.swift",
+      "sha256": "cd89fb4df64b4fd75709990e4f69dcd534fbfe3d61d20fb659a76868fd8cbb88"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatStateChecks.swift",
+      "sha256": "025751b04d63221084eb86dbf9da75ac769a3a0e783313336861b130dfbd6171"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatStorageChecks.swift",
+      "sha256": "aec89d4cf5c87509c0375bf9d01fce1f1178eb45b3c47dceb116ca39c886134d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatTimelineChecks.swift",
+      "sha256": "99b471d0078ec0ace4e14784c58d5dfe7af4700164c752d46f06fcefe61aa5d3"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/RideChatWireChecks.swift",
+      "sha256": "77d3665f61288c988ed05d1c9f29426802de94b5e61272297698ffc0fef5a931"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/UnusedRideChatGateway.swift",
+      "sha256": "2e826668a77f0ca2efedad48f345dda0d334f4e1a9926ea8380e598c39b1a6bc"
+    },
+    {
+      "path": "tests/fixtures/ios-ride-chat-runtime/Context.swift",
+      "sha256": "da851a1a80789329f83582a189237fd7d5c9c42b6c59f16be0b308360431df0c"
+    },
+    {
+      "path": "tests/fixtures/ios-ride-chat-runtime/FirebaseAuth.swift",
+      "sha256": "e8bfd801b8a365afa0aacab179ffc486e58cd4b0ae7f11dbc5082a87be54fc2e"
+    },
+    {
+      "path": "tests/fixtures/ios-ride-chat-runtime/FirebaseFirestore.swift",
+      "sha256": "9679b10afbea7da038c02a3ed26390beed93e23866a90aaf433356d72c2c9d4e"
+    },
+    {
+      "path": "tests/fixtures/ios-ride-chat-runtime/main.swift",
+      "sha256": "90601e798f2c8863ba2255906acdc1f63a87e59269013816e90d132d9da5f12f"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/Empty.swift",
+      "sha256": "96847c7386f58cc8bf2390e3ab689223e3018917fee493d311bfd6b19e92bfba"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/FirebaseAuth.swift",
+      "sha256": "e6d095c2c38cab7d93746ada4e6786fc8949d84d23f0f40ebc112966043f01e7"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/FirebaseFirestore.swift",
+      "sha256": "dd253e440f2bc2d49037c1c7abf2b663d8cd5e78521dea6236b7ec8600844da0"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/FirebaseFunctions.swift",
+      "sha256": "3ad75c8acfed8b696146a82a8c1efc67d666e0b545af8647c04a6b7018e4ab6b"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/GatewayContext.swift",
+      "sha256": "73c8ce3d2dd324ac18e347de2828352f5318c4778124c3744412e25da8cf5ca6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "sha256": "f02528090ca01dd026a4dce4948ae41f9aa098378352d98253ae43572ba39016"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatWire.swift",
+      "sha256": "633c75c22b076f4c15463b0e97f1b15951677f28638036587b7536e683134c69"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift",
+      "sha256": "1855b27151d219e1eb400054a53ff27c4642cc991ca252158c267bd5e4718ad2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "sha256": "571f4e1f1114df06989fe8d7df7a61346255128ed6b240cdfb3ab6c5c445df00"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Models.swift",
+      "sha256": "deee6ae61db47caf50c1453be85d92cda1d02d52bf3514320aa1f757593d5773"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "cbcfc69076fc01d857d463a33c21b3b0441c40e6bb1ecf0e1f48495122f7b8e3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift",
+      "sha256": "fa79aa35094cc5d8f6bbdbfbc2e439c7332718922885872d823089c6e3042e66"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "sha256": "38d448053880c72caa2512dd681dedddbe0449fc6a0cc07b05aa980d597441bc"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AccountWorkScope.swift",
+      "sha256": "7d9526f77596caef3459d7702242e77d69e9816cf0bf47ef74424098c6475500"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SecondaryScreens.swift",
+      "sha256": "87e3832699c41ed94de9b651fe1dfa09d395b76b402789e7122485fdec60f2af"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "82bd5eb1ef5d2be64c9c2766fc81b3ba258ed33c8ec095b0ed7ba7e45115355e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MessagesInboxChecks.swift",
+      "sha256": "f77768c2f565301fa42d16fe8b6482bea5d9030a6965bf476a02e0412d3c23ea"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/RideChatFlowChecks.swift",
+      "sha256": "4b4f3015ca70d832cf2384e567003bbcb58ad7abb855cc87e99a05241300b3ad"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "sha256": "65fa3a79db8de7bfae20ebf378ff7015f0c9f0835e9d8d1c19a073da440b4ed3"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "17472720660b7df6b08a55662dfa734a2290dc63134929ad999d3f3cca868984"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "52f9fdaf8882f1b50836b363e3e4fd0a85814b4cc277a67fb3b3873f77543d8b"
+    },
+    {
+      "path": "scripts/qa/check-ios-ride-chat-runtime.sh",
+      "sha256": "0595d17c5cb5288cead54180a92a89a690d36a5c4ed89d36db3c2cc2cc72c83d"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "96065e072fd97fcb9f15599834772128c3a98989cc9d666f9f9a57aec957f077"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "2d5c44db51b58d71418bcedb199079049dcf8559396713f2235de5a20bf88d99"
+    }
+  ]
+}

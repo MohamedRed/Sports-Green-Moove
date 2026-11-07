@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:48.550Z" hostname="MRRs-MacBook-Air.local" time="0.379">
+  <properties/>
+  <testcase name="theIntentIsDurableBeforeSendingAndCancellationRestoresTheSameLockedRequest" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.293"/>
+  <testcase name="aRejectedRetryCannotEraseAnEarlierUncertainIntent" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.062"/>
+  <testcase name="invalidRecordIdentitiesAndUnboundedStoredTextAreRejected" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.01"/>
+  <testcase name="aFirstDefinitiveRejectionRemovesOnlyThePendingIdAndStillRestoresTheText" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.003"/>
+  <testcase name="aFailedEditKeepsTypedTextAndPreventsNetworkSubmissionUntilStorageWorks" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.004"/>
+  <testcase name="anUnsentDraftIsRecoveredByANewStateWithoutAnyAutomaticSend" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.002"/>
+  <testcase name="aSuccessfulSendClearsDurableStateAndANewInstanceStaysEmpty" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.002"/>
+  <testcase name="anUnreadableDraftCannotCreateAnEmptyComposerOrOverwriteTheRecord" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.001"/>
+  <testcase name="accountsTeamsAndRecreatedTeamInstancesCannotLoadEachOthersDrafts" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.0"/>
+  <testcase name="failureToPersistAnAcknowledgementKeepsItsOriginalIdentityAndNeverSendsAutomatically" classname="be.sportgreenmoove.app.ui.TeamConversationDraftStateTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.RidePaymentVerificationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.421Z" hostname="local-test-host" time="0.001">
+  <properties></properties>
+  <testcase name="bindsCheckoutToExactOwnerBookingAndFrozenAmount" classname="be.sportgreenmoove.app.domain.RidePaymentVerificationTest" time="0.0"></testcase>
+  <testcase name="acceptsOnlyExplicitServerStatesForTheSameAttempt" classname="be.sportgreenmoove.app.domain.RidePaymentVerificationTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

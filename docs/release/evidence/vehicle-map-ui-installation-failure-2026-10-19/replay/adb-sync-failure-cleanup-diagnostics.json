@@ -1,0 +1,43 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b022176f2bb9883cb2096453730928b8",
+  "phase": "failure-cleanup",
+  "recordedAt": "2026-10-19T20:21:49.134Z",
+  "scope": "read-only-sync-failure-diagnostics-not-copy-or-flow-verification",
+  "observations": [
+    {
+      "id": "directory-stat",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "stat: '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence': No such file or directory\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "shell-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "ls: /sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence: No such file or directory\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "sync-listing",
+      "collected": true,
+      "value": {
+        "entryCount": 0,
+        "maxNameBytes": 0,
+        "namesAreSimple": true,
+        "pngCount": 0,
+        "jsonCount": 0
+      }
+    },
+    {
+      "id": "storage-service-log",
+      "collected": true,
+      "value": ""
+    }
+  ]
+}

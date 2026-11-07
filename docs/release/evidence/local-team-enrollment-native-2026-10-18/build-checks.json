@@ -1,0 +1,46 @@
+{
+  "scope": "local-android-unit-and-test-apk-build-not-native-screen-execution",
+  "buildReportedAt": "2026-10-18T20:41:20.368Z",
+  "unitCaseCount": 16,
+  "unitSuites": [
+    {
+      "name": "be.sportgreenmoove.app.ui.TeamEnrollmentStateTest",
+      "count": 12,
+      "testedAt": "2026-10-18T20:40:04.855Z"
+    },
+    {
+      "name": "be.sportgreenmoove.app.services.TeamEnrollmentWireTest",
+      "count": 4,
+      "testedAt": "2026-10-18T20:40:04.618Z"
+    }
+  ],
+  "nativeComponentCasesCompiled": 4,
+  "nativeTestApkCompiled": true,
+  "nativeUiExecuted": false,
+  "sdkConnectedEnrollmentProven": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "artifacts": {
+    "team-state-unit-tests.xml": "7e1d3c40ecfa066fd383924cc8b99f1edb23b03e122f367ae459159a50281ec4",
+    "team-wire-unit-tests.xml": "98846b8a25cc4ba4bc0ac28281337c7ca33e3cbbad99804193063902cec30d90"
+  },
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt": "43fb28d6733bd4c6c48c15937656eceb112b64ddcafd59e5ebb36a265f98b5cd",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentGateway.kt": "0d08ec1f27669008aa1969960126b2d3c0c7af8e0419e45bd637f124af0899b2",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentWire.kt": "4aa6f6ed3ec90695d254977e014e6c662a84af43db8ec68aa8972240e0793e62",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamEnrollmentGateway.kt": "ce75f71b494dea3a011609450ae8b8a4cf7d1f5f296a58a9efd8efb984c15a63",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt": "e7f8805429f46fae00f88a17781e1dca94c829fd8bdd6dc68370d8c3f30518fd",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "ac51f2a31dd9dd59ab402696ce19d754e4de2785ed49c12a554da6333b300a92",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentState.kt": "bab73fcf3a7c766ca4e22e0d26cc15d962f9006e9f23ca21efc9679e1a0bd68a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentRoute.kt": "52e801f96d22fa52c37a3f0dada555d3531e6a53dd3dd21e49f38069deff07f5",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentScreen.kt": "8c173b9bf07f7ddc41887916679db481ea06c14184782976790ecc748930d561",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentOptionDialog.kt": "a83db87852cde83c5adbd49527ceceab413b68a1828362953874b623bcd5af61",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsRoute.kt": "f05dd27ec46623cc9c9faa8830a4e45a7c4a098c58e8b30448535177ca5d853c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt": "5a2590f5eccb8c091cec77916096c2831754c7dc27a57098981cf4df267f0dd7",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "c0df122e7e4aec8dbe0d7afaaaac95a81ce36aac78c2e0f61c96aa784e8b155e",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt": "037280748687ac0644421a8fe7b1069619c3e3ae0b04a0995e7cc89f20f9170d",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt": "3dedb9c5ef4a4dc6b3c356e8b109b1595b816629cd933746b32feb4cb69b7023",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt": "268f8a6226b92bc6a9b250ecd1723ac16f9cdfaedef18fef6eecb1e4834fafaf",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt": "73a8a24d9ee0a096327b86bd2434cf96044ddc0004150e036fa54799e079c11a"
+  }
+}

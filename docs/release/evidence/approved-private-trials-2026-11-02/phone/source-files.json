@@ -1,0 +1,15 @@
+{
+  "scripts/qa/start-child-invitation-browser.mjs": "2ca0f60b87cc79b5db452d189e13d2624376ed2b4be7048d52c005e24f96d010",
+  "scripts/qa/child-invitation-browser-runtime.mjs": "3c259dad9bd1d8237afdb86e2b8bf668d4ad40634349659bcc3b18d9a51d380b",
+  "admin/src/main.tsx": "785ffa0019838ee3b1bfaa92bdcc25b3cfe0ba91bb9a943f573f7524053b30a1",
+  "admin/src/ChildInvitationPage.tsx": "6a06e81b3ef54f7397e38a4943f77588bc1c1d0bc740a23175e9c05774d87ad8",
+  "admin/src/childInvitationLink.ts": "66ad6882a9c8ff54fa5a46073b37df060a5f810675193dfb22256c68fac99848",
+  "admin/src/childInvitationGateway.ts": "6543a5c7da609d44b25c91d3f430489b5b854a6ac743603dd8dceb3d4f50b5ba",
+  "admin/src/firebase.ts": "c3861730465b52064e60da25669a525bb7143641e53a6f302c7ea7af2aa5979f",
+  "admin/src/localFirebaseConfig.ts": "5bbb9b69e7ef0b23b20dccd544ef880352d302e4fbe353eabf36fe4c11f65910",
+  "scripts/qa/invitation-private-alias.mjs": "b61df0bbfd30525a0542ff45355718025446a2332b3be3b6c20e413ecd6307c0",
+  "scripts/qa/invitation-same-origin-proxy.mjs": "9f2fc024f2b1e7386856ff02402ddb51e905e1d84726572320c60c09fcde9a8e",
+  "admin/src/childInvitationTestEndpoints.ts": "b9a2c49e7d1eaf85ca8ac6e764659b348401d2f2ecb0a518a238b06bae9df1b6",
+  "scripts/qa/manual-child-account-phone-session.mjs": "4b9d2f85c5a4e90a422d397002c7297aac341b7eefdb85ee17d08c04fdc51e59",
+  "scripts/qa/child-account-phone-checkpoints.mjs": "ddcdf39866c16e3ced1b24084c494c7169fbffda291ea0b4b84cd870a64e5343"
+}

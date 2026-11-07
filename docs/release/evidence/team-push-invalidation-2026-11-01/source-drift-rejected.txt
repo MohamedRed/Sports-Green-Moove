@@ -1,0 +1,117 @@
+Passed 22 durable dispatch cases with injected transport only.
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  functions: Stopping Functions Emulator
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  eventarc: Stopping Eventarc Emulator
+i  tasks: Stopping Cloud Tasks Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    'firestore.indexes.json': '855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee',
+    'firestore.rules': 'cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240',
+    'functions/src/__tests__/team-push-dispatch.test.ts': '6cbf69368be159e0f14dae210f0b99f5ed70f445360ae3a5920966bb70849c0e',
+    'functions/src/callables/teamPushAlert.ts': '49ec88782d19064c953684dd49b279894e3f099e83b2bd18fc523d7d175fbc00',
+...
+    'scripts/qa/team-push-alert-sources.mjs': 'fb4a4726943d0358639363d19448dff32b8e0dd7275fe519f7dcc647d36883a3',
++   'scripts/qa/team-push-dispatch-sources.mjs': 'f3c4a4c3b54f68c0f8dc2131848618ee48f05c713705c165aa16377129165b3b',
+-   'scripts/qa/team-push-dispatch-sources.mjs': '8b8b5aeca54af3f71e312e88f6ff62a32fb6659fdfd920e9ab9a492d31293522',
+    'scripts/qa/team-push-invalidation-checks.mjs': '806e4005febe67cd0fc4c4048ba17330ad3189c9dedcdc12eb7a7acbc7b96b09',
+    'scripts/qa/team-push-registration-sources.mjs': 'eff7802e5a19c0a2ef5a9ef7ae8bdc38a496b019d0d20bc3450d176ce9af7051'
+  }
+
+    at file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/run-local-team-conversation.mjs:36:34
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: {
+    'functions/src/domain/teamPushRegistration.ts': 'df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13',
+    'functions/src/services/teamPushRegistration.ts': 'e2b15a137e51fdbecfb0a510a451ff08c2ad457b82bd705f455fd5a037e9945e',
+    'functions/src/callables/teamPushRegistration.ts': '2305ef7d4b14bfb58fcea3f95b3ee0ea68956830ac6153332f8b6f432d74240c',
+    'functions/src/index.ts': 'cc0a2de2dc80eb4b4a79fa9e1cda98d45977149252c7d132c6193084e405fb44',
+    'firestore.rules': 'cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240',
+    'firestore.indexes.json': '855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee',
+    'scripts/qa/local-team-push-registration-suite.mjs': '93da0813efa16532f23d877579557401ebfa35aa07481f9945c8821b38e9099c',
+    'scripts/qa/run-local-team-conversation.mjs': '3c7f633207b04e7fbd5e288a1b2f0f8e6b85073e8efd792dda68eb7ba4ac1466',
+    'scripts/qa/team-push-registration-sources.mjs': 'eff7802e5a19c0a2ef5a9ef7ae8bdc38a496b019d0d20bc3450d176ce9af7051',
+    'functions/src/services/teamConversationAccounts.ts': '8cb300424ed492d730d5e63f169ebcd0e3c3ee1af1853e205118965c43318371',
+    'functions/src/services/teamConversationAuthority.ts': 'b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5',
+    'functions/src/services/teamConversationAlerts.ts': '5552e5ed5992a33871df1a69cf181d1e5496ff132e1860f17133f8868feb7dc7',
+    'functions/src/services/teamConversationOptions.ts': '530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad',
+    'functions/src/services/teamNotificationAccess.ts': 'dd3ad6668c51e8744cf2eb5af7f74bd1766df5f35bd437d8ce875b02888c730b',
+    'functions/src/domain/teamPushAlert.ts': 'adfdfd14155c94063dabd6dd66d264477e3e46f8772c64e6235480141541be60',
+    'functions/src/services/teamPushAlert.ts': 'b34d884dec2b1d4beaa341425b78a16664ae727611bfb0ae17f2afd80327b5a8',
+    'functions/src/callables/teamPushAlert.ts': '49ec88782d19064c953684dd49b279894e3f099e83b2bd18fc523d7d175fbc00',
+    'functions/src/domain/teamConversationAlerts.ts': '694885c4087669dffca3874a57049f92c56d3c857f4cf835faef115958bca790',
+    'functions/src/domain/teamConversation.ts': 'b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a',
+    'functions/src/services/teamEnrollmentAuthority.ts': 'bc378c9f2b345401b1e2d8397452a170501992092caebcea563624c66e6152e0',
+    'scripts/qa/local-team-push-alert-suite.mjs': '70900e20649e8b04e89311cd0ec9d346dda00c3d3fce388dd39060803bd876a1',
+    'scripts/qa/team-push-alert-sources.mjs': 'fb4a4726943d0358639363d19448dff32b8e0dd7275fe519f7dcc647d36883a3',
+    'scripts/qa/team-alert-fixture.mjs': 'ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde',
+    'scripts/qa/local-flow-client.mjs': '82a5a559b11c79888a3d426e582748d905f2f78ad9e93a5c806d0bea26dbb641',
+    'functions/src/domain/teamPushDispatch.ts': '843fcc5559285d8240669621e2e067b785136b4643caadb331b5303043d35b4e',
+    'functions/src/teamPushDispatch.ts': '573098561305cafaf1bd36ad8f83b1bf2bf88d24d310b5eb9ba731c771b18c81',
+    'functions/src/services/teamPushDispatchAuthority.ts': '51e985b4bbae951c642d77ae5570303b1f70c1cb78c70081ebe06012383eb6bf',
+    'functions/src/services/teamPushDispatchPlan.ts': '039348a3411669a8734c82d56fe7239da4348b8d37adc9d271fc288382e2d598',
+    'functions/src/services/teamPushDispatchDelivery.ts': '498bd8953779ab7398c0fa7ed6de19d4c557c8c230b6d96a0b78deedc981d2b3',
+    'functions/src/services/teamPushDispatch.ts': '0c45889a767a3fc22e838ac24a7984f960edf6dc038501d8ac24ab178dd19c77',
+    'functions/src/services/teamPushProvider.ts': '34cd405a0bb24f338a4f7b97e472d925532d7c7cb1a69133b4aa5099fdd8bd22',
+    'functions/src/services/teamPushInvalidation.ts': '892654c5d9fcc549d052b58689f83c22cc135d9bd94d7f22fed226344f63907a',
+    'functions/src/__tests__/team-push-dispatch.test.ts': '6cbf69368be159e0f14dae210f0b99f5ed70f445360ae3a5920966bb70849c0e',
+    'scripts/qa/team-push-dispatch-sources.mjs': 'f3c4a4c3b54f68c0f8dc2131848618ee48f05c713705c165aa16377129165b3b',
+    'scripts/qa/local-team-push-dispatch-suite.mjs': 'feee6ef4ff9d3ea33f023c98c91ecc804be720bc94302575451c4b12389ac1e0',
+    'scripts/qa/team-push-invalidation-checks.mjs': '806e4005febe67cd0fc4c4048ba17330ad3189c9dedcdc12eb7a7acbc7b96b09'
+  },
+  expected: {
+    'functions/src/domain/teamPushRegistration.ts': 'df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13',
+    'functions/src/services/teamPushRegistration.ts': 'e2b15a137e51fdbecfb0a510a451ff08c2ad457b82bd705f455fd5a037e9945e',
+    'functions/src/callables/teamPushRegistration.ts': '2305ef7d4b14bfb58fcea3f95b3ee0ea68956830ac6153332f8b6f432d74240c',
+    'functions/src/index.ts': 'cc0a2de2dc80eb4b4a79fa9e1cda98d45977149252c7d132c6193084e405fb44',
+    'firestore.rules': 'cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240',
+    'firestore.indexes.json': '855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee',
+    'scripts/qa/local-team-push-registration-suite.mjs': '93da0813efa16532f23d877579557401ebfa35aa07481f9945c8821b38e9099c',
+    'scripts/qa/run-local-team-conversation.mjs': '3c7f633207b04e7fbd5e288a1b2f0f8e6b85073e8efd792dda68eb7ba4ac1466',
+    'scripts/qa/team-push-registration-sources.mjs': 'eff7802e5a19c0a2ef5a9ef7ae8bdc38a496b019d0d20bc3450d176ce9af7051',
+    'functions/src/services/teamConversationAccounts.ts': '8cb300424ed492d730d5e63f169ebcd0e3c3ee1af1853e205118965c43318371',
+    'functions/src/services/teamConversationAuthority.ts': 'b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5',
+    'functions/src/services/teamConversationAlerts.ts': '5552e5ed5992a33871df1a69cf181d1e5496ff132e1860f17133f8868feb7dc7',
+    'functions/src/services/teamConversationOptions.ts': '530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad',
+    'functions/src/services/teamNotificationAccess.ts': 'dd3ad6668c51e8744cf2eb5af7f74bd1766df5f35bd437d8ce875b02888c730b',
+    'functions/src/domain/teamPushAlert.ts': 'adfdfd14155c94063dabd6dd66d264477e3e46f8772c64e6235480141541be60',
+    'functions/src/services/teamPushAlert.ts': 'b34d884dec2b1d4beaa341425b78a16664ae727611bfb0ae17f2afd80327b5a8',
+    'functions/src/callables/teamPushAlert.ts': '49ec88782d19064c953684dd49b279894e3f099e83b2bd18fc523d7d175fbc00',
+    'functions/src/domain/teamConversationAlerts.ts': '694885c4087669dffca3874a57049f92c56d3c857f4cf835faef115958bca790',
+    'functions/src/domain/teamConversation.ts': 'b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a',
+    'functions/src/services/teamEnrollmentAuthority.ts': 'bc378c9f2b345401b1e2d8397452a170501992092caebcea563624c66e6152e0',
+    'scripts/qa/local-team-push-alert-suite.mjs': '70900e20649e8b04e89311cd0ec9d346dda00c3d3fce388dd39060803bd876a1',
+    'scripts/qa/team-push-alert-sources.mjs': 'fb4a4726943d0358639363d19448dff32b8e0dd7275fe519f7dcc647d36883a3',
+    'scripts/qa/team-alert-fixture.mjs': 'ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde',
+    'scripts/qa/local-flow-client.mjs': '82a5a559b11c79888a3d426e582748d905f2f78ad9e93a5c806d0bea26dbb641',
+    'functions/src/domain/teamPushDispatch.ts': '843fcc5559285d8240669621e2e067b785136b4643caadb331b5303043d35b4e',
+    'functions/src/teamPushDispatch.ts': '573098561305cafaf1bd36ad8f83b1bf2bf88d24d310b5eb9ba731c771b18c81',
+    'functions/src/services/teamPushDispatchAuthority.ts': '51e985b4bbae951c642d77ae5570303b1f70c1cb78c70081ebe06012383eb6bf',
+    'functions/src/services/teamPushDispatchPlan.ts': '039348a3411669a8734c82d56fe7239da4348b8d37adc9d271fc288382e2d598',
+    'functions/src/services/teamPushDispatchDelivery.ts': '498bd8953779ab7398c0fa7ed6de19d4c557c8c230b6d96a0b78deedc981d2b3',
+    'functions/src/services/teamPushDispatch.ts': '0c45889a767a3fc22e838ac24a7984f960edf6dc038501d8ac24ab178dd19c77',
+    'functions/src/services/teamPushProvider.ts': '34cd405a0bb24f338a4f7b97e472d925532d7c7cb1a69133b4aa5099fdd8bd22',
+    'functions/src/services/teamPushInvalidation.ts': '892654c5d9fcc549d052b58689f83c22cc135d9bd94d7f22fed226344f63907a',
+    'functions/src/__tests__/team-push-dispatch.test.ts': '6cbf69368be159e0f14dae210f0b99f5ed70f445360ae3a5920966bb70849c0e',
+    'scripts/qa/team-push-dispatch-sources.mjs': '8b8b5aeca54af3f71e312e88f6ff62a32fb6659fdfd920e9ab9a492d31293522',
+    'scripts/qa/local-team-push-dispatch-suite.mjs': 'feee6ef4ff9d3ea33f023c98c91ecc804be720bc94302575451c4b12389ac1e0',
+    'scripts/qa/team-push-invalidation-checks.mjs': '806e4005febe67cd0fc4c4048ba17330ad3189c9dedcdc12eb7a7acbc7b96b09'
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.22.0

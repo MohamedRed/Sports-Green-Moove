@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-28T19:16:51.010Z",
+  "commandExitCodes": {
+    "services": 0,
+    "contention": 0
+  },
+  "endpointsClosed": true,
+  "ownedProcessesAbsent": true,
+  "runtimePathsAbsent": true,
+  "runtimes": [
+    "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-JYRaPM",
+    "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-g77pwG"
+  ],
+  "method": "closed-endpoint-bind-tests-and-no-owned-runtime-command-or-cwd-references-after-successful-launcher-exits"
+}

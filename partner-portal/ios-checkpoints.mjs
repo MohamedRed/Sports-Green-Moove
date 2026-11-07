@@ -1,0 +1,57 @@
+import {iosMvpBaseline} from './ios-mvp-baseline.mjs';
+import {iosSearchSafety} from './ios-search-safety.mjs';
+import {iosFixtureObservation} from './ios-fixture-observation.mjs';
+import {iosAccountRefresh} from './ios-account-refresh.mjs';
+import {iosFixturePass} from './ios-fixture-pass.mjs';
+import {iosAuthentication} from './ios-authentication.mjs';
+import {iosProfileInitialization} from './ios-profile-initialization.mjs';
+import {iosLocationStop} from './ios-location-stop.mjs';
+import {iosProfileFixtureResult} from './ios-profile-fixture-result.mjs';
+import {iosRideOwnership} from './ios-ride-ownership.mjs';
+import {iosAccountWork} from './ios-account-work.mjs';
+import {iosPaymentOwnership} from './ios-payment-ownership.mjs';
+import {iosPaymentScreen} from './ios-payment-screen.mjs';
+import {iosBuildTimeout} from './ios-build-timeout.mjs';
+import {iosBookingOwnership} from './ios-booking-ownership.mjs';
+import {iosPermissionBuild} from './ios-permission-build.mjs';
+import {iosCurrentFixturePass} from './ios-current-fixture-pass.mjs';
+import {iosLocationShutdown} from './ios-location-shutdown.mjs';
+import {iosPreparationTimeout} from './ios-preparation-timeout.mjs';
+import {iosEmergencyContact} from './ios-emergency-contact.mjs';
+import {iosSignOutFixturePass} from './ios-signout-fixture-pass.mjs';
+import {iosParentContact} from './ios-parent-contact.mjs';
+import {iosMessageOwnership} from './ios-message-ownership.mjs';
+import {iosContactRequest} from './ios-contact-request.mjs';
+import {iosTeamChat} from './ios-team-chat.mjs';
+import {iosReceivedRatings} from './ios-received-ratings.mjs';
+import {iosBuildAudit} from './ios-build-audit.mjs';
+import {iosMembership} from './ios-membership.mjs';
+import {iosProfileCity} from './ios-profile-city.mjs';
+import {iosCurrentFixtureFailure} from './ios-current-fixture-failure.mjs';
+import {iosInputControls} from './ios-input-controls.mjs';
+import {iosRideChat} from './ios-ride-chat.mjs';
+import {iosSearchOwnership} from './ios-search-ownership.mjs';
+import {iosSearchContract} from './ios-search-contract.mjs';
+import {iosA37FixturePass} from './ios-a37-fixture-pass.mjs';
+
+export const iosCheckpoints = {
+  iosMvpBaseline, iosSearchSafety, iosFixtureObservation, iosAccountRefresh, iosFixturePass,
+  iosAuthentication, iosProfileInitialization, iosLocationStop, iosProfileFixtureResult,
+  iosRideOwnership, iosAccountWork, iosPaymentOwnership, iosPaymentScreen, iosBuildTimeout,
+  iosBookingOwnership, iosPermissionBuild, iosCurrentFixturePass, iosLocationShutdown, iosPreparationTimeout,
+  iosEmergencyContact, iosSignOutFixturePass,
+  iosParentContact,
+  iosMessageOwnership,
+  iosContactRequest,
+  iosTeamChat,
+  iosReceivedRatings,
+  iosBuildAudit,
+  iosMembership,
+  iosProfileCity,
+  iosCurrentFixtureFailure,
+  iosInputControls,
+  iosRideChat,
+  iosSearchOwnership,
+  iosSearchContract,
+  iosA37FixturePass,
+};

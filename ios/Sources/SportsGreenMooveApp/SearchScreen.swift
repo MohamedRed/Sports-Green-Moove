@@ -2,63 +2,62 @@ import SwiftUI
 
 struct SearchScreen: View {
     @Environment(AppState.self) private var appState
-    @State private var originInput = ""
-    @State private var destinationInput = ""
-    @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(86_400))
-    @State private var seatsNeeded = 1
-    @State private var baggage = "medium"
-    @State private var returnTrip = false
-    @State private var childTracking = true
-    @State private var guardianConsent = true
-    @State private var selectedChildId: String?
+    @Environment(\.scenePhase) private var phase
+    @State private var selection: SearchSelectionState
+    let access: AccountAccess
+
+    init(appState: AppState, access: AccountAccess) {
+        self.access = access
+        _selection = State(initialValue: SearchSelectionState(appState: appState, access: access))
+    }
 
     var body: some View {
-        SGMScreen(spacing: 10) {
+        @Bindable var selection = selection
+        SGMScreen(spacing: 10, testID: UITestIdentifier.searchScreen) {
             SGMTopBar(title: "RECHERCHE", showsBack: true)
             VStack(spacing: 10) {
                 PlaceSearchField(
                     title: "Départ",
-                    text: $originInput,
+                    text: $selection.originInput,
                     selected: appState.searchOrigin,
                     suggestions: appState.originSuggestions,
-                    onSuggest: { Task { await appState.suggestPlaces(input: originInput, target: .origin) } },
-                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .origin) } }
+                    busy: !appState.searchActivity.available(.origin, access: access),
+                    onSuggest: {
+                        let input = selection.originInput
+                        Task { await appState.suggestPlaces(input: input, target: .origin, access: access) }
+                    },
+                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .origin, access: access) } }
                 )
                 PlaceSearchField(
                     title: "Destination",
-                    text: $destinationInput,
+                    text: $selection.destinationInput,
                     selected: appState.searchDestination,
                     suggestions: appState.destinationSuggestions,
-                    onSuggest: { Task { await appState.suggestPlaces(input: destinationInput, target: .destination) } },
-                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination) } }
+                    busy: !appState.searchActivity.available(.destination, access: access),
+                    onSuggest: {
+                        let input = selection.destinationInput
+                        Task { await appState.suggestPlaces(input: input, target: .destination, access: access) }
+                    },
+                    onSelect: { suggestion in Task { await appState.selectPlace(suggestion, target: .destination, access: access) } }
                 )
-                SearchTextField(title: "Date ISO", text: $departureIso)
+                SearchTextField(title: "Date ISO", text: $selection.form.desiredDepartureAtIso)
                 SearchChildSelector(
                     children: appState.children,
-                    selectedChildId: $selectedChildId
+                    selectedChildId: $selection.form.childUserId
                 )
                 SearchOptions(
-                    seatsNeeded: $seatsNeeded,
-                    baggage: $baggage,
-                    returnTrip: $returnTrip,
-                    childTracking: $childTracking,
-                    guardianConsent: $guardianConsent
+                    seatsNeeded: $selection.form.seatsNeeded,
+                    baggage: $selection.form.baggage,
+                    returnTrip: $selection.form.returnTrip,
+                    childTracking: $selection.form.requireChildTracking,
+                    guardianConsent: $selection.form.guardianConsent
                 )
-                SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET") {
-                    Task {
-                        await appState.runSearch(
-                            form: SearchFormState(
-                                desiredDepartureAtIso: departureIso,
-                                seatsNeeded: seatsNeeded,
-                                baggage: baggage,
-                                returnTrip: returnTrip,
-                                requireChildTracking: childTracking,
-                                guardianConsent: guardianConsent,
-                                childUserId: selectedChildId
-                            )
-                        )
+                SGMButton(title: appState.searchLoading ? "RECHERCHE EN COURS" : "TROUVER UN TRAJET", testID: UITestIdentifier.searchAction) {
+                    if let request = appState.prepareSearch(form: selection.form, access: access) {
+                        Task { await appState.runSearch(request) }
                     }
                 }
+                .disabled(!appState.searchActivity.available(.matches, access: access))
             }
             .padding(.horizontal, SGMSpace.padScreen)
 
@@ -66,8 +65,10 @@ struct SearchScreen: View {
             VStack(spacing: 8) {
                 ForEach(appState.searchMatches) { match in
                     MatchCard(match: match) {
-                        Task { await appState.requestSearchMatch(match, childId: selectedChildId) }
+                        let submittedForm = selection.form
+                        Task { await appState.requestSearchMatch(match, form: submittedForm, access: access) }
                     }
+                    .disabled(appState.bookingBusy || appState.searchActivity.access?.context != access.context)
                 }
                 if !appState.searchLoading && appState.searchMatches.isEmpty {
                     Text("Choisissez un départ, une destination et lancez la recherche.")
@@ -80,24 +81,32 @@ struct SearchScreen: View {
             .padding(.horizontal, SGMSpace.padScreen)
         }
         .onAppear {
-            reconcileSelectedChild(appState.children)
+            selection.reconcileChildren(appState.children)
         }
         .onChange(of: appState.children) { _, children in
-            reconcileSelectedChild(children)
+            selection.reconcileChildren(children)
         }
+        .onChange(of: appState.session?.uid) { _, _ in
+            selection.reset(children: appState.children)
+        }
+        .task(id: SearchSceneKey(phase: phase, waiting: access.waitingForEarlierWork)) {
+            if phase == .active && !access.waitingForEarlierWork { appState.activateSearch(access: access) }
+            else { appState.suspendSearch(access: access) }
+        }
+        .onChange(of: phase) { _, next in if next != .active { appState.suspendSearch(access: access) } }
+        .onDisappear { appState.suspendSearch(access: access) }
     }
 
-    private func reconcileSelectedChild(_ children: [ChildSummary]) {
-        guard !children.contains(where: { $0.id == selectedChildId }) else { return }
-        selectedChildId = children.first?.id
-    }
 }
+
+private struct SearchSceneKey: Equatable { let phase: ScenePhase; let waiting: Bool }
 
 private struct PlaceSearchField: View {
     let title: String
     @Binding var text: String
     let selected: ResolvedPlace?
     let suggestions: [PlaceSuggestion]
+    let busy: Bool
     let onSuggest: () -> Void
     let onSelect: (PlaceSuggestion) -> Void
 
@@ -106,6 +115,7 @@ private struct PlaceSearchField: View {
             HStack(spacing: 8) {
                 SearchTextField(title: title, text: $text)
                 SGMButton(title: "Chercher", variant: .ghost, full: false, action: onSuggest)
+                    .disabled(busy)
             }
             if let selected {
                 Text(selected.formattedAddress)
@@ -115,6 +125,7 @@ private struct PlaceSearchField: View {
             }
             ForEach(suggestions.prefix(4)) { suggestion in
                 SuggestionRow(suggestion: suggestion) { onSelect(suggestion) }
+                    .disabled(busy)
             }
         }
     }
@@ -176,7 +187,8 @@ private struct SearchOptions: View {
         VStack(spacing: 8) {
             HStack(spacing: 6) {
                 ForEach([1, 2, 3], id: \.self) { seats in
-                    SGMChip(text: "\(seats) place\(seats > 1 ? "s" : "")", selected: seatsNeeded == seats) { seatsNeeded = seats }
+                    SGMChip(text: "\(seats) place\(seats > 1 ? "s" : "")", selected: seatsNeeded == seats,
+                        testID: "search.seats.\(seats)") { seatsNeeded = seats }
                 }
             }
             HStack(spacing: 6) {
@@ -186,8 +198,10 @@ private struct SearchOptions: View {
             }
             HStack(spacing: 6) {
                 SGMChip(text: "Retour", selected: returnTrip) { returnTrip.toggle() }
-                SGMChip(text: "Suivi enfant", selected: childTracking) { childTracking.toggle() }
-                SGMChip(text: "Consentement", selected: guardianConsent) { guardianConsent.toggle() }
+                SGMChip(text: "Suivi enfant", selected: childTracking, testID: "search.child-tracking") { childTracking.toggle() }
+                    .accessibilityValue(childTracking ? "Activé" : "Désactivé")
+                SGMChip(text: "Consentement", selected: guardianConsent, testID: "search.consent") { guardianConsent.toggle() }
+                    .accessibilityValue(guardianConsent ? "Accordé" : "Non accordé")
             }
         }
     }
@@ -233,7 +247,7 @@ private struct MatchCard: View {
                     Text("+\(detourMinutes) min détour")
                 }
                 Spacer()
-                SGMButton(title: "Demander", full: false, action: action)
+                SGMButton(title: "Demander", full: false, testID: UITestIdentifier.bookingRequestAction, action: action)
             }
             .font(.sgmBody(12, weight: .semibold))
             .foregroundStyle(SGM.textSecondary)

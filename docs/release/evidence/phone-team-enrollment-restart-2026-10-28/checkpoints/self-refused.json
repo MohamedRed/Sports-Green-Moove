@@ -1,0 +1,110 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "614b78d6896cf1e31a2323ff23ce1b2f",
+  "recordedAt": "2026-10-28T15:31:33.829Z",
+  "scope": "independent-local-persisted-team-checkpoint-not-ui-or-release-proof",
+  "phase": "self-refused",
+  "selfStatus": "refused",
+  "selfRevision": 2,
+  "childStatus": null,
+  "childRevision": 0,
+  "enrollmentCount": 1,
+  "eventCount": 2,
+  "identity": {
+    "clubId": "sgm-qa-team-ui-club",
+    "teamId": "sgm-qa-team-ui-team",
+    "childId": "sgm-qa-team-ui-child",
+    "parentId": "sgm-qa-parent",
+    "managerId": "sgm-qa-club-manager",
+    "teamInstanceId": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90",
+    "selfEnrollmentId": "608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+    "childEnrollmentId": "5684aac3c51e10c93d09886e8bcd2f97c0e0c5d4257590641e55524cacc72ec3"
+  },
+  "state": {
+    "enrollments": [
+      {
+        "id": "608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90",
+        "teamCreatedAt": {
+          "_seconds": 1793200015,
+          "_nanoseconds": 146802000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "refused",
+        "revision": 2,
+        "lastActorUserId": "sgm-qa-club-manager",
+        "createdAt": {
+          "_seconds": 1793200792,
+          "_nanoseconds": 614000000
+        },
+        "updatedAt": {
+          "_seconds": 1793201269,
+          "_nanoseconds": 269000000
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "74c16f49c6fdb1638169bbf24d8d77063ef9285ffc6c9f86c3aa23a8e9823824",
+        "enrollmentId": "608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "734ce7bc57c0891cc89824cc46798ab4441a83af20e96e99962a969a60094d07",
+        "createdAt": {
+          "_seconds": 1793200792,
+          "_nanoseconds": 614000000
+        }
+      },
+      {
+        "id": "f96f09f19c53dee639ff7cab8dc2bf992b6c403dbd810f558536944eed4abeeb",
+        "enrollmentId": "608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-club-manager",
+        "action": "refuse",
+        "previousStatus": "requested",
+        "status": "refused",
+        "revision": 2,
+        "fingerprint": "6dc84e1c1d5db43eaeb2919f86522b8ea785e5805892516fa098644aaabb8932",
+        "createdAt": {
+          "_seconds": 1793201269,
+          "_nanoseconds": 269000000
+        }
+      }
+    ],
+    "guardian": {
+      "childId": "sgm-qa-team-ui-child",
+      "parentUserId": "sgm-qa-parent",
+      "clubId": "sgm-qa-team-ui-club",
+      "createdAt": {
+        "_seconds": 1793200016,
+        "_nanoseconds": 273000000
+      },
+      "lastActorUserId": "sgm-qa-club-manager",
+      "revision": 2,
+      "status": "verified",
+      "updatedAt": {
+        "_seconds": 1793200016,
+        "_nanoseconds": 297000000
+      }
+    }
+  }
+}

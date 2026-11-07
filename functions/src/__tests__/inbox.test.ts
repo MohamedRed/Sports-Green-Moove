@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { buildInboxChats, buildInboxReviewPrompts, mapInboxNotifications } from "../domain/inbox.js";
+import { buildInboxChats, buildInboxReviewPrompts, mapInboxNotifications, compareInboxNotificationTimes } from "../domain/inbox.js";
 
 describe("client inbox", () => {
+  it("merges alert sources without changing supported legacy date representations", () => {
+    const rows=[{id:"string",data:{createdAt:"2026-06-12T10:00:00Z"}},
+      {id:"number",data:{createdAt:1}}, {id:"timestamp",data:{createdAt:{toMillis:()=>2}}}];
+    expect(rows.sort(compareInboxNotificationTimes).map(row=>row.id)).toEqual(["string","timestamp","number"]);
+  });
   it("maps notifications with unread state and stable labels", () => {
     const notifications = mapInboxNotifications([
       { id: "n1", data: { title: "Départ confirmé", body: "Le conducteur a démarré.", read: false, createdAt: "2026-06-12T10:00:00Z" } },

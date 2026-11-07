@@ -1,0 +1,109 @@
+{
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "immutable-child-emergency-contact",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7f17e477f2136a9aa3c61f99610f6867",
+  "testedAt": "2026-10-19T13:13:48.937Z",
+  "checks": [
+    {
+      "id": "real-two-actor-verification-returns-one-transaction-bound-child-identity-and-labels",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-denies-obsolete-verification-read-edit-removal-and-committed-replay",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-manager-verification-does-not-inherit-the-previous-childs-contact-or-version",
+      "status": "passed"
+    },
+    {
+      "id": "old-view-and-operation-identities-cannot-target-the-new-child-even-at-revision-zero",
+      "status": "passed"
+    },
+    {
+      "id": "only-a-fresh-view-can-save-the-new-child-without-changing-the-original-record",
+      "status": "passed"
+    },
+    {
+      "id": "a-never-saved-old-child-form-cannot-create-a-contact-for-a-recreated-profile",
+      "status": "passed"
+    },
+    {
+      "id": "a-recreated-club-requires-a-fresh-decision-without-changing-the-child-contact-identity",
+      "status": "passed"
+    },
+    {
+      "id": "unbound-legacy-child-records-fail-closed-without-migration-fallback-or-data-loss",
+      "status": "passed"
+    },
+    {
+      "id": "a-malformed-instance-in-an-otherwise-valid-record-never-becomes-a-dial-destination",
+      "status": "passed"
+    },
+    {
+      "id": "self-contacts-retain-their-existing-key-and-replay-contract-without-child-markers",
+      "status": "passed"
+    },
+    {
+      "id": "a-concurrent-recreation-can-never-write-the-old-contact-into-the-new-child",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "real-two-actor-verification-returns-one-transaction-bound-child-identity-and-labels",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-denies-obsolete-verification-read-edit-removal-and-committed-replay",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-manager-verification-does-not-inherit-the-previous-childs-contact-or-version",
+      "status": "passed"
+    },
+    {
+      "id": "old-view-and-operation-identities-cannot-target-the-new-child-even-at-revision-zero",
+      "status": "passed"
+    },
+    {
+      "id": "only-a-fresh-view-can-save-the-new-child-without-changing-the-original-record",
+      "status": "passed"
+    },
+    {
+      "id": "a-never-saved-old-child-form-cannot-create-a-contact-for-a-recreated-profile",
+      "status": "passed"
+    },
+    {
+      "id": "a-recreated-club-requires-a-fresh-decision-without-changing-the-child-contact-identity",
+      "status": "passed"
+    },
+    {
+      "id": "unbound-legacy-child-records-fail-closed-without-migration-fallback-or-data-loss",
+      "status": "passed"
+    },
+    {
+      "id": "a-malformed-instance-in-an-otherwise-valid-record-never-becomes-a-dial-destination",
+      "status": "passed"
+    },
+    {
+      "id": "self-contacts-retain-their-existing-key-and-replay-contract-without-child-markers",
+      "status": "passed"
+    },
+    {
+      "id": "a-concurrent-recreation-can-never-write-the-old-contact-into-the-new-child",
+      "status": "passed"
+    }
+  ],
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/domain/emergencyContact.ts": "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c",
+    "scripts/qa/local-emergency-identity-suite.mjs": "a1ad0ad524ec10f110c4e52b7882edfa58901f6e2e72c858cc1e86187f1c7442"
+  }
+}

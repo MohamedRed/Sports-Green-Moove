@@ -1,0 +1,104 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "853dc1bf12a9ed5f94624bb978ab732f",
+  "scope": "isolated-chat-network-ui-not-physical-network-loss",
+  "testedAt": "2026-11-05T20:58:38.278Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "nativeUiExecuted": true,
+  "steps": [
+    {
+      "id": "chat-network-recovery-ui",
+      "status": "passed"
+    }
+  ],
+  "history": {
+    "method": "isolated-callable-fixture-not-ui-verification",
+    "bookings": [
+      {
+        "tripId": "mfAYAtjkFDK6P2RDA2X6",
+        "bookingId": "LQC2E9Fa9DOlteNWoxpF",
+        "status": "declined"
+      },
+      {
+        "tripId": "afPy5DxQKeBzHTrXN4Pu",
+        "bookingId": "aqJ7AciBKnUtT2T8cgWf",
+        "status": "cancelled"
+      }
+    ]
+  },
+  "network": {
+    "method": "native-ui-with-disposable-os-network-control",
+    "sourceId": "HkED6i0FIkZgC025c0oC",
+    "messageCount": 2,
+    "notificationCount": 2,
+    "duplicateMessages": 0,
+    "bookingStatuses": [
+      "approved",
+      "cancelled",
+      "declined",
+      "requested"
+    ],
+    "offlineDraftRetained": true,
+    "accountDraftCleared": true,
+    "parentDraftRestored": true,
+    "networkRestored": true,
+    "limits": [
+      "Network disabled before the first attempt, not after a server commit.",
+      "No process restart, token expiry, physical device or push delivery tested."
+    ]
+  },
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "chat-network-recovery",
+    "receiptSha256": "16acad58cb01e52c9b6d35fb191bd19ef1f7f123184592db0ed787fa45038386",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "5e6b95b721c367cd38b4016febc06b44966d8675342562572efc68a9dc6bbb73",
+      "be.sportgreenmoove.app.local.test": "7e2367f1f997d29760bb5adc601b4aa1a6a81a047dbe761518fe1de405661d55"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "primaryEvidencePhase": "network-recovery",
+  "transcriptSha256": "e793db83b2545b79ae24f10b366cc15f6c5dc59e7bcfd8f08dd7ad1bd5cb6276",
+  "cleanupMode": "destroy-owned-local-environment",
+  "localPackagesRemoved": true,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "b7afd091155134cb3af2ebedcf2cc96d3bdefc83caf364b0d78f64805359a351",
+    "scripts/qa/android-case-apks.mjs": "ce5fd0144d472f41a4656c62a52316c97fb671213cd19955f2179832d05931fd",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "c5c3b5d94e3edaf456041595e00f492a138074283e3c44beec4d71a75a7d527d",
+    "scripts/qa/continuous-disposable-device.mjs": "90a7a74f1714d3d35bd2201dae47c2ab7666fca791fe5551c3d57fe75aac3876",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "5bdff5e8e0a710de1451e8644f8101a2e9fb3674a48f870e7b135a87ad07fda6",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "adc4359736699fe36891855b18e7392b767f0b57e4f073bf952dd5bb693c31cc",
+    ".github/workflows/native-focused-ui.yml": "a4f5be5c3bf78554a2ccd74beed7f7849f1c0afb97d9db1b04c1cebe52be20eb",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-chat-network-recovery-ui.mjs": "e2c3c48316f54cc621d9d8fa13a177600b8fe311ca1a7d42dff403ab8a5e57b5",
+    "scripts/qa/run-local-chat-network-recovery-ui.mjs": "06deb0f0369bf93f65e9fdae71873b167a7995cb1da038356290d3a61991fec3",
+    "scripts/qa/chat-network-history-fixture.mjs": "30997e504e52fc5abdbc71b0ecc2fad439bb2139ade229a56550069cd008b2b5",
+    "scripts/qa/local-chat-network-ui.mjs": "1e730d8c292abf98470fc21d6740e449eb829f890a032023abdcbcf1c3bbc5d0",
+    "scripts/qa/local-network-replay.mjs": "62f98c51bd9052fe637510c86689d9f69c1af89511347196aa25423950b2dc38",
+    "scripts/qa/chat-network-evidence.mjs": "dba6eb85e2d6f8f746a16d4d3add88bf5cd1ea798b6d0e1f5f64a8bef9408b4e",
+    "scripts/qa/network-start-evidence.mjs": "dc894c563e0bbea3b460c99eddd171342c93f6238038620257fb1b82463ee83f",
+    "scripts/qa/local-carrier-diagnostics.mjs": "4ba0b3f02a3b6ec5f15bf8f1194812c5eb8ecb8f74cd635b44ad30d4ae045213",
+    "scripts/qa/local-subscription-diagnostics.mjs": "9848aa23aef98e2129c0a2d046f030d2a0b87f07d2965a8e16994752a1d1a969",
+    "scripts/qa/local-default-selection-diagnostics.mjs": "d3466e37509e88f398d7d5ffafa0ea6dc541792c791934c896c1b8b819ad37b6",
+    "scripts/qa/local-network-validation-diagnostics.mjs": "9eec6680564800f72e806c9b1a3115da348d780bf3a76f969ab303227d36b064",
+    "scripts/qa/run-isolated-ride-ui.mjs": "5a374021261cc64c6843e68d6f1c747670af29a221b519e4d7a59d816bd8b6f8",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "349ee6bc1824445dd3c872ee26f5f54fcc6380534efa4d085ab6bd3d25fbc9f7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt": "5c875ea6ddbef45021441f20bbef78d3ebf27d97657ff97057209406c115a965",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRequestedTransport.kt": "2f499935a0d1f04253c5f5be9b5a38d0b65533b4fba1c3338d03431edb0008e4",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalInitialNetworkObservation.kt": "b194dccdb7bde0acbb61ee0c4dc86166f863c55ddad4253cb19ed652a1e9eb1d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNetworkStartObservation.kt": "ee9fe2babce1021164a2750fe6a60e4a9075a2a1cd2ad111f9c8482bb99eb77d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNetworkCapabilitySnapshot.kt": "a8d4a5c164b83fa13ac2a18740404a07968be1b3e115c94913f076202ea3c318"
+  }
+}

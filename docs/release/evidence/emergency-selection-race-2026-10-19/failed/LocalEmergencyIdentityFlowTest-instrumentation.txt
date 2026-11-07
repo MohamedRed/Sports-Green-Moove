@@ -1,0 +1,25 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest:
+Error in recreatedChildRejectsTheOpenFormAndRequiresFreshVerification(be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest.waitFor(LocalEmergencyIdentityFlowTest.kt:112)
+	at be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest.recreatedChildRejectsTheOpenFormAndRequiresFreshVerification(LocalEmergencyIdentityFlowTest.kt:60)
+
+
+Time: 80.776
+There was 1 failure:
+1) recreatedChildRejectsTheOpenFormAndRequiresFreshVerification(be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest.waitFor(LocalEmergencyIdentityFlowTest.kt:112)
+	at be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest.recreatedChildRejectsTheOpenFormAndRequiresFreshVerification(LocalEmergencyIdentityFlowTest.kt:60)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

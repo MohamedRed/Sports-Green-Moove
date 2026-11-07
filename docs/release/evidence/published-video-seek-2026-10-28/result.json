@@ -1,0 +1,72 @@
+{
+  "scope": "published-short-clip-delivery-not-mobile-app-or-release-proof",
+  "observedAt": "2026-10-28T20:45:59.693Z",
+  "site": "https://sports-green-moove-progress.mohamed-redha.chatgpt.site",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "playbackConfirmed": true,
+  "seekConfirmed": false,
+  "completed": false,
+  "browserClosed": true,
+  "fallbackUsed": false,
+  "playerModified": false,
+  "expectedSeekSeconds": 8.8,
+  "errorCategory": "browser-wait-timeout",
+  "delivery": {
+    "requestedRange": "bytes=0-15",
+    "status": 200,
+    "contentType": "video/mp4",
+    "contentRange": null,
+    "acceptRanges": null,
+    "bytes": 67043,
+    "sha256": "474cf2468709ae65c04c7d4dec5b7e97eba08a50262eaaafdf7db71e85479f9b",
+    "originalBytesMatched": true
+  },
+  "phase": "seek",
+  "beforeSeek": {
+    "currentTime": 0.528629,
+    "duration": 9.931171,
+    "paused": false,
+    "seeking": false,
+    "readyState": 4,
+    "networkState": 1,
+    "visible": true,
+    "errorCode": null,
+    "buffered": [
+      [
+        0,
+        9.931171
+      ]
+    ],
+    "seekable": [
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  "afterSeek": {
+    "currentTime": 0.146047,
+    "duration": 9.931171,
+    "paused": true,
+    "seeking": false,
+    "readyState": 4,
+    "networkState": 1,
+    "visible": true,
+    "errorCode": null,
+    "buffered": [
+      [
+        0,
+        9.931171
+      ]
+    ],
+    "seekable": [
+      [
+        0,
+        0
+      ]
+    ]
+  }
+}

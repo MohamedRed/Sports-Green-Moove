@@ -1,0 +1,10 @@
+{
+  ".github/workflows/native-ci.yml": "57f2f98123449a8bc20e5b25b6cc77e5c0736b8b5a3f8a51976bee35ea6f1436",
+  "scripts/qa/run-ordinary-android-ui.mjs": "0336219bb17b421e33200953c663689651851f5665df4800f7d64d75741a7259",
+  "scripts/run-android-ui-tests-and-collect-screenshots.sh": "9f47bf760fa3e83b3cda40eb076a43c60078b1402cc1504326de01a312b1795c",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationFlowTest.kt": "e53bfb2c37ed106338fe7c3167fe6b59cb7f1e7f5d71c11202a8fb6d4f257866",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamChatComponentCapture.kt": "e658810bd6dd8642df07590b9fd5ae67e46c57a614b72c691e3ae73b46c4b3a8",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "c06ae8c7493cb80727d7ecdf694c16ab58f63d760d1140584fcc20a99841530d",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt": "9829b78e47805628bcf1a0efe30fb49d027504fbf488d7bdef70955497477db4",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "de77b536a59e293abf0fbace6eb40e6d7c0d91928e97ab44a8a2a0cd94f7a7b3"
+}

@@ -1,0 +1,267 @@
+{
+  "main/ordinary-results.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/store-review-screenshots/ordinary-results.json",
+    "sha256": "34f104e368bd2b01dc8c5c120dae6026b3bbdc6cdf1aac89a16fa6e7e49a47d9"
+  },
+  "main/ordinary-instrumentation.txt": {
+    "artifactId": 13179520566,
+    "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+    "sha256": "70e4e6dd92451674f2a42ef6907a891fffad5617ee3cc03e8ea60c50fe4fd256"
+  },
+  "main/suite-status.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/store-review-screenshots/native-suite-status.json",
+    "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b"
+  },
+  "main/restoration.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+    "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+  },
+  "main/host-exit.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+    "sha256": "bf3132335e0d485e46de4ba3157ab693716a60ad7659568af2d2bfe2b5c02e29"
+  },
+  "main/adb-pull-trip-change-inputs.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/local-ui-evidence/d0428e49399d1ad91f5ec36aede3a3b1/adb-pull-trip-change-inputs.json",
+    "sha256": "4e94ffbec7f3e5b84b1fbf689808dcebefa7f6d1c229edca70784d37c9df077c"
+  },
+  "main/adb-sync-trip-change-inputs-diagnostics.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/local-ui-evidence/d0428e49399d1ad91f5ec36aede3a3b1/adb-sync-trip-change-inputs-diagnostics.json",
+    "sha256": "4459733f287742024456b94106ff9768de8bbe1d49ba79154931b9fe180874ee"
+  },
+  "main/adb-pull-failure-cleanup.json": {
+    "artifactId": 13179520566,
+    "member": "outputs/local-ui-evidence/d0428e49399d1ad91f5ec36aede3a3b1/adb-pull-failure-cleanup.json",
+    "sha256": "a3c7112b26ccd2050a060eb90c5242c15448df21014e6d4fc824480076ce2556"
+  },
+  "main/LocalTripChangeInputsFlowTest-instrumentation.txt": {
+    "artifactId": 13179520566,
+    "member": "outputs/local-ui-evidence/d0428e49399d1ad91f5ec36aede3a3b1/LocalTripChangeInputsFlowTest-instrumentation.txt",
+    "sha256": "9722f3cd3a056ab5c0d7a723c907bd65bc459d2892d575afd22d8acfdc973dd9"
+  },
+  "focused/chat-network-recovery/status.json": {
+    "artifactId": 13177896198,
+    "member": "focused-safety-ui/chat-network-recovery/chat-network-recovery-suite-status.json",
+    "sha256": "859609943ea143d1f54cbbe6c899138f4e18787aa0fc93ebe84c6e7ad0b3a958"
+  },
+  "focused/chat-network-recovery/restoration.json": {
+    "artifactId": 13177896198,
+    "member": "focused-safety-ui/chat-network-recovery/disposable-device-restore.json",
+    "sha256": "e0cf022be30001cf0cee177b7b5771b3b3f9286a6a211581bc33bacb3b42ca37"
+  },
+  "focused/chat-network-recovery/host-exit.json": {
+    "artifactId": 13177896198,
+    "member": "focused-safety-ui/chat-network-recovery/host-shutdown/complete.json",
+    "sha256": "e3606ac14c2e249372712e76bee38c7919bacf8aaec18c19077692cfa3d07cc9"
+  },
+  "focused/chat-network-recovery/adb-pull-network-recovery.json": {
+    "artifactId": 13177896198,
+    "member": "local-ui-evidence/7291fd50325de7d645df49d9c5a3f520/adb-pull-network-recovery.json",
+    "sha256": "865aafffd95362b5be7ba9a6a9c27dfad022eb40ee93f86555bfc99e336dc1dc"
+  },
+  "focused/emergency-identity/status.json": {
+    "artifactId": 13176309619,
+    "member": "focused-safety-ui/emergency-identity/emergency-identity-suite-status.json",
+    "sha256": "79403f2449143329a2766eda0f6d619bda79e60c2efb4fb230bc8f0246e10b5f"
+  },
+  "focused/emergency-identity/restoration.json": {
+    "artifactId": 13176309619,
+    "member": "focused-safety-ui/emergency-identity/disposable-device-restore.json",
+    "sha256": "2039739225b4ec2042554b1567fcc3fe4112fbdfef2c2255ae7d9523fde3f303"
+  },
+  "focused/emergency-identity/host-exit.json": {
+    "artifactId": 13176309619,
+    "member": "focused-safety-ui/emergency-identity/host-shutdown/complete.json",
+    "sha256": "097b24715388a7967f5d4b80a1b4355f211791b650f4fc225a5b8361bc20c70c"
+  },
+  "focused/emergency-identity/adb-pull-emergency-identity.json": {
+    "artifactId": 13176309619,
+    "member": "local-ui-evidence/1946469a74e1e493fc6f8f2c29e19681/adb-pull-emergency-identity.json",
+    "sha256": "6636fd51effdf45474e826c0e8468db80707a127bc152ae4bc1d39f880cfbb15"
+  },
+  "focused/native-startup/status.json": {
+    "artifactId": 13177842221,
+    "member": "focused-safety-ui/native-startup/native-startup-suite-status.json",
+    "sha256": "ce4c28b5d37a6325ff0635829ae4ec3d7c47b9869c17433a323cd1fa5983ce98"
+  },
+  "focused/native-startup/restoration.json": {
+    "artifactId": 13177842221,
+    "member": "focused-safety-ui/native-startup/disposable-device-restore.json",
+    "sha256": "c3d00e0e2adb85c90fd8e5a5094a63dfcec913cc6c0d5fe2460a904f43949cdc"
+  },
+  "focused/native-startup/host-exit.json": {
+    "artifactId": 13177842221,
+    "member": "focused-safety-ui/native-startup/host-shutdown/complete.json",
+    "sha256": "b4887dc0c567fb10450e3dd37246e05d563e19295f637390224430cb406f2784"
+  },
+  "focused/native-startup/LocalNativeTrackingStartupTest-instrumentation.txt": {
+    "artifactId": 13177842221,
+    "member": "local-ui-evidence/a5a450af4aaa01573601905ddd16232e/LocalNativeTrackingStartupTest-instrumentation.txt",
+    "sha256": "22beda3d622b6688691735be30b367e878e20ecba96b5361c496ce69a54b2dd2"
+  },
+  "focused/native-startup/adb-pull-failure-cleanup.json": {
+    "artifactId": 13177842221,
+    "member": "local-ui-evidence/a5a450af4aaa01573601905ddd16232e/adb-pull-failure-cleanup.json",
+    "sha256": "d23c83eb218d5e1661391b55e5ab20e8de5d36cbcebfeb2e681c55329a9219d3"
+  },
+  "focused/native-startup/local-native-startup-failure-tree.txt": {
+    "artifactId": 13177842221,
+    "member": "local-ui-evidence/a5a450af4aaa01573601905ddd16232e/local-native-startup-failure-tree.txt",
+    "sha256": "e6a3a9df1d4ef05d00b9e291a140ed5a5189f5615e4ca7091474a60eb9586db4"
+  },
+  "focused/remote-ride-stop/status.json": {
+    "artifactId": 13177717299,
+    "member": "focused-safety-ui/remote-ride-stop/remote-ride-stop-suite-status.json",
+    "sha256": "5e242d2912dff3feee899a3561d6a004b3ee059c3c00ea66825e1a5fdb35de77"
+  },
+  "focused/remote-ride-stop/restoration.json": {
+    "artifactId": 13177717299,
+    "member": "focused-safety-ui/remote-ride-stop/disposable-device-restore.json",
+    "sha256": "65911bb7fbe5b82ff68ef977b3d7dd4f74a459d652f4cab224f115b5dfb60ab4"
+  },
+  "focused/remote-ride-stop/host-exit.json": {
+    "artifactId": 13177717299,
+    "member": "focused-safety-ui/remote-ride-stop/host-shutdown/complete.json",
+    "sha256": "8a5b348daac9b3685d77a4fd5ae8d95c91a96d75b572f9e281f728607f3c42b1"
+  },
+  "focused/remote-ride-stop/adb-pull-remote-ride-stop.json": {
+    "artifactId": 13177717299,
+    "member": "local-ui-evidence/8e1343dc7f13b81594e2db71a4852432/adb-pull-remote-ride-stop.json",
+    "sha256": "459c47d3d2f8040ed5689e42c90e7677f98b9e74fb25b88aee704c45f2ccb161"
+  },
+  "focused/session-disconnect/status.json": {
+    "artifactId": 13177732375,
+    "member": "focused-safety-ui/session-disconnect/session-disconnect-suite-status.json",
+    "sha256": "8573f3f1846d7532397c999da43d422f44fd4c89454fd4a146a4166fa56de967"
+  },
+  "focused/session-disconnect/restoration.json": {
+    "artifactId": 13177732375,
+    "member": "focused-safety-ui/session-disconnect/disposable-device-restore.json",
+    "sha256": "8332df4c8cad8e9749946d91b0519f73a20f10b5be6ab9c46f9d542be45a59bf"
+  },
+  "focused/session-disconnect/host-exit.json": {
+    "artifactId": 13177732375,
+    "member": "focused-safety-ui/session-disconnect/host-shutdown/complete.json",
+    "sha256": "1bc38d345971c483af4e72a676453f71060db592cd976c554a2a70cd2a0f6827"
+  },
+  "focused/session-disconnect/adb-pull-session-disconnect.json": {
+    "artifactId": 13177732375,
+    "member": "local-ui-evidence/9e728651fbe9b9b8b3f9f3e375127d5c/adb-pull-session-disconnect.json",
+    "sha256": "18de1d72019e45bccd28e59632626bc52e0dca30d55cd890e621e99655be7714"
+  },
+  "focused/session-restoration/status.json": {
+    "artifactId": 13177073532,
+    "member": "focused-safety-ui/session-restoration/session-restoration-suite-status.json",
+    "sha256": "66c1bcb4a4945c635073aa81ea248d0616e9159090a5f3c0aec35841e31156d2"
+  },
+  "focused/session-restoration/restoration.json": {
+    "artifactId": 13177073532,
+    "member": "focused-safety-ui/session-restoration/disposable-device-restore.json",
+    "sha256": "ce0609a9e5f2dd24722dfa5fa8dd49ff54d61e6e3344a50ab8e7a7804195f48f"
+  },
+  "focused/session-restoration/host-exit.json": {
+    "artifactId": 13177073532,
+    "member": "focused-safety-ui/session-restoration/host-shutdown/complete.json",
+    "sha256": "01cfd15e47f0f171851ca3cb44e602a5d3f4e4688b83f10e2a5ddb8ce6eba27f"
+  },
+  "focused/session-restoration/adb-pull-session-restoration.json": {
+    "artifactId": 13177073532,
+    "member": "local-ui-evidence/52bd9956a44369df91320d2d94ad0134/adb-pull-session-restoration.json",
+    "sha256": "95132ad76963883249462cc602fd1cdbef9e97221859688deaf47eee33409cbd"
+  },
+  "focused/team-access/status.json": {
+    "artifactId": 13177207851,
+    "member": "focused-safety-ui/team-access/team-access-suite-status.json",
+    "sha256": "7af041587e45a347462900121f2d76b3b1018586e146342d1701c08405abed71"
+  },
+  "focused/team-access/restoration.json": {
+    "artifactId": 13177207851,
+    "member": "focused-safety-ui/team-access/disposable-device-restore.json",
+    "sha256": "22c5d2534d0a24da2d326fe6d280708caa18fedb2c025f741c393391edf7b94f"
+  },
+  "focused/team-access/host-exit.json": {
+    "artifactId": 13177207851,
+    "member": "focused-safety-ui/team-access/host-shutdown/complete.json",
+    "sha256": "f7788acebf527e6c12f88e1b447a07580c6dd731c6c307cf4e04f6bff51c5802"
+  },
+  "focused/team-access/adb-pull-team-access.json": {
+    "artifactId": 13177207851,
+    "member": "local-ui-evidence/e3aa08ed2aeea94340f7d137eccb5450/adb-pull-team-access.json",
+    "sha256": "b3c92b949b29d4635b4c6ef33f99fda1e7929712c542811ce7b8bee923428730"
+  },
+  "focused/team-conversation/status.json": {
+    "artifactId": 13177073625,
+    "member": "focused-safety-ui/team-conversation/team-conversation-suite-status.json",
+    "sha256": "dc0aa6494c89f15665ff66aa0b0170e7eaeca1ff8d19d617d98f86454da05a52"
+  },
+  "focused/team-conversation/restoration.json": {
+    "artifactId": 13177073625,
+    "member": "focused-safety-ui/team-conversation/disposable-device-restore.json",
+    "sha256": "1002f8ec8cf4fddfbf1c64448c085a18491cf6012bf1abf4ce94dd4cdb5c69c2"
+  },
+  "focused/team-conversation/host-exit.json": {
+    "artifactId": 13177073625,
+    "member": "focused-safety-ui/team-conversation/host-shutdown/complete.json",
+    "sha256": "447730f4169b1929afa81ec39723a61dbe3696e6f3fba0e1a8b1f8ac521b8435"
+  },
+  "focused/team-conversation/adb-pull-team-conversation.json": {
+    "artifactId": 13177073625,
+    "member": "local-ui-evidence/fa898f9dacc16d05c6d50fd57662abde/adb-pull-team-conversation.json",
+    "sha256": "bdf5e1390da9e409eb18d4c4bd8f9aed41ad0e0a91bf642cf3c2b27165dcf752"
+  },
+  "focused/team-draft/status.json": {
+    "artifactId": 13178131161,
+    "member": "focused-safety-ui/team-draft/team-draft-suite-status.json",
+    "sha256": "2a2d9698f3671f61e63f26d0adf3079fe8d13b5c2cd8c971b635a7b0e34ca577"
+  },
+  "focused/team-draft/restoration.json": {
+    "artifactId": 13178131161,
+    "member": "focused-safety-ui/team-draft/disposable-device-restore.json",
+    "sha256": "2fff0d3ae02ad48ec1ed5ee87a3109945ce75f3532689b4a51aa652fec7a2907"
+  },
+  "focused/team-draft/host-exit.json": {
+    "artifactId": 13178131161,
+    "member": "focused-safety-ui/team-draft/host-shutdown/complete.json",
+    "sha256": "9e3b9231e5e407551218d4d6f38bd05744a4c19116f979def880974bfb8ec85c"
+  },
+  "focused/team-draft/adb-pull-team-draft.json": {
+    "artifactId": 13178131161,
+    "member": "local-ui-evidence/1c26210af3645cfb1b71b5b5cbc4baa4/adb-pull-team-draft.json",
+    "sha256": "475a59fdf7baf512dd54bafd278609f3fa7c413157dac6981842f7b7a61235c0"
+  },
+  "focused/team-read-components/status.json": {
+    "artifactId": 13176409966,
+    "member": "focused-safety-ui/team-read-components/team-read-components-suite-status.json",
+    "sha256": "451777604b9d601756ae432c55b1146129e85915b48c214c19a5647a741434a7"
+  },
+  "focused/team-read-components/restoration.json": {
+    "artifactId": 13176409966,
+    "member": "focused-safety-ui/team-read-components/disposable-device-restore.json",
+    "sha256": "d86d9b2fe8c3a97a7e74b437fb2d1f03c0a2060201e9ca0ba46ed773936e1651"
+  },
+  "focused/team-read-components/host-exit.json": {
+    "artifactId": 13176409966,
+    "member": "focused-safety-ui/team-read-components/host-shutdown/complete.json",
+    "sha256": "73372e31ec3a268243fbb0f6986983aa018d8646b8b591ecf0c984317a04d4e1"
+  },
+  "focused/team-read-components/adb-pull-team-alert-opening.json": {
+    "artifactId": 13176409966,
+    "member": "local-ui-evidence/617608f3fa44fb3c47b9e244b8b051bb/adb-pull-team-alert-opening.json",
+    "sha256": "c4a91b7c8d9f908d343604830e4f322d6a34ce277a4385565e67954f00393140"
+  },
+  "focused/team-read-components/adb-pull-team-chat-components.json": {
+    "artifactId": 13176409966,
+    "member": "local-ui-evidence/8030d9e1252dac60e491108297d976b5/adb-pull-team-chat-components.json",
+    "sha256": "242863f87f0d55a7a2c3a7b5642c3b99d188244181f8c3471a3a1fff15c98cc4"
+  },
+  "focused/team-read-components/adb-pull-session-shutdown.json": {
+    "artifactId": 13176409966,
+    "member": "local-ui-evidence/d0d2c4a9f58d1477642b2d3edba56f8b/adb-pull-session-shutdown.json",
+    "sha256": "f1e95d5909caab4261f629c46a6b190b5ca78616594427fd6801b9977b8755dd"
+  }
+}

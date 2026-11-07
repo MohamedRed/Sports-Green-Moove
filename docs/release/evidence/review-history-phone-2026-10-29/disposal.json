@@ -1,0 +1,37 @@
+{
+  "observedAt": "2026-10-29T17:54:16.853Z",
+  "observerExitCode": 0,
+  "runtimeExitCode": 130,
+  "helperExitCode": 130,
+  "privateSessionAbsent": true,
+  "helperDirectoryAbsent": true,
+  "helperProcessAbsent": true,
+  "noLocalRuntimeDirectories": true,
+  "ports": [
+    {
+      "port": 5001,
+      "available": true
+    },
+    {
+      "port": 8080,
+      "available": true
+    },
+    {
+      "port": 9000,
+      "available": true
+    },
+    {
+      "port": 9099,
+      "available": true
+    },
+    {
+      "port": 45690,
+      "available": true
+    },
+    {
+      "port": 45691,
+      "available": true
+    }
+  ],
+  "stopMethod": "SIGINT-supervised-launchers-with-verified-group-exit-then-independent-path-pid-port-checks"
+}

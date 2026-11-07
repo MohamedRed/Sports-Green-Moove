@@ -1,0 +1,74 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishScreen.swift",
+      "commit": "85ec9e9274344eefaf7ce63eef36869a22da3489",
+      "sha256": "dfdcae4938004666b4c678c411df03d5830316d39e61b2681307a83036c9d9d2"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/PublishDraftFactory.kt",
+      "commit": "85ec9e9274344eefaf7ce63eef36869a22da3489",
+      "sha256": "f04823df43d9b4f0fbd9c0915c795f49627eea5dc1bef2cfd7becaf25130ca5b"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt",
+      "commit": "85ec9e9274344eefaf7ce63eef36869a22da3489",
+      "sha256": "883e4cadd2c63df59f382ff46e9b04d0ec437d2e7c10a56ab0bc2aabb9bda572"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripPublicationPrice.swift",
+      "commit": "candidate",
+      "sha256": "7c667dca29f99e191de3925de614603911a9fbce1b53b68b73a6c364891cdb5f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishScreen.swift",
+      "commit": "candidate",
+      "sha256": "0fcbb30a53b82fc60117495b8a9c963577af1d35001ed27b6c0832e960843bf9"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PublishSteps.swift",
+      "commit": "candidate",
+      "sha256": "285c0b4aa6f4f914cb295151bae0e6b2422809e63353ba49d9013c9d5ecd7889"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TripPublicationPriceChecks.swift",
+      "commit": "candidate",
+      "sha256": "a4588581eaffde020957accecf31df685b8b28fd1a745aba5b7c7cd0f1dd3d91"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/PublishDraftFactory.kt",
+      "commit": "candidate",
+      "sha256": "e2649e1a2fd956bae29b66541f0205e80338d9833b00956fa66801d6d4796a1a"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/TripPriceInput.kt",
+      "commit": "candidate",
+      "sha256": "0e7926302f8779c0845d858b5b281160395a1992a08f11ecee175b8ea0b4a4ee"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt",
+      "commit": "candidate",
+      "sha256": "37b60f534ad7673d46b80dd97f56930f884b804ff79fe2e7505306d471ccceaa"
+    },
+    {
+      "path": "android/app/src/main/java/be/sportgreenmoove/app/ui/PublishScreen.kt",
+      "commit": "candidate",
+      "sha256": "34ca6be190d18c7f6b8139ec10aa0cb6898c502b0f92d2e80eed7415c806a29a"
+    },
+    {
+      "path": "android/app/src/test/java/be/sportgreenmoove/app/domain/PublishDraftFactoryTest.kt",
+      "commit": "candidate",
+      "sha256": "ce010334d5c94f8a15bee31e53886cce2bf5c5d1a04251b7cf7e03b5070317c7"
+    },
+    {
+      "path": "android/app/src/test/java/be/sportgreenmoove/app/domain/TripPriceInputTest.kt",
+      "commit": "candidate",
+      "sha256": "2d320acefe0e4c2f5f2d755026bd2c0d0b63c2c15329aa0b4b97488fd5486a6e"
+    },
+    {
+      "path": "scripts/qa/check-publication-price.mjs",
+      "commit": "candidate",
+      "sha256": "596de883dbac42e22701012e0902cd3180bd437e7b265969104b595337a6fe9c"
+    }
+  ]
+}

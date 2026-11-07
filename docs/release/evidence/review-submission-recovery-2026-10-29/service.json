@@ -1,0 +1,88 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "caf1bcf7151620d995b5608a7888be4f",
+  "testedAt": "2026-10-29T23:11:13.632Z",
+  "scope": "loopback-http-review-disconnects-and-real-isolated-callables-not-phone-or-production",
+  "completed": true,
+  "checks": [
+    {
+      "id": "disconnect-before-forwarding-preserves-both-same-name-trip-contexts-without-a-rating",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-retry-after-before-commit-loss-removes-only-the-selected-trip",
+      "status": "passed"
+    },
+    {
+      "id": "disconnect-after-real-commit-withholds-the-acknowledgement-without-automatic-retry",
+      "status": "passed"
+    },
+    {
+      "id": "identical-explicit-retry-recovers-the-original-receipt-without-changing-count-or-timestamp",
+      "status": "passed"
+    },
+    {
+      "id": "simultaneous-identical-submissions-return-one-immutable-rating",
+      "status": "passed"
+    },
+    {
+      "id": "retries-cannot-change-score-or-comment-on-a-stored-rating",
+      "status": "passed"
+    },
+    {
+      "id": "replay-still-requires-current-authentication-completed-ride-and-participation",
+      "status": "passed"
+    },
+    {
+      "id": "all-unrelated-records-claims-and-trip-details-remain-unchanged",
+      "status": "passed"
+    }
+  ],
+  "attempts": [
+    {
+      "mode": "drop-before",
+      "rideSessionId": "sgm-review-retry-29",
+      "upstreamAcknowledged": false
+    },
+    {
+      "mode": "pass",
+      "rideSessionId": "sgm-review-retry-29",
+      "upstreamAcknowledged": true
+    },
+    {
+      "mode": "drop-after",
+      "rideSessionId": "sgm-review-retry-28",
+      "upstreamAcknowledged": true
+    },
+    {
+      "mode": "pass",
+      "rideSessionId": "sgm-review-retry-28",
+      "upstreamAcknowledged": true
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "phoneUiExecuted": false,
+  "physicalNetworkLossProven": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-review-recovery.mjs": "aa9af8eedc81e84334987cbe37844854f5c56b418096ac76b50bd2456317550a",
+    "scripts/qa/run-local-review-recovery.mjs": "53fd43555e2969ed6ca715326c02864050b090c75a8b35abdc1dca31391e9cb5",
+    "functions/src/callables/feedback.ts": "2e83755f98569ada11aaef30fd8e80c903cadd64bf76c0bb081198d83e3585c5",
+    "functions/src/services/ratingSubmission.ts": "1dfc8ed5173233d92faec023e3468e615b8d12c6bb7955079870f0e4e523aaf0",
+    "functions/src/domain/ratingSubmission.ts": "fab16cabe530182c8facfbbcf78eaddc45ba8eba774764c3cbb3d46c3c0bd71b"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

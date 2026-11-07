@@ -1,0 +1,133 @@
+{
+  "ok": true,
+  "pullRequest": "https://github.com/MohamedRed/Sports-Green-Moove/pull/1",
+  "headRefOid": "95d008152ee843e24c7dc8bf75ca1bcdbeba0cd8",
+  "checkedAt": "2026-10-26T13:24:14.048Z",
+  "results": [
+    {
+      "workflowName": "Native CI",
+      "name": "Native UI flow coverage",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832418",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "Android native unit tests",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832588",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "Android native UI tests",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579832539",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121584343125",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Backend CI",
+      "name": "Functions and Firebase rules",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155750/job/121579831547",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Web Integration Smoke",
+      "name": "Functions, admin, and website smoke",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155748/job/121587921344",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Release Readiness",
+      "name": "Store readiness static checks",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155788/job/121579832306",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Release Readiness",
+      "name": "Production provider secret validation",
+      "requiredConclusions": [
+        "SUCCESS"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155788/job/121579831730",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "iOS native checks",
+      "requiredConclusions": [
+        "SUCCESS",
+        "SKIPPED"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834353",
+      "ok": true,
+      "issue": null
+    },
+    {
+      "workflowName": "Native CI",
+      "name": "iOS native UI tests",
+      "requiredConclusions": [
+        "SUCCESS",
+        "SKIPPED"
+      ],
+      "status": "COMPLETED",
+      "conclusion": "SKIPPED",
+      "detailsUrl": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40325155790/job/121579834168",
+      "ok": true,
+      "issue": null
+    }
+  ],
+  "missing": [],
+  "incomplete": [],
+  "failed": []
+}

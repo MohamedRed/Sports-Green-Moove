@@ -1,0 +1,68 @@
+import SwiftUI
+
+struct GroupsScreen: View {
+    @Environment(AppState.self) private var appState
+    var body: some View {
+        if let access = appState.accountAccess {
+            OwnedGroupsScreen(access: access, gateway: appState.firebase).id(access.context.id)
+        }
+    }
+}
+
+private struct OwnedGroupsScreen: View {
+    @Environment(AppState.self) private var appState
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var state: ClubMembershipState
+    @State private var selected: String?
+    @State private var reviews = false
+    let access: AccountAccess
+    let gateway: any MembershipGateway
+    init(access: AccountAccess, gateway: any MembershipGateway) {
+        self.access = access; self.gateway = gateway
+        _state = State(initialValue: ClubMembershipState(access: access, gateway: gateway))
+    }
+    var body: some View {
+        SGMScreen(testID: UITestIdentifier.groupsScreen) {
+            if selected == nil {
+                MembershipHeader(title: "GROUPES", busy: state.busy || !state.live, back: {
+                    state.close(); appState.closeOverlay()
+                    Task { await appState.refreshAppData(access: access) }
+                }, refresh: { Task { await state.refresh() } })
+            } else {
+                MembershipHeader(title: "MON CLUB", busy: state.busy, back: { selected = nil }, refresh: { Task { await state.refresh() } })
+            }
+            if state.live {
+                VStack(alignment: .leading, spacing: 18) {
+                    if state.busy { ProgressView().accessibilityLabel("Vérification des clubs") }
+                    if let error = state.error { Text(error).accessibilityIdentifier("membership.error") }
+                    if let error = state.writeError { Text(error).accessibilityIdentifier("membership.write-error") }
+                    if state.requiresRefresh { Button("Actualiser l’adhésion") { Task { await state.refresh() } }.disabled(state.busy).frame(minHeight: 44) }
+                    if selected == nil {
+                        if MembershipPolicy.review(access) {
+                            Button { reviews = true } label: { Label("Demandes d’adhésion", systemImage: "person.badge.clock") }
+                                .frame(minHeight: 44).disabled(state.busy).accessibilityIdentifier("membership.review.entry")
+                        }
+                        if state.loaded && state.items.isEmpty { Text("Aucun club disponible.") }
+                        ForEach(state.items) { club in
+                            MembershipClubRow(club: club, busy: state.busy, open: { selected = club.id }, request: {
+                                Task { if await state.request(club) { await state.refresh() } }
+                            }, requestAllowed: state.canRequest)
+                        }
+                        if state.hasMore { Button("Autres clubs") { Task { await state.more() } }.disabled(state.busy)
+                            .frame(minHeight: 44).accessibilityIdentifier("membership.clubs.more") }
+                    } else if let club = state.items.first(where: { $0.id == selected }) {
+                        MembershipClubDetail(club: club, canRequest: state.canRequest) {
+                            Task { if await state.request(club) { await state.refresh() } }
+                        }
+                    } else if state.loaded && !state.busy { Text("Club absent de cette page. Revenez à la liste.") }
+                }.font(.sgmBody(15)).foregroundStyle(SGM.textPrimary).padding(.horizontal, SGMSpace.padScreen)
+            }
+        }.task(id: scenePhase) { if scenePhase == .active { await state.resume() } else { state.suspend() } }
+            .onChange(of: scenePhase) { _, phase in if phase != .active { state.suspend(); selected = nil; reviews = false } }
+            .onChange(of: access.isCurrent) { _, current in if !current { selected = nil; reviews = false } }
+            .onDisappear { state.suspend() }
+            .sheet(isPresented: $reviews, onDismiss: { if scenePhase == .active { Task { await state.resume() } } }) {
+                MembershipReviewScreen(access: access, gateway: gateway).id(access.context.id)
+            }
+    }
+}

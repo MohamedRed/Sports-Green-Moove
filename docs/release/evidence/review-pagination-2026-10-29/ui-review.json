@@ -1,0 +1,21 @@
+{
+  "scope": "manual-session-ui-review-separate-from-independent-record-checkpoints",
+  "device": "Google Pixel 9 Pro",
+  "os": "Android 15",
+  "driver31stPromptVisible": true,
+  "driverFiveStarsSentAndPromptRemoved": true,
+  "parentFirstPageBadge20": true,
+  "parentContinuationVisible": true,
+  "parentSecondPageBadge31": true,
+  "parentLaterPageFiveStarsSent": true,
+  "remainingBadge30WithoutFirstPageReset": true,
+  "blankLoginAfterSignOut": true,
+  "remoteClipboardReplacementTextVerified": true,
+  "localClipboardRestored": true,
+  "idleDashboardAfterStop": true,
+  "syntheticContentOnly": true,
+  "publicAudienceUnchanged": true,
+  "processRestartProven": false,
+  "inputObservation": "Initial bulk password entry was rejected. Android's native Paste control then signed in successfully. No credential was changed or recorded. After scrolling, the first tap stopped motion; a settled second tap activated continuation.",
+  "remainingProductObservation": "Review cards use the same generic title and prompt. Trip context is still missing."
+}

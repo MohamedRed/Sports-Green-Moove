@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-11-05T12:40:11.043Z",
+  "scope": "post-run-owned-runtime-and-endpoints-only",
+  "ownedRuntimeAbsent": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "runnerExitCode": 0,
+  "originalServiceReceipt": "services.json"
+}

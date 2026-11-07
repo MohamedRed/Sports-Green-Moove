@@ -1,0 +1,19 @@
+{
+  "scope": "completed-local-replay-with-failed-ordinary-capture",
+  "checkedAt": "2026-10-22",
+  "sourceCommit": "24218efd46fa35c5d64e7d33dd07f28657fc4fa3",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "ciRunId": 39759370885,
+  "fullCiPassed": false,
+  "ordinaryTestsPassed": false,
+  "localReplayCompleted": true,
+  "localGroupsPassed": 36,
+  "nativeCasesPassed": 38,
+  "focusedLanesPassed": 11,
+  "failedCase": "TripChangeFlowTest.largeTextParentSeesBothVersionsAndAcceptsWithoutApplying",
+  "failure": "Failed waiting for PixelCopy!",
+  "rootCauseEstablished": false,
+  "physicalTrackingAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false
+}

@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "36b241fed563bc222c20e4cb9a92a7bc",
+  "scope": "native-ui-confirmed-conversation-restart-stage",
+  "stage": "after",
+  "processId": 6799,
+  "actorUserId": "sgm-qa-parent",
+  "completed": true,
+  "sessionRestoredWithoutLogin": true,
+  "confirmedHistoryRestored": true,
+  "sendActor": "driver-reply",
+  "sendPhase": "confirmed",
+  "newSendConfirmed": true,
+  "driverReplyReceived": true,
+  "bothInboxesRead": true
+}

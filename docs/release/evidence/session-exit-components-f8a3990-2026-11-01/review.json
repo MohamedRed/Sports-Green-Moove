@@ -1,0 +1,83 @@
+{
+  "scope": "reviewed-session-exit-components-not-full-gate-phone-or-delivery",
+  "sourceCommit": "f8a399009c8dcfea20cccf22aa44ef7a519c9575",
+  "testedAt": "2026-11-01T17:18:31.137Z",
+  "jobId": 124917807736,
+  "rawArchiveDigestIndependentlyMatched": true,
+  "archiveSha256": "ac565a5247c8d00afeed850e91407934659610024f45155ab64c91daa0dd2781",
+  "archiveEntries": {
+    "results.json": {
+      "entry": "local-ui-evidence/6602b812782bb5db8af4ed939be80ccd/session-shutdown-results.json",
+      "sha256": "e73e64805ddde78039e31394a48f3b949147c8aeaa15473472f05333e90af9ef"
+    },
+    "instrumentation.txt": {
+      "entry": "local-ui-evidence/6602b812782bb5db8af4ed939be80ccd/instrumentation.txt",
+      "sha256": "8d5d4db27f321ab01031f079b458c0f6e4320fa74c2825a1af14e74af667e88c"
+    },
+    "copy.json": {
+      "entry": "local-ui-evidence/6602b812782bb5db8af4ed939be80ccd/adb-pull-session-shutdown.json",
+      "sha256": "3d0dd79b1381854860200ebc5f6fee04b8c959a54977ee23dc4db97a76de0414"
+    },
+    "session-exit-narrow.png": {
+      "entry": "local-ui-evidence/6602b812782bb5db8af4ed939be80ccd/session-exit-narrow.png",
+      "sha256": "5757ee07682a5b541de0dd29c291ba1f34f4794f66c3dc8709494be40ab1adb6"
+    },
+    "session-exit-wide-dark.png": {
+      "entry": "local-ui-evidence/6602b812782bb5db8af4ed939be80ccd/session-exit-wide-dark.png",
+      "sha256": "e93ca8c8118c5bf52b84d84c6a4c6240d392ef8166d972ee7149837443c18be9"
+    },
+    "setup.json": {
+      "entry": "focused-safety-ui/team-read-components/disposable-device-setup.json",
+      "sha256": "a5e55850b84c892fb03496a3f95982c69795a476b80a8b23225a3d10d9854538"
+    },
+    "restore.json": {
+      "entry": "focused-safety-ui/team-read-components/disposable-device-restore.json",
+      "sha256": "d86d9b2fe8c3a97a7e74b437fb2d1f03c0a2060201e9ca0ba46ed773936e1651"
+    },
+    "suite-status.json": {
+      "entry": "focused-safety-ui/team-read-components/team-read-components-suite-status.json",
+      "sha256": "451777604b9d601756ae432c55b1146129e85915b48c214c19a5647a741434a7"
+    },
+    "original-read-results.json": {
+      "entry": "local-ui-evidence/0a554b264c5f305883d7ba5df5ea38f2/results.json",
+      "sha256": "49d4430b8f2d4c37d76b47af9da11396f3e60ec1b88f13d762284bf8a09c71bd"
+    }
+  },
+  "captureGuardUnchanged": true,
+  "correctedOrientationCallExecuted": true,
+  "originalReadCasesPreserved": 3,
+  "componentCasesPassed": 3,
+  "visualReview": {
+    "session-exit-narrow.png": {
+      "width": 735,
+      "height": 2400,
+      "readable": true,
+      "unoccluded": true
+    },
+    "session-exit-wide-dark.png": {
+      "width": 1575,
+      "height": 1080,
+      "readable": true,
+      "unoccluded": true
+    }
+  },
+  "fullAppSystemInsetsVerified": false,
+  "fullGatePassed": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "tapNavigationVerified": false,
+  "realMessagingSdkCalls": 0,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {},
+  "sourceFiles": {
+    "scripts/qa/run-session-shutdown-components.mjs": "d88cb797835b881aadfa829f0c6ac6b9508328c61d41e09d1cd41908a35c0a29",
+    "scripts/qa/run-local-team-read-components-ui.mjs": "834cce17cb6e031e4264da643152c8f719f558652c17671391ddfa55b8d2119e",
+    "scripts/qa/collect-local-ui-evidence.mjs": "a92a617e984c21c66bf4f3b8fda6cec64098d82a6b9599065530d9949fee6c77",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionShutdownFlowTest.kt": "7868857b6658036af9a425b319368fc95582c5bbf53ab4ad83b7ba57066efdcc",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f8931f8d4f8d33d4fe13ce59fd16b499a6e4be40c8036bcf9433c4be47a58e2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppAccessGate.kt": "4f407f5788bd9f2ef3b419e11222c521158092ef4063654b45b86547f20603b8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionShutdownState.kt": "f128939f9be0d35f50e480d186bc65f9e67785ffca844e886a3150c3865c17a8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt": "74f0f3e66de7b4a3646a07675e34d8da4f73a5a9ba5d5a92e6af2a437f6fab7f"
+  }
+}

@@ -1,0 +1,45 @@
+
+> sports-green-moove@0.1.0 build
+> npm run build --workspace functions && npm run build --workspace admin && npm run build --workspace website
+
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+
+> @sports-green-moove/admin@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 98 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 0.41 kB │ gzip:   0.28 kB
+dist/assets/App-DLur9ATP.css                    1.39 kB │ gzip:   0.54 kB
+dist/assets/ChildInvitationPage-CKIaW-1q.css    2.51 kB │ gzip:   0.85 kB
+dist/assets/index-DdgBlf6v.css                  7.72 kB │ gzip:   2.24 kB
+dist/assets/Wordmark-D_u0lck3.js                0.31 kB │ gzip:   0.22 kB
+dist/assets/childInvitationLink-Ba2Nizp_.js     0.70 kB │ gzip:   0.46 kB
+dist/assets/ChildInvitationPage-Cm8_ZMwY.js     3.07 kB │ gzip:   1.36 kB
+dist/assets/PrivacyPolicyPage-B5ZuWRpA.js       5.51 kB │ gzip:   1.94 kB
+dist/assets/App-CTFEg5De.js                    55.83 kB │ gzip:  13.13 kB
+dist/assets/index-BA29OGas.js                 197.13 kB │ gzip:  61.88 kB
+dist/assets/firebase-C5ia7i0r.js              632.20 kB │ gzip: 147.33 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.26s
+
+> @sports-green-moove/website@0.1.0 build
+> vite build
+
+vite v6.4.3 building for production...
+transforming...
+✓ 2 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html  41.62 kB │ gzip: 9.91 kB
+✓ built in 55ms

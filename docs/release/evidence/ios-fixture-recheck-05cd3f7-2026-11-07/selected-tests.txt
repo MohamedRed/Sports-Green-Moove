@@ -1,0 +1,30 @@
+2026-11-06T23:55:25.7516130Z ** TEST BUILD SUCCEEDED **
+2026-11-06T23:56:29.8496750Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' started.
+2026-11-06T23:57:18.8511490Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' passed (49.054 seconds).
+2026-11-06T23:57:18.8525090Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' started.
+2026-11-06T23:58:00.5300670Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' passed (41.697 seconds).
+2026-11-06T23:58:00.5510340Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 90.751 (90.754) seconds
+2026-11-06T23:58:00.5661580Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' started.
+2026-11-06T23:59:14.2469520Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' passed (73.738 seconds).
+2026-11-06T23:59:14.3728310Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' started.
+2026-11-06T23:59:31.3974090Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (17.138 seconds).
+2026-11-06T23:59:31.4076190Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' started.
+2026-11-06T23:59:55.7636960Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (24.366 seconds).
+2026-11-06T23:59:55.7745140Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 41.504 (41.506) seconds
+2026-11-06T23:59:55.8234280Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' started.
+2026-11-07T00:00:27.2872180Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' passed (31.523 seconds).
+2026-11-07T00:00:27.2881990Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' started.
+2026-11-07T00:01:02.5594450Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (35.256 seconds).
+2026-11-07T00:01:02.5698720Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' started.
+2026-11-07T00:01:44.4185390Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (41.747 seconds).
+2026-11-07T00:01:44.4227530Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' started.
+2026-11-07T00:03:00.6902960Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' passed (76.400 seconds).
+2026-11-07T00:03:01.0435630Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' started.
+2026-11-07T00:03:45.2923160Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (44.600 seconds).
+2026-11-07T00:03:45.3044300Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' started.
+2026-11-07T00:04:47.4472590Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift:109: error: -[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers] : XCTAssertTrue failed
+2026-11-07T00:05:19.6763580Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' failed (94.378 seconds).
+2026-11-07T00:05:19.7011060Z 	 Executed 5 tests, with 1 failure (0 unexpected) in 292.381 (292.391) seconds
+2026-11-07T00:05:19.7248060Z 	 Executed 11 tests, with 1 failure (0 unexpected) in 529.897 (529.920) seconds
+2026-11-07T00:05:19.7781020Z 	 Executed 11 tests, with 1 failure (0 unexpected) in 529.897 (529.922) seconds
+2026-11-07T00:06:01.1863040Z ** TEST EXECUTE FAILED **

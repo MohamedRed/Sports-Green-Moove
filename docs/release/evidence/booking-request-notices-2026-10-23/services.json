@@ -1,0 +1,417 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "41f861c622e143eb4fed37909c425adc",
+  "testedAt": "2026-10-23T22:05:24.644Z",
+  "scope": "isolated-booking-request-decision-and-notification-atomicity-not-phone-ui",
+  "completed": true,
+  "steps": [
+    {
+      "id": "approval-notice-write-conflict-rolls-back-decision-and-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "approval-commits-one-notice-and-one-seat-change",
+      "status": "passed"
+    },
+    {
+      "id": "approval-replay-does-not-create-extra-notices-or-remove-more-seats",
+      "status": "passed"
+    },
+    {
+      "id": "decline-notice-write-conflict-keeps-request-pending",
+      "status": "passed"
+    },
+    {
+      "id": "decline-commits-one-notice-without-consuming-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "decline-replay-does-not-create-a-second-notice",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-notice-write-conflict-keeps-approved-booking-and-capacity",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-commits-one-driver-notice-and-restores-one-seat",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-replay-cannot-restore-capacity-or-create-notices-twice",
+      "status": "passed"
+    },
+    {
+      "id": "inbox-delivers-only-the-intended-parent-and-driver-notices",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-driver-approval-commits-one-decision-notice-and-seat-change",
+      "status": "passed"
+    },
+    {
+      "id": "request-commits-one-private-driver-notice-with-booking-and-receipt",
+      "status": "passed"
+    },
+    {
+      "id": "request-notice-is-visible-only-in-the-drivers-inbox",
+      "status": "passed"
+    },
+    {
+      "id": "request-replay-preserves-one-notice-and-its-confirmed-read-time",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-request-retries-commit-one-booking-receipt-and-driver-notice",
+      "status": "passed"
+    },
+    {
+      "id": "conflicting-request-reuse-does-not-change-the-booking-or-notice",
+      "status": "passed"
+    },
+    {
+      "id": "separate-fresh-requests-retain-separate-notice-identities",
+      "status": "passed"
+    },
+    {
+      "id": "denied-stale-and-abandoned-requests-never-create-a-driver-notice",
+      "status": "passed"
+    },
+    {
+      "id": "request-resolution-races-never-leave-an-orphan-or-duplicate-notice",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-records-and-original-claims-remain-unchanged",
+      "status": "passed"
+    }
+  ],
+  "observations": [
+    {
+      "actor": "sgm-qa-parent",
+      "notices": [
+        "bookingDecision_d89dad62781ddf2f564c6651817abaf48f98dceb433b1972db4c9ee42f3b0148",
+        "bookingDecision_3625c84818ee3c478ea7fc2c570ee6107ba5deae80c3a873e477d40ea53749ad"
+      ]
+    },
+    {
+      "actor": "sgm-qa-driver",
+      "notices": [
+        "bookingDecision_76429f2c84afabdacae23858ad1a4738fa7228e8e8ab6db190e887e3f8872f16"
+      ]
+    },
+    {
+      "actor": "sgm-qa-outsider",
+      "notices": []
+    },
+    {
+      "actor": "sgm-qa-parent",
+      "visibleRequestNotices": 0
+    },
+    {
+      "actor": "sgm-qa-driver",
+      "visibleRequestNotices": 1
+    },
+    {
+      "actor": "sgm-qa-outsider",
+      "visibleRequestNotices": 0
+    }
+  ],
+  "requestNoticeRecords": [
+    {
+      "kind": "request-commit",
+      "bookingId": "OAH6tOuqthwBe8Zs197g",
+      "tripId": "WtpNOMnxtO141pRDxNNL",
+      "noticeId": "bookingDecision_7343a906ab2eb48464902798f033e335b207b817ce64cf9f72ff4e2877643141",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "OAH6tOuqthwBe8Zs197g",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793102,
+          "_nanoseconds": 729000000
+        }
+      },
+      "booking": {
+        "tripId": "WtpNOMnxtO141pRDxNNL",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "1ed0f944f63637ec02b06a32509a4d44f473a75692c4e1f6348e1af7de542d71",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "2727ea77-f363-4a4d-be2f-8895f9c2cd81",
+        "state": "committed",
+        "bookingId": "OAH6tOuqthwBe8Zs197g"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-read-replay",
+      "bookingId": "OAH6tOuqthwBe8Zs197g",
+      "noticeId": "bookingDecision_7343a906ab2eb48464902798f033e335b207b817ce64cf9f72ff4e2877643141",
+      "beforeNotice": {
+        "type": "bookingRequested",
+        "sourceId": "OAH6tOuqthwBe8Zs197g",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "createdAt": {
+          "_seconds": 1792793102,
+          "_nanoseconds": 729000000
+        },
+        "read": true,
+        "readAt": {
+          "_seconds": 1792793104,
+          "_nanoseconds": 446000000
+        }
+      },
+      "afterNotice": {
+        "type": "bookingRequested",
+        "sourceId": "OAH6tOuqthwBe8Zs197g",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "createdAt": {
+          "_seconds": 1792793102,
+          "_nanoseconds": 729000000
+        },
+        "read": true,
+        "readAt": {
+          "_seconds": 1792793104,
+          "_nanoseconds": 446000000
+        }
+      }
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "AkhPZqUVOEtE607H3GA6",
+      "tripId": "M7D2xg6ZlEq1eSKAvfd8",
+      "noticeId": "bookingDecision_0fa75ba9537f54aa9b1921ef35c84770a04e6833e6c30e6478a3107e5498f064",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "AkhPZqUVOEtE607H3GA6",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793104,
+          "_nanoseconds": 546000000
+        }
+      },
+      "booking": {
+        "tripId": "M7D2xg6ZlEq1eSKAvfd8",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "cc362f11153899f97ff31f6b8936a9c689cc867e3b70a591c8b433fb592125ff",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "90378d2a-c178-48cd-a1ad-4422f8280c36",
+        "state": "committed",
+        "bookingId": "AkhPZqUVOEtE607H3GA6"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "zEScsXr93y4gWP48jYSC",
+      "tripId": "QtBlFuTZxDyZDkMOQx5y",
+      "noticeId": "bookingDecision_750b98b88480303d97853a55e1eac8d8478ba613f08a3acba57cb6ff99dac062",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "zEScsXr93y4gWP48jYSC",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793105,
+          "_nanoseconds": 545000000
+        }
+      },
+      "booking": {
+        "tripId": "QtBlFuTZxDyZDkMOQx5y",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "d1dd462ddc788fe6ade0b6f614c657b4f64ab3128921f35a2fa94ef8c70a4444",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "98edb022-9990-4fd1-b27d-b9ea1141281c",
+        "state": "committed",
+        "bookingId": "zEScsXr93y4gWP48jYSC"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "lvsvQx8ygUHHrpYRWq21",
+      "tripId": "QtBlFuTZxDyZDkMOQx5y",
+      "noticeId": "bookingDecision_c93f866cdff8db47de542b6fd650ee5161a699d509bff8fa5fb19e968b56390d",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "lvsvQx8ygUHHrpYRWq21",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793105,
+          "_nanoseconds": 560000000
+        }
+      },
+      "booking": {
+        "tripId": "QtBlFuTZxDyZDkMOQx5y",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 1,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "883188a19e42c744b535fd8660a9e176efe16fb464c3c3169a90a363a93ebb3d",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "ce3bd083-26e7-4e47-933e-56ff9ac5b8ca",
+        "state": "committed",
+        "bookingId": "lvsvQx8ygUHHrpYRWq21"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "jhZn4li9ixHTRKreHLFA",
+      "tripId": "xyzhZ60cx6zB4a91Z9jR",
+      "noticeId": "bookingDecision_fb25a945b4faf2cce8e66127d6f4dfd29783ede413d78a23fbedff1ceef1f860",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "jhZn4li9ixHTRKreHLFA",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793111,
+          "_nanoseconds": 662000000
+        }
+      },
+      "booking": {
+        "tripId": "xyzhZ60cx6zB4a91Z9jR",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "8e45a3d9873f696e8897b8e66490ab3c3a4902b8dc2becf7b06a5f15e42ec54c",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "a932bbf6-fba3-44c8-b694-3ae7f6084b2e",
+        "state": "committed",
+        "bookingId": "jhZn4li9ixHTRKreHLFA"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "FWx5hbTqjWu4CLbQoRZs",
+      "tripId": "aj8K6lrIc1ZyT096empK",
+      "noticeId": "bookingDecision_c407b343fd99c6d30c09a525692f5bb9991bcbb6cc5b087c6a8d6bcd3defd906",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "FWx5hbTqjWu4CLbQoRZs",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793112,
+          "_nanoseconds": 989000000
+        }
+      },
+      "booking": {
+        "tripId": "aj8K6lrIc1ZyT096empK",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "b14c564a325ffdbe374a73c9704480ee2a3d240c2713c2a4ac6737bb249913e3",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "099be758-b2a2-454f-95d5-c79b487001e4",
+        "state": "committed",
+        "bookingId": "FWx5hbTqjWu4CLbQoRZs"
+      },
+      "seatsAvailable": 4
+    },
+    {
+      "kind": "request-commit",
+      "bookingId": "38pvbr3gfgsfUuI2UAzF",
+      "tripId": "e3U05OiWB2k4296Cb0sv",
+      "noticeId": "bookingDecision_b1443a9890cd293d45fca74efd8086775737dc0976d7c05bfd08c1936460d63a",
+      "notice": {
+        "type": "bookingRequested",
+        "sourceId": "38pvbr3gfgsfUuI2UAzF",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792793119,
+          "_nanoseconds": 687000000
+        }
+      },
+      "booking": {
+        "tripId": "e3U05OiWB2k4296Cb0sv",
+        "parentUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested"
+      },
+      "receipt": {
+        "id": "ef6de9e262ec474f449e85253f787a940945149ced5aedbb03b23e34bea27797",
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "e92a9745-e597-4f48-a37e-3e4d72698c16",
+        "state": "committed",
+        "bookingId": "38pvbr3gfgsfUuI2UAzF"
+      },
+      "seatsAvailable": 4
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "functions/src/callables/bookings.ts": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0",
+    "functions/src/callables/reservations.ts": "4a4d6916d729ed244c24adb905d0265e5ff2366b5a471b87931c3e63e8aa1ca9",
+    "functions/src/callables/bookingRequests.ts": "257af593b77ffc601e007d052021af923ec1cabc2567caf6a53ef31561e3b0f2",
+    "functions/src/domain/bookingNotifications.ts": "65d8777ad1cb51e51f5e10072ed36ba7a9972bfcb10505c348b796ab903cf09f",
+    "functions/src/lib/bookingNotifications.ts": "c63d4bfdf2dc07d8e665c36bccffe5ccbfffc96234583df080d309903564b477",
+    "scripts/qa/local-booking-notices.mjs": "d0867cc43e94cbb760e5c2ee0d7270eacf4b0622a79602fc5a19cde13570b9f2",
+    "scripts/qa/local-booking-request-notices.mjs": "f8c4939c3587b4adfa5fd32566e2aa35ac39da3474f5f18a76bcce6f5e3d41d5"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

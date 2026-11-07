@@ -1,0 +1,18 @@
+{
+  "physicalSessionStopped": true,
+  "appUninstallVerified": false,
+  "appPrivateStorageClearedVerified": false,
+  "providerUninstallInventoryReturnedNoUserApps": true,
+  "nativeUninstallReturnedHomeWithIconStillPresent": true,
+  "sameAppProviderRelaunchDidNotRepairInventory": true,
+  "networkSimulationChanged": false,
+  "deviceAdministrationChanged": false,
+  "hostClipboardRestored": true,
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "helperProcessGroupExitVerified": true,
+  "helperPrivateDirectoryRemoved": true,
+  "privateSessionFileRemoved": true,
+  "listeningPortsAfterCleanup": [],
+  "phoneFixtureCredentialsUsableAfterBackendDestruction": false
+}

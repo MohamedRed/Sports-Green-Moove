@@ -1,0 +1,50 @@
+{
+  "scope": "isolated-dispatch-and-native-consumer-components-not-delivery-or-release",
+  "testedAt": "2026-11-01T20:53:52.971Z",
+  "serviceCases": 14,
+  "backendUnitTests": 611,
+  "focusedUnitTests": 22,
+  "dispatcherImplemented": true,
+  "productionDeployed": false,
+  "providerRequests": 0,
+  "pushDeliveryVerified": false,
+  "nativeNotificationTapVerified": false,
+  "physicalDevice": false,
+  "releaseAccepted": false,
+  "initialFixtureSourceFiles": {
+    "scripts/qa/local-team-push-dispatch-suite.mjs": "67b6cdf960892ea0752c326b2b564ff3737dcc323efde293f67e89932dfd328d"
+  },
+  "native": {
+    "sourceCommit": "11c423b6cd49e652e7d228130eddcad2dd7f03fd",
+    "runId": 41347838315,
+    "runStatusAtInspection": "in_progress",
+    "routeCases": 8,
+    "platformCases": 4,
+    "nativeNotificationPosted": true,
+    "injectedResolver": true,
+    "realMessagingSdkCalls": 0,
+    "remoteTrialPassed": false,
+    "remoteFinalMarkerWritten": false,
+    "wholeGatePassed": false,
+    "archives": [
+      {
+        "id": 13100227677,
+        "sha256": "0a470628f133b5052199a9fe8b5a770f0ca45e10ca529097b62ee2aa735a1ba6"
+      },
+      {
+        "id": 13100043476,
+        "sha256": "f78f9b4ef5c3b422cff83d7fd4f02e211448ba4711e980314d087c4c9cd20079"
+      }
+    ]
+  },
+  "teardownCandidate": {
+    "sourceFiles": {
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt": "17a906f4e9ea44763adacd9806337f56a4570066477978cb097acd10850f5767",
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ObservedActivityStage.kt": "5ed2cc5bd5232073146cae4a31b38749bfaa0e8736d4f3dd3d6ad7bf94e9ff0b"
+    },
+    "sourceUnchangedDuringBuild": true,
+    "instrumentationExecuted": false,
+    "testApkSha256": "f369c4950c030a6a5e0c77f15665a777f52e00c068eb43eb944182dc4d219a49"
+  },
+  "publishedCaptures": {}
+}

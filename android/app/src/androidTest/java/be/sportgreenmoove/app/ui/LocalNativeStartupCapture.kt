@@ -1,0 +1,77 @@
+package be.sportgreenmoove.app.ui
+
+import android.app.Activity
+import android.content.ContextWrapper
+import android.graphics.Bitmap
+import android.graphics.Rect
+import android.os.Build
+import android.os.Handler
+import android.os.Looper
+import android.view.PixelCopy
+import androidx.compose.ui.platform.ViewRootForTest
+import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.onRoot
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.platform.graphics.HardwareRendererCompat
+import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
+
+internal fun captureNativeStartupWindow(compose: ComposeTestRule, name: String) {
+    val drawingEnabled = HardwareRendererCompat.isDrawingEnabled()
+    HardwareRendererCompat.setDrawingEnabled(true)
+    try { captureRenderedStartupWindow(compose, name) }
+    finally {
+        HardwareRendererCompat.setDrawingEnabled(drawingEnabled)
+        check(HardwareRendererCompat.isDrawingEnabled() == drawingEnabled)
+    }
+}
+
+private fun captureRenderedStartupWindow(compose: ComposeTestRule, name: String) {
+    check(Build.VERSION.SDK_INT >= 29)
+    check(Regex("local-native-startup-[a-z-]+\\.png").matches(name))
+    compose.waitForIdle()
+    val view = checkNotNull(compose.onRoot().fetchSemanticsNode().root as? ViewRootForTest).view
+    var context = view.context
+    while (context is ContextWrapper && context !is Activity) context = context.baseContext
+    val window = checkNotNull(context as? Activity).window
+    val decor = window.decorView
+    val frame = CountDownLatch(1)
+    val committed = Runnable { frame.countDown() }
+    val observer = compose.runOnUiThread {
+        check(decor.isAttachedToWindow && decor.isHardwareAccelerated)
+        decor.viewTreeObserver.also { it.registerFrameCommitCallback(committed); decor.invalidate() }
+    }
+    try { check(frame.await(10, TimeUnit.SECONDS)) { "Native startup frame did not commit" } }
+    finally { compose.runOnUiThread { if (observer.isAlive) observer.unregisterFrameCommitCallback(committed) } }
+    val instrumentation = InstrumentationRegistry.getInstrumentation()
+    val rectangle = compose.runOnUiThread {
+        val position = IntArray(2); view.getLocationInWindow(position)
+        Rect(position[0], position[1], position[0] + view.width, position[1] + view.height)
+    }
+    val bitmap = Bitmap.createBitmap(rectangle.width(), rectangle.height(), Bitmap.Config.ARGB_8888)
+    val copied = CountDownLatch(1)
+    val result = AtomicInteger(PixelCopy.ERROR_UNKNOWN)
+    val lock = Any(); var closed = false; var completed = false; var requested = false
+    try {
+        compose.runOnUiThread {
+            PixelCopy.request(window, rectangle, bitmap, { status ->
+                result.set(status)
+                synchronized(lock) { completed = true; if (closed) bitmap.recycle() }
+                copied.countDown()
+            }, Handler(Looper.getMainLooper()))
+            requested = true
+        }
+        check(copied.await(10, TimeUnit.SECONDS)) { "Native startup window copy did not complete" }
+        check(result.get() == PixelCopy.SUCCESS) { "Native startup window copy failed: ${result.get()}" }
+        check(bitmap.width >= 300 && bitmap.height > bitmap.width)
+        val colors = mutableSetOf<Int>()
+        for (x in 0 until bitmap.width step 16) for (y in 0 until bitmap.height step 16) colors += bitmap.getPixel(x, y)
+        check(colors.size > 16) { "Blank native startup capture rejected" }
+        val directory = File(instrumentation.targetContext.getExternalFilesDir(null), "local-ui-evidence")
+        check(directory.isDirectory || directory.mkdirs())
+        val output = File(directory, name); check(!output.exists())
+        output.outputStream().use { check(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
+    } finally { synchronized(lock) { closed = true; if (completed || !requested) bitmap.recycle() } }
+}

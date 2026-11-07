@@ -1,0 +1,163 @@
+{
+  "phase": "requested",
+  "result": {
+    "phase": "requested",
+    "bookingId": "GXCONuiTTPswv45tFbyM",
+    "tripId": "3u0pE5wDsFvJM9uQMlu8",
+    "seats": 2,
+    "seatsAvailable": 4,
+    "committedRequestReceipts": 1,
+    "notificationCount": 1
+  },
+  "state": {
+    "booking": {
+      "tripId": "3u0pE5wDsFvJM9uQMlu8",
+      "parentUserId": "sgm-qa-parent",
+      "requesterUserId": "sgm-qa-parent",
+      "driverUserId": "sgm-qa-driver",
+      "seats": 2,
+      "status": "requested",
+      "createdAt": {
+        "_seconds": 1792855305,
+        "_nanoseconds": 635000000
+      },
+      "updatedAt": {
+        "_seconds": 1792855305,
+        "_nanoseconds": 635000000
+      },
+      "childId": "sgm-qa-child-lina",
+      "childLabel": "Lina QA"
+    },
+    "trip": {
+      "id": "3u0pE5wDsFvJM9uQMlu8",
+      "driverUserId": "sgm-qa-driver",
+      "status": "published",
+      "title": "Trajet QA recherche deux places",
+      "sport": "Football",
+      "clubName": "Green Wavre QA Club",
+      "clubId": "sgm-qa-club-green-wavre",
+      "teamId": "sgm-qa-club-green-wavre-u8",
+      "category": "U 7/8",
+      "departureAt": "2026-10-27T15:09:01.716Z",
+      "origin": {
+        "lat": 50.7167,
+        "lng": 4.6167
+      },
+      "destination": {
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "pickupRadiusM": 1500,
+      "seatsTotal": 4,
+      "seatsAvailable": 4,
+      "baggage": "medium",
+      "returnTrip": false,
+      "priceCents": 0,
+      "driverRating": 0,
+      "driverVerified": true,
+      "supportsVehicleTracking": true,
+      "supportsChildTracking": true,
+      "co2SavedKgEstimate": 7.4,
+      "passengerInitials": [],
+      "blockedUserIds": [],
+      "createdAt": {
+        "_seconds": 1792854562,
+        "_nanoseconds": 188000000
+      },
+      "updatedAt": {
+        "_seconds": 1792854562,
+        "_nanoseconds": 188000000
+      }
+    },
+    "receipts": [
+      {
+        "uid": "sgm-qa-parent",
+        "clientRequestId": "c76b086f-7c07-4972-a64f-4a61e4a2b1a0",
+        "fingerprint": "15ab6f3a36d1a743e7af5a3e8bf50636b63022cf4e414d764ef3191baf64b999",
+        "state": "committed",
+        "response": {
+          "bookingId": "GXCONuiTTPswv45tFbyM",
+          "clientRequestId": "c76b086f-7c07-4972-a64f-4a61e4a2b1a0",
+          "status": "requested",
+          "trip": {
+            "id": "3u0pE5wDsFvJM9uQMlu8",
+            "bookingIntent": {
+              "terms": {
+                "departureAt": "2026-10-27T15:09:01.716Z",
+                "arrivalBy": null,
+                "origin": {
+                  "lat": 50.7167,
+                  "lng": 4.6167
+                },
+                "destination": {
+                  "lat": 50.8503,
+                  "lng": 4.3517
+                },
+                "priceCents": 0
+              },
+              "context": {
+                "driverUserId": "sgm-qa-driver",
+                "seatsTotal": 4,
+                "clubId": "sgm-qa-club-green-wavre",
+                "teamId": "sgm-qa-club-green-wavre-u8",
+                "category": "U 7/8",
+                "pickupRadiusM": 1500,
+                "baggage": "medium",
+                "returnTrip": false,
+                "supportsVehicleTracking": true,
+                "supportsChildTracking": true,
+                "appliedChangeId": null
+              }
+            },
+            "title": "Trajet QA recherche deux places",
+            "club": "Green Wavre QA Club",
+            "category": "U 7/8",
+            "sport": "Football",
+            "departureLabel": "MAR 27 OCT. · 16h09",
+            "dateLabel": "MAR 27 OCT.",
+            "timeLabel": "16h09",
+            "distanceLabel": "Distance à confirmer",
+            "seatsAvailable": 4,
+            "seatsLabel": "4 places",
+            "priceLabel": "Gratuit",
+            "passengerInitials": [],
+            "reasons": [
+              "4 places",
+              "Suivi véhicule disponible",
+              "Suivi enfant disponible"
+            ],
+            "status": "upcoming",
+            "mapPreview": {
+              "start": {
+                "lat": 50.7167,
+                "lng": 4.6167
+              },
+              "end": {
+                "lat": 50.8503,
+                "lng": 4.3517
+              }
+            }
+          }
+        },
+        "createdAt": {
+          "_seconds": 1792855305,
+          "_nanoseconds": 635000000
+        }
+      }
+    ],
+    "notifications": [
+      {
+        "type": "bookingRequested",
+        "sourceId": "GXCONuiTTPswv45tFbyM",
+        "title": "Nouvelle demande de réservation",
+        "body": "Une nouvelle demande de réservation attend votre réponse.",
+        "userId": "sgm-qa-driver",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1792855305,
+          "_nanoseconds": 638000000
+        }
+      }
+    ]
+  }
+}

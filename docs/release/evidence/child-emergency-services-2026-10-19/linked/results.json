@@ -1,0 +1,128 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "70943c431520467fbf38ce25d89ed5d6",
+  "testedAt": "2026-10-19T22:33:52.762Z",
+  "scope": "local-child-read-service-not-native-or-dialer",
+  "steps": [
+    {
+      "id": "child-reads-only-its-active-ride-with-an-explicit-empty-contact",
+      "status": "passed"
+    },
+    {
+      "id": "separately-verified-parent-choice-persists-its-authorization-provenance",
+      "status": "passed"
+    },
+    {
+      "id": "strangers-adults-and-spoofed-child-identities-cannot-read-the-contact",
+      "status": "passed"
+    },
+    {
+      "id": "the-child-read-capability-never-enables-self-or-child-contact-writes",
+      "status": "passed"
+    },
+    {
+      "id": "a-separate-server-owned-child-account-link-is-required-current-and-revocable",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-foreign-and-pre-profile-ride-identities-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-blocks-the-child-until-a-new-explicit-parent-verification",
+      "status": "passed"
+    },
+    {
+      "id": "removing-the-current-parent-child-relationship-revokes-child-reading",
+      "status": "passed"
+    },
+    {
+      "id": "current-parent-role-membership-and-club-status-are-rechecked-on-every-read",
+      "status": "passed"
+    },
+    {
+      "id": "missing-or-unrelated-parent-provenance-never-becomes-an-empty-or-guessed-contact",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-contact-and-immutable-child-markers-are-refused",
+      "status": "passed"
+    },
+    {
+      "id": "legacy-contact-presence-requires-explicit-review-without-fallback-or-data-loss",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-parent-removal-is-versioned-and-does-not-authorize-a-phone-destination",
+      "status": "passed"
+    },
+    {
+      "id": "recreating-the-verification-club-requires-a-fresh-manager-decision",
+      "status": "passed"
+    },
+    {
+      "id": "a-recreated-child-never-inherits-an-old-ride-or-the-prior-contact",
+      "status": "passed"
+    },
+    {
+      "id": "other-records-claims-live-rides-and-private-operation-counts-remain-protected",
+      "status": "passed"
+    }
+  ],
+  "testCount": 16,
+  "firstIsolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 1,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "secondIsolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 1,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "adminClientClosed": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "dialerOpened": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "childAccountLinkPreseeded": true,
+  "childAccountApprovalFlowExecuted": false,
+  "sourceFiles": {
+    "functions/src/domain/emergencyContact.ts": "40ca89ad41521f32931573668996c84471cff84bdf01cdf6fda7d380788aa0ef",
+    "functions/src/services/emergencyContact.ts": "6b64809a0107757ed356a817c1db31b80b8f52b1b7bdb1cd2107a692642b9a9a",
+    "functions/src/domain/childAccountLink.ts": "981bf39e99b0a6e99ced45238b3afda5065ef595854c1c89c232bb9466880d78",
+    "firestore.rules": "703eb2a94747486b4a17917e6bdacefd47a1c9a16bcffbee11cd42309925e050",
+    "functions/src/services/childRideEmergencyContact.ts": "62f14bc46bc47ddadc209cb1cb0dd076eddc2f3869698de349ef20b5f61cd53f",
+    "functions/src/callables/emergencyContact.ts": "250cb025b035a1482c15760d0414ca4bcd243526dc114425682c702349ea97ab",
+    "scripts/qa/local-child-emergency-suite.mjs": "560d86772b8da0339e315aa9cdd80748c8dc6665495a06072ca6b93e3271c374",
+    "scripts/qa/child-emergency-fixture.mjs": "357f4e4ff947b88a79271e7000f910bc8e78defb93ad822905d6885e6259d566",
+    "scripts/qa/run-local-child-emergency.mjs": "352824b5a8218cb914a61c8940b0f952635245044d8c8a6197dc3ed0a896febe"
+  },
+  "emulatorCliExitedSuccessfully": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

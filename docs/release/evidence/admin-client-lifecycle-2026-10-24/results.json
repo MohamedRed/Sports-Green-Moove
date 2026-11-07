@@ -1,0 +1,99 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "548191c016e038fdcd107cb8bc0ee6ae",
+  "testedAt": "2026-10-24T00:31:06.815Z",
+  "scope": "isolated-real-admin-sdk-lifecycle-not-native-ui",
+  "completed": true,
+  "cases": [
+    {
+      "mode": "before",
+      "report": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "548191c016e038fdcd107cb8bc0ee6ae",
+        "mode": "before",
+        "processId": 35786,
+        "scope": "real-local-admin-client-lifecycle-not-device-proof",
+        "readsCompleted": true,
+        "registeredAppCount": 1,
+        "firestoreTerminationAcknowledged": false,
+        "appDeletionAcknowledged": false,
+        "taskErrorPreserved": false,
+        "productionWrites": false,
+        "forcedExitUsed": false
+      },
+      "observation": {
+        "incompleteClientCleanupReproduced": true,
+        "aliveAfterReceiptMs": 1000,
+        "intentionallyStopped": true,
+        "groupExitVerified": true
+      }
+    },
+    {
+      "mode": "after",
+      "report": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "548191c016e038fdcd107cb8bc0ee6ae",
+        "mode": "after",
+        "processId": 35787,
+        "scope": "real-local-admin-client-lifecycle-not-device-proof",
+        "readsCompleted": true,
+        "registeredAppCount": 0,
+        "firestoreTerminationAcknowledged": true,
+        "appDeletionAcknowledged": true,
+        "taskErrorPreserved": false,
+        "productionWrites": false,
+        "forcedExitUsed": false
+      },
+      "observation": {
+        "naturalExitObserved": true,
+        "successfulExit": true,
+        "taskErrorPreserved": false,
+        "groupExitVerified": true
+      }
+    },
+    {
+      "mode": "task-error",
+      "report": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "548191c016e038fdcd107cb8bc0ee6ae",
+        "mode": "task-error",
+        "processId": 35821,
+        "scope": "real-local-admin-client-lifecycle-not-device-proof",
+        "readsCompleted": true,
+        "registeredAppCount": 0,
+        "firestoreTerminationAcknowledged": true,
+        "appDeletionAcknowledged": true,
+        "taskErrorPreserved": true,
+        "productionWrites": false,
+        "forcedExitUsed": false
+      },
+      "observation": {
+        "naturalExitObserved": true,
+        "successfulExit": false,
+        "taskErrorPreserved": true,
+        "groupExitVerified": true
+      }
+    }
+  ],
+  "productionWrites": false,
+  "physicalDeviceAccepted": false,
+  "nativeReplayAccepted": false,
+  "releaseComplete": false,
+  "sourceFiles": {
+    "scripts/qa/local-admin-lifecycle.mjs": "c464aa94bcf9a557c5b9baa55ce529c20fe8e0ae48e6698d85adff2ea4f5f768",
+    "scripts/qa/local-admin-lifecycle-suite.mjs": "5be0d6d9852636bf03098e03687d416a7959eeab9f83a1bab803a22b5512824a",
+    "scripts/qa/local-android-session.mjs": "531fdc8968ec5802e0481748cf726e2d116e37a550532e10d6e06900c7061aeb",
+    "tests/fixtures/local-admin-client.mjs": "76e204263618a006b46ab99cfe3f524c3dc43b251c4b8c98c0f41d5ff43677a2"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

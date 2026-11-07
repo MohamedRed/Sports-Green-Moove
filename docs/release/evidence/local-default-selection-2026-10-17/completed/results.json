@@ -1,0 +1,381 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+  "testedAt": "2026-10-17T09:20:14.276Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 24,
+  "steps": [
+    {
+      "id": "parent-app-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-approval-ui",
+      "status": "passed"
+    },
+    {
+      "id": "landscape-login-ui",
+      "status": "passed"
+    },
+    {
+      "id": "calendar-empty-consent-ui",
+      "status": "passed"
+    },
+    {
+      "id": "theme-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-review-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-ledgers-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-conversation-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-input-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-session-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-criteria-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-retention-ui",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-sdk",
+      "status": "passed"
+    },
+    {
+      "id": "reservation-decisions-ui",
+      "status": "passed"
+    },
+    {
+      "id": "membership-refresh-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-network-recovery-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-account-switch-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-confirmed-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-post-commit-response-loss-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-trip-cancellation-ui",
+      "status": "passed"
+    },
+    {
+      "id": "booking-post-commit-response-loss-sdk",
+      "status": "passed"
+    },
+    {
+      "id": "booking-response-loss-search-ui",
+      "status": "passed"
+    }
+  ],
+  "ride": {
+    "rideSessionId": "NQr5rk0AgH9REqvbCAkn",
+    "bookingCount": 2,
+    "auditEventCount": 4,
+    "ratingCount": 1
+  },
+  "chat": {
+    "sourceType": "booking",
+    "sourceId": "sgm-qa-booking-approved",
+    "messageCount": 5,
+    "newMessageCount": 4,
+    "readNotificationCount": 4,
+    "historyMessageCount": 120,
+    "peerDelivery": "one authenticated local SDK send while the parent thread remained open"
+  },
+  "directory": {
+    "sourceType": "booking",
+    "sourceId": "CHk9P0KTaaRRdRrXtwYV",
+    "conversationCount": 28,
+    "archivedConversationCount": 25,
+    "firstPageCount": 20,
+    "secondPageCount": 8,
+    "messageCount": 2,
+    "readNotificationCount": 2,
+    "limitation": "Archived conversations are seeded history; the two new messages were sent through the app."
+  },
+  "multiSeatSdk": {
+    "method": "native-sdk-not-ui",
+    "requestedSeats": 2,
+    "seatsBefore": 4,
+    "seatsAfterApproval": 2,
+    "seatsAfterCancellation": 4,
+    "repeatedCancellationRejected": true,
+    "limitation": "The booking request used the native gateway; approval and cancellation used authenticated local service calls, not UI."
+  },
+  "reservationDecisions": {
+    "method": "app-ui-with-persisted-checks",
+    "requestedCancellation": "cancelled",
+    "approvedCancellation": "cancelled",
+    "declinedStatus": "declined",
+    "requestedSeats": 2,
+    "approvedSeatsBeforeCancellation": 2,
+    "seatsAfterEachDecision": 4,
+    "notificationCount": 3,
+    "livePayment": false
+  },
+  "tripCancellation": {
+    "method": "app-ui-with-independent-persisted-checks",
+    "tripId": "YdKBNch0azClLzv7yp1d",
+    "receipt": {
+      "tripId": "YdKBNch0azClLzv7yp1d",
+      "requestId": "9e9ca747-da9b-466e-9d0f-ced898e5897d",
+      "expectedRevision": "72a2e6aaeab58de00ab277a0038614c310ef931ced6769560271a9a5c2c6ce25",
+      "reason": "Match reporté après contrôle local",
+      "actorUserId": "sgm-qa-driver",
+      "bookingIds": [
+        "KDFRrBrZO7vVHvhhjJCs",
+        "Rx971TdtM2kdDY0iJGaO"
+      ],
+      "refundPendingCount": 1,
+      "seatsAvailable": 3,
+      "cancelledAt": "2026-10-17T09:18:40.532Z",
+      "status": "cancelled",
+      "bookingCount": 2
+    },
+    "bookingCount": 2,
+    "notificationCount": 1,
+    "refundPendingCount": 1,
+    "seatsInitiallyOffered": 3,
+    "seatsAfterApproval": 1,
+    "seatsAfterCancellation": 3,
+    "parentCancelledReservationsVisible": true,
+    "parentPendingRefundVisible": true,
+    "repeatedRequestIdempotent": true,
+    "rebookApproveStartDenied": true,
+    "syntheticPaymentMetadata": true,
+    "livePayment": false,
+    "refundIssued": false,
+    "productionDeployed": false
+  },
+  "membershipRefresh": {
+    "method": "app-request-refresh-ui-with-local-sdk-manager-decisions-and-persisted-checks",
+    "records": [
+      {
+        "clubId": "sgm-qa-native-approve",
+        "status": "active",
+        "active": true,
+        "memberCount": 2,
+        "reviewCount": 1
+      },
+      {
+        "clubId": "sgm-qa-native-reject",
+        "status": "active",
+        "active": true,
+        "memberCount": 2,
+        "reviewCount": 2
+      }
+    ],
+    "reviewCount": 3,
+    "notificationCount": 3,
+    "roleEscalation": false,
+    "livePush": false,
+    "limitation": "Manager decisions use authenticated local SDK calls, not a mobile management UI."
+  },
+  "chatNetwork": {
+    "method": "native-ui-with-disposable-os-network-control",
+    "sourceId": "Qeco03YDDuA1NsQcAqSI",
+    "messageCount": 2,
+    "notificationCount": 2,
+    "duplicateMessages": 0,
+    "bookingStatuses": [
+      "approved",
+      "cancelled",
+      "completed",
+      "declined",
+      "requested"
+    ],
+    "offlineDraftRetained": true,
+    "accountDraftCleared": true,
+    "networkRestored": true,
+    "limits": [
+      "Network disabled before the first attempt, not after a server commit.",
+      "No process restart, token expiry, physical device or push delivery tested."
+    ]
+  },
+  "chatRestart": {
+    "method": "native-ui-confirmed-conversation-force-stop",
+    "sourceId": "cXWtWdeBaJOj9UjfSQVl",
+    "preparedProcessId": 7097,
+    "resumedProcessId": 7220,
+    "messageCount": 3,
+    "notificationCount": 3,
+    "duplicateMessages": 0,
+    "originalMessageUnchanged": true,
+    "sessionRestoredWithoutLogin": true,
+    "limits": [
+      "Confirmed messages only; pending or unsent draft recovery is not tested.",
+      "No physical device, token expiry, post-commit acknowledgement loss or push delivery tested."
+    ]
+  },
+  "chatResponseLoss": {
+    "method": "native-sdk-controlled-post-commit-reply-loss",
+    "sourceId": "lAvsjRdgWacjijxCQJ6g",
+    "messageId": "f84f01f98972d0defd991d77503116261593c39c9f48a4f318045b954b3e488e",
+    "clientMessageId": "e9047cbe-da0a-4ef7-9cec-ad7069907f31",
+    "notificationId": "chat_3888fdd2483c5692663d5e024c14429e383c1ddb606136c9f9a17ac3ceb670d3",
+    "messageCount": 1,
+    "notificationCount": 1,
+    "duplicateMessages": 0,
+    "attempts": 3,
+    "rejectedRetryRetained": true,
+    "networkRestored": true,
+    "limits": [
+      "Production conversation route and SDK, hosted in a test activity; not full app navigation.",
+      "Controlled local HTTP reply loss and 429 rejection, with Firestore network paused to defer its acknowledgement.",
+      "No operating-system network loss, physical phone, process restart, expired token or push delivery tested."
+    ]
+  },
+  "bookingResponseLoss": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+    "scope": "native-sdk-booking-response-loss-not-ui",
+    "tripId": "JhUQxT9mdCycsgu0CMUC",
+    "attempts": [
+      {
+        "number": 1,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": true,
+        "commit": {
+          "bookingId": "kIMXm7oQ3BQEaWvAsP2J",
+          "clientRequestId": "daa4ccb6-dd7f-4f72-ba7a-69cf33e3fbb2",
+          "bookingCount": 1,
+          "receiptCount": 1,
+          "createdAtMillis": 1792228570929
+        }
+      },
+      {
+        "number": 2,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      }
+    ],
+    "before": {
+      "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+      "projectId": "demo-sgm-local-qa",
+      "scope": "native-sdk-booking-response-loss-not-ui",
+      "tripId": "JhUQxT9mdCycsgu0CMUC",
+      "processId": 5928,
+      "clientRequestId": "daa4ccb6-dd7f-4f72-ba7a-69cf33e3fbb2",
+      "replyUnconfirmed": true,
+      "pendingIdentityPersisted": true
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 5928,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+      "projectId": "demo-sgm-local-qa",
+      "scope": "native-sdk-booking-response-loss-not-ui",
+      "tripId": "JhUQxT9mdCycsgu0CMUC",
+      "processId": 6025,
+      "previousProcessId": 5928,
+      "clientRequestId": "daa4ccb6-dd7f-4f72-ba7a-69cf33e3fbb2",
+      "bookingId": "kIMXm7oQ3BQEaWvAsP2J",
+      "pendingClearedAfterAcknowledgement": true,
+      "completed": true
+    },
+    "bookingCount": 1,
+    "receiptCount": 1,
+    "completed": true,
+    "livePayment": false,
+    "productionDeployed": false
+  },
+  "bookingUiResponseLoss": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+    "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+    "ui": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "cf2ba260731eb634ae9f9b9c143ba656",
+      "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+      "tripId": "uD2f7RIuLTno85HDyQqM",
+      "completed": true,
+      "sendingObservedBeforeDispatch": true,
+      "clientRequestId": "c5c59e8d-3203-4c0c-a1c2-8c595a0e6fe2",
+      "unconfirmedReplyVisible": true,
+      "retryActionVisible": true,
+      "pendingIdentityPersisted": true,
+      "confirmedVisible": true,
+      "secondSubmissionActionAbsent": true,
+      "staleCallbackIgnored": true,
+      "sdkCalls": 2,
+      "bookingId": "8V5CCiVeT8VvHRTJKop9",
+      "pendingClearedAfterAcknowledgement": true
+    },
+    "attempts": [
+      {
+        "number": 1,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": true,
+        "commit": {
+          "bookingId": "8V5CCiVeT8VvHRTJKop9",
+          "clientRequestId": "c5c59e8d-3203-4c0c-a1c2-8c595a0e6fe2",
+          "bookingCount": 1,
+          "receiptCount": 1,
+          "createdAtMillis": 1792228582615
+        }
+      },
+      {
+        "number": 2,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      }
+    ],
+    "bookingCount": 1,
+    "receiptCount": 1,
+    "completed": true,
+    "livePayment": false,
+    "productionDeployed": false
+  },
+  "search": {
+    "method": "component-ui-with-explicit-fake-gateway",
+    "caseCount": 4,
+    "limitation": "The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching."
+  },
+  "limits": [
+    "Synthetic mock positions and pre-granted emulator permissions only.",
+    "No physical GPS tracking, provider payments, push delivery or live data tested."
+  ]
+}

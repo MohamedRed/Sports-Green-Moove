@@ -3,8 +3,17 @@ import SwiftUI
 struct TripsScreen: View {
     @Environment(AppState.self) private var appState
     @State private var selectedTab = "upcoming"
+    let access: AccountAccess
 
     var body: some View {
+        if access.context.role == .parent {
+            ParentReservationsScreen(access: access, gateway: appState.firebase).id(access.context.id)
+        } else {
+            driverContent
+        }
+    }
+
+    private var driverContent: some View {
         SGMScreen(spacing: 0) {
             TripsHeader()
             TripsMonthNav()
@@ -19,7 +28,7 @@ struct TripsScreen: View {
                     }
                 }
                 if selectedTab == "pending" {
-                    BookingRequestsList(requests: appState.driverBookingRequests)
+                    BookingRequestsList(access: access, requests: appState.driverBookingRequests)
                 } else {
                     ForEach(visibleTrips) { trip in
                         SGMTripCard(
@@ -32,9 +41,10 @@ struct TripsScreen: View {
                             passengers: trip.passengerInitials
                         ) {
                             Task {
-                                await appState.handleTripAction(tripId: trip.id)
+                                await appState.handleTripAction(trip: trip, access: access)
                             }
                         }
+                        .disabled(appState.tripActionBusy)
                     }
                 }
             }
@@ -137,6 +147,7 @@ private struct TripsTabs: View {
 }
 
 private struct BookingRequestsList: View {
+    let access: AccountAccess
     let requests: [BookingRequestSummary]
 
     var body: some View {
@@ -144,7 +155,7 @@ private struct BookingRequestsList: View {
             EmptyBookingRequestsCard()
         } else {
             ForEach(requests) { request in
-                BookingRequestCard(request: request)
+                BookingRequestCard(access: access, request: request)
             }
         }
     }
@@ -164,6 +175,7 @@ private struct EmptyBookingRequestsCard: View {
 
 private struct BookingRequestCard: View {
     @Environment(AppState.self) private var appState
+    let access: AccountAccess
     let request: BookingRequestSummary
 
     var body: some View {
@@ -194,9 +206,10 @@ private struct BookingRequestCard: View {
                     .lineLimit(2)
             }
             if request.status == "requested" {
-                SGMButton(title: "APPROUVER", full: false) {
-                    Task { await appState.approveBooking(request) }
+                SGMButton(title: "APPROUVER", full: false, testID: UITestIdentifier.bookingApproveAction) {
+                    Task { await appState.approveBooking(request, access: access) }
                 }
+                .disabled(appState.bookingBusy)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -1,0 +1,111 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "098f5546986e9e7bc1e144cbd26e815b",
+  "testedAt": "2026-10-23T11:09:09.745Z",
+  "scope": "independent-support-recovery-record-checkpoints-not-phone-network-proof",
+  "scenario": "connected-process-restart",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "attemptCount": 0
+    },
+    {
+      "phase": "committed",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "unconfirmed",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "stopped",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "reopened",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "confirmed",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 2,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "confirmed-stopped",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 2,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "confirmed-reopened",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 2,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "foreign",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 2,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "restored",
+      "reportId": "6fc9f396818e751f38d3b8f3d89b745d4702e2bd5ee01cd4a8e815da7a184b8f",
+      "requestId": "8666d0dc-e3e9-44a7-a133-c3d6c6c2ccbd",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 2,
+      "urgent": true,
+      "originalContentUnchanged": true
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "productionWrites": false,
+  "physicalNetworkStateVerifiedByController": false,
+  "processIdentityVerified": false,
+  "fixtureEnvironmentDestroyed": false
+}

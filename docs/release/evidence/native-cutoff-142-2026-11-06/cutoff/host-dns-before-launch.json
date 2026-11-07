@@ -1,0 +1,37 @@
+{
+  "scope": "passive-host-resolver-configuration-before-launch-not-resolution-or-flow-proof",
+  "selectedCase": "full-matrix",
+  "recordedAt": "2026-11-06T20:10:48.542Z",
+  "observation": {
+    "supported": true,
+    "atomicObservation": false,
+    "primary": {
+      "requested": true,
+      "observed": false,
+      "reason": "untrusted-owner"
+    },
+    "systemdUpstream": {
+      "requested": false,
+      "observed": false,
+      "reason": "not-applicable"
+    },
+    "resolvedService": {
+      "requested": true,
+      "observed": true,
+      "state": "active",
+      "exitStatus": 0
+    },
+    "dnsQueriesIssued": false,
+    "networkRequestsIssued": false,
+    "settingsChanged": false,
+    "serviceChanged": false,
+    "exactEmulatorDnsBindingVerified": false,
+    "rootCauseConfirmed": false
+  },
+  "deviceCommandsRequested": false,
+  "rawLogsRetained": false,
+  "addressesRetained": false,
+  "newPhoneStarted": false,
+  "flowAccepted": false,
+  "releaseAccepted": false
+}

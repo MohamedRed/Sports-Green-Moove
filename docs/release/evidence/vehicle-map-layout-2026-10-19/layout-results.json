@@ -1,0 +1,37 @@
+{
+  "scope": "native-component-layout-without-map-renderer-or-backend",
+  "runId": "165beea67bae35d92ef927d189a25044",
+  "testedAt": "2026-10-19T19:30:38.666Z",
+  "nativeCaseCount": 2,
+  "cases": [
+    {
+      "scope": "native-component-layout-without-map-renderer-or-backend",
+      "arrivalOutsideMap": true,
+      "textWithinViewport": true,
+      "mapSdkVerified": false,
+      "physicalDevice": false
+    },
+    {
+      "scope": "native-component-layout-without-map-renderer-or-backend",
+      "arrivalOutsideMap": true,
+      "textWithinViewport": true,
+      "mapSdkVerified": false,
+      "physicalDevice": false
+    }
+  ],
+  "screenshots": {
+    "local-native-startup-vehicle-map-narrow.png": "d0e668208b54b77d40ef64bbd54a499df938bdec88962784111acdbfe32872fa",
+    "local-native-startup-vehicle-map-stale.png": "72b7e0a068d66a0c8cb90c5f3057dc23bbb596e510e93c69279ba01baef62a25"
+  },
+  "localPackagesRemoved": true,
+  "physicalDevice": false,
+  "mapSdkVerified": false,
+  "applicationBackendConnected": false,
+  "transcriptSha256": "b350a1f6b670a65f7c263966f806918f0b59507d563b330ea5405672e9b8510a",
+  "sourceFiles": {
+    "scripts/qa/run-vehicle-map-layout.mjs": "360068b6e6328b74425c43931b440a74fa8bcea8e9f9f5eff906c760ada170cd",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMapLayoutTest.kt": "c17e73d4853d8fe39f42880de710d528f3d0598ff7bddb00b4a4d796c711ad63",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt": "9e3a3bfad54f28bfadaf6729cdc2999e71791bb3fc508f1446888cc4e7529ff2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt": "091acce678fe4024b34d164ea13db15e7f2284576fbccb33939ed0528d7f5116"
+  }
+}

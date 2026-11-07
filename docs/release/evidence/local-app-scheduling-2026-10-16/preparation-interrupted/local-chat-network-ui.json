@@ -1,0 +1,22 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "2f170dc1fe0d80af6a004dc3c3fd9d66",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [],
+  "setupMethod": "requested-cellular-network",
+  "preparation": {
+    "phase": "preparing",
+    "wifiEnabled": true,
+    "mobileDataEnabled": true,
+    "activeNetwork": true,
+    "cellularRequestRegistered": true,
+    "internetNetworkCount": 1,
+    "backendReachable": true,
+    "internetTransports": [
+      "wifi"
+    ]
+  },
+  "failedPhase": "network-preparation",
+  "cellularRequestReleased": true
+}

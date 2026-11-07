@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:07:17.841Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="boundsTheNumberOfSanitizedObservationsAndDoesNotAcceptPackagePrefixes" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.007"/>
+  <testcase name="retainsOnlyKnownWindowOwnersAndNoTitlesOrEditorText" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.0"/>
+  <testcase name="unknownApplicationsAndArbitraryTitlesAreRedactedRatherThanEchoed" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

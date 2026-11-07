@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: the actual full-matrix entry stops on an unmet Wi-Fi prerequisite before any app installation
+not ok 1 - the actual full-matrix entry stops on an unmet Wi-Fi prerequisite before any app installation
+  ---
+  duration_ms: 176.050167
+  type: 'test'
+  location: '/private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        'observe-network-bootstrap.mjs',
+    +   'configure-continuous-disposable.mjs'
+    -   'wait-disposable-wifi.mjs'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'observe-network-bootstrap.mjs'
+    1: 'wait-disposable-wifi.mjs'
+  actual:
+    0: 'observe-network-bootstrap.mjs'
+    1: 'configure-continuous-disposable.mjs'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:34:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: the actual full-matrix entry proceeds to installation only after the same Wi-Fi prerequisite succeeds
+not ok 2 - the actual full-matrix entry proceeds to installation only after the same Wi-Fi prerequisite succeeds
+  ---
+  duration_ms: 134.270292
+  type: 'test'
+  location: '/private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:36:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        'observe-network-bootstrap.mjs',
+    -   'wait-disposable-wifi.mjs',
+        'configure-continuous-disposable.mjs'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: 'observe-network-bootstrap.mjs'
+    1: 'wait-disposable-wifi.mjs'
+    2: 'configure-continuous-disposable.mjs'
+  actual:
+    0: 'observe-network-bootstrap.mjs'
+    1: 'configure-continuous-disposable.mjs'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:39:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: the existing passive readiness helper accepts the disposable full matrix before entering device inspection
+not ok 3 - the existing passive readiness helper accepts the disposable full matrix before entering device inspection
+  ---
+  duration_ms: 0.689542
+  type: 'test'
+  location: '/private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:41:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'full-matrix'
+    - 'chat-network-recovery'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-matrix-baseline-yKfNYE/tests/full-matrix-network-prerequisite.test.mjs:43:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: other cases and non-disposable contexts cannot use the full-matrix prerequisite
+ok 4 - other cases and non-disposable contexts cannot use the full-matrix prerequisite
+  ---
+  duration_ms: 0.186208
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 1
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 363.404209

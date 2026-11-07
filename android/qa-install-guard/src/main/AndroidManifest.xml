@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:allowBackup="false" android:testOnly="true" android:label="Disposable installation guard">
+        <receiver android:name=".GuardAdminReceiver" android:exported="true" android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data android:name="android.app.device_admin" android:resource="@xml/disposable_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".InstallationPolicyReceiver" android:exported="true" android:permission="android.permission.DUMP" />
+    </application>
+</manifest>

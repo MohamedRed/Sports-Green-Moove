@@ -1,0 +1,18 @@
+There were 4 failures:
+1) feedbackTextFitsActualComponents[input-light-phone](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: input-light-phone/feedback.material-error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:99)
+2) feedbackTextFitsActualComponents[input-light-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: input-light-wide/feedback.material-error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:99)
+3) feedbackTextFitsActualComponents[input-dark-phone](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: input-dark-phone/feedback.material-error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:99)
+4) feedbackTextFitsActualComponents[input-dark-wide](be.sportgreenmoove.app.ui.FeedbackTextLayoutTest)
+java.lang.IllegalStateException: input-dark-wide/feedback.material-error: text overflow or missing layout
+	at be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:99)
+
+FAILURES!!!
+Tests run: 315,  Failures: 4
+
+

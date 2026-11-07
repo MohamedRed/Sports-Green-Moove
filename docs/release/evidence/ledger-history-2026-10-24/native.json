@@ -1,0 +1,52 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b588e81bf4a2d10affe8dc8432f56437",
+  "testedAt": "2026-10-24T13:50:23.618Z",
+  "scope": "connected-isolated-android-ledger-history-not-physical",
+  "connectedCases": 1,
+  "nativeUiExecuted": true,
+  "balanceCents": -22000,
+  "totalCo2Kg": 321.25,
+  "rideCount": 257,
+  "historyCount": 8,
+  "activityRecreation": true,
+  "fullProcessRestart": false,
+  "accountSwitch": true,
+  "protectedRecordsUnchanged": true,
+  "claimsUnchanged": true,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/ledger-history-ui-suite.mjs": "4eec1e7257d94ca625e406dfa74304ddb2118d1948b14ac5454468781800dc67",
+    "scripts/qa/run-ledger-history-ui.mjs": "17c24ded6156e2345451834a55560bcc16eaa698108da7a648980c1853613e12",
+    "scripts/qa/ledger-history-fixtures.mjs": "568eb5d727fa05b88c2ea1c3d12f0701e255ad390e0355ec4dc1f706850a34c3",
+    "scripts/qa/seed-firebase-emulator.mjs": "2fed6cb235dca11b6f1667614297d2bcfeb0368158a46cddcb990227b07e2f64",
+    "functions/src/domain/ledgerSummaries.ts": "8b6927c96bc87cda3f2fbb59ca85d6625a653e25f8796158e3920574d54e165d",
+    "functions/src/services/ledgerSummaries.ts": "59f2828f5c2f659b35db811191894598fe57f566a7043402bbfdf4f3767c91d4",
+    "functions/src/callables/ledgerSummaries.ts": "057bd1915531166f71bc481ff408f227c20fd83e6b2271d6e178f00002ca921a",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidLedgerGateway.kt": "4f467195725f5616ae12f46e1fed078fa326bdc924a90235068f12265b83eb36",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/LedgerSummaryWire.kt": "2ca7057413a25d1b023f7fb3179304e3fe35d06a19160caf9193be3f725f610b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "05c02ed05fb7da8733330d6d698ab6d9082de0dc2979ebcd03da510a6a58b69a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/RewardsScreen.kt": "8c66de13e854440f8721365216bd4394cd29e4e835dce281ca15455509cb1a45",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileScreen.kt": "0b278b97029bac1c9d37c64003c4617d1e6a35a649a7988a394f4a140829f10f",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ImpactScreen.kt": "69dbfee59ca097078bc537251d3c132b73f8788e24500a6f43e45d879bd45f84",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt": "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalLedgerHistoryFlowTest.kt": "f1cc18345152f78cc66ff675a1d45be873f4faf8f37326443b56ca6c05f25e59"
+  },
+  "apkHashes": {
+    "apk/debug/app-debug.apk": "b9182d9069d39c3c484adc705ca202fd4b288ecc1c9ac2e9ca4958390453c976",
+    "apk/androidTest/debug/app-debug-androidTest.apk": "eba530860f635a6b5be9fc93126821a81af1c7ef7cf57ea5ffac43a30fe5c371"
+  },
+  "screenshots": {
+    "ledger-history-impact.png": "9f4c56f526adcc3c12dd2e04f738e7f0bec7f04592362dbb502f2319dd5fbf32",
+    "ledger-history-balance.png": "0dfb0cf53ce53843103a858020ff98e70881549b029d3cc42bcad242d048f184",
+    "ledger-history-restored.png": "f13e40cdda756e6e1a9787d0db2f6255e727321292d0c3b8234365ac2167e619",
+    "ledger-history-foreign.png": "b631f8caa2d35668bd267fc56ac5ff4645a5cf3af0cccbfe2d37eae10bbd7cc5",
+    "ledger-history-return.png": "f13e40cdda756e6e1a9787d0db2f6255e727321292d0c3b8234365ac2167e619"
+  },
+  "localPackagesRemoved": true,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "temporaryAdministrationUsed": false
+}

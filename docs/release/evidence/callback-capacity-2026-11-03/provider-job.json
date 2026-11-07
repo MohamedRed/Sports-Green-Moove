@@ -1,0 +1,75 @@
+{
+  "id": 125849030006,
+  "run_id": 41615866643,
+  "head_sha": "9450ad0b449f081b55591c2833d90709843ac1af",
+  "status": "completed",
+  "conclusion": "failure",
+  "started_at": "2026-11-03T10:02:13Z",
+  "completed_at": "2026-11-03T10:02:48Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-03T10:02:14Z",
+      "completed_at": "2026-11-03T10:02:15Z"
+    },
+    {
+      "name": "Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-03T10:02:15Z",
+      "completed_at": "2026-11-03T10:02:29Z"
+    },
+    {
+      "name": "Set up Node",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-03T10:02:29Z",
+      "completed_at": "2026-11-03T10:02:30Z"
+    },
+    {
+      "name": "Validate production provider secrets",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-03T10:02:30Z",
+      "completed_at": "2026-11-03T10:02:30Z"
+    },
+    {
+      "name": "Validate Stripe production readiness",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 5,
+      "started_at": "2026-11-03T10:02:30Z",
+      "completed_at": "2026-11-03T10:02:45Z"
+    },
+    {
+      "name": "Post Set up Node",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 9,
+      "started_at": "2026-11-03T10:02:45Z",
+      "completed_at": "2026-11-03T10:02:45Z"
+    },
+    {
+      "name": "Post Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-03T10:02:45Z",
+      "completed_at": "2026-11-03T10:02:46Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 11,
+      "started_at": "2026-11-03T10:02:46Z",
+      "completed_at": "2026-11-03T10:02:46Z"
+    }
+  ]
+}

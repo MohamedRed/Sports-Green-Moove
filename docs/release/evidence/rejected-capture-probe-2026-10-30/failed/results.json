@@ -1,0 +1,52 @@
+{
+  "scope": "rejected-bitmap-calibration-and-team-components-not-ci-root-cause-proof",
+  "testedAt": "2026-10-30T13:06:32.446Z",
+  "runId": "32fb560fcc65b8eac3de4602081bf4c7",
+  "completed": false,
+  "report": null,
+  "sourceFiles": {
+    "scripts/qa/run-rejected-capture-probe.mjs": "cc2648afdef6cb10fcf80b0a27452c2146cc4e0a3ac3afdfdf0ee4d9acb4104a",
+    "scripts/qa/rejected-primary-captures.mjs": "e29c10e74a1131e3601e547f2e8c642aa2d46ba09d5dde1501fd630bb579c555",
+    "scripts/qa/collect-ordinary-android-failure.mjs": "092dcefd02a2ed04839ca141f3d9b2e6a76f90caa58bf1d92baefa33e2397dd9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "4b7e428fc7af971d550c3951da3658e0f687181bd304c87e2e4d4d5674773dd9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RejectedPrimaryBitmap.kt": "04a2a05c0cdd925987090caf9db8a59b58892dcbf425ceb1c712918faa2f28e7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RejectedPrimaryBitmapTest.kt": "9cbea4e072a3ca9cac376330be3abeb567247969de33ceeea076a1e545223d92",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversationFlowTest.kt": "e53bfb2c37ed106338fe7c3167fe6b59cb7f1e7f5d71c11202a8fb6d4f257866",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamChatComponentCapture.kt": "e658810bd6dd8642df07590b9fd5ae67e46c57a614b72c691e3ae73b46c4b3a8"
+  },
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "team-chat-components",
+    "receiptSha256": "0850cca75e8fba0703223c2ec9debe21ca4b6905ea2e062eb810dd2293e60cad",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "ba82e2f3e43fe53088797a3da501dfdc2aa7de4d386395844892b3b93b7ed5b8",
+      "be.sportgreenmoove.app.local.test": "cc8c9a869ef4885b6cf6d4da5ba46ee9d3291cca1243e7c088d5f30a85b47995"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "diagnosticCollection": {
+    "scope": "rejected-primary-diagnostic-copy-not-flow-proof",
+    "packageName": "be.sportgreenmoove.app.local",
+    "sourceDirectoryObserved": false,
+    "copyAttempted": false,
+    "copyCompleted": false,
+    "validatedPairCount": 0,
+    "imageAccepted": false,
+    "flowVerified": false,
+    "replacementCaptureUsed": false,
+    "collectionStatus": "not-observed",
+    "errorCode": null
+  },
+  "failureCategories": [
+    "AssertionError",
+    "EvidenceCollectionError"
+  ],
+  "deviceRestorationVerified": true,
+  "backendConnected": false,
+  "physicalDevice": false,
+  "rootCauseProven": false,
+  "realCiRejectionReproduced": false,
+  "productionWrites": false,
+  "newMediaAccepted": false
+}

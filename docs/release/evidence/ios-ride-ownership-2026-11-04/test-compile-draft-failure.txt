@@ -1,0 +1,71 @@
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:69:27: error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+ 67 |         let task = Task { await app.confirmActiveRideStart() }
+ 68 |         await probe.wait(); app.signOut(); await probe.release(failing: fail); await task.value
+ 69 |         check(await probe.names() == ["permission"], "Late permission response started a signed-out ride")
+    |                           `- error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+ 70 |         check(stops.permissions > 0 && app.activeRidePermissionDisclosure == nil && app.errorMessage == nil,
+ 71 |             "Revoked permission work changed signed-out state")
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift:35:10: note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+33 |     }
+34 | 
+35 |     func names() -> [String] { calls }
+   |          `- note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+36 | }
+37 | 
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:89:31: error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+ 87 |             await probe.release(failing: fail); await task.value
+ 88 |             let expected = stage == "get-ride" ? ["pickup", "get-ride"] : [stage]
+ 89 |             check(await probe.names() == expected, "Old passenger/completion work continued after sign-out")
+    |                               `- error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+ 90 |             check(app.activeRide == nil && app.errorMessage == "Current notice" && app.loading,
+ 91 |                 "Old passenger/completion result changed signed-out state")
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift:35:10: note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+33 |     }
+34 | 
+35 |     func names() -> [String] { calls }
+   |          `- note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+36 | }
+37 | 
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:100:23: error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+ 98 |     await probe.wait()
+ 99 |     await start(app)
+100 |     check(await probe.names() == ["start-ride"], "Duplicate start replaced pending work")
+    |                       `- error: call to actor-isolated instance method 'names()' in a synchronous main actor-isolated context
+101 |     await probe.release(failing: true); await first.value
+102 |     check(app.errorMessage != nil && !app.rideRequests.busy, "Current failure did not permit an explicit new attempt")
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideLifecycleProbe.swift:35:10: note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+33 |     }
+34 | 
+35 |     func names() -> [String] { calls }
+   |          `- note: calls to instance method 'names()' from outside of its actor context are implicitly asynchronous
+36 | }
+37 | 
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:69:15: error: 'await' in an autoclosure that does not support concurrency
+ 67 |         let task = Task { await app.confirmActiveRideStart() }
+ 68 |         await probe.wait(); app.signOut(); await probe.release(failing: fail); await task.value
+ 69 |         check(await probe.names() == ["permission"], "Late permission response started a signed-out ride")
+    |               `- error: 'await' in an autoclosure that does not support concurrency
+ 70 |         check(stops.permissions > 0 && app.activeRidePermissionDisclosure == nil && app.errorMessage == nil,
+ 71 |             "Revoked permission work changed signed-out state")
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:89:19: error: 'await' in an autoclosure that does not support concurrency
+ 87 |             await probe.release(failing: fail); await task.value
+ 88 |             let expected = stage == "get-ride" ? ["pickup", "get-ride"] : [stage]
+ 89 |             check(await probe.names() == expected, "Old passenger/completion work continued after sign-out")
+    |                   `- error: 'await' in an autoclosure that does not support concurrency
+ 90 |             check(app.activeRide == nil && app.errorMessage == "Current notice" && app.loading,
+ 91 |                 "Old passenger/completion result changed signed-out state")
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Tests/SportsGreenMooveNativeChecks/RideBoundaryChecks.swift:100:11: error: 'await' in an autoclosure that does not support concurrency
+ 98 |     await probe.wait()
+ 99 |     await start(app)
+100 |     check(await probe.names() == ["start-ride"], "Duplicate start replaced pending work")
+    |           `- error: 'await' in an autoclosure that does not support concurrency
+101 |     await probe.release(failing: true); await first.value
+102 |     check(app.errorMessage != nil && !app.rideRequests.busy, "Current failure did not permit an explicit new attempt")

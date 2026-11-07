@@ -1,0 +1,33 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "45fcd4490c879c7ea44cd7bbe239d043",
+  "testedAt": "2026-10-16T03:14:19Z",
+  "scope": "local-ui-not-physical-device",
+  "method": "manual-browser-ui-with-independent-persisted-checks",
+  "decisionCount": 3,
+  "steps": [
+    { "id": "club-manager-membership-ui", "status": "passed" },
+    { "id": "admin-membership-ui", "status": "passed" },
+    { "id": "membership-dismiss-ui", "status": "passed" },
+    { "id": "membership-access-ui", "status": "passed" },
+    { "id": "membership-mobile-layout-ui", "status": "passed" }
+  ],
+  "observations": {
+    "managerApproved": "Camille QA",
+    "managerRejected": "Alex QA",
+    "adminApproved": "Jordan QA",
+    "parentGate": "Ce compte n'a pas accès à la gestion.",
+    "mobileViewport": { "width": 320, "height": 780 },
+    "mobileDialog": { "width": 288, "height": 223 },
+    "horizontalOverflow": false,
+    "responsiveConfirmationDismissed": true
+  },
+  "persistedSource": "persisted.json",
+  "dismissedSource": "dismissed.json",
+  "captures": ["manager-decisions.jpg", "admin-decisions.jpg", "mobile-confirmation.jpg"],
+  "limits": [
+    "This is a manual web-management replay, not automated native instrumentation.",
+    "The 320px browser check is not physical-phone or native-membership proof.",
+    "No real push delivery, child enrolment, production deployment or release approval."
+  ]
+}

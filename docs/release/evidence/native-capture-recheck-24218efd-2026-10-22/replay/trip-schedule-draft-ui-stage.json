@@ -1,0 +1,122 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "testedAt": "2026-10-22T10:24:55.412Z",
+  "recordType": "native-private-schedule-draft-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "nativeCaseCount": 2,
+  "tripId": "3Vv4uHyOChU31nRSUrR9",
+  "otherTripId": "77EvyikINW4IyHkgMzqM",
+  "bookingIds": [
+    "bWecOJcoD4Z7MKA4QH4Q",
+    "HMFwa7p8mH6vgep94Pny"
+  ],
+  "originalDepartureAt": "2026-10-23T09:00:00.000Z",
+  "draftDepartureAt": "2026-10-24T11:00:00.000Z",
+  "draftArrivalBy": "2026-10-24T12:00:00.000Z",
+  "native": {
+    "before": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "86398f3a285a7012032289d2dc626b1f",
+      "scope": "native-ui-private-schedule-draft-restart",
+      "stage": "before",
+      "completed": true,
+      "actorUserId": "sgm-qa-driver",
+      "tripId": "3Vv4uHyOChU31nRSUrR9",
+      "otherTripId": "77EvyikINW4IyHkgMzqM",
+      "processId": 12724,
+      "draftHash": "66aaf738e810fe30d56b1bbeef2d61baa64d82b0f795cef43b011012f7952181",
+      "departureDate": "2026-10-24",
+      "departureTime": "13:00",
+      "arrivalDate": "2026-10-24",
+      "arrivalTime": "14:00",
+      "hasArrival": true,
+      "originalPlacesRetained": true,
+      "otherTripIsolated": true,
+      "proposeEnabled": true,
+      "scheduleSaved": true
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "86398f3a285a7012032289d2dc626b1f",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 12724,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "86398f3a285a7012032289d2dc626b1f",
+      "scope": "native-ui-private-schedule-draft-restart",
+      "stage": "after",
+      "completed": true,
+      "actorUserId": "sgm-qa-driver",
+      "tripId": "3Vv4uHyOChU31nRSUrR9",
+      "otherTripId": "77EvyikINW4IyHkgMzqM",
+      "processId": 12895,
+      "draftHash": "66aaf738e810fe30d56b1bbeef2d61baa64d82b0f795cef43b011012f7952181",
+      "departureDate": "2026-10-24",
+      "departureTime": "13:00",
+      "arrivalDate": "2026-10-24",
+      "arrivalTime": "14:00",
+      "hasArrival": true,
+      "originalPlacesRetained": true,
+      "otherTripIsolated": true,
+      "proposeEnabled": true,
+      "scheduleRestored": true,
+      "sessionRestoredWithoutLogin": true
+    }
+  },
+  "baseline": {
+    "hashes": {
+      "trips": "6c966108071424cebd738cab272f4e5325365717f877b46333afafa0a8a638e7",
+      "bookings": "f4a61ce822ae90caab101067a9158dea790f258bb682631c672fcbe8031bd229",
+      "notifications": "1851c50aad1b092afa4659b55cfff0ae2ed703254bf5c3a965969dbf04ea1818"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "checkpoint": {
+    "hashes": {
+      "trips": "6c966108071424cebd738cab272f4e5325365717f877b46333afafa0a8a638e7",
+      "bookings": "f4a61ce822ae90caab101067a9158dea790f258bb682631c672fcbe8031bd229",
+      "notifications": "1851c50aad1b092afa4659b55cfff0ae2ed703254bf5c3a965969dbf04ea1818"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "persisted": {
+    "hashes": {
+      "trips": "6c966108071424cebd738cab272f4e5325365717f877b46333afafa0a8a638e7",
+      "bookings": "f4a61ce822ae90caab101067a9158dea790f258bb682631c672fcbe8031bd229",
+      "notifications": "1851c50aad1b092afa4659b55cfff0ae2ed703254bf5c3a965969dbf04ea1818"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "captureFiles": [
+    "local-trip-schedule-draft-before.png",
+    "local-trip-schedule-draft-restored.png"
+  ],
+  "recordsUnchanged": true,
+  "automaticProposalCreated": false,
+  "originalPlacesRetained": true,
+  "fullAppReplay": false,
+  "paymentExercised": false,
+  "routeProviderExercised": false,
+  "limitation": "Valid unsubmitted date, departure time and desired arrival across a new local app process. No physical-device, iOS, route/application or payment proof."
+}

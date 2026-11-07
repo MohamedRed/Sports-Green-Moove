@@ -1,0 +1,85 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "809215a4580635e9adc52c6f8d85782f",
+  "testedAt": "2026-10-19T13:03:31.124Z",
+  "scope": "local-emulated-contact-services-not-native-handoff",
+  "testCount": 16,
+  "checks": [
+    {
+      "id": "signed-out-child-and-admin-only-accounts-cannot-manage-contacts",
+      "status": "passed"
+    },
+    {
+      "id": "self-ownership-is-auth-bound-with-no-client-selected-user-id",
+      "status": "passed"
+    },
+    {
+      "id": "international-phone-name-uuid-and-safe-revision-validation-are-strict",
+      "status": "passed"
+    },
+    {
+      "id": "adult-save-reload-and-another-account-have-distinct-private-contacts",
+      "status": "passed"
+    },
+    {
+      "id": "same-operation-replay-does-not-write-and-changed-payload-cannot-reuse-identity",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-edits-have-one-winner-and-cannot-overwrite-the-new-revision",
+      "status": "passed"
+    },
+    {
+      "id": "removal-keeps-a-tombstone-and-old-create-or-replay-cannot-restore-a-number",
+      "status": "passed"
+    },
+    {
+      "id": "declared-and-pending-parent-links-never-authorize-child-contact-access",
+      "status": "passed"
+    },
+    {
+      "id": "manager-verification-enables-parent-save-but-not-manager-or-other-parent-access",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-blocks-read-edit-removal-and-even-an-already-committed-replay",
+      "status": "passed"
+    },
+    {
+      "id": "removed-child-link-inactive-membership-and-archived-club-revoke-contact-access",
+      "status": "passed"
+    },
+    {
+      "id": "child-contact-and-authority-tuple-cannot-be-swapped-or-overridden",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-revocation-fences-all-future-writes-without-restoring-authority",
+      "status": "passed"
+    },
+    {
+      "id": "direct-client-reads-queries-and-writes-are-denied-even-for-manager-and-admin",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-stored-records-fail-closed-rather-than-looking-like-missing-contacts",
+      "status": "passed"
+    },
+    {
+      "id": "contact-details-stay-out-of-operations-and-public-club-team-and-child-documents",
+      "status": "passed"
+    }
+  ],
+  "providerRequests": 0,
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "dialerOpened": false,
+  "sourceFiles": {
+    "functions/src/domain/emergencyContact.ts": "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c",
+    "functions/src/callables/emergencyContact.ts": "d413bc995b97a1c2a46cd5a9cbe5d5d977ea51f2fc2f95afb02656cdc380484b",
+    "firestore.rules": "a6e78a25abced2ec048b13491691edffa3f11301d1cac3de0e53d8a0af3037fb"
+  }
+}

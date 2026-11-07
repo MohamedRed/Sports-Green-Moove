@@ -1,0 +1,66 @@
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { deleteApp, getApp } from 'firebase-admin/app';
+import { getDatabase } from 'firebase-admin/database';
+import { call, denied, signIn, tripInput, viewedBooking } from './local-flow-client.mjs';
+
+async function runChecks() {
+  execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
+    { env: process.env, stdio: ['ignore', 'pipe', 'pipe'], timeout: 90_000 });
+  const driver = await signIn('d@example.test'), parent = await signIn('p@example.test');
+  const { tripId } = await call('createTrip', driver, tripInput());
+  const { bookingId } = await call('requestBooking', parent, await viewedBooking(parent, {
+    tripId, seats: 1, childId: 'sgm-qa-child-lina',
+  }));
+  await call('approveBooking', driver, { bookingId });
+  const { ride } = await call('startRide', driver, { tripId, bookingIds: [bookingId] });
+  const vehicle = getDatabase().ref(`liveTrips/${ride.rideSessionId}/vehicle`), checks = [];
+  const record = (id) => checks.push({ id, status: 'passed' });
+  const before = (await call('getActiveRide', parent)).ride;
+  assert.equal(before.rideSessionId, ride.rideSessionId); assert.equal(before.stale, true);
+  assert.equal(before.vehicleLastUpdateLabel, 'En attente du premier point GPS');
+  record('parent-sees-missing-first-point-as-stale');
+
+  const startedAt = Date.now(), capturedAt = startedAt - 120_000;
+  const update = { rideSessionId: ride.rideSessionId, userId: 'synthetic-other-user', role: 'driver',
+    lat: 50.715, lng: 4.612, accuracyM: 8, capturedAt, uploadedAt: startedAt + 86_400_000, source: 'manual' };
+  assert.equal((await call('writeLocationBatch', driver, { updates: [update] })).written, 1);
+  const stored = (await vehicle.get()).val();
+  assert.equal(stored.userId, driver.uid); assert.equal(stored.source, 'nativeFallback');
+  assert.equal(stored.capturedAt, capturedAt); assert(stored.uploadedAt >= startedAt && stored.uploadedAt <= Date.now());
+  record('native-identity-source-and-receipt-time-are-server-bound');
+  const delayed = (await call('getActiveRide', parent)).ride;
+  assert.equal(delayed.stale, true); assert.equal(delayed.vehicleLastUpdateLabel, 'Secours GPS · il y a 2 min');
+  record('parent-sees-delayed-observation-as-old-despite-new-receipt');
+
+  await denied('writeLocationBatch', parent, { updates: [{ ...update, userId: driver.uid, capturedAt: Date.now() }] }, 'PERMISSION_DENIED');
+  assert.deepEqual((await vehicle.get()).val(), stored);
+  record('parent-cannot-submit-a-driver-update-or-change-its-stored-point');
+  await call('writeLocationBatch', driver, { updates: [{ ...update, capturedAt: Date.now() - 30_000 }] });
+  const fresh = (await call('getActiveRide', parent)).ride;
+  assert.equal(fresh.stale, false); assert.match(fresh.vehicleLastUpdateLabel, /^Secours GPS · il y a \d+ s$/);
+  assert(!fresh.vehicleLastUpdateLabel.includes("à l'instant"));
+  record('parent-sees-observation-age-not-time-since-upload');
+
+  const sources = ['scripts/qa/local-location-freshness.mjs', 'functions/src/lib/clientTrips.ts',
+    'functions/src/domain/locations.ts', 'functions/src/callables/locations.ts', 'functions/src/domain/locationAccess.ts'];
+  const report = { projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID, testedAt: new Date().toISOString(),
+    scope: 'local-emulated-services-not-phone-ui', method: 'actual-authenticated-location-callables', checks,
+    testCount: 1, steps: [{ id: 'location-freshness', status: 'passed' }],
+    delayedObservation: { capturedAgeAtSubmissionMs: 120_000, clientReceiptTimestampIgnored: true,
+      parentStale: delayed.stale, parentLabel: delayed.vehicleLastUpdateLabel },
+    freshObservation: { parentStale: fresh.stale, parentLabel: fresh.vehicleLastUpdateLabel },
+    nativeUiExecuted: false, physicalDevice: false, productionWrites: false, providerRequests: 0,
+    sourceFiles: Object.fromEntries(sources.map((file) => [file,
+      createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', file))).digest('hex')])) };
+  return report;
+}
+
+let report;
+try { report = await runChecks(); }
+finally { await deleteApp(getApp()); }
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({ ...report, adminClientClosed: true }, null, 2) + '\n', { flag: 'wx' });
+console.log('Five local location-callable groups passed; no native UI or physical GPS evidence accepted.');

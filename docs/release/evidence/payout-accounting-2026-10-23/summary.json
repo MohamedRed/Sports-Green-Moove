@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-23",
+  "scope": "isolated-payout-accounting-not-real-money-or-phone",
+  "regressionFailuresBefore": 2,
+  "financialCasesPassed": 60,
+  "backendUnitCasesPassed": 394,
+  "browserComponentChecksPassed": 5,
+  "rootNodeCasesPassed": 1777,
+  "realTransfers": false,
+  "productionWrites": false,
+  "browserToProviderIntegration": false,
+  "nativeOrPhysicalPaymentsAccepted": false,
+  "releaseComplete": false,
+  "latestNativeRun": {
+    "id": 39988296119,
+    "head": "c1d2a2ff017b89fe498b2537854dc5a64e6d4a0c",
+    "conclusion": "failure",
+    "rootCauseEstablished": false
+  }
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.SupportWireTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:32.793Z" hostname="MRRs-MacBook-Air.local" time="0.143">
+  <properties/>
+  <testcase name="responseAndStatusAreDecodedWithoutPrivateMetadata" classname="be.sportgreenmoove.app.services.SupportWireTest" time="0.04"/>
+  <testcase name="malformedNumbersStatusesRepliesAndPagesAreRejected" classname="be.sportgreenmoove.app.services.SupportWireTest" time="0.103"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "rewards-dark",
+  "capturedAt": "2026-10-30T21:32:02.714Z",
+  "original": {
+    "file": "rewards-dark-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "be8d66b59d2eb97baf7dc7343a83a10d988b4a038eefdad1b653ed5e10fe30eb"
+  },
+  "crop": {
+    "file": "rewards-dark.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "904b32c7a5c68c666db6aaed01a4f2ee7ba0d375283f42b7f133a617426dad6d"
+  },
+  "rescaled": false,
+  "redacted": false
+}

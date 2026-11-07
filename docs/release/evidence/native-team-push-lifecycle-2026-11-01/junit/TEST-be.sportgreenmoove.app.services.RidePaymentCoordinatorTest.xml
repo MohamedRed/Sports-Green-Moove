@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:43:53.630Z" hostname="local-test-host" time="0.038">
+  <properties></properties>
+  <testcase name="completedCheckoutStaysPendingUntilTheServerRecordsItWithoutAnotherCharge" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.025"></testcase>
+  <testcase name="readFailureKeepsAnExplicitReadOnlyRetry" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.001"></testcase>
+  <testcase name="switchingAccountsDuringPreparationCannotOpenCheckoutForTheNextUser" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.005"></testcase>
+  <testcase name="lateCheckoutCallbackCannotConfirmAnotherAccount" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.0"></testcase>
+  <testcase name="refreshFailureCannotChangeARecordedPaymentBackToUnconfirmed" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.002"></testcase>
+  <testcase name="repeatedTapsDuringAReadNeverPrepareAnotherPayment" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.002"></testcase>
+  <testcase name="switchingAccountsDuringTheStatusReadIgnoresTheOldResult" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.001"></testcase>
+  <testcase name="closingCheckoutDoesNotClaimProviderCancellationOrSuccess" classname="be.sportgreenmoove.app.services.RidePaymentCoordinatorTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

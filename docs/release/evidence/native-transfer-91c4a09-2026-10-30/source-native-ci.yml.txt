@@ -1,0 +1,602 @@
+name: Native CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      full_matrix_renderer:
+        description: "Full-matrix renderer; swiftshader is a diagnostic comparison, not a release check"
+        type: choice
+        options: [software, swiftshader]
+        default: software
+      real_maps_ui:
+        description: "Run the approved isolated real-map UI integration (five server requests)"
+        type: boolean
+        default: false
+      vehicle_map_ui:
+        description: "Run the approved isolated vehicle-marker display test (SDK tiles only)"
+        type: boolean
+        default: false
+      parent_search_booking:
+        description: "Use the one approved isolated search/booking trial, maximum eight server map requests"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - "tests/native-build-before-boot.test.mjs"
+      - "tests/primary-capture-diagnostics.test.mjs"
+      - "tests/rejected-primary-captures.test.mjs"
+      - "tests/primary-capture-late-samples.test.mjs"
+      - "tests/capture-window-calibration.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
+      - "tests/manual-trip-components.test.mjs"
+      - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
+      - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
+      - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
+      - "tests/membership-cursor-contract.test.mjs"
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
+      - "tests/fixtures/supervised-service.mjs"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - ".github/workflows/native-focused-ui.yml"
+      - "scripts/run-focused-android-ui.sh"
+      - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/continuous-device-evidence.test.mjs"
+      - "tests/session-restoration-fault-proxy.test.mjs"
+      - "tests/session-restoration-records.test.mjs"
+      - "tests/session-restoration-retained-evidence.test.mjs"
+      - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-restoration-recovery.test.mjs"
+      - "tests/ride-observation-preparation.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
+      - "tests/session-disconnect.test.mjs"
+      - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-phone.test.mjs"
+      - "tests/driver-connect-evidence.test.mjs"
+      - "tests/search-booking-retained-evidence.test.mjs"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
+      - "tests/native-recheck-evidence.test.mjs"
+      - "tests/native-copy-failure-b158.test.mjs"
+      - "tests/neutral-text-contrast.test.mjs"
+      - "tests/independent-native-evidence.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/real-map*.test.mjs"
+      - "android/**"
+      - "functions/**"
+      - "ios/**"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/qa/**"
+      - "tests/team-chat-*.test.mjs"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "tests/local-ui-config.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
+      - "tests/manual-emergency-checkpoints.test.mjs"
+      - "tests/ride-emergency-evidence.test.mjs"
+      - "tests/ride-emergency-completed-evidence.test.mjs"
+      - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/native-capture-clock-contract.test.mjs"
+      - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/remote-ride-stop-evidence.test.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/conversation-test-input.test.mjs"
+      - "tests/trip-change-ui.test.mjs"
+      - "tests/trip-change-inputs-ui.test.mjs"
+      - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart.test.mjs"
+      - "tests/trip-draft-restart.test.mjs"
+      - "tests/trip-consent-recovery.test.mjs"
+      - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart-completed-evidence.test.mjs"
+      - "tests/native-suite-runner.test.mjs"
+      - "tests/*failure*.test.mjs"
+      - "tests/local-http-request.test.mjs"
+      - "tests/fixtures/local-idle-http-server.mjs"
+      - "tests/fixtures/adb-evidence-process.mjs"
+      - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
+      - "tests/support-process-restart-phone-evidence.test.mjs"
+      - "tests/disposable-store-pause.test.mjs"
+      - "tests/disposable-store-diagnostics.test.mjs"
+      - "tests/disposable-installations.test.mjs"
+      - "tests/disposable-install-admin.test.mjs"
+      - "tests/native-membership-config.test.mjs"
+      - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
+      - "tests/local-modem-diagnostics.test.mjs"
+      - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/local-network-validation-diagnostics.test.mjs"
+      - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
+      - "tests/chat-process-restart.test.mjs"
+      - "tests/session-restoration.test.mjs"
+      - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
+  push:
+    branches:
+      - main
+    paths:
+      - "tests/native-build-before-boot.test.mjs"
+      - "tests/primary-capture-diagnostics.test.mjs"
+      - "tests/rejected-primary-captures.test.mjs"
+      - "tests/primary-capture-late-samples.test.mjs"
+      - "tests/capture-window-calibration.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
+      - "tests/manual-trip-components.test.mjs"
+      - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
+      - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
+      - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
+      - "tests/membership-cursor-contract.test.mjs"
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
+      - "tests/fixtures/supervised-service.mjs"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - ".github/workflows/native-focused-ui.yml"
+      - "scripts/run-focused-android-ui.sh"
+      - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/continuous-device-evidence.test.mjs"
+      - "tests/session-restoration-fault-proxy.test.mjs"
+      - "tests/session-restoration-records.test.mjs"
+      - "tests/session-restoration-retained-evidence.test.mjs"
+      - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-restoration-recovery.test.mjs"
+      - "tests/ride-observation-preparation.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
+      - "tests/session-disconnect.test.mjs"
+      - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-phone.test.mjs"
+      - "tests/driver-connect-evidence.test.mjs"
+      - "tests/search-booking-retained-evidence.test.mjs"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
+      - "tests/native-recheck-evidence.test.mjs"
+      - "tests/native-copy-failure-b158.test.mjs"
+      - "tests/neutral-text-contrast.test.mjs"
+      - "tests/independent-native-evidence.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/real-map*.test.mjs"
+      - "android/**"
+      - "functions/**"
+      - "ios/**"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/qa/**"
+      - "tests/team-chat-*.test.mjs"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "tests/local-ui-config.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
+      - "tests/manual-emergency-checkpoints.test.mjs"
+      - "tests/ride-emergency-evidence.test.mjs"
+      - "tests/ride-emergency-completed-evidence.test.mjs"
+      - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/native-capture-clock-contract.test.mjs"
+      - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/remote-ride-stop-evidence.test.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/conversation-test-input.test.mjs"
+      - "tests/trip-change-ui.test.mjs"
+      - "tests/trip-change-inputs-ui.test.mjs"
+      - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart.test.mjs"
+      - "tests/trip-draft-restart.test.mjs"
+      - "tests/trip-consent-recovery.test.mjs"
+      - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart-completed-evidence.test.mjs"
+      - "tests/native-suite-runner.test.mjs"
+      - "tests/*failure*.test.mjs"
+      - "tests/local-http-request.test.mjs"
+      - "tests/fixtures/local-idle-http-server.mjs"
+      - "tests/fixtures/adb-evidence-process.mjs"
+      - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
+      - "tests/support-process-restart-phone-evidence.test.mjs"
+      - "tests/disposable-store-pause.test.mjs"
+      - "tests/disposable-store-diagnostics.test.mjs"
+      - "tests/disposable-installations.test.mjs"
+      - "tests/disposable-install-admin.test.mjs"
+      - "tests/native-membership-config.test.mjs"
+      - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
+      - "tests/local-modem-diagnostics.test.mjs"
+      - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/local-network-validation-diagnostics.test.mjs"
+      - "tests/chat-network-latest-evidence.test.mjs"
+      - "tests/native-followup-evidence.test.mjs"
+      - "tests/chat-process-restart.test.mjs"
+      - "tests/session-restoration.test.mjs"
+      - "scripts/check-ios-native-plan.sh"
+      - "tests/native-ui-coverage.test.mjs"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  native-ui-coverage:
+    name: Native UI flow coverage
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Reject conflicting manual map selections
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          selections='${{ inputs.real_maps_ui }}-${{ inputs.vehicle_map_ui }}-${{ inputs.parent_search_booking }}'
+          case "$selections" in *true*true*) exit 2 ;; esac
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up native configuration tests
+        uses: ./.github/actions/native-test-setup
+
+      - name: Validate team enrollment unit and compiled-screen scope
+        run: node --test tests/team-enrollment-native-contract.test.mjs tests/team-club-identity.test.mjs
+
+      - name: Validate recreated child contact UI proof contract
+        run: node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs
+
+      - name: Validate owned enrollment history source and dated evidence boundaries
+        run: node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
+      - name: Test owned local service process supervision
+        run: node --test tests/supervised-local-process.test.mjs tests/local-entry-command.test.mjs
+      - name: Validate immutable child emergency contact contracts and evidence
+        run: node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/location-freshness-evidence.test.mjs tests/ride-emergency-completed-evidence.test.mjs
+
+      - name: Validate selected ride observation and independent disposable trials
+        run: node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Validate vehicle coordinate projection and independent component layout scope
+        run: node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs tests/vehicle-map-retained-evidence.test.mjs
+
+      - name: Validate SDK-connected team replay evidence requirements
+        run: node --test tests/team-enrollment-sdk.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-access.test.mjs tests/team-chat-draft-restart.test.mjs tests/team-chat-draft-persistence.test.mjs
+
+      - name: Validate sanitized host transport observations
+        run: node --test tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs tests/primary-capture-diagnostics.test.mjs tests/primary-capture-late-samples.test.mjs tests/rejected-primary-captures.test.mjs tests/capture-window-calibration.test.mjs
+
+      - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
+        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs tests/manual-trip-components.test.mjs
+
+      - name: Validate membership cursor regression and client decoder evidence
+        run: node --test tests/membership-cursor-contract.test.mjs
+
+      - name: Validate independently retained Android execution and device observations
+        run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
+      - name: Test bounded restoration faults and unchanged fixture records
+        run: node --test tests/session-transport-observations.test.mjs tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-restoration-recheck.test.mjs tests/session-restoration-recovery.test.mjs tests/ride-observation-preparation.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+      - name: Validate guarded full-search preparation and accessible trip controls
+        run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs tests/search-booking-retained-evidence.test.mjs
+      - name: Validate retained physical search without provider access
+        run: node --test tests/search-booking-phone.test.mjs
+      - name: Validate driver account preparation evidence
+        run: node --test tests/driver-connect-evidence.test.mjs
+      - name: Validate dated full native replay recheck
+        run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
+      - name: Validate neutral text contrast and native capture scope
+        run: node --test tests/neutral-text-contrast.test.mjs
+      - name: Validate disposable Android isolation
+        run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
+
+      - name: Validate disposable Android policies and native configuration
+        run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-android.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs tests/native-membership-config.test.mjs tests/chat-network-config.test.mjs tests/local-modem-diagnostics.test.mjs tests/local-default-selection-diagnostics.test.mjs tests/chat-process-restart.test.mjs tests/local-evidence-collection.test.mjs tests/conversation-test-input.test.mjs tests/session-restoration.test.mjs tests/adb-sync-failure-diagnostics.test.mjs tests/guardian-parent-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+
+      - name: Validate dual-transport network prerequisites
+        run: node --test tests/dual-transport-config.test.mjs tests/trip-change-ui.test.mjs tests/trip-change-inputs-ui.test.mjs tests/trip-change-schedule-ui.test.mjs tests/trip-schedule-completed-evidence.test.mjs tests/trip-consent-restart.test.mjs tests/trip-draft-restart.test.mjs tests/trip-consent-recovery.test.mjs tests/trip-consent-recovery-completed-evidence.test.mjs tests/trip-consent-restart-completed-evidence.test.mjs tests/native-suite-runner.test.mjs tests/native-focused-runner.test.mjs tests/native-process-failure-evidence.test.mjs tests/local-http-request.test.mjs
+
+      - name: Validate real-map UI isolation without provider calls
+        run: node --test tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs
+
+      - name: Test private Android network validation history
+        run: node --test tests/local-network-validation-diagnostics.test.mjs tests/chat-network-latest-evidence.test.mjs tests/native-followup-evidence.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs tests/network-bootstrap-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs tests/continuous-disposable-device.test.mjs
+
+  android-native-unit:
+    name: Android native unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+      - name: Install Android SDK packages
+        run: sdkmanager "platforms;android-36" "build-tools;35.0.0"
+
+      - name: Run Android native unit tests
+        working-directory: android
+        run: ./gradlew :app:testDebugUnitTest --no-daemon --stacktrace
+
+  android-native-ui:
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer == 'swiftshader' && 'Android renderer comparison (not release)' || github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && 'Offline UI matrix (not requested)' || 'Android native UI tests' }}
+    if: ${{ github.event_name != 'workflow_dispatch' || (!inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Set up Node for isolated app flows
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install isolated test dependencies
+        run: npm ci
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+
+      - name: Compile app and tests before starting the disposable device
+        env:
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+        run: node scripts/qa/build-android-matrix-apks.mjs
+
+      - name: Select one validated full-matrix renderer
+        id: matrix_renderer
+        env:
+          SGM_MATRIX_RENDERER: ${{ github.event_name == 'workflow_dispatch' && inputs.full_matrix_renderer || 'software' }}
+        run: node scripts/qa/select-matrix-renderer.mjs
+
+      - name: Enable KVM group permissions
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run Android Compose UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+          SGM_PAUSE_TEST_PHONE_STORE: "true"
+          SGM_BLOCK_TEST_PHONE_INSTALLS: "true"
+          SGM_TEST_PHONE_ADMIN_APPROVED: "true"
+          SGM_PRIMARY_CAPTURE_DIAGNOSTICS: "true"
+        with:
+          api-level: 35
+          target: google_apis_playstore
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: ${{ steps.matrix_renderer.outputs.emulator_options }}
+          script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
+
+      - name: Finish bounded read-only full-matrix host observation
+        if: ${{ always() }}
+        env:
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+        run: node scripts/qa/observe-emulator-shutdown.mjs wait full-matrix
+
+      - name: Upload Android instrumentation reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: android-connected-ui-test-results
+          path: |
+            android/app/build/outputs/matrix-renderer.json
+            android/app/build/reports/androidTests/connected/**
+            android/app/build/outputs/androidTest-results/connected/**
+            android/app/build/outputs/store-review-screenshots/**
+            android/app/build/outputs/matrix-apks/manifest.json
+            android/app/build/outputs/matrix-apks/**/output-metadata.json
+            android/app/build/outputs/local-ui-evidence/**
+            android/app/build/outputs/focused-safety-ui/full-matrix/host-shutdown/**
+          if-no-files-found: ignore
+
+  android-focused-safety-ui:
+    name: Android focused safety UI tests
+    if: ${{ github.event_name != 'workflow_dispatch' || (inputs.full_matrix_renderer == 'software' && !inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking) }}
+    uses: ./.github/workflows/native-focused-ui.yml
+
+  android-real-maps-ui:
+    name: Android approved real-map UI integration
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.real_maps_ui && !inputs.vehicle_map_ui && !inputs.parent_search_booking }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-real-maps-ui.yml
+    secrets:
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+
+  android-vehicle-map-ui:
+    name: Android approved vehicle-map UI
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.vehicle_map_ui && !inputs.real_maps_ui && !inputs.parent_search_booking }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-vehicle-map-ui.yml
+    secrets:
+      SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+
+  android-parent-search-booking:
+    name: Android approved parent search and booking
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.parent_search_booking && !inputs.real_maps_ui && !inputs.vehicle_map_ui }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/native-search-booking-ui.yml
+    secrets:
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+
+  ios-native-checks:
+    name: iOS native checks
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Run iOS native plan checks
+        run: bash scripts/check-ios-native-plan.sh
+
+      - name: Build Swift package scaffold
+        run: swift build --package-path ios
+
+  ios-native-ui:
+    name: iOS native UI tests
+    # macOS runners are intentionally disabled for routine CI cost control.
+    # Re-enable only for an approved final iOS release-candidate build.
+    if: ${{ false }}
+    runs-on: macos-26-intel
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: |
+          for xcode in \
+            /Applications/Xcode_26.5.app \
+            /Applications/Xcode_26.4.1.app \
+            /Applications/Xcode_26.3.app \
+            /Applications/Xcode_26.2.app \
+            /Applications/Xcode.app
+          do
+            if [ -d "$xcode" ]; then
+              sudo xcode-select -s "$xcode"
+              break
+            fi
+          done
+          xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate --spec project.yml
+
+      - name: Run iOS simulator UI tests
+        working-directory: ios
+        run: |
+          xcodebuild test \
+            -project SportsGreenMoove.xcodeproj \
+            -scheme SportsGreenMoove \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -derivedDataPath build/UITestDerivedData \
+            CODE_SIGNING_ALLOWED=NO

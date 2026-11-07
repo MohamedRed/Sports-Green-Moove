@@ -1,0 +1,22 @@
+{
+  "scope": "failed-device-preparation-before-app-not-flow-evidence",
+  "sourceCommit": "707dd744cf31c4678e0c4792339148414cac56a8",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39262124854",
+  "jobId": 118092212812,
+  "failedAt": "2026-10-19T13:46:16.4176222Z",
+  "buildPassed": true,
+  "setupPassed": false,
+  "flowTestsExecuted": 0,
+  "ordinaryUiSuiteAccepted": false,
+  "emergencyPhoneAccepted": false,
+  "originalFailure": "Store pause was not applied",
+  "observedStoreStateRetained": false,
+  "restorationOutcome": "unreported-not-proven-failed-or-successful",
+  "restartCauseProven": false,
+  "newDiagnosticsIncluded": false,
+  "sourceFiles": {
+    "scripts/qa/disposable-store-pause.mjs": "eb482cb513c51131ea84ea111db3a2df7459a50ad5567d8fe760e41f249510b4",
+    "scripts/qa/configure-disposable-android.mjs": "8ac5f7729679a855a4a0a259e4c39846d3f3de007ade7dadcdb4904e500f3c0e",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "f5b3d8325b447cb64a4977d31b7238375ef97ee73cfa4d32ecc9248be54cdd0b"
+  }
+}

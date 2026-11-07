@@ -1,0 +1,98 @@
+{
+  "phase": "parent-ready",
+  "observedAt": "2026-10-30T10:07:36.863Z",
+  "status": "passed",
+  "ratingCount": 0,
+  "parentRequests": 2,
+  "driverRequests": 2,
+  "originalTimestampAndFieldsPreserved": false,
+  "originalRecordsAndClaimsPreserved": true,
+  "proxy": {
+    "scope": "isolated-callable-response-withholding-not-radio-loss-or-phone-ui-proof",
+    "runId": "5b7bbb61d00c6c420fa6a141c688749b",
+    "phase": "armed",
+    "attempts": [],
+    "requests": [
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "listChatConversations",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getInbox",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getReceivedRatingSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      }
+    ],
+    "failed": false
+  },
+  "phoneUiProvenByObserver": false
+}

@@ -7,10 +7,11 @@ struct AppShell: View {
         Group {
             if !appState.isConfigured {
                 ConfigurationRequiredScreen()
-            } else if appState.session == nil {
-                AuthScreen()
+            } else if let access = appState.accountAccess {
+                authenticatedShell(access)
+                    .id(access.context.id)
             } else {
-                authenticatedShell
+                AuthScreen()
             }
         }
         .background(SGM.bgApp.ignoresSafeArea())
@@ -25,11 +26,23 @@ struct AppShell: View {
         } message: {
             Text(appState.errorMessage ?? appState.noticeMessage ?? "")
         }
+        .alert(ActiveRidePermissionCopy.title, isPresented: activeRidePermissionBinding) {
+            Button(ActiveRidePermissionCopy.cancel, role: .cancel) {
+                appState.cancelActiveRideStart()
+            }
+            Button(ActiveRidePermissionCopy.continueAction) {
+                Task {
+                    await appState.confirmActiveRideStart()
+                }
+            }
+        } message: {
+            Text(ActiveRidePermissionCopy.body)
+        }
     }
 
-    private var authenticatedShell: some View {
-        ZStack(alignment: .bottom) {
-            activeContent
+    private func authenticatedShell(_ access: AccountAccess) -> some View {
+        VStack(spacing: 0) {
+            activeContent(access)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             SGMTabBar(
                 selected: appState.selectedTab,
@@ -50,24 +63,35 @@ struct AppShell: View {
         )
     }
 
+    private var activeRidePermissionBinding: Binding<Bool> {
+        Binding(
+            get: { appState.activeRidePermissionDisclosure != nil },
+            set: { visible in
+                if !visible {
+                    appState.activeRidePermissionDisclosure = nil
+                }
+            }
+        )
+    }
+
     @ViewBuilder
-    private var activeContent: some View {
+    private func activeContent(_ access: AccountAccess) -> some View {
         if let overlay = appState.overlay {
-            overlayContent(overlay)
+            overlayContent(overlay, access: access)
         } else {
-            tabContent(appState.selectedTab)
+            tabContent(appState.selectedTab, access: access)
         }
     }
 
     @ViewBuilder
-    private func tabContent(_ tab: AppTab) -> some View {
+    private func tabContent(_ tab: AppTab, access: AccountAccess) -> some View {
         switch tab {
         case .home:
-            HomeScreen()
+            HomeScreen(access: access)
         case .trips:
-            TripsScreen()
+            TripsScreen(access: access)
         case .publish:
-            PublishScreen()
+            PublishScreen(access: access)
         case .messages:
             MessagesScreen()
         case .profile:
@@ -76,20 +100,20 @@ struct AppShell: View {
     }
 
     @ViewBuilder
-    private func overlayContent(_ overlay: AppOverlay) -> some View {
+    private func overlayContent(_ overlay: AppOverlay, access: AccountAccess) -> some View {
         switch overlay {
         case .search:
-            SearchScreen()
+            SearchScreen(appState: appState, access: access)
         case .groups:
             GroupsScreen()
         case .impact:
             ImpactScreen()
         case .rewards:
-            RewardsScreen()
+            RewardsScreen(access: access)
         case .options:
             OptionsScreen()
         case .payments:
-            PaymentsScreen()
+            PaymentsScreen(access: access)
         case .ride:
             RideMonitorScreen()
         }

@@ -1,0 +1,48 @@
+not ok 1177 - request security and runtime disposal stay in both required CI workflows with concise public scope
+  ---
+  duration_ms: 0.813834
+  type: 'test'
+  location: '<repo>/tests/http-body-parser-evidence.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /critiques/. Input:
+    
+    'Une alerte élevée supplémentaire est levée. Les contrôles de sécurité restent ouverts.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Une alerte élevée supplémentaire est levée. Les contrôles de sécurité restent ouverts.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/http-body-parser-evidence.test.mjs:38:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+not ok 3623 - runner security evidence retains reproduction, compatibility and the remaining findings
+  ---
+  duration_ms: 26.410125
+  type: 'test'
+  location: '<repo>/tests/test-runner-security-evidence.test.mjs:7:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /D’autres alertes élevées restent/. Input:
+    
+    'Une alerte élevée supplémentaire est levée. Les contrôles de sécurité restent ouverts.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'Une alerte élevée supplémentaire est levée. Les contrôles de sécurité restent ouverts.'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/test-runner-security-evidence.test.mjs:13:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...

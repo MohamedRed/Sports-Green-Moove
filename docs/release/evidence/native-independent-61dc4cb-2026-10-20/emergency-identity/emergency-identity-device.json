@@ -1,0 +1,36 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "717b151ab76691421008b941c5d97e5c",
+  "scope": "local-recreated-child-contact-ui-not-own-child-account",
+  "checks": [
+    {
+      "id": "original-contact-saved-in-app",
+      "status": "passed"
+    },
+    {
+      "id": "open-old-form-write-denied",
+      "status": "passed"
+    },
+    {
+      "id": "old-verification-read-denied",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-verification-does-not-inherit-contact",
+      "status": "passed"
+    },
+    {
+      "id": "new-contact-restored-after-activity-recreation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "emergency-identity-original.png": "6c519105da711b6c52292bfc5f24ba63996875f4a40b68739ceda922f7ca86b9",
+    "emergency-identity-stale-denied.png": "63513d5ae6118f40521ebf2cf11b78983524eda5ceb903ac35b294ffd6954dbf",
+    "emergency-identity-fresh-empty.png": "6c04e1d0daad88276555bf818fa6d09e3cd94053294a233d327333d4976c410c",
+    "emergency-identity-fresh-restored.png": "48a314c6ae8850662c212982863de36fb1c16ead6a6c44598be821f0efa967ef"
+  },
+  "dialIntentCount": 0,
+  "directCallIntentCount": 0,
+  "physicalDevice": false
+}

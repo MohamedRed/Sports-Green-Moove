@@ -1,0 +1,17 @@
+{
+  "serial": "emulator-5582",
+  "records": [
+    {
+      "packageName": "be.sportgreenmoove.app.local",
+      "file": "after-font.apk",
+      "sha256": "ab7ea18a9ad6e50ff93a474edf622190c45e652ade7d44f84dcd85158de70a35",
+      "installedBytesVerified": true
+    },
+    {
+      "packageName": "be.sportgreenmoove.app.local.test",
+      "file": "after-font-test.apk",
+      "sha256": "b7e7568dae5b8e31b839f62292695fab08380c7972baa2c7f28c8110e2b3712a",
+      "installedBytesVerified": true
+    }
+  ]
+}

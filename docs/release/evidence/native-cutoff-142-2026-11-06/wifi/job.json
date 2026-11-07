@@ -1,0 +1,83 @@
+{
+  "headSha": "6fb6487c2b9a31b84faa23a096ce345fa63cdca2",
+  "id": 128109652486,
+  "runId": 42281015271,
+  "status": "completed",
+  "conclusion": "failure",
+  "startedAt": "2026-11-06T19:35:48Z",
+  "completedAt": "2026-11-06T19:47:09Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Checkout",
+      "conclusion": "success"
+    },
+    {
+      "name": "Set up JDK",
+      "conclusion": "success"
+    },
+    {
+      "name": "Set up Node for isolated app flows",
+      "conclusion": "success"
+    },
+    {
+      "name": "Install isolated test dependencies",
+      "conclusion": "success"
+    },
+    {
+      "name": "Set up Android SDK",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile app and tests before starting the disposable device",
+      "conclusion": "success"
+    },
+    {
+      "name": "Reserve disk space for the unchanged disposable Android device",
+      "conclusion": "success"
+    },
+    {
+      "name": "Select one validated full-matrix renderer",
+      "conclusion": "success"
+    },
+    {
+      "name": "Enable KVM group permissions",
+      "conclusion": "success"
+    },
+    {
+      "name": "Observe host DNS before disposable launch",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run Android Compose UI tests",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Finish bounded read-only full-matrix host observation",
+      "conclusion": "success"
+    },
+    {
+      "name": "Upload Android instrumentation reports",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Set up Node for isolated app flows",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Post Set up JDK",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Checkout",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: prepared checkpoint and ordered phases do not claim a phone network observation
+ok 1 - prepared checkpoint and ordered phases do not claim a phone network observation
+  ---
+  duration_ms: 1.465917
+  type: 'test'
+  ...
+# Subtest: committed request and confirmed exact retry keep their distinct receipt counts
+ok 2 - committed request and confirmed exact retry keep their distinct receipt counts
+  ---
+  duration_ms: 1.042792
+  type: 'test'
+  ...
+# Subtest: rejects duplicate report
+ok 3 - rejects duplicate report
+  ---
+  duration_ms: 0.640125
+  type: 'test'
+  ...
+# Subtest: rejects changed identity
+ok 4 - rejects changed identity
+  ---
+  duration_ms: 0.223459
+  type: 'test'
+  ...
+# Subtest: rejects changed content
+ok 5 - rejects changed content
+  ---
+  duration_ms: 0.216375
+  type: 'test'
+  ...
+# Subtest: rejects reset timestamp
+ok 6 - rejects reset timestamp
+  ---
+  duration_ms: 0.322667
+  type: 'test'
+  ...
+# Subtest: rejects premature automatic retry
+ok 7 - rejects premature automatic retry
+  ---
+  duration_ms: 0.760375
+  type: 'test'
+  ...
+# Subtest: rejects unexpected urgent notification
+ok 8 - rejects unexpected urgent notification
+  ---
+  duration_ms: 0.243833
+  type: 'test'
+  ...
+# Subtest: rejects private metadata leak
+ok 9 - rejects private metadata leak
+  ---
+  duration_ms: 0.643042
+  type: 'test'
+  ...
+# Subtest: rejects expired gate
+ok 10 - rejects expired gate
+  ---
+  duration_ms: 0.412375
+  type: 'test'
+  ...
+# Subtest: foreign check requires both denied direct read and an owner-scoped list
+ok 11 - foreign check requires both denied direct read and an owner-scoped list
+  ---
+  duration_ms: 5.020416
+  type: 'test'
+  ...
+# Subtest: late original confirmation is distinct from explicit retry and process restart
+ok 12 - late original confirmation is distinct from explicit retry and process restart
+  ---
+  duration_ms: 0.224958
+  type: 'test'
+  ...
+# Subtest: late confirmation still requires foreign privacy checks
+ok 13 - late confirmation still requires foreign privacy checks
+  ---
+  duration_ms: 0.642875
+  type: 'test'
+  ...
+# Subtest: an unclassified second attempt can prove record integrity but never an explicit retry or accepted phone flow
+ok 14 - an unclassified second attempt can prove record integrity but never an explicit retry or accepted phone flow
+  ---
+  duration_ms: 0.216125
+  type: 'test'
+  ...
+# Subtest: only the exact synthetic parent action can be held
+ok 15 - only the exact synthetic parent action can be held
+  ---
+  duration_ms: 2.005958
+  type: 'test'
+  ...
+# Subtest: independent commit is verified before hold, release preserves the actual receipt and close scope stays explicit
+ok 16 - independent commit is verified before hold, release preserves the actual receipt and close scope stays explicit
+  ---
+  duration_ms: 62.901583
+  type: 'test'
+  ...
+# Subtest: a repeated real response is recorded but never held a second time
+ok 17 - a repeated real response is recorded but never held a second time
+  ---
+  duration_ms: 52.663541
+  type: 'test'
+  ...
+# Subtest: expiry is a failed experiment, not a fabricated acknowledgement
+ok 18 - expiry is a failed experiment, not a fabricated acknowledgement
+  ---
+  duration_ms: 54.528125
+  type: 'test'
+  ...
+# Subtest: missing independent commit evidence and non-isolated configuration fail before holding
+ok 19 - missing independent commit evidence and non-isolated configuration fail before holding
+  ---
+  duration_ms: 1.966042
+  type: 'test'
+  ...
+# Subtest: the copied runtime export delegates to the production handler without altering production source or the tunnel allowlist
+ok 20 - the copied runtime export delegates to the production handler without altering production source or the tunnel allowlist
+  ---
+  duration_ms: 1.403458
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 231.9445

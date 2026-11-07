@@ -1,0 +1,81 @@
+{
+  "scope": "original-failed-restart-test-not-completed-flow-evidence",
+  "runId": "53e6af18b205707881ff4af32855c63d",
+  "files": [
+    {
+      "name": "local-trip-consent-restart-before.json",
+      "bytes": 452,
+      "sha256": "4a3980449465500742c5469aa97b3b24430e39e330c323b9d8d2d2be7020e1ab"
+    },
+    {
+      "name": "local-trip-consent-restart-after.json",
+      "bytes": 505,
+      "sha256": "f5565a240765cd7a0d663cdeced9b9352f8dfdc2a55e7a0f4c48965911fcd71b"
+    },
+    {
+      "name": "local-trip-consent-restart-stop.json",
+      "bytes": 291,
+      "sha256": "68fc65b54f5b5e588156e248051bea123fcfba494e6576e21ef2def91a813c94"
+    },
+    {
+      "name": "trip-consent-restart-checkpoint.json",
+      "bytes": 718,
+      "sha256": "6cba450557716c3c4a068c5c5db0460424c57a93dc80d384de4c69d070bc34ea"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#prepareConfirmedConsent-instrumentation.txt",
+      "bytes": 86,
+      "sha256": "831493548d22f97d4d603463f363d30642210c5246630d7f0bdc09c3024dfde4"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-instrumentation.txt",
+      "bytes": 2525,
+      "sha256": "2d24c95b40c7adf91fd2e98ddf041b5f2956fdde6e84a93493b4544498815a0c"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-crash.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-exit-info.txt",
+      "bytes": 6363,
+      "sha256": "74c7ab4364ba2f88dacb812b424e0629afdcdfd5f694a090720fec2da8cc1ae0"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-process-log.txt",
+      "bytes": 410,
+      "sha256": "bd4d2bcb7fbc170d24874a9a14a63b8cb9a263242cc6b3a64582dcc3fde46912"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-guest-memory.txt",
+      "bytes": 1292,
+      "sha256": "9b1f95b9d492a514b41027b1a8cf237bc946f0759af3af4a1e77dbf10b0a54e7"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-frozen-packages.txt",
+      "bytes": 27,
+      "sha256": "63fb65f7fa243eee9ee35a6e5beac1889102f5873c56d833fade34bb7e8cd470"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-install-sessions.txt",
+      "bytes": 5050,
+      "sha256": "94fef80382d413792a96f5556cc5828581eb2799ec48b2469fc5995a2f77b3a4"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-package-operations.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "LocalTripConsentRestartTest#reopenConfirmedConsent-diagnostics.json",
+      "bytes": 1649,
+      "sha256": "ce02b3dd14f707ef096eaf06249bf0f4d060da39260852e3615884a6dbd623a7"
+    },
+    {
+      "name": "local-trip-consent-restart-after.png",
+      "bytes": 157307,
+      "sha256": "803d4a7b4b4900b21466fba4dbda58e24c29b5a7a11fa3cdc803aa23ec26d6cd"
+    }
+  ]
+}

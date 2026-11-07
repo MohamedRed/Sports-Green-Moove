@@ -1,0 +1,84 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e647a4e980238c7cd7b3030b3cfc09cf",
+  "testedAt": "2026-10-23T23:53:43.112Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "initial",
+      "result": {
+        "selectedStillUnread": true,
+        "allRecordsUnchanged": true
+      }
+    },
+    {
+      "phase": "read",
+      "result": {
+        "protectedRecordCount": 169,
+        "selectedReadAtMillis": 1792799414001,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    },
+    {
+      "phase": "stopped",
+      "result": {
+        "protectedRecordCount": 169,
+        "selectedReadAtMillis": 1792799414001,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    },
+    {
+      "phase": "restarted",
+      "result": {
+        "protectedRecordCount": 169,
+        "selectedReadAtMillis": 1792799414001,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    }
+  ],
+  "fixture": {
+    "selectedNoticeId": "bookingDecision_0dca50b75a78e30f809eb4ef59ad293eae9d0d937ac642724010a2b6ce28871c",
+    "controlNoticeId": "bookingDecision_d9fa157ff3d9cbe5f9300650065b76f00c04bbd53eab397ec47dcb89bfd19c33",
+    "driverNoticeId": "bookingDecision_4cd41f11dd9f65acfee5ba18140611ee74f58433461948a3676795b2195b1c9d"
+  },
+  "scope": "independent-notification-restart-checkpoints-not-ui-or-process-death-proof",
+  "adminClientClosed": true,
+  "protectedRecordCount": 169,
+  "nativeProcessIdsMeasured": false,
+  "physicalTrackingAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "scripts/qa/manual-notification-restart-phone-session.mjs": "9762a5d4ff7566c69f3c195d9b861659539655b2a9b4e3f54f0028e154a5e9f5",
+    "scripts/qa/local-notification-read-ui.mjs": "3529c76b1181d340281cfca3728e65f257651188887267088ec7627a2e2b15e1",
+    "scripts/qa/notification-read-restart-evidence.mjs": "bac79673bff406ae84b513da6618f8db34c8588db0530cb600e2a7a32f37dc03",
+    "functions/src/callables/notificationRead.ts": "2bd44abcdbe8941f53cbe9283a3ee647ae3258ed602e05064a3a084e6926dafe"
+  }
+}

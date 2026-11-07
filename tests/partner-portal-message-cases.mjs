@@ -1,0 +1,38 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {content, captures} from '../partner-portal/content.mjs';
+
+const source = file => readFileSync(resolve(import.meta.dirname, '..', file), 'utf8');
+test('current conversation evidence retains the full replay and the dated historical captures', () => {
+  const flow = content.flows.find((item) => item.id === 'messages');
+  const run = JSON.parse(source(flow.ui.source));
+  assert.equal(run.testCount, 36);
+  assert.equal(run.steps.length, 36);
+  const previous = JSON.parse(source('docs/release/evidence/local-ui-collection-2026-10-16/accepted-run/results.json'));
+  assert.equal(previous.testCount, 20); assert.equal(previous.steps.length, 21);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.deepEqual(flow.ui.groups, ['chat-conversation-ui', 'chat-directory-ui', 'chat-network-recovery-ui', 'chat-account-switch-ui', 'chat-confirmed-process-restart-ui', 'chat-post-commit-response-loss-ui']);
+  assert.equal(run.chat.messageCount, 5);
+  assert.equal(run.chat.newMessageCount, 4);
+  assert.equal(run.chat.readNotificationCount, 4);
+  assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(run.directory.conversationCount, 28);
+  assert.equal(run.directory.archivedConversationCount, 25);
+  assert.equal(run.directory.firstPageCount, 20);
+  assert.equal(run.directory.secondPageCount, 8);
+  assert.equal(run.directory.messageCount, 2);
+  assert.equal(run.directory.readNotificationCount, 2);
+  assert.equal(flow.images.filter(image => !image.file.startsWith('chat-receipt-phone-') && !image.file.startsWith('chat-account-phone-') && !image.file.startsWith('chat-phone-') && !image.file.startsWith('chat-draft-') && !['chat-restart-recheck-reply', 'chat-network-current-draft', 'chat-network-current-reply', 'chat-network-isolated-draft', 'chat-network-isolated-reply'].includes(image.file)).length, 11);
+  assert.equal(flow.images.filter(image => image.file.startsWith('chat-draft-') && !image.file.startsWith('chat-draft-replay-')).length, 3);
+  assert.equal(flow.images.filter(image => image.file.startsWith('chat-draft-replay-')).length, 2);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-directory-ui-2026-10-15/results.json')).testCount, 9);
+  assert.equal(JSON.parse(source('docs/release/evidence/local-chat-ui-2026-10-15/results.json')).testCount, 8);
+  assert(!Object.values(captures).some((path) => /directory-(first-message|reply)\.png/.test(path)));
+  assert.equal(flow.status, 'partial');
+  assert.match(flow.remaining, /téléphones/);
+  assert(!content.blockers.some((item) => item.id === 'chat-reply'));
+  assert(!content.blockers.some((item) => item.id === 'chat-discovery'));
+  assert.equal(content.flows.find((item) => item.id === 'tracking').status, 'partial');
+});

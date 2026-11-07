@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "41d572df0ad2c938eda7c16d6c18e5a3",
+  "label": "vehicle-map",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-19T20:51:15.677Z",
+  "host": {
+    "totalMemoryBytes": 16766414848,
+    "freeMemoryBytes": 10270502912,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "vehicle-map-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "vehicle-map-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "vehicle-map-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "vehicle-map-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "vehicle-map-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "vehicle-map-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "vehicle-map-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

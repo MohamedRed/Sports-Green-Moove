@@ -1,0 +1,94 @@
+{
+  "scope": "unaltered-browser-originals-and-exact-stream-rectangles",
+  "captures": [
+    {
+      "file": "originals/02-prepared.png",
+      "capturedAt": "2026-10-23T00:11:48.794Z",
+      "sha256": "0bc940eabcf1c282213dff2298449689a2afd84bff953fe5756f858b718af806"
+    },
+    {
+      "file": "originals/03-unconfirmed-in-flight.png",
+      "capturedAt": "2026-10-23T00:14:38.493Z",
+      "sha256": "64c11760005e22e9be0ede3af3acf91d995df4c3987bc7d922e19be6954b5a9d"
+    },
+    {
+      "file": "originals/04-first-stop-dialog.png",
+      "capturedAt": "2026-10-23T00:15:10.793Z",
+      "sha256": "4bad9088852695d8455938b02d147f03802df953724cb19ad9fcbfefe96f91e2"
+    },
+    {
+      "file": "originals/05-first-stopped.png",
+      "capturedAt": "2026-10-23T00:15:21.765Z",
+      "sha256": "203b2ea0ec594341930149937ff8549c489d53a71e757f4fa44acc77d4644814"
+    },
+    {
+      "file": "originals/06-first-reopened-pending.png",
+      "capturedAt": "2026-10-23T00:16:05.864Z",
+      "sha256": "630604f30532a2aaa09ee0f3fba4b3569d75bdcf59c91ee32f1c32d264558087"
+    },
+    {
+      "file": "originals/07-pending-before-explicit-retry.png",
+      "capturedAt": "2026-10-23T00:16:43.965Z",
+      "sha256": "f4f2fa8b6d3f09b78dface92b1ddd032436dd8a3e8d6c0d7b9051239bbe1747c"
+    },
+    {
+      "file": "originals/08-confirmed.png",
+      "capturedAt": "2026-10-23T00:16:53.124Z",
+      "sha256": "629c749dfb63f4a0b56380d213b76ed292fb023bef7b6aac7020cb7781318ddf"
+    },
+    {
+      "file": "originals/09-confirmed-stop-dialog.png",
+      "capturedAt": "2026-10-23T00:17:45.875Z",
+      "sha256": "819afe53d31ca0ddd053f6d83ee30236fc64a6d7e863815433426db5c0016fd6"
+    },
+    {
+      "file": "originals/10-confirmed-stopped.png",
+      "capturedAt": "2026-10-23T00:17:52.519Z",
+      "sha256": "640f639f7382d68ee3fece80d9df553818dc866c09ffe6620c203ee7c009462b"
+    },
+    {
+      "file": "originals/11-confirmed-reopened-no-pending.png",
+      "capturedAt": "2026-10-23T00:18:47.105Z",
+      "sha256": "4b450a6deabe630bc46c76441c624f0716cb5139c3b856b7ac96e583f3b45542"
+    },
+    {
+      "file": "originals/12-provider-session-ended.png",
+      "capturedAt": "2026-10-23T11:08:46.786Z",
+      "sha256": "855a4c746fd0d1c72be75691aece6664bc03b04b4f7578731e1737655b426f14"
+    }
+  ],
+  "rectangles": [
+    {
+      "source": "originals/02-prepared.png",
+      "output": "captures/prepared.png",
+      "left": 626,
+      "top": 108,
+      "width": 250,
+      "height": 562
+    },
+    {
+      "source": "originals/07-pending-before-explicit-retry.png",
+      "output": "captures/pending.png",
+      "left": 650,
+      "top": 108,
+      "width": 250,
+      "height": 562
+    },
+    {
+      "source": "originals/08-confirmed.png",
+      "output": "captures/confirmed.png",
+      "left": 650,
+      "top": 108,
+      "width": 250,
+      "height": 562
+    },
+    {
+      "source": "originals/11-confirmed-reopened-no-pending.png",
+      "output": "captures/reopened.png",
+      "left": 650,
+      "top": 108,
+      "width": 250,
+      "height": 562
+    }
+  ]
+}

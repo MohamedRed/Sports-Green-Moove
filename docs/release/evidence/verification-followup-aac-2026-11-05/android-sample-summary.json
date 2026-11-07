@@ -1,0 +1,12 @@
+{
+  "sourceCommit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+  "sampleCount": 60,
+  "allSamplesReady": false,
+  "defaultWifiUnvalidatedSamples": 5,
+  "defaultCellularValidatedSamples": 55,
+  "allAvailableWifiUnvalidated": true,
+  "snapshotNotAtomic": true,
+  "finalCommandFailureCauseDistinguished": false,
+  "liveBudgetExhaustionFlagAbsent": true,
+  "rootCauseConfirmed": false
+}

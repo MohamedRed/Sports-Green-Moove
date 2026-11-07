@@ -1,0 +1,52 @@
+{
+  "scope": "executed-local-child-contact-components-not-child-signin-or-dialer",
+  "projectId": "demo-sgm-local-qa",
+  "sourceCommit": "f23512c8ae46b40c2e286104b6c6baa2716ffe60",
+  "ciRunId": "39337180296",
+  "artifactId": "12227954145",
+  "componentCaseCount": 5,
+  "caseNames": [
+    "absentContactHasNoPhoneDestinationOrEditingControl",
+    "changedContactNeedsAnotherTapAndAnUnavailablePhoneDoesNotSubstituteANumber",
+    "childContactIsReadOnlyAndFitsANarrowLargeTextScreen",
+    "deniedFreshAuthorityClearsTheNumberBeforeAnyPhoneHandoff",
+    "settingsEntryWithoutARideDoesNotReadOrManageTheChildContact"
+  ],
+  "mockedGateway": true,
+  "mockedDialer": true,
+  "actualChildSignIn": false,
+  "connectedBackend": false,
+  "dialerOpened": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "fullNativeCiVerified": false,
+  "visualCompletenessVerified": false,
+  "knownVisualDefects": [
+    "child-emergency-readonly-narrow.png",
+    "child-emergency-readonly-narrow-window.png"
+  ],
+  "screenshots": {
+    "child-emergency-access-denied-window.png": "454e0ff25e161635c735ead23fe9b5758b1e539954e5674693b470aa53c30047",
+    "child-emergency-access-denied.png": "923394733183a9a11d3327a9a6fdc4da78af51f5a9b0657b5436e9029c43008b",
+    "child-emergency-landscape-changed-window.png": "57a6e4fc2ae3be8935da1fa0f9654b120144b0c39bbee97f9f0fcd3fb7505f34",
+    "child-emergency-landscape-changed.png": "4c7a70c37596c4f751f6e3cb415afdd31e81783f66ab191e6abc16ae28b774d3",
+    "child-emergency-readonly-narrow-window.png": "d4cee239b5b2487ba1173136a3a764b4c54b4f9781a097b477a01d7d8559b751",
+    "child-emergency-readonly-narrow.png": "c221e99d3995ee03a058532e5dd69cb342a329f2dc0456c95e0c811be5545c45"
+  },
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyRoute.kt": "c985e3178b008d01f73c0aab9839fbb0011085e2af85e3b58e0b85a0a69facaf",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyState.kt": "3a5f4e97ac605a3904548d0f437493cb94210c5422f2785b213b5aa6be43541b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "cbc83fd8ee25a57b8d4a0eff26060c3e60196a8a2a74fdf0ebda38ef68f212f2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt": "6d29f2d7d302326dba6dafb67ab6af181dfb64711021ccea603a3936022f41aa",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt": "519e5b4bde65e5f163e42a6f52d8e7d6d58c1d3ac3c0a8fc50307ea8801ae744",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt": "7c23cd67fa68721f11551ed58e4b95da6e43d0b85887933f7e49ee7081dbb3cc",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "5716ac8bbd7bbac721fdaa7d30f00215a0307b4cd82a144f3b4fb5cfc892f576"
+  },
+  "testedAt": "2026-10-19T22:58:00Z",
+  "steps": [
+    {
+      "id": "child-contact-components",
+      "status": "passed"
+    }
+  ]
+}

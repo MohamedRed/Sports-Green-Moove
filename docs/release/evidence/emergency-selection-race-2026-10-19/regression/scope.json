@@ -1,0 +1,17 @@
+{
+  "scope": "local-unit-regressions-and-compilation-not-native-execution",
+  "collectedAt": "2026-10-19T23:08:21.552Z",
+  "unitCaseCount": 23,
+  "preparedComponentCaseCount": 7,
+  "nativeRegressionExecuted": false,
+  "correctedIdentityUiVerified": false,
+  "physicalDevice": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "09965b0b16250983e8808a5a3c2144fe53748327345c4714f08ea87146f08632",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "6de2b8c7274f0cf6b1f7ca58ab061f91a4719def36da685c583c761d5e077152",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt": "a2659e8ffd6a73c082932e27dc889ee56ba6be3e2baa1fd3c8b4bd6e46510350",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactSelectionTest.kt": "b8f92fe63a5d714e0c1208f202db04f8b7858a2baf6c2b75cc13c6a70a19c379",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactStateTest.kt": "7a0337b271283b249d3e96539d6d1a5693f0a2b3ecc462bbfe6c4f846d8899c9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt": "9d22195f3b1be6e47aa7a2b6e87c8e6e83816088fcd76d55ae34688d08719f70"
+  }
+}

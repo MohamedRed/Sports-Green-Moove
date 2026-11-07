@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-23T16:07:17.697Z" hostname="MRRs-MacBook-Air.local" time="0.012">
+  <properties/>
+  <testcase name="failedResolutionKeepsTheOldIdentityAndDoesNotSubmitChangedDetails" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.003"/>
+  <testcase name="aLateAcknowledgementCannotRemoveADifferentPendingOperation" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"/>
+  <testcase name="aCommittedOldIntentDoesNotSilentlySendTheChangedSelection" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"/>
+  <testcase name="accountsHaveSeparateIdentitiesAndAChangedAccountCannotAcknowledgeAnOldRequest" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.002"/>
+  <testcase name="aCachedIdentityAfterFailedDiskWriteCannotBypassDurabilityOnRetry" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.0"/>
+  <testcase name="anAcknowledgedNewExplicitOperationReceivesANewIdentity" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"/>
+  <testcase name="aRecoveredClosedBookingDoesNotPretendANewRequestWasSent" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"/>
+  <testcase name="storageFailurePreventsAnyNetworkSubmission" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.0"/>
+  <testcase name="aLostReplySurvivesGatewayRecreationAndRetainsSeatsChildAndTerms" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.001"/>
+  <testcase name="malformedOrMismatchedAcknowledgementsCannotClearThePendingIdentity" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.0"/>
+  <testcase name="changedDetailsResolveTheOldAttemptBeforeCreatingANewOne" classname="be.sportgreenmoove.app.services.BookingRequestCoordinatorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

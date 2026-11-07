@@ -1,0 +1,41 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "581b257773505a49a48df782d33a86fd",
+  "observedAt": "2026-10-28T14:36:18.448Z",
+  "scope": "independently-observed-owned-runtime-disposal-not-phone-process-proof",
+  "processGroupId": 53892,
+  "listenerIdentityObservedBeforeStop": true,
+  "processGroupExited": true,
+  "runtimeExitCode": 130,
+  "helperExitCode": 130,
+  "observerExitCode": 0,
+  "previewExitCode": 1,
+  "previewStopRequested": true,
+  "ports": [
+    {
+      "port": 5001,
+      "available": true
+    },
+    {
+      "port": 8080,
+      "available": true
+    },
+    {
+      "port": 9000,
+      "available": true
+    },
+    {
+      "port": 9099,
+      "available": true
+    },
+    {
+      "port": 5174,
+      "available": true
+    }
+  ],
+  "endpointsClosed": true,
+  "privateSessionAbsent": true,
+  "runtimeAbsent": true,
+  "helperDirectoryAbsent": true,
+  "earlierHelperDirectoryAbsent": true
+}

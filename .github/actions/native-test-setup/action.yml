@@ -1,0 +1,16 @@
+name: Native Configuration Test Setup
+description: Install pinned Node dependencies before native configuration checks
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v6
+      with:
+        node-version: "22"
+        cache: npm
+    - name: Install configuration test dependencies
+      shell: bash
+      run: npm ci
+    - name: Validate native UI flow identifiers
+      shell: bash
+      run: npm run test:native-ui-coverage

@@ -1,0 +1,17 @@
+{
+  "scope": "independent-post-bounded-replay-endpoint-check-not-phone-proof",
+  "checkedAt": "2026-10-28T17:51:24.402Z",
+  "commandExitCode": 0,
+  "runtimeRemovalAcknowledgedBySuccessfulExit": true,
+  "runtimePathIndependentlyQueried": false,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "closed": true
+  }
+}

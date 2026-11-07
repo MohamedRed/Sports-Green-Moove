@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-06",
+  "sourceCommit": "959e70b41abb039037f94e6eeec8402b597b5bff",
+  "focusedRecoveryAccepted": true,
+  "mainFailedPhase": "network-preparation",
+  "mainRadioCutExecuted": false,
+  "wholeNativeGateAccepted": false,
+  "underlyingDnsCauseConfirmed": false,
+  "dnsRepaired": false,
+  "passivePreflightAddedToFullMatrix": true,
+  "physicalDeviceAccepted": false,
+  "providerReadinessAccepted": false,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "initialHarnessCorrection": "The existing shell wrapper exits 1, not the inner sentinel status; the corrected baseline preserves exact source and command-order checks."
+}

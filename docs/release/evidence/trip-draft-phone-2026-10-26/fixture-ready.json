@@ -1,0 +1,19 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e6f16834f97c8f08095cdcdea11f3e6a",
+  "fixture": {
+    "tripId": "RlnhTxdNhyGyCoU4zZsB",
+    "otherTripId": "nWNvtLBwAiYCMDqTVcMQ",
+    "bookingIds": [
+      "St8VXDF5p5IFG3wGUzXX",
+      "0DQJuh2Ggl5xuAJkM9Lw"
+    ],
+    "driverUid": "sgm-qa-driver",
+    "driverEmail": "d@example.test",
+    "preparationMethod": "authenticated-local-service",
+    "providerRequests": 0,
+    "productionWrites": false
+  },
+  "preparedAt": "2026-10-26T21:44:23.698Z",
+  "scope": "service-prepared-booked-trips-not-phone-proof"
+}

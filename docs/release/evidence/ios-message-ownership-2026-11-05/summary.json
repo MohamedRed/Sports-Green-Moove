@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-11-05",
+  "baselineCommit": "61c3f2048d478707494e4ad90f1819f0860842ef",
+  "baselineSourceSha256": "ae41b517f80f7b4575051dc11011dedc0f90d185b73cb2a851e7f7c30fd1f8ac",
+  "sourceProjection": "exact-two-screen-methods-with-controlled-model-and-gateway-types",
+  "localChecks": {
+    "regressionExitCode": 0,
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "uiSyntaxExitCode": 0,
+    "delayedBoundaries": 42,
+    "requiredFixtureCases": 11
+  },
+  "logs": [
+    {
+      "file": "baseline-result.txt",
+      "sha256": "f79aedaba086e9199d382d95e466288b7a21fe9e8668787147be5dedee986d38"
+    },
+    {
+      "file": "native-result.txt",
+      "sha256": "dd6537242a8d2ed218d44e55e14a686836b94af346ff4af4bc23ceda29d0136d"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    }
+  ],
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "fullConversationUiAccepted": false,
+  "nativeSignOutAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0
+}

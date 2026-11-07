@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "49e8ddd843535ef02b2b927c21669a236cc498a3a2330dd39e5b0cae92084f02",
+    "scripts/run-focused-android-ui.sh": "adc4359736699fe36891855b18e7392b767f0b57e4f073bf952dd5bb693c31cc",
+    "scripts/qa/wait-disposable-wifi.mjs": "af7473bbd6cb9914a1ea0676c1d34ce8d505987fad4dc835c376baa1869eba14",
+    "scripts/qa/disposable-wifi-readiness.mjs": "58618b06bb46f5e500a51758b77f7426e07a02750119f9ce99ced7a1180b92ae",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "349ee6bc1824445dd3c872ee26f5f54fcc6380534efa4d085ab6bd3d25fbc9f7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalInitialNetworkObservation.kt": "b194dccdb7bde0acbb61ee0c4dc86166f863c55ddad4253cb19ed652a1e9eb1d",
+    ".github/workflows/native-ci.yml": "cb024f30ef85025fcc15e61fa2e94ee4d59f5003e0a6b9000bc5a1de4890c659",
+    "tests/full-matrix-network-prerequisite.test.mjs": "480c5b056113272778feb193f0ba7361af4bb82aa50add93bd06af05e8c3722f"
+  },
+  "candidate": {
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "21c47d430c53447178fd66e30d4aaeab648fe7bd170ff9aec5a1c857f94c74ce",
+    "scripts/run-focused-android-ui.sh": "adc4359736699fe36891855b18e7392b767f0b57e4f073bf952dd5bb693c31cc",
+    "scripts/qa/wait-disposable-wifi.mjs": "cb55cf03a13310773d67df8e1cc611080eeb3183ac87ee1c3023b0390aba0d55",
+    "scripts/qa/disposable-wifi-readiness.mjs": "58618b06bb46f5e500a51758b77f7426e07a02750119f9ce99ced7a1180b92ae",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "349ee6bc1824445dd3c872ee26f5f54fcc6380534efa4d085ab6bd3d25fbc9f7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalInitialNetworkObservation.kt": "b194dccdb7bde0acbb61ee0c4dc86166f863c55ddad4253cb19ed652a1e9eb1d",
+    ".github/workflows/native-ci.yml": "cb024f30ef85025fcc15e61fa2e94ee4d59f5003e0a6b9000bc5a1de4890c659",
+    "tests/full-matrix-network-prerequisite.test.mjs": "480c5b056113272778feb193f0ba7361af4bb82aa50add93bd06af05e8c3722f"
+  }
+}

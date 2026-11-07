@@ -1,0 +1,56 @@
+{
+  "reviewedAt": "2026-10-31",
+  "scope": "physical-unsent-chat-draft-loss-and-local-candidate-not-repair-acceptance",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "keyboardAndComposerVisible": true,
+  "sameConversationReopenRestoresDraft": true,
+  "physicalProcessRestartObserved": true,
+  "draftRestoredAfterProcessRestart": false,
+  "phoneCorrectionAccepted": false,
+  "exactDraft": "brouillon prive qa avant fermeture",
+  "captureKind": "original-session-window-crops-not-native-exports",
+  "captureClip": {
+    "x": 459,
+    "y": 110,
+    "width": 200,
+    "height": 435
+  },
+  "publishedCaptureCount": 3,
+  "independentZeroMessageCheckpoints": 7,
+  "localDraftUnitCasesPassed": 9,
+  "existingComposerUnitCasesPassed": 7,
+  "existingTeamDraftUnitCasesPassed": 10,
+  "candidateInstrumentationCasesCompiled": 5,
+  "candidateInstrumentationExecuted": false,
+  "signedOutObserved": true,
+  "providerUninstallAcknowledged": true,
+  "packageAbsenceIndependentlyVerified": false,
+  "sessionEnded": true,
+  "hostClipboardRestored": true,
+  "installedBytesIndependentlyAttested": false,
+  "privateHelper": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "aliasEnabled": false,
+    "forceLocal": false,
+    "requestLoggingEnabled": false
+  },
+  "realRadioLossAccepted": false,
+  "trackingAccepted": false,
+  "actualMessageSendAccepted": false,
+  "peerPhoneAccepted": false,
+  "iOSAccepted": false,
+  "productionWrites": false,
+  "mapsRequests": 0,
+  "realPayments": false,
+  "applicationDeployed": false,
+  "releaseAccepted": false
+}

@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9339132db011d2f19c031c30a44c334d",
+  "label": "real-maps-application",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-18T08:52:02.702Z",
+  "host": {
+    "totalMemoryBytes": 16766414848,
+    "freeMemoryBytes": 9649508352,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "real-maps-application-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "real-maps-application-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "real-maps-application-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "real-maps-application-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "real-maps-application-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "real-maps-application-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "real-maps-application-package-operations.txt",
+      "empty": false
+    }
+  ]
+}

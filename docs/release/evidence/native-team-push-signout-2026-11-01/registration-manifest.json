@@ -1,0 +1,10 @@
+{
+  "applicationClass": "be.sportgreenmoove.app.SgmApplication",
+  "autoInit": false,
+  "delegation": false,
+  "service": {
+    "name": "be.sportgreenmoove.app.services.TeamPushMessagingService",
+    "enabled": false,
+    "exported": false
+  }
+}

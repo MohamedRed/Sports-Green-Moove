@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c459bd13a0f468952c34be6ccd42db",
+  "label": "evidence-copy-failure-cleanup",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-21T15:54:47.210Z",
+  "host": {
+    "totalMemoryBytes": 8589934592,
+    "freeMemoryBytes": 113606656,
+    "cpuCount": 8
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "evidence-copy-failure-cleanup-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

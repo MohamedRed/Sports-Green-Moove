@@ -1,0 +1,88 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "69d4d40caba451d2593b9df824a498f2",
+  "testedAt": "2026-10-29T19:24:00.554Z",
+  "scope": "authenticated-isolated-pending-review-pagination-not-phone-or-production",
+  "completed": true,
+  "steps": [
+    {
+      "id": "previously-omitted-31st-ride-is-reachable-for-both-accounts",
+      "status": "passed"
+    },
+    {
+      "id": "320-completed-rides-and-240-immutable-authenticated-ratings-are-prepared",
+      "status": "passed"
+    },
+    {
+      "id": "empty-rated-windows-continue-instead-of-claiming-no-pending-reviews",
+      "status": "passed"
+    },
+    {
+      "id": "all-320-parent-requests-are-reachable-without-duplicates-or-driver-rating-suppression",
+      "status": "passed"
+    },
+    {
+      "id": "repeating-the-same-cursor-is-idempotent-and-deleting-its-anchor-does-not-skip-a-ride",
+      "status": "passed"
+    },
+    {
+      "id": "cursor-account-scope-authentication-and-forged-input-are-enforced",
+      "status": "passed"
+    },
+    {
+      "id": "discovery-never-writes-ratings-or-changes-existing-records-or-claims",
+      "status": "passed"
+    },
+    {
+      "id": "submitting-a-later-page-review-hides-only-that-review-and-does-not-shift-the-cursor",
+      "status": "passed"
+    }
+  ],
+  "observations": {
+    "previous31RideGap": {
+      "driverRequests": 1,
+      "parentRequests": 31,
+      "parentPages": 2
+    },
+    "driver": {
+      "requests": 80,
+      "pages": 6,
+      "emptyContinuationPages": 2
+    },
+    "parent": {
+      "requests": 320,
+      "pages": 16
+    },
+    "afterSubmission": {
+      "driverRequests": 79,
+      "parentRequests": 319,
+      "immutableRatings": 241
+    }
+  },
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "phoneUiExecuted": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/callables/inbox.ts": "b830c130038a2b64861c3a63fcb2ac804b95832815e0dfa811491c35c7e28f80",
+    "functions/src/callables/pendingReviews.ts": "79449a1b7a9077d082cb5cd91d6dab3049eca9139a6a824594fbd697f7a647d8",
+    "functions/src/services/pendingReviews.ts": "96c006d836d5396eeb88ea036fd5815fe04bf9568ddc45e8a2b1e5bd74e9c5ff",
+    "functions/src/domain/pendingReviews.ts": "a742b3c155893457c7a9726d126a7cfa4bf39dc41eb42f4bd22e80fe120b300c",
+    "scripts/qa/local-review-pagination.mjs": "84bceffcf570df0c12c057fe244abe3cafec36d883ba77b2720f829605f8a2b5",
+    "scripts/qa/review-pagination-client.mjs": "17712b46c5965796e3e566ed2f5de05871d7476da520aec85f4e3ac776651b3a",
+    "scripts/qa/run-local-review-pagination.mjs": "d7ba557b95c39a07f59a142c7338f8fdf30452f187c9f2aeec2dfd559893d8f3"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

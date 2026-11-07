@@ -1,0 +1,78 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fc5cd70102fdccb2e271cba37e9ff542",
+  "recordedAt": "2026-10-22T12:44:50.841Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "reportId": "a4vuj5Mztz7gAv2OGiHv"
+  },
+  "input": {
+    "reason": "Support telephone QA",
+    "description": "Demande isolee envoyee depuis le telephone de test.",
+    "subjectType": "other",
+    "emergency": false
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "a4vuj5Mztz7gAv2OGiHv",
+        "subjectType": "other",
+        "reason": "Support telephone QA",
+        "description": "Demande isolee envoyee depuis le telephone de test.",
+        "emergency": false,
+        "reporterUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792672846,
+          "_nanoseconds": 234000000
+        },
+        "reviewedByUserId": "sgm-qa-admin",
+        "reviewNote": "Cloture du test isole.",
+        "reviewedAt": {
+          "_seconds": 1792673061,
+          "_nanoseconds": 111000000
+        },
+        "closedAt": {
+          "_seconds": 1792673061,
+          "_nanoseconds": 111000000
+        },
+        "status": "closed",
+        "updatedAt": {
+          "_seconds": 1792673061,
+          "_nanoseconds": 111000000
+        },
+        "reviewEvents": [
+          {
+            "status": "reviewing",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": "Prise en charge du test isole.",
+            "reviewedAt": {
+              "_seconds": 1792673060,
+              "_nanoseconds": 902000000
+            }
+          },
+          {
+            "status": "closed",
+            "reviewerUserId": "sgm-qa-admin",
+            "note": "Cloture du test isole.",
+            "reviewedAt": {
+              "_seconds": 1792673061,
+              "_nanoseconds": 111000000
+            }
+          }
+        ]
+      }
+    ],
+    "notifications": []
+  },
+  "result": {
+    "phase": "reviewed",
+    "reportId": "a4vuj5Mztz7gAv2OGiHv",
+    "reportCount": 1,
+    "status": "closed",
+    "requesterResponseRecorded": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminReviewViaService": true
+}

@@ -1,0 +1,40 @@
+{
+  "scope": "independent-post-failure-manual-owned-process-disposal-not-flow-success",
+  "checkedAt": "2026-10-28T17:46:26.500Z",
+  "launcherExitCode": 1,
+  "underlyingCliExitCode": 2,
+  "serviceGroupsPassed": 21,
+  "serviceGroupsTotal": 24,
+  "unexpectedJavaProcesses": [
+    75716,
+    75717
+  ],
+  "javaWorkingDirectoryObserved": "/private/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-YA5b7I",
+  "manualSignal": "SIGTERM",
+  "observedProcesses": [
+    {
+      "pid": 75688,
+      "absent": true
+    },
+    {
+      "pid": 75716,
+      "absent": true
+    },
+    {
+      "pid": 75717,
+      "absent": true
+    }
+  ],
+  "runtimeAlreadyAbsent": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "closed": true
+  },
+  "rootCauseOfCliExitProven": false
+}

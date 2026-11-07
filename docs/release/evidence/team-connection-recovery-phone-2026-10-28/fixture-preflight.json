@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "73cb8edda4cbfaade3e3aa3a272b981c",
+  "testedAt": "2026-10-28T13:47:17.058Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "team-native-fixture-lifecycle-not-native-execution",
+  "testCount": 6,
+  "steps": [
+    {
+      "id": "fixture-parent-is-verified-by-two-actual-authenticated-transitions",
+      "status": "passed"
+    },
+    {
+      "id": "reading-enrollment-views-does-not-create-an-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "owned-member-refusal-new-request-approval-and-withdrawal-have-five-events",
+      "status": "passed"
+    },
+    {
+      "id": "guardian-loss-denies-stale-child-withdrawal-without-an-enrollment-event",
+      "status": "passed"
+    },
+    {
+      "id": "exact-records-audit-actors-claims-and-unrelated-fixtures-stay-protected",
+      "status": "passed"
+    },
+    {
+      "id": "scoped-fixture-cleanup-restores-the-exact-prior-records-and-claims",
+      "status": "passed"
+    }
+  ],
+  "actualGuardianTransitions": 3,
+  "actualEnrollmentTransitions": 8,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "roleEscalation": false,
+  "isolatedFixtureCleanupVerified": true,
+  "sourceFiles": {
+    "scripts/qa/local-team-native-fixture.mjs": "827826594de591323a44f674e76ed95920d4a4478c287c5640ff4cafc0e17f00",
+    "scripts/qa/local-team-native-fixture-suite.mjs": "6e351e744adfaee626b64d956b0a7c1e48b0d59ff74c87eaa0987f3163e3b19c",
+    "scripts/qa/run-local-team-native-fixtures.mjs": "d815a987a66afab872675a7295c55e59b21c0cbac6e1baa22a809452326990a1",
+    "functions/src/domain/teamEnrollment.ts": "ac715ec1017d2353fcda844b998213f0ccd12625246f63e4d2717f113bb166ea",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollmentViews.ts": "a2406d4b2209bea911595f6024265aff93bac7873bb19bef8b972c59081251cc",
+    "functions/src/callables/teamEnrollment.ts": "0c3e3aa7e3245ee0eea5af12ff971cc90a5689b5213d75fdda4fa18cbde82b82",
+    "functions/src/domain/guardianVerification.ts": "209a2139bad3746c502b6055bed53e0ac16c7706d0ad141b87fdf2fce66d5b0a",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69",
+    "functions/src/callables/guardianVerification.ts": "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4",
+    "functions/src/lib/https.ts": "705f0f0a6a606eb2d3697f87b040c9754ceb1b5eeaf02f278076089bcfd9205a",
+    "functions/src/callables/adminUsers.ts": "e9864262a7d1066bd563b3290807a75f8ffb8a28df40abdb95f3af69c11ee6c5"
+  }
+}

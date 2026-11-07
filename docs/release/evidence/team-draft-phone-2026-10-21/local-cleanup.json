@@ -1,0 +1,15 @@
+{
+  "scope": "independent-owned-local-environment-cleanup-not-device-policy-proof",
+  "verifiedAt": "2026-10-21T18:41:23.230Z",
+  "helperAndBackendProcessesRemaining": 0,
+  "loopbackPortsRefused": [
+    5001,
+    8080,
+    9000,
+    9099
+  ],
+  "privateSessionFileRemoved": true,
+  "privateHandoffDirectoryRemoved": true,
+  "devicePolicyChangedByThisTrial": false,
+  "productionWrites": false
+}

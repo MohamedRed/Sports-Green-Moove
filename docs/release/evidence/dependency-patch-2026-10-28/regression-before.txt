@@ -1,0 +1,429 @@
+TAP version 13
+# Subtest: installed root multipart encoder escapes hostile field metadata
+not ok 1 - installed root multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 112.803292
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   injectedHeader: true,
+    -   injectedHeader: false,
+        valuePreserved: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    injectedHeader: false
+    valuePreserved: true
+  actual:
+    injectedHeader: true
+    valuePreserved: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: installed root multipart encoder escapes hostile filename metadata
+not ok 2 - installed root multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 60.858
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   injectedHeader: true,
+    -   injectedHeader: false,
+        valuePreserved: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    injectedHeader: false
+    valuePreserved: true
+  actual:
+    injectedHeader: true
+    valuePreserved: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: installed cli multipart encoder escapes hostile field metadata
+not ok 3 - installed cli multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 63.457292
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   injectedHeader: true,
+    -   injectedHeader: false,
+        valuePreserved: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    injectedHeader: false
+    valuePreserved: true
+  actual:
+    injectedHeader: true
+    valuePreserved: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: installed cli multipart encoder escapes hostile filename metadata
+not ok 4 - installed cli multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 66.199416
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   injectedHeader: true,
+    -   injectedHeader: false,
+        valuePreserved: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    injectedHeader: false
+    valuePreserved: true
+  actual:
+    injectedHeader: true
+    valuePreserved: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 0
+ok 5 - build-resolved secure ID generator terminates with size 0
+  ---
+  duration_ms: 46.661542
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size -1
+not ok 6 - build-resolved secure ID generator terminates with size -1
+  ---
+  duration_ms: 373.447
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:19:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'SIGABRT' !== null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual: 'SIGABRT'
+  operator: 'strictEqual'
+  stack: |-
+    probe (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:10:39)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:20:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 8
+ok 7 - build-resolved secure ID generator terminates with size 8
+  ---
+  duration_ms: 48.963625
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 0
+ok 8 - build-resolved nonsecure ID generator terminates with size 0
+  ---
+  duration_ms: 46.742541
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size -1
+not ok 9 - build-resolved nonsecure ID generator terminates with size -1
+  ---
+  duration_ms: 425.014917
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:19:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'SIGABRT' !== null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual: 'SIGABRT'
+  operator: 'strictEqual'
+  stack: |-
+    probe (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:10:39)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:20:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 8
+ok 10 - build-resolved nonsecure ID generator terminates with size 8
+  ---
+  duration_ms: 43.940792
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 0
+not ok 11 - build-resolved customRandom ID generator terminates with size 0
+  ---
+  duration_ms: 386.435541
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:19:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'SIGABRT' !== null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual: 'SIGABRT'
+  operator: 'strictEqual'
+  stack: |-
+    probe (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:10:39)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:20:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size -1
+not ok 12 - build-resolved customRandom ID generator terminates with size -1
+  ---
+  duration_ms: 454.009917
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:19:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    'SIGABRT' !== null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual: 'SIGABRT'
+  operator: 'strictEqual'
+  stack: |-
+    probe (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:10:39)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:20:22)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 8
+ok 13 - build-resolved customRandom ID generator terminates with size 8
+  ---
+  duration_ms: 51.645416
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects large offsets before expanding lines
+not ok 14 - build-resolved source map rejects large offsets before expanding lines
+  ---
+  duration_ms: 52.113334
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   rejected: false
+    -   expectedError: true,
+    -   rejected: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    rejected: true
+    expectedError: true
+  actual:
+    rejected: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:24:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved source map rejects fractional offsets before expanding lines
+not ok 15 - build-resolved source map rejects fractional offsets before expanding lines
+  ---
+  duration_ms: 46.733042
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   rejected: false
+    -   expectedError: true,
+    -   rejected: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    rejected: true
+    expectedError: true
+  actual:
+    rejected: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:24:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: build-resolved source map rejects nested offsets before expanding lines
+not ok 16 - build-resolved source map rejects nested offsets before expanding lines
+  ---
+  duration_ms: 47.173583
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:23:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+    +   rejected: false
+    -   expectedError: true,
+    -   rejected: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    rejected: true
+    expectedError: true
+  actual:
+    rejected: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:24:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: ordinary source-map sections are still accepted
+ok 17 - ordinary source-map sections are still accepted
+  ---
+  duration_ms: 48.087208
+  type: 'test'
+  ...
+# Subtest: untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+not ok 18 - untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+  ---
+  duration_ms: 100.357375
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:29:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        cssPreserved: true,
+    +   syntheticFileExposed: true
+    -   syntheticFileExposed: false
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    cssPreserved: true
+    syntheticFileExposed: false
+  actual:
+    cssPreserved: true
+    syntheticFileExposed: true
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/dependency-security-contract.test.mjs:30:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 6
+# fail 12
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2554.671542

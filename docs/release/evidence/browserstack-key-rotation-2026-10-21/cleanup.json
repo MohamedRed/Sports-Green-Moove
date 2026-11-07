@@ -1,0 +1,26 @@
+{
+  "scope": "phone-preparation-resource-observations-not-app-flow-proof",
+  "recordedAt": "2026-10-21T17:04:10.984Z",
+  "loopbackPortsRefused": [
+    5001,
+    8080,
+    9000,
+    9099,
+    45454,
+    45690,
+    45691,
+    45954
+  ],
+  "ownedProcessIdsStopped": [
+    27857,
+    27867,
+    27883,
+    27959
+  ],
+  "privateSessionFileRemoved": true,
+  "privateRecipientKeyRemoved": true,
+  "deviceSessionsStarted": 0,
+  "appUiCasesExecuted": 0,
+  "acceptedCaptures": 0,
+  "productionAppDataTouched": false
+}

@@ -1,0 +1,711 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8c76ce1cfab93430f004dda079b16425",
+  "recordedAt": "2026-10-28T16:58:24.188Z",
+  "phase": "signed-out",
+  "state": {
+    "documents": {
+      "bookingRequestReceipts": [
+        {
+          "id": "dde703e6c4eafe36b69246715f75fd09d823c554f48c32fe66eabfb08140da2c",
+          "data": {
+            "uid": "sgm-qa-parent",
+            "clientRequestId": "87e66ece-0901-4f39-a58f-650c36b5ea78",
+            "fingerprint": "7383f76f87a599e6444e30aa3c12a30fe225ec9289ecb1f113de850f19dc4040",
+            "state": "committed",
+            "response": {
+              "bookingId": "I39zBsWOoMuqBB1cP1Qs",
+              "clientRequestId": "87e66ece-0901-4f39-a58f-650c36b5ea78",
+              "status": "requested",
+              "trip": {
+                "id": "sgm-qa-trip-u8-wavre-bruxelles",
+                "bookingIntent": {
+                  "terms": {
+                    "departureAt": "2026-10-30T04:43:27.564Z",
+                    "arrivalBy": "2026-10-30T05:58:27.564Z",
+                    "origin": {
+                      "lat": 50.7167,
+                      "lng": 4.6167
+                    },
+                    "destination": {
+                      "lat": 50.8503,
+                      "lng": 4.3517
+                    },
+                    "priceCents": 350
+                  },
+                  "context": {
+                    "driverUserId": "sgm-qa-driver",
+                    "seatsTotal": 4,
+                    "clubId": "sgm-qa-club-green-wavre",
+                    "teamId": "sgm-qa-club-green-wavre-u8",
+                    "category": "U 7/8",
+                    "pickupRadiusM": 1500,
+                    "baggage": "medium",
+                    "returnTrip": true,
+                    "supportsVehicleTracking": true,
+                    "supportsChildTracking": true,
+                    "appliedChangeId": null
+                  }
+                },
+                "title": "U 7/8 · Green Wavre QA Club",
+                "club": "Green Wavre QA Club",
+                "category": "U 7/8",
+                "sport": "Football",
+                "departureLabel": "VEN 30 OCT. · 05h43",
+                "dateLabel": "VEN 30 OCT.",
+                "timeLabel": "05h43",
+                "distanceLabel": "28.6 km",
+                "seatsAvailable": 2,
+                "seatsLabel": "2 places",
+                "priceLabel": "3,50 EUR",
+                "passengerInitials": [
+                  "LQ"
+                ],
+                "reasons": [
+                  "2 places",
+                  "Suivi véhicule disponible",
+                  "Suivi enfant disponible"
+                ],
+                "status": "upcoming",
+                "mapPreview": {
+                  "start": {
+                    "lng": 4.6167,
+                    "lat": 50.7167
+                  },
+                  "end": {
+                    "lng": 4.3517,
+                    "lat": 50.8503
+                  }
+                }
+              }
+            },
+            "createdAt": {
+              "_seconds": 1793206313,
+              "_nanoseconds": 463000000
+            }
+          }
+        }
+      ],
+      "bookings": [
+        {
+          "id": "I39zBsWOoMuqBB1cP1Qs",
+          "data": {
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "parentUserId": "sgm-qa-parent",
+            "requesterUserId": "sgm-qa-parent",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "status": "requested",
+            "createdAt": {
+              "_seconds": 1793206313,
+              "_nanoseconds": 463000000
+            },
+            "updatedAt": {
+              "_seconds": 1793206313,
+              "_nanoseconds": 463000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-booking-approved",
+          "data": {
+            "note": "Un siege enfant est necessaire.",
+            "requesterUserId": "sgm-qa-parent",
+            "parentUserId": "sgm-qa-parent",
+            "childLabel": "Lina QA",
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "approvedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "childId": "sgm-qa-child-lina",
+            "seats": 1,
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "driverUserId": "sgm-qa-driver",
+            "paymentStatus": "required",
+            "status": "approved",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-booking-requested",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "note": "Rendez-vous devant le stade.",
+            "requesterUserId": "sgm-qa-parent",
+            "parentUserId": "sgm-qa-parent",
+            "childLabel": "Lina QA",
+            "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+            "childId": "sgm-qa-child-lina",
+            "driverUserId": "sgm-qa-driver",
+            "seats": 1,
+            "paymentStatus": "not_required",
+            "status": "requested",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        }
+      ],
+      "chatInboxes": [
+        {
+          "id": "a0e95be7a7ba35a9866b11557f379f99511f938aa981b278fd1077a1e66ecd57",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-booking-approved",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-parent",
+            "revision": 1,
+            "unreadCount": 1,
+            "lastMessageId": "sgm-qa-chat-booking",
+            "lastMessageAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        },
+        {
+          "id": "aa9c8baf6c276cd5734ba2b4e174476df719718158507db9274590349c28ec75",
+          "data": {
+            "sourceType": "booking",
+            "sourceId": "sgm-qa-booking-approved",
+            "schemaVersion": 1,
+            "userId": "sgm-qa-driver",
+            "revision": 1,
+            "unreadCount": 0,
+            "lastMessageId": "sgm-qa-chat-booking",
+            "lastMessageAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "lastSenderUserId": "sgm-qa-driver"
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "sgm-qa-child-lina",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "firstName": "Lina",
+            "guardianUserIds": [
+              "sgm-qa-parent"
+            ],
+            "displayName": "Lina QA",
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "clubId": "sgm-qa-club-green-wavre",
+            "category": "U 7/8",
+            "consent": {
+              "childTracking": true,
+              "guardian": true,
+              "updatedAt": {
+                "_seconds": 1793205807,
+                "_nanoseconds": 564000000
+              }
+            },
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        }
+      ],
+      "clubs": [
+        {
+          "id": "sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "memberCount": 3,
+            "name": "Green Wavre QA Club",
+            "primarySport": "Football",
+            "sport": "Football",
+            "memberInitials": [
+              "HP",
+              "HD",
+              "HC"
+            ],
+            "status": "public",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        }
+      ],
+      "co2Ledger": [
+        {
+          "id": "sgm-qa-co2-parent",
+          "data": {
+            "sourceId": "sgm-qa-historical-ride",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "distanceMeters": 14000,
+            "rideSessionId": "sgm-qa-historical-ride",
+            "co2SavedKg": 3.2,
+            "type": "rideCompletion",
+            "userId": "sgm-qa-parent"
+          }
+        }
+      ],
+      "guardianVerificationEvents": [
+        {
+          "id": "b024d0ecdd9c66e187c1dbb299a679497dec356fc363711b082a277716b345e9",
+          "data": {
+            "verificationId": "fda5de0a86a2268b8857958808958627500564e585ea225c3af9bfbcaf1ee080",
+            "actorUserId": "sgm-qa-club-manager",
+            "childId": "sgm-qa-child-lina",
+            "parentUserId": "sgm-qa-parent",
+            "clubId": "sgm-qa-club-green-wavre",
+            "action": "verify",
+            "previousStatus": "requested",
+            "status": "verified",
+            "revision": 2,
+            "fingerprint": "4524b7403e99f23e4acd860988a3c0ced408b4d66e50e6535b04df60eabc3ab0",
+            "createdAt": {
+              "_seconds": 1793205810,
+              "_nanoseconds": 66000000
+            }
+          }
+        },
+        {
+          "id": "ed03411b329985ff1f471f9b528e4c70c433151b84d83e3f1d2f01fdc208ee39",
+          "data": {
+            "verificationId": "fda5de0a86a2268b8857958808958627500564e585ea225c3af9bfbcaf1ee080",
+            "actorUserId": "sgm-qa-parent",
+            "childId": "sgm-qa-child-lina",
+            "parentUserId": "sgm-qa-parent",
+            "clubId": "sgm-qa-club-green-wavre",
+            "action": "request",
+            "previousStatus": null,
+            "status": "requested",
+            "revision": 1,
+            "fingerprint": "edc3ee1994127ae2ada3ecd84fb2c980b473954338afe0dbe4101a39647aa973",
+            "createdAt": {
+              "_seconds": 1793205810,
+              "_nanoseconds": 18000000
+            }
+          }
+        }
+      ],
+      "guardianVerifications": [
+        {
+          "id": "fda5de0a86a2268b8857958808958627500564e585ea225c3af9bfbcaf1ee080",
+          "data": {
+            "childId": "sgm-qa-child-lina",
+            "parentUserId": "sgm-qa-parent",
+            "clubId": "sgm-qa-club-green-wavre",
+            "createdAt": {
+              "_seconds": 1793205810,
+              "_nanoseconds": 18000000
+            },
+            "lastActorUserId": "sgm-qa-club-manager",
+            "revision": 2,
+            "status": "verified",
+            "updatedAt": {
+              "_seconds": 1793205810,
+              "_nanoseconds": 66000000
+            }
+          }
+        }
+      ],
+      "memberships": [
+        {
+          "id": "sgm-qa-child-lina_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "guardianUserId": "sgm-qa-parent",
+            "role": "child",
+            "childUserId": "sgm-qa-child-lina",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "userId": "sgm-qa-child-lina",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "role": "clubManager",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "userId": "sgm-qa-club-manager",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-driver_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "role": "driver",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "userId": "sgm-qa-driver",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent_sgm-qa-club-green-wavre",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "role": "parent",
+            "clubId": "sgm-qa-club-green-wavre",
+            "approvedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "userId": "sgm-qa-parent",
+            "teamIds": [
+              "sgm-qa-club-green-wavre-u8"
+            ],
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        }
+      ],
+      "messages": [
+        {
+          "id": "sgm-qa-chat-booking",
+          "data": {
+            "sourceId": "sgm-qa-booking-approved",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "senderUserId": "sgm-qa-driver",
+            "sourceType": "booking",
+            "body": "Bonjour, le point de rendez-vous QA est confirmé.",
+            "participantUserIds": [
+              "sgm-qa-parent",
+              "sgm-qa-driver"
+            ]
+          }
+        }
+      ],
+      "notifications": [
+        {
+          "id": "bookingDecision_f9a213ad4bf406f8a24da35d873833fef729bb02567d591d8191ce686da81100",
+          "data": {
+            "type": "bookingRequested",
+            "sourceId": "I39zBsWOoMuqBB1cP1Qs",
+            "title": "Nouvelle demande de réservation",
+            "body": "Une nouvelle demande de réservation attend votre réponse.",
+            "userId": "sgm-qa-driver",
+            "read": false,
+            "createdAt": {
+              "_seconds": 1793206313,
+              "_nanoseconds": 466000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent-booking-approved",
+          "data": {
+            "sourceId": "sgm-qa-booking-approved",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "read": false,
+            "body": "Le conducteur QA a approuvé votre trajet.",
+            "title": "Réservation approuvée",
+            "type": "bookingApproved",
+            "userId": "sgm-qa-parent"
+          }
+        }
+      ],
+      "rewardLedger": [
+        {
+          "id": "sgm-qa-reward-driver",
+          "data": {
+            "sourceId": "sgm-qa-historical-ride",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "amountCents": 250,
+            "rideSessionId": "sgm-qa-historical-ride",
+            "currency": "eur",
+            "type": "co2Bonus",
+            "userId": "sgm-qa-driver"
+          }
+        }
+      ],
+      "teams": [
+        {
+          "id": "sgm-qa-club-green-wavre-u8",
+          "data": {
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "name": "U 7/8 QA",
+            "clubId": "sgm-qa-club-green-wavre",
+            "category": "U 7/8",
+            "status": "active",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        }
+      ],
+      "trips": [
+        {
+          "id": "sgm-qa-trip-u8-wavre-bruxelles",
+          "data": {
+            "teamName": "U 7/8 QA",
+            "co2SavedKgEstimate": 7.4,
+            "returnTrip": true,
+            "passengerInitials": [
+              "LQ"
+            ],
+            "baggage": "medium",
+            "clubName": "Green Wavre QA Club",
+            "origin": {
+              "lng": 4.6167,
+              "lat": 50.7167
+            },
+            "destination": {
+              "lng": 4.3517,
+              "lat": 50.8503
+            },
+            "distanceKm": 28.6,
+            "pickupRadiusM": 1500,
+            "regionGeohash": "u15",
+            "supportsChildTracking": true,
+            "title": "U 7/8 · Green Wavre QA Club",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "driverRating": 4.8,
+            "supportsVehicleTracking": true,
+            "driverUserId": "sgm-qa-driver",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "driverVerified": true,
+            "blockedUserIds": [],
+            "arrivalBy": {
+              "_seconds": 1793339907,
+              "_nanoseconds": 564000000
+            },
+            "seatsTotal": 4,
+            "clubId": "sgm-qa-club-green-wavre",
+            "seatsAvailable": 2,
+            "departureAt": {
+              "_seconds": 1793335407,
+              "_nanoseconds": 564000000
+            },
+            "teamId": "sgm-qa-club-green-wavre-u8",
+            "priceCents": 350,
+            "category": "U 7/8",
+            "sport": "Football",
+            "status": "published"
+          }
+        }
+      ],
+      "users": [
+        {
+          "id": "sgm-qa-child-link-phone",
+          "data": {
+            "displayName": "Compte enfant fictif QA",
+            "roles": {
+              "child": true,
+              "parent": false,
+              "driver": false,
+              "admin": false,
+              "clubManager": false
+            },
+            "email": "child-link@example.test",
+            "updatedAt": {
+              "_seconds": 1793205809,
+              "_nanoseconds": 160000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-club-manager",
+          "data": {
+            "driverVerified": false,
+            "stripeStatus": null,
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "displayName": "Hermes Club QA",
+            "roles": {
+              "parent": true,
+              "driver": false,
+              "admin": false,
+              "child": false,
+              "clubManager": true
+            },
+            "verified": true,
+            "email": "c@example.test",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-driver",
+          "data": {
+            "driverVerified": true,
+            "stripeStatus": "test_ready",
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "displayName": "Hermes Driver QA",
+            "roles": {
+              "parent": true,
+              "driver": true,
+              "admin": false,
+              "child": false,
+              "clubManager": false
+            },
+            "verified": true,
+            "email": "d@example.test",
+            "updatedAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            }
+          }
+        },
+        {
+          "id": "sgm-qa-parent",
+          "data": {
+            "driverVerified": false,
+            "stripeStatus": null,
+            "createdAt": {
+              "_seconds": 1793205807,
+              "_nanoseconds": 564000000
+            },
+            "displayName": "Hermes Parent QA",
+            "roles": {
+              "parent": true,
+              "driver": false,
+              "admin": false,
+              "child": false,
+              "clubManager": false
+            },
+            "verified": true,
+            "email": "p@example.test"
+          }
+        }
+      ]
+    },
+    "claims": [
+      {
+        "uid": "sgm-qa-child-link-phone",
+        "claims": {
+          "roleKeys": [
+            "child"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-club-manager",
+        "claims": {
+          "roleKeys": [
+            "clubManager",
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-driver",
+        "claims": {
+          "roleKeys": [
+            "driver",
+            "parent"
+          ]
+        }
+      },
+      {
+        "uid": "sgm-qa-parent",
+        "claims": {
+          "roleKeys": [
+            "parent"
+          ]
+        }
+      }
+    ],
+    "liveTrips": null
+  },
+  "result": {
+    "phase": "signed-out",
+    "addedBookings": 1,
+    "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "baselineCommit": "4582c3a45a107e59cc94185b1509fcc12b449935",
+  "scope": "candidate-test-source-only-not-native-execution",
+  "files": [
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ActivityWindowObservation.kt",
+      "sha256": "c880f41b79252c9aa5c0c961575f2e88e17fb3c4e762075308c9acbea2262772"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianWindowObservation.kt",
+      "sha256": "b6fe90dd8c311ea4ff352b6dfb2e1b4b95032f3c7b7be77690ac6c3afad41db1"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ActivityWindowObservationTest.kt",
+      "sha256": "ec6bfc1c8c806b727339cba1a2c2d502be3fe15d53fb710597a24e47def8fd74"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalGuardianVerificationFlowTest.kt",
+      "sha256": "86e1ed393780131c661ff431bc257110304bedcc0dd943e3337930507206d57d"
+    },
+    {
+      "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SessionFailureObservation.kt",
+      "sha256": "3ab15567d85a3e13bb39434cd2dd48cf2e01a3d7cb397801222640294d72aa0c"
+    }
+  ]
+}

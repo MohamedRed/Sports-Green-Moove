@@ -13,16 +13,22 @@ export function useAdminAuth(): AdminAuthState {
 
   useEffect(() => {
     if (!auth) return undefined;
-    return onIdTokenChanged(auth, async (user) => {
+    const activeAuth = auth;
+    let generation = 0;
+    const unsubscribe = onIdTokenChanged(activeAuth, async (user) => {
+      const ticket = ++generation;
       if (!user) {
         setState({ user: null, roleKeys: [], loading: false, error: null });
         return;
       }
+      setState({ user, roleKeys: [], loading: true, error: null });
       try {
-        const token = await user.getIdTokenResult(true);
+        const token = await user.getIdTokenResult();
+        if (ticket !== generation || activeAuth.currentUser?.uid !== user.uid) return;
         const roleKeys = Array.isArray(token.claims.roleKeys) ? token.claims.roleKeys.map(String) : [];
         setState({ user, roleKeys, loading: false, error: null });
       } catch (error) {
+        if (ticket !== generation || activeAuth.currentUser?.uid !== user.uid) return;
         setState({
           user,
           roleKeys: [],
@@ -31,6 +37,7 @@ export function useAdminAuth(): AdminAuthState {
         });
       }
     });
+    return () => { ++generation; unsubscribe(); };
   }, []);
 
   return state;

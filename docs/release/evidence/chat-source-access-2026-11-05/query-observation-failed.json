@@ -1,0 +1,52 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4ce791953026e620a33d97c5878236b6",
+  "testedAt": "2026-11-05T13:17:40.600Z",
+  "scope": "isolated-current-source-chat-rules-not-production-or-native",
+  "baseline": false,
+  "completed": false,
+  "checks": [
+    {
+      "id": "booking-parent-precedes-retained-requester",
+      "status": "failed",
+      "code": "ERR_ASSERTION"
+    }
+  ],
+  "observations": [
+    {
+      "id": "booking-parent-precedes-retained-requester",
+      "phase": "before-source-change",
+      "directGet": 200,
+      "query": {
+        "status": 403,
+        "rows": null
+      }
+    }
+  ],
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "failureCode": "ERR_ASSERTION",
+  "sourceFiles": {
+    "scripts/qa/chat-source-access-suite.mjs": "129dba0f63eb88cbcbe8187f35fad06c11cee70bf51324b0f6f323a2071b9fc0",
+    "functions/src/callables/messages.ts": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6",
+    "functions/src/callables/chatRead.ts": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5",
+    "functions/src/lib/chatConversation.ts": "c2c6c544cbdd423c586da8d3ba95ea51886b5fd9789f4b325a982ee0db882499",
+    "functions/src/domain/access.ts": "f5d8867e3df3ba9c0817e3ff58f260b56f623a3e7de138136721d31bdff75dea",
+    "firestore.rules": "ce0d06aa59ab1e1108a547029acb72af2678c7ca6ad55dec69377b4a7ea23f45"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

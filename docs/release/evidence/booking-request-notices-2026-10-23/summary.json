@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-23",
+  "scope": "isolated-booking-request-notices-not-connected-ui-push-or-production",
+  "baselineCommit": "3413b579ac5c8cb3c5a4a7f172b74aa5ad339d4a",
+  "sourceWasUncommittedDuringTests": true,
+  "redReproducedAgainstBaseline": true,
+  "serviceCasesPassed": 20,
+  "requestCasesPassed": 8,
+  "backendUnitCasesPassed": 436,
+  "broaderServiceGroupsPassed": 24,
+  "protectedRecords": 158,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "connectedNativeUiAccepted": false,
+  "physicalPhoneAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

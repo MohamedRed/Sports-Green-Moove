@@ -1,0 +1,10 @@
+--------- beginning of system
+W/ActivityManager(  546): Slow operation: 105ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  546): Slow operation: 105ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  546): Slow operation: 105ms so far, now at startProcess: building log message
+I/ActivityManager(  546): Start proc 11148:be.sportgreenmoove.app.local.test/u0a213 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  546): Slow operation: 105ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  546): Slow operation: 115ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  546): Force stopping be.sportgreenmoove.app.local appid=10212 user=0: finished inst
+E/ActivityManager(  546): Unable to freeze binder for 10904: -11
+I/ActivityManager(  546): Killing 10904:be.sportgreenmoove.app.local/u0a212 (adj 0): stop be.sportgreenmoove.app.local due to finished inst

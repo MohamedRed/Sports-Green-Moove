@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "scope": "local-native-contact-ui-with-sdk-and-dialer-not-physical",
+  "checks": [
+    {
+      "id": "adult-save-reload",
+      "status": "passed"
+    },
+    {
+      "id": "activity-recreation-fresh-read",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-child-save",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-parent-dial-denied",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-read-dialer-handoff-without-direct-call",
+      "status": "passed"
+    },
+    {
+      "id": "return-from-dialer",
+      "status": "passed"
+    },
+    {
+      "id": "cancelled-removal-no-write",
+      "status": "passed"
+    },
+    {
+      "id": "confirmed-removal-versioned",
+      "status": "passed"
+    },
+    {
+      "id": "account-isolation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "emergency-self-saved.png": "fb74a58074b45062b5bbd02377fd545a4d888bf756fa118dbe35cd91970f6c34",
+    "emergency-self-restored.png": "2caec82b43d1bc71d70232dba33d99674721931355289809ae22fb52de9b079b",
+    "emergency-child-saved.png": "0b35f91d99b074bfa5c2b561da4124698f1e83a7265dcafc8a99e17666e408e1",
+    "emergency-child-revoked.png": "3c6136b832ed41368fbcd4ef155074cbed8b4089b1f6709b34d675d2ab70d5c7",
+    "emergency-dialer-opened.png": "7e09306c1bb0db23170140669c3bfd30b9df4fef70d9d936a32b9ed51d31a697",
+    "emergency-self-removed.png": "86dca0c4f9ebcd7815ebc8fda362a3d8210cec5590edf85e83da9c89f7d6f8e6",
+    "emergency-other-account.png": "e7e1350afed87992c81ee4163a3a3a45e499a18302cec4a2b1309d87321f7f1b"
+  },
+  "dialerPackage": "com.google.android.dialer",
+  "dialerActionObserved": "android.intent.action.DIAL",
+  "directCallIntentCount": 0,
+  "dialerNumberMatched": true,
+  "managerRevokeRequestId": "13a77285-bd4d-455a-8e8e-12ba564c58bc"
+}

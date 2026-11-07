@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "3e42efe016098e083ae64186229781b7",
+  "scope": "native-notification-read-process-stage",
+  "stage": "before",
+  "completed": true,
+  "processId": 9412,
+  "actorUserId": "sgm-qa-parent",
+  "selectedNoticeId": "bookingDecision_4e99f53f6337c0aeef91bddcdd39665bf6afb878bb1c65f020358bb6cdbeb32f",
+  "controlNoticeId": "bookingDecision_fd75c0674b517a13acc8df120339b906dc525b17cd0c786b537400a99ff342ed",
+  "driverNoticeId": "bookingDecision_8119e8b18fdd9270eb569b3c9615483c5bdbac6801d27127402d3964a3ccda51",
+  "selectedReadConfirmed": true,
+  "controlRemainedUnread": true,
+  "driverAccountIsolated": true,
+  "parentReturnedRead": true
+}

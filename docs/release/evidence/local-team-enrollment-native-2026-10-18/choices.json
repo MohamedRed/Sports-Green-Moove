@@ -1,0 +1,71 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6456f981674b142da6225380dd6c1e5d",
+  "testedAt": "2026-10-18T20:32:12.660Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "team-enrollment-choice-discovery-not-native-ui",
+  "testCount": 12,
+  "steps": [
+    {
+      "id": "anonymous-child-and-admin-only-accounts-cannot-discover-enrollment-choices",
+      "status": "passed"
+    },
+    {
+      "id": "strict-choice-inputs-never-accept-another-account-or-invent-a-context",
+      "status": "passed"
+    },
+    {
+      "id": "club-choices-use-only-current-canonical-active-memberships",
+      "status": "passed"
+    },
+    {
+      "id": "public-private-and-closed-club-states-are-explicit-for-every-choice-page",
+      "status": "passed"
+    },
+    {
+      "id": "teams-stay-in-the-selected-authorized-club-without-roster-or-claim-grants",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-teams-are-not-join-choices-and-malformed-state-is-not-assumed-open",
+      "status": "passed"
+    },
+    {
+      "id": "declared-children-appear-only-after-separate-current-manager-verification",
+      "status": "passed"
+    },
+    {
+      "id": "link-membership-and-verification-loss-remove-child-choices-before-any-write",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-identities-do-not-inherit-old-verification-in-choice-lists",
+      "status": "passed"
+    },
+    {
+      "id": "paged-team-choices-are-bounded-and-do-not-lose-filtered-scan-pages",
+      "status": "passed"
+    },
+    {
+      "id": "choice-cursors-are-bound-to-account-kind-club-and-server-team-identity",
+      "status": "passed"
+    },
+    {
+      "id": "missing-labels-stay-null-and-choice-reads-never-create-enrollment-or-audit-records",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": false,
+  "teamChatImplemented": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "syntheticTeamChoices": 24,
+  "syntheticChildrenWithActualLocalManagerVerification": 21,
+  "sourceFiles": {
+    "functions/src/services/teamEnrollmentOptions.ts": "937080e4c008d25828526e82f11357bd57174b1696f5b69f505c05a09a941127",
+    "functions/src/callables/teamEnrollmentOptions.ts": "ba1d5f43226807f7315710550adec536b7f1247e35c231c019da4c33d705b1f0",
+    "functions/src/services/teamEnrollmentAuthority.ts": "b2d9ce8f12972fd88e797a4acb3323c8f73e09c501c2e644386c03cc52b9e8e0",
+    "scripts/qa/local-team-options-suite.mjs": "08b2f2a7f46351ec5c4eb79ade19ed6a98633a7a800c26a31bef9e63721ff922",
+    "scripts/qa/run-local-team-options.mjs": "73c35613dd9f9f654819dc38b928f4df8a7cbddcbcb8ef7c259d3a77ff64e6d5"
+  }
+}

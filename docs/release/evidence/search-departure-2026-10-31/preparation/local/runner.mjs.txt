@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {disposableAndroidShell} from '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/disposable-android-shell.mjs';
+import {pauseDisposableStore, restoreDisposableStore} from '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/disposable-store-pause.mjs';
+
+const root = '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025';
+const out = import.meta.dirname;
+const save = (name, value) => writeFileSync(resolve(out, name), value, {flag: 'wx', mode: 0o600});
+const json = (name, value) => save(name, JSON.stringify(value, null, 2) + '\n');
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+const device = disposableAndroidShell();
+assert.equal(device.serial, 'emulator-5588');
+assert.deepEqual(device.command('emu', 'avd', 'name').split(/\r?\n/), ['sgm_search_departure_20261031', 'OK']);
+assert.equal(device.shell('getprop', 'ro.kernel.qemu'), '1');
+assert.equal(device.shell('getprop', 'ro.build.version.sdk'), '35');
+const paths = ['android/app/build/outputs/apk/debug/app-debug.apk',
+  'android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk'];
+json('apk-sha256.json', Object.fromEntries(paths.map(path => [path, hash(readFileSync(resolve(root, path)))])));
+for (const path of paths) assert.match(device.command('install', '-r', resolve(root, path)), /Success/);
+const classes = ['SearchDepartureFlowTest', 'SearchDepartureLayoutTest', 'SearchCriteriaFlowTest']
+  .map(name => 'be.sportgreenmoove.app.ui.' + name).join(',');
+let pause, restore, processResult;
+try {
+  pause = pauseDisposableStore(device.shell); json('store-pause.json', pause);
+  const result = spawnSync(resolve(process.env.ANDROID_HOME, 'platform-tools/adb'),
+    ['-s', device.serial, 'shell', 'am', 'instrument', '-w', '-r', '-e', 'class', classes,
+      'be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner'],
+    {encoding: 'utf8', timeout: 240_000, maxBuffer: 4 * 1024 * 1024});
+  save('instrumentation.txt', result.stdout ?? ''); save('stderr.txt', result.stderr ?? '');
+  processResult = {status: result.status, signal: result.signal, errorCode: result.error?.code ?? null};
+  json('process.json', processResult);
+  assert.equal(result.status, 0); assert.equal(result.signal, null); assert(!result.error);
+  assert.match(result.stdout, /^OK \(11 tests\)\s*$/m);
+  assert(!/FAILURES!!!|INSTRUMENTATION_FAILED|Process crashed|shortMsg=/.test(result.stdout));
+  console.log('Eleven selected local native cases passed; no guarded CI, physical phone or release acceptance.');
+} finally {
+  if (pause) {restore = restoreDisposableStore(device.shell, pause); json('store-restoration.json', restore);}
+  for (const name of ['be.sportgreenmoove.app.local.test', 'be.sportgreenmoove.app.local'])
+    assert.equal(device.command('uninstall', name), 'Success');
+  json('closure.json', {scope: 'local-native-component-debug-not-guarded-ci-or-physical-proof',
+    storeRestored: restore?.restored === true, storeVerificationPassed: restore?.verified === true,
+    appsUninstalled: true, productionWritesAccepted: false, mapRequestsAccepted: 0,
+    installationPolicyChanged: false, processResult});
+}

@@ -1,0 +1,121 @@
+{
+  "scope": "isolated-authenticated-invitation-provisioning-and-approval-not-browser-or-phone-ui",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1f01dc15184008112a9f48d4b6ddfc5b",
+  "testedAt": "2026-10-26T17:42:40.417Z",
+  "steps": [
+    {
+      "id": "only-a-current-verified-parent-can-invite",
+      "status": "passed"
+    },
+    {
+      "id": "the-shared-link-is-private-hashed-expiring-and-not-an-approval",
+      "status": "passed"
+    },
+    {
+      "id": "the-parent-can-read-minimal-status-and-cannot-regenerate-through-a-cooldown",
+      "status": "passed"
+    },
+    {
+      "id": "replaced-revoked-expired-and-unknown-links-create-no-account",
+      "status": "passed"
+    },
+    {
+      "id": "signed-in-and-client-selected-privileged-signups-are-refused",
+      "status": "passed"
+    },
+    {
+      "id": "signup-rechecks-the-current-parent-membership-role-guardian-and-child-identity",
+      "status": "passed"
+    },
+    {
+      "id": "an-existing-email-is-not-taken-over-and-the-uncreated-reservation-is-released",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-redemption-creates-one-pure-child-account-without-an-approved-link",
+      "status": "passed"
+    },
+    {
+      "id": "normal-email-signin-and-profile-initialization-preserve-the-child-role",
+      "status": "passed"
+    },
+    {
+      "id": "lost-response-retry-reuses-the-account-and-cannot-change-credentials",
+      "status": "passed"
+    },
+    {
+      "id": "a-post-commit-enable-interruption-can-resume-with-the-original-link-and-credentials",
+      "status": "passed"
+    },
+    {
+      "id": "credential-retry-requests-are-budgeted-per-invitation",
+      "status": "passed"
+    },
+    {
+      "id": "a-used-invitation-cannot-be-revoked-or-replaced-as-if-it-were-unused",
+      "status": "passed"
+    },
+    {
+      "id": "invitation-origin-pins-separate-parent-approval-to-the-invited-child",
+      "status": "passed"
+    },
+    {
+      "id": "a-current-authority-loss-still-blocks-replay-without-changing-roles",
+      "status": "passed"
+    },
+    {
+      "id": "a-pending-invitation-can-be-revoked-with-current-parent-authority",
+      "status": "passed"
+    },
+    {
+      "id": "an-interrupted-disabled-account-can-resume-child-claims-and-profile-without-an-adult-session",
+      "status": "passed"
+    },
+    {
+      "id": "existing-account-claims-stay-unchanged-and-the-only-new-account-is-a-child",
+      "status": "passed"
+    }
+  ],
+  "testCount": 18,
+  "nativeUiExecuted": false,
+  "browserUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "childAccountProvisioned": true,
+  "parentApprovalSeparate": true,
+  "bindingBypassObserved": false,
+  "defaultParentPromotionObserved": false,
+  "injectedInterruptionScenarios": 2,
+  "adminClientClosed": true,
+  "sourceFiles": {
+    "functions/src/domain/childInvitation.ts": "373b67fa35ea99ce4c6eadb0cb834bb4816979643c046a7e6b060ae5b9304e21",
+    "functions/src/config/childInvitation.json": "2bc1f3f542038e0d1b010b6f4ac17775f833c94cd391b898d6d94ab1b2342293",
+    "functions/src/services/childInvitationAuthority.ts": "da7f48fd9e3c08640988426a9f25e36308ee4b050036fe32f12ffa3151ba2b44",
+    "functions/src/services/childInvitationAuth.ts": "07ddbf2fd1d61cd18cf71d65f3daf3695d6cc20224b7e090c8c5b8d494d91630",
+    "functions/src/services/childInvitationRedemption.ts": "da48c7be72c9f3f25a9e88fb320bfafabb0833b84271f655cd6fef6ecebd9be5",
+    "functions/src/services/childInvitations.ts": "e96fb4a139ecbd344b0111ec3548ab0e1110df8b591463d42b0bf223e3884f12",
+    "functions/src/callables/childInvitations.ts": "4b07b764f41350d5ce15f11cd88e92709b826a726ec78ce47c57110d4c944e22",
+    "functions/src/services/childAccountApproval.ts": "7c91472ca231c8c0237d72b2dc1c643ca9dc836e59d8e17e348c034df56361ae",
+    "functions/src/services/childInvitationBinding.ts": "ec85a9bdddd3356cfc3e6113b1e142e60883b047b85b4a641f7e03db78df9728",
+    "functions/src/callables/adminUsers.ts": "e9864262a7d1066bd563b3290807a75f8ffb8a28df40abdb95f3af69c11ee6c5",
+    "functions/src/domain/roles.ts": "d787423e0779690f51c235a97889a61fa94e76efd0d70c0e90807598bf58b925",
+    "functions/src/domain/initializedChildRoles.ts": "ae27f5313f8212b4a180418ef154e1b16b7d92ea501e3ef84249780ab0874d36",
+    "firestore.rules": "2d1ff9c51ff5770c03544f48a2d097338ac9900ed3416ab0b98bfe1b3ebb79e1",
+    "scripts/qa/local-child-invitation-suite.mjs": "4eacc858960ee95a3a60497dc211eb8e7b6eebb876063eb468b5e7cc28600bd7",
+    "scripts/qa/run-local-child-invitation.mjs": "41999cdcaef1e9de5aca8549c2aa2cda65b8a826440bf6a06b152efb404a65f1"
+  },
+  "emulatorCliExitedSuccessfully": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

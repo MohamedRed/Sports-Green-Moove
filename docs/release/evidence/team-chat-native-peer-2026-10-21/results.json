@@ -1,0 +1,35 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "555ad893e32ad907933b6fa09a0eb479",
+  "testedAt": "2026-10-21T13:09:28Z",
+  "scope": "partial-native-team-exchange-sdk-peer-lifecycle-not-completed-case",
+  "sourceCommit": "6a99378adb804c4226e9b4e6de8e033f8a280888",
+  "workflowRunId": 39604033406,
+  "jobId": 119235529032,
+  "nativeCaseCompleted": false,
+  "nineCheckpointsAccepted": false,
+  "independentStoredStateVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "notificationsVerified": false,
+  "fullProcessRestartProven": false,
+  "sdkExchangeObserved": true,
+  "observedCaptures": [
+    "parent",
+    "exchange",
+    "draft"
+  ],
+  "publishedCaptures": {
+    "team-chat-native-parent": "team-chat-native-parent-window.png",
+    "team-chat-native-exchange": "team-chat-native-exchange-window.png"
+  },
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamConversationFlowTest.kt": "b0676c85bc6cf2709127862ef6580f6e4d1059a1aaf31b70f0a33b203064a35b",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamChatPeer.kt": "6a2f16e344deba4d02ab16e0d498bde0fa3ce48ac1d887e2471ed9773f755456",
+    "scripts/qa/local-team-conversation-ui.mjs": "2de4454dc379b0286879358b1a433c8ae5f65777430b5ccfa05237c577084044",
+    "scripts/qa/team-chat-native-records.mjs": "5773d1a6bb6abd71d52038087f7cea3dc64165ef3dfb2e0b6eaf40ebb3ffa0e7",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationDirectory.kt": "90d613a09c6a215bbbe6ae78484358bd99ce5f81aca36f1ef9853f006e89d6ad",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationRoute.kt": "3aeab369a6396e7d5a46bbe706baca49869fdf1b0e08231b618cb55322c97220",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversationState.kt": "52f23d21624842c9d81e173d272f259854e4502931920d694b6d7fad544b0c01"
+  }
+}

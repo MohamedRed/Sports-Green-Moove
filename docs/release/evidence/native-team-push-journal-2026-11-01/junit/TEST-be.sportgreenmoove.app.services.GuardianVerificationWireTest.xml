@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.GuardianVerificationWireTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.512Z" hostname="local-test-host" time="0.007">
+  <properties></properties>
+  <testcase name="receiptIdentityAndRevisionCannotConfirmAnotherOrUnadvancedRequest" classname="be.sportgreenmoove.app.services.GuardianVerificationWireTest" time="0.004"></testcase>
+  <testcase name="absentVerificationRequiresExplicitNullAndZeroRevision" classname="be.sportgreenmoove.app.services.GuardianVerificationWireTest" time="0.001"></testcase>
+  <testcase name="foreignOwnershipManagerActionsAndMalformedVersionsAreRejected" classname="be.sportgreenmoove.app.services.GuardianVerificationWireTest" time="0.001"></testcase>
+  <testcase name="optionalCurrentIdentityStaysMissingInsteadOfInventingAName" classname="be.sportgreenmoove.app.services.GuardianVerificationWireTest" time="0.0"></testcase>
+  <testcase name="pagesAreBoundedAndRequireExplicitCursorState" classname="be.sportgreenmoove.app.services.GuardianVerificationWireTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

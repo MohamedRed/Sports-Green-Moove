@@ -1,0 +1,59 @@
+name: Provider Readiness Probe
+
+on:
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  provider-readiness:
+    name: Validate production provider secrets
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Validate production provider configuration
+        env:
+          FIREBASE_ANDROID_CONFIG_BASE64: ${{ secrets.FIREBASE_ANDROID_CONFIG_BASE64 }}
+          FIREBASE_IOS_CONFIG_BASE64: ${{ secrets.FIREBASE_IOS_CONFIG_BASE64 }}
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+          RADAR_WEBHOOK_SECRET: ${{ secrets.RADAR_WEBHOOK_SECRET }}
+          SGM_FACEBOOK_APP_ID: ${{ secrets.SGM_FACEBOOK_APP_ID }}
+          SGM_FACEBOOK_CLIENT_TOKEN: ${{ secrets.SGM_FACEBOOK_CLIENT_TOKEN }}
+          SGM_GOOGLE_MAPS_ANDROID_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_ANDROID_API_KEY }}
+          SGM_GOOGLE_MAPS_IOS_API_KEY: ${{ secrets.SGM_GOOGLE_MAPS_IOS_API_KEY }}
+          SGM_GOOGLE_REVERSED_CLIENT_ID: ${{ secrets.SGM_GOOGLE_REVERSED_CLIENT_ID }}
+          SGM_RADAR_PUBLISHABLE_KEY: ${{ secrets.SGM_RADAR_PUBLISHABLE_KEY }}
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_APP_ID: ${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_AUTH_DOMAIN: ${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_DATABASE_URL: ${{ secrets.VITE_FIREBASE_DATABASE_URL }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET: ${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+        run: npm run validate:provider-readiness
+
+      - name: Validate Stripe production readiness
+        env:
+          SGM_STRIPE_CONNECT_REFRESH_URL: ${{ secrets.SGM_STRIPE_CONNECT_REFRESH_URL }}
+          SGM_STRIPE_CONNECT_RETURN_URL: ${{ secrets.SGM_STRIPE_CONNECT_RETURN_URL }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        run: npm run validate:stripe-production-readiness

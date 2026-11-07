@@ -1,0 +1,59 @@
+import assert from 'node:assert/strict';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { isAbsolute, resolve } from 'node:path';
+import { GoogleAuth } from 'google-auth-library';
+import { prepareLocalRuntime, emulatorEntryArguments } from './local-runtime.mjs';
+import { startSearchMapsBroker } from './search-maps-fetch.mjs';
+import { attachRealMapsBroker } from './real-maps-runtime.mjs';
+import { superviseLocalProcess } from './supervised-local-process.mjs';
+import { assertLocalEndpointsClosed } from './local-emulator-lifecycle.mjs';
+
+const [approval, output, sessionPath] = process.argv.slice(2);
+assert.equal(approval, '--approved-2026-10-24-one-phone-trial-max-eight');
+assert(isAbsolute(output ?? '') && isAbsolute(sessionPath ?? ''));
+assert(!existsSync(output) && !existsSync(sessionPath), 'A new approval needs fresh, never-reused evidence and session paths');
+mkdirSync(output, {mode: 0o700});
+const save = (name, value) => writeFileSync(resolve(output, name), JSON.stringify(value, null, 2) + '\n', {flag: 'wx', mode: 0o600});
+save('allowance.json', {approval: '2026-10-24-one-phone-trial-max-eight', issuedAt: new Date().toISOString(),
+  approvedRequests: 8, matrixElements: 9, retriesApproved: false, scope: 'search-booking-only-no-real-payments'});
+const controller = new AbortController();
+const interrupt = () => controller.abort('SIGINT'), terminate = () => controller.abort('SIGTERM');
+process.once('SIGINT', interrupt); process.once('SIGTERM', terminate);
+let runtime, broker, processGroupExited = false, supervisionAttempted = false, providerBrokerClosed = false, endpointsClosed = false, failure;
+try {
+  await assertLocalEndpointsClosed([9099, 8080, 9000, 5001]);
+  runtime = prepareLocalRuntime();
+  const plan = {origin: {lat: 50.7167, lng: 4.6167}, destination: {lat: 50.8503, lng: 4.3517},
+    departureAt: new Date(Date.now() + 72 * 3600_000).toISOString()};
+  // Only this parent obtains the provider key; the child receives a loopback broker token.
+  const client = await new GoogleAuth({scopes: ['https://www.googleapis.com/auth/cloud-platform']}).getClient();
+  let secret;
+  try {secret = await client.request({url: 'https://secretmanager.googleapis.com/v1/projects/sports-green-moove-prod/secrets/GOOGLE_MAPS_API_KEY/versions/latest:access'});}
+  catch {throw new Error('Existing server map credential unavailable; no provider requests issued');}
+  let key = Buffer.from(secret.data.payload.data, 'base64').toString('utf8'); secret = undefined;
+  assert(/^AIza[A-Za-z0-9_-]{20,}$/.test(key), 'Existing map credential has an invalid shape');
+  broker = await startSearchMapsBroker(key, plan); key = '';
+  attachRealMapsBroker(runtime, broker);
+  Object.assign(runtime.env, {SGM_LOCAL_UI_SESSION_FILE: sessionPath, SGM_SEARCH_BOOKING_PHONE_OUTPUT: output,
+    SGM_SEARCH_BOOKING_PLAN: JSON.stringify(plan), SGM_SEARCH_BOOKING_APPROVAL: 'one-trial-max-eight-requests'});
+  supervisionAttempted = true;
+  const result = await superviseLocalProcess({command: process.execPath,
+    args: emulatorEntryArguments(runtime, 'search-booking-phone-runtime.mjs'), cwd: runtime.temp,
+    env: runtime.env, signal: controller.signal, stopGraceMs: 20_000});
+  processGroupExited = result.groupExitVerified;
+} catch (error) {processGroupExited = error.groupExitVerified === true; failure = true;}
+finally {
+  try {if (broker) {save('provider.json', broker.receipts()); await broker.close(); providerBrokerClosed = true;}}
+  catch {failure = true;}
+  if (!supervisionAttempted || processGroupExited) {
+    rmSync(sessionPath, {force: true}); runtime?.cleanup();
+    try {await assertLocalEndpointsClosed([9099, 8080, 9000, 5001]); endpointsClosed = true;}
+    catch {failure = true;}
+  }
+  save('runtime-cleanup.json', {closedAt: new Date().toISOString(), processGroupExited,
+    privateSessionAbsent: !existsSync(sessionPath), runtimeAbsent: runtime ? !existsSync(runtime.temp) : true,
+    endpointsClosed, providerBrokerClosed, failed: Boolean(failure)});
+  process.removeListener('SIGINT', interrupt); process.removeListener('SIGTERM', terminate);
+}
+if (failure) throw new Error('Search phone runtime did not finish cleanly; retain its sanitized receipts and do not repeat the allowance');
+console.log('Owned search phone runtime and provider broker closed. No phone-flow success is inferred.');

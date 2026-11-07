@@ -1,0 +1,24 @@
+<testsuite name="src/__tests__/team-push-dispatch.test.ts" timestamp="2026-11-01T21:34:36.015Z" hostname="local-test-host" tests="22" failures="0" errors="0" skipped="0" time="0.015128417">
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; accepts only bounded unique frozen recipients without caller content" time="0.003762959"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; requires an explicit device snapshot for planned and completed recipients" time="0.002211833"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; allows a fresh claim but never reclaims a live lease" time="0.000200417"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; expired leases may replay an uncertain attempt, but never imply exactly-once delivery" time="0.000233459"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; does not send expired alerts or exhausted attempts" time="0.000178583"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; never replays terminal accepted" time="0.000071541"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; never replays terminal suppressed" time="0.000050209"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; never replays terminal invalid_token" time="0.000042541"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; never replays terminal failed" time="0.000367667"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="durable team push dispatch &gt; rejects raw tokens, secrets, message content and unknown outcomes in persisted attempts" time="0.001076708"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; sends only the opaque data envelope with bounded Android lifetime, never a tray payload" time="0.002568708"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; refuses real transport when FUNCTIONS_EMULATOR is set" time="0.000959708"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; refuses real transport when FIRESTORE_EMULATOR_HOST is set" time="0.000131916"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; refuses real transport when FIREBASE_AUTH_EMULATOR_HOST is set" time="0.000109708"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; refuses a demo namespace even outside emulator process flags" time="0.000190625"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for messaging/registration-token-not-registered" time="0.000090875"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for messaging/invalid-registration-token" time="0.00004025"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for messaging/mismatched-credential" time="0.000038125"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for messaging/server-unavailable" time="0.000039791"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for messaging/quota-exceeded" time="0.000036333"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; retains only an allowlisted outcome for unrecognized-private-error" time="0.000037291"></testcase>
+  <testcase classname="src/__tests__/team-push-dispatch.test.ts" name="provider boundary &gt; never exposes provider exception text or token fields" time="0.000101125"></testcase>
+</testsuite>

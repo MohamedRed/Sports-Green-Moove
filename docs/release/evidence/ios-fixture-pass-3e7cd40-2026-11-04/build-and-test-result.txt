@@ -1,0 +1,11 @@
+iPhone build and fixture screens	Compile app and all fixture test bundles	2026-11-04T21:36:26.9943430Z ** TEST BUILD SUCCEEDED **
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:37:55.7678680Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (30.331 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:38:27.8337110Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (32.068 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:38:50.1330620Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (22.273 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:40:11.3438550Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (81.226 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:40:55.4201800Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' passed (44.044 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:42:35.9066460Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (100.520 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:44:14.8581690Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' passed (98.914 seconds).
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:44:15.3442680Z 	 Executed 7 tests, with 0 failures (0 unexpected) in 409.376 (409.394) seconds
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:44:15.5523360Z 	 Executed 7 tests, with 0 failures (0 unexpected) in 409.376 (409.422) seconds
+iPhone build and fixture screens	Run every built fixture test without rebuilding	2026-11-04T21:44:21.5099680Z ** TEST EXECUTE SUCCEEDED **

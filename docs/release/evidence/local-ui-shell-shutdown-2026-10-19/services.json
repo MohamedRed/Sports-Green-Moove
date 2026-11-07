@@ -1,0 +1,54 @@
+{
+  "scope": "actual-isolated-service-shutdown-not-phone-or-release-proof",
+  "testedAt": "2026-10-19T19:54:15.999Z",
+  "completed": true,
+  "checks": [
+    {
+      "signal": "SIGINT",
+      "runId": "ebef302d6f58e5220ad06c81d516fae8",
+      "exitCode": 130,
+      "supervisorExitedAfterCleanup": true,
+      "privateSessionFileRemoved": true,
+      "loopbackPortsRefused": [
+        5001,
+        8080,
+        9000,
+        9099
+      ],
+      "servicesStopped": [
+        "Authentication",
+        "Database",
+        "Firestore",
+        "Functions"
+      ]
+    },
+    {
+      "signal": "SIGTERM",
+      "runId": "849ea7e78a80eeb90fb99144659cb1d4",
+      "exitCode": 143,
+      "supervisorExitedAfterCleanup": true,
+      "privateSessionFileRemoved": true,
+      "loopbackPortsRefused": [
+        5001,
+        8080,
+        9000,
+        9099
+      ],
+      "servicesStopped": [
+        "Authentication",
+        "Database",
+        "Firestore",
+        "Functions"
+      ]
+    }
+  ],
+  "productionWrites": false,
+  "sourceFiles": {
+    "scripts/qa/start-local-ui.mjs": "22b52e9381fafab3dd00127c8f3dce6ad0db49c155a5856152646ee6acef673a",
+    "scripts/qa/local-runtime.mjs": "46bcce4ca02e4469216df1561c2a59463df2401198df36dbd1f42b54a05f8f06",
+    "scripts/qa/supervised-local-process.mjs": "e201505102c06666abac29879a5c682fe67cf31cc50b0e7138cfdb94bd95bbaa",
+    "scripts/qa/check-local-ui-shutdown.mjs": "4ba27c27e814370601834621af05cc69298c650877d8305017e6049e384896f3",
+    "scripts/qa/local-entry-command.mjs": "b895f745710d4c25bbb232e34085f339b550fd2531b777f1465e53a07d19ca80",
+    "scripts/qa/local-ui-session.mjs": "689131a14dc18d270084083dd961beaf1d0eb313b7b0411188d54f0e1ad8ebb4"
+  }
+}

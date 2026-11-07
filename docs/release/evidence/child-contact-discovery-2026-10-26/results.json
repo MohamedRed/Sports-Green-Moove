@@ -1,0 +1,100 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "72f8096509b376323e2350d1e06c24c8",
+  "testedAt": "2026-10-26T11:19:32.417Z",
+  "scope": "local-authenticated-parent-account-approval-not-signup-or-native-navigation",
+  "steps": [
+    {
+      "id": "only-an-existing-child-account-can-create-a-code-without-role-escalation",
+      "status": "passed"
+    },
+    {
+      "id": "the-code-is-hashed-at-rest-and-explicit-regeneration-is-rate-limited",
+      "status": "passed"
+    },
+    {
+      "id": "a-parent-must-be-separately-verified-before-approving-the-child-device",
+      "status": "passed"
+    },
+    {
+      "id": "a-manager-stranger-or-child-cannot-approve-and-client-selected-account-ids-are-refused",
+      "status": "passed"
+    },
+    {
+      "id": "an-expired-or-unknown-code-cannot-create-a-link",
+      "status": "passed"
+    },
+    {
+      "id": "current-parent-and-child-roles-and-parent-membership-are-rechecked",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-approvals-produce-one-parent-approved-immutable-link-and-an-idempotent-receipt",
+      "status": "passed"
+    },
+    {
+      "id": "the-approved-child-account-can-read-its-parent-chosen-contact-for-the-current-ride",
+      "status": "passed"
+    },
+    {
+      "id": "a-consumed-code-cannot-rebind-an-account-or-replay-after-the-parent-loses-authority",
+      "status": "passed"
+    },
+    {
+      "id": "other-records-account-claims-and-the-owned-ride-remain-unchanged",
+      "status": "passed"
+    }
+  ],
+  "testCount": 10,
+  "childAccountLinkPreseeded": false,
+  "childAccountApprovalFlowExecuted": true,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "adminClientClosed": true,
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 2,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "discovery": {
+    "profileIdDiffersFromLogin": true,
+    "minimalOwnContactOnly": true,
+    "currentAuthorityPatches": 12,
+    "noActiveRideExplicit": true,
+    "newestRideSelected": true,
+    "invalidNewestRideDeniedWithoutFallback": true,
+    "knownRideRecheckPreserved": true,
+    "authenticatedServiceOnly": true
+  },
+  "sourceFiles": {
+    "functions/src/domain/childAccountApproval.ts": "c152698453e173d62f7a1bd567af6edc30ce5f37f319f49fb1f1bd17a97e8efe",
+    "functions/src/services/childAccountApproval.ts": "633c69fbd3a5987388c019ee5a5939774a804d3000d2735f7b4c854c9831732a",
+    "functions/src/callables/childAccountApproval.ts": "099cab2c03297fe2839a2c93deb1861cadb8982224b957e64385b0d36a6de834",
+    "scripts/qa/local-child-account-approval-suite.mjs": "e5e99a6277b483224d7f236793443800e2e47a06a963388b5ed78b797070745e",
+    "firestore.rules": "941d799849182d7cb3261cb7397ff06dddbeca8d52c39d83ede7fc4ff0b6a2e5",
+    "scripts/qa/child-contact-discovery-checks.mjs": "44014ebee391cc20391aee38a9b068acb73f42128b617ab34321f94d17849a60",
+    "functions/src/services/childRideEmergencyContact.ts": "17f36ab58e60a86581a1aee234befc9df714d07f2e11a5a52997a709a200a174",
+    "functions/src/callables/emergencyContact.ts": "bd111d93defdd32517d9db8772f602a4c6afb1ed72e338e19d25cd98e2a77d15"
+  },
+  "emulatorCliExitedSuccessfully": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

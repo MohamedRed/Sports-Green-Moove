@@ -1,0 +1,29 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7b24aa2cd121e2c18bb32aba92495bcf",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [
+    {
+      "phase": "before",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "internetNetworkCount": 1,
+      "backendReachable": true,
+      "internetTransports": [
+        "wifi"
+      ]
+    },
+    {
+      "phase": "disconnect-failed",
+      "wifiEnabled": false,
+      "mobileDataEnabled": true,
+      "activeNetwork": false,
+      "internetNetworkCount": 0,
+      "backendReachable": false,
+      "internetTransports": []
+    }
+  ],
+  "failedPhase": "disconnect"
+}

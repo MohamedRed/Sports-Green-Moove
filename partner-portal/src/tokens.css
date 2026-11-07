@@ -1,0 +1,23 @@
+@font-face { font-family: 'DM Sans'; src: url('fonts/dm_sans_regular.ttf') format('truetype'); font-display: swap; }
+@font-face { font-family: 'Bebas Neue'; src: url('fonts/bebas_neue_regular.ttf') format('truetype'); font-display: swap; }
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --c-green: #3ebd6c;
+  --c-green-dark: #166f3b;
+  --c-orange: #a44712;
+  --c-red: #a83838;
+  --bg-app: #ffffff;
+  --bg-surface: #f4f6f5;
+  --bg-card: #f7f9f8;
+  --bg-green: #edf7f0;
+  --bg-warning: #fff3eb;
+  --bg-error: #fff0f0;
+  --bg-dark: #18231d;
+  --text-primary: #1a2820;
+  --text-secondary: #53645b;
+  --text-muted: #67766e;
+  --text-inverse: #ffffff;
+  --border: #dce3df;
+  --backdrop: rgb(12 22 17 / 58%);
+}

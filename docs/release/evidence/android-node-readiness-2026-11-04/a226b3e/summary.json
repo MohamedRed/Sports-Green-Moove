@@ -1,0 +1,196 @@
+{
+  "checkedAt": "2026-11-04",
+  "runId": 41920203762,
+  "jobId": 126890385415,
+  "sourceCommit": "a226b3e265c78f58d56af892a666ae2778afc50b",
+  "conclusion": "failure",
+  "scope": "two-readiness-regressions-pass-with-failed-ordinary-and-parent-replay-not-full-gate",
+  "readinessCases": {
+    "passed": 2,
+    "cases": [
+      "aLaterCompositionMustContainTheRequestedNode",
+      "absentCompositionStillFailsAtItsDeadline"
+    ],
+    "indices": [
+      59,
+      60
+    ]
+  },
+  "ordinary": {
+    "deadlineMs": 720000,
+    "elapsedMs": 720003,
+    "errorCode": "ETIMEDOUT",
+    "discoveredCases": 351,
+    "lastCompletedIndex": 318,
+    "lastStartedIndex": 319,
+    "lastStartedClass": "TeamEnrollmentHistoryFlowTest",
+    "complete": false,
+    "completeParserRejection": "One complete runner result is required"
+  },
+  "replay": {
+    "className": "LocalGuardianVerificationFlowTest",
+    "failureAt": "openGuardians:81 performScrollTo",
+    "loginWaitReached": true,
+    "complete": false,
+    "evidenceDirectoryExists": false,
+    "underlyingRootAbsenceCause": "unknown"
+  },
+  "focusedLanesPassed": 12,
+  "jobs": [
+    {
+      "jobId": 126890385415,
+      "name": "Android native UI tests",
+      "conclusion": "failure"
+    },
+    {
+      "jobId": 126890385710,
+      "name": "Android native unit tests",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385720,
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385806,
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385856,
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385865,
+      "name": "Android focused safety UI tests / Isolated chat-network-recovery",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385898,
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385909,
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385917,
+      "name": "Native UI flow coverage",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385921,
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890385936,
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890386008,
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890386023,
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890386041,
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126890387217,
+      "name": "iOS native UI tests",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126890387287,
+      "name": "Android approved real-map UI integration",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126890387432,
+      "name": "Android approved parent search and booking",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126890387497,
+      "name": "Android approved vehicle-map UI",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126890387694,
+      "name": "iOS native checks",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126896334261,
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "conclusion": "success"
+    }
+  ],
+  "provenance": {
+    "artifactId": 13367313439,
+    "archiveSha256": "3e0766efb54a682855897d2ceb3ff632d9ea0d375c70120c7ad384656bf1e2df",
+    "records": [
+      {
+        "file": "ordinary-process.json",
+        "entry": "outputs/store-review-screenshots/ordinary-process.json",
+        "sha256": "0713a7ccc61439862bfc592c13a05861a6c981048da0424bc6e1db5a87c1f26a",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "native-suite-status.json",
+        "entry": "outputs/store-review-screenshots/native-suite-status.json",
+        "sha256": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "guardian-instrumentation.txt",
+        "entry": "outputs/local-ui-evidence/2f12d18f1d8de815f95a17a93d8b1aea/LocalGuardianVerificationFlowTest-instrumentation.txt",
+        "sha256": "2be8f333d6104733ac3ecbf0c8c65c09de5a3be92bbfd0ee892660bdeef1561a",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "sync-diagnostics.json",
+        "entry": "outputs/local-ui-evidence/2f12d18f1d8de815f95a17a93d8b1aea/adb-sync-failure-cleanup-diagnostics.json",
+        "sha256": "7d60dd0b616e0363815c54bf31fdfdc36fc5e9a2330edb5465fb4634ae60d876",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "host-disposal.json",
+        "entry": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+        "sha256": "431d2693e3418b34d972e916145e1ec9ca580b3a3cffc69105243c3112c447dd",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "readiness-cases.txt",
+        "entry": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+        "sha256": "26cbfb5235ee2b92d03184a86576efeeca23dbcbbfae94c65cf2ea30447cdd34",
+        "originalEntrySha256": "28a37587c5f5373d253c431efb32f52eddb2801962a9f0526ac0264dcbd12b39",
+        "selection": "unchanged-contiguous-readiness-case-packets"
+      },
+      {
+        "file": "ordinary-tail.txt",
+        "entry": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+        "sha256": "8466a92d5cc17b378c12c8b1737957378c8b06549871d48552de31abd1e75206",
+        "originalEntrySha256": "28a37587c5f5373d253c431efb32f52eddb2801962a9f0526ac0264dcbd12b39",
+        "selection": "last-18-split-lines-unchanged"
+      }
+    ]
+  },
+  "fullGateAccepted": false,
+  "priorRootCauseConfirmed": false,
+  "physicalDeviceAccepted": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

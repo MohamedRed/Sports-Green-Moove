@@ -1,30 +1,43 @@
 import Foundation
 
-#if canImport(FirebaseCore) && canImport(FirebaseFunctions)
+#if canImport(FirebaseCore) && canImport(FirebaseFunctions) && canImport(FirebaseAuth)
 import FirebaseFunctions
+import FirebaseAuth
 
 extension FirebaseBackendGateway {
-    func getInbox() async throws -> InboxSummary {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("getInbox").call([:]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let inbox = payload["inbox"] as? [String: Any] {
-                    continuation.resume(returning: mapInbox(inbox))
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse inbox invalide."))
-                }
-            }
+    func getInbox(uid: String) async throws -> InboxSummary {
+        return try await inboxFunction("getInbox", data: [:], uid: uid) { payload in
+            guard let inbox = payload["inbox"] as? [String: Any] else { throw ProviderConfigurationError(message: "Inbox manquante.") }
+            return try mapInbox(inbox, uid: uid)
+        }
+    }
+    func loadPendingReviews(uid: String, cursor: String) async throws -> PendingReviewPage {
+        return try await inboxFunction("getPendingReviews", data: ["cursor": cursor], uid: uid) { payload in
+            let page = try PendingReviewWire.parse(payload, uid: uid)
+            guard page.nextCursor != cursor else { throw ProviderConfigurationError(message: "Réponse avis invalide.") }
+            return page
         }
     }
 }
 
-private func mapInbox(_ data: [String: Any]) -> InboxSummary {
-    InboxSummary(
+private func inboxFunction<Response: Sendable>(
+    _ name: String, data: [String: String], uid: String,
+    decode: @escaping @Sendable ([String: Any]) throws -> Response
+) async throws -> Response {
+    try await firebaseOwnedCall(uid: uid, name: name, input: data) { value in
+        guard let payload = value as? [String: Any] else { throw ProviderConfigurationError(message: "Réponse inbox invalide.") }
+        return try decode(payload)
+    }
+}
+
+private func mapInbox(_ data: [String: Any], uid: String) throws -> InboxSummary {
+    guard let userId = data["reviewsUserId"], let items = data["reviews"], let cursor = data["reviewsNextCursor"] else {
+        throw ProviderConfigurationError(message: "Réponse avis invalide.")
+    }
+    let page = try PendingReviewWire.parse(["userId": userId, "items": items, "nextCursor": cursor], uid: uid)
+    return InboxSummary(
         notifications: array(data["notifications"]).compactMap(mapInboxNotification),
-        chats: array(data["chats"]).compactMap(mapInboxChat),
-        reviews: array(data["reviews"]).compactMap(mapInboxReview)
+        reviews: page.items, reviewsNextCursor: page.nextCursor, reviewsUserId: uid
     )
 }
 
@@ -37,35 +50,6 @@ private func mapInboxNotification(_ data: [String: Any]) -> InboxNotificationSum
         dateLabel: data["dateLabel"] as? String ?? "",
         unread: data["unread"] as? Bool ?? false,
         initials: data["initials"] as? String ?? "NT"
-    )
-}
-
-private func mapInboxChat(_ data: [String: Any]) -> InboxChatSummary? {
-    guard let id = data["id"] as? String, let sourceId = data["sourceId"] as? String else { return nil }
-    return InboxChatSummary(
-        id: id,
-        sourceType: data["sourceType"] as? String ?? "booking",
-        sourceId: sourceId,
-        title: data["title"] as? String ?? "Conversation",
-        preview: data["preview"] as? String ?? "",
-        dateLabel: data["dateLabel"] as? String ?? "",
-        unreadCount: (data["unreadCount"] as? NSNumber)?.intValue ?? 0,
-        initials: data["initials"] as? String ?? "CH"
-    )
-}
-
-private func mapInboxReview(_ data: [String: Any]) -> InboxReviewPrompt? {
-    guard let id = data["id"] as? String,
-          let rideSessionId = data["rideSessionId"] as? String,
-          let ratedUserId = data["ratedUserId"] as? String
-    else { return nil }
-    return InboxReviewPrompt(
-        id: id,
-        rideSessionId: rideSessionId,
-        ratedUserId: ratedUserId,
-        title: data["title"] as? String ?? "Avis de course",
-        prompt: data["prompt"] as? String ?? "",
-        initials: data["initials"] as? String ?? "AV"
     )
 }
 

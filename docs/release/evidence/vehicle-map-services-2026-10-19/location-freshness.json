@@ -1,0 +1,58 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e49bda4da31ececb6f0ef05c6863703b",
+  "testedAt": "2026-10-19T19:35:47.695Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "method": "actual-authenticated-location-callables",
+  "checks": [
+    {
+      "id": "parent-sees-missing-first-point-as-stale",
+      "status": "passed"
+    },
+    {
+      "id": "native-identity-source-and-receipt-time-are-server-bound",
+      "status": "passed"
+    },
+    {
+      "id": "parent-sees-delayed-observation-as-old-despite-new-receipt",
+      "status": "passed"
+    },
+    {
+      "id": "parent-cannot-submit-a-driver-update-or-change-its-stored-point",
+      "status": "passed"
+    },
+    {
+      "id": "parent-sees-observation-age-not-time-since-upload",
+      "status": "passed"
+    }
+  ],
+  "testCount": 1,
+  "steps": [
+    {
+      "id": "location-freshness",
+      "status": "passed"
+    }
+  ],
+  "delayedObservation": {
+    "capturedAgeAtSubmissionMs": 120000,
+    "clientReceiptTimestampIgnored": true,
+    "parentStale": true,
+    "parentLabel": "Secours GPS · il y a 2 min"
+  },
+  "freshObservation": {
+    "parentStale": false,
+    "parentLabel": "Secours GPS · il y a 30 s"
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-location-freshness.mjs": "2e6eec6424434bf234701a8a92b62dc35379ddb001b3e982cc267b6adc2ebfb5",
+    "functions/src/lib/clientTrips.ts": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd",
+    "functions/src/domain/locations.ts": "e467eb4b9a33190cc04df1a4dbb272c799db87fe070139e60676aea775300599",
+    "functions/src/callables/locations.ts": "67439e178bd4ddd62e8f4799180d2a3a5abfc806a4e10a0e908777a4a7e869e7",
+    "functions/src/domain/locationAccess.ts": "c47e9dc454b7f71ab06b380464b2c6171058a539c8fe5a4c728ec0fe853fec6a"
+  },
+  "adminClientClosed": true
+}

@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-10-29T22:29:49.416Z",
+  "ports": [
+    {
+      "port": 5001,
+      "closed": true
+    },
+    {
+      "port": 8080,
+      "closed": true
+    },
+    {
+      "port": 9000,
+      "closed": true
+    },
+    {
+      "port": 9099,
+      "closed": true
+    },
+    {
+      "port": 45690,
+      "closed": true
+    },
+    {
+      "port": 45691,
+      "closed": true
+    }
+  ],
+  "runtimeDirectoryRemoved": true,
+  "privateHandoffRemoved": true,
+  "privateSessionFileRemoved": true
+}

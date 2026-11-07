@@ -1,0 +1,10 @@
+{
+  "observedAt": "2026-10-22T19:43:28.761Z",
+  "command": "dumpsys connectivity",
+  "scope": "sanitized-supported-device-diagnostic-not-full-network-dump",
+  "queryCount": 2,
+  "defaultNetworkPresent": true,
+  "transport": "WIFI",
+  "state": "CONNECTED",
+  "identifiersRetained": false
+}

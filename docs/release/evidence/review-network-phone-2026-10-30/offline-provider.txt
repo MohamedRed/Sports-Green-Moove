@@ -1,0 +1,86 @@
+Browser tab: 1621935642, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				324 container in-session-device-react
+					325 container
+					327 container
+						328 image
+						329 button Add Device
+							330 text Add Device
+							331 text PRO
+					777 container flashlight-hidden
+				148 text ;
+				779 content list
+					780 button Description: Switch Device, ID: switchBrowser
+					781 container
+						782 button (disabled) Description: Local testing, ID: appLiveToolbarLocalTesting
+							783 image
+							784 image open content menu
+							785 text Local testing
+					786 menu zoomFeature
+						787 Description: zoom out, ID: zoom-out
+						788 Description: zoom in, ID: zoom-in
+						789 text Zoom
+					790 button Description: Record Session, ID: appLiveVideoRecording
+					791 button (disabled) Description: DevTools, ID: showDebuggingOptions
+					792 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					793 button Description: Settings, ID: appLiveSessionSettings
+						794 image open content menu
+						795 text Settings
+					796 button Description: Stop Session, ID: appLiveStopSession
+						797 image
+						798 text Stop Session
+				419 container vertical-toolbar-react
+					420 container vertical-toolbar-draggable
+						421 container
+							799 button toolbar drag icon
+							423 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						424 toolbar
+							425 content list
+								800 button Description: Add Device, ID: app-live-add-device
+									801 container app-live-add-device-lead-text-wrapper
+										802 text Add Device PRO
+								803 button Description: Show Home Screen, ID: dockHomeScreen
+									804 text Show Home Screen
+								805 container volume-buttons-lead-text-wrapper
+									806 text Volume
+									807 container volumeButtons
+										808 button - Volume Decrease
+										809 button (disabled) + Volume Increase
+								810 button Description: View Open Apps, ID: view-open-apps
+									811 text View Open Apps
+								812 button Description: Install New App, ID: switch-app
+									813 text Install New App
+								814 checkbox Description: Profile Performance, Value: 0
+									815 text Profile Performance
+									816 text PRO
+								817 button Description: Capture Screenshot, ID: get-screenshot
+									818 text Capture Screenshot
+								819 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									820 text Kill/Uninstall
+								821 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									822 container android-settings-lead-text-wrapper
+										823 text Android Settings PRO
+								824 button Rotate Device, ID: dockOrientationRealAndroid
+									825 text Rotate Device
+								826 button (collapsed) Description: Scroll speed, ID: appLiveScrollSensitivity, Secondary Actions: Expand
+									827 container appLiveScrollSensitivity-lead-text-wrapper
+										828 text Scroll speed New
+								829 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									830 text Change Location
+								831 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									832 text Throttle Network
+								833 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									834 text Files & Media
+								835 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									836 text Change Language
+								837 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									838 text Screen Reader
+								839 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									840 text Google Pixel 9 Pro
+									841 text v15.0
+		778 text Network condition changes have been applied. The device is now offline.
+
+The focused UI element is 777 container flashlight-hidden

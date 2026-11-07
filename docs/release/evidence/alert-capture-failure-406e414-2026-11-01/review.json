@@ -1,0 +1,31 @@
+{
+  "scope": "failed-native-alert-capture-and-restart-copy-not-release-proof",
+  "testedAt": "2026-11-01",
+  "headSha": "406e414c66bdb17d73765a19499f45c66d8cd9dd",
+  "workflowId": 41296148302,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationInboxFlowTest.kt": "102e17232c6fc4850a2a42dc08d629d4d4fa7bbe518cd3abb9759e00ed6748d9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RejectedPrimaryBitmap.kt": "04a2a05c0cdd925987090caf9db8a59b58892dcbf425ceb1c712918faa2f28e7",
+    "scripts/qa/rejected-primary-captures.mjs": "e29c10e74a1131e3601e547f2e8c642aa2d46ba09d5dde1501fd630bb579c555",
+    "scripts/qa/collect-local-ui-evidence.mjs": "85ac5dd65e99e13be20c966fa8e8cc70b391fc08a20f511ac3bff8a66b7ecca0",
+    "scripts/qa/local-android-session.mjs": "531fdc8968ec5802e0481748cf726e2d116e37a550532e10d6e06900c7061aeb"
+  },
+  "ordinary": {
+    "passed": 225,
+    "skipped": 54,
+    "failed": 1
+  },
+  "notificationCasesPassed": 3,
+  "notificationCaseRejectedAtCapture": true,
+  "rejectedBitmapRetained": false,
+  "finalReplayReportPresent": false,
+  "sourceArchiveCompleteHeadAttestation": false,
+  "downloadedArchiveDigestIndependentlyVerified": false,
+  "rootCauseProven": false,
+  "repairVerified": false,
+  "pushDeliveryVerified": false,
+  "physicalPhoneEvidenceOverridden": false,
+  "releaseAccepted": false,
+  "publishedCaptures": {}
+}

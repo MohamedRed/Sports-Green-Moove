@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e6f16834f97c8f08095cdcdea11f3e6a",
+  "recordedAt": "2026-10-26T21:52:42.852Z",
+  "result": {
+    "phase": "other-trip-clean",
+    "status": "passed",
+    "sharedRecordsUnchanged": true,
+    "accountClaimsUnchanged": true,
+    "liveDataUnchanged": true,
+    "proposalCreated": false,
+    "physicalUiProvenByThisCheckpoint": false,
+    "processStopProvenByThisCheckpoint": false,
+    "draftStorageProvenByThisCheckpoint": false
+  }
+}

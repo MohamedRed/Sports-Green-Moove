@@ -1,0 +1,50 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+  "testedAt": "2026-10-22T19:51:55.270Z",
+  "scope": "independent-support-recovery-record-checkpoints-not-phone-network-proof",
+  "completed": false,
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "reportCount": 0,
+      "attemptCount": 0
+    },
+    {
+      "phase": "committed",
+      "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "requestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "offline",
+      "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "requestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    },
+    {
+      "phase": "uncertain",
+      "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "requestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+      "reportCount": 1,
+      "operationCount": 1,
+      "attemptCount": 1,
+      "urgent": true,
+      "originalContentUnchanged": true
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "productionWrites": false,
+  "physicalNetworkStateVerifiedByController": false,
+  "processIdentityVerified": false,
+  "fixtureEnvironmentDestroyed": false
+}

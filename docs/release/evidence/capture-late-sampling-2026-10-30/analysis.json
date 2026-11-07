@@ -1,0 +1,29 @@
+{
+  "scope": "failed-primary-capture-observation-not-repair-or-release",
+  "sourceCommit": "60814d709d167e4a0ed93eca22506f8560660e9a",
+  "runId": 41032802463,
+  "failedCapture": "trip-change-parent-declined.png",
+  "primaryElapsedMs": 1939,
+  "maxMainQueueDelayMs": 37,
+  "observedOffsetsMs": [
+    250,
+    600,
+    900
+  ],
+  "allCallerSamplesInRedraw": true,
+  "lateWaitObserved": false,
+  "rootCauseProven": false,
+  "primaryApiModified": false,
+  "primaryDeadlineModified": false,
+  "outerRetryAdded": false,
+  "alternateCaptureAdded": false,
+  "releaseAccepted": false,
+  "nextSchemaVersion": 3,
+  "nextSampleScheduleMs": [
+    250,
+    1200,
+    1600
+  ],
+  "newScheduleRuntimeExecuted": false,
+  "newScheduleApkBuilt": true
+}

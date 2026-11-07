@@ -1,0 +1,61 @@
+{
+  "scope": "physical-android-team-unread-with-isolated-services",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "59d574153c71057d48777f57fe502944",
+  "testedAt": "2026-10-21T21:47:21.467Z",
+  "sourceCommit": "458318c3d7e64252d39c9458dd94cf04a06df79a",
+  "appSha256": "41bef01f1ce2073ccf16ff82acab6af1b94e35f96e8381668ad23ba4c5e8be44",
+  "appMainTree": "018a739464e9621c44bde193c72acdf7dd01fe87",
+  "device": {
+    "model": "Google Pixel 9",
+    "os": "Android 15"
+  },
+  "accountsInOrder": [
+    "sgm-qa-parent",
+    "sgm-qa-driver",
+    "sgm-qa-parent"
+  ],
+  "captureMethod": "reviewed-browser-stream-context-with-declared-device-rectangle",
+  "captureRectangle": {
+    "left": 626,
+    "top": 110,
+    "width": 250,
+    "height": 558
+  },
+  "captureSaveTimes": {
+    "initial-unread": "2026-10-21T21:36:12.711Z",
+    "parent-read": "2026-10-21T21:36:51.999Z",
+    "new-unread": "2026-10-21T21:40:15.662Z",
+    "parent-read-again": "2026-10-21T21:40:48.387Z",
+    "parent-sent": "2026-10-21T21:41:51.278Z",
+    "driver-unread": "2026-10-21T21:44:22.324Z",
+    "driver-read": "2026-10-21T21:44:48.337Z",
+    "parent-returned": "2026-10-21T21:46:58.334Z"
+  },
+  "publishedCaptures": {
+    "team-read-phone-initial-unread": "initial-unread-device.jpg",
+    "team-read-phone-parent-read": "parent-read-device.jpg",
+    "team-read-phone-new-unread": "new-unread-device.jpg",
+    "team-read-phone-parent-read-again": "parent-read-again-device.jpg",
+    "team-read-phone-parent-sent": "parent-sent-device.jpg",
+    "team-read-phone-driver-unread": "driver-unread-device.jpg",
+    "team-read-phone-driver-read": "driver-read-device.jpg",
+    "team-read-phone-parent-returned": "parent-returned-device.jpg"
+  },
+  "physicalDevice": true,
+  "manualNativeUiObserved": true,
+  "unreadStateVerified": true,
+  "singleExplicitParentSend": true,
+  "nativePngExportObtained": false,
+  "nativeExportFailure": "Save dialog disabled in two destinations; no native PNG export accepted",
+  "boundedCaptureFailure": "Two Page.captureScreenshot observation timeouts after first bounded capture; original browser contexts retained",
+  "nonInteractivePreparation": "Exited 13 before UI checkpoints; owned first environment destroyed, interactive trial used a fresh environment",
+  "videoCaptured": false,
+  "twoPhoneFlowVerified": false,
+  "notificationsVerified": false,
+  "trackingVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false,
+  "fullCiVerified": false
+}

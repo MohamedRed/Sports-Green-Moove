@@ -1,0 +1,29 @@
+{
+  "recordedAt": "2026-11-01T09:44:15.643Z",
+  "scope": "owned-local-runtime-and-observed-phone-release-not-independent-package-absence",
+  "backendPid": 54627,
+  "helperPid": 54707,
+  "ownedProcessesAbsent": true,
+  "privateSessionRemoved": true,
+  "helperHandoffRemoved": true,
+  "phoneReleaseDashboardObserved": true,
+  "providerUninstallReportedSuccess": true,
+  "installedPackageAbsenceIndependentlyVerified": false,
+  "runtimeDirectoryAbsenceIndependentlyBound": true,
+  "runtimeDirectory": "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-9A6GJY",
+  "runtimeDirectoryRemoved": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "clipboardCleared": true,
+  "originalClipboardRestored": false,
+  "realAccountsModified": false,
+  "productionWrites": false
+}

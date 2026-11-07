@@ -15,6 +15,11 @@ describe("CO2 and rewards", () => {
     ], "u1");
 
     expect(balance).toBe(300);
+    const entry = { id: "invalid", userId: "u1", type: "manualAdjustment" as const, amountCents: 1,
+      currency: "eur" as const, sourceId: "synthetic", createdAt: "2026-10-23" };
+    for (const amountCents of [0.5, NaN, Infinity, Number.MAX_SAFE_INTEGER + 1])
+      expect(() => computeRewardBalanceCents([{ ...entry, amountCents }], "u1")).toThrow(RangeError);
+    expect(() => computeRewardBalanceCents([{ ...entry, amountCents: Number.MAX_SAFE_INTEGER }, entry], "u1")).toThrow(RangeError);
   });
 
   it("creates a small CO2 bonus in cents", () => {

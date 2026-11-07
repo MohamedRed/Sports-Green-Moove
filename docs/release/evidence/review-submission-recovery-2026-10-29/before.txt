@@ -1,0 +1,29 @@
+
+be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest:
+Error in failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest):
+java.lang.AssertionError: Action performScrollTo() failed.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + InputText + EditableText contains '29 octobre 2026 à 18:45' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performScrollTo(Actions.kt:81)
+	at be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest.failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(ReviewSubmissionRecoveryFlowTest.kt:44)
+
+
+Time: 8.832
+There was 1 failure:
+1) failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest)
+java.lang.AssertionError: Action performScrollTo() failed.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (Text + InputText + EditableText contains '29 octobre 2026 à 18:45' (ignoreCase: false))
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performScrollTo(Actions.kt:81)
+	at be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest.failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(ReviewSubmissionRecoveryFlowTest.kt:44)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

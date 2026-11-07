@@ -1,0 +1,139 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b5d76d685c8a79c79cf45de14476f903",
+  "testedAt": "2026-10-19T11:45:31.027Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "owned-team-enrollment-history",
+  "testCount": 14,
+  "checks": [
+    {
+      "id": "history-is-auth-bound-and-rejects-child-admin-and-supplied-owner-fields",
+      "status": "passed"
+    },
+    {
+      "id": "owned-list-and-detail-are-read-only-and-cannot-read-another-requester",
+      "status": "passed"
+    },
+    {
+      "id": "an-owned-request-remains-discoverable-and-withdrawable-after-club-loss",
+      "status": "passed"
+    },
+    {
+      "id": "approved-adult-enrollment-can-be-withdrawn-without-renewing-club-eligibility",
+      "status": "passed"
+    },
+    {
+      "id": "retired-and-deleted-teams-do-not-hide-owned-history-or-grant-new-requests",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-or-transferred-teams-never-supply-new-labels-or-inherit-old-grants",
+      "status": "passed"
+    },
+    {
+      "id": "revoking-a-parent-hides-the-child-label-and-denies-approved-child-withdrawal",
+      "status": "passed"
+    },
+    {
+      "id": "only-the-requesting-parent-can-withdraw-a-pending-child-request-after-authority-loss",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-profiles-cannot-expose-new-names-or-reuse-old-approved-identities",
+      "status": "passed"
+    },
+    {
+      "id": "a-refreshed-adult-token-without-parent-role-cannot-operate-child-history",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-owned-records-and-invalid-identifiers-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "all-owned-pages-continue-without-duplicates-or-cross-account-cursor-access",
+      "status": "passed"
+    },
+    {
+      "id": "an-old-withdraw-operation-does-not-withdraw-a-newly-reopened-request",
+      "status": "passed"
+    },
+    {
+      "id": "history-never-grants-roles-conversation-access-or-request-capability",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "history-is-auth-bound-and-rejects-child-admin-and-supplied-owner-fields",
+      "status": "passed"
+    },
+    {
+      "id": "owned-list-and-detail-are-read-only-and-cannot-read-another-requester",
+      "status": "passed"
+    },
+    {
+      "id": "an-owned-request-remains-discoverable-and-withdrawable-after-club-loss",
+      "status": "passed"
+    },
+    {
+      "id": "approved-adult-enrollment-can-be-withdrawn-without-renewing-club-eligibility",
+      "status": "passed"
+    },
+    {
+      "id": "retired-and-deleted-teams-do-not-hide-owned-history-or-grant-new-requests",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-or-transferred-teams-never-supply-new-labels-or-inherit-old-grants",
+      "status": "passed"
+    },
+    {
+      "id": "revoking-a-parent-hides-the-child-label-and-denies-approved-child-withdrawal",
+      "status": "passed"
+    },
+    {
+      "id": "only-the-requesting-parent-can-withdraw-a-pending-child-request-after-authority-loss",
+      "status": "passed"
+    },
+    {
+      "id": "recreated-child-profiles-cannot-expose-new-names-or-reuse-old-approved-identities",
+      "status": "passed"
+    },
+    {
+      "id": "a-refreshed-adult-token-without-parent-role-cannot-operate-child-history",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-owned-records-and-invalid-identifiers-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "all-owned-pages-continue-without-duplicates-or-cross-account-cursor-access",
+      "status": "passed"
+    },
+    {
+      "id": "an-old-withdraw-operation-does-not-withdraw-a-newly-reopened-request",
+      "status": "passed"
+    },
+    {
+      "id": "history-never-grants-roles-conversation-access-or-request-capability",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "teamChatImplemented": false,
+  "sourceFiles": {
+    "functions/src/services/teamEnrollmentHistory.ts": "9d5fc75b482133cba630705bd396056bc538c2a0e95889838a633dfdc7d91881",
+    "functions/src/callables/teamEnrollmentHistory.ts": "3df49b39526ec24db1ce7c590918cd6478f87a5fa3ff024ebee15eaaff25dcdc",
+    "functions/src/services/teamEnrollmentAuthority.ts": "b2d9ce8f12972fd88e797a4acb3323c8f73e09c501c2e644386c03cc52b9e8e0",
+    "functions/src/services/teamEnrollment.ts": "823258bcbfe7f04d1d9827a3674043f9c05d810a6c2e6c584d39192e01d6f45d",
+    "functions/src/domain/teamEnrollment.ts": "39f3af9751c79b8aab0bbb35f6fb202d8b841f4e2bffe7088d3758e5d3b19d04",
+    "functions/src/index.ts": "230e3da426a5bf4debb8a11d16c38843655d56da5b75530d9cda4ef5eeac96ce",
+    "scripts/qa/local-team-history-suite.mjs": "bb3bc8ef17408b2884cc62731819f90401ad9686c12ecde7f2029c4b021f2d97",
+    "scripts/qa/run-local-team-history.mjs": "035515683788bbd47831850a1ec001c4fbf6dc81176c465fbe69354710ded6f4"
+  }
+}

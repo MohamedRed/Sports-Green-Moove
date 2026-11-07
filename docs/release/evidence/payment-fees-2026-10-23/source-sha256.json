@@ -1,0 +1,12 @@
+{
+  "functions/src/domain/paymentFees.ts": "abaf477fc93c8f4b45995fdb43d444f0700d7de9425618157515d2bec5ec446a",
+  "functions/src/services/stripeConnect.ts": "f4435234bb8fce84214b0809acca5e19a60be143610d21666ab712f19ac2c3f6",
+  "functions/src/services/ridePaymentPreparation.ts": "33217c3a58b494c4022caba4500465b389f3e1de9f7e03875c4115fccd45ac8f",
+  "functions/src/services/stripePaymentValidation.ts": "9c3a096aa46bb9c246a56bfb1092486401471f00b63ec95bb4e67ae763e5cfb6",
+  "functions/src/__tests__/payment-fees.test.ts": "370e2931edea89504dd7747d755646bc727b676b0ba2ad68d48ebd45d55079bc",
+  "tests/ride-payment-preparation-flow.test.ts": "47694baefa46be6d1e6166521e8a5ff5d3a2c4d8c17e917dd78b567135b085b2",
+  "package.json": "77c27c4537c6ec1d03a6553c50a56c7ca2cc9427ebac8bb11ba981357108efef",
+  ".github/workflows/web-integration-smoke.yml": "72a5ae947cc5d34084803960bd31a133a66bb10ddf6bddbc5d0a45ee7d84c403",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalDriverFlowTest.kt": "28c63f9c3e365af3601512d6bdf0d4c0fadb1c454c7bb7061ce0feff8b1dfc67",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReservationActionsUiTest.kt": "1231f3eb45341ba18a9f9bea6d2be22d1fc9b7de42ccbdcb42c863b6640b97e0"
+}

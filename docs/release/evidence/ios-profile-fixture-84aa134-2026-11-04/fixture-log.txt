@@ -1,0 +1,468 @@
+﻿2026-11-04T17:50:46.9778240Z ##[group]Run shopt -s nullglob
+2026-11-04T17:50:46.9779640Z [36;1mshopt -s nullglob[0m
+2026-11-04T17:50:46.9781570Z [36;1mruns=( "$RUNNER_TEMP/sgm-ios-derived/Build/Products/"*.xctestrun )[0m
+2026-11-04T17:50:46.9785030Z [36;1mtest "${#runs[@]}" -eq 1[0m
+2026-11-04T17:50:46.9786570Z [36;1mxcodebuild test-without-building \[0m
+2026-11-04T17:50:46.9787660Z [36;1m  -xctestrun "${runs[0]}" \[0m
+2026-11-04T17:50:46.9789300Z [36;1m  -destination "platform=iOS Simulator,id=$PHONE_ID" \[0m
+2026-11-04T17:50:46.9792020Z [36;1m  -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \[0m
+2026-11-04T17:50:46.9793930Z [36;1m  -parallel-testing-enabled NO[0m
+2026-11-04T17:50:47.1482800Z shell: /bin/bash -e {0}
+2026-11-04T17:50:47.1483280Z env:
+2026-11-04T17:50:47.1483700Z   PHONE_ID: C105974E-EF11-4B0C-BA59-032FEBE87263
+2026-11-04T17:50:47.1484290Z ##[endgroup]
+2026-11-04T17:50:49.8510770Z Command line invocation:
+2026-11-04T17:50:49.8574680Z     /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/xcodebuild test-without-building -xctestrun /Users/runner/work/_temp/sgm-ios-derived/Build/Products/SportsGreenMoove_iphonesimulator26.5-x86_64.xctestrun -destination "platform=iOS Simulator,id=C105974E-EF11-4B0C-BA59-032FEBE87263" -resultBundlePath /Users/runner/work/_temp/sgm-ios-fixtures.xcresult -parallel-testing-enabled NO
+2026-11-04T17:50:49.8633670Z 
+2026-11-04T17:51:00.5410480Z 2026-11-04 17:51:00.511 xcodebuild[24806:76544] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-04T17:51:00.5441120Z Writing result bundle at path:
+2026-11-04T17:51:00.6447020Z 2026-11-04 17:51:00.577 xcodebuild[24806:76544] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-04T17:51:00.6456960Z 	/Users/runner/work/_temp/sgm-ios-fixtures.xcresult
+2026-11-04T17:51:00.7457190Z 
+2026-11-04T17:51:03.7537620Z 2026-11-04 17:51:03.710 xcodebuild[24806:76544] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-04T17:51:09.3541050Z 2026-11-04 17:51:09.353 xcodebuild[24806:76544] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-04T17:51:13.3593190Z 2026-11-04 17:51:13.136 xcodebuild[24806:76544] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-11-04T17:56:59.9483360Z 2026-11-04 17:56:59.500471+0000 SportsGreenMooveUITests-Runner[28260:89199] [Default] Running tests...
+2026-11-04T17:58:08.3434580Z     t =      nans Interface orientation changed to Portrait
+2026-11-04T17:58:10.1728600Z Test Suite 'All tests' started at 2026-11-04 17:57:50.238.
+2026-11-04T17:58:11.4154760Z Test Suite 'SportsGreenMooveUITests.xctest' started at 2026-11-04 17:57:50.243.
+2026-11-04T17:58:11.7781220Z Test Suite 'SearchConsentFlowTests' started at 2026-11-04 17:57:50.245.
+2026-11-04T17:58:11.8863380Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' started.
+2026-11-04T17:58:12.0550030Z     t =     0.01s Start Test at 2026-11-04 17:57:50.257
+2026-11-04T17:58:13.4025100Z     t =     6.69s Set Up
+2026-11-04T17:58:15.0077950Z     t =     6.71s Open be.sportgreenmoove.app
+2026-11-04T17:58:15.0189420Z     t =     6.71s     Launch be.sportgreenmoove.app
+2026-11-04T17:59:11.2494790Z 2026-11-04 17:59:11.181 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T17:59:11.2553850Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/SearchConsentFlowTests.swift:45: error: -[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults] : Failed to launch <XCUIApplicationImpl: 0x600001721900 be.sportgreenmoove.app at /Users/runner/work/_temp/sgm-ios-derived/Build/Products/Debug-iphonesimulator/SportsGreenMoove.app> via Xcode: Timed out while launching application via Xcode.
+2026-11-04T17:59:16.5613500Z 2026-11-04 17:59:11.182 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T17:59:16.5644710Z     t =    69.27s Tear Down
+2026-11-04T17:59:17.7369680Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' failed (79.843 seconds).
+2026-11-04T17:59:17.9920580Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' started.
+2026-11-04T17:59:18.1072660Z     t =     0.00s Start Test at 2026-11-04 17:59:10.100
+2026-11-04T17:59:18.2325090Z     t =     0.05s Set Up
+2026-11-04T17:59:18.3346270Z     t =     0.05s         Open be.sportgreenmoove.app
+2026-11-04T17:59:18.5037950Z     t =     0.06s             Launch be.sportgreenmoove.app
+2026-11-04T17:59:18.8230540Z 2026-11-04 17:59:18.620 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T17:59:18.9264210Z 2026-11-04 17:59:18.620 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T17:59:48.9865720Z     t =    38.75s                 Setting up automation session
+2026-11-04T17:59:59.7580170Z     t =    49.13s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:05.1756610Z     t =    54.76s         Waiting 6.0s for "search.consent" Button to exist
+2026-11-04T18:00:05.9987490Z     t =    55.78s             Checking `Expect predicate `existsNoRetry == 1` for object "search.consent" Button`
+2026-11-04T18:00:06.0791750Z     t =    55.78s                 Checking existence of `"search.consent" Button`
+2026-11-04T18:00:06.8795710Z     t =    56.40s         Tap "search.consent" Button
+2026-11-04T18:00:06.9801760Z     t =    56.41s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:07.0890950Z     t =    56.41s             Find the "search.consent" Button
+2026-11-04T18:00:07.1912930Z     t =    56.95s             Check for interrupting elements affecting "search.consent" Button
+2026-11-04T18:00:07.4967910Z     t =    57.31s             Synthesize event
+2026-11-04T18:00:09.2345700Z     t =    58.03s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:09.3350580Z     t =    58.08s         Tap "search.action" Button
+2026-11-04T18:00:09.5163210Z     t =    58.08s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:09.7772450Z     t =    58.19s             Find the "search.action" Button
+2026-11-04T18:00:09.8784300Z     t =    59.75s             Check for interrupting elements affecting "search.action" Button
+2026-11-04T18:00:10.2140780Z     t =    60.07s             Synthesize event
+2026-11-04T18:00:10.8411670Z     t =    60.43s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:11.0180420Z     t =    60.45s         Waiting 6.0s for "booking.request.action" Button to exist
+2026-11-04T18:00:11.6043850Z     t =    61.48s             Checking `Expect predicate `existsNoRetry == 1` for object "booking.request.action" Button`
+2026-11-04T18:00:11.7054810Z     t =    61.48s                 Checking existence of `"booking.request.action" Button`
+2026-11-04T18:00:11.8264260Z     t =    61.65s         Tap "search.child-tracking" Button
+2026-11-04T18:00:11.9354770Z     t =    61.65s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:12.0379070Z     t =    61.66s             Find the "search.child-tracking" Button
+2026-11-04T18:00:12.1372720Z     t =    61.80s             Check for interrupting elements affecting "search.child-tracking" Button
+2026-11-04T18:00:12.2873130Z     t =    62.16s             Synthesize event
+2026-11-04T18:00:13.0308050Z     t =    62.63s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:13.1348790Z     t =    62.64s         Find the "search.consent" Button
+2026-11-04T18:00:13.3677950Z     t =    63.17s         Checking existence of `"booking.request.action" Button`
+2026-11-04T18:00:13.6114960Z     t =    63.34s         Tap "search.consent" Button
+2026-11-04T18:00:13.6192810Z     t =    63.34s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:13.7196660Z     t =    63.38s             Find the "search.consent" Button
+2026-11-04T18:00:13.9144170Z     t =    63.78s             Check for interrupting elements affecting "search.consent" Button
+2026-11-04T18:00:14.3744940Z     t =    64.11s             Synthesize event
+2026-11-04T18:00:15.2576580Z     t =    64.49s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:15.5484550Z     t =    64.54s         Tap "search.action" Button
+2026-11-04T18:00:15.6783950Z     t =    64.54s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:15.8013570Z     t =    64.76s             Find the "search.action" Button
+2026-11-04T18:00:15.9072750Z     t =    65.78s             Check for interrupting elements affecting "search.action" Button
+2026-11-04T18:00:16.8418870Z     t =    66.51s             Synthesize event
+2026-11-04T18:00:18.1903230Z     t =    67.08s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:18.2986650Z     t =    67.11s         Waiting 6.0s for "booking.request.action" Button to exist
+2026-11-04T18:00:18.4202340Z     t =    68.18s             Checking `Expect predicate `existsNoRetry == 1` for object "booking.request.action" Button`
+2026-11-04T18:00:18.5227560Z     t =    68.18s                 Checking existence of `"booking.request.action" Button`
+2026-11-04T18:00:18.7500510Z     t =    68.50s         Tap "search.seats.2" Button
+2026-11-04T18:00:18.8509940Z     t =    68.50s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:18.9520040Z     t =    68.58s             Find the "search.seats.2" Button
+2026-11-04T18:00:19.2660600Z     t =    68.95s             Check for interrupting elements affecting "search.seats.2" Button
+2026-11-04T18:00:19.6807010Z     t =    69.27s             Synthesize event
+2026-11-04T18:00:20.0890330Z     t =    69.65s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:20.2251820Z     t =    69.68s         Checking existence of `"booking.request.action" Button`
+2026-11-04T18:00:20.3468920Z     t =    70.16s         Find the "search.consent" Button
+2026-11-04T18:00:20.5531950Z     t =    70.36s Tear Down
+2026-11-04T18:00:31.2326660Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (81.070 seconds).
+2026-11-04T18:00:31.3483560Z Test Suite 'SearchConsentFlowTests' failed at 2026-11-04 18:00:31.170.
+2026-11-04T18:00:31.5029880Z 	 Executed 2 tests, with 1 failure (0 unexpected) in 160.913 (160.925) seconds
+2026-11-04T18:00:31.6048200Z Test Suite 'SportsGreenMooveUITests' started at 2026-11-04 18:00:31.171.
+2026-11-04T18:00:31.7065280Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' started.
+2026-11-04T18:00:31.8070820Z     t =     0.00s Start Test at 2026-11-04 18:00:31.173
+2026-11-04T18:00:31.9228020Z     t =     0.03s Set Up
+2026-11-04T18:00:32.0294840Z     t =     0.04s         Open be.sportgreenmoove.app
+2026-11-04T18:00:32.1493770Z     t =     0.04s             Launch be.sportgreenmoove.app
+2026-11-04T18:00:32.2861030Z     t =     0.04s                 Terminate be.sportgreenmoove.app:29587
+2026-11-04T18:00:32.3608140Z 2026-11-04 18:00:32.337 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:00:32.5748940Z 2026-11-04 18:00:32.337 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:00:33.8562450Z     t =     2.61s                 Setting up automation session
+2026-11-04T18:00:43.2235170Z     t =    11.88s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:00:48.1435260Z     t =    16.87s         Waiting 6.0s for "active-ride.screen" Any to exist
+2026-11-04T18:00:49.1479040Z     t =    17.89s             Checking `Expect predicate `existsNoRetry == 1` for object "active-ride.screen" Any`
+2026-11-04T18:00:49.2124420Z     t =    17.89s                 Checking existence of `"active-ride.screen" Any`
+2026-11-04T18:00:49.5462740Z     t =    18.29s         Waiting 6.0s for "active-ride.pickup.action" Any to exist
+2026-11-04T18:00:50.5891420Z     t =    19.32s             Checking `Expect predicate `existsNoRetry == 1` for object "active-ride.pickup.action" Any`
+2026-11-04T18:00:50.6922710Z     t =    19.32s                 Checking existence of `"active-ride.pickup.action" Any`
+2026-11-04T18:00:50.7918110Z     t =    19.48s         Waiting 6.0s for "active-ride.dropoff.action" Any to exist
+2026-11-04T18:00:51.7085100Z     t =    20.50s             Checking `Expect predicate `existsNoRetry == 1` for object "active-ride.dropoff.action" Any`
+2026-11-04T18:00:51.9099220Z     t =    20.50s                 Checking existence of `"active-ride.dropoff.action" Any`
+2026-11-04T18:00:51.9117570Z     t =    20.65s         Waiting 6.0s for "active-ride.end.action" Any to exist
+2026-11-04T18:00:52.9600640Z     t =    21.67s             Checking `Expect predicate `existsNoRetry == 1` for object "active-ride.end.action" Any`
+2026-11-04T18:00:53.0605540Z     t =    21.68s                 Checking existence of `"active-ride.end.action" Any`
+2026-11-04T18:00:53.0619600Z     t =    21.82s         Waiting 6.0s for "active-ride.emergency-contact" Any to exist
+2026-11-04T18:00:54.0643480Z     t =    22.85s             Checking `Expect predicate `existsNoRetry == 1` for object "active-ride.emergency-contact" Any`
+2026-11-04T18:00:54.1687150Z     t =    22.85s                 Checking existence of `"active-ride.emergency-contact" Any`
+2026-11-04T18:00:54.2920350Z     t =    23.00s Tear Down
+2026-11-04T18:01:00.0382220Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (28.579 seconds).
+2026-11-04T18:01:00.1609670Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' started.
+2026-11-04T18:01:00.2616490Z     t =     0.00s Start Test at 2026-11-04 18:00:59.753
+2026-11-04T18:01:00.2646300Z     t =     0.03s Set Up
+2026-11-04T18:01:00.3647010Z     t =     0.03s         Open be.sportgreenmoove.app
+2026-11-04T18:01:00.4653540Z     t =     0.04s             Launch be.sportgreenmoove.app
+2026-11-04T18:01:00.5665520Z     t =     0.04s                 Terminate be.sportgreenmoove.app:30481
+2026-11-04T18:01:01.0975580Z 2026-11-04 18:01:00.991 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:01:01.2667870Z 2026-11-04 18:01:00.991 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:01:03.5730020Z     t =     2.51s                 Setting up automation session
+2026-11-04T18:01:10.4084540Z     t =    10.61s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:14.2186750Z     t =    14.37s         Waiting 6.0s for "auth.screen" Any to exist
+2026-11-04T18:01:15.2329260Z     t =    15.40s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.screen" Any`
+2026-11-04T18:01:15.3346640Z     t =    15.40s                 Checking existence of `"auth.screen" Any`
+2026-11-04T18:01:15.4352660Z     t =    15.63s         Waiting 6.0s for "auth.email.action" Any to exist
+2026-11-04T18:01:16.4396080Z     t =    16.66s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.email.action" Any`
+2026-11-04T18:01:16.5388230Z     t =    16.66s                 Checking existence of `"auth.email.action" Any`
+2026-11-04T18:01:16.6392650Z     t =    16.73s         Waiting 6.0s for "auth.facebook.action" Any to exist
+2026-11-04T18:01:17.5443610Z     t =    17.75s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.facebook.action" Any`
+2026-11-04T18:01:17.6481770Z     t =    17.75s                 Checking existence of `"auth.facebook.action" Any`
+2026-11-04T18:01:17.7486050Z     t =    17.84s         Waiting 6.0s for "auth.google.action" Any to exist
+2026-11-04T18:01:18.6756120Z     t =    18.86s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.google.action" Any`
+2026-11-04T18:01:18.7758530Z     t =    18.86s                 Checking existence of `"auth.google.action" Any`
+2026-11-04T18:01:18.8760650Z     t =    18.94s         Waiting 6.0s for "auth.email.field" TextField to exist
+2026-11-04T18:01:19.7858630Z     t =    19.94s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.email.field" TextField`
+2026-11-04T18:01:19.8943450Z     t =    19.94s                 Checking existence of `"auth.email.field" TextField`
+2026-11-04T18:01:19.9953610Z     t =    20.01s         Tap "auth.email.field" TextField
+2026-11-04T18:01:20.0967580Z     t =    20.02s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:20.0991580Z     t =    20.03s             Find the "auth.email.field" TextField
+2026-11-04T18:01:20.1995390Z     t =    20.21s             Check for interrupting elements affecting "auth.email.field" TextField
+2026-11-04T18:01:20.3990070Z     t =    20.53s             Synthesize event
+2026-11-04T18:01:20.7272810Z     t =    20.89s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:32.7816720Z     t =    32.63s         Type 'parent@example.be' into "auth.email.field" TextField
+2026-11-04T18:01:32.9588570Z     t =    32.63s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:33.0934590Z     t =    32.91s             Find the "auth.email.field" TextField
+2026-11-04T18:01:44.8853950Z     t =    44.98s             Check for interrupting elements affecting "auth.email.field" TextField
+2026-11-04T18:01:45.6297510Z     t =    45.70s             Synthesize event
+2026-11-04T18:01:47.2536060Z     t =    46.21s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:47.4435980Z     t =    47.55s         Waiting 6.0s for "auth.password.field" SecureTextField to exist
+2026-11-04T18:01:48.5175470Z     t =    48.59s             Checking `Expect predicate `existsNoRetry == 1` for object "auth.password.field" SecureTextField`
+2026-11-04T18:01:48.6216820Z     t =    48.59s                 Checking existence of `"auth.password.field" SecureTextField`
+2026-11-04T18:01:50.3079400Z     t =    50.28s         Tap "auth.password.field" SecureTextField
+2026-11-04T18:01:50.4168600Z     t =    50.28s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:50.5188130Z     t =    50.46s             Find the "auth.password.field" SecureTextField
+2026-11-04T18:01:50.9571810Z     t =    50.91s             Check for interrupting elements affecting "auth.password.field" SecureTextField
+2026-11-04T18:01:51.4907410Z     t =    51.63s             Synthesize event
+2026-11-04T18:01:54.4563130Z     t =    52.43s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:55.4094050Z     t =    55.22s         Type '<redacted>' into "auth.password.field" SecureTextField
+2026-11-04T18:01:55.8234820Z     t =    55.22s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:55.9870960Z     t =    55.70s             Find the "auth.password.field" SecureTextField
+2026-11-04T18:01:56.5336490Z     t =    56.32s             Check for interrupting elements affecting "auth.password.field" SecureTextField
+2026-11-04T18:01:57.0007140Z     t =    57.11s             Synthesize event
+2026-11-04T18:01:58.1426440Z     t =    57.58s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:59.6424090Z     t =    59.20s         Swipe up ScrollView (First Match)
+2026-11-04T18:01:59.7924870Z     t =    59.21s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:01:59.8933110Z     t =    59.40s             Find the ScrollView (First Match)
+2026-11-04T18:02:00.8259090Z     t =    60.99s             Check for interrupting elements affecting "auth.screen" ScrollView
+2026-11-04T18:02:01.1390080Z     t =    61.27s             Synthesize event
+2026-11-04T18:02:02.3548550Z     t =    61.93s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:02:02.6744500Z     t =    62.42s         Tap "auth.email.action" Button
+2026-11-04T18:02:02.9032830Z     t =    62.42s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:02:02.9034220Z     t =    62.46s             Find the "auth.email.action" Button
+2026-11-04T18:02:02.9045650Z     t =    63.07s             Check for interrupting elements affecting "auth.email.action" Button
+2026-11-04T18:02:03.0025900Z     t =    63.24s             Synthesize event
+2026-11-04T18:02:04.3025460Z     t =    63.64s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:02:05.5546390Z     t =    65.09s         Waiting 6.0s for "home.screen" Any to exist
+2026-11-04T18:02:05.9776350Z     t =    66.12s             Checking `Expect predicate `existsNoRetry == 1` for object "home.screen" Any`
+2026-11-04T18:02:06.0873500Z     t =    66.12s                 Checking existence of `"home.screen" Any`
+2026-11-04T18:02:06.5478780Z     t =    66.75s         Tap "Profil" Button
+2026-11-04T18:02:06.6499010Z     t =    66.76s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:02:06.7528290Z     t =    66.77s             Find the "Profil" Button
+2026-11-04T18:02:07.4439480Z     t =    67.34s             Check for interrupting elements affecting "Profil" Button
+2026-11-04T18:02:07.9746390Z     t =    68.07s             Synthesize event
+2026-11-04T18:02:09.0677890Z     t =    68.71s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:02:09.4088800Z     t =    69.00s         Waiting 6.0s for "profile.screen" Any to exist
+2026-11-04T18:02:10.4418030Z     t =    70.06s             Checking `Expect predicate `existsNoRetry == 1` for object "profile.screen" Any`
+2026-11-04T18:02:10.8654740Z     t =    70.06s                 Checking existence of `"profile.screen" Any`
+2026-11-04T18:02:11.9887040Z     t =    71.66s         Find the "profile.name" StaticText
+2026-11-04T18:02:12.2316480Z     t =    72.40s         Checking existence of `"profile.role.parent" Button`
+2026-11-04T18:02:12.3333920Z     t =    72.50s         Checking existence of `"profile.role.driver" Button`
+2026-11-04T18:02:12.7410020Z     t =    72.91s         Checking existence of `"profile.role.child" Button`
+2026-11-04T18:02:12.9464570Z     t =    73.15s         Checking existence of `"profile.role.clubManager" Button`
+2026-11-04T18:02:13.5395280Z     t =    73.41s Tear Down
+2026-11-04T18:02:22.6837660Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (82.909 seconds).
+2026-11-04T18:02:22.8008520Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' started.
+2026-11-04T18:02:23.0087680Z     t =     0.00s Start Test at 2026-11-04 18:02:22.663
+2026-11-04T18:02:23.1108400Z     t =     0.03s Set Up
+2026-11-04T18:02:23.2110690Z     t =     0.04s         Open be.sportgreenmoove.app
+2026-11-04T18:02:23.3129170Z     t =     0.04s             Launch be.sportgreenmoove.app
+2026-11-04T18:02:23.4143350Z     t =     0.04s                 Terminate be.sportgreenmoove.app:31226
+2026-11-04T18:02:23.8584690Z 2026-11-04 18:02:23.748 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:02:23.9582800Z 2026-11-04 18:02:23.748 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:02:34.7060740Z     t =    11.98s                 Setting up automation session
+2026-11-04T18:03:23.8656180Z     t =    58.39s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:03:26.4225370Z     t =    62.97s         Waiting 6.0s for "messages.screen" Any to exist
+2026-11-04T18:03:26.9247300Z     t =    64.02s             Checking `Expect predicate `existsNoRetry == 1` for object "messages.screen" Any`
+2026-11-04T18:03:27.3285920Z     t =    64.02s                 Checking existence of `"messages.screen" Any`
+2026-11-04T18:03:28.5013300Z     t =    64.92s         Waiting 6.0s for "messages.chat.tab" Any to exist
+2026-11-04T18:03:28.8010330Z     t =    65.95s             Checking `Expect predicate `existsNoRetry == 1` for object "messages.chat.tab" Any`
+2026-11-04T18:03:28.9091580Z     t =    65.96s                 Checking existence of `"messages.chat.tab" Any`
+2026-11-04T18:03:29.0384210Z     t =    66.36s         Waiting 6.0s for "messages.rating.tab" Any to exist
+2026-11-04T18:03:30.5282680Z     t =    67.39s             Checking `Expect predicate `existsNoRetry == 1` for object "messages.rating.tab" Any`
+2026-11-04T18:03:30.6470940Z     t =    67.39s                 Checking existence of `"messages.rating.tab" Any`
+2026-11-04T18:03:31.2302900Z     t =    68.47s         Tap "messages.rating.tab" Any
+2026-11-04T18:03:31.3372340Z     t =    68.47s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:03:31.4387830Z     t =    68.49s             Find the "messages.rating.tab" Any
+2026-11-04T18:03:31.9691750Z     t =    68.94s             Check for interrupting elements affecting "messages.rating.tab" Button
+2026-11-04T18:03:35.1466010Z     t =    72.09s                 Wait for com.apple.springboard to idle
+2026-11-04T18:03:35.5029950Z     t =    72.70s             Found 1 interrupting element:
+2026-11-04T18:03:35.6249250Z     t =    72.70s                 Find the "NotificationShortLookView" BannerNotification
+2026-11-04T18:03:35.7333900Z     t =    72.86s "NotificationShortLookView" BannerNotification from Application 'com.apple.springboard'
+2026-11-04T18:03:35.7353460Z     t =    72.87s             Invoking UI interruption monitors for "NotificationShortLookView" BannerNotification from Application 'com.apple.springboard'
+2026-11-04T18:03:35.8361660Z     t =    72.87s                 Find the "NotificationShortLookView" BannerNotification
+2026-11-04T18:03:36.1041310Z     t =    73.20s Default interruption handler ignoring non-alert type element "NotificationShortLookView" BannerNotification.
+2026-11-04T18:03:36.2050400Z     t =    73.20s                 Find the "NotificationShortLookView" BannerNotification
+2026-11-04T18:03:36.3063890Z     t =    73.41s                 Default interruption handler waiting for banner notification to expire/automatically dismiss
+2026-11-04T18:03:36.4065430Z     t =    73.44s                     Waiting 15.0s for "NotificationShortLookView" BannerNotification to not exist
+2026-11-04T18:03:37.1218830Z     t =    74.46s                         Checking `Expect predicate `existsNoRetry == 0` for object "NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:37.2240500Z     t =    74.46s                             Checking existence of `"NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:37.3885510Z     t =    74.61s                             Capturing element debug description
+2026-11-04T18:03:37.6104440Z     t =    74.63s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:38.9811880Z     t =    75.05s                                 Find: Descendants matching type BannerNotification
+2026-11-04T18:03:39.1171970Z     t =    75.06s                                 Find: Identity Binding
+2026-11-04T18:03:39.2459990Z     t =    75.06s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:39.2471290Z     t =    75.53s                                 Find: Descendants matching type BannerNotification
+2026-11-04T18:03:39.4874520Z     t =    75.55s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:39.6048570Z     t =    76.50s                         Checking `Expect predicate `existsNoRetry == 0` for object "NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:39.8096120Z     t =    76.50s                             Checking existence of `"NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:40.3843830Z     t =    76.62s                             Capturing element debug description
+2026-11-04T18:03:40.7116860Z     t =    76.62s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:40.8258430Z     t =    77.37s                                 Find: Descendants matching type BannerNotification
+2026-11-04T18:03:41.0635260Z     t =    77.38s                                 Find: Identity Binding
+2026-11-04T18:03:41.2521510Z     t =    77.66s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:41.4025050Z     t =    78.47s                                 Find: Descendants matching type BannerNotification
+2026-11-04T18:03:41.6163590Z     t =    78.49s                                 Requesting snapshot of accessibility hierarchy for app with pid 25510
+2026-11-04T18:03:42.3278470Z     t =    79.44s                         Checking `Expect predicate `existsNoRetry == 0` for object "NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:42.4634090Z     t =    79.44s                             Checking existence of `"NotificationShortLookView" BannerNotification`
+2026-11-04T18:03:42.5656300Z     t =    79.59s                 Verifying handling...
+2026-11-04T18:03:42.6726940Z     t =    79.88s Confirmed successful handling of interrupting element
+2026-11-04T18:03:42.7988070Z     t =    79.89s             Synthesize event
+2026-11-04T18:03:43.9341700Z     t =    80.72s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:03:44.0867460Z     t =    80.76s         Waiting 6.0s for "messages.rating-prompt.action" Any to exist
+2026-11-04T18:03:44.5423390Z     t =    81.79s             Checking `Expect predicate `existsNoRetry == 1` for object "messages.rating-prompt.action" Any`
+2026-11-04T18:03:44.6452970Z     t =    81.79s                 Checking existence of `"messages.rating-prompt.action" Any`
+2026-11-04T18:03:44.8557160Z     t =    82.13s         Waiting 6.0s for "messages.rating-prompt.action.5" Any to exist
+2026-11-04T18:03:45.9921680Z     t =    83.21s             Checking `Expect predicate `existsNoRetry == 1` for object "messages.rating-prompt.action.5" Any`
+2026-11-04T18:03:46.0926780Z     t =    83.22s                 Checking existence of `"messages.rating-prompt.action.5" Any`
+2026-11-04T18:03:46.3998090Z     t =    83.51s         Find the "messages.rating-prompt.action.5" Button
+2026-11-04T18:03:47.1175970Z     t =    84.34s         Find the "messages.rating-prompt.action.5" Button
+2026-11-04T18:03:48.4597220Z     t =    85.08s         Tap "messages.rating-prompt.action.5" Button
+2026-11-04T18:03:48.5613970Z     t =    85.09s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:03:48.6659950Z     t =    85.69s             Find the "messages.rating-prompt.action.5" Button
+2026-11-04T18:03:48.7846810Z     t =    86.06s             Check for interrupting elements affecting "messages.rating-prompt.action.5" Button
+2026-11-04T18:03:49.0864920Z     t =    86.33s             Synthesize event
+2026-11-04T18:03:49.5961090Z     t =    86.73s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:03:49.7203530Z     t =    86.74s         Waiting 6.0s for "Avis envoyé." StaticText to exist
+2026-11-04T18:03:51.1845460Z     t =    87.78s             Checking `Expect predicate `existsNoRetry == 1` for object "Avis envoyé." StaticText`
+2026-11-04T18:03:51.2877370Z     t =    87.86s                 Checking existence of `"Avis envoyé." StaticText`
+2026-11-04T18:03:51.7475840Z     t =    89.05s         Checking existence of `"messages.rating-prompt.action" Any`
+2026-11-04T18:03:52.3248850Z     t =    89.33s Tear Down
+2026-11-04T18:04:01.2150000Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' passed (98.454 seconds).
+2026-11-04T18:04:01.3888030Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' started.
+2026-11-04T18:04:01.6673440Z     t =     0.00s Start Test at 2026-11-04 18:04:01.119
+2026-11-04T18:04:01.7764540Z     t =     0.04s Set Up
+2026-11-04T18:04:01.8791740Z     t =     0.04s         Open be.sportgreenmoove.app
+2026-11-04T18:04:01.9813020Z     t =     0.05s             Launch be.sportgreenmoove.app
+2026-11-04T18:04:02.0818240Z     t =     0.05s                 Terminate be.sportgreenmoove.app:32131
+2026-11-04T18:04:02.2972160Z 2026-11-04 18:04:02.243 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:04:02.4026520Z 2026-11-04 18:04:02.243 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:04:20.2355010Z     t =    19.02s                 Setting up automation session
+2026-11-04T18:04:37.6173310Z     t =    36.41s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:04:54.6431540Z     t =    52.77s         Waiting 6.0s for "publish.screen" Any to exist
+2026-11-04T18:04:55.2577600Z     t =    53.78s             Checking `Expect predicate `existsNoRetry == 1` for object "publish.screen" Any`
+2026-11-04T18:04:56.0869380Z     t =    53.78s                 Checking existence of `"publish.screen" Any`
+2026-11-04T18:04:56.5019480Z     t =    55.32s         Waiting 6.0s for "publish.next.action" Any to exist
+2026-11-04T18:04:57.5063210Z     t =    56.36s             Checking `Expect predicate `existsNoRetry == 1` for object "publish.next.action" Any`
+2026-11-04T18:04:57.6075100Z     t =    56.36s                 Checking existence of `"publish.next.action" Any`
+2026-11-04T18:04:57.7075950Z     t =    56.48s         Waiting 6.0s for "publish.next.action" Any to exist
+2026-11-04T18:04:58.6555290Z     t =    57.49s             Checking `Expect predicate `existsNoRetry == 1` for object "publish.next.action" Any`
+2026-11-04T18:04:58.7686990Z     t =    57.50s                 Checking existence of `"publish.next.action" Any`
+2026-11-04T18:04:59.1349360Z     t =    57.94s         Tap "publish.next.action" Any
+2026-11-04T18:04:59.3434430Z     t =    57.94s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:04:59.5330340Z     t =    57.95s             Find the "publish.next.action" Any
+2026-11-04T18:05:00.0762010Z     t =    58.84s             Check for interrupting elements affecting "publish.next.action" Button
+2026-11-04T18:05:01.0343110Z     t =    59.83s             Synthesize event
+2026-11-04T18:05:01.5396070Z     t =    60.21s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:03.2004190Z     t =    61.08s         Waiting 6.0s for "publish.next.action" Any to exist
+2026-11-04T18:05:03.4172340Z     t =    62.09s             Checking `Expect predicate `existsNoRetry == 1` for object "publish.next.action" Any`
+2026-11-04T18:05:03.6525580Z     t =    62.09s                 Checking existence of `"publish.next.action" Any`
+2026-11-04T18:05:04.3220600Z     t =    62.72s         Tap "publish.next.action" Any
+2026-11-04T18:05:04.4224680Z     t =    62.72s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:04.5339480Z     t =    62.87s             Find the "publish.next.action" Any
+2026-11-04T18:05:04.7940640Z     t =    63.52s             Check for interrupting elements affecting "publish.next.action" Button
+2026-11-04T18:05:05.2387580Z     t =    63.96s             Synthesize event
+2026-11-04T18:05:05.9727470Z     t =    64.67s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:05.9783080Z     t =    64.68s         Waiting 6.0s for "publish.submit.action" Any to exist
+2026-11-04T18:05:06.8463100Z     t =    65.71s             Checking `Expect predicate `existsNoRetry == 1` for object "publish.submit.action" Any`
+2026-11-04T18:05:06.9939410Z     t =    65.71s                 Checking existence of `"publish.submit.action" Any`
+2026-11-04T18:05:07.0959380Z     t =    65.96s         Open be.sportgreenmoove.app
+2026-11-04T18:05:07.1962990Z     t =    65.96s             Launch be.sportgreenmoove.app
+2026-11-04T18:05:07.2965420Z     t =    65.96s                 Terminate be.sportgreenmoove.app:34265
+2026-11-04T18:05:08.6481880Z 2026-11-04 18:05:08.138 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:05:09.8154760Z 2026-11-04 18:05:08.139 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:05:13.1935510Z     t =    71.98s                 Setting up automation session
+2026-11-04T18:05:21.9912960Z     t =    80.57s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:25.8105270Z     t =    84.67s         Waiting 6.0s for "search.screen" Any to exist
+2026-11-04T18:05:26.8378980Z     t =    85.69s             Checking `Expect predicate `existsNoRetry == 1` for object "search.screen" Any`
+2026-11-04T18:05:26.9468150Z     t =    85.69s                 Checking existence of `"search.screen" Any`
+2026-11-04T18:05:27.2393310Z     t =    86.10s         Waiting 6.0s for "search.action" Any to exist
+2026-11-04T18:05:28.2487960Z     t =    87.11s             Checking `Expect predicate `existsNoRetry == 1` for object "search.action" Any`
+2026-11-04T18:05:28.3493970Z     t =    87.11s                 Checking existence of `"search.action" Any`
+2026-11-04T18:05:28.4497320Z     t =    87.24s         Waiting 6.0s for "search.consent" Any to exist
+2026-11-04T18:05:29.4821650Z     t =    88.29s             Checking `Expect predicate `existsNoRetry == 1` for object "search.consent" Any`
+2026-11-04T18:05:29.6171700Z     t =    88.29s                 Checking existence of `"search.consent" Any`
+2026-11-04T18:05:29.7179150Z     t =    88.46s         Tap "search.consent" Any
+2026-11-04T18:05:29.8188460Z     t =    88.46s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:29.9229200Z     t =    88.47s             Find the "search.consent" Any
+2026-11-04T18:05:30.0539770Z     t =    88.68s             Check for interrupting elements affecting "search.consent" Button
+2026-11-04T18:05:30.0639130Z     t =    88.83s             Synthesize event
+2026-11-04T18:05:30.3671980Z     t =    89.20s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:30.4838910Z     t =    89.28s         Waiting 6.0s for "search.action" Any to exist
+2026-11-04T18:05:31.8103980Z     t =    90.32s             Checking `Expect predicate `existsNoRetry == 1` for object "search.action" Any`
+2026-11-04T18:05:31.8113360Z     t =    90.35s                 Checking existence of `"search.action" Any`
+2026-11-04T18:05:31.9270110Z     t =    90.76s         Tap "search.action" Any
+2026-11-04T18:05:32.0320030Z     t =    90.76s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:32.1345420Z     t =    90.77s             Find the "search.action" Any
+2026-11-04T18:05:32.2349170Z     t =    91.08s             Check for interrupting elements affecting "search.action" Button
+2026-11-04T18:05:32.3452360Z     t =    91.22s             Synthesize event
+2026-11-04T18:05:32.9299360Z     t =    91.68s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:05:33.0506580Z     t =    91.72s         Waiting 6.0s for "booking.request.action" Any to exist
+2026-11-04T18:05:33.9172240Z     t =    92.78s             Checking `Expect predicate `existsNoRetry == 1` for object "booking.request.action" Any`
+2026-11-04T18:05:34.0184220Z     t =    92.78s                 Checking existence of `"booking.request.action" Any`
+2026-11-04T18:05:34.1200280Z     t =    92.92s         Open be.sportgreenmoove.app
+2026-11-04T18:05:34.2204040Z     t =    92.92s             Launch be.sportgreenmoove.app
+2026-11-04T18:05:34.3242570Z     t =    92.93s                 Terminate be.sportgreenmoove.app:35418
+2026-11-04T18:05:35.1443810Z 2026-11-04 18:05:35.100 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:05:35.2493920Z 2026-11-04 18:05:35.100 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:06:02.5129660Z     t =   121.27s                 Setting up automation session
+2026-11-04T18:06:13.1223460Z     t =   131.43s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:06:17.1625920Z     t =   136.01s         Waiting 6.0s for Button (First Match) to exist
+2026-11-04T18:06:18.4304700Z     t =   137.02s             Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+2026-11-04T18:06:18.5307880Z     t =   137.03s                 Checking existence of `Button (First Match)`
+2026-11-04T18:06:19.4380890Z     t =   138.24s         Tap Button (First Match)
+2026-11-04T18:06:19.5383670Z     t =   138.24s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:06:19.6390330Z     t =   138.28s             Find the Button (First Match)
+2026-11-04T18:06:20.3449430Z     t =   139.16s             Check for interrupting elements affecting "EN ATTENTE, 1" Button
+2026-11-04T18:06:20.7655450Z     t =   139.54s             Synthesize event
+2026-11-04T18:06:21.7727030Z     t =   140.13s             Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:06:22.0728960Z     t =   140.16s         Waiting 6.0s for "booking.approve.action" Any to exist
+2026-11-04T18:06:22.5192250Z     t =   141.21s             Checking `Expect predicate `existsNoRetry == 1` for object "booking.approve.action" Any`
+2026-11-04T18:06:22.6293280Z     t =   141.21s                 Checking existence of `"booking.approve.action" Any`
+2026-11-04T18:06:22.9683170Z     t =   141.47s Tear Down
+2026-11-04T18:06:33.2844840Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (152.117 seconds).
+2026-11-04T18:06:33.3920610Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' started.
+2026-11-04T18:06:33.5795580Z     t =     0.00s Start Test at 2026-11-04 18:06:33.237
+2026-11-04T18:06:33.7104840Z     t =     0.03s Set Up
+2026-11-04T18:06:33.8626000Z     t =     0.04s         Open be.sportgreenmoove.app
+2026-11-04T18:06:33.9706150Z     t =     0.04s             Launch be.sportgreenmoove.app
+2026-11-04T18:06:34.1190220Z     t =     0.04s                 Terminate be.sportgreenmoove.app:36721
+2026-11-04T18:06:34.8061880Z 2026-11-04 18:06:34.554 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:06:35.1730310Z 2026-11-04 18:06:34.555 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:06:38.9999720Z     t =     4.08s                 Setting up automation session
+2026-11-04T18:06:48.8280150Z     t =    15.58s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:06:53.2591680Z     t =    19.96s         Waiting 6.0s for "groups.screen" Any to exist
+2026-11-04T18:06:54.4163210Z     t =    20.97s             Checking `Expect predicate `existsNoRetry == 1` for object "groups.screen" Any`
+2026-11-04T18:06:54.5512150Z     t =    20.98s                 Checking existence of `"groups.screen" Any`
+2026-11-04T18:06:54.9236380Z     t =    21.49s         Waiting 6.0s for "groups.join.action" Any to exist
+2026-11-04T18:06:55.8460120Z     t =    22.51s             Checking `Expect predicate `existsNoRetry == 1` for object "groups.join.action" Any`
+2026-11-04T18:06:56.0481890Z     t =    22.51s                 Checking existence of `"groups.join.action" Any`
+2026-11-04T18:06:56.0713050Z     t =    22.65s         Open be.sportgreenmoove.app
+2026-11-04T18:06:56.0715110Z     t =    22.65s             Launch be.sportgreenmoove.app
+2026-11-04T18:06:56.0740890Z     t =    22.66s                 Terminate be.sportgreenmoove.app:37478
+2026-11-04T18:06:58.3326050Z 2026-11-04 18:06:57.166 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:06:58.8266270Z 2026-11-04 18:06:57.166 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:07:01.4930580Z     t =    27.99s                 Setting up automation session
+2026-11-04T18:07:15.6506840Z     t =    41.92s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:07:19.9298340Z     t =    46.62s         Waiting 6.0s for "impact.screen" Any to exist
+2026-11-04T18:07:20.9369580Z     t =    47.66s             Checking `Expect predicate `existsNoRetry == 1` for object "impact.screen" Any`
+2026-11-04T18:07:21.0371790Z     t =    47.66s                 Checking existence of `"impact.screen" Any`
+2026-11-04T18:07:21.1441800Z     t =    47.87s         Open be.sportgreenmoove.app
+2026-11-04T18:07:21.2520860Z     t =    47.88s             Launch be.sportgreenmoove.app
+2026-11-04T18:07:21.3524670Z     t =    47.88s                 Terminate be.sportgreenmoove.app:37705
+2026-11-04T18:07:22.5003980Z 2026-11-04 18:07:22.344 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:07:22.6357830Z 2026-11-04 18:07:22.344 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:07:23.8469810Z     t =    50.58s                 Setting up automation session
+2026-11-04T18:07:33.9176420Z     t =    60.63s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:07:38.0145900Z     t =    64.75s         Waiting 6.0s for "rewards.screen" Any to exist
+2026-11-04T18:07:39.0542220Z     t =    65.77s             Checking `Expect predicate `existsNoRetry == 1` for object "rewards.screen" Any`
+2026-11-04T18:07:39.2135690Z     t =    65.77s                 Checking existence of `"rewards.screen" Any`
+2026-11-04T18:07:39.3142490Z     t =    66.01s         Waiting 6.0s for "rewards.withdraw.action" Any to exist
+2026-11-04T18:07:40.3530990Z     t =    67.04s             Checking `Expect predicate `existsNoRetry == 1` for object "rewards.withdraw.action" Any`
+2026-11-04T18:07:40.4614820Z     t =    67.04s                 Checking existence of `"rewards.withdraw.action" Any`
+2026-11-04T18:07:40.5629340Z     t =    67.16s         Open be.sportgreenmoove.app
+2026-11-04T18:07:40.7164450Z     t =    67.16s             Launch be.sportgreenmoove.app
+2026-11-04T18:07:40.8302660Z     t =    67.17s                 Terminate be.sportgreenmoove.app:38436
+2026-11-04T18:07:41.9749240Z 2026-11-04 18:07:41.602 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:07:41.9753960Z 2026-11-04 18:07:41.602 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:07:43.1653660Z     t =    69.62s                 Setting up automation session
+2026-11-04T18:07:51.1965270Z     t =    77.94s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:07:56.0586490Z     t =    82.79s         Waiting 6.0s for "options.screen" Any to exist
+2026-11-04T18:07:57.0649120Z     t =    83.80s             Checking `Expect predicate `existsNoRetry == 1` for object "options.screen" Any`
+2026-11-04T18:07:57.1652400Z     t =    83.80s                 Checking existence of `"options.screen" Any`
+2026-11-04T18:07:57.6900650Z     t =    84.37s         Waiting 6.0s for "options.support-report.action" Any to exist
+2026-11-04T18:07:58.6932480Z     t =    85.37s             Checking `Expect predicate `existsNoRetry == 1` for object "options.support-report.action" Any`
+2026-11-04T18:07:58.7348870Z     t =    85.37s                 Checking existence of `"options.support-report.action" Any`
+2026-11-04T18:07:58.8786830Z     t =    85.61s         Open be.sportgreenmoove.app
+2026-11-04T18:07:58.9791360Z     t =    85.62s             Launch be.sportgreenmoove.app
+2026-11-04T18:07:59.0804170Z     t =    85.62s                 Terminate be.sportgreenmoove.app:38849
+2026-11-04T18:08:00.1430940Z 2026-11-04 18:07:59.964 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-11-04T18:08:00.1854730Z 2026-11-04 18:07:59.964 xcodebuild[24806:76544] [MT] IDELaunchParametersSnapshot: no debugger version
+2026-11-04T18:08:01.5116610Z     t =    88.18s                 Setting up automation session
+2026-11-04T18:08:08.9534420Z     t =    95.67s                 Wait for be.sportgreenmoove.app to idle
+2026-11-04T18:08:13.7825530Z     t =   100.50s         Waiting 6.0s for "payments.screen" Any to exist
+2026-11-04T18:08:14.7869470Z     t =   101.51s             Checking `Expect predicate `existsNoRetry == 1` for object "payments.screen" Any`
+2026-11-04T18:08:14.8881340Z     t =   101.51s                 Checking existence of `"payments.screen" Any`
+2026-11-04T18:08:14.9883880Z     t =   101.67s         Waiting 6.0s for "payments.payment.action" Any to exist
+2026-11-04T18:08:15.9995610Z     t =   102.69s             Checking `Expect predicate `existsNoRetry == 1` for object "payments.payment.action" Any`
+2026-11-04T18:08:16.1377190Z     t =   102.69s                 Checking existence of `"payments.payment.action" Any`
+2026-11-04T18:08:16.2381580Z     t =   102.75s Tear Down
+2026-11-04T18:08:17.0482870Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' passed (103.800 seconds).
+2026-11-04T18:08:17.1487170Z Test Suite 'SportsGreenMooveUITests' passed at 2026-11-04 18:08:17.037.
+2026-11-04T18:08:17.2490490Z 	 Executed 5 tests, with 0 failures (0 unexpected) in 465.859 (465.866) seconds
+2026-11-04T18:08:17.3497240Z Test Suite 'SportsGreenMooveUITests.xctest' failed at 2026-11-04 18:08:17.038.
+2026-11-04T18:08:17.4501210Z 	 Executed 7 tests, with 1 failure (0 unexpected) in 626.772 (626.795) seconds
+2026-11-04T18:08:17.5582950Z Test Suite 'All tests' failed at 2026-11-04 18:08:17.040.
+2026-11-04T18:08:17.6589420Z 	 Executed 7 tests, with 1 failure (0 unexpected) in 626.772 (626.801) seconds
+2026-11-04T18:10:36.6533920Z 2026-11-04 18:10:36.598 xcodebuild[24806:76544] [MT] IDETestOperationsObserverDebug: 1172.741 elapsed -- Testing started completed.
+2026-11-04T18:10:36.7542020Z 2026-11-04 18:10:36.598 xcodebuild[24806:76544] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-11-04T18:10:36.8547670Z 2026-11-04 18:10:36.598 xcodebuild[24806:76544] [MT] IDETestOperationsObserverDebug: 1172.741 sec, +1172.741 sec -- end
+2026-11-04T18:10:37.7654650Z Failing tests:
+2026-11-04T18:10:37.7655100Z 
+2026-11-04T18:10:37.8662220Z 	SearchConsentFlowTests.testExplicitConsentAndChildChangeInvalidateResults()
+2026-11-04T18:10:37.8663850Z Test session results, code coverage, and logs:
+2026-11-04T18:10:37.9668340Z 
+2026-11-04T18:10:37.9672620Z 	/Users/runner/work/_temp/sgm-ios-fixtures.xcresult
+2026-11-04T18:10:38.0694980Z 
+2026-11-04T18:10:38.0994970Z ** TEST EXECUTE FAILED **
+2026-11-04T18:10:38.2008300Z 
+2026-11-04T18:10:51.7640820Z Testing started
+2026-11-04T18:10:51.8423100Z ##[error]Process completed with exit code 65.

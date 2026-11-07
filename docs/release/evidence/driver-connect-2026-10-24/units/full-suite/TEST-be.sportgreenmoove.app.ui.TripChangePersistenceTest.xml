@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripChangePersistenceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.549Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="requestPersistenceFailurePreventsNetworkWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.002"/>
+  <testcase name="failedSaveKeepsTypedInputAndBlocksSubmissionUntilExplicitRetry" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"/>
+  <testcase name="unknownProposalIsResolvedAfterReopeningWithoutAnotherSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"/>
+  <testcase name="parentReviewsNeverAccessDriverDraftStorage" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"/>
+  <testcase name="openingUnrelatedClosedHistoryNeverDeletesAnUnsentDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"/>
+  <testcase name="editedInputDoesNotKeepAnObsoleteUnrecordedSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"/>
+  <testcase name="accountAndTripScopesNeverLoadEachOthersDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"/>
+  <testcase name="failedReadDoesNotCreateAnEmptyDraftOrWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"/>
+  <testcase name="staleDraftIsRetainedButCannotBeSubmittedUntilExplicitlyReplaced" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"/>
+  <testcase name="rawInvalidFieldsSurviveNewStateWithoutWritesToTheTrip" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.0"/>
+  <testcase name="unrecordedRequestCanOnlyBeResentExplicitlyWithSameIdentity" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

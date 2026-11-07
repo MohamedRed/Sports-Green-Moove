@@ -1,0 +1,27 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest:
+Error in currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalTeamChatUi.waitFor(LocalTeamChatUi.kt:71)
+	at be.sportgreenmoove.app.ui.LocalTeamChatUi.login(LocalTeamChatUi.kt:19)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest.currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(LocalTeamConversationFlowTest.kt:49)
+
+
+Time: 69.786
+There was 1 failure:
+1) currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalTeamChatUi.waitFor(LocalTeamChatUi.kt:71)
+	at be.sportgreenmoove.app.ui.LocalTeamChatUi.login(LocalTeamChatUi.kt:19)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest.currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(LocalTeamConversationFlowTest.kt:49)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

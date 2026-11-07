@@ -1,0 +1,33 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1c89c695696a0749269414d3a732b18a",
+  "scope": "native-three-account-real-map-trip-application",
+  "completed": true,
+  "tripId": "veebE6gY9u7GsMtFxeoA",
+  "selectedPlaceIds": [
+    "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+    "ChIJA76xCep_wUcRIgzsJATgLZ4"
+  ],
+  "quoteText": "7512 m · 9 min",
+  "mapDisplay": {
+    "sdkLoaded": true,
+    "anchorsFramed": true,
+    "capture": "native-display",
+    "screenFile": "local-real-map-display.png",
+    "regionFile": "local-real-map-region.png",
+    "left": 85,
+    "top": 1623,
+    "width": 910,
+    "height": 656,
+    "samples": 13563,
+    "colorBins": 185,
+    "dominantFraction": 0.44333849443338497
+  },
+  "realSuggestionsSelected": true,
+  "unconfirmedPlaceBlocked": true,
+  "bothParentsConfirmedInApp": true,
+  "originalTripKeptBeforeApplication": true,
+  "parentsCannotApply": true,
+  "routeQuoteRequired": true,
+  "driverAppliedInApp": true
+}

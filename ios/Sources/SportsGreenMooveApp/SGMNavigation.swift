@@ -5,7 +5,7 @@ struct SGMTabBar: View {
     var onSelect: (AppTab) -> Void
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .bottom) {
             HStack {
                 navItem(.home)
                 navItem(.trips)
@@ -15,7 +15,7 @@ struct SGMTabBar: View {
             }
             .frame(height: SGMSize.navBar)
             .padding(.horizontal, 18)
-            .background(SGM.bgSurface.opacity(0.96))
+            .background(SGM.bgSurface.opacity(0.96).ignoresSafeArea(.container, edges: .bottom))
             .overlay(alignment: .top) {
                 Rectangle()
                     .fill(SGM.border)
@@ -32,10 +32,11 @@ struct SGMTabBar: View {
                     .shadow(color: SGM.green.opacity(0.34), radius: 10, y: 4)
             }
             .buttonStyle(.plain)
-            .offset(y: -12)
+            .padding(.bottom, (SGMSize.navBar - SGMSize.fab) / 2 + 12)
         }
         .frame(maxWidth: .infinity)
-        .ignoresSafeArea(.container, edges: .bottom)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("navigation.bar")
     }
 
     private func navItem(_ tab: AppTab) -> some View {

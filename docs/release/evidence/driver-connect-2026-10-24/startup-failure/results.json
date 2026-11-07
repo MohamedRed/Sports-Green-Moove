@@ -1,0 +1,30 @@
+{
+  "scope": "android-compose-connect-components-no-backend-or-provider",
+  "testedAt": "2026-10-24T16:00:40.589Z",
+  "phase": "green",
+  "avd": "sgm_connect_green_20261024",
+  "completed": false,
+  "expectedCases": 3,
+  "sourceFiles": {
+    "scripts/qa/run-connect-components.mjs": "fc80c2868b5be837b0d3b6205881f2356c9737081b14f505423b32f1cc61e16d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt": "96a103b56aa65961a9ee6450e9eb173494747a2a56251fbfdf6d4afd51ae1a82",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsConnectCard.kt": "9bc13be9977a1c06fe6b42f38ae4fb603efe70c834da15d6f37a0da9b64801d8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsRoute.kt": "51eee8141770a7c76a9867ee404da9143de52335ef664dbc6cc5b1118e4ba8ba",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/PaymentsScreen.kt": "65ad9961f21493f221e3cbc99c1d28bcd352ca9d876d72462ba2faa50ceb0750",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/StripeConnectCoordinator.kt": "16af36919e3c151bd8546f217244e4b574a2fdddadbf13b7c1fd6567981c2350",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/StripeConnectCoordinatorTest.kt": "a24ba0e918551be4f4f5978f97b99c6976c839928941ab724849039d2bcba7d7"
+  },
+  "apkHashes": {
+    "apk/debug/app-debug.apk": "9ef0b06a41a53006948975ded3de5acfd381d39ae45550a131278fd8318a487b",
+    "apk/androidTest/debug/app-debug-androidTest.apk": "d7263ba8ca65e25509c3e395a6c2d40961eb5502938854829626845b8f7202b8"
+  },
+  "transcriptSha256": "cc376fcd260b55a01f82c04af5e0a9ead88516f600131a38bdea1a3e05b10a8d",
+  "packagesRemoved": true,
+  "providerRequests": 0,
+  "backendRequests": 0,
+  "physicalDevice": false,
+  "realOnboarding": false,
+  "productionWrites": false,
+  "administrationUsed": false,
+  "failure": "AssertionError"
+}

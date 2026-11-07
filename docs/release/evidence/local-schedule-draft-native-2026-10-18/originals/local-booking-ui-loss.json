@@ -1,0 +1,18 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "61c4bc3d855a68e23bb2645c914c171b",
+  "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+  "tripId": "489tAalLRO4WfuFRmb6L",
+  "completed": true,
+  "sendingObservedBeforeDispatch": true,
+  "clientRequestId": "443259a0-2c53-4b5d-be02-76992945d1b4",
+  "unconfirmedReplyVisible": true,
+  "retryActionVisible": true,
+  "pendingIdentityPersisted": true,
+  "confirmedVisible": true,
+  "secondSubmissionActionAbsent": true,
+  "staleCallbackIgnored": true,
+  "sdkCalls": 2,
+  "bookingId": "PAFoV8JnqOGJBkeyf4d2",
+  "pendingClearedAfterAcknowledgement": true
+}

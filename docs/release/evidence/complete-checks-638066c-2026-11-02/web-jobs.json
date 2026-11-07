@@ -1,0 +1,1781 @@
+{
+  "total_count": 4,
+  "jobs": [
+    {
+      "id": 125252511621,
+      "run_id": 41438000498,
+      "workflow_name": "Web Integration Smoke",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41438000498",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAdKaGnhQ",
+      "head_sha": "638066cc697047a6c5a159f27f89ec448a5f068e",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/125252511621",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41438000498/job/125252511621",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-02T11:35:15Z",
+      "started_at": "2026-11-02T11:35:17Z",
+      "completed_at": "2026-11-02T11:43:21Z",
+      "name": "Guardian, child, and tracking service smoke",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-02T11:35:18Z",
+          "completed_at": "2026-11-02T11:35:19Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-02T11:35:19Z",
+          "completed_at": "2026-11-02T11:35:27Z"
+        },
+        {
+          "name": "Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-02T11:35:27Z",
+          "completed_at": "2026-11-02T11:35:29Z"
+        },
+        {
+          "name": "Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-02T11:35:29Z",
+          "completed_at": "2026-11-02T11:35:29Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-02T11:35:29Z",
+          "completed_at": "2026-11-02T11:35:38Z"
+        },
+        {
+          "name": "Build Functions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-02T11:35:38Z",
+          "completed_at": "2026-11-02T11:35:42Z"
+        },
+        {
+          "name": "Install media inspection tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-02T11:35:42Z",
+          "completed_at": "2026-11-02T11:36:11Z"
+        },
+        {
+          "name": "Test isolated guardian verification authority and lifecycle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-02T11:36:11Z",
+          "completed_at": "2026-11-02T11:36:36Z"
+        },
+        {
+          "name": "Test guardian review permissions, pagination and decision state",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-02T11:36:36Z",
+          "completed_at": "2026-11-02T11:36:56Z"
+        },
+        {
+          "name": "Test parent verification choices and authoritative state reads",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-02T11:36:56Z",
+          "completed_at": "2026-11-02T11:37:16Z"
+        },
+        {
+          "name": "Test private emergency contact ownership and revocation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-02T11:37:16Z",
+          "completed_at": "2026-11-02T11:37:37Z"
+        },
+        {
+          "name": "Verify private profile-only city persistence and concurrent edits",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-02T11:37:37Z",
+          "completed_at": "2026-11-02T11:37:57Z"
+        },
+        {
+          "name": "Verify complete owned ledger summaries and bounded history",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-02T11:37:57Z",
+          "completed_at": "2026-11-02T11:38:15Z"
+        },
+        {
+          "name": "Test child emergency reading with preseeded private account links",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-02T11:38:15Z",
+          "completed_at": "2026-11-02T11:38:40Z"
+        },
+        {
+          "name": "Test immutable child contact identity and independently verified fixtures",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-02T11:38:40Z",
+          "completed_at": "2026-11-02T11:39:39Z"
+        },
+        {
+          "name": "Test child contact discovery through verified-parent approval",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-02T11:39:39Z",
+          "completed_at": "2026-11-02T11:40:07Z"
+        },
+        {
+          "name": "Test parent-shared child invitations without adult-role signup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-02T11:40:07Z",
+          "completed_at": "2026-11-02T11:40:34Z"
+        },
+        {
+          "name": "Test child booking receipt recovery without map requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-02T11:40:34Z",
+          "completed_at": "2026-11-02T11:40:54Z"
+        },
+        {
+          "name": "Test authoritative team enrollment without granting conversation access",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-02T11:40:54Z",
+          "completed_at": "2026-11-02T11:41:19Z"
+        },
+        {
+          "name": "Test team enrollment across club recreation with verified disposal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-02T11:41:19Z",
+          "completed_at": "2026-11-02T11:41:42Z"
+        },
+        {
+          "name": "Validate recreated child contact UI evidence contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-02T11:41:42Z",
+          "completed_at": "2026-11-02T11:42:03Z"
+        },
+        {
+          "name": "Verify observation freshness through isolated authenticated location calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-02T11:42:03Z",
+          "completed_at": "2026-11-02T11:42:24Z"
+        },
+        {
+          "name": "Verify atomic observation ordering through concurrent location calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-02T11:42:24Z",
+          "completed_at": "2026-11-02T11:42:49Z"
+        },
+        {
+          "name": "Verify selected ride observer authorization and remote lifecycle responses",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-02T11:42:49Z",
+          "completed_at": "2026-11-02T11:43:12Z"
+        },
+        {
+          "name": "Upload club identity trial and disposal evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-02T11:43:12Z",
+          "completed_at": "2026-11-02T11:43:14Z"
+        },
+        {
+          "name": "Retain ledger summary and disposal results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-02T11:43:14Z",
+          "completed_at": "2026-11-02T11:43:15Z"
+        },
+        {
+          "name": "Retain child contact discovery and disposal evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-02T11:43:15Z",
+          "completed_at": "2026-11-02T11:43:16Z"
+        },
+        {
+          "name": "Retain child invitation results and disposal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-02T11:43:16Z",
+          "completed_at": "2026-11-02T11:43:17Z"
+        },
+        {
+          "name": "Retain child booking receipt trial and disposal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-02T11:43:17Z",
+          "completed_at": "2026-11-02T11:43:18Z"
+        },
+        {
+          "name": "Post Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-02T11:43:18Z",
+          "completed_at": "2026-11-02T11:43:18Z"
+        },
+        {
+          "name": "Post Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-02T11:43:18Z",
+          "completed_at": "2026-11-02T11:43:19Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-02T11:43:19Z",
+          "completed_at": "2026-11-02T11:43:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-02T11:43:19Z",
+          "completed_at": "2026-11-02T11:43:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/125252511621",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000011395,
+      "runner_name": "GitHub Actions 1000011395",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 125252511825,
+      "run_id": 41438000498,
+      "workflow_name": "Web Integration Smoke",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41438000498",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAdKaGoUQ",
+      "head_sha": "638066cc697047a6c5a159f27f89ec448a5f068e",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/125252511825",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41438000498/job/125252511825",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-02T11:35:15Z",
+      "started_at": "2026-11-02T11:35:17Z",
+      "completed_at": "2026-11-02T11:44:32Z",
+      "name": "People and safety service smoke",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-02T11:35:18Z",
+          "completed_at": "2026-11-02T11:35:20Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-02T11:35:20Z",
+          "completed_at": "2026-11-02T11:35:28Z"
+        },
+        {
+          "name": "Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-02T11:35:28Z",
+          "completed_at": "2026-11-02T11:35:30Z"
+        },
+        {
+          "name": "Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-02T11:35:30Z",
+          "completed_at": "2026-11-02T11:35:30Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-02T11:35:30Z",
+          "completed_at": "2026-11-02T11:35:46Z"
+        },
+        {
+          "name": "Build Functions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-02T11:35:46Z",
+          "completed_at": "2026-11-02T11:35:51Z"
+        },
+        {
+          "name": "Install media inspection tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-02T11:35:51Z",
+          "completed_at": "2026-11-02T11:36:14Z"
+        },
+        {
+          "name": "Test private requester support replies and explicit retry",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-02T11:36:14Z",
+          "completed_at": "2026-11-02T11:36:49Z"
+        },
+        {
+          "name": "Validate terminal native copy failure and passing support components",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-02T11:36:49Z",
+          "completed_at": "2026-11-02T11:36:50Z"
+        },
+        {
+          "name": "Verify requester support submission recovery and urgent flag in isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-02T11:36:50Z",
+          "completed_at": "2026-11-02T11:37:20Z"
+        },
+        {
+          "name": "Verify support-only urgent alerts and idempotent mail delivery in isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-02T11:37:20Z",
+          "completed_at": "2026-11-02T11:37:52Z"
+        },
+        {
+          "name": "Validate private real-phone support recovery observation safeguards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-02T11:37:52Z",
+          "completed_at": "2026-11-02T11:37:52Z"
+        },
+        {
+          "name": "Validate isolated device readiness and private support call diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-02T11:37:52Z",
+          "completed_at": "2026-11-02T11:37:53Z"
+        },
+        {
+          "name": "Test team-only adult conversations and admission-scoped history",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-02T11:37:53Z",
+          "completed_at": "2026-11-02T11:38:31Z"
+        },
+        {
+          "name": "Test team alerts and pending phone delivery",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-02T11:38:31Z",
+          "completed_at": "2026-11-02T11:40:01Z"
+        },
+        {
+          "name": "Test foreground notification inbox authority",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-02T11:40:01Z",
+          "completed_at": "2026-11-02T11:40:44Z"
+        },
+        {
+          "name": "Test current-device team alert resolution",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-02T11:40:44Z",
+          "completed_at": "2026-11-02T11:41:27Z"
+        },
+        {
+          "name": "Test durable team push dispatch without provider sends",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-02T11:41:27Z",
+          "completed_at": "2026-11-02T11:42:17Z"
+        },
+        {
+          "name": "Test multi-child grants and cross-team conversation isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-02T11:42:17Z",
+          "completed_at": "2026-11-02T11:43:02Z"
+        },
+        {
+          "name": "Verify isolated team conversation directory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-02T11:43:02Z",
+          "completed_at": "2026-11-02T11:43:40Z"
+        },
+        {
+          "name": "Verify isolated team read state and retained evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-02T11:43:40Z",
+          "completed_at": "2026-11-02T11:44:27Z"
+        },
+        {
+          "name": "Retain team alert services and disposal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-02T11:44:27Z",
+          "completed_at": "2026-11-02T11:44:28Z"
+        },
+        {
+          "name": "Retain notification inbox services and disposal",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-02T11:44:28Z",
+          "completed_at": "2026-11-02T11:44:29Z"
+        },
+        {
+          "name": "Post Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-02T11:44:29Z",
+          "completed_at": "2026-11-02T11:44:29Z"
+        },
+        {
+          "name": "Post Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-02T11:44:29Z",
+          "completed_at": "2026-11-02T11:44:29Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-11-02T11:44:29Z",
+          "completed_at": "2026-11-02T11:44:30Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-11-02T11:44:30Z",
+          "completed_at": "2026-11-02T11:44:30Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/125252511825",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000011397,
+      "runner_name": "GitHub Actions 1000011397",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 125252512028,
+      "run_id": 41438000498,
+      "workflow_name": "Web Integration Smoke",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41438000498",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAdKaGpHA",
+      "head_sha": "638066cc697047a6c5a159f27f89ec448a5f068e",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/125252512028",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41438000498/job/125252512028",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-02T11:35:15Z",
+      "started_at": "2026-11-02T11:35:17Z",
+      "completed_at": "2026-11-02T11:52:22Z",
+      "name": "Functions, admin, and website checks",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-02T11:35:18Z",
+          "completed_at": "2026-11-02T11:35:19Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-02T11:35:19Z",
+          "completed_at": "2026-11-02T11:35:28Z"
+        },
+        {
+          "name": "Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-02T11:35:28Z",
+          "completed_at": "2026-11-02T11:35:29Z"
+        },
+        {
+          "name": "Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-02T11:35:29Z",
+          "completed_at": "2026-11-02T11:35:30Z"
+        },
+        {
+          "name": "Install dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-02T11:35:30Z",
+          "completed_at": "2026-11-02T11:35:42Z"
+        },
+        {
+          "name": "Validate required checks and report ordering",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-02T11:35:42Z",
+          "completed_at": "2026-11-02T11:35:43Z"
+        },
+        {
+          "name": "Validate complete smoke partitioning",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-02T11:35:43Z",
+          "completed_at": "2026-11-02T11:35:43Z"
+        },
+        {
+          "name": "Test isolated chat proof diagnostic",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-02T11:35:43Z",
+          "completed_at": "2026-11-02T11:35:45Z"
+        },
+        {
+          "name": "Test approved invitation private alias",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-02T11:35:45Z",
+          "completed_at": "2026-11-02T11:35:45Z"
+        },
+        {
+          "name": "Test primary capture observation protocol",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-02T11:35:45Z",
+          "completed_at": "2026-11-02T11:35:46Z"
+        },
+        {
+          "name": "Test Functions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-02T11:35:46Z",
+          "completed_at": "2026-11-02T11:35:56Z"
+        },
+        {
+          "name": "Validate bounded collection regression evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-02T11:35:56Z",
+          "completed_at": "2026-11-02T11:35:56Z"
+        },
+        {
+          "name": "Test Belgian trip dates across server timezones",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-02T11:35:56Z",
+          "completed_at": "2026-11-02T11:35:59Z"
+        },
+        {
+          "name": "Validate Belgian trip date regression evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-11-02T11:35:59Z",
+          "completed_at": "2026-11-02T11:35:59Z"
+        },
+        {
+          "name": "Validate scoped trip history evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-02T11:35:59Z",
+          "completed_at": "2026-11-02T11:35:59Z"
+        },
+        {
+          "name": "Test isolated trip history access and paging",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-02T11:35:59Z",
+          "completed_at": "2026-11-02T11:36:37Z"
+        },
+        {
+          "name": "Build Functions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-02T11:36:37Z",
+          "completed_at": "2026-11-02T11:36:41Z"
+        },
+        {
+          "name": "Validate local test isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-02T11:36:41Z",
+          "completed_at": "2026-11-02T11:36:45Z"
+        },
+        {
+          "name": "Validate independent focused safety lane",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-02T11:36:45Z",
+          "completed_at": "2026-11-02T11:36:46Z"
+        },
+        {
+          "name": "Validate preinstalled full-matrix APKs and complete raw JUnit inventory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-11-02T11:36:46Z",
+          "completed_at": "2026-11-02T11:36:47Z"
+        },
+        {
+          "name": "Validate retained independent Android execution and device observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-11-02T11:36:47Z",
+          "completed_at": "2026-11-02T11:36:47Z"
+        },
+        {
+          "name": "Test bounded restoration faults and unchanged fixture records",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-11-02T11:36:47Z",
+          "completed_at": "2026-11-02T11:36:48Z"
+        },
+        {
+          "name": "Validate guarded full-search preparation and accessible trip controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-11-02T11:36:48Z",
+          "completed_at": "2026-11-02T11:36:49Z"
+        },
+        {
+          "name": "Replay current search booking notice contract without map requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-02T11:36:49Z",
+          "completed_at": "2026-11-02T11:37:15Z"
+        },
+        {
+          "name": "Validate retained physical search and booking proof without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-02T11:37:15Z",
+          "completed_at": "2026-11-02T11:37:15Z"
+        },
+        {
+          "name": "Validate driver account preparation without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-02T11:37:15Z",
+          "completed_at": "2026-11-02T11:37:15Z"
+        },
+        {
+          "name": "Install media inspection tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-02T11:37:15Z",
+          "completed_at": "2026-11-02T11:37:35Z"
+        },
+        {
+          "name": "Validate physical trip consent checkpoints and retained proof",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-11-02T11:37:35Z",
+          "completed_at": "2026-11-02T11:37:35Z"
+        },
+        {
+          "name": "Validate incomplete simulated GPS attempt and preserved clock failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-11-02T11:37:35Z",
+          "completed_at": "2026-11-02T11:37:36Z"
+        },
+        {
+          "name": "Validate dated full native replay recheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-02T11:37:36Z",
+          "completed_at": "2026-11-02T11:37:37Z"
+        },
+        {
+          "name": "Validate neutral text contrast and native capture scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-02T11:37:37Z",
+          "completed_at": "2026-11-02T11:37:38Z"
+        },
+        {
+          "name": "Validate role-specific accent controls and phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-02T11:37:38Z",
+          "completed_at": "2026-11-02T11:37:38Z"
+        },
+        {
+          "name": "Test custom TLS certificate verification and retained scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-02T11:37:38Z",
+          "completed_at": "2026-11-02T11:37:39Z"
+        },
+        {
+          "name": "Test premature response compression cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 34,
+          "started_at": "2026-11-02T11:37:39Z",
+          "completed_at": "2026-11-02T11:37:40Z"
+        },
+        {
+          "name": "Validate native search departure controls and blocked phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 35,
+          "started_at": "2026-11-02T11:37:40Z",
+          "completed_at": "2026-11-02T11:37:41Z"
+        },
+        {
+          "name": "Validate physical calendar retry and latest native copy evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 36,
+          "started_at": "2026-11-02T11:37:41Z",
+          "completed_at": "2026-11-02T11:37:41Z"
+        },
+        {
+          "name": "Validate controlled chat phone records and evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 37,
+          "started_at": "2026-11-02T11:37:41Z",
+          "completed_at": "2026-11-02T11:37:42Z"
+        },
+        {
+          "name": "Validate chat account-switch checkpoints",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 38,
+          "started_at": "2026-11-02T11:37:42Z",
+          "completed_at": "2026-11-02T11:37:42Z"
+        },
+        {
+          "name": "Test post-commit chat confirmation loss guards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 39,
+          "started_at": "2026-11-02T11:37:42Z",
+          "completed_at": "2026-11-02T11:37:43Z"
+        },
+        {
+          "name": "Validate paired native network preparation observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 40,
+          "started_at": "2026-11-02T11:37:43Z",
+          "completed_at": "2026-11-02T11:37:44Z"
+        },
+        {
+          "name": "Test bound emulator transfer observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 41,
+          "started_at": "2026-11-02T11:37:44Z",
+          "completed_at": "2026-11-02T11:37:49Z"
+        },
+        {
+          "name": "Test explicit diagnostic toolchain selection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 42,
+          "started_at": "2026-11-02T11:37:49Z",
+          "completed_at": "2026-11-02T11:37:50Z"
+        },
+        {
+          "name": "Validate complete native pass without release promotion",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 43,
+          "started_at": "2026-11-02T11:37:50Z",
+          "completed_at": "2026-11-02T11:37:50Z"
+        },
+        {
+          "name": "Validate failed notification capture and unchanged quality gate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 44,
+          "started_at": "2026-11-02T11:37:50Z",
+          "completed_at": "2026-11-02T11:37:51Z"
+        },
+        {
+          "name": "Validate approved disposable-phone installation policy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 45,
+          "started_at": "2026-11-02T11:37:51Z",
+          "completed_at": "2026-11-02T11:37:51Z"
+        },
+        {
+          "name": "Validate isolated private phone tunnel policy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 46,
+          "started_at": "2026-11-02T11:37:51Z",
+          "completed_at": "2026-11-02T11:37:51Z"
+        },
+        {
+          "name": "Validate private input and stale cancellation phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 47,
+          "started_at": "2026-11-02T11:37:51Z",
+          "completed_at": "2026-11-02T11:37:53Z"
+        },
+        {
+          "name": "Validate hosted Android disk capacity guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 48,
+          "started_at": "2026-11-02T11:37:53Z",
+          "completed_at": "2026-11-02T11:37:53Z"
+        },
+        {
+          "name": "Validate physical profile and ledger evidence without provider requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 49,
+          "started_at": "2026-11-02T11:37:53Z",
+          "completed_at": "2026-11-02T11:37:53Z"
+        },
+        {
+          "name": "Validate encrypted credential rotation without provider requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 50,
+          "started_at": "2026-11-02T11:37:53Z",
+          "completed_at": "2026-11-02T11:37:53Z"
+        },
+        {
+          "name": "Validate independent contact recovery without accepting a blocked dialer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 51,
+          "started_at": "2026-11-02T11:37:53Z",
+          "completed_at": "2026-11-02T11:37:54Z"
+        },
+        {
+          "name": "Validate explicit real-map test boundaries without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 52,
+          "started_at": "2026-11-02T11:37:54Z",
+          "completed_at": "2026-11-02T11:37:55Z"
+        },
+        {
+          "name": "Validate bounded local response-loss injection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 53,
+          "started_at": "2026-11-02T11:37:55Z",
+          "completed_at": "2026-11-02T11:37:55Z"
+        },
+        {
+          "name": "Validate native SDK response-loss injection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 54,
+          "started_at": "2026-11-02T11:37:55Z",
+          "completed_at": "2026-11-02T11:37:55Z"
+        },
+        {
+          "name": "Test isolated multi-person flows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 55,
+          "started_at": "2026-11-02T11:37:55Z",
+          "completed_at": "2026-11-02T11:39:44Z"
+        },
+        {
+          "name": "Test completed review history beyond the legacy limit",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 56,
+          "started_at": "2026-11-02T11:39:44Z",
+          "completed_at": "2026-11-02T11:40:10Z"
+        },
+        {
+          "name": "Test private received rating summaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 57,
+          "started_at": "2026-11-02T11:40:10Z",
+          "completed_at": "2026-11-02T11:40:37Z"
+        },
+        {
+          "name": "Test pending review pagination across completed ride history",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 58,
+          "started_at": "2026-11-02T11:40:37Z",
+          "completed_at": "2026-11-02T11:41:06Z"
+        },
+        {
+          "name": "Test runtime proxy trust against forwarded-address spoofing",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 59,
+          "started_at": "2026-11-02T11:41:06Z",
+          "completed_at": "2026-11-02T11:41:07Z"
+        },
+        {
+          "name": "Test authenticated pending review trip context",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 60,
+          "started_at": "2026-11-02T11:41:07Z",
+          "completed_at": "2026-11-02T11:41:33Z"
+        },
+        {
+          "name": "Test immutable rating retries after connection loss",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 61,
+          "started_at": "2026-11-02T11:41:33Z",
+          "completed_at": "2026-11-02T11:41:59Z"
+        },
+        {
+          "name": "Test runtime multipart parser against malformed inputs",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 62,
+          "started_at": "2026-11-02T11:41:59Z",
+          "completed_at": "2026-11-02T11:41:59Z"
+        },
+        {
+          "name": "Validate network run evidence and temporary administration cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-11-02T11:41:59Z",
+          "completed_at": "2026-11-02T11:42:00Z"
+        },
+        {
+          "name": "Test private Android network validation history",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-11-02T11:42:00Z",
+          "completed_at": "2026-11-02T11:42:01Z"
+        },
+        {
+          "name": "Validate initial network observation before test-only transport requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-11-02T11:42:01Z",
+          "completed_at": "2026-11-02T11:42:01Z"
+        },
+        {
+          "name": "Validate isolated network recovery recheck without promoting physical readiness",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 66,
+          "started_at": "2026-11-02T11:42:01Z",
+          "completed_at": "2026-11-02T11:42:01Z"
+        },
+        {
+          "name": "Validate full native gate and published media evidence boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 67,
+          "started_at": "2026-11-02T11:42:01Z",
+          "completed_at": "2026-11-02T11:42:01Z"
+        },
+        {
+          "name": "Validate guardian verification contracts and retained scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 68,
+          "started_at": "2026-11-02T11:42:01Z",
+          "completed_at": "2026-11-02T11:42:02Z"
+        },
+        {
+          "name": "Test atomic booking decisions and recipient notifications",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 69,
+          "started_at": "2026-11-02T11:42:02Z",
+          "completed_at": "2026-11-02T11:42:48Z"
+        },
+        {
+          "name": "Check completed ride and physical-phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 70,
+          "started_at": "2026-11-02T11:42:48Z",
+          "completed_at": "2026-11-02T11:42:48Z"
+        },
+        {
+          "name": "Check truthful notification settings and isolated observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 71,
+          "started_at": "2026-11-02T11:42:48Z",
+          "completed_at": "2026-11-02T11:42:49Z"
+        },
+        {
+          "name": "Test private idempotent notification acknowledgements",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 72,
+          "started_at": "2026-11-02T11:42:49Z",
+          "completed_at": "2026-11-02T11:43:00Z"
+        },
+        {
+          "name": "Test actual authenticated notification calls and unchanged isolated records",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 73,
+          "started_at": "2026-11-02T11:43:00Z",
+          "completed_at": "2026-11-02T11:43:26Z"
+        },
+        {
+          "name": "Check executed notification cases, latest replay and complete portal fingerprints",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 74,
+          "started_at": "2026-11-02T11:43:26Z",
+          "completed_at": "2026-11-02T11:43:27Z"
+        },
+        {
+          "name": "Validate physical guardian revocation and new team admission evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 75,
+          "started_at": "2026-11-02T11:43:27Z",
+          "completed_at": "2026-11-02T11:43:27Z"
+        },
+        {
+          "name": "Validate isolated phone support checkpoints",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 76,
+          "started_at": "2026-11-02T11:43:27Z",
+          "completed_at": "2026-11-02T11:43:27Z"
+        },
+        {
+          "name": "Validate native startup acknowledgement and temporary mock policy contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 77,
+          "started_at": "2026-11-02T11:43:27Z",
+          "completed_at": "2026-11-02T11:43:28Z"
+        },
+        {
+          "name": "Validate reviewed native startup tour scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 78,
+          "started_at": "2026-11-02T11:43:28Z",
+          "completed_at": "2026-11-02T11:43:28Z"
+        },
+        {
+          "name": "Validate service-owned remote completion and isolated cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 79,
+          "started_at": "2026-11-02T11:43:28Z",
+          "completed_at": "2026-11-02T11:43:28Z"
+        },
+        {
+          "name": "Verify authorized vehicle coordinates and invalid geographic input rejection",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 80,
+          "started_at": "2026-11-02T11:43:28Z",
+          "completed_at": "2026-11-02T11:43:58Z"
+        },
+        {
+          "name": "Test owned enrollment history after eligibility and identity loss",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 81,
+          "started_at": "2026-11-02T11:43:58Z",
+          "completed_at": "2026-11-02T11:44:56Z"
+        },
+        {
+          "name": "Test owned local service process supervision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 82,
+          "started_at": "2026-11-02T11:44:56Z",
+          "completed_at": "2026-11-02T11:44:56Z"
+        },
+        {
+          "name": "Verify actual isolated admin clients close after replay success and failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 83,
+          "started_at": "2026-11-02T11:44:56Z",
+          "completed_at": "2026-11-02T11:45:17Z"
+        },
+        {
+          "name": "Verify actual isolated UI service interruption cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 84,
+          "started_at": "2026-11-02T11:45:17Z",
+          "completed_at": "2026-11-02T11:45:57Z"
+        },
+        {
+          "name": "Test scoped team and verified child choices",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 85,
+          "started_at": "2026-11-02T11:45:57Z",
+          "completed_at": "2026-11-02T11:46:21Z"
+        },
+        {
+          "name": "Test shared membership cursor continuation and authorization",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 86,
+          "started_at": "2026-11-02T11:46:21Z",
+          "completed_at": "2026-11-02T11:46:51Z"
+        },
+        {
+          "name": "Test native team fixture lifecycle and fail-closed evidence contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 87,
+          "started_at": "2026-11-02T11:46:51Z",
+          "completed_at": "2026-11-02T11:47:17Z"
+        },
+        {
+          "name": "Test manager team review scope and real service lifecycle",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 88,
+          "started_at": "2026-11-02T11:47:17Z",
+          "completed_at": "2026-11-02T11:47:46Z"
+        },
+        {
+          "name": "Test transaction query conflict propagation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 89,
+          "started_at": "2026-11-02T11:47:46Z",
+          "completed_at": "2026-11-02T11:47:49Z"
+        },
+        {
+          "name": "Validate booking consistency and recovery evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 90,
+          "started_at": "2026-11-02T11:47:49Z",
+          "completed_at": "2026-11-02T11:47:49Z"
+        },
+        {
+          "name": "Validate displayed booking intent evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 91,
+          "started_at": "2026-11-02T11:47:49Z",
+          "completed_at": "2026-11-02T11:47:49Z"
+        },
+        {
+          "name": "Validate booking response-loss evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 92,
+          "started_at": "2026-11-02T11:47:49Z",
+          "completed_at": "2026-11-02T11:47:50Z"
+        },
+        {
+          "name": "Validate current default selection comparison evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 93,
+          "started_at": "2026-11-02T11:47:50Z",
+          "completed_at": "2026-11-02T11:47:50Z"
+        },
+        {
+          "name": "Test booking retry identity and changed-intent races",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 94,
+          "started_at": "2026-11-02T11:47:50Z",
+          "completed_at": "2026-11-02T11:48:40Z"
+        },
+        {
+          "name": "Test durable Swift booking recovery",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 95,
+          "started_at": "2026-11-02T11:48:40Z",
+          "completed_at": "2026-11-02T11:49:06Z"
+        },
+        {
+          "name": "Test server-only booking request receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 96,
+          "started_at": "2026-11-02T11:49:06Z",
+          "completed_at": "2026-11-02T11:49:13Z"
+        },
+        {
+          "name": "Test Swift booking snapshot wire contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 97,
+          "started_at": "2026-11-02T11:49:13Z",
+          "completed_at": "2026-11-02T11:49:14Z"
+        },
+        {
+          "name": "Test displayed terms against current booking conditions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 98,
+          "started_at": "2026-11-02T11:49:14Z",
+          "completed_at": "2026-11-02T11:49:33Z"
+        },
+        {
+          "name": "Test controlled approval and cancellation overlap",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 99,
+          "started_at": "2026-11-02T11:49:33Z",
+          "completed_at": "2026-11-02T11:50:28Z"
+        },
+        {
+          "name": "Test transactional booking terms and guardian authority",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 100,
+          "started_at": "2026-11-02T11:50:28Z",
+          "completed_at": "2026-11-02T11:50:47Z"
+        },
+        {
+          "name": "Test team club ownership rules",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 101,
+          "started_at": "2026-11-02T11:50:47Z",
+          "completed_at": "2026-11-02T11:50:54Z"
+        },
+        {
+          "name": "Test server-owned trip cancellation rules",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 102,
+          "started_at": "2026-11-02T11:50:54Z",
+          "completed_at": "2026-11-02T11:51:00Z"
+        },
+        {
+          "name": "Test server-owned trip details",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 103,
+          "started_at": "2026-11-02T11:51:00Z",
+          "completed_at": "2026-11-02T11:51:08Z"
+        },
+        {
+          "name": "Test server-owned trip proposals and parent decisions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 104,
+          "started_at": "2026-11-02T11:51:08Z",
+          "completed_at": "2026-11-02T11:51:17Z"
+        },
+        {
+          "name": "Validate native trip cancellation integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 105,
+          "started_at": "2026-11-02T11:51:17Z",
+          "completed_at": "2026-11-02T11:51:17Z"
+        },
+        {
+          "name": "Validate scoped native trip-change evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 106,
+          "started_at": "2026-11-02T11:51:17Z",
+          "completed_at": "2026-11-02T11:51:18Z"
+        },
+        {
+          "name": "Validate completed native parent consent evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 107,
+          "started_at": "2026-11-02T11:51:18Z",
+          "completed_at": "2026-11-02T11:51:18Z"
+        },
+        {
+          "name": "Validate dual-transport network prerequisites",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 108,
+          "started_at": "2026-11-02T11:51:18Z",
+          "completed_at": "2026-11-02T11:51:18Z"
+        },
+        {
+          "name": "Validate input window readiness evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 109,
+          "started_at": "2026-11-02T11:51:18Z",
+          "completed_at": "2026-11-02T11:51:18Z"
+        },
+        {
+          "name": "Validate bounded file-sync failure diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 110,
+          "started_at": "2026-11-02T11:51:18Z",
+          "completed_at": "2026-11-02T11:51:18Z"
+        },
+        {
+          "name": "Validate explicit partner component evidence scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 111,
+          "started_at": "2026-11-02T11:51:18Z",
+          "completed_at": "2026-11-02T11:51:19Z"
+        },
+        {
+          "name": "Build Admin",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 112,
+          "started_at": "2026-11-02T11:51:19Z",
+          "completed_at": "2026-11-02T11:51:23Z"
+        },
+        {
+          "name": "Validate membership decision state",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 113,
+          "started_at": "2026-11-02T11:51:23Z",
+          "completed_at": "2026-11-02T11:51:23Z"
+        },
+        {
+          "name": "Validate public privacy route",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 114,
+          "started_at": "2026-11-02T11:51:23Z",
+          "completed_at": "2026-11-02T11:51:24Z"
+        },
+        {
+          "name": "Validate private partner portal evidence and contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 115,
+          "started_at": "2026-11-02T11:51:24Z",
+          "completed_at": "2026-11-02T11:51:41Z"
+        },
+        {
+          "name": "Validate physical draft and consent evidence boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 116,
+          "started_at": "2026-11-02T11:51:41Z",
+          "completed_at": "2026-11-02T11:51:41Z"
+        },
+        {
+          "name": "Validate partial team connection recovery evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 117,
+          "started_at": "2026-11-02T11:51:41Z",
+          "completed_at": "2026-11-02T11:51:41Z"
+        },
+        {
+          "name": "Validate seven physical team process restarts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 118,
+          "started_at": "2026-11-02T11:51:41Z",
+          "completed_at": "2026-11-02T11:51:41Z"
+        },
+        {
+          "name": "Validate direct booking confirmation and phone restart",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 119,
+          "started_at": "2026-11-02T11:51:41Z",
+          "completed_at": "2026-11-02T11:51:42Z"
+        },
+        {
+          "name": "Test isolated booking reply-loss guards",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 120,
+          "started_at": "2026-11-02T11:51:42Z",
+          "completed_at": "2026-11-02T11:51:42Z"
+        },
+        {
+          "name": "Validate physical trip cancellation evidence and observer boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 121,
+          "started_at": "2026-11-02T11:51:42Z",
+          "completed_at": "2026-11-02T11:51:43Z"
+        },
+        {
+          "name": "Test runtime compressed request parsing and size limits",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 122,
+          "started_at": "2026-11-02T11:51:43Z",
+          "completed_at": "2026-11-02T11:51:44Z"
+        },
+        {
+          "name": "Verify committed publication artifacts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 123,
+          "started_at": "2026-11-02T11:51:44Z",
+          "completed_at": "2026-11-02T11:51:45Z"
+        },
+        {
+          "name": "Validate admin plan coverage",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 124,
+          "started_at": "2026-11-02T11:51:45Z",
+          "completed_at": "2026-11-02T11:51:45Z"
+        },
+        {
+          "name": "Test Stripe webhook flow",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 125,
+          "started_at": "2026-11-02T11:51:45Z",
+          "completed_at": "2026-11-02T11:52:07Z"
+        },
+        {
+          "name": "Validate isolated payout evidence and its verification limits",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 126,
+          "started_at": "2026-11-02T11:52:07Z",
+          "completed_at": "2026-11-02T11:52:07Z"
+        },
+        {
+          "name": "Test Stripe production readiness verification",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 127,
+          "started_at": "2026-11-02T11:52:07Z",
+          "completed_at": "2026-11-02T11:52:07Z"
+        },
+        {
+          "name": "Test live smoke cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 128,
+          "started_at": "2026-11-02T11:52:07Z",
+          "completed_at": "2026-11-02T11:52:07Z"
+        },
+        {
+          "name": "Build Website",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 129,
+          "started_at": "2026-11-02T11:52:07Z",
+          "completed_at": "2026-11-02T11:52:08Z"
+        },
+        {
+          "name": "Retain booking notification and cleanup results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 130,
+          "started_at": "2026-11-02T11:52:08Z",
+          "completed_at": "2026-11-02T11:52:09Z"
+        },
+        {
+          "name": "Retain completed review history results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 131,
+          "started_at": "2026-11-02T11:52:09Z",
+          "completed_at": "2026-11-02T11:52:09Z"
+        },
+        {
+          "name": "Retain received rating summary service results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 132,
+          "started_at": "2026-11-02T11:52:09Z",
+          "completed_at": "2026-11-02T11:52:12Z"
+        },
+        {
+          "name": "Retain pending review pagination results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 133,
+          "started_at": "2026-11-02T11:52:12Z",
+          "completed_at": "2026-11-02T11:52:13Z"
+        },
+        {
+          "name": "Retain pending review context results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 134,
+          "started_at": "2026-11-02T11:52:13Z",
+          "completed_at": "2026-11-02T11:52:13Z"
+        },
+        {
+          "name": "Retain rating retry results and local diagnostics",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 135,
+          "started_at": "2026-11-02T11:52:13Z",
+          "completed_at": "2026-11-02T11:52:14Z"
+        },
+        {
+          "name": "Upload isolated trip history results",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 136,
+          "started_at": "2026-11-02T11:52:14Z",
+          "completed_at": "2026-11-02T11:52:15Z"
+        },
+        {
+          "name": "Upload booking retry receipts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 137,
+          "started_at": "2026-11-02T11:52:15Z",
+          "completed_at": "2026-11-02T11:52:16Z"
+        },
+        {
+          "name": "Upload displayed booking and wire evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 138,
+          "started_at": "2026-11-02T11:52:16Z",
+          "completed_at": "2026-11-02T11:52:17Z"
+        },
+        {
+          "name": "Upload controlled booking consistency evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 139,
+          "started_at": "2026-11-02T11:52:17Z",
+          "completed_at": "2026-11-02T11:52:18Z"
+        },
+        {
+          "name": "Upload controlled transaction conflict evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 140,
+          "started_at": "2026-11-02T11:52:18Z",
+          "completed_at": "2026-11-02T11:52:19Z"
+        },
+        {
+          "name": "Retain authenticated search notice replay",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 141,
+          "started_at": "2026-11-02T11:52:19Z",
+          "completed_at": "2026-11-02T11:52:20Z"
+        },
+        {
+          "name": "Post Set up Java",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 280,
+          "started_at": "2026-11-02T11:52:20Z",
+          "completed_at": "2026-11-02T11:52:20Z"
+        },
+        {
+          "name": "Post Set up Node",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 281,
+          "started_at": "2026-11-02T11:52:20Z",
+          "completed_at": "2026-11-02T11:52:20Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 282,
+          "started_at": "2026-11-02T11:52:20Z",
+          "completed_at": "2026-11-02T11:52:20Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 283,
+          "started_at": "2026-11-02T11:52:20Z",
+          "completed_at": "2026-11-02T11:52:20Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/125252512028",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000011396,
+      "runner_name": "GitHub Actions 1000011396",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 125259794039,
+      "run_id": 41438000498,
+      "workflow_name": "Web Integration Smoke",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41438000498",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAdKhDGdw",
+      "head_sha": "638066cc697047a6c5a159f27f89ec448a5f068e",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/125259794039",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41438000498/job/125259794039",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-02T11:52:22Z",
+      "started_at": "2026-11-02T11:52:25Z",
+      "completed_at": "2026-11-02T11:52:27Z",
+      "name": "Functions, admin, and website smoke",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-02T11:52:25Z",
+          "completed_at": "2026-11-02T11:52:25Z"
+        },
+        {
+          "name": "Require all complete smoke groups",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-02T11:52:25Z",
+          "completed_at": "2026-11-02T11:52:26Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-02T11:52:26Z",
+          "completed_at": "2026-11-02T11:52:26Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/125259794039",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000011416,
+      "runner_name": "GitHub Actions 1000011416",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

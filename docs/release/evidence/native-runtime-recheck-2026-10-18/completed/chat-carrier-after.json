@@ -1,0 +1,18 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7fd23eda3c41d705b3a911fb24f1fbe8",
+  "phase": "after",
+  "scope": "read-only-disposable-carrier-loader-state",
+  "recordedAt": "2026-10-18T02:52:33.552Z",
+  "source": "current-carrier-loader-state-not-default-selection-readiness",
+  "phoneCount": 1,
+  "configChangeSent": [
+    true
+  ],
+  "fromSystemUnlocked": [
+    false
+  ],
+  "serviceBoundForNoSimConfig": [
+    false
+  ]
+}

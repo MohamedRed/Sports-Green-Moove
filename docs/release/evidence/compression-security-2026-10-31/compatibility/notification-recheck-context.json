@@ -1,0 +1,26 @@
+{
+  "scope": "unchanged-isolated-notification-recheck-not-timeout-repair",
+  "originalPassed": 18,
+  "originalFailed": 1,
+  "recheckPassed": 19,
+  "recheckFailed": 0,
+  "testTimeoutChanged": false,
+  "productCodeChanged": false,
+  "originalTimeoutFixed": false,
+  "physicalDeviceAccepted": false,
+  "releaseAccepted": false,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      4400,
+      4500,
+      5001,
+      8080,
+      9000,
+      9099,
+      9150,
+      9199
+    ],
+    "closed": true
+  }
+}

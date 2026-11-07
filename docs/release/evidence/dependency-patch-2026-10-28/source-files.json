@@ -1,0 +1,6 @@
+{
+  "tests/dependency-security-contract.test.mjs": "1eb524d2e79444194facd8fc4391801cc8d5e2b737e4eeda743d2dd4e17a9edd",
+  "tests/helpers/dependency-security-probe.mjs": "4fb5111d5aa865010b8a03da1f8f795c83717a12c72fc155118696ff3750b73e",
+  "functions/src/lib/firestore.ts": "3d1248d4bff0beb4ed9c9674f17147d44a916b1cf33d733187c0d24b2ebb5a5a",
+  "functions/src/callables/bookings.ts": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0"
+}

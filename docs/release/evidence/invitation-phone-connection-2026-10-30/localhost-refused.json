@@ -1,0 +1,16 @@
+{
+  "phase": "localhost-refused",
+  "source": "session-window-not-native-export",
+  "observedAt": "2026-10-30T20:26:57.966Z",
+  "original": "localhost-refused.jpg",
+  "originalWidth": 1440,
+  "originalHeight": 722,
+  "originalSha256": "b0638c15caf9fc7773fc64506a369f0621c242bf927363414d5deaa0f5d94974",
+  "crop": {
+    "left": 625,
+    "top": 107,
+    "width": 254,
+    "height": 564
+  },
+  "cropSha256": "6c6fb85b670eaa682632c789f66b038c2bcfae5a78f5897c7516d8c37532a6e0"
+}

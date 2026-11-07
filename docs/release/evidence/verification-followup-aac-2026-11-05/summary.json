@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+  "scope": "controlled-linux-contract-pass-and-failed-android-network-prerequisite",
+  "linuxControlledContractStepAccepted": true,
+  "androidAppFlowExecuted": false,
+  "androidNetworkRootCauseConfirmed": false,
+  "deadlineClassificationRegressionReproduced": true,
+  "localDeadlineChecksPassed": true,
+  "actualFailureReclassifiedRetroactively": false,
+  "wifiReadinessPredicateChanged": false,
+  "wifiBudgetIncreased": false,
+  "dnsConfigurationChanged": false,
+  "newNetworkProbes": 0,
+  "newPhoneSessions": 0,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "iphoneClosedAppNotificationsImplemented": false,
+  "notificationPolicyChanged": false,
+  "sdkBuildAccepted": false,
+  "fixtureUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "android-artifact.json",
+      "sha256": "2eb7fd2ed66edff74eac16c0a31fc5dacb9e86735a758aa1a81ce8889e24bb4d"
+    },
+    {
+      "file": "android-outcome.json",
+      "sha256": "4689c3d3d6873c682b9af0766efd47fb483dc390727cf6089cdf969a384fa232"
+    },
+    {
+      "file": "android-first-sample.json",
+      "sha256": "b718ca264fd317575e8f2eda70cc5a18c73504577d3ee94a09298e6f59fcd740"
+    },
+    {
+      "file": "android-last-sample.json",
+      "sha256": "15d4b6d44918ac8e4e4a906185a80d247a967b7a83d683e4f54c834e1b92ccbd"
+    },
+    {
+      "file": "android-validation-history.json",
+      "sha256": "70a02bfb375d7b12c8c083ff52155eb50c64e9c4afcf8af2e459216b6c4642f4"
+    },
+    {
+      "file": "android-sample-summary.json",
+      "sha256": "6d6f55d03422892ec8c73d861aef3be0fd6befdfd5e59991efeaa859c3291445"
+    },
+    {
+      "file": "android-job.json",
+      "sha256": "bfec1df3ef6339e78cba3bb5905a00d68df85ffd271090eec27ab974db06757e"
+    },
+    {
+      "file": "linux-contract-step.json",
+      "sha256": "ab88dfe6153743e3fa305d2554648523dda74532b94570916fdd69ddd275b10c"
+    },
+    {
+      "file": "deadline-baseline.txt",
+      "sha256": "aeffe619d250ddeab55796ae31bc9458ab4b039af078d4e79c8a9c149ee02cda"
+    },
+    {
+      "file": "deadline-recheck.txt",
+      "sha256": "ebeed7603959f8981a47e26916151c50e73099f4067f556820f99db6e5990c02"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "ae9b973aa80a0f94ffbc5b3a4209605e7f277810afc72d5551a8cd85d3da7b7a"
+    }
+  ]
+}

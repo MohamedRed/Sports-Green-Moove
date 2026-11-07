@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.ActiveRideResumeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-19T16:56:47.171Z" hostname="MRRs-MacBook-Air.local" time="0.088">
+  <properties/>
+  <testcase name="aDifferentAuthenticatedAccountCannotResumeTheOldDriver" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.072"/>
+  <testcase name="ownExistingRideResumesTrackingWithoutCreatingAnotherRide" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.003"/>
+  <testcase name="aParentCannotResumeDriverSensors" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.002"/>
+  <testcase name="anAccountSwitchDuringTheRideReadCannotStartSensors" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.003"/>
+  <testcase name="anAccountSwitchDuringTheLocationWriteCannotReturnAStaleRide" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.005"/>
+  <testcase name="missingChangedOrForeignRidesCannotStartSensors" classname="be.sportgreenmoove.app.services.ActiveRideResumeTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

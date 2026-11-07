@@ -1,0 +1,9 @@
+{
+  "runId": "a8565405002b3469cc2f3f1b67a9ee55",
+  "phase": "stopped",
+  "command": "dumpsys meminfo be.sportgreenmoove.app.local",
+  "source": "provider-terminal-visible-accessibility-text",
+  "observedAt": "2026-10-30T10:55:50.684Z",
+  "visibleOutput": "\t\t\t\t\t\t294 text No process found for: be.sportgreenmoove.app.local",
+  "pid": null
+}

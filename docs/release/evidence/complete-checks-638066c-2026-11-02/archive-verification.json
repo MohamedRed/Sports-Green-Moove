@@ -1,0 +1,235 @@
+{
+  "sha256": "ea1e2610e8a176bd01d25f0d447b106083a0f05c3929ee03cb71ad0a1c102e05",
+  "bytes": 25855782,
+  "originalArchivePublished": false,
+  "members": {
+    "main/ordinary-instrumentation.txt": {
+      "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+      "sha256": "dfb7c6f9ec388bac0c73325864badde4f47c17717f4e409946bc13a2f7fab562"
+    },
+    "main/ordinary-results.json": {
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "sha256": "46afbb657d31f0c434fa35136cd76c47c8f8cad295567d3fcc64b3b162b45a45"
+    },
+    "main/ordinary-process.json": {
+      "member": "outputs/store-review-screenshots/ordinary-process.json",
+      "sha256": "ac3d7e821006f5af6700d3739442c906898e81e1d15a7a8cad1b68ff01dc3bba"
+    },
+    "main/native-suite-status.json": {
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "sha256": "4f0522dbdf13e10918920a0897e5c328173ef29ba7898485f5700b0e0fd8402b"
+    },
+    "main/disposable-device-setup.json": {
+      "member": "outputs/store-review-screenshots/disposable-device-setup.json",
+      "sha256": "abeea548653de9117d68b6166829c7fbacc921101b5dc3a1fd9c83acb94e1b81"
+    },
+    "main/disposable-store-restore.json": {
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    "main/replay/LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest-instrumentation.txt",
+      "sha256": "c135d73af881495c68f69ab7421a5e04044e358625744c0b003468975d8f744c"
+    },
+    "main/replay/LocalBookingDecisionsFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalBookingDecisionsFlowTest-instrumentation.txt",
+      "sha256": "44537aab8cb9edd6063a0564ff1f36d0e601b427be43a34f14dde047b2b3016a"
+    },
+    "main/replay/LocalBookingResponseLossTest#prepareUnconfirmedBooking-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalBookingResponseLossTest#prepareUnconfirmedBooking-instrumentation.txt",
+      "sha256": "bc5a84d2f4576d6cfdf700611cf45f2e957d7c3478dc4af4c3c88fe0cdb0eed3"
+    },
+    "main/replay/LocalBookingResponseLossTest#recoverUnconfirmedBooking-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalBookingResponseLossTest#recoverUnconfirmedBooking-instrumentation.txt",
+      "sha256": "6d1f0bc03f695a00eae53e2f17ec2091a36a389e310ba0d938584955e4b4d301"
+    },
+    "main/replay/LocalBookingResponseLossUiTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalBookingResponseLossUiTest-instrumentation.txt",
+      "sha256": "ec2ab61cb31c0c068459c88ee472b82b270c3ea31e32e740e34e3db534921b3a"
+    },
+    "main/replay/LocalChatFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalChatFlowTest-instrumentation.txt",
+      "sha256": "a392775677f81cbd5b5a04d837c7e588239b4e4d2a48bcda166539c44f72cd53"
+    },
+    "main/replay/LocalChatNetworkFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalChatNetworkFlowTest-instrumentation.txt",
+      "sha256": "d726ec679c1b60e4654a33d7c7a4c8d42fb26ba8ca402dfb59b13d3cea67228c"
+    },
+    "main/replay/LocalChatProcessRestartTest#prepareConfirmedConversation-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalChatProcessRestartTest#prepareConfirmedConversation-instrumentation.txt",
+      "sha256": "3373969b68bbf220de21ad65f1c2849378473b6bb7458301161249ffdcd58434"
+    },
+    "main/replay/LocalChatProcessRestartTest#reopenConfirmedConversation-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalChatProcessRestartTest#reopenConfirmedConversation-instrumentation.txt",
+      "sha256": "d234a7a745fbfe33c957d8697514da3cbf458de4467f227fa5634fb8e98deb2a"
+    },
+    "main/replay/LocalChatResponseLossTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalChatResponseLossTest-instrumentation.txt",
+      "sha256": "c67b349f1e406c05f0ac3bf1fc1144d08e1e1d3afecfe5b88d7cedd418235ab0"
+    },
+    "main/replay/LocalConversationDirectoryFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalConversationDirectoryFlowTest-instrumentation.txt",
+      "sha256": "7e03eca2903e5aa2b4ae2ff9fa8f3680b472edb83c4d7ceb775627cb0328c123"
+    },
+    "main/replay/LocalEmergencyContactFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalEmergencyContactFlowTest-instrumentation.txt",
+      "sha256": "d63bad1497677a15c789bdce362f1a9775a0d4f39c0efd34bb4254c6923b71a4"
+    },
+    "main/replay/LocalGuardianVerificationFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalGuardianVerificationFlowTest-instrumentation.txt",
+      "sha256": "4daec4f56513e10d868f37dae2fc60034d609b0968ba2d0dbbdd7554a8c17576"
+    },
+    "main/replay/LocalMembershipFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalMembershipFlowTest-instrumentation.txt",
+      "sha256": "9e88430036aef8378dcc8dcc213ae3cecc419d1592106ffede20bca1f40df0bd"
+    },
+    "main/replay/LocalMultiSeatSdkTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalMultiSeatSdkTest-instrumentation.txt",
+      "sha256": "9b1d33662bc3f5a83006f9240fbc446624ec688b0c56446f4d7dedf84d5fda1a"
+    },
+    "main/replay/LocalNotificationReadFlowTest#readSelectedNotificationAndSwitchAccounts-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalNotificationReadFlowTest#readSelectedNotificationAndSwitchAccounts-instrumentation.txt",
+      "sha256": "6be5662fd4a4b2a06fd56dffb4c0b0c5b7353a7cfc43d690f2b549f4ae76a555"
+    },
+    "main/replay/LocalNotificationReadFlowTest#reopenReadNotificationAfterProcessDeath-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalNotificationReadFlowTest#reopenReadNotificationAfterProcessDeath-instrumentation.txt",
+      "sha256": "15c0391b99d9de2d9631a0f837d67d2985014525b9e704077bdee3933c3e1e34"
+    },
+    "main/replay/LocalRideFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalRideFlowTest-instrumentation.txt",
+      "sha256": "da2d82ecd37ef37a8e82d5a5b35863ff2ed4702b829c72c209dabfb5dbe3b54f"
+    },
+    "main/replay/LocalTeamEnrollmentFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTeamEnrollmentFlowTest-instrumentation.txt",
+      "sha256": "628eace9c676a389128e2d01cb3e22d6a48fe45d6d862fdc7d51dbc291468d63"
+    },
+    "main/replay/LocalThemeRestartTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalThemeRestartTest-instrumentation.txt",
+      "sha256": "6f5fb24116861b11d8252427ba0c05c76a3e5abcc7570a82a125b75998d1d47e"
+    },
+    "main/replay/LocalTripChangeFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripChangeFlowTest-instrumentation.txt",
+      "sha256": "cde9b5021bbf7f027d951e4b088d3fb30d121ec1b8f8811af9bb80159fe34895"
+    },
+    "main/replay/LocalTripChangeInputsFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripChangeInputsFlowTest-instrumentation.txt",
+      "sha256": "376feb4986fb93e05aed68ab9d727b22717b45756fc0d0ae14173a1f05349337"
+    },
+    "main/replay/LocalTripCancellationFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripCancellationFlowTest-instrumentation.txt",
+      "sha256": "90405bb23f778872850d5430c5b0125f101490a59a726c6d74b26b6676edad3d"
+    },
+    "main/replay/LocalTripChangeScheduleFlowTest-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripChangeScheduleFlowTest-instrumentation.txt",
+      "sha256": "68a8905c6f52947c79dd192b1b3679b8e85479e3385d25de2772417f1f7950f6"
+    },
+    "main/replay/LocalTripConsentRecoveryTest#prepareRecoveryStates-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripConsentRecoveryTest#prepareRecoveryStates-instrumentation.txt",
+      "sha256": "8112147559876c8ecf5e47037cd893d0d9066b26fa77abad6daa21997613a374"
+    },
+    "main/replay/LocalTripConsentRecoveryTest#reopenRecoveryStates-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripConsentRecoveryTest#reopenRecoveryStates-instrumentation.txt",
+      "sha256": "d5e3796c4adfeb0fe8387fc0f0f70998940e59bf0ea2353c75c5104e92c4cbc8"
+    },
+    "main/replay/LocalTripConsentRestartTest#prepareConfirmedConsent-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripConsentRestartTest#prepareConfirmedConsent-instrumentation.txt",
+      "sha256": "b2b1244d13cdd330e067e4b5018d3d28abee88757fedc41ebdefd2529e3349ea"
+    },
+    "main/replay/LocalTripConsentRestartTest#reopenConfirmedConsent-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripConsentRestartTest#reopenConfirmedConsent-instrumentation.txt",
+      "sha256": "e0e67daaba75f1f252cdb480fec904e02af7953c4407796e66c0a20b818ae1e3"
+    },
+    "main/replay/LocalTripDraftRestartTest#prepareUnfinishedTripDraft-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripDraftRestartTest#prepareUnfinishedTripDraft-instrumentation.txt",
+      "sha256": "c05036443fa9275162b9eacb42a078289d232a41b1e40e921ee8037ee0d9dfc6"
+    },
+    "main/replay/LocalTripDraftRestartTest#recoverUnfinishedTripDraftInNewProcess-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripDraftRestartTest#recoverUnfinishedTripDraftInNewProcess-instrumentation.txt",
+      "sha256": "179a4e41b882c93a8f7670c5e94b8ce0a1ad1f477c7a89f7bad3eee1ce05a3e4"
+    },
+    "main/replay/LocalTripScheduleDraftRestartTest#prepareScheduleDraft-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripScheduleDraftRestartTest#prepareScheduleDraft-instrumentation.txt",
+      "sha256": "8f22c879bcb0f1b7a9a1231aa6a74dbcf58879fd2d4c600ee1bf56fee67350ed"
+    },
+    "main/replay/LocalTripScheduleDraftRestartTest#recoverScheduleDraftInNewProcess-instrumentation.txt": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/LocalTripScheduleDraftRestartTest#recoverScheduleDraftInNewProcess-instrumentation.txt",
+      "sha256": "bd95ff0e7d7294e5505e78617aded48ae3e9f35821962bf0df3c57b333537b6b"
+    },
+    "main/replay/adb-pull-booking-response-loss.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-booking-response-loss.json",
+      "sha256": "e60aaa7fa952e1ecbb505118eab95a569eb6590cf1876edcb45b9b7c75ee775f"
+    },
+    "main/replay/adb-pull-booking-ui-response-loss.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-booking-ui-response-loss.json",
+      "sha256": "22d82e330a4beba20e267c3977acbfe8c04dc8de527167e286a86db57d4d538b"
+    },
+    "main/replay/adb-pull-confirmed-restart.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-confirmed-restart.json",
+      "sha256": "d7846ddb8c2c4046053b016385c4ec45b417ab793ba58ed55128c822169eef58"
+    },
+    "main/replay/adb-pull-emergency-contact.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-emergency-contact.json",
+      "sha256": "fd4da0afabd6c55e1aecc1f41b7827e495d066307fc82841caec8f32cc9ba605"
+    },
+    "main/replay/adb-pull-network-recovery.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-network-recovery.json",
+      "sha256": "cda65c58bc603b90c1a0f8610f355baa34995b5a230294eb24b4f71cad97bdda"
+    },
+    "main/replay/adb-pull-notification-read-restart.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-notification-read-restart.json",
+      "sha256": "99b67e4775c617a41bb9c2e74d24d8b869924e5cd982100cd17058aa3fd4db42"
+    },
+    "main/replay/adb-pull-guardian-parent-verification.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-guardian-parent-verification.json",
+      "sha256": "67e5d474ca93424118f6ee0a7a97cf2bab4132aaaec6b583398207aac357d928"
+    },
+    "main/replay/adb-pull-response-loss.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-response-loss.json",
+      "sha256": "a6700046bd87076cc6374a71561a34a8770c2530099a20d38f669802e49c308a"
+    },
+    "main/replay/adb-pull-ride-emergency.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-ride-emergency.json",
+      "sha256": "03f53094368710cf9f286de03e0ecfae58b824379511ea747eeeda49fba701ce"
+    },
+    "main/replay/adb-pull-team-enrollment.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-team-enrollment.json",
+      "sha256": "4e6a77ab9265bddfd0294bc47a0c3a1ea4f497c49dcf44e7ed52ada6b1325e12"
+    },
+    "main/replay/adb-pull-trip-change-inputs.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-change-inputs.json",
+      "sha256": "a6b4c9660adedac55b8fed0d3426b664da90d1178042699cba7cfaf2e02f2bdc"
+    },
+    "main/replay/adb-pull-trip-change-parent-confirmation.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-change-parent-confirmation.json",
+      "sha256": "289064116a1dfed8fd5281135345c5d025ba610d4a802bd4cad96e377302f389"
+    },
+    "main/replay/adb-pull-trip-change-schedule.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-change-schedule.json",
+      "sha256": "35a8b862e56a4ef703085d2d0fe6b3a662d6541c3c9175c792e2d4e4826b20eb"
+    },
+    "main/replay/adb-pull-trip-consent-recovery.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-consent-recovery.json",
+      "sha256": "81cd07b809176c914a7c2f5d86da43c1838a72c153efc3afa5fff69416e782c1"
+    },
+    "main/replay/adb-pull-trip-consent-restart.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-consent-restart.json",
+      "sha256": "05b2cca42a57bc1b653ec4d519fcd4d8f7b5a75882a0c9ce7c5c81e5d33a67bc"
+    },
+    "main/replay/adb-pull-trip-draft-restart.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-draft-restart.json",
+      "sha256": "fc7ad040f7926ccc4415ab7b919a922e6ca8b9b7be6e8008ca969a06559a2f65"
+    },
+    "main/replay/adb-pull-trip-schedule-draft-restart.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/adb-pull-trip-schedule-draft-restart.json",
+      "sha256": "3942faa9a812f516cdab782e78a5166816998d0e91bf799237ed646890675276"
+    },
+    "main/replay/results.json": {
+      "member": "outputs/local-ui-evidence/dd802d2648c70f75b05f51f70942d4f5/results.json",
+      "sha256": "e5ac28108c35c65494d941f721f9b261f05a6798398d2041874d97b1d26dbedc"
+    },
+    "main/parent-accepted-capture.json": {
+      "member": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-parent-accepted-684324578237.json",
+      "sha256": "5fa33f61c98aa4ff7dd7bb34f0efaa46b22ea18f1c98fda97018a3ddd008112b"
+    }
+  }
+}

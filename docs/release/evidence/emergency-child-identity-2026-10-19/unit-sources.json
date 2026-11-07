@@ -1,0 +1,13 @@
+{
+  "scope": "executed-unit-and-compiled-client-sources-not-native-ui",
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt": "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt": "ecf9c80773fd25966447f8301c83a73420c2479e20910e4bd608e5164703d915",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt": "a250a8b60d67a354e0517b14586459bbe70264bc2f04d719e78a49f30effa42c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "fbf56ea2382ab561dca8308d7049eb3f978f8cdffcbad888651eb603949ca685",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/EmergencyContactWireTest.kt": "9144f856144308713f4dd9aed76bd154116879d03185dacec2e39c116777dcca",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactStateTest.kt": "ddd28ff8592cdf15a5ac8131626130173de2b280860ff402d05f995e2bf7958c",
+    "functions/src/domain/emergencyContact.ts": "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63",
+    "functions/src/__tests__/emergency-contact.test.ts": "f489d247383ae4758abdc3a9bea73c688db0c61e2bbb854133da18808994f251"
+  }
+}

@@ -22,7 +22,7 @@ fun RuntimeNotice(message: String, warning: Boolean, onDismiss: () -> Unit, modi
     Text(
         text = message,
         style = SgmType.BodyXS.copy(
-            color = if (warning) SgmColor.Orange else SgmColor.Green,
+            color = if (warning) Sgm.colors.textWarning else Sgm.colors.textAccent,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
         ),

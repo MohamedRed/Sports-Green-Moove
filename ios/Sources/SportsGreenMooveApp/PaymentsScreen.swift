@@ -3,15 +3,40 @@ import SwiftUI
 struct PaymentsScreen: View {
     @Environment(AppState.self) private var appState
     @Environment(\.openURL) private var openURL
+    private let access: AccountAccess
+    @State private var controller: PaymentScreenController
+
+    init(access: AccountAccess) {
+        self.access = access
+        _controller = State(initialValue: PaymentScreenController(access: access))
+    }
 
     var body: some View {
-        SGMScreen {
+        SGMScreen(testID: UITestIdentifier.paymentsScreen) {
             SGMTopBar(title: "PAIEMENTS", showsBack: true)
             PaymentsHero(bookings: appState.payableBookings)
+            if appState.hasPendingRidePayment {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(appState.ridePaymentState.message)
+                        .font(.sgmBody(13, weight: .medium))
+                        .foregroundStyle(SGM.textPrimary)
+                    SGMButton(title: appState.ridePaymentBusy ? "Vérification..." : "Vérifier le paiement") {
+                        Task {
+                            guard controller.acceptsAction else { return }
+                            await appState.verifyRidePayment(access: access)
+                        }
+                    }
+                    .disabled(appState.ridePaymentBusy || controller.loading)
+                }.padding(.horizontal, SGMSpace.padScreen)
+            }
             if appState.selectedRole == .driver {
                 SGMSectionLabel("STRIPE CONNECT")
-                PaymentsConnectCard(loading: appState.loading) {
-                    Task { await startStripeConnect() }
+                PaymentsConnectCard(loading: appState.loading || appState.refreshingAppData || controller.loading || appState.ridePaymentBusy) {
+                    Task {
+                        await controller.startConnect(email: appState.session?.email, urls: NativeStripeConnectConfiguration.urls,
+                            gateway: appState.stripe, openURL: { openURL($0) },
+                            onError: { appState.errorMessage = $0 }, onNotice: { appState.noticeMessage = $0 })
+                    }
                 }
                 .padding(.horizontal, SGMSpace.padScreen)
             }
@@ -24,9 +49,13 @@ struct PaymentsScreen: View {
                     ForEach(appState.payableBookings) { booking in
                         PaymentBookingCard(
                             booking: booking,
-                            loading: appState.loading
+                            loading: appState.loading || appState.refreshingAppData || appState.ridePaymentBusy || appState.hasPendingRidePayment || controller.loading,
+                            paymentPending: appState.hasPendingRidePayment
                         ) {
-                            Task { await pay(booking) }
+                            Task {
+                                guard controller.acceptsAction else { return }
+                                await appState.payRide(booking, access: access)
+                            }
                         }
                     }
                 }
@@ -34,63 +63,13 @@ struct PaymentsScreen: View {
             }
         }
         .task {
-            await appState.refreshAppData()
+            controller.activate()
+            guard controller.acceptsAction else { return }
+            await appState.refreshAppData(access: access)
         }
+        .onDisappear { controller.close() }
     }
 
-    private func startStripeConnect() async {
-        appState.loading = true
-        appState.errorMessage = nil
-        defer { appState.loading = false }
-
-        do {
-            guard appState.stripe.isConfigured else {
-                throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
-            }
-            guard let email = appState.session?.email, !email.isEmpty else {
-                throw ProviderConfigurationError(message: "Adresse email Firebase requise pour Stripe Connect.")
-            }
-            guard let urls = NativeStripeConnectConfiguration.urls else {
-                throw ProviderConfigurationError(message: "Configurez SGM_STRIPE_CONNECT_RETURN_URL et SGM_STRIPE_CONNECT_REFRESH_URL.")
-            }
-
-            let account = try await appState.stripe.createStripeAccount(email: email)
-            let link = try await appState.stripe.createStripeAccountLink(
-                returnUrl: urls.returnUrl,
-                refreshUrl: urls.refreshUrl
-            )
-            guard let url = URL(string: link.url) else {
-                throw ProviderConfigurationError(message: "Lien onboarding Stripe invalide.")
-            }
-            openURL(url)
-            appState.noticeMessage = account.reused ? "Onboarding Stripe repris." : "Compte Stripe créé."
-        } catch {
-            appState.errorMessage = error.localizedDescription
-        }
-    }
-
-    private func pay(_ booking: PayableBookingSummary) async {
-        appState.loading = true
-        appState.errorMessage = nil
-        defer { appState.loading = false }
-
-        do {
-            guard appState.stripe.isConfigured else {
-                throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
-            }
-            let config = try await appState.stripe.prepareRidePayment(bookingId: booking.id)
-            let outcome = try await NativePaymentSheetFlow.present(config: config)
-            switch outcome {
-            case .completed:
-                appState.noticeMessage = "Paiement confirmé."
-                await appState.refreshAppData()
-            case .canceled:
-                appState.noticeMessage = "Paiement annulé."
-            }
-        } catch {
-            appState.errorMessage = error.localizedDescription
-        }
-    }
 }
 
 private struct PaymentsConnectCard: View {
@@ -109,7 +88,7 @@ private struct PaymentsConnectCard: View {
                 Text("Activez les paiements conducteur et les futurs virements récompenses.")
                     .font(.sgmBody(12, weight: .medium))
                     .foregroundStyle(SGM.textMuted)
-                SGMButton(title: loading ? "Ouverture..." : "Continuer l'onboarding", action: action)
+                SGMButton(title: loading ? "Ouverture..." : "Continuer l'onboarding", testID: UITestIdentifier.paymentConnectAction, action: action)
                     .opacity(loading ? 0.58 : 1)
                     .allowsHitTesting(!loading)
             }
@@ -133,10 +112,6 @@ private struct PaymentsHero: View {
             SGM.heroGradient
             SGMGridTexture()
             VStack(alignment: .leading, spacing: 8) {
-                Text("STRIPE PAYMENTSHEET")
-                    .font(.sgmBody(11, weight: .bold))
-                    .tracking(.sgmWider(for: 11))
-                    .foregroundStyle(SGM.textOnGreen.opacity(0.52))
                 Text(formatEuros(totalCents))
                     .font(.sgmDisplay(42))
                     .tracking(.sgmWide(for: 42))
@@ -155,6 +130,7 @@ private struct PaymentsHero: View {
 private struct PaymentBookingCard: View {
     let booking: PayableBookingSummary
     let loading: Bool
+    let paymentPending: Bool
     let action: () -> Void
 
     var body: some View {
@@ -175,7 +151,7 @@ private struct PaymentBookingCard: View {
                     .font(.sgmDisplay(22))
                     .foregroundStyle(SGM.orange)
             }
-            SGMButton(title: loading ? "Préparation..." : "Payer maintenant", action: action)
+            SGMButton(title: paymentPending ? "Confirmation en attente" : loading ? "Préparation..." : "Payer maintenant", testID: UITestIdentifier.paymentAction, action: action)
                 .opacity(loading ? 0.58 : 1)
                 .allowsHitTesting(!loading)
         }

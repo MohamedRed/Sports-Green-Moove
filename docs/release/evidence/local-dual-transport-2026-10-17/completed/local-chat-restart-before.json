@@ -1,0 +1,12 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ff75301b1aaf2f96a48b464854dbc1d8",
+  "scope": "native-ui-confirmed-conversation-restart-stage",
+  "stage": "before",
+  "processId": 7319,
+  "actorUserId": "sgm-qa-parent",
+  "completed": true,
+  "sendActor": "first",
+  "sendPhase": "confirmed",
+  "firstMessageConfirmed": true
+}

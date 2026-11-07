@@ -1,0 +1,10 @@
+{
+  ".github/workflows/native-ci.yml": "6d3f4ff6a8b116af6a9f592e8faa9b7b206c1a3512b8272ec97ce19bda42aab2",
+  "scripts/run-android-ui-tests-and-collect-screenshots.sh": "9f47bf760fa3e83b3cda40eb076a43c60078b1402cc1504326de01a312b1795c",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ReviewTripContextFlowTest.kt": "534a5eb657986227f74746cdf0ac82fd5df7aadb259e895eecef106588f8c442",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/ReviewCard.kt": "2f0a5472da1a7188427920d213ae0418f35c16f61df2344e2a011cc2f29909b0",
+  "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidPendingReviewGateway.kt": "5320fd759965b3046cf3debbd8c4b2c6e928d03cfbaaa00be9b7b96b1f52a94c",
+  "android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxState.kt": "3dfa0b93ab73cf9e0e13196929e03ab08101fcd3f137062afc5e9ac7e4fd7988",
+  "functions/src/services/pendingReviews.ts": "94b8af0612b3b15718880376572d9678de1b163bf4dca828863616a2bdf0a42e",
+  "functions/src/domain/reviewTripContext.ts": "9a0a014f9c30da3b5b04b9710f979c4f32b5e846e67a4cd1b750ee350a7aede8"
+}

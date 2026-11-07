@@ -1,0 +1,18 @@
+{
+  "scope": "full-image-variation-observer-and-compiled-two-case-regression-not-native-execution",
+  "sparseFalseNegativeWideColors": 14,
+  "unchangedRequiredDistinctColors": 17,
+  "allPixelsConsideredUntilThreshold": true,
+  "nativeSamplingCasesCompiled": 2,
+  "nativeSamplingCasesExecuted": 0,
+  "existingHistoryCasesMoved": 4,
+  "historyAssertionBlockSha256": "ac45ef8a3e295e45c9d14524fd2975e6b23d8d0a9ecf1263d220711865a61e04",
+  "historyAssertionBytesUnchanged": true,
+  "productionSourcesChanged": false,
+  "captureMechanismChanged": false,
+  "assertionThresholdReduced": false,
+  "deadlineChanged": false,
+  "fallbackAdded": false,
+  "nativeLayoutsAccepted": false,
+  "releaseAccepted": false
+}

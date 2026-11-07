@@ -1,0 +1,22 @@
+{
+  "scope": "physical-phone-emergency-options-partial-isolated-backend",
+  "testedAt": "2026-10-21T01:04:14.704Z",
+  "appSourceCommit": "c71004846732eac55e35dd69a95590f2d745a98c",
+  "apkSha256": "94b73d20540d8bc849eda7acb913265892bad7c492a17df08d142e91faacaf46",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "aa535a6e790d689cb7b913157dd3d204",
+  "device": "Google Pixel 8 Android 14, BrowserStack App Live, No SIM",
+  "completed": false,
+  "dialerHandoffProven": false,
+  "storeReviewAccepted": false,
+  "releaseTrackingAccepted": false,
+  "productionWrites": false,
+  "realCallsPlaced": false,
+  "videoRecorded": false,
+  "fixtureCleanupVerified": true,
+  "localRuntimeStopped": true,
+  "tunnelStopped": true,
+  "phoneSessionStopped": true,
+  "steps": ["contact-empty", "adult-saved", "adult-restored", "child-saved", "child-revoked", "cancelled-removal", "adult-removed", "other-account-empty"],
+  "captures": ["empty.png", "saved.png", "restored.png", "child.png", "revoked.png", "cancelled.png", "removed.png", "other-account.png"]
+}

@@ -1,0 +1,121 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d7c994e5008757e4d45e068d427a762a",
+  "observedAt": "2026-10-31T12:23:05.632Z",
+  "fixture": {
+    "tripId": "ATTA1HE7JN7FvqEHOyMv",
+    "bookingId": "WJ0kDlvLbO6XL4VZzS5b",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "replyRequestId": "503ba80d-322c-4a3d-b6d2-e91b29c7db5e"
+  },
+  "scope": "independent-chat-records-with-sdk-driver-reply-not-phone-ui-radio-loss-or-peer-device",
+  "completed": true,
+  "failed": false,
+  "checkpoints": [
+    {
+      "phase": "ready",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "conversation-open",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "offline-failed",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "online-before-retry",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "parent-sent",
+      "status": "passed",
+      "messageCount": 1,
+      "notificationCount": 1,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "reply-sent",
+      "status": "passed",
+      "messageCount": 2,
+      "notificationCount": 2,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "reply-read",
+      "status": "passed",
+      "messageCount": 2,
+      "notificationCount": 2,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "messageCount": 2,
+      "notificationCount": 2,
+      "duplicateMessages": 0,
+      "foreignRecordsPreserved": true,
+      "accountClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "controllerSubmittedParentMessages": false,
+  "controllerSubmittedDriverReply": true,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPaymentsExercised": false,
+  "phoneUiProvenByObserver": false,
+  "physicalRadioLossProvenByObserver": false,
+  "sourceFiles": {
+    "scripts/qa/manual-chat-network-phone.mjs": "dc24c5f4efb42e1b438f7e07e35a39e748102238c9305340665b67f4a41f69ce",
+    "scripts/qa/chat-network-phone-checkpoints.mjs": "940acf8dd787d8cf45aa206c1fcae97000fff30302c1bf08f15fc9b878269592",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "functions/src/callables/messages.ts": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6",
+    "functions/src/callables/chatRead.ts": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5"
+  }
+}

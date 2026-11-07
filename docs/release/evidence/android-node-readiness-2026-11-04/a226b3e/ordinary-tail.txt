@@ -1,0 +1,17 @@
+INSTRUMENTATION_STATUS: test=approvedWithdrawalIsConfirmedAndNarrowLargeTextRemainsWithinItsScreen
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TeamEnrollmentFlowTest
+INSTRUMENTATION_STATUS: current=318
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=351
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=approvedWithdrawalIsConfirmedAndNarrowLargeTextRemainsWithinItsScreen
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TeamEnrollmentHistoryFlowTest
+INSTRUMENTATION_STATUS: current=319
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=351
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.TeamEnrollmentHistoryFlowTest:
+INSTRUMENTATION_STATUS: test=redactedChildHistoryHasNoWithdrawalAndFitsNarrowLargeText
+INSTRUMENTATION_STATUS_CODE: 1

@@ -1,0 +1,90 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4f0c53407d28b65556fb8782828a63a9",
+  "recordedAt": "2026-10-19T10:17:34.935Z",
+  "scope": "independent-local-persisted-team-checkpoint-not-ui-or-release-proof",
+  "phase": "self-requested",
+  "selfStatus": "requested",
+  "selfRevision": 1,
+  "childStatus": null,
+  "childRevision": 0,
+  "enrollmentCount": 1,
+  "eventCount": 1,
+  "identity": {
+    "clubId": "sgm-qa-team-ui-club",
+    "teamId": "sgm-qa-team-ui-team",
+    "childId": "sgm-qa-team-ui-child",
+    "parentId": "sgm-qa-parent",
+    "managerId": "sgm-qa-club-manager",
+    "teamInstanceId": "4dd7bc0165042e986ac1595d569e9ba45ad6977091ca5755da4499525304f78d",
+    "selfEnrollmentId": "dbe6e79c0fa6e382d2948cf955def3c3fdadff1c53aa2927b45eaacad2801842",
+    "childEnrollmentId": "0f596a054ad986c9357bef8187789d11fbf30bc3cc25c5dc06820ca5056ff110"
+  },
+  "state": {
+    "enrollments": [
+      {
+        "id": "dbe6e79c0fa6e382d2948cf955def3c3fdadff1c53aa2927b45eaacad2801842",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "4dd7bc0165042e986ac1595d569e9ba45ad6977091ca5755da4499525304f78d",
+        "teamCreatedAt": {
+          "_seconds": 1792404605,
+          "_nanoseconds": 517518000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792405041,
+          "_nanoseconds": 506000000
+        },
+        "updatedAt": {
+          "_seconds": 1792405041,
+          "_nanoseconds": 506000000
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "851294a0753a57b4cff51ff11618b8ccb69ea311257aa6185d666f9b8b7858f5",
+        "enrollmentId": "dbe6e79c0fa6e382d2948cf955def3c3fdadff1c53aa2927b45eaacad2801842",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "4dd7bc0165042e986ac1595d569e9ba45ad6977091ca5755da4499525304f78d",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "3270264973c700fd28eff699d5c5548f0ce48d100daa4acbb5015cadeb4a8f53",
+        "createdAt": {
+          "_seconds": 1792405041,
+          "_nanoseconds": 506000000
+        }
+      }
+    ],
+    "guardian": {
+      "childId": "sgm-qa-team-ui-child",
+      "parentUserId": "sgm-qa-parent",
+      "clubId": "sgm-qa-team-ui-club",
+      "createdAt": {
+        "_seconds": 1792404606,
+        "_nanoseconds": 251000000
+      },
+      "lastActorUserId": "sgm-qa-club-manager",
+      "revision": 2,
+      "status": "verified",
+      "updatedAt": {
+        "_seconds": 1792404606,
+        "_nanoseconds": 908000000
+      }
+    }
+  }
+}

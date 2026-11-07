@@ -1,0 +1,193 @@
+name: iOS MVP Verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      retain_approved_captures:
+        description: One approved set of three synthetic images, under 2 MB, retained one day
+        type: boolean
+        required: false
+        default: false
+  pull_request:
+    paths:
+      - "tests/ios-chat-input-commit.test.mjs"
+      - "tests/ios-navigation-viewport.test.mjs"
+      - "ios/**"
+      - "scripts/check-ios-native-plan.sh"
+      - "scripts/qa/check-ios-membership-fixture.sh"
+      - "tests/fixtures/ios-membership-fixture/**"
+      - "tests/ios-input-controls.test.mjs"
+      - "tests/ios-ride-chat.test.mjs"
+      - "tests/ios-search-ownership.test.mjs"
+      - "scripts/qa/check-ios-owned-places.sh"
+      - "scripts/qa/check-ios-search-contract.mjs"
+      - "tests/fixtures/ios-search-contract/**"
+      - "tests/ios-search-contract.test.mjs"
+      - "tests/fixtures/ios-search-callable/**"
+      - "scripts/qa/check-ios-ride-chat-runtime.sh"
+      - "tests/fixtures/ios-ride-chat-runtime/**"
+      - "scripts/check-ios-support-concurrency.sh"
+      - "tests/fixtures/ios-support-concurrency/**"
+      - "tests/ios-mvp-workflow.test.mjs"
+      - "tests/ios-location-shutdown.test.mjs"
+      - "tests/ios-emergency-contact.test.mjs"
+      - "tests/ios-parent-contact.test.mjs"
+      - "tests/ios-message-ownership.test.mjs"
+      - "tests/ios-contact-request.test.mjs"
+      - "tests/ios-team-chat.test.mjs"
+      - "tests/ios-received-ratings.test.mjs"
+      - "tests/ios-membership.test.mjs"
+      - "tests/ios-profile-city.test.mjs"
+      - "scripts/qa/check-ios-emergency-phone.mjs"
+      - "tests/fixtures/ios-emergency-phone/**"
+      - "tests/ios-search-consent.test.mjs"
+      - "tests/ios-app-data.test.mjs"
+      - "tests/ios-authentication.test.mjs"
+      - "tests/ios-initialized-profile.test.mjs"
+      - "tests/ios-location-stop.test.mjs"
+      - "tests/ios-fixture-launch.test.mjs"
+      - "tests/ios-ride-ownership.test.mjs"
+      - "tests/ios-account-work.test.mjs"
+      - "tests/ios-approved-captures.test.mjs"
+      - "scripts/qa/check-ios-approved-captures.sh"
+      - "scripts/qa/ios-approved-captures/**"
+      - "scripts/qa/check-ios-location-provider.mjs"
+      - "scripts/qa/check-ios-permission-continuation.mjs"
+      - "tests/fixtures/ios-permission-continuation/**"
+      - "tests/fixtures/ios-location/**"
+      - ".github/workflows/ios-mvp-verification.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-mvp-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ios-fixture-verification:
+    name: iPhone build and fixture screens
+    # Standard public-repository compute only; do not enable paid/private runs.
+    if: ${{ github.event.repository.visibility == 'public' && github.event.repository.private == false }}
+    runs-on: macos-26
+    timeout-minutes: 50
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Inspect installed Apple tools
+        run: |
+          test "$(uname -m)" = arm64
+          xcodebuild -version
+          xcrun simctl list runtimes
+
+      - name: Run native logic checks
+        run: bash scripts/check-ios-native-plan.sh
+
+      - name: Check controlled location lifecycle without a device
+        run: node scripts/qa/check-ios-location-provider.mjs
+
+      - name: Check actual permission continuation before SDK compilation
+        run: node scripts/qa/check-ios-permission-continuation.mjs
+
+      - name: Check controlled emergency phone boundary without opening Phone
+        run: node scripts/qa/check-ios-emergency-phone.mjs
+
+      - name: Check support concurrency signature regressions
+        run: bash scripts/check-ios-support-concurrency.sh
+
+      - name: Check approved capture bounds with generated images
+        run: bash scripts/qa/check-ios-approved-captures.sh --self-test
+
+      - name: Install project generator
+        run: brew install xcodegen
+
+      - name: Generate SDK-linked app project
+        working-directory: ios
+        run: xcodegen generate --spec project.yml
+
+      - name: Create isolated iPhone simulator
+        id: phone
+        run: |
+          phone_id=$(xcrun simctl create SGM-MVP-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-16)
+          printf 'id=%s\n' "$phone_id" >> "$GITHUB_OUTPUT"
+
+      - name: Boot isolated simulator before compiling or testing
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          xcrun simctl boot "$PHONE_ID"
+          xcrun simctl bootstatus "$PHONE_ID" -b
+
+      - name: Compile app and all fixture test bundles
+        working-directory: ios
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+          RETAIN_APPROVED_CAPTURES: ${{ github.event_name == 'workflow_dispatch' && inputs.retain_approved_captures && 'YES' || 'NO' }}
+        run: |
+          xcodebuild build-for-testing \
+            -project SportsGreenMoove.xcodeproj \
+            -scheme SportsGreenMoove \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=$PHONE_ID" \
+            -derivedDataPath "$RUNNER_TEMP/sgm-ios-derived" \
+            -resultBundlePath "$RUNNER_TEMP/sgm-ios-build.xcresult" \
+            CODE_SIGNING_ALLOWED=NO \
+            SGM_RETAIN_APPROVED_CAPTURES="$RETAIN_APPROVED_CAPTURES"
+
+      - name: Run every built fixture test without rebuilding
+        id: fixtures
+        working-directory: ios
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          shopt -s nullglob
+          runs=( "$RUNNER_TEMP/sgm-ios-derived/Build/Products/"*.xctestrun )
+          test "${#runs[@]}" -eq 1
+          xcodebuild test-without-building \
+            -xctestrun "${runs[0]}" \
+            -destination "platform=iOS Simulator,id=$PHONE_ID" \
+            -resultBundlePath "$RUNNER_TEMP/sgm-ios-fixtures.xcresult" \
+            -parallel-testing-enabled NO
+
+      - name: Validate and collect only three approved synthetic captures
+        id: captures
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.retain_approved_captures && (steps.fixtures.outcome == 'success' || steps.fixtures.outcome == 'failure') }}
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+          SOURCE_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          FIXTURE_OUTCOME: ${{ steps.fixtures.outcome }}
+        run: bash scripts/qa/check-ios-approved-captures.sh
+
+      - name: Retain approved iPhone captures for one day
+        if: ${{ !cancelled() && github.event_name == 'workflow_dispatch' && inputs.retain_approved_captures && steps.captures.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: iphone-fixture-captures
+          path: |
+            ${{ runner.temp }}/sgm-approved-iphone-captures/home.png
+            ${{ runner.temp }}/sgm-approved-iphone-captures/profile.png
+            ${{ runner.temp }}/sgm-approved-iphone-captures/rating-sent.png
+            ${{ runner.temp }}/sgm-approved-iphone-captures/manifest.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: false
+          overwrite: false
+
+      - name: Observe fixture startup phases after a failed test step
+        if: ${{ failure() && steps.phone.outputs.id != '' }}
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: |
+          xcrun simctl list devices --json
+          xcrun simctl spawn "$PHONE_ID" log show --style compact --last 50m \
+            --predicate 'subsystem == "be.sportgreenmoove.fixture.boot"'
+
+      - name: Dispose isolated simulator
+        if: ${{ always() && steps.phone.outputs.id != '' }}
+        env:
+          PHONE_ID: ${{ steps.phone.outputs.id }}
+        run: xcrun simctl delete "$PHONE_ID"

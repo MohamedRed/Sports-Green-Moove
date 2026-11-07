@@ -1,0 +1,22 @@
+{
+  "runId": "20ab16ab6187c9462496b91f0d6d3d3c",
+  "phase": "historical-driver",
+  "observedAt": "2026-10-29T18:39:44.381Z",
+  "summaries": {
+    "driver": {
+      "userId": "sgm-qa-driver",
+      "count": 104,
+      "average": 3.4423076923076925
+    },
+    "parent": {
+      "userId": "sgm-qa-parent",
+      "count": 26,
+      "average": 4
+    },
+    "manager": {
+      "userId": "sgm-qa-club-manager",
+      "count": 0,
+      "average": null
+    }
+  }
+}

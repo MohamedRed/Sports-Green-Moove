@@ -1,0 +1,8 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 1970-01-01 00:00:00.000
+  package: be.sportgreenmoove.app.local
+    Historical Process Exit for uid=10209
+        ApplicationExitInfo #0:
+          timestamp=2026-10-18 10:22:51.582 pid=6926 realUid=10209 packageUid=10209 definingUid=10209 user=0
+          process=be.sportgreenmoove.app.local reason=16 (PACKAGE UPDATED) subreason=0 (UNKNOWN) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.google.android.gms due to installPackageLI state=empty trace=null

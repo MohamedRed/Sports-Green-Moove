@@ -1,0 +1,17 @@
+{
+  "reviewed": true,
+  "containsRealCustomerData": false,
+  "credentialsVisible": false,
+  "published": {
+    "choices.png": true,
+    "match.png": true,
+    "requested.png": true,
+    "driver-approved.png": true,
+    "parent-approved.png": true,
+    "cancelled.png": true,
+    "capacity-restored.png": true
+  },
+  "outsideBundle": {
+    "driver-pending-browser.png": "Provider/browser context retained privately, not a public gallery asset."
+  }
+}

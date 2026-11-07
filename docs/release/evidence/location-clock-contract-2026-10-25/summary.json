@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-25",
+  "scope": "server-clock-contract-only-not-native-tracking",
+  "unitSourceFiles": {
+    "functions/src/__tests__/location-clock-callables.test.ts": "74bf6b1a4bffda30bf5240d6d05f8c7a34754967a332b02ddcfc5123d283bbe1"
+  },
+  "clientIntegrationExecuted": false,
+  "physicalGpsAccepted": false,
+  "productionDeployed": false,
+  "releaseComplete": false
+}

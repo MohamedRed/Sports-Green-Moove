@@ -1,0 +1,8 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 2026-10-24 17:16:29.714
+  package: be.sportgreenmoove.app.local
+    Historical Process Exit for uid=10208
+        ApplicationExitInfo #0:
+          timestamp=2026-10-30 14:06:22.529 pid=4302 realUid=10208 packageUid=10208 definingUid=10208 user=0
+          process=be.sportgreenmoove.app.local reason=6 (ANR) subreason=0 (UNKNOWN) status=0
+          importance=400 pss=0.00 rss=0.00 description=bg anr: Process ProcessRecord{6812697 4302:be.sportgreenmoove.app.local/u0a208} failed to complete startup state=empty trace=/data/system/procexitstore/anr_2026-10-30-14-06-21-327.gz

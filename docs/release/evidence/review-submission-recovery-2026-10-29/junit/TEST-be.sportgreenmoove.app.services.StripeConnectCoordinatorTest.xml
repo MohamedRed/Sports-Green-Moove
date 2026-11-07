@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-29T23:23:54.766Z" hostname="MRRs-MacBook-Air.local" time="0.025">
+  <properties/>
+  <testcase name="successOpensOnceWithoutClaimingThatVerificationOrPayoutFinished" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.005"/>
+  <testcase name="configurationErrorsNeverExposeProviderDetails" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="changedAccountAfterAccountCreationCannotRequestALink" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="invalidLinksAndBrowserFailureDoNotReportSuccess" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="staleProviderErrorsCannotAppearForAnotherAccount" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="cancelledWorkReleasesBusyWithoutPublishingAnError" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.012"/>
+  <testcase name="signOutWhileLinkLoadsCannotOpenIt" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="changedRoleWhileLinkLoadsCannotOpenIt" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <testcase name="unavailableConfigurationAndExistingPaymentPreventProviderCalls" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.0"/>
+  <testcase name="incompleteOrNonDriverIdentityNeverCallsTheProvider" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.0"/>
+  <testcase name="repeatedTapsCannotStartAnotherAccountOrLink" classname="be.sportgreenmoove.app.services.StripeConnectCoordinatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

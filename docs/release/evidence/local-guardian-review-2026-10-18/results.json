@@ -1,0 +1,162 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1397a836afc2cb1a87e8a8ebf834092a",
+  "testedAt": "2026-10-18T16:25:45.120Z",
+  "scope": "isolated-guardian-review-http-not-native-ui",
+  "checks": [
+    {
+      "id": "signed-out-cannot-list-private-verifications",
+      "status": "passed"
+    },
+    {
+      "id": "review-requires-manager-claim-and-current-exact-club-membership",
+      "status": "passed"
+    },
+    {
+      "id": "combined-admin-role-does-not-expand-managed-clubs",
+      "status": "passed"
+    },
+    {
+      "id": "review-page-is-bounded-private-and-currently-actionable",
+      "status": "passed"
+    },
+    {
+      "id": "pagination-preserves-every-scoped-request-once",
+      "status": "passed"
+    },
+    {
+      "id": "parents-see-only-their-own-requests-and-withdraw-capability",
+      "status": "passed"
+    },
+    {
+      "id": "cursors-cannot-cross-account-club-or-list-boundaries",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-blocks-a-previously-valid-next-page",
+      "status": "passed"
+    },
+    {
+      "id": "removed-child-declaration-removes-verify-not-refusal",
+      "status": "passed"
+    },
+    {
+      "id": "historical-request-does-not-grant-current-child-profile-access",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-parent-cannot-be-newly-verified",
+      "status": "passed"
+    },
+    {
+      "id": "archived-club-still-allows-removing-not-granting-verification",
+      "status": "passed"
+    },
+    {
+      "id": "manager-cannot-approve-or-remove-their-own-parent-verification",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-or-noncanonical-records-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "listed-revision-supports-real-manager-confirmation-and-stale-rejection",
+      "status": "passed"
+    },
+    {
+      "id": "read-only-lists-do-not-create-events-or-change-protected-records",
+      "status": "passed"
+    }
+  ],
+  "testCount": 16,
+  "steps": [
+    {
+      "id": "guardian-review-services",
+      "status": "passed"
+    },
+    {
+      "id": "guardian-review-ui",
+      "status": "passed"
+    }
+  ],
+  "providerRequests": 0,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "teamChatImplemented": false,
+  "childEmergencyImplemented": false,
+  "browser": {
+    "checkedAt": "2026-10-18T16:25:45.096Z",
+    "scope": "local-management-browser-not-native-or-physical",
+    "checks": [
+      {
+        "id": "manager-sign-in-and-private-request-list",
+        "status": "passed"
+      },
+      {
+        "id": "responsive-request-list-desktop-tablet-and-mobile",
+        "status": "passed"
+      },
+      {
+        "id": "cancelled-confirmation-does-not-write",
+        "status": "passed"
+      },
+      {
+        "id": "confirmed-verification-updates-real-record-and-one-audit-event",
+        "status": "passed"
+      },
+      {
+        "id": "revocation-is-confirmed-and-removes-verification-capability",
+        "status": "passed"
+      },
+      {
+        "id": "refusal-is-separate-from-membership-approval",
+        "status": "passed"
+      },
+      {
+        "id": "lost-reply-clears-stale-actions-and-reload-reconciles-real-result",
+        "status": "passed"
+      },
+      {
+        "id": "next-page-retains-all-twenty-five-distinct-requests",
+        "status": "passed"
+      },
+      {
+        "id": "sign-out-removes-the-private-manager-screen",
+        "status": "passed"
+      }
+    ],
+    "screenshots": [
+      "guardian-requests-1440.png",
+      "guardian-requests-768.png",
+      "guardian-requests-390.png",
+      "guardian-requests-320.png",
+      "guardian-confirmation-mobile.png",
+      "guardian-verified-mobile.png",
+      "guardian-recovered-mobile.png",
+      "guardian-reviewed-desktop.png"
+    ],
+    "viewports": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "externalRequests": 0,
+    "productionWrites": false
+  },
+  "sourceFiles": {
+    "functions/src/services/guardianLists.ts": "287257acbf93301d50726d2f6254fe37f536c927bf19e9c476c047231bdd42ea",
+    "functions/src/callables/guardianLists.ts": "38cf0067dea01df235efb2ed7871f783a6fdec6fd0f706206f7721f7f92ef650",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69",
+    "functions/src/callables/guardianVerification.ts": "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4",
+    "scripts/qa/local-guardian-review-suite.mjs": "df63b3a7420a96558693d983609d9ea3e69e185477a4377e967569d382badc44",
+    "admin/src/GuardianReviewPanel.tsx": "8d4c5dd922c54035416274c7a5a9e4d89196125bc409c89829c87e10060213b6",
+    "admin/src/GuardianReviewController.ts": "5e1c270dbf51522c3a28238cbff24e23f39ac46dea8beb47aed5f0ce062efde6",
+    "admin/src/guardianReviewGateway.ts": "728c05ff3038a597652fc9bf47673da23519728e6d35ccb10c6f2a0553be1f59",
+    "admin/src/guardianReviewWire.ts": "7f3388f09bc8f7fb0acf256a1c13c5fa5164fc917dfa0caec1bb0551b37a7e89",
+    "admin/src/guardianReviewTypes.ts": "e745ddf4a7a66cdd62f212948e2287935964829352be47caeac061183b0c0ff2",
+    "admin/src/memberships.css": "95a9a765486b5b7b11181d9195bc5302adf8c95deb01930cd84eedbe292e8440",
+    "scripts/qa/local-guardian-review-browser.mjs": "7d3f87b1aa73e522add9221e6e1b2645d6807e1170db1775462ffae7f080cf3c"
+  }
+}

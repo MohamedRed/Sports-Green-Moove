@@ -1,0 +1,12 @@
+2026-10-23T20:12:57.6779130Z AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+2026-10-23T20:12:57.6779898Z 
+2026-10-23T20:12:57.6780173Z   assert(phases.has(phase))
+2026-10-23T20:12:57.6780477Z 
+2026-10-23T20:12:57.6781727Z     at collectLocalUiEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/collect-local-ui-evidence.mjs:31:36)
+2026-10-23T20:12:57.6783886Z     at collectEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:76:36)
+2026-10-23T20:12:57.6785268Z     at collect (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:89:20)
+2026-10-23T20:12:57.6786501Z     at replayNotificationReadUi (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-notification-read-ui.mjs:65:3)
+2026-10-23T20:12:57.6787469Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2026-10-23T20:12:57.6788370Z     at async file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:88:28 {
+2026-10-23T20:12:57.6788976Z   generatedMessage: true,
+2026-10-23T20:12:57.6789260Z   code: 'ERR_ASSERTION',

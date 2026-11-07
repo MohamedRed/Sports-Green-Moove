@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.PendingReviewsStateTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-29T23:23:55.284Z" hostname="MRRs-MacBook-Air.local" time="0.008">
+  <properties/>
+  <testcase name="refreshOrDisposalDiscardsLateRepliesAndConcurrentLoadsAreSuppressed" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.002"/>
+  <testcase name="cancellationDoesNotConsumeTheCursorOrBecomeAZeroReviewResult" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.002"/>
+  <testcase name="anotherOwnerAndNonAdvancingCursorFailWithoutReplacingData" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.001"/>
+  <testcase name="emptyContinuationCanAdvanceToARealReviewAndThenToTheEnd" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.002"/>
+  <testcase name="duplicateRowsAndSubmittedReviewsCannotReappearOnLaterPagesOrRefresh" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.0"/>
+  <testcase name="failedPagePreservesRowsAndCursorForExplicitRetry" classname="be.sportgreenmoove.app.ui.PendingReviewsStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,88 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "02a20acc9cb17b91c26ddcdff3e1ab5f",
+  "testedAt": "2026-10-29T16:54:53.314Z",
+  "scope": "authenticated-isolated-review-history-not-phone-or-production",
+  "completed": true,
+  "steps": [
+    {
+      "id": "104-immutable-ratings-created-through-authenticated-callable",
+      "status": "passed"
+    },
+    {
+      "id": "submitted-reviews-do-not-reappear-beyond-the-first-100-ratings",
+      "status": "passed"
+    },
+    {
+      "id": "one-new-unrated-ride-keeps-exactly-one-distinct-prompt",
+      "status": "passed"
+    },
+    {
+      "id": "another-accounts-ratings-cannot-hide-the-parents-own-prompts",
+      "status": "passed"
+    },
+    {
+      "id": "new-submission-disappears-and-repeated-refresh-stays-empty",
+      "status": "passed"
+    },
+    {
+      "id": "parent-submission-hides-only-that-parents-own-review",
+      "status": "passed"
+    },
+    {
+      "id": "unauthenticated-inbox-is-denied-without-changing-fixture-data",
+      "status": "passed"
+    }
+  ],
+  "observations": [
+    {
+      "phase": "104-rated",
+      "displayedAlreadyRatedPrompts": 0,
+      "displayedIds": []
+    },
+    {
+      "phase": "new-unrated",
+      "displayedPrompts": 1
+    },
+    {
+      "phase": "other-account",
+      "displayedPrompts": 27
+    },
+    {
+      "phase": "refreshed",
+      "repeatedRefreshes": 3,
+      "displayedPrompts": 0,
+      "authoredRatings": 105
+    }
+  ],
+  "ratingsSubmitted": 106,
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "phoneUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/run-local-review-history.mjs": "ebde1551e7b6904104d1deb02293f3c46779e6597030a836d70074304193c97e",
+    "scripts/qa/local-review-history.mjs": "9ed612732e21a32faf3b784679140118bff81671d320bbffd3063c374de1bd15",
+    "functions/src/callables/inbox.ts": "6883853b00d17e5372a34e33c1970787d317ac7b2e5d478221379e3443de39b1",
+    "functions/src/domain/inbox.ts": "85ebfc1216b77a99be92a096ccbf033fb9974f22dd05efeed4835c4eecc220e9",
+    "functions/src/callables/feedback.ts": "0486e01d2261c74792a9b5272a76be7797fb9c11ef0debbc713adf6ffe0f2fba"
+  },
+  "execution": {
+    "baselineCommit": null,
+    "inboxSourceSha256": "6883853b00d17e5372a34e33c1970787d317ac7b2e5d478221379e3443de39b1",
+    "inboxModuleSha256": "4dc40795694f37ed0622a5984d4863204d4b70359db5c5c597870b618f122d13"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

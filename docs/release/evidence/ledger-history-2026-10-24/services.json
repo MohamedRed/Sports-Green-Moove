@@ -1,0 +1,157 @@
+{
+  "scope": "isolated-ledger-summary-services-not-native-ui-or-production",
+  "testedAt": "2026-10-24T13:52:45.812Z",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "05f1d41f004a307f788a7ace14efeb55",
+  "checks": [
+    {
+      "id": "reproduced-truncated-reward-query",
+      "status": "passed"
+    },
+    {
+      "id": "reproduced-truncated-impact-query",
+      "status": "passed"
+    },
+    {
+      "id": "authenticated-owner-only-summary-contract",
+      "status": "passed"
+    },
+    {
+      "id": "complete-posted-balance-and-latest-eight-mixed-timestamps",
+      "status": "passed"
+    },
+    {
+      "id": "all-impact-pages-with-six-occupied-months",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-account-and-empty-ledger-isolation",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-financial-and-impact-records-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "summaries-never-change-ledgers-or-account-authority",
+      "status": "passed"
+    }
+  ],
+  "legacy": {
+    "rewards": {
+      "limitedCount": 100,
+      "completeCount": 257,
+      "limitedBalanceCents": 10000,
+      "completeBalanceCents": -22000
+    },
+    "impact": {
+      "limitedCount": 100,
+      "completeCount": 257,
+      "limitedCo2Kg": 125,
+      "completeCo2Kg": 321.25
+    }
+  },
+  "summaries": {
+    "rewards": {
+      "userId": "sgm-qa-ledger-owner",
+      "balanceCents": -22000,
+      "entries": [
+        {
+          "id": "ledger-251",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782879060000
+        },
+        {
+          "id": "ledger-244",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782878640000
+        },
+        {
+          "id": "ledger-237",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782878220000
+        },
+        {
+          "id": "ledger-230",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782877800000
+        },
+        {
+          "id": "ledger-223",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782877380000
+        },
+        {
+          "id": "ledger-216",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782876960000
+        },
+        {
+          "id": "ledger-209",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782876540000
+        },
+        {
+          "id": "ledger-202",
+          "type": "driverEarning",
+          "amountCents": 100,
+          "createdAtMillis": 1782876120000
+        }
+      ]
+    },
+    "impact": {
+      "userId": "sgm-qa-ledger-owner",
+      "totalCo2Kg": 321.25,
+      "sharedDistanceKm": 257,
+      "rideCount": 257,
+      "months": [
+        {
+          "month": "2026-02",
+          "co2SavedKg": 46.25
+        },
+        {
+          "month": "2026-03",
+          "co2SavedKg": 46.25
+        },
+        {
+          "month": "2026-04",
+          "co2SavedKg": 46.25
+        },
+        {
+          "month": "2026-05",
+          "co2SavedKg": 46.25
+        },
+        {
+          "month": "2026-06",
+          "co2SavedKg": 46.25
+        },
+        {
+          "month": "2026-07",
+          "co2SavedKg": 45
+        }
+      ]
+    }
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidLedgerGateway.kt": "4f467195725f5616ae12f46e1fed078fa326bdc924a90235068f12265b83eb36",
+    "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift": "3d45567fc7a8a5a9664555f70ba9105e7afa0b42cd76b233870981703443d541",
+    "scripts/qa/ledger-history-services-suite.mjs": "8eb499fa6eaf306a6f18b19dfc72c23e39e85c76283c3e4df9c4ecc5deee52b3",
+    "functions/src/domain/ledgerSummaries.ts": "8b6927c96bc87cda3f2fbb59ca85d6625a653e25f8796158e3920574d54e165d",
+    "functions/src/services/ledgerSummaries.ts": "59f2828f5c2f659b35db811191894598fe57f566a7043402bbfdf4f3767c91d4",
+    "functions/src/callables/ledgerSummaries.ts": "057bd1915531166f71bc481ff408f227c20fd83e6b2271d6e178f00002ca921a",
+    "scripts/qa/ledger-history-fixtures.mjs": "568eb5d727fa05b88c2ea1c3d12f0701e255ad390e0355ec4dc1f706850a34c3"
+  },
+  "productionWrites": false,
+  "realPayments": false,
+  "nativeUiExecuted": false,
+  "releaseComplete": false
+}

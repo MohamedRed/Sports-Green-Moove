@@ -1,0 +1,74 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "recordedAt": "2026-10-22T14:53:54.066Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "replyIds": [],
+    "foreignReadDenied": false,
+    "reportId": "GlFQk50tS4zVLQraH13W"
+  },
+  "input": {
+    "subjectType": "other",
+    "reason": "Support suivi QA",
+    "description": "Je souhaite suivre cette demande de test.",
+    "emergency": false
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "subjectType": "other",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "publicReplyCount": 0,
+        "lastPublicReply": null,
+        "createdAt": {
+          "_seconds": 1792680759,
+          "_nanoseconds": 263000000
+        },
+        "updatedAt": {
+          "_seconds": 1792680759,
+          "_nanoseconds": 263000000
+        }
+      }
+    ],
+    "replies": [],
+    "notifications": [],
+    "requesterView": {
+      "report": {
+        "id": "GlFQk50tS4zVLQraH13W",
+        "reason": "Support suivi QA",
+        "description": "Je souhaite suivre cette demande de test.",
+        "emergency": false,
+        "status": "open",
+        "createdAtMillis": 1792680759263,
+        "updatedAtMillis": 1792680759263,
+        "replyCount": 0,
+        "lastReply": null
+      },
+      "replies": {
+        "items": [],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null
+  },
+  "result": {
+    "phase": "awaiting",
+    "reportId": "GlFQk50tS4zVLQraH13W",
+    "reportCount": 1,
+    "replyCount": 0,
+    "status": "open",
+    "privateNotesAbsentFromRequesterView": true,
+    "foreignAccountChecked": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminResponsesViaService": 0
+}

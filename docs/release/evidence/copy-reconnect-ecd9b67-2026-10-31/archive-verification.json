@@ -1,0 +1,43 @@
+{
+  "mainDigestVerified": true,
+  "focusedDigestVerified": true,
+  "originalArchivesPublished": false,
+  "mainDigest": "sha256:52012fbb6e48c8c8ff63b46fa9ee26c79eba143b299e24114140ed71a5d10a20",
+  "mainBytes": 22176787,
+  "selectedMembers": {
+    "adb-pull-trip-change-parent-confirmation.json": {
+      "member": "outputs/local-ui-evidence/a90b8084037a09bc2efa3cf028f8075f/adb-pull-trip-change-parent-confirmation.json",
+      "sha256": "891bec41404c1a6406203cbd9d3d2bfc273fcf0a159226f9479b57659b87d247"
+    },
+    "adb-sync-trip-change-parent-confirmation-diagnostics.json": {
+      "member": "outputs/local-ui-evidence/a90b8084037a09bc2efa3cf028f8075f/adb-sync-trip-change-parent-confirmation-diagnostics.json",
+      "sha256": "1dfbb9ff88aa74b3ec43329886816b692bf014dd0bfff530616744172915b8bf"
+    },
+    "adb-pull-failure-cleanup.json": {
+      "member": "outputs/local-ui-evidence/a90b8084037a09bc2efa3cf028f8075f/adb-pull-failure-cleanup.json",
+      "sha256": "16503fa8eb7cbe6566eaa181ff6324b7a91ca6d375a6d98b2c3f61d0fdadf2d9"
+    },
+    "ordinary-results.json": {
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "sha256": "724da0b2cf2699fdf2c1973a48cc7f2638034ed6cc450fda8232969e7c59e96b"
+    },
+    "native-suite-status.json": {
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b"
+    },
+    "disposable-store-restore.json": {
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    "host-disk-capacity.json": {
+      "member": "outputs/host-disk-capacity.json",
+      "sha256": "cc0a31f5811a2901596f6bc57648daf33bb8f7f2484de4c9d40eb25745b619f3"
+    }
+  },
+  "focusedDigest": "sha256:4f7ab5c999ddf2c01a0339ff23e2c2a6b4e1dca97f393bb579db2f4101845585",
+  "focusedBytes": 785911,
+  "focusedMember": {
+    "member": "host-disk-capacity.json",
+    "sha256": "438590d997f5303c7f147fd5a1b525070221ad8cc38d579ff41b67363ba5af7e"
+  }
+}

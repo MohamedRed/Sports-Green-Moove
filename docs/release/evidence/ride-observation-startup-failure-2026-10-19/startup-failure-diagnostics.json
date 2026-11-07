@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c2b86bae176197b21cf4732154182f72",
+  "label": "startup-failure",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-19T16:21:57.269Z",
+  "host": {
+    "totalMemoryBytes": 8589934592,
+    "freeMemoryBytes": 149602304,
+    "cpuCount": 8
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "startup-failure-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "startup-failure-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "startup-failure-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "startup-failure-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "startup-failure-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "startup-failure-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "startup-failure-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

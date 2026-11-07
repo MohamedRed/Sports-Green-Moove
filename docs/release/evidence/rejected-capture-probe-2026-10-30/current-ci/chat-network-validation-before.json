@@ -1,0 +1,103 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6fec7fb47e3457b06143b680e0c84aad",
+  "phase": "before",
+  "recordedAt": "2026-10-30T13:09:02.777Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 1,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 16,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}

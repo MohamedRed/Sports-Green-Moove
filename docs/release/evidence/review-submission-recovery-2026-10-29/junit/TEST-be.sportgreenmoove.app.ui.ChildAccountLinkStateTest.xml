@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-29T23:23:55.086Z" hostname="MRRs-MacBook-Air.local" time="0.028">
+  <properties/>
+  <testcase name="networkFailureNeedsAnExplicitParentRetryAndNeverShowsSuccess" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.008"/>
+  <testcase name="parentApprovalUsesTheSelectedImmutableIdentityAndClearsThePairingSecret" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.003"/>
+  <testcase name="expiryRemovesTheCodeRatherThanKeepingItVisibleAsUsable" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.003"/>
+  <testcase name="creatingACodeNeverApprovesAnAccountOrUsesTheParentEndpoint" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.002"/>
+  <testcase name="aSelfLinkReceiptCannotApproveTheParentAccount" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="childCodeMustBelongToTheCurrentAccountAndBeUnexpired" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.002"/>
+  <testcase name="anUnrelatedReceiptCannotConfirmTheSelectedChild" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="parentCannotRequestAChildCodeOrSubmitAnInvalidTruncatedCode" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="anotherTapCannotEraseOrReplaceAVisibleUnexpiredCode" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.001"/>
+  <testcase name="aLateCodeCannotReappearAfterLeavingForeground" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.002"/>
+  <testcase name="leavingTheDialogErasesInputAndPreventsFutureOperations" classname="be.sportgreenmoove.app.ui.ChildAccountLinkStateTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

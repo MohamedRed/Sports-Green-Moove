@@ -1,0 +1,72 @@
+[
+  {
+    "phase": "self-requested-again",
+    "original": "self-requested-again-restored-context.png",
+    "file": "captures/self-requested-again.png",
+    "originalSha256": "0e2dc73c2dc8a93fd9dc51ca5a943b570878dd33e311a7d96c7ab4f910d09fe4",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "self-approved",
+    "original": "self-approved-restored-context.png",
+    "file": "captures/self-approved.png",
+    "originalSha256": "44ed7dda1dd24f8bbbadea290e236164628a64795363169c1008e1646ecf8e90",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "self-withdrawn",
+    "original": "self-withdrawn-restored-context.png",
+    "file": "captures/self-withdrawn.png",
+    "originalSha256": "313f524fe4a1f236cc97de731d0fd576f3ce17369f5849bf596bf1bcc1daec73",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "child-requested",
+    "original": "child-requested-restored-context.png",
+    "file": "captures/child-requested.png",
+    "originalSha256": "4a9f2e440d0657da377402b0472d30593c96fbcf944059a703527bddc5d4e82f",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "child-approved",
+    "original": "child-approved-restored-context.png",
+    "file": "captures/child-approved.png",
+    "originalSha256": "95bdb726cb3ebe84db352728e2452df1837dab8a361a2d260a118e53376a628f",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  }
+]

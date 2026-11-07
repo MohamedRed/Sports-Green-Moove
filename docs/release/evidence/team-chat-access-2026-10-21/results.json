@@ -1,0 +1,102 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8131c9041791f7d7c158ba10f5fa9ad3",
+  "testedAt": "2026-10-21T14:04:10.592Z",
+  "scope": "local-team-chat-multiple-grants-and-cross-team-services-not-native-ui",
+  "completed": true,
+  "steps": [
+    {
+      "id": "current-single-child-grant-excludes-pre-admission-history-across-pages",
+      "status": "passed"
+    },
+    {
+      "id": "second-approved-child-preserves-earlier-current-grant-but-invalidates-old-cursor",
+      "status": "passed"
+    },
+    {
+      "id": "revoking-one-child-keeps-other-grant-with-its-own-history-boundary",
+      "status": "passed"
+    },
+    {
+      "id": "removing-last-current-grant-denies-read-send-replay-and-discovery",
+      "status": "passed"
+    },
+    {
+      "id": "reapproved-second-child-starts-new-history-without-recovering-old-retry",
+      "status": "passed"
+    },
+    {
+      "id": "renewing-first-child-keeps-still-current-second-child-history",
+      "status": "passed"
+    },
+    {
+      "id": "revoking-second-child-retains-only-current-first-child-history",
+      "status": "passed"
+    },
+    {
+      "id": "same-club-parent-cannot-discover-read-or-send-to-another-team",
+      "status": "passed"
+    },
+    {
+      "id": "pending-child-team-request-does-not-open-another-conversation",
+      "status": "passed"
+    },
+    {
+      "id": "separate-team-approval-uses-separate-history-and-keeps-original-messages",
+      "status": "passed"
+    },
+    {
+      "id": "both-team-ledgers-contain-exactly-once-ordered-message-operations",
+      "status": "passed"
+    }
+  ],
+  "observed": {
+    "teams": [
+      {
+        "teamId": "zz-sgm-qa-chat-team",
+        "committedMessages": 57,
+        "operations": 57
+      },
+      {
+        "teamId": "zy-sgm-qa-other-chat-team",
+        "committedMessages": 2,
+        "operations": 2
+      }
+    ]
+  },
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "adminClientClosed": true,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "notificationsVerified": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-team-access-changes.mjs": "1fa78a811199ca2de9335f6a8143f63395b978b1e8b29d69c3ecf90265922060",
+    "scripts/qa/run-local-team-access-changes.mjs": "bdb5529167df902f5ef2480195e466a1153ddc1782533810a167d214e615432e",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "functions/src/services/teamConversationAuthority.ts": "e5e11764043d7838708e9682acdb9d416b2720c5bb52366c1875421020c4ecec",
+    "functions/src/services/teamConversation.ts": "f75d80c05d73ebd730eaf871b5ba071b96938c43d8dc8c2dfb0c4378159a4937",
+    "functions/src/services/teamConversationOptions.ts": "a79db5b7c37932c2e5cb5dfc5c1592e59d6b2d6954b3e644fec73b4f4956c056",
+    "functions/src/services/teamEnrollmentAuthority.ts": "f52978e570d4cd2d1ff5885721b1d0b4066a2173ce3f21831b30b26ea0a47c8c",
+    "functions/src/services/teamEnrollment.ts": "29782f9dfc58143b83fa0a9052814e38ea3669a480787794226438f6fff518da",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69",
+    "functions/src/domain/teamConversation.ts": "b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

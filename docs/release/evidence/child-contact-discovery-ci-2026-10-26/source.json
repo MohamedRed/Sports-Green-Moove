@@ -1,0 +1,13 @@
+{
+  "head": "61d1294e934005edd0e16c6b5086200cf684b71c",
+  "runId": 40314940529,
+  "jobId": 121545058155,
+  "conclusion": "failure",
+  "scope": "failed-ordinary-components-not-physical-or-release-proof",
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt": "820525f679e4b7f1b6585e505b70c8775ac404f97822029d5b7493f33adc767f",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildEmergencyPermissionFlowTest.kt": "ae406c1f4a9f276845f1dc2816c2a5cfa6e11293df9d289b2df4698ff8531de8",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "d732bf0cc36f57e5d81bd13431a79b4884cb8a6e129cf2d228d9ac26001e3ffa",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyState.kt": "f8569f91f26f399eef74c85cbb97b57bbf725d2e03367d729fe7de0455091d02"
+  }
+}

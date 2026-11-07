@@ -1,0 +1,30 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+  "recordedAt": "2026-10-22T19:29:17.740Z",
+  "fixture": {
+    "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+    "parentUid": "sgm-qa-parent",
+    "foreignUid": "sgm-qa-driver",
+    "foreignReadDenied": false
+  },
+  "state": {
+    "reports": [],
+    "operations": [],
+    "attempts": [],
+    "held": null,
+    "released": null,
+    "expired": false,
+    "notifications": [],
+    "requesterView": null,
+    "foreignList": null,
+    "replies": []
+  },
+  "result": {
+    "phase": "prepared",
+    "reportCount": 0,
+    "attemptCount": 0
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

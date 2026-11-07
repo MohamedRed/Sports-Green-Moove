@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+    "name": "testChildContactOpensFromHomeWithoutTrackingOrEditing",
+    "status": "passed",
+    "seconds": 48.067
+  },
+  {
+    "suite": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+    "name": "testPersonalContactRequiresReviewAndPersistsItsRemoval",
+    "status": "failed",
+    "seconds": 72.434
+  },
+  {
+    "suite": "SportsGreenMooveUITests.ParentEmergencyContactFlowTests",
+    "name": "testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact",
+    "status": "passed",
+    "seconds": 93.885
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+    "name": "testExplicitConsentAndChildChangeInvalidateResults",
+    "status": "passed",
+    "seconds": 29.442
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SearchConsentFlowTests",
+    "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection",
+    "status": "passed",
+    "seconds": 27.986
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SignOutFlowTests",
+    "name": "testProfileSignsOutToEmptyAuthentication",
+    "status": "passed",
+    "seconds": 43.573
+  },
+  {
+    "suite": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+    "name": "testActiveRideIdentifiers",
+    "status": "passed",
+    "seconds": 21.922
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5584f5edb57710f1fd2ecf05035fdc7d",
+  "label": "LocalNativeTrackingStartupTest",
+  "packageName": "be.sportgreenmoove.app.local",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-10-25T12:37:43.363Z",
+  "host": {
+    "totalMemoryBytes": 16766414848,
+    "freeMemoryBytes": 9948995584,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "LocalNativeTrackingStartupTest-package-operations.txt",
+      "empty": false
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest:
+Error in parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest):
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestOwnerKt.getAllSemanticsNodes(TestOwner.kt:106)
+	at androidx.compose.ui.test.TestOwnerKt.getAllSemanticsNodes$default(TestOwner.kt:98)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:249)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:245)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor$lambda$0(LocalGuardianVerificationFlowTest.kt:94)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.$r8$lambda$mpMX01NKRoz2WErfGzJmvVIGzJ8(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:801)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor(LocalGuardianVerificationFlowTest.kt:94)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.login(LocalGuardianVerificationFlowTest.kt:87)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:31)
+
+
+Time: 8.941
+There was 1 failure:
+1) parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest)
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestOwnerKt.getAllSemanticsNodes(TestOwner.kt:106)
+	at androidx.compose.ui.test.TestOwnerKt.getAllSemanticsNodes$default(TestOwner.kt:98)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:249)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:245)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor$lambda$0(LocalGuardianVerificationFlowTest.kt:94)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.$r8$lambda$mpMX01NKRoz2WErfGzJmvVIGzJ8(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:801)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor(LocalGuardianVerificationFlowTest.kt:94)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.login(LocalGuardianVerificationFlowTest.kt:87)
+	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:31)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

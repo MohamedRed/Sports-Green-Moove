@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "source-wired-iphone-club-membership-with-controlled-native-and-separate-local-services",
+  "baselineCommit": "9f7f0ee87d8a20a9d840b6beecf6f2abc1a96a68",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "uiSyntaxExitCode": 0,
+    "delayedBoundaries": 128,
+    "membershipStatusCombinations": 8,
+    "malformedGroups": 29,
+    "serviceChecks": 7,
+    "protectedRecords": 110
+  },
+  "records": [
+    {
+      "file": "native-result.txt",
+      "sha256": "f58edb91ab2d007c231cb82dc4e93e87a2fa925c0eb095c0049778a58b775f55"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "services.json",
+      "sha256": "6302a197115605bb68fcab483ca9aabef373af9f0bc191c29c69b22496b4ab0a"
+    },
+    {
+      "file": "initial-service-fixture-failure.json",
+      "sha256": "21312e4f338069023846a4fe1b23a4abae3ff4037bef0ed924e278d48457f93a"
+    },
+    {
+      "file": "terminal-run.json",
+      "sha256": "7c67e0dbc5e1f1f9be698296b4a474c78dc9d4d04af532c0e7cd7e4131916d63"
+    },
+    {
+      "file": "artifact-inventory.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "e7cb064e019f1500cae2f56e84f7536971bd8647f89505cae874c34043839ff6"
+    },
+    {
+      "file": "fixture-results.json",
+      "sha256": "c6d3858902bead9043beebbabbd3aed1c315bcb8aae4581a69b27b06a5a62e1d"
+    },
+    {
+      "file": "selected-fixture-lines.txt",
+      "sha256": "81e404f32d7820b41f6053a2090769f6ef865d64409ea7c459c9330091de6e1b"
+    },
+    {
+      "file": "interrupted-local-attempts.json",
+      "sha256": "5d93b3bfaea5df96fd0b941dba7923b66db7c4e3a1eb27944dc69b797caef193"
+    }
+  ],
+  "historicalGate": {
+    "runId": 41957958991,
+    "jobId": 127029087554,
+    "sourceCommit": "9f7f0ee87d8a20a9d840b6beecf6f2abc1a96a68",
+    "conclusion": "failure",
+    "sdkBuildPassed": true,
+    "fixtureCaseCount": 11,
+    "passed": 9,
+    "failed": 2,
+    "assertionFailures": 3,
+    "artifacts": 0,
+    "simulatorDisposal": "success"
+  },
+  "clubRequestSourceWired": true,
+  "managerReviewSourceWired": true,
+  "sharedActiveMembershipCorrected": true,
+  "fixtureCases": 11,
+  "candidateSdkLinkedBuildAccepted": false,
+  "candidateFixtureUiExecuted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "phoneHandoffAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "remaining": [
+    "complete current SDK build and all eleven fixture UI cases",
+    "native authenticated service integration",
+    "booking/ride chat and profile city journeys",
+    "physical tracking, safety and operational release evidence"
+  ]
+}

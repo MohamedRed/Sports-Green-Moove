@@ -1,0 +1,80 @@
+i  emulators: Starting emulators: firestore
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: npx vitest run tests/child-account-link-rules.test.ts
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-19T22:42:39.603Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aac5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L195, false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-19T22:42:39.619Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aac6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-19T22:42:39.628Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aac7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-19T22:42:39.668Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aac9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L195, false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-19T22:42:39.676Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aaca error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-19T22:42:39.683Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aacb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-19T22:42:39.721Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aacd error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L195, false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-19T22:42:39.730Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aace error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-19T22:42:39.737Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aacf error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-19T22:42:39.769Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L195, false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-19T22:42:39.776Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-19T22:42:39.784Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-19T22:42:39.821Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L195, false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-19T22:42:39.827Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L195
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-19T22:42:39.832Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8529aad7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L195
+
+ ✓ tests/child-account-link-rules.test.ts (5 tests) 1828ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  23:42:37
+   Duration  2.40s (transform 73ms, setup 0ms, collect 185ms, tests 1.83s, environment 0ms, prepare 59ms)
+
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

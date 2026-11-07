@@ -1,0 +1,15 @@
+{
+  "scope": "source-bound-main-pass-with-network-preparation-failure-and-web-finalization-incomplete",
+  "sourceCommit": "c84b8e4a96f2f35d0b92f68b13904740b14d0dd3",
+  "nativeMainPassed": true,
+  "wholeNativeGatePassed": false,
+  "wholeWebGatePassed": false,
+  "chatNetworkFlowPassed": false,
+  "webFinalizationCauseProven": false,
+  "captureIntermittencyRepaired": false,
+  "parentApprovalProven": false,
+  "physicalTrackingAccepted": false,
+  "releaseAccepted": false,
+  "productionWrites": false,
+  "publishedMedia": []
+}

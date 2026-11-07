@@ -1,0 +1,66 @@
+{
+  "scope": "physical-pre-commit-pending-chat-privacy-across-parent-driver-account-switch",
+  "reviewedAt": "2026-11-01",
+  "runId": "6aeabf43b072d5e3ad8357ca3d927277",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "controlledOfflineModeObserved": true,
+  "initialSendUnconfirmed": true,
+  "parentSignedOutWithPendingSend": true,
+  "driverIdentityObserved": true,
+  "sameBookingOpenedByDriver": true,
+  "driverComposerEmpty": true,
+  "driverDidNotSend": true,
+  "driverSignedOut": true,
+  "parentIdentityObservedAgain": true,
+  "parentPendingTextRestored": true,
+  "pendingFieldTapDidNotOpenKeyboardBeforeRetry": true,
+  "noAutomaticSend": true,
+  "oneExplicitParentRetryObserved": true,
+  "singleConfirmedBubbleObserved": true,
+  "composerEmptyAfterConfirmation": true,
+  "preRetryZeroMessageCheckpoints": 9,
+  "independentCheckpoints": 11,
+  "finalMessageCount": 1,
+  "finalNotificationCount": 1,
+  "captureKind": "original-session-window-crops-not-native-exports",
+  "captureClip": {
+    "x": 484,
+    "y": 105,
+    "width": 198,
+    "height": 443
+  },
+  "publishedCaptures": [
+    "driver-conversation-empty",
+    "parent-pending-restored",
+    "parent-confirmed"
+  ],
+  "privateHelper": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "invitationPortEnabled": false,
+    "aliasEnabled": false,
+    "forceLocal": false,
+    "requestLoggingEnabled": false
+  },
+  "originalPendingIdentityIndependentlyObserved": false,
+  "postCommitResponseLossAccepted": false,
+  "processRestartAccepted": false,
+  "peerPhoneAccepted": false,
+  "realRadioLossAccepted": false,
+  "trackingAccepted": false,
+  "iOSAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "realPayments": false,
+  "applicationDeployed": false,
+  "releaseAccepted": false,
+  "mapRequests": 0
+}

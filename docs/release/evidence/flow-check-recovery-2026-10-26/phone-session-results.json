@@ -1,0 +1,21 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ecb1dcf0433b38539e16c55659d08fdb",
+  "testedAt": "2026-10-26T10:24:24.058Z",
+  "scope": "independent-child-account-phone-records-not-ui-proof",
+  "completed": false,
+  "checkpoints": [],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "signupProven": false,
+  "trackingProven": false,
+  "sourceFiles": {
+    "scripts/qa/manual-child-account-phone-session.mjs": "3131bdf29c0d508f66d9ca60cc82fe869e7660c8eb224646c5b69017d1d6fa36",
+    "scripts/qa/child-account-phone-checkpoints.mjs": "ddcdf39866c16e3ced1b24084c494c7169fbffda291ea0b4b84cd870a64e5343",
+    "scripts/qa/child-account-phone-fixture.mjs": "367c5916d399a5eb19e785c03f17b16e756e5f6d3c3a59e55b0fab3db2d7cfb2",
+    "scripts/qa/child-account-phone-runtime.mjs": "23e0fc2e9a3556a455931ecd091fc9d9ba22a94581d20fc8044deeedf087a16d",
+    "scripts/qa/start-child-account-phone.mjs": "a78e97e9d99747a948c825788a1ef660474fccfbc88ac2416488718ad4c6a44d"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "baselineCommit": "84c9b627acfcebbddaad147bdd282af8483ce943",
+  "scope": "changed-parent-contact-inputs-not-sdk-built-ui",
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift",
+      "sha256": "3c6a9044f06cfd156b14836fc93f62ef8ec8ce6bd4dba9c85db51558641ab54f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactScreen.swift",
+      "sha256": "cd1a447473a72d717ba1515446308a5bd695e49084383ee40c91fa06c74b6b09"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift",
+      "sha256": "500e8a383be9a9dd5cf8441d46decfb38ff6f9700e6b2a0fc17180fb1ec4ca6f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift",
+      "sha256": "3622e229f64aa1b1183eb891f35a20c3fd973a78d620a68e4676f146dc9261b3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift",
+      "sha256": "6f43379d00e03e016773b166ad3eecb63752bd9dde2c38ca7fa91c3f793a9c2d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactPicker.swift",
+      "sha256": "fa5d6e4e6f88613d10735488b808e8237da5aa2a90c8f854912610d6e43e108f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactState.swift",
+      "sha256": "47ed1fc62549a93f57e2c361c729ac3edd39c6dae2912d63deeeb90a38362008"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestEmergencyContacts.swift",
+      "sha256": "0549ec5610506489e06e2493231e1c33952c3ea90d804b8dea5b247aec3e6675"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift",
+      "sha256": "b3bab311222f8fa75108ebd755bb20a053d6fdb18029fc2199d96a73962b76d7"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "sha256": "8e3db17c3852be2993b29483dd90c1fd189c2dd6b6fb960676ea2b89285b2a0f"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactProbe.swift",
+      "sha256": "6bb806ec633a807d53e7a6d311c4feaa4c19448b30e348af8286fbb3fc99d405"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactBoundaryChecks.swift",
+      "sha256": "ae929b7c6b22644d5821c8a7b0a83c0d2049717fc0fa70d1eb1f20e4e75cb16d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactChecks.swift",
+      "sha256": "195ea204654971cb2aaa36586e6c819139b7ae121c6f1fb89e36fed9fcad60a0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/GuardianContactProbe.swift",
+      "sha256": "c2c9bffb57421a0b46313343969a43a70ff17c4dea50efc3e971ece93687d5ac"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ParentEmergencyContactChecks.swift",
+      "sha256": "9edd9aa4081b3806342067e41f92baef756a8fd73df67bd04b93f546e4a2ae94"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "a84e7b8b645a70b96847cca5ca48258ba4da86def5ecce1f4c85364742dd49cc"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift",
+      "sha256": "ea527eea59c2dfb8b5f89fef2c4ea5081fc86bdc5d96bdc919aa7d7bba8b8f80"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "f510fe72a8146a16c7e7977798a38caf77384cb05565cb2b25727fd908a99487"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "e5a208485034e92fdcc93dad347cc80fc473e9030f11547682f7dc632d3f744e"
+    },
+    {
+      "path": "scripts/qa/check-ios-emergency-phone.mjs",
+      "sha256": "8653d9b24cb1a4fd4d63def2e121559527f4c2315aa2eeb38a461ec6c0d87e02"
+    },
+    {
+      "path": "tests/ios-parent-contact.test.mjs",
+      "sha256": "360a385cfc91f6dab5534b5ff9a3a96ea19dbbdd2c59e0da8e1ae8e19c4f349c"
+    }
+  ]
+}

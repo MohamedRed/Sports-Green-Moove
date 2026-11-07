@@ -31,7 +31,6 @@ private val OptionSections = listOf(
     OptionSection(
         "SÉCURITÉ",
         listOf(
-            OptionRow(SgmIcon.Profile, "Contact urgence", "+32 470 00 00 00", "Action visible pendant une course active"),
             OptionRow(SgmIcon.Check, "Journal d'audit", "Activé", "Pickup, dropoff, consentements et paiements"),
             OptionRow(SgmIcon.Groups, "Consentement parent", "Obligatoire", "Chaque enfant reste lié à son tuteur"),
         ),
@@ -41,30 +40,35 @@ private val OptionSections = listOf(
         listOf(
             OptionRow(SgmIcon.Location, "Arrière-plan", "Trajets actifs", "Suivi arrêté hors session de course"),
             OptionRow(SgmIcon.Search, "Alertes position", "Activées", "Dernière mise à jour et statut obsolète"),
-            OptionRow(SgmIcon.Bell, "Notifications", "Activées", "Départ, pickup, dropoff et retard"),
         ),
+        includeNotifications = true,
     ),
     OptionSection(
         "PAIEMENTS",
         listOf(
             OptionRow(SgmIcon.Award, "Carte", "Stripe PaymentSheet", "Autorisation avant validation conducteur"),
             OptionRow(SgmIcon.ArrowRight, "Payout", "Stripe Connect", "Versements visibles dans le ledger"),
-            OptionRow(SgmIcon.Settings, "Frais plateforme", "0 EUR", "En attente des conditions business"),
         ),
     ),
 )
 
-@Suppress("UNUSED_PARAMETER")
 @Composable
-fun OptionsScreen(firebase: FirebaseGateway, onBack: () -> Unit) {
-    V2Screen {
-        V2TopBar("OPTIONS")
+fun OptionsScreen(uid: String, firebase: FirebaseGateway, onBack: () -> Unit, onEmergencyContact: () -> Unit, onSupport: () -> Unit) {
+    V2Screen(testTag = SgmTestTags.OptionsScreen) {
+        V2TopBar("OPTIONS", onBack = onBack)
         OptionHero()
+        PrivacyProcessorDisclosure(Modifier.padding(start = 20.dp, end = 20.dp, bottom = 16.dp))
+        Box(Modifier.padding(horizontal = 20.dp)) {
+            EmergencyContactButton("Contact d’urgence", "options.emergency", true, onEmergencyContact, SgmIcon.Profile)
+        }
         OptionSections.forEach { section ->
             V2SectionLabel(section.title)
-            OptionSectionCard(section.rows)
+            OptionSectionCard(section.rows, section.includeNotifications)
         }
-        OptionsReportCard(firebase)
+        OptionsReportCard(uid, firebase)
+        Box(Modifier.padding(horizontal = 20.dp)) {
+            GuardianActionButton("Mes demandes", "options.support-history", true, onSupport)
+        }
         Box(Modifier.height(76.dp))
     }
 }
@@ -91,7 +95,7 @@ private fun OptionHero() {
 }
 
 @Composable
-private fun OptionSectionCard(rows: List<OptionRow>) {
+private fun OptionSectionCard(rows: List<OptionRow>, includeNotifications: Boolean) {
     Column(
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
@@ -101,8 +105,9 @@ private fun OptionSectionCard(rows: List<OptionRow>) {
             .border(BorderStroke(1.dp, Sgm.colors.border), RoundedCornerShape(SgmRadius.LG)),
     ) {
         rows.forEachIndexed { index, row ->
-            OptionRowView(row, showDivider = index < rows.lastIndex)
+            OptionRowView(row, showDivider = index < rows.lastIndex || includeNotifications)
         }
+        if (includeNotifications) NotificationSettingsRow()
     }
 }
 
@@ -129,5 +134,5 @@ private fun OptionRowView(row: OptionRow, showDivider: Boolean) {
     }
 }
 
-private data class OptionSection(val title: String, val rows: List<OptionRow>)
+private data class OptionSection(val title: String, val rows: List<OptionRow>, val includeNotifications: Boolean = false)
 private data class OptionRow(val icon: SgmIcon, val label: String, val value: String, val detail: String)

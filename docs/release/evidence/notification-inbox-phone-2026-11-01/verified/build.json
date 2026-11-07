@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-11-01T09:30:04.766Z",
+  "scope": "local-android-build-and-jvm-not-installed-apk-or-ui-execution",
+  "apk": {
+    "filename": "sgm-team-alert-inbox-private-preview.apk",
+    "sha256": "894f4377fb72fd9c421dedb2e2b1027879e615994880d4762452eb95537ca3bd",
+    "bytes": 34516644,
+    "package": "be.sportgreenmoove.app.local"
+  },
+  "emulatorHost": "localhost",
+  "projectId": "demo-sgm-local-qa",
+  "unitSuites": 105,
+  "unitTests": 693,
+  "focusedUnitTests": 12,
+  "installedApkIndependentlyHashed": false,
+  "componentTestsCompiled": true,
+  "componentTestsExecuted": false,
+  "pushDeliveryVerified": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNotificationInboxGateway.kt": "fcd1f9cfa19a577fbd8955ad0ca85189f67c650355d817ed20547ba4237c130a",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NotificationInboxGateway.kt": "83a21c9f98559ca66ef929a3a1780302a1eec270eed402e6592c51edbb96ce98",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "9a8c001ddb8a80fd35fbc5b161c24f5cb1acde41170ed8bb83035bce97eb13b9",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt": "ae514cd6d5f71ace25802c3bb2f663855251a63c8944e56a69b143f9ba998e5a",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "bd40f5caca84fe695b636d81a573f0322281e5bef2f564500fc588deb414688b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationInboxState.kt": "2f08e8e6bf62b3276aebc1e78a602034280d0ddec5b290ffdf1735e7d2adc870",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationInboxContent.kt": "2957eb089c4874522d6399347a0f0109f8301affe50791a4fd605fd76fe1e400",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxState.kt": "8c41887b5d181e0caf7435216a2a635974aed953843e1176ebf8da08aa1358be",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxRoute.kt": "75c164378e2553eaf35939e5b270da7daeb21d921a9e66d88ae18e5de9cda530",
+    "android/app/build.gradle.kts": "1e3cc17d735d23476dee4ba65648827af6875a32b3bd99cf9e20c812d3603458",
+    "android/app/src/main/AndroidManifest.xml": "a86971ce2f36fa2548cad3f8612ae14131b01628d5c91526096b317a78e8b59b",
+    "android/app/src/localDebug/AndroidManifest.xml": "ae63e72dc19ed22315d8751ba525c66a824db378a27ecaad2f191634c7acb4cd",
+    "android/app/src/main/java/be/sportgreenmoove/app/MainActivity.kt": "9c22de8c27ce5187619a710b72e7671170ba4360be3654df462d64f2717cb45b"
+  },
+  "junitFiles": {
+    "TEST-be.sportgreenmoove.app.services.NotificationInboxWireTest.xml": "70de283323471c435ec1995659cda5ae509f9062e78b7190c1fc7bf7dd58a9ed",
+    "TEST-be.sportgreenmoove.app.ui.MessagesNotificationPollingTest.xml": "3fe1f4d9e0992a7f489f93dcb22f972bb094636e87b45375ffd06b71a804e8b5",
+    "TEST-be.sportgreenmoove.app.ui.NotificationInboxStateTest.xml": "8b284a2822cb5d82f9403243ff38b897b4eaf7bd5808898a789a876a7ff78d14"
+  }
+}

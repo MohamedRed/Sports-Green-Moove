@@ -1,0 +1,10 @@
+{
+  "scope": "local-validation-and-publication-checks-not-new-head-ci",
+  "nodeFirst": {"tests": 2510, "passed": 2507, "failed": 3},
+  "nodeRecheck": {"tests": 2510, "passed": 2510, "failed": 0},
+  "browserViewports": [1440, 768, 390, 320],
+  "fullBrowserPassed": true,
+  "newMediaAccepted": false,
+  "productionDeployed": false,
+  "releaseComplete": false
+}

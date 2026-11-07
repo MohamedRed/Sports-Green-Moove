@@ -1,0 +1,8 @@
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+LocationShutdownChecks passed: 6 delayed start/upload states, all five login paths, repeated/cancelled cleanup, SDK failure and role-change admission
+SportsGreenMooveNativeChecks passed

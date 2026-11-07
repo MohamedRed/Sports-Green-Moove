@@ -1,0 +1,14 @@
+import React, {useState} from 'react';
+import {createRoot} from 'react-dom/client';
+import '/@fs/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/admin/src/styles.css';
+import {ChildInvitationPage} from '/@fs/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/admin/src/ChildInvitationPage.tsx';
+function Preview() {
+  const [count,setCount]=useState(0);
+  async function submit() {
+    setCount(value=>value+1);
+    await new Promise(resolve=>setTimeout(resolve,700));
+    if(new URLSearchParams(location.search).get('scenario')==='error') throw {code:'functions/unavailable',message:'Synthetic diagnostic not for display'};
+  }
+  return <><ChildInvitationPage token={'a'.repeat(64)} submit={submit}/><output data-testid="qa-count" hidden>{count}</output></>;
+}
+createRoot(document.getElementById('root')!).render(<React.StrictMode><Preview/></React.StrictMode>);

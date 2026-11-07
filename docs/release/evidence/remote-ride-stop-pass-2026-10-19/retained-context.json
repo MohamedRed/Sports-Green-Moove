@@ -1,0 +1,15 @@
+{
+  "scope": "completed-independent-local-remote-stop-not-release-readiness",
+  "runId": "e5fd4f7428ac698cffd53a4a0c9cced3",
+  "reviewedCaptureCount": 2,
+  "publishedCaptureCount": 1,
+  "publishedCaptures": [
+    "local-native-startup-remote-started.png"
+  ],
+  "knownVisualDefects": [
+    "local-native-startup-remote-ended.png"
+  ],
+  "visualCompletenessVerified": false,
+  "fullNativeSuiteVerified": false,
+  "physicalDevice": false
+}

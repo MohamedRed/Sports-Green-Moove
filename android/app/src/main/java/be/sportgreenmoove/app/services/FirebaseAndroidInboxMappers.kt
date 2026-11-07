@@ -2,14 +2,15 @@ package be.sportgreenmoove.app.services
 
 import be.sportgreenmoove.app.data.InboxChatSummary
 import be.sportgreenmoove.app.data.InboxNotificationSummary
-import be.sportgreenmoove.app.data.InboxReviewPrompt
+import be.sportgreenmoove.app.data.PendingReviewPage
 import be.sportgreenmoove.app.data.InboxSummary
 
-internal fun mapInbox(data: Map<*, *>): InboxSummary =
+internal fun mapInbox(data: Map<*, *>, reviews: PendingReviewPage): InboxSummary =
     InboxSummary(
         notifications = listValue(data["notifications"]).mapNotNull(::mapInboxNotification),
         chats = listValue(data["chats"]).mapNotNull(::mapInboxChat),
-        reviews = listValue(data["reviews"]).mapNotNull(::mapInboxReview),
+        reviews = reviews.items,
+        reviewsNextCursor = reviews.nextCursor,
     )
 
 private fun mapInboxNotification(data: Map<*, *>): InboxNotificationSummary? =
@@ -32,16 +33,6 @@ private fun mapInboxChat(data: Map<*, *>): InboxChatSummary? =
         dateLabel = data["dateLabel"] as? String ?: "",
         unreadCount = (data["unreadCount"] as? Number)?.toInt() ?: 0,
         initials = data["initials"] as? String ?: "CH",
-    )
-
-private fun mapInboxReview(data: Map<*, *>): InboxReviewPrompt? =
-    InboxReviewPrompt(
-        id = data["id"] as? String ?: return null,
-        rideSessionId = data["rideSessionId"] as? String ?: return null,
-        ratedUserId = data["ratedUserId"] as? String ?: return null,
-        title = data["title"] as? String ?: "Avis de course",
-        prompt = data["prompt"] as? String ?: "",
-        initials = data["initials"] as? String ?: "AV",
     )
 
 private fun listValue(value: Any?): List<Map<*, *>> =

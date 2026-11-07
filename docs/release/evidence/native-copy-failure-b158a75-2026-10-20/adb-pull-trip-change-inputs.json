@@ -1,0 +1,15 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e435b1a96459d97b367618814e83e966",
+  "phase": "trip-change-inputs",
+  "recordedAt": "2026-10-20T13:20:18.180Z",
+  "scope": "local-adb-file-sync-command-not-flow-verification",
+  "serial": "emulator-5554",
+  "version": "Android Debug Bridge version 1.0.41\nVersion 37.0.1-15733141\nInstalled as /usr/local/lib/android/sdk/platform-tools/adb\nRunning on Linux 7.0.0-1017-azure (x86_64)\n",
+  "status": 1,
+  "signal": null,
+  "errorCode": null,
+  "stdout": "",
+  "stderr": "10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:355 adb_connect: service: host-serial:emulator-5554:features\n10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:157 _adb_connect: host:version\n10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:157 _adb_connect: host-serial:emulator-5554:features\n10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:355 adb_connect: service: sync:\n10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:157 _adb_connect: sync:\n10-20 13:20:18.117  6638  6638 D adb     : adb_client.cpp:116 Switch transport in progress: host:tport:serial:emulator-5554\npull: building file list...\n",
+  "completed": false
+}

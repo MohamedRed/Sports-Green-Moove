@@ -1,0 +1,33 @@
+
+be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest:
+Error in driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest):
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'bottom-nav.trips.action')
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+	at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.driverCancelsAndParentSeesClosedReservationsAndPendingRefund(LocalTripCancellationFlowTest.kt:74)
+
+
+Time: 18.247
+There was 1 failure:
+1) driverCancelsAndParentSeesClosedReservationsAndPendingRefund(be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest)
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'bottom-nav.trips.action')
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:402)
+	at androidx.compose.ui.test.AndroidActions.performClickImpl(Actions.android.kt:23)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:60)
+	at be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest.driverCancelsAndParentSeesClosedReservationsAndPendingRefund(LocalTripCancellationFlowTest.kt:74)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

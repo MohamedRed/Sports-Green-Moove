@@ -1,0 +1,8 @@
+{
+  "tests/http-body-parser-security.test.mjs": "f1ac7702cfb1066790cb44895ede660ee81403e41228b5f34803aa7dce202af2",
+  "tests/helpers/http-body-parser-probe.mjs": "37415fb1c8e647bbf86e6ca9d50fdc589824cdf1b9b4535459de4c13958a22c7",
+  "tests/local-runtime-disposal.test.mjs": "563681d522b07e096512502a2608c1d199b85698106241c617d7add9c73a97f7",
+  "scripts/qa/local-runtime.mjs": "a2d22e5d2df6eb8c9b82c3960039cd1ee38526a210eea9eb332050ada0a95168",
+  "scripts/qa/local-runtime-disposal.mjs": "cb044194e8ff1c2cd5d6fb08d730005e1c7272604cb65a8ce3c6dd02be287cb3",
+  "scripts/qa/local-emulator-lifecycle.mjs": "e9f38b269f25332ff076a991900a31f178cd740fee08ec8dd7e11257354f6bf8"
+}

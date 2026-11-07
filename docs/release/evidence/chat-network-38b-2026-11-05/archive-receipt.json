@@ -1,0 +1,61 @@
+{
+  "artifactId": 13451394347,
+  "sha256": "b0c5f2663942c5cfec64753185ea91aa937ce68912e18aabfcc3addfe3e24388",
+  "bytes": 618805,
+  "members": [
+    {
+      "member": "local-ui-evidence/853dc1bf12a9ed5f94624bb978ab732f/chat-network-recovery-results.json",
+      "file": "chat-network-recovery-results.json",
+      "bytes": 6463,
+      "sha256": "e08d24f930737bfc8c7c14bd97af71cccb0d24eec4f702e6e32f07a55d16742f"
+    },
+    {
+      "member": "local-ui-evidence/853dc1bf12a9ed5f94624bb978ab732f/chat-network-recovery-app-results.json",
+      "file": "chat-network-recovery-app-results.json",
+      "bytes": 6239,
+      "sha256": "23336c2079937822673e0e591543281831d72db479eba54fead490fe64cb5f26"
+    },
+    {
+      "member": "local-ui-evidence/853dc1bf12a9ed5f94624bb978ab732f/local-chat-network-ui.json",
+      "file": "local-chat-network-ui.json",
+      "bytes": 11067,
+      "sha256": "f80b6add7afbb91780a2720f58739addb70ca672c1c29816f7139e0de29ae1ed"
+    },
+    {
+      "member": "local-ui-evidence/853dc1bf12a9ed5f94624bb978ab732f/LocalChatNetworkFlowTest-instrumentation.txt",
+      "file": "LocalChatNetworkFlowTest-instrumentation.txt",
+      "bytes": 169,
+      "sha256": "e793db83b2545b79ae24f10b366cc15f6c5dc59e7bcfd8f08dd7ad1bd5cb6276"
+    },
+    {
+      "member": "local-ui-evidence/853dc1bf12a9ed5f94624bb978ab732f/adb-pull-network-recovery.json",
+      "file": "adb-pull-network-recovery.json",
+      "bytes": 6365,
+      "sha256": "5242a59ade34b0115a690365bf8ad842ccbe728426504afa5552abf9f4b37aca"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/disposable-device-setup.json",
+      "file": "disposable-device-setup.json",
+      "bytes": 710,
+      "sha256": "16acad58cb01e52c9b6d35fb191bd19ef1f7f123184592db0ed787fa45038386"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/disposable-device-restore.json",
+      "file": "disposable-device-restore.json",
+      "bytes": 378,
+      "sha256": "e0cf022be30001cf0cee177b7b5771b3b3f9286a6a211581bc33bacb3b42ca37"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/chat-network-recovery-suite-status.json",
+      "file": "chat-network-recovery-suite-status.json",
+      "bytes": 82,
+      "sha256": "859609943ea143d1f54cbbe6c899138f4e18787aa0fc93ebe84c6e7ad0b3a958"
+    },
+    {
+      "member": "focused-safety-ui/chat-network-recovery/host-shutdown/complete.json",
+      "file": "host-shutdown.json",
+      "bytes": 397,
+      "sha256": "3b7a849d696592955470f6f431b93ebc17a9e903a568a63cfc7b67c8e2bfea8d"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ab0f313594111433bd0381fc7afb6d57",
+  "testedAt": "2026-11-01T12:19:24.940Z",
+  "scope": "isolated-server-device-registration-not-native-or-push-delivery",
+  "completed": true,
+  "steps": [
+    {
+      "id": "authentication-and-unknown-owner-field-are-rejected",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-identical-registration-creates-one-private-binding-without-returning-token-or-proof",
+      "status": "passed"
+    },
+    {
+      "id": "another-account-cannot-take-a-known-installation-without-its-proof",
+      "status": "passed"
+    },
+    {
+      "id": "token-rotation-removes-old-index-and-rejects-reordered-or-conflicting-updates",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-out-of-order-revisions-converge-on-the-newest-token-only",
+      "status": "passed"
+    },
+    {
+      "id": "a-token-cannot-be-copied-into-another-installation",
+      "status": "passed"
+    },
+    {
+      "id": "account-switch-transfers-one-binding-and-old-account-cannot-replay-or-remove-it",
+      "status": "passed"
+    },
+    {
+      "id": "signout-removal-leaves-a-revision-tombstone-and-delayed-registration-cannot-revive-it",
+      "status": "passed"
+    },
+    {
+      "id": "newer-signin-is-explicit-and-removal-before-first-token-also-prevents-delayed-activation",
+      "status": "passed"
+    },
+    {
+      "id": "mixed-child-claims-linked-child-login-child-profile-and-disabled-account-cannot-register",
+      "status": "passed"
+    },
+    {
+      "id": "current-child-claims-deny-a-still-valid-earlier-adult-login",
+      "status": "passed"
+    },
+    {
+      "id": "stale-adult-login-cannot-list-read-send-or-acknowledge-after-current-child-claims",
+      "status": "passed"
+    },
+    {
+      "id": "disabled-account-with-valid-earlier-login-cannot-use-team-history-or-write-messages",
+      "status": "passed"
+    },
+    {
+      "id": "private-registration-and-token-index-cannot-be-read-or-listed-by-client-accounts",
+      "status": "passed"
+    },
+    {
+      "id": "removing-one-device-does-not-disable-other-devices",
+      "status": "passed"
+    },
+    {
+      "id": "active-device-limit-rejects-without-an-extra-token-or-binding",
+      "status": "passed"
+    },
+    {
+      "id": "missing-token-index-fails-closed-without-rewriting-the-registration",
+      "status": "passed"
+    },
+    {
+      "id": "corrupt-registration-fingerprint-cannot-be-promoted-by-a-new-revision",
+      "status": "passed"
+    },
+    {
+      "id": "all-original-records-account-claims-and-disabled-states-remain-unchanged",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "realPhoneTokenRegistered": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceFiles": {
+    "functions/src/domain/teamPushRegistration.ts": "df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13",
+    "functions/src/services/teamPushRegistration.ts": "e2b15a137e51fdbecfb0a510a451ff08c2ad457b82bd705f455fd5a037e9945e",
+    "functions/src/callables/teamPushRegistration.ts": "2305ef7d4b14bfb58fcea3f95b3ee0ea68956830ac6153332f8b6f432d74240c",
+    "functions/src/index.ts": "135358e6390b2a907974e7fdaa3bc3980527114a986c326d52dd581cc41abf37",
+    "firestore.rules": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240",
+    "firestore.indexes.json": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee",
+    "scripts/qa/local-team-push-registration-suite.mjs": "93da0813efa16532f23d877579557401ebfa35aa07481f9945c8821b38e9099c",
+    "scripts/qa/run-local-team-conversation.mjs": "92867ae236ed09fd117c7a38501100a2bf571dd2fdb3e3ca7aa070073b1604aa",
+    "scripts/qa/team-push-registration-sources.mjs": "eff7802e5a19c0a2ef5a9ef7ae8bdc38a496b019d0d20bc3450d176ce9af7051",
+    "functions/src/services/teamConversationAccounts.ts": "8cb300424ed492d730d5e63f169ebcd0e3c3ee1af1853e205118965c43318371",
+    "functions/src/services/teamConversationAuthority.ts": "b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5",
+    "functions/src/services/teamConversationAlerts.ts": "5552e5ed5992a33871df1a69cf181d1e5496ff132e1860f17133f8868feb7dc7",
+    "functions/src/services/teamConversationOptions.ts": "530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad",
+    "functions/src/services/teamNotificationAccess.ts": "dd3ad6668c51e8744cf2eb5af7f74bd1766df5f35bd437d8ce875b02888c730b"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

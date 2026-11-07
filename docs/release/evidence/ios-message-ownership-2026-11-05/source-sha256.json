@@ -1,0 +1,114 @@
+{
+  "baselineCommit": "61c3f2048d478707494e4ad90f1819f0860842ef",
+  "scope": "local-message-ownership-inputs-not-sdk-ui-proof",
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "1f30dd0b5b0c74922454c421f34db2616b74920e4aaddfa1166d4de58d179cf4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesInboxState.swift",
+      "sha256": "6e89331e463fcb58c1cf604cd87391fa03763c5ceecc71178e105b16f0ff18dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "sha256": "7563c92817b518007d3edfc97159cdc8f8cbb193884d6944d91dab1f69c2bcb0"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviews.swift",
+      "sha256": "e4437f43d62d61e04c139bd36c5d08a0d489fab20ed1a6637daf5938abb49df6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsState.swift",
+      "sha256": "222456563a0239027b2e74b3cf920c317da6c4aaecd2393184c7921032bd5e32"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PendingReviewsContent.swift",
+      "sha256": "5fd7c9d2d3487055f8c9039614700e4db3dcd085086982b35895b06153aab92d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseInboxGateway.swift",
+      "sha256": "acc7dbbdb6ab9e6b49eadfea2f492cfaf9311efeb04f9ec025cbe9fe87df900c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift",
+      "sha256": "775fe995aa0b9431c0f31593c1d48ae350edd009db8056088fe72e8fe89e5a8d"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift",
+      "sha256": "dcf64c0804dcfbeb05f719e8b0392f59ee6bada3f97a594cc22f064838e97e30"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "sha256": "086993750581e1fca69652c50bbd0ba960dd6e32bcb26317d7cfc5fa65f4c4eb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AccountWorkScope.swift",
+      "sha256": "7d9526f77596caef3459d7702242e77d69e9816cf0bf47ef74424098c6475500"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseCallableBoundary.swift",
+      "sha256": "47fbdaca1c4f3381e156605b18e93d5d24b07597d1f5fd8c916698d6b419cce5"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/MessagesInboxChecks.swift",
+      "sha256": "acffa1dd0d126ff4139ea6f5ec835dba595b3d2c153c03e527fd45816963b671"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/PendingReviewChecks.swift",
+      "sha256": "283da630f84acd417ba8a48bc2f18f97e7733faab96abe0bb51e4ea415408165"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "sha256": "a4b93baf255dd4df94b5c36f995c1ca399bb69af21ddb50fae826fffef5d9217"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "38d0ca673f9ce4efb7b5aeab4781b6a44ddfd1dc1777a03e64ab3da13b77e556"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "sha256": "058da1ecf9e90df56ec168434432f009fd44dcb05a725e003b424ca47f95d1e2"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "7c161b6092c4fc391dc72c37b2d4a3a745d3c314537d19746962fce354c5194b"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "31ac78e390c79ad717f7cca227df98ce616a25330755e281307e3f5b0888d9f4"
+    },
+    {
+      "path": "scripts/qa/check-ios-message-regression.mjs",
+      "sha256": "95638ea745c590db6bb23620511fd0f15b15497da33e53a0d2a155220ad4b294"
+    },
+    {
+      "path": "scripts/qa/retain-ios-message-ownership.mjs",
+      "sha256": "1582946896f2fc6adef454ca97e2b82525e9d30edd50265a98d8629e3fd7a3dd"
+    },
+    {
+      "path": "tests/ios-message-ownership.test.mjs",
+      "sha256": "639f9829df6986141df4884d67ae7ae0b52ee0372f598befcc62c723c53cf4cf"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "02e03b422c14dd1d2908b7a4ab86e9364598a9de7871430814209e109d3aaa60"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "540b7e928ca0c37e868465d81307ca730bc4e53b37d476bf88dc46b1d5ebfd46"
+    },
+    {
+      "path": "tests/ios-emergency-contact.test.mjs",
+      "sha256": "b72921b43ba7084afc62111372b15cdf057eb568b22e5d2f39b974d10438a2a8"
+    },
+    {
+      "path": "tests/review-pagination-contract.test.mjs",
+      "sha256": "82cf2bee08c0fe702549266d9f4c4cc8d21a4efe48573d4f4072fc0ca7731a1f"
+    },
+    {
+      "path": "docs/release/evidence-manifest.json",
+      "sha256": "d710258afde7043a8a8369493930e6f91cc3e5e5eac83391b4d2bc36cb2b693b"
+    }
+  ]
+}

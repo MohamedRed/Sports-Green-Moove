@@ -1,0 +1,51 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8319bcfb55d50d2eb0ad68f697f78a13",
+  "testedAt": "2026-10-15T18:45:58.411Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 7,
+  "steps": [
+    {
+      "id": "parent-app-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-approval-ui",
+      "status": "passed"
+    },
+    {
+      "id": "landscape-login-ui",
+      "status": "passed"
+    },
+    {
+      "id": "calendar-empty-consent-ui",
+      "status": "passed"
+    },
+    {
+      "id": "theme-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-review-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-ledgers-ui",
+      "status": "passed"
+    }
+  ],
+  "ride": {
+    "rideSessionId": "tqyRS0YtloCPLuQhbNaL",
+    "bookingCount": 2,
+    "auditEventCount": 4,
+    "ratingCount": 1
+  },
+  "limits": [
+    "Synthetic mock positions and pre-granted emulator permissions only.",
+    "No physical GPS tracking, provider payments, push delivery or live data tested."
+  ]
+}

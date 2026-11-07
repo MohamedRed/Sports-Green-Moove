@@ -1,0 +1,226 @@
+i  emulators: Starting emulators: firestore
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: ./node_modules/.bin/vitest run tests/ride-payment-preparation-flow.test.ts --no-file-parallelism
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove
+
+ ❯ tests/ride-payment-preparation-flow.test.ts (10 tests | 9 failed) 2197ms
+   × isolated initial ride payment preparation > freezes the fee before contacting the provider and reuses it after a lost response and configuration change 1320ms
+     → expected undefined to be 100 // Object.is equality
+   × isolated initial ride payment preparation > rejects a provider fee different from the frozen attempt without exposing a payment configuration 98ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   × isolated initial ride payment preparation > rejects invalid rate "-10" before creating an attempt or contacting the provider 75ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   × isolated initial ride payment preparation > rejects invalid rate "" before creating an attempt or contacting the provider 71ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   × isolated initial ride payment preparation > rejects invalid rate "10001" before creating an attempt or contacting the provider 71ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   × isolated initial ride payment preparation > rejects invalid rate "1.5" before creating an attempt or contacting the provider 67ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   × isolated initial ride payment preparation > rejects invalid rate "not-a-rate" before creating an attempt or contacting the provider 53ms
+     → expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      Object {
+        "amountCents": 1000,
+        "attemptId": "b71f8374-8091-4c14-940f-b2520da1faa6",
+        "bookingId": "booking-1",
+        "currency": "eur",
+        "destinationStripeAccountId": "acct_driver",
+        "driverUserId": "driver-1",
+        "existingIntentId": undefined,
+        "payerUserId": "parent-1",
+        "paymentAttemptId": "b71f8374-8091-4c14-940f-b2520da1faa6",
+        "tripId": "trip-1",
+      },
+      "synthetic-unused-secret",
+    ]
+
+
+Number of calls: 1
+
+   × isolated initial ride payment preparation > reconciles a known legacy intent from its actual fee, not the current configuration 74ms
+     → expected undefined to be 50 // Object.is equality
+   × isolated initial ride payment preparation > does not invent fees for an old unknown legacy attempt with no provider identity 66ms
+     → promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+   ✓ isolated initial ride payment preparation > denies a different parent before creating a payment attempt 51ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > freezes the fee before contacting the provider and reuses it after a lost response and configuration change
+AssertionError: expected undefined to be 100 // Object.is equality
+
+- Expected: 
+100
+
++ Received: 
+undefined
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:59:54
+     57|     await expect(invoke()).rejects.toThrow("Synthetic response lost");
+     58|     const original = (await firestore.doc("bookings/booking-1").get())…
+     59|     expect(original.paymentAttempt.platformFeeCents).toBe(100);
+       |                                                      ^
+     60|     process.env.PLATFORM_FEE_BPS = "2500";
+     61|     await expect(invoke()).resolves.toMatchObject({paymentIntentId: "p…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects a provider fee different from the frozen attempt without exposing a payment configuration
+AssertionError: promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "amountCents": 1000,
++   "bookingId": "booking-1",
++   "clientSecret": "synthetic-client-secret",
++   "currency": "eur",
++   "paymentIntentId": "pi_isolated",
++   "publishableKey": "pk_test_isolated_not_a_real_key",
+  }
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:72:26
+     70|         metadata: {...intent.metadata, platformFeeCents: "250"}};
+     71|     });
+     72|     await expect(invoke()).rejects.toMatchObject({code: "failed-precon…
+       |                          ^
+     73|     expect((await firestore.doc("bookings/booking-1").get()).get("paym…
+     74|     expect((await firestore.collection("ridePaymentAttempts").get()).e…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects invalid rate "-10" before creating an attempt or contacting the provider
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects invalid rate "" before creating an attempt or contacting the provider
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects invalid rate "10001" before creating an attempt or contacting the provider
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects invalid rate "1.5" before creating an attempt or contacting the provider
+AssertionError: promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "amountCents": 1000,
++   "bookingId": "booking-1",
++   "clientSecret": "synthetic-client-secret",
++   "currency": "eur",
++   "paymentIntentId": "pi_isolated",
++   "publishableKey": "pk_test_isolated_not_a_real_key",
+  }
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:78:26
+     76|   it.each(["-10", "", "10001", "1.5", "not-a-rate"])("rejects invalid …
+     77|     process.env.PLATFORM_FEE_BPS = rate;
+     78|     await expect(invoke()).rejects.toBeDefined();
+       |                          ^
+     79|     expect(provider.create).not.toHaveBeenCalled();
+     80|     expect((await firestore.doc("bookings/booking-1").get()).get("paym…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > rejects invalid rate "not-a-rate" before creating an attempt or contacting the provider
+AssertionError: expected "spy" to not be called at all, but actually been called 1 times
+
+Received: 
+
+  1st spy call:
+
+    Array [
+      Object {
+        "amountCents": 1000,
+        "attemptId": "b71f8374-8091-4c14-940f-b2520da1faa6",
+        "bookingId": "booking-1",
+        "currency": "eur",
+        "destinationStripeAccountId": "acct_driver",
+        "driverUserId": "driver-1",
+        "existingIntentId": undefined,
+        "payerUserId": "parent-1",
+        "paymentAttemptId": "b71f8374-8091-4c14-940f-b2520da1faa6",
+        "tripId": "trip-1",
+      },
+      "synthetic-unused-secret",
+    ]
+
+
+Number of calls: 1
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:79:33
+     77|     process.env.PLATFORM_FEE_BPS = rate;
+     78|     await expect(invoke()).rejects.toBeDefined();
+     79|     expect(provider.create).not.toHaveBeenCalled();
+       |                                 ^
+     80|     expect((await firestore.doc("bookings/booking-1").get()).get("paym…
+     81|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > reconciles a known legacy intent from its actual fee, not the current configuration
+AssertionError: expected undefined to be 50 // Object.is equality
+
+- Expected: 
+50
+
++ Received: 
+undefined
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:89:102
+     87|     await expect(invoke()).resolves.toMatchObject({paymentIntentId: "p…
+     88|     expect(provider.create).not.toHaveBeenCalled();
+     89|     expect((await firestore.doc("bookings/booking-1").get()).get("paym…
+       |                                                                                                      ^
+     90|   });
+     91|   it("does not invent fees for an old unknown legacy attempt with no p…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/ride-payment-preparation-flow.test.ts > isolated initial ride payment preparation > does not invent fees for an old unknown legacy attempt with no provider identity
+AssertionError: promise resolved "{ bookingId: 'booking-1', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "amountCents": 1000,
++   "bookingId": "booking-1",
++   "clientSecret": "synthetic-client-secret",
++   "currency": "eur",
++   "paymentIntentId": "pi_isolated",
++   "publishableKey": "pk_test_isolated_not_a_real_key",
+  }
+
+ ❯ tests/ride-payment-preparation-flow.test.ts:95:26
+     93|       amountCents: 1000, unitPriceCents: 500, currency: "eur", status:…
+     94|       termsRevision: null, createdAt: Timestamp.now()}});
+     95|     await expect(invoke()).rejects.toMatchObject({code: "failed-precon…
+       |                          ^
+     96|     expect(provider.create).not.toHaveBeenCalled(); expect(provider.re…
+     97|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 1 passed (10)
+   Start at  21:36:31
+   Duration  2.77s (transform 145ms, setup 0ms, collect 295ms, tests 2.20s, environment 0ms, prepare 49ms)
+
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "./node_modules/.bin/vitest run tests/ride-payment-preparation-flow.test.ts --no-file-parallelism" exited with code 1

@@ -1,0 +1,17 @@
+{
+  "reviewedAt": "2026-10-21",
+  "scope": "reviewed-local-component-originals-not-connected-app-or-physical-device",
+  "published": {
+    "team-chat-narrow": "team-chat-narrow.png",
+    "team-chat-denied": "team-chat-denied.png",
+    "team-chat-unconfirmed": "team-chat-unconfirmed-window.png",
+    "team-chat-confirmed": "team-chat-confirmed.png"
+  },
+  "excluded": {
+    "team-chat-unconfirmed.png": "Partial root redraw; the separately captured original window is complete."
+  },
+  "fullAppSystemInsetsVerified": false,
+  "connectedExchangeVerified": false,
+  "notificationsVerified": false,
+  "videoRecorded": false
+}

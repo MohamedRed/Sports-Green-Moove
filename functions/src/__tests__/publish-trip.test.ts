@@ -47,6 +47,22 @@ describe("published trip construction", () => {
     });
   });
 
+  it("omits undefined optional fields from Firestore documents", () => {
+    const { distanceKm: _distanceKm, teamName: _teamName, ...minimalInput } = input;
+    const trip = buildPublishedTrip("trip-1", "driver-1", minimalInput, {
+      driverVerified: true,
+      driverRating: 4.7,
+    });
+
+    expect(Object.entries(trip).filter(([, value]) => value === undefined)).toEqual([]);
+    expect(trip).not.toHaveProperty("arrivalBy");
+    expect(trip).not.toHaveProperty("distanceKm");
+    expect(trip).not.toHaveProperty("regionGeohash");
+    expect(trip).not.toHaveProperty("teamName");
+    expect(trip.passengerInitials).toEqual([]);
+    expect(trip.blockedUserIds).toEqual([]);
+  });
+
   it("derives publish eligibility and clamps driver rating from profile state", () => {
     expect(driverPublishState({ driverVerified: true, driverRating: 9 })).toEqual({
       driverVerified: true,

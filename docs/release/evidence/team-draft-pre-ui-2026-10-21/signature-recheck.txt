@@ -1,0 +1,11 @@
+Compiled from "LocalTeamDraftRestartTest.kt"
+public final class be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest {
+  public static final int $stable;
+  public be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest();
+  public final androidx.compose.ui.test.junit4.ComposeTestRule getCompose();
+  public final void preparePrivateTeamDraft();
+  public final void recoverAndSendPrivateDraftInNewProcess();
+  public final void acknowledgedDraftStaysEmptyInThirdProcess();
+  public static final java.lang.String access$getBody$p(be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest);
+  static {};
+}

@@ -1,0 +1,36 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "tripId": "dC6wrempMQ4ycdu2kALg",
+  "otherTripId": "NrRHTQWymkwe38lhb80X",
+  "bookingIds": [
+    "Gvyzb4cNmGcI6K54Zthw",
+    "qr7cSnJ4UjGXPXwR2Jee"
+  ],
+  "baseline": {
+    "hashes": {
+      "trips": "7456def96634e5fe7b8f6386037fd75e8f1c626f56b76493d56d552c31b86fb9",
+      "bookings": "639b655f3f64e0002498bd2687c10f7a2e16fc343f64c333b8dfe06ea1fd9a7a",
+      "notifications": "b41258742ca3dd980cf16108272acb4db63291768638e6f1b29c4576c45a419c"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  },
+  "checkpoint": {
+    "hashes": {
+      "trips": "7456def96634e5fe7b8f6386037fd75e8f1c626f56b76493d56d552c31b86fb9",
+      "bookings": "639b655f3f64e0002498bd2687c10f7a2e16fc343f64c333b8dfe06ea1fd9a7a",
+      "notifications": "b41258742ca3dd980cf16108272acb4db63291768638e6f1b29c4576c45a419c"
+    },
+    "emptyCollections": {
+      "tripChanges": true,
+      "tripChangeQuotes": true,
+      "tripChangeBalances": true,
+      "rideSessions": true
+    }
+  }
+}

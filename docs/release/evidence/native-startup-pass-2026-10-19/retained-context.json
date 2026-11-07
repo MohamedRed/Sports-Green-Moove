@@ -1,0 +1,21 @@
+{
+  "scope": "completed-independent-local-native-startup-not-release-readiness",
+  "runId": "e1cb2ea3b47a087d817b803912243543",
+  "reviewedCaptureCount": 4,
+  "publishedCaptureCount": 2,
+  "publishedCaptures": [
+    "local-native-startup-started.png",
+    "local-native-startup-signed-out.png"
+  ],
+  "knownVisualDefects": [
+    "local-native-startup-invalid.png",
+    "local-native-startup-resumed.png"
+  ],
+  "visualCompletenessVerified": false,
+  "fullNativeSuiteVerified": false,
+  "physicalDevice": false,
+  "developmentCliVersion": "15.34.0",
+  "localFirestoreVersion": "1.22.0",
+  "sourceBaseCommit": "b119a5689817b870d1e83b98acdcc60e6456af35",
+  "uncommittedCandidateAtRun": true
+}

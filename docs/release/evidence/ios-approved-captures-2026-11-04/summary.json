@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-04",
+  "localPolicySelfTest": {
+    "log": "policy-checks.txt",
+    "logSha256": "9d3f1f7508d3a193642ee4ad4590517d25ed3ecc81f10a4a4cb0c45449634eca",
+    "exitCode": 0
+  },
+  "producerFixtureOnly": true,
+  "producerImageBudgetBytes": 1900000,
+  "exportPayloadMaximumBytes": 1990000,
+  "approvedMaximumBytes": 2000000,
+  "retentionDays": 1,
+  "maximumImages": 3,
+  "expectedFiles": [
+    "home.png",
+    "profile.png",
+    "rating-sent.png"
+  ],
+  "captureProducerSdkAccepted": false,
+  "realCaptureExportAccepted": false,
+  "imagesCaptured": false,
+  "imagesUploaded": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

@@ -1,0 +1,121 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ceabbd242cecff629223b003000f1d8b",
+  "recordedAt": "2026-10-23T12:52:51.902Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "managerUid": "sgm-qa-club-manager",
+    "foreignReadDenied": false,
+    "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+    "originalOperation": {
+      "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "d1a615e6-16f8-4d61-92de-aa42bf55747c",
+      "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+      "digest": "5c8392e0d67d1b2b98eb4250ba25d0b0365ef5f1fdd74ec4a55cf04e5617119f",
+      "createdAt": {
+        "_seconds": 1792759960,
+        "_nanoseconds": 91000000
+      }
+    },
+    "originalCreatedAt": {
+      "_seconds": 1792759960,
+      "_nanoseconds": 91000000
+    }
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "subjectType": "other",
+        "subjectId": null,
+        "reason": "Support urgent QA",
+        "description": "Je souhaite une reponse pour cette urgence de test.",
+        "emergency": true,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "publicReplyCount": 0,
+        "lastPublicReply": null,
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        },
+        "updatedAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "requesterUserId": "sgm-qa-parent",
+        "clientRequestId": "d1a615e6-16f8-4d61-92de-aa42bf55747c",
+        "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "digest": "5c8392e0d67d1b2b98eb4250ba25d0b0365ef5f1fdd74ec4a55cf04e5617119f",
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        }
+      }
+    ],
+    "outbox": [
+      {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "kind": "support-urgent",
+        "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "audience": "support",
+        "attempts": 0,
+        "createdAt": {
+          "_seconds": 1792759960,
+          "_nanoseconds": 91000000
+        },
+        "lastError": "configuration_required",
+        "status": "needs_configuration",
+        "updatedAt": {
+          "_seconds": 1792759961,
+          "_nanoseconds": 295000000
+        }
+      }
+    ],
+    "replyOperations": [],
+    "replies": [],
+    "requesterView": {
+      "report": {
+        "id": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+        "reason": "Support urgent QA",
+        "description": "Je souhaite une reponse pour cette urgence de test.",
+        "emergency": true,
+        "status": "open",
+        "createdAtMillis": 1792759960091,
+        "updatedAtMillis": 1792759960091,
+        "replyCount": 0,
+        "lastReply": null
+      },
+      "replies": {
+        "items": [],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null,
+    "notifications": []
+  },
+  "result": {
+    "phase": "submitted",
+    "reportId": "170ac12f3455c0e92a12b7a482cb62dfa844b62cee994c9f378d88316d1b3004",
+    "reportCount": 1,
+    "replyCount": 0,
+    "status": "open",
+    "providerAttempts": 0,
+    "emailStatus": "needs_configuration",
+    "supportOnlyAudience": true,
+    "privateFieldsAbsentFromRequesterView": true
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "physicalUiVerifiedByObserver": false,
+  "adminWritesByObserver": 0,
+  "realEmailSent": false
+}

@@ -1,0 +1,93 @@
+{
+  "runId": "5df857ab432be283649a789711b72fff",
+  "testedAt": "2026-10-15T23:51:14.164Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-booking",
+      "status": "failed",
+      "message": "Expected values to be strictly equal:\n\nundefined !== 2\n"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "DaDk0LSIrm7KanyrOsp5",
+    "bookingId": "x63JLsIxwUN2LiRw1v3G",
+    "rideSessionId": "twsy3Voge4mrsVNpoZyk",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "scenarios": {},
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Club approval/rejection, trip editing/cancellation and refund settlement remain unverified."
+  ]
+}

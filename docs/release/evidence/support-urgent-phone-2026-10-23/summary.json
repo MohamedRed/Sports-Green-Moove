@@ -1,0 +1,31 @@
+{
+  "scope": "connected-physical-urgent-support-with-actual-management-ui-and-independent-record-checkpoints",
+  "checkedAt": "2026-10-23",
+  "baseCommit": "80c88d0c33b388fcd4d9306137146172c17fe5b8",
+  "nativeSource": "62578bc88532c26b6c47592d9448ecf652f7cfc8",
+  "apkSha256": "10668e27abfc95e19256bb484860efe34770e08a5169c43ab2b605c25630d0fb",
+  "device": "Google Pixel 9 Pro, Android 15, BrowserStack App Live",
+  "package": "be.sportgreenmoove.app.local",
+  "physicalDevice": true,
+  "managementWritesThroughActualUi": true,
+  "urgentAlertObservedWithoutReload": true,
+  "oneRequestAndReplyRetainedAcrossAccounts": true,
+  "foreignHistoryEmpty": true,
+  "protectedRecordsAtEveryCheckpoint": 158,
+  "videoRecorded": false,
+  "nativeScreenshotExportObserved": false,
+  "realEmailSent": false,
+  "productionWrites": false,
+  "productionDeployed": false,
+  "realNetworkLossVerified": false,
+  "fullProcessRestartVerified": false,
+  "releaseComplete": false,
+  "publication": "held-owner-private-audience-not-restored",
+  "publishedCaptures": {
+    "support-urgent-phone-prepared": "captures/prepared.png",
+    "support-urgent-phone-answer": "captures/answer.png",
+    "support-urgent-phone-closed": "captures/closed.png",
+    "support-urgent-phone-foreign": "captures/foreign.png",
+    "support-urgent-phone-restored": "captures/restored.png"
+  }
+}

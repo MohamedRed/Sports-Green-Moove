@@ -1,0 +1,15 @@
+{
+  "scope": "local-decoder-analysis-not-ui-replay",
+  "decoder": "ffmpeg rawvideo rgba",
+  "imageSha256": "a5d34d2537cbd9a214d4c9f20aee448bfe897bb556cc567ad7b307a7b83c31e7",
+  "width": 1080,
+  "height": 2400,
+  "pixels": 2592000,
+  "allDistinctColors": 260,
+  "stride16DistinctColors": 10,
+  "originalThresholdExclusive": 16,
+  "originalSamplePredicate": false,
+  "fullPixelPredicate": true,
+  "imageModified": false,
+  "recaptured": false
+}

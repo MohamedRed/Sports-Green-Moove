@@ -1,0 +1,43 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bcd21edf83934378c9a4b128f47df358",
+  "phase": "failure-cleanup",
+  "recordedAt": "2026-11-04T20:54:47.034Z",
+  "scope": "read-only-sync-failure-diagnostics-not-copy-or-flow-verification",
+  "observations": [
+    {
+      "id": "directory-stat",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "stat: '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence': No such file or directory\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "shell-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "ls: /sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence: No such file or directory\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "sync-listing",
+      "collected": true,
+      "value": {
+        "entryCount": 0,
+        "maxNameBytes": 0,
+        "namesAreSimple": true,
+        "pngCount": 0,
+        "jsonCount": 0
+      }
+    },
+    {
+      "id": "storage-service-log",
+      "collected": true,
+      "value": "--------- beginning of main\n11-04 20:54:46.463  1901  1901 I adbd    : Remote process closed the socket (on MSG_PEEK)\n"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+Browser tab: 1621933415, Title: "Google Pixel 9 v15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 v15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				181 container in-session-device-react
+					182 container
+					183 container
+						184 image
+						185 button Add Device
+							186 text Add Device
+							187 text PRO
+				177 text ;
+				312 container
+					313 button Expand
+					314 button Dock to bottom
+					315 text Dev Tools
+					316 tab group
+						317 tab (selectable, settable, boolean) Description: Logs, Value: 0
+						319 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+						320 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						321 tab (selectable, settable, boolean) Description: Network, Value: 0
+						322 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				246 content list
+					247 button Description: Switch Device, ID: switchBrowser
+					248 container
+						249 checkbox Description: Local testing, Value: 1, ID: appLiveToolbarLocalTesting
+							250 image
+							251 image open content menu
+							252 text Local testing
+						323 container Local Testing
+							324 text Local Testing
+							325 container
+								326 text General
+								327 checkbox (settable, integer) Description: Resolve all URLs through my network, Value: 0, ID: force-local
+								328 text Note: 
+								329 text Enabling this feature makes testing websites slower.
+								330 link Description: Read more about Local Testing configuration, Value: browserstack.com/question/781
+								331 link Description: Learn more about Local Testing, Value: browserstack.com/local-testing/app-live?ref=app-live-dock
+					253 menu zoomFeature
+						254 Description: zoom out, ID: zoom-out
+						255 Description: zoom in, ID: zoom-in
+						256 text Zoom
+					257 button Description: Record Session, ID: appLiveVideoRecording
+					258 button Description: DevTools, ID: showDebuggingOptions
+					259 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					260 button open content menu Settings, ID: appLiveSessionSettings
+						261 image open content menu
+						262 text Settings
+					263 button Description: Stop Session, ID: appLiveStopSession
+						264 image
+						265 text Stop Session
+				266 container vertical-toolbar-react
+					267 container vertical-toolbar-draggable
+						268 container
+							269 button toolbar drag icon
+							270 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						271 toolbar
+							272 content list
+								273 button Description: Add Device, ID: app-live-add-device
+									274 container app-live-add-device-lead-text-wrapper
+										275 text Add Device PRO
+								276 button Description: Show Home Screen, ID: dockHomeScreen
+									277 text Show Home Screen
+								278 container volume-buttons-lead-text-wrapper
+									279 text Volume
+									280 container volumeButtons
+										281 button - Volume Decrease
+										282 button (disabled) + Volume Increase
+								283 button Description: View Open Apps, ID: view-open-apps
+									284 text View Open Apps
+								285 button Description: Install New App, ID: switch-app
+									286 text Install New App
+								287 checkbox Description: Profile Performance, Value: 0
+									288 text Profile Performance
+									289 text PRO
+								290 button Description: Capture Screenshot, ID: get-screenshot
+									291 text Capture Screenshot
+								292 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									293 text Kill/Uninstall
+								294 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									295 container android-settings-lead-text-wrapper
+										296 text Android Settings PRO New
+								297 button Rotate Device, ID: dockOrientationRealAndroid
+									298 text Rotate Device
+								299 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									300 text Change Location
+								301 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									302 text Throttle Network
+								303 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									304 text Files & Media
+								305 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									306 text Change Language
+								307 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									308 text Screen Reader
+								309 button (collapsed) Description: Device info: Google Pixel 9, v15.0, ID: device-info, Secondary Actions: Expand
+									310 text Google Pixel 9
+									311 text v15.0
+		178 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 249 checkbox Description: Local testing, Value: 1, ID: appLiveToolbarLocalTesting

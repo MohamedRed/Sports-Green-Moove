@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-10-24T00:44:17.123Z",
+  "command": "dumpsys package com.samsung.android.dialer",
+  "packageName": "com.samsung.android.dialer",
+  "versionName": "15.1.78",
+  "userStateExcerpt": "User 0: ceDataInode=5776 installed=true hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=false enabled=0 instant=false virtual=false installReason=0 firstInstallTime=2022-01-01 00:00:00 uninstallReason=0 disabledComponents: com.samsung.android.dialer.NonPhoneActivity enabledComponents: com.samsung.android.dialer.finder.LogsFindoSearch",
+  "actionDialFilterPresent": true,
+  "telSchemePresent": true,
+  "scope": "read-only-package-observation-not-confirmed-cause",
+  "rootCauseConfirmed": false,
+  "phoneNumberEntered": false,
+  "callPlaced": false
+}
