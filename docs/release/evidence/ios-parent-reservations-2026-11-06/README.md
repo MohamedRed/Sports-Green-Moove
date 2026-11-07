@@ -13,6 +13,11 @@ restore a directory or claim cancellation. Unknown write replies clear actions
 until an explicit read; no automatic write retry or invented refund completion
 is introduced. A confirmed cancellation remains visible if a later refresh fails.
 
+A later UI-only refinement suppresses the empty-state claim while a continuation
+exists and adds that assertion to the pending screen test. The retained local
+logic/adapter inputs are unchanged; this display refinement is not native screen
+acceptance and must be included in the next complete source-bound SDK/UI gate.
+
 The actual local native plan passes: 21 malformed response rejections, 12 delayed
 read/cancel boundaries, four paging failures, non-parent denials, confirmed and
 unknown-response recovery. The strict Swift 6 signature check also passes. The

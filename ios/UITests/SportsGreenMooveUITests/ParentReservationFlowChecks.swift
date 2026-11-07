@@ -5,7 +5,9 @@ import XCTest
     XCTAssertTrue(trips.waitForExistence(timeout: 6)); trips.tap()
     XCTAssertTrue(app.descendants(matching: .any)["reservations.screen"].waitForExistence(timeout: 6))
     let more = app.buttons["reservations.more"]
-    XCTAssertTrue(more.waitForExistence(timeout: 6)); more.tap()
+    XCTAssertTrue(more.waitForExistence(timeout: 6))
+    XCTAssertFalse(app.staticTexts["Aucune réservation."].exists)
+    more.tap()
     let cancel = app.buttons["reservations.cancel.parent-reservation"]
     XCTAssertTrue(cancel.waitForExistence(timeout: 6)); XCTAssertTrue(cancel.isEnabled)
     cancel.tap()

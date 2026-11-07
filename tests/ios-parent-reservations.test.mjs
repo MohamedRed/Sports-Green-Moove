@@ -19,6 +19,7 @@ test('the parent tab uses owned reservations while retaining the independent dri
   const current = read(app + 'TripsScreen.swift');
   assert(current.includes('if access.context.role == .parent')); assert(current.includes('ParentReservationsScreen(access: access, gateway: appState.firebase).id(access.context.id)'));
   assert(current.includes('ForEach(visibleTrips)')); assert(current.includes('BookingRequestsList(access: access'));
+  assert(read(app + 'ParentReservationsScreen.swift').includes('state.loaded && visible.isEmpty && !state.hasMore'));
   const gateway = read(app + 'FirebaseParentReservations.swift');
   assert(gateway.includes('var input: [String: String] = ["role": "parent"]'));
   for (const name of ['listReservations', 'cancelBooking']) assert(gateway.includes('name: "' + name + '"'));
@@ -58,6 +59,7 @@ test('the original booking fixture only adds the parent sequence and retains ele
   assert.equal(workflow.on.workflow_dispatch.inputs.retain_approved_captures.default, false);
   const fixture = read(directory + 'ParentReservationFlowChecks.swift');
   for (const id of ['reservations.more', 'reservations.cancel.confirm', 'reservations.confirmed', 'reservations.resolve']) assert(fixture.includes(id));
+  assert(fixture.includes('XCTAssertFalse(app.staticTexts["Aucune réservation."].exists)'));
   assert.doesNotMatch(fixture, /XCTSkip|sleep\(|captureApproved|screenshot/);
 });
 test('public progress remains local-only with the historical iPhone and Android results intact', () => {

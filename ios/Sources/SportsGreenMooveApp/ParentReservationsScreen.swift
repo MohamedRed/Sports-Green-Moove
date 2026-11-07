@@ -37,7 +37,7 @@ struct ParentReservationsScreen: View {
                         Button("Actualiser les réservations") { Task { await state.refresh() } }
                             .disabled(state.busy).frame(minHeight: 44).accessibilityIdentifier("reservations.resolve")
                     }
-                    if state.loaded && visible.isEmpty { Text("Aucune réservation.") }
+                    if state.loaded && visible.isEmpty && !state.hasMore { Text("Aucune réservation.") }
                     ForEach(visible) { row in
                         ParentReservationRow(row: row, canCancel: state.canCancel(row)) { selected = row }
                     }
