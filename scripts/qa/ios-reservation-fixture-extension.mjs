@@ -21,3 +21,10 @@ export function withParentReservationChecks(source) {
   assert.equal(source.split(marker).length, 2);
   return source.replace(marker, marker + '        app = launch(route: "home")\n        verifyParentReservations(in: app)\n');
 }
+
+export function withPaymentConnectIdentifier(source) {
+  const original = '        XCTAssertTrue(app.buttons["Continuer l\'onboarding"].waitForExistence(timeout: 6))\n';
+  assert.equal(source.split(original).length, 2);
+  return source.replace(original, '        assertExists("payments.connect.action", in: app)\n' +
+    '        XCTAssertTrue(app.buttons["payments.connect.action"].isEnabled)\n');
+}

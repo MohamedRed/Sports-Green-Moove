@@ -88,7 +88,7 @@ private struct PaymentsConnectCard: View {
                 Text("Activez les paiements conducteur et les futurs virements récompenses.")
                     .font(.sgmBody(12, weight: .medium))
                     .foregroundStyle(SGM.textMuted)
-                SGMButton(title: loading ? "Ouverture..." : "Continuer l'onboarding", action: action)
+                SGMButton(title: loading ? "Ouverture..." : "Continuer l'onboarding", testID: UITestIdentifier.paymentConnectAction, action: action)
                     .opacity(loading ? 0.58 : 1)
                     .allowsHitTesting(!loading)
             }

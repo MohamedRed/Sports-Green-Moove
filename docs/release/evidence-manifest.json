@@ -91,8 +91,10 @@
       {
         "id": "ios_sdk_build_ci",
         "status": "pending",
-        "description": "Historical eleven-screen passes and failed rechecks retained. New owned parent reservation paging/cancellation and rewards navigation require their complete SDK/eleven-screen gate; controlled local logic/signature/callback checks do not accept actual UI, live services or release.",
+        "description": "SDK build succeeds at 05cd3f7, but the combined source-bound gate is pending after the later screen failure. Historical build and eleven-case success are retained, not inherited as current acceptance.",
         "evidenceRefs": [
+          "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42312780272/job/128220001036",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/source-sha256.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/build-input-sha256.json",
@@ -130,16 +132,18 @@
         "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
         "verifiedAt": "2026-11-06",
         "fixtureGateRecheck": {
-          "source": "docs/release/evidence/ios-fixture-recheck-cc1e6d7-2026-11-06/summary.json",
-          "sha256": "0db79f222c5f5067adb5109abee347cc8f76302df1c0b78da79fbb5cbc5dbde9"
+          "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+          "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
         },
-        "lastAttemptAt": "2026-11-06"
+        "lastAttemptAt": "2026-11-07"
       },
       {
         "id": "ios_fixture_ui_ci",
         "status": "pending",
-        "description": "Historical eleven-screen passes and failed rechecks retained. New owned parent reservation paging/cancellation and rewards navigation require their complete SDK/eleven-screen gate; controlled local logic/signature/callback checks do not accept actual UI, live services or release.",
+        "description": "The later 05cd3f7 recheck executes eleven cases: 10 pass, 1 fail (1 assertion). Cause unconfirmed. Disposal succeeds; no artifacts. Historical success is not current repeatability, physical or release acceptance.",
         "evidenceRefs": [
+          "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42312780272/job/128220001036",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/source-sha256.json",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/build-input-sha256.json",
@@ -177,10 +181,10 @@
         "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
         "verifiedAt": "2026-11-06",
         "fixtureGateRecheck": {
-          "source": "docs/release/evidence/ios-fixture-recheck-cc1e6d7-2026-11-06/summary.json",
-          "sha256": "0db79f222c5f5067adb5109abee347cc8f76302df1c0b78da79fbb5cbc5dbde9"
+          "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+          "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
         },
-        "lastAttemptAt": "2026-11-06"
+        "lastAttemptAt": "2026-11-07"
       },
       {
         "id": "native_ui_flow_ci",

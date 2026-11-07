@@ -37,6 +37,7 @@ enum UITestIdentifier {
     static let supportReportAction = "options.support-report.action"
     static let paymentsScreen = "payments.screen"
     static let paymentAction = "payments.payment.action"
+    static let paymentConnectAction = "payments.connect.action"
 }
 
 extension View {

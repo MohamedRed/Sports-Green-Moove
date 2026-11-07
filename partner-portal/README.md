@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The complete 05 iPhone gate compiles and executes ten passing cases plus one
+failed mixed-case Connect label query. Preserve all original outcomes and record
+only the two pending iPhone entries. Attach a stable identifier to the actual
+button without changing its action/text/driver branch, then query that command
+and its enabled state. The casing mismatch is source-derived, not a corrected UI
+comparison. Keep the public parent/rewards notes unchanged and add only a
+non-rendered reference, preserving all flows, dates, media, tours, blockers and
+public access. See `ios-connect-selector-2026-11-07`.
+
 The iPhone parent trip tab previously rendered public trips, not the owned
 reservation directory. Add the existing parent-scoped list/cancel callables,
 strict paging/decoding, explicit cancellation confirmation and read-only recovery

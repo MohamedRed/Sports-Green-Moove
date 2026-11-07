@@ -28,6 +28,15 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+At source 05cd3f7, run 42312780272/job 128220001036, the SDK build succeeds
+and all eleven cases run: ten pass, one assertion fails in the added rewards
+check. The payments screen opens; its next query expects the original mixed-case
+label although the shared real button renders uppercase. A stable identifier
+candidate preserves the action/text/driver branch and now checks the actual
+command and enabled state. Corrected SDK/UI remains pending, including the newer
+parent reservation sequence. No runtime cause or release acceptance is inferred.
+See `evidence/ios-connect-selector-2026-11-07/`.
+
 The later parent reservation directory reads only the authenticated parent's
 paginated reservations and supports explicitly confirmed, server-authorized
 cancellation. Controlled native state/decoder/signature and actual scripted

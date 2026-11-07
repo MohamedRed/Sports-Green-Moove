@@ -23,8 +23,10 @@ import {iosChildPresentation, iosPresentationModules} from './ios-child-presenta
 import {iosD3Acceptance} from './ios-d3-acceptance.mjs';
 import {iosRewardNavigation} from './ios-reward-navigation.mjs';
 import {iosParentReservations} from './ios-parent-reservations.mjs';
+import {iosConnectSelector} from './ios-connect-selector.mjs';
 
 export const nativeRechecks = {
+  iosConnectSelector,
   iosParentReservations,
   iosRewardNavigation,
   iosD3Acceptance,

@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
+import './ios-connect-selector.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync, readdirSync} from 'node:fs';
 import test from 'node:test';
 import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosParentReservations, iosParentReservationsProgress} from '../partner-portal/ios-parent-reservations.mjs';
-import {withParentReservationChecks} from '../scripts/qa/ios-reservation-fixture-extension.mjs';
+import {withParentReservationChecks, withPaymentConnectIdentifier} from '../scripts/qa/ios-reservation-fixture-extension.mjs';
 import {iosAutomatedEvidenceIds, assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 
 const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
@@ -50,7 +51,7 @@ test('both pending iPhone records retain every previous proof and all unrelated 
 test('the original booking fixture only adds the parent sequence and retains eleven cases and the approved deadline', () => {
   const path = 'ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift';
   const row = json('docs/release/evidence/ios-reward-navigation-2026-11-06/source-sha256.json').files.find(row => row.path === path && row.commit === 'candidate');
-  assert.equal(read(path), withParentReservationChecks(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')));
+  assert.equal(read(path), withPaymentConnectIdentifier(withParentReservationChecks(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt'))));
   const directory = 'ios/UITests/SportsGreenMooveUITests/';
   assert.equal(readdirSync(new URL('../' + directory, import.meta.url)).filter(name => name.endsWith('.swift'))
     .flatMap(name => [...read(directory + name).matchAll(/func (test\w+)\(/g)]).length, 11);

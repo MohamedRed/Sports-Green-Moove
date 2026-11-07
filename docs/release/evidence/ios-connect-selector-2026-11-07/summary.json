@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-07",
+  "failedGate": {
+    "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+    "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
+  },
+  "sdkBuild": "success",
+  "passedCases": 10,
+  "failedCases": 1,
+  "assertionFailures": 1,
+  "failedCase": "testSecondaryFlowIdentifiers",
+  "failedLine": 109,
+  "failedLabel": "Continuer l'onboarding",
+  "renderedTextTransform": "title.uppercased()",
+  "stableIdentifier": "payments.connect.action",
+  "originalActionAndTextPreserved": true,
+  "originalCases": 11,
+  "deadlineMinutes": 50,
+  "newCaptures": 0,
+  "correctedSdkUiAccepted": false,
+  "runtimeCauseConfirmedByComparison": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "source-sha256.json",
+      "sha256": "9781b06d6bc55cbc3aedb5b2f26ce744a0fe391a13c8c2d4c504846c04516bb3"
+    }
+  ]
+}

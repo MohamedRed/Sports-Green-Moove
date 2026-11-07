@@ -108,7 +108,8 @@ final class SportsGreenMooveUITests: XCTestCase {
         assertExists("rewards.withdraw.action", in: app)
         tapIdentifier("rewards.withdraw.action", in: app)
         assertExists("payments.screen", in: app)
-        XCTAssertTrue(app.buttons["Continuer l'onboarding"].waitForExistence(timeout: 6))
+        assertExists("payments.connect.action", in: app)
+        XCTAssertTrue(app.buttons["payments.connect.action"].isEnabled)
 
         app = launch(route: "rewards-parent")
         tapIdentifier("rewards.withdraw.action", in: app)
