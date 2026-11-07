@@ -54,6 +54,8 @@ final class SportsGreenMooveUITests: XCTestCase {
         app = launch(route: "booking")
         tapButton(containing: "EN ATTENTE", in: app)
         assertExists("booking.approve.action", in: app)
+        app = launch(route: "home")
+        verifyParentReservations(in: app)
     }
 
     @MainActor func testActiveRideIdentifiers() {

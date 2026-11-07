@@ -22,8 +22,10 @@ import {nativeMatrix115, nativeRecheckCc1} from './native-matrix-115.mjs';
 import {iosChildPresentation, iosPresentationModules} from './ios-child-presentation.mjs';
 import {iosD3Acceptance} from './ios-d3-acceptance.mjs';
 import {iosRewardNavigation} from './ios-reward-navigation.mjs';
+import {iosParentReservations} from './ios-parent-reservations.mjs';
 
 export const nativeRechecks = {
+  iosParentReservations,
   iosRewardNavigation,
   iosD3Acceptance,
   iosPresentationModules,

@@ -56,6 +56,11 @@ swiftc \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountPresentation.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ParentReservation.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ParentReservationWire.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ParentReservationState.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UnconfiguredParentReservations.swift" \
+  "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/UITestParentReservations.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildInvitationWire.swift" \
   "${ROOT_DIR}/ios/Sources/SportsGreenMooveApp/ChildAccountState.swift" \
@@ -192,6 +197,8 @@ swiftc \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RidePaymentOwnershipChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/PaymentScreenChecks.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/UnusedParentReservationGateway.swift" \
+  "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/ParentReservationChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/RewardNavigationChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/BookingOwnershipChecks.swift" \
   "${ROOT_DIR}/ios/Tests/SportsGreenMooveNativeChecks/SupportChecks.swift" \

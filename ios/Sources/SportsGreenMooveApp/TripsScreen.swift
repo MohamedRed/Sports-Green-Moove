@@ -6,6 +6,14 @@ struct TripsScreen: View {
     let access: AccountAccess
 
     var body: some View {
+        if access.context.role == .parent {
+            ParentReservationsScreen(access: access, gateway: appState.firebase).id(access.context.id)
+        } else {
+            driverContent
+        }
+    }
+
+    private var driverContent: some View {
         SGMScreen(spacing: 0) {
             TripsHeader()
             TripsMonthNav()

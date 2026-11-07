@@ -24,6 +24,8 @@ on:
       - "tests/fixtures/ios-search-contract/**"
       - "tests/ios-search-contract.test.mjs"
       - "tests/fixtures/ios-search-callable/**"
+      - "tests/fixtures/ios-parent-reservations/**"
+      - "tests/ios-parent-reservations.test.mjs"
       - "scripts/qa/check-ios-ride-chat-runtime.sh"
       - "tests/fixtures/ios-ride-chat-runtime/**"
       - "scripts/check-ios-support-concurrency.sh"

@@ -238,7 +238,7 @@ test('the timeout correction preserves every current workload and artifact uploa
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify current chat recovery and iPhone input commit'),
     [{name: 'Verify current chat recovery and iPhone input commit', run: 'node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify source-bound iPhone release evidence'),
-    [{name: 'Verify source-bound iPhone release evidence', run: 'node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs tests/ios-fixture-index.test.mjs tests/ios-latest-gate-acceptance.test.mjs tests/ios-reward-navigation.test.mjs'}]);
+    [{name: 'Verify source-bound iPhone release evidence', run: 'node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs tests/ios-fixture-index.test.mjs tests/ios-latest-gate-acceptance.test.mjs tests/ios-reward-navigation.test.mjs tests/ios-parent-reservations.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify compatible protocol and payment query patches'),
     [{name: 'Verify compatible protocol and payment query patches', run: 'node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs'}]);
   assert.deepEqual(currentSteps.filter(step => step.name === 'Verify immediate search selection invalidation'),

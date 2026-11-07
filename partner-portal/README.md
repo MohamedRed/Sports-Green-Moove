@@ -2,6 +2,16 @@
 
 ## Current Publication Policy
 
+The iPhone parent trip tab previously rendered public trips, not the owned
+reservation directory. Add the existing parent-scoped list/cancel callables,
+strict paging/decoding, explicit cancellation confirmation and read-only recovery
+after unknown replies. Actual Foundation, strict-signature and scripted-adapter
+checks pass; native screen execution and live mutations remain unaccepted. Extend
+one original screen case, preserving all eleven cases, 50 minutes and capture
+bounds. Preserve previous pending entries and every old source/result. Publish
+one short local-only booking note without changing flows, dates, media, tours,
+blockers or public access. See `ios-parent-reservations-2026-11-06`.
+
 The iPhone rewards command was an empty closure. Wire it to the existing driver
 payment-settings destination with captured account-generation and screen guards,
 using the same granted-driver role behavior as Android, without initiating an

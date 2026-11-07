@@ -17,6 +17,9 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -D DEBU
   "$FIXTURES/GatewayContext.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/Models.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ParentReservation.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ParentReservationWire.swift" \
+  "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseParentReservations.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildAccountWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/ChildInvitationWire.swift" \
   "$ROOT_DIR/ios/Sources/SportsGreenMooveApp/FirebaseChildAccountGateway.swift" \

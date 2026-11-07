@@ -21,3 +21,13 @@ swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BU
   "$APP/FirebaseOwnedBookingGateway.swift" \
   "$APP/PlaceSearchWire.swift" "$APP/FirebaseCallableBoundary.swift" "$APP/FirebasePlacesGateway.swift" -o "$BUILD/check"
 DYLD_LIBRARY_PATH="$BUILD" "$BUILD/check"
+
+swiftc -swift-version 6 -strict-concurrency=complete -warnings-as-errors -I "$BUILD" -L "$BUILD" \
+  -lFirebaseAuth -lFirebaseFunctions "$ROOT_DIR/tests/fixtures/ios-parent-reservations/main.swift" \
+  "$APP/ProviderConfigurationError.swift" \
+  "$APP/Models.swift" "$APP/ClubSummary.swift" "$APP/BookingIntentSnapshot.swift" \
+  "$APP/PendingReviews.swift" "$APP/ReviewTripContext.swift" \
+  "$APP/AuthSession.swift" "$APP/AccountWorkScope.swift" "$APP/ClubMembership.swift" "$APP/MembershipWire.swift" \
+  "$APP/ParentReservation.swift" "$APP/ParentReservationWire.swift" \
+  "$APP/FirebaseCallableBoundary.swift" "$APP/FirebaseParentReservations.swift" -o "$BUILD/parent-reservations"
+DYLD_LIBRARY_PATH="$BUILD" "$BUILD/parent-reservations"

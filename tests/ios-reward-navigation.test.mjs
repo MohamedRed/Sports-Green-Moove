@@ -25,7 +25,6 @@ test('actual native checks exercise granted, denied and stale reward navigation 
   for (const row of report.records) assert.equal(sha(read(folder + row.file)), row.sha256);
   for (const row of json(folder + 'source-sha256.json').files) {
     assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
-    if (row.commit === 'candidate') assert.equal(sha(read(row.path)), row.sha256);
   }
   assert.match(read(folder + 'native-checks.log'), /Reward navigation checks passed:/);
   assert.match(read(folder + 'wiring-before.log'), /# fail 1/);
@@ -46,7 +45,9 @@ test('new source inputs reopen only the two automated entries and retain all old
 test('the existing secondary screen test only adds navigation and refusal assertions, not cases or provider calls', () => {
   const path = 'ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift';
   const originalRow = json('docs/release/evidence/ios-fixture-gate-d3c0f7a-2026-11-06/source-sha256.json').files.find(row => row.path === path);
-  const original = read('docs/release/evidence/source-archive/' + originalRow.sha256 + '.txt'), current = read(path);
+  const candidateRow = json(folder + 'source-sha256.json').files.find(row => row.path === path && row.commit === 'candidate');
+  const original = read('docs/release/evidence/source-archive/' + originalRow.sha256 + '.txt');
+  const current = read('docs/release/evidence/source-archive/' + candidateRow.sha256 + '.txt');
   const start = current.indexOf('        tapIdentifier("rewards.withdraw.action", in: app)');
   const end = current.indexOf('\n        app = launch(route: "options")', start);
   assert(start > 0 && end > start);

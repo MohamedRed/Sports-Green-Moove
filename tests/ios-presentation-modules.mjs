@@ -11,10 +11,12 @@ test('presentation guards remain outside gateway DTOs and compile in the real na
   for (const row of report.records) assert.equal(sha(read(folder + row.file)), row.sha256);
   for (const row of json(folder + 'source-sha256.json').files) {
     let current = read(row.path).toString();
-    if (row.path === 'scripts/check-ios-native-plan.sh') {
-      for (const name of ['AppState+Rewards.swift', 'RewardNavigationChecks.swift']) {
-        const line = current.split('\n').find(value => value.includes('/' + name + '"'));
-        assert(line && current.split(line).length === 2, 'Only explicit reward-check inputs may extend the native plan');
+    const archived = read('docs/release/evidence/source-archive/' + row.sha256 + '.txt').toString();
+    if (row.path.startsWith('scripts/check-ios-')) {
+      for (const line of current.split('\n').filter(line => !archived.split('\n').includes(line))) {
+        assert(/^  "\$(?:\{ROOT_DIR\}|ROOT_DIR)\/ios\/(?:Sources\/SportsGreenMooveApp|Tests\/SportsGreenMooveNativeChecks)\/[A-Za-z0-9+_.-]+\.swift" \\$/.test(line), 'Only additional Swift inputs may extend the historical check');
+        assert.equal(current.split(line).length, 2);
+        read(line.slice(line.indexOf('/ios/') + 1, line.indexOf('.swift') + 6));
         current = current.replace(line + '\n', '');
       }
     }

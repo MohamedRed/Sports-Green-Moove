@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {withRewardNavigationChecks, withParentReservationChecks} from '../scripts/qa/ios-reservation-fixture-extension.mjs';
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
 import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withChildCodeChecks, withParentChildAccountChecks} from '../scripts/qa/ios-fixture-workload-contract.mjs';
@@ -98,6 +99,7 @@ test('UI candidates preserve the real city button and full-size club target with
     }
     if (row.path.endsWith('/EmergencyContactFlowTests.swift')) expected = withChildCodeChecks(expected);
     if (row.path.endsWith('/ParentEmergencyContactFlowTests.swift')) expected = withParentChildAccountChecks(expected);
+    if (row.path.endsWith('/SportsGreenMooveUITests.swift')) expected = withParentReservationChecks(withRewardNavigationChecks(expected));
     assert.equal(read(row.path), expected);
   }
 });

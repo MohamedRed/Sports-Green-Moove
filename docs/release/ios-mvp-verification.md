@@ -28,6 +28,22 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+The later parent reservation directory reads only the authenticated parent's
+paginated reservations and supports explicitly confirmed, server-authorized
+cancellation. Controlled native state/decoder/signature and actual scripted
+adapter checks pass. The existing booking fixture gains a paginated parent
+cancellation/history sequence; all eleven cases, 50 minutes and capture bounds
+remain. SDK and screen execution for this source remain pending. Earlier screen
+successes are historical, not acceptance of this new directory. See
+`evidence/ios-parent-reservations-2026-11-06/`.
+
+The eleven fixture cases are not a complete platform feature audit. Separate
+iPhone implementations/replays are still needed for driver trip changes and
+cancellation, parent proposal confirmation, guardian-verification requests and
+team enrollment. Closed-app push, real-service transactions and physical safety
+scenarios also remain open. Existing web management review does not imply native
+parent entry points. None of these requirements is waived by a green fixture job.
+
 The later reward-navigation change replaces an empty rewards button action with
 the existing owned driver payment-settings route. Local native checks pass for
 granted, denied and stale actions without provider calls or transfers. The

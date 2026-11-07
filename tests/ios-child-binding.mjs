@@ -40,7 +40,17 @@ test('the candidate changes only the binding closure and retains the actual guar
   const original = bytes('docs/release/evidence/source-archive/' + screen.sha256 + '.txt').toString();
   assert.equal(original.split('set: state.edit').length, 2);
   assert.equal(bytes(screen.path).toString(), original.replace('set: state.edit', 'set: { state.edit($0) }'));
-  for (const row of paths.filter(row => row !== screen)) assert.equal(sha(bytes(row.path)), row.sha256);
+  for (const row of paths.filter(row => row !== screen)) {
+    if (row.path === '.github/workflows/ios-mvp-verification.yml') {
+      const originalWorkflow = parseDocument(bytes('docs/release/evidence/source-archive/' + row.sha256 + '.txt').toString()).toJSON();
+      const currentWorkflow = parseDocument(bytes(row.path).toString()).toJSON();
+      const addedPaths = currentWorkflow.on.pull_request.paths;
+      assert.deepEqual(addedPaths.filter(path => originalWorkflow.on.pull_request.paths.includes(path)), originalWorkflow.on.pull_request.paths);
+      assert.equal(new Set(addedPaths).size, addedPaths.length);
+      currentWorkflow.on.pull_request.paths = originalWorkflow.on.pull_request.paths;
+      assert.deepEqual(currentWorkflow, originalWorkflow);
+    } else assert.equal(sha(bytes(row.path)), row.sha256);
+  }
   assert.doesNotMatch(bytes(screen.path).toString(), /assumeIsolated|unsafeBitCast|nonisolated|@unchecked|MainActor\.run/);
 });
 

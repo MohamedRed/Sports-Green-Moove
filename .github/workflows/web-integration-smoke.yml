@@ -20,6 +20,11 @@ on:
       - "tests/ios-latest-gate-acceptance.test.mjs"
       - "tests/ios-d3-acceptance.mjs"
       - "tests/ios-reward-navigation.test.mjs"
+      - "tests/ios-parent-reservations.test.mjs"
+      - "tests/fixtures/ios-parent-reservations/**"
+      - "scripts/qa/ios-reservation-fixture-extension.mjs"
+      - "scripts/qa/record-ios-parent-reservations.mjs"
+      - "docs/release/evidence/ios-parent-reservations-2026-11-06/**"
       - "scripts/qa/record-ios-reward-navigation.mjs"
       - "docs/release/evidence/ios-reward-navigation-2026-11-06/**"
       - "docs/release/evidence/ios-automated-acceptance-d3c0f7a-2026-11-06/**"
@@ -788,6 +793,11 @@ on:
       - "tests/ios-latest-gate-acceptance.test.mjs"
       - "tests/ios-d3-acceptance.mjs"
       - "tests/ios-reward-navigation.test.mjs"
+      - "tests/ios-parent-reservations.test.mjs"
+      - "tests/fixtures/ios-parent-reservations/**"
+      - "scripts/qa/ios-reservation-fixture-extension.mjs"
+      - "scripts/qa/record-ios-parent-reservations.mjs"
+      - "docs/release/evidence/ios-parent-reservations-2026-11-06/**"
       - "scripts/qa/record-ios-reward-navigation.mjs"
       - "docs/release/evidence/ios-reward-navigation-2026-11-06/**"
       - "docs/release/evidence/ios-automated-acceptance-d3c0f7a-2026-11-06/**"
@@ -1878,7 +1888,7 @@ jobs:
         run: node --test tests/chat-network-current.test.mjs tests/ios-chat-input-commit.test.mjs
 
       - name: Verify source-bound iPhone release evidence
-        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs tests/ios-fixture-index.test.mjs tests/ios-latest-gate-acceptance.test.mjs tests/ios-reward-navigation.test.mjs
+        run: node --test tests/ios-fixture-release-evidence.test.mjs tests/ios-fixture-recheck.test.mjs tests/ios-fixture-index.test.mjs tests/ios-latest-gate-acceptance.test.mjs tests/ios-reward-navigation.test.mjs tests/ios-parent-reservations.test.mjs
 
       - name: Verify compatible protocol and payment query patches
         run: node --test tests/protocol-query-security.test.mjs tests/protocol-query-security-evidence.test.mjs
