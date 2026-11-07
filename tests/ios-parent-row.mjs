@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import test from 'node:test';
+import {content} from '../partner-portal/content.mjs';
+import {iosParentRow, iosParentRowProgress} from '../partner-portal/ios-parent-row.mjs';
+import {validateIosFixtureRecheck} from '../scripts/qa/ios-fixture-recheck.mjs';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8');
+const sha = value => createHash('sha256').update(value).digest('hex');
+const folder = 'docs/release/evidence/ios-parent-row-2026-11-07/';
+test('the failed eleven-case gate retains two failed cases, three assertions and the actual button identity', () => {
+  const report = JSON.parse(read(iosParentRow.source));
+  assert.equal(sha(read(iosParentRow.source)), iosParentRow.sha256);
+  const gate = validateIosFixtureRecheck(root, report.failedGate);
+  assert.equal(gate.runId, 42315882640); assert.equal(gate.jobId, 128229229902);
+  assert.deepEqual([gate.passed, gate.failed, gate.assertionFailures], [9, 2, 3]);
+  for (const row of report.records) assert.equal(sha(read(folder + row.file)), row.sha256);
+  const snapshot = read(folder + 'original-button-snapshot.txt');
+  assert.match(snapshot, /No matches found.*reservations\.cancel\.parent-reservation/);
+  assert.match(snapshot, /Button, identifier: 'reservations.row.parent-reservation', label: 'Annuler la réservation'/);
+  assert.equal(report.originalCases, 11); assert.equal(report.deadlineMinutes, 50); assert.equal(report.newCaptures, 0);
+  for (const key of ['correctedSdkUiAccepted', 'runtimeCauseConfirmedByComparison', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[key], false);
+});
+test('the row separates its accessibility container without changing actions, presentation or fixture assertions', () => {
+  const rows = JSON.parse(read(iosParentRow.checksums)).files;
+  for (const row of rows) assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
+  const app = 'ios/Sources/SportsGreenMooveApp/ParentReservationsScreen.swift';
+  const old = rows.find(row => row.path === app && row.commit !== 'candidate');
+  const current = read(app), original = read('docs/release/evidence/source-archive/' + old.sha256 + '.txt');
+  assert.equal(current.replace('            .accessibilityElement(children: .contain)\n', ''), original);
+  assert.match(current, /\.accessibilityElement\(children: .contain\)\s+\.accessibilityIdentifier\("reservations.row." \+ row.id\)/);
+  assert.match(current, /accessibilityIdentifier\("reservations.cancel." \+ row.id\)/);
+  const fixture = rows.find(row => row.path.includes('ParentReservationFlowChecks'));
+  assert.equal(sha(read(fixture.path)), fixture.sha256);
+  assert.match(read(fixture.path), /XCTAssertTrue\(cancel.waitForExistence\(timeout: 6\)\); XCTAssertTrue\(cancel.isEnabled\)/);
+  assert.deepEqual(content.iosParentRow, iosParentRow);
+  assert.deepEqual(content.updates.filter(row => row.source === iosParentRowProgress.source), [iosParentRowProgress]);
+  assert.doesNotMatch(iosParentRowProgress.title + iosParentRowProgress.text, /Firebase|BrowserStack|SDK|Swift|CI\b/);
+});

@@ -2,6 +2,15 @@
 
 ## Current Publication Policy
 
+The dd09 iPhone gate builds and executes all eleven cases: nine pass; the parent
+cancellation query and older Connect-label query fail. The actual snapshot shows
+the cancellation button with its row's identifier. Add explicit row containment,
+preserving action, owner guards, display and every original test assertion.
+Retain the complete failure and pending records; corrected SDK/UI remains open.
+Publish one short nine-of-eleven simulation note, preserving all historical
+results, flow statuses/dates, media, tours, blockers and public access. See
+`ios-parent-row-2026-11-07`.
+
 The later 05 Android main job fails the Wi-Fi prerequisite before installation;
 its separate ride case fails the Home-screen wait after the login form, before
 tracking. Preserve both distinct outcomes and do not infer an authentication,

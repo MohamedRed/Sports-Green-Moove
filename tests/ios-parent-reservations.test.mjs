@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import './ios-connect-selector.mjs';
+import './ios-parent-row.mjs';
 import {createHash} from 'node:crypto';
 import {readFileSync, readdirSync} from 'node:fs';
 import test from 'node:test';

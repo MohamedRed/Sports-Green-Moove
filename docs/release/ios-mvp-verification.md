@@ -28,6 +28,16 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+At source dd09f35, run 42315882640/job 128229229902, the SDK build succeeds
+and all eleven cases execute: nine pass, two fail with three assertion failures.
+The parent directory opens, but its cancellation button inherits the row's
+identifier in the actual accessibility snapshot. The candidate adds explicit
+row containment, preserving every action, guard and test assertion. The other
+failure retains the earlier Connect-label query; its stable-command candidate
+already exists. Both pending iPhone entries retain this later result. Corrected
+SDK/screen comparison and all wider release requirements remain open. See
+`evidence/ios-parent-row-2026-11-07/`.
+
 At source 05cd3f7, run 42312780272/job 128220001036, the SDK build succeeds
 and all eleven cases run: ten pass, one assertion fails in the added rewards
 check. The payments screen opens; its next query expects the original mixed-case

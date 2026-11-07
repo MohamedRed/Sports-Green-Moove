@@ -91,8 +91,10 @@
       {
         "id": "ios_sdk_build_ci",
         "status": "pending",
-        "description": "SDK build succeeds at 05cd3f7, but the combined source-bound gate is pending after the later screen failure. Historical build and eleven-case success are retained, not inherited as current acceptance.",
+        "description": "SDK build succeeds at dd09f35, but the combined source-bound gate is pending after the later screen failure. Historical build and eleven-case success are retained, not inherited as current acceptance.",
         "evidenceRefs": [
+          "evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42315882640/job/128229229902",
           "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42312780272/job/128220001036",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
@@ -132,16 +134,18 @@
         "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
         "verifiedAt": "2026-11-06",
         "fixtureGateRecheck": {
-          "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
-          "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
+          "source": "docs/release/evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
+          "sha256": "e5a7c67332b5d8a9aca8adccf0a25d323a6289e29c652fb60265d42e6116813d"
         },
         "lastAttemptAt": "2026-11-07"
       },
       {
         "id": "ios_fixture_ui_ci",
         "status": "pending",
-        "description": "The later 05cd3f7 recheck executes eleven cases: 10 pass, 1 fail (1 assertion). Cause unconfirmed. Disposal succeeds; no artifacts. Historical success is not current repeatability, physical or release acceptance.",
+        "description": "The later dd09f35 recheck executes eleven cases: 9 pass, 2 fail (3 assertion). Cause unconfirmed. Disposal succeeds; no artifacts. Historical success is not current repeatability, physical or release acceptance.",
         "evidenceRefs": [
+          "evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42315882640/job/128229229902",
           "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42312780272/job/128220001036",
           "evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
@@ -181,8 +185,8 @@
         "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
         "verifiedAt": "2026-11-06",
         "fixtureGateRecheck": {
-          "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
-          "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
+          "source": "docs/release/evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
+          "sha256": "e5a7c67332b5d8a9aca8adccf0a25d323a6289e29c652fb60265d42e6116813d"
         },
         "lastAttemptAt": "2026-11-07"
       },

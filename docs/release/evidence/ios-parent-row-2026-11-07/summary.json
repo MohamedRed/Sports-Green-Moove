@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-07",
+  "failedGate": {
+    "source": "docs/release/evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
+    "sha256": "e5a7c67332b5d8a9aca8adccf0a25d323a6289e29c652fb60265d42e6116813d"
+  },
+  "sdkBuild": "success",
+  "passedCases": 9,
+  "failedCases": 2,
+  "assertionFailures": 3,
+  "failedCommand": "reservations.cancel.parent-reservation",
+  "observedCommandIdentifier": "reservations.row.parent-reservation",
+  "candidate": "explicit-row-accessibility-containment",
+  "originalActionAndAssertionsPreserved": true,
+  "originalCases": 11,
+  "deadlineMinutes": 50,
+  "newCaptures": 0,
+  "correctedSdkUiAccepted": false,
+  "runtimeCauseConfirmedByComparison": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "original-button-snapshot.txt",
+      "sha256": "1dc4c7c040002f85d0313ba036635c0715fa6408f1b99fae44d3ff423c368f8d"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "5c3116cc147ff678382f90960c116b1b882526acd0ef88dd7cf292d09f9f98ac"
+    }
+  ]
+}

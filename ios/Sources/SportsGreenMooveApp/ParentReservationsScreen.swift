@@ -83,6 +83,7 @@ private struct ParentReservationRow: View {
             }
         }.padding(16).frame(maxWidth: .infinity, alignment: .leading)
             .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: 8))
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier("reservations.row." + row.id)
     }
 }
