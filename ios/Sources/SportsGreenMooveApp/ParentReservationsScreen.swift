@@ -52,10 +52,10 @@ struct ParentReservationsScreen: View {
             .onChange(of: scenePhase) { _, phase in if phase != .active { selected = nil; state.suspend() } }
             .onChange(of: state.live) { _, live in if !live { selected = nil } }
             .onDisappear { selected = nil; state.suspend() }
-            .confirmationDialog("Annuler cette réservation ?", isPresented: Binding(
-                get: { selected != nil }, set: { if !$0 { selected = nil } }), titleVisibility: .visible, presenting: selected) { row in
-                Button("Annuler la réservation", role: .destructive) { selected = nil; Task { await state.cancel(row) } }
-                    .disabled(!state.canCancel(row)).accessibilityIdentifier("reservations.cancel.confirm")
+            .alert("Annuler cette réservation ?", isPresented: Binding(
+                get: { selected != nil }, set: { if !$0 { selected = nil } }), presenting: selected) { row in
+                Button("Confirmer l’annulation", role: .destructive) { selected = nil; Task { await state.cancel(row) } }
+                    .disabled(!state.canCancel(row))
                 Button("Conserver", role: .cancel) { selected = nil }
             } message: { row in
                 Text("\(row.title) · \(row.date) · \(row.time) · \(row.seats) place(s)")

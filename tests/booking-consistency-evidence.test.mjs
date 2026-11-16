@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 import { content, captures } from '../partner-portal/content.mjs';
 import {bookingServerRecheck, bookingServerRecheckProgress} from '../partner-portal/booking-server-recheck.mjs';
-import {partitionUpdates} from '../partner-portal/src/render.js';
+import {overview} from '../partner-portal/src/render.js';
 
 const base = 'docs/release/evidence/local-booking-consistency-2026-10-17/';
 const bytes = (path) => readFileSync(new URL(`../${path}`, import.meta.url));
@@ -203,7 +203,7 @@ test('one concise reservation note preserves historical proof and pending releas
   const report = current('summary.json'), before = current('portal-before.json');
   assert.deepEqual(content.bookingServerRecheck, bookingServerRecheck);
   assert.deepEqual(content.updates.filter(row => row.source === bookingServerRecheckProgress.source), [bookingServerRecheckProgress]);
-  assert(partitionUpdates(content.updates).recent.some(row => row.source === bookingServerRecheckProgress.source));
+  assert(overview(content).includes(bookingServerRecheckProgress.title));
   assert.doesNotMatch(bookingServerRecheckProgress.title + bookingServerRecheckProgress.text, /Firebase|BrowserStack|Java|SDK|Swift|Xcode|CI\b/i);
   for (const row of before.flows) assert.equal(digest(JSON.stringify(content.flows.find(flow => flow.id === row.id))), row.sha256);
   for (const hash of before.updates) assert(content.updates.some(row => digest(JSON.stringify(row)) === hash));

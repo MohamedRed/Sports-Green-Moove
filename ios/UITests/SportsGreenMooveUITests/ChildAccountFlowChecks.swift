@@ -39,5 +39,8 @@ import XCTest
     let approve = app.buttons["child-account.approve"]
     XCTAssertEqual(XCTWaiter.wait(for: [XCTNSPredicateExpectation(predicate: enabled, object: approve)], timeout: 6), .completed); approve.tap()
     XCTAssertTrue(app.staticTexts["child-account.approved"].waitForExistence(timeout: 6))
-    app.scrollViews["child-account.screen"].swipeDown(); app.buttons["child-account.back"].tap()
+    let back = app.buttons["child-account.back"]
+    XCTAssertTrue(back.exists)
+    back.tap()
+    XCTAssertTrue(entry.waitForExistence(timeout: 6))
 }

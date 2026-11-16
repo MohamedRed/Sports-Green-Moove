@@ -60,7 +60,9 @@ test('the original booking fixture only adds the parent sequence and retains ele
   assert.equal(workflow.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   assert.equal(workflow.on.workflow_dispatch.inputs.retain_approved_captures.default, false);
   const fixture = read(directory + 'ParentReservationFlowChecks.swift');
-  for (const id of ['reservations.more', 'reservations.cancel.confirm', 'reservations.confirmed', 'reservations.resolve']) assert(fixture.includes(id));
+  for (const id of ['reservations.more', 'reservations.confirmed', 'reservations.resolve']) assert(fixture.includes(id));
+  assert(fixture.includes('app.alerts["Annuler cette réservation ?"]'));
+  for (const label of ['Conserver', 'Confirmer l’annulation']) assert(fixture.includes('confirmation.buttons["' + label + '"]'));
   assert(fixture.includes('XCTAssertFalse(app.staticTexts["Aucune réservation."].exists)'));
   assert.doesNotMatch(fixture, /XCTSkip|sleep\(|captureApproved|screenshot/);
 });

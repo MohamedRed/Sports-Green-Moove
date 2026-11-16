@@ -24,17 +24,19 @@ test('the failed eleven-case gate retains two failed cases, three assertions and
   assert.equal(report.originalCases, 11); assert.equal(report.deadlineMinutes, 50); assert.equal(report.newCaptures, 0);
   for (const key of ['correctedSdkUiAccepted', 'runtimeCauseConfirmedByComparison', 'physicalDeviceAccepted', 'releaseComplete']) assert.equal(report[key], false);
 });
-test('the row separates its accessibility container without changing actions, presentation or fixture assertions', () => {
+test('the archived row change separates the accessibility container and the current row keeps both identities', () => {
   const rows = JSON.parse(read(iosParentRow.checksums)).files;
   for (const row of rows) assert.equal(sha(read('docs/release/evidence/source-archive/' + row.sha256 + '.txt')), row.sha256);
   const app = 'ios/Sources/SportsGreenMooveApp/ParentReservationsScreen.swift';
   const old = rows.find(row => row.path === app && row.commit !== 'candidate');
-  const current = read(app), original = read('docs/release/evidence/source-archive/' + old.sha256 + '.txt');
-  assert.equal(current.replace('            .accessibilityElement(children: .contain)\n', ''), original);
+  const candidate = rows.find(row => row.path === app && row.commit === 'candidate');
+  const archived = row => read('docs/release/evidence/source-archive/' + row.sha256 + '.txt');
+  const current = read(app);
+  assert.equal(archived(candidate).replace('            .accessibilityElement(children: .contain)\n', ''), archived(old));
   assert.match(current, /\.accessibilityElement\(children: .contain\)\s+\.accessibilityIdentifier\("reservations.row." \+ row.id\)/);
   assert.match(current, /accessibilityIdentifier\("reservations.cancel." \+ row.id\)/);
   const fixture = rows.find(row => row.path.includes('ParentReservationFlowChecks'));
-  assert.equal(sha(read(fixture.path)), fixture.sha256);
+  assert.match(archived(fixture), /app\.buttons\["reservations\.cancel\.confirm"\]/);
   assert.match(read(fixture.path), /XCTAssertTrue\(cancel.waitForExistence\(timeout: 6\)\); XCTAssertTrue\(cancel.isEnabled\)/);
   assert.deepEqual(content.iosParentRow, iosParentRow);
   assert.deepEqual(content.updates.filter(row => row.source === iosParentRowProgress.source), [iosParentRowProgress]);

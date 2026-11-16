@@ -11,11 +11,17 @@ import XCTest
     let cancel = app.buttons["reservations.cancel.parent-reservation"]
     XCTAssertTrue(cancel.waitForExistence(timeout: 6)); XCTAssertTrue(cancel.isEnabled)
     cancel.tap()
-    let keep = app.buttons["Conserver"]
-    XCTAssertTrue(keep.waitForExistence(timeout: 6)); keep.tap()
-    XCTAssertTrue(cancel.waitForExistence(timeout: 6)); cancel.tap()
-    let confirm = app.buttons["reservations.cancel.confirm"]
-    XCTAssertTrue(confirm.waitForExistence(timeout: 6)); confirm.tap()
+    let confirmation = app.alerts["Annuler cette réservation ?"]
+    XCTAssertTrue(confirmation.waitForExistence(timeout: 6))
+    confirmation.buttons["Conserver"].tap()
+    XCTAssertTrue(confirmation.waitForNonExistence(timeout: 6))
+    XCTAssertFalse(app.staticTexts["reservations.confirmed"].exists)
+    XCTAssertTrue(cancel.isEnabled)
+    cancel.tap()
+    XCTAssertTrue(confirmation.waitForExistence(timeout: 6))
+    let confirm = confirmation.buttons["Confirmer l’annulation"]
+    XCTAssertTrue(confirm.isEnabled)
+    confirm.tap()
     XCTAssertTrue(app.staticTexts["reservations.confirmed"].waitForExistence(timeout: 6))
     XCTAssertFalse(cancel.exists)
     app.buttons["reservations.resolve"].tap()
