@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { buildSafetyAuditExport } from "./safety-audit-export.mjs";
+import { loadRideAuditNotifications } from "./safety-audit-notifications.mjs";
 
 export async function writeLiveSmokeSafetyAuditExport({
   admin,
@@ -15,6 +16,7 @@ export async function writeLiveSmokeSafetyAuditExport({
     loadChildProfilesForAudit(db, created.childIds),
     loadRewardLedgerForAudit(db, created.rewardLedgerIds),
   ]);
+  const notifications = await loadRideAuditNotifications(db, rideSessions);
 
   const releaseScopeNote = "Disposable live smoke export: proves guardian consent, pickup/dropoff, and native fallback telemetry for this run only. It does not close Radar provider, payment reconciliation, or physical real-device release gates.";
   const exportJson = {
@@ -23,6 +25,7 @@ export async function writeLiveSmokeSafetyAuditExport({
       rideSessions,
       liveTrips,
       childProfiles,
+      notifications,
       rewardLedger,
       reports: [],
     }),
@@ -38,6 +41,7 @@ export async function writeLiveSmokeSafetyAuditExport({
     rideSessions: rideSessions.length,
     auditEvents: rideSessions.reduce((total, ride) => total + ride.auditEvents.length, 0),
     childProfiles: childProfiles.length,
+    notifications: exportJson.notifications?.length ?? 0,
     rewardLedger: rewardLedger.length,
     validateCommand: `npm run validate:safety-audit-export -- ${outputPath}`,
     releaseScopeNote,

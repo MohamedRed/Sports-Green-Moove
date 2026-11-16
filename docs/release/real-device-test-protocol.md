@@ -131,7 +131,8 @@ Export the matching Firestore/Realtime Database evidence after the run:
 - `rideSessions/{rideSessionId}`
 - `rideSessions/{rideSessionId}/auditEvents`
 - `liveTrips/{rideSessionId}`
-- `notifications` for the driver and parent
+- `notifications` for the driver and parent from the selected ride, with aliased
+  IDs, event type, timestamps and read status
 - payment and reward-ledger entries for the booking if a paid ride was used
 - any support `reports` created during the run
 

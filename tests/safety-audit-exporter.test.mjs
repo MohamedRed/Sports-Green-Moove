@@ -94,6 +94,44 @@ try {
         email: "child@example.invalid",
       },
     }],
+    notifications: [
+      {
+        id: "parentNoticeRealId",
+        data: {
+          sourceId: "rideSessionRealId",
+          userId: "parentRealUid",
+          type: "passengerPickedUp",
+          title: "Private notification title",
+          body: "Private notification body",
+          createdAt: new Date("2026-06-17T11:50:00Z"),
+          read: false,
+        },
+      },
+      {
+        id: "driverNoticeRealId",
+        data: {
+          sourceId: "rideSessionRealId",
+          userId: "driverRealUid",
+          type: "radarApproaching",
+          createdAt: new Date("2026-06-17T11:55:00Z"),
+          read: true,
+          readAt: new Date("2026-06-17T11:56:00Z"),
+        },
+      },
+      { id: "foreignRide", data: { sourceId: "otherRide", userId: "parentRealUid", type: "radarDropoff" } },
+      { id: "foreignRecipient", data: { sourceId: "rideSessionRealId", userId: "childRealUid", type: "radarDropoff" } },
+      { id: "foreignType", data: { sourceId: "rideSessionRealId", userId: "parentRealUid", type: "bookingRequested" } },
+      {
+        id: "malformedTimestamp",
+        data: {
+          sourceId: "rideSessionRealId",
+          userId: "parentRealUid",
+          type: "passengerDroppedOff",
+          read: true,
+          readAt: "Private note in a timestamp field",
+        },
+      },
+    ],
     rewardLedger: [{
       id: "pi_real_ridePayment_parentRealUid",
       data: {
@@ -129,11 +167,43 @@ try {
     "child@example.invalid",
     "whsec_should_not_leave_process",
     "sk_liv...cess",
+    "parentNoticeRealId",
+    "driverNoticeRealId",
+    "Private notification title",
+    "Private notification body",
+    "Private note in a timestamp field",
     "50.80112",
     "4.39731",
   ]) {
     assert.equal(exportText.includes(forbidden), false, `Export must not include ${forbidden}.`);
   }
+  const ride = exportJson.rideSessions[0];
+  assert.deepEqual(exportJson.notifications, [
+    {
+      id: "notification-1",
+      rideSessionId: ride.id,
+      userId: ride.passengers[0].parentUserId,
+      type: "passengerPickedUp",
+      read: false,
+      createdAt: "2026-06-17T11:50:00.000Z",
+    },
+    {
+      id: "notification-2",
+      rideSessionId: ride.id,
+      userId: ride.driverUserId,
+      type: "radarApproaching",
+      read: true,
+      createdAt: "2026-06-17T11:55:00.000Z",
+      readAt: "2026-06-17T11:56:00.000Z",
+    },
+    {
+      id: "notification-3",
+      rideSessionId: ride.id,
+      userId: ride.passengers[0].parentUserId,
+      type: "passengerDroppedOff",
+      read: true,
+    },
+  ]);
 
   const exportPath = join(tmpDir, "safety-audit-export.json");
   writeFileSync(exportPath, `${exportText}\n`);
@@ -152,6 +222,7 @@ try {
   includes(packageJson, "test:safety-audit-exporter", "Package scripts expose the exporter tests.");
   includes(releaseReadiness, "scripts/export-safety-audit-evidence.mjs", "Release Readiness watches the exporter.");
   includes(releaseReadiness, "scripts/lib/safety-audit-export.mjs", "Release Readiness watches exporter helpers.");
+  includes(releaseReadiness, "scripts/lib/safety-audit-notifications.mjs", "Release Readiness watches ride notification collection.");
   includes(releaseReadiness, "tests/safety-audit-exporter.test.mjs", "Release Readiness watches exporter tests.");
   includes(releaseReadiness, "test:safety-audit-exporter", "Release Readiness runs exporter tests.");
   includes(liveBackendSmoke, "--safety-audit-output", "Live backend smoke can write a disposable safety-audit export before cleanup.");

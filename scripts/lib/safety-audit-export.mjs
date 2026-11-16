@@ -1,3 +1,5 @@
+import { selectRideAuditNotifications } from "./safety-audit-notifications.mjs";
+
 const OMITTED = Symbol("omitted");
 
 export function buildSafetyAuditExport({
@@ -6,6 +8,7 @@ export function buildSafetyAuditExport({
   rideSessions = [],
   liveTrips = {},
   childProfiles = [],
+  notifications = [],
   rewardLedger = [],
   reports = [],
 }) {
@@ -22,6 +25,8 @@ export function buildSafetyAuditExport({
       ]),
     ),
     childProfiles: childProfiles.map((child) => sanitizeChildProfile(child, aliases)),
+    notifications: selectRideAuditNotifications(rideSessions, notifications)
+      .map((notice) => sanitizeRideNotification(notice, aliases)),
     rewardLedger: rewardLedger.map((entry) => sanitizeRewardLedgerEntry(entry, aliases)),
     reports: reports.map((report) => sanitizeReport(report, aliases)),
   });
@@ -164,6 +169,23 @@ function sanitizeRewardLedgerEntry({ id, data = {} }, aliases) {
     tripId: aliases.id("trip", data.tripId),
     createdAt: coerceTimestamp(data.createdAt),
   });
+}
+
+function sanitizeRideNotification({ id, data }, aliases) {
+  return compact({
+    id: aliases.id("notification", id),
+    rideSessionId: aliases.id("rideSession", data.sourceId),
+    userId: aliases.id("user", data.userId),
+    type: data.type,
+    read: typeof data.read === "boolean" ? data.read : undefined,
+    createdAt: canonicalNotificationTimestamp(data.createdAt),
+    readAt: data.read === true ? canonicalNotificationTimestamp(data.readAt) : undefined,
+  });
+}
+
+function canonicalNotificationTimestamp(value) {
+  const millis = Date.parse(coerceTimestamp(value) ?? "");
+  return Number.isFinite(millis) ? new Date(millis).toISOString() : undefined;
 }
 
 function sanitizeReport({ id, data = {} }, aliases) {

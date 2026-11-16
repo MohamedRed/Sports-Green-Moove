@@ -4,6 +4,7 @@ import { dirname, resolve } from "node:path";
 import process from "node:process";
 import admin from "firebase-admin";
 import { buildSafetyAuditExport } from "./lib/safety-audit-export.mjs";
+import { loadRideAuditNotifications } from "./lib/safety-audit-notifications.mjs";
 
 const options = parseArgs(process.argv.slice(2));
 
@@ -38,9 +39,10 @@ async function main({
   ]);
   const allBookingIds = unique([...bookingIds, ...rideBookingIds]);
 
-  const [liveTrips, childProfiles, rewardLedger, reports] = await Promise.all([
+  const [liveTrips, childProfiles, notifications, rewardLedger, reports] = await Promise.all([
     loadLiveTrips(rideSessionIds),
     loadChildProfiles(db, unique(rideChildIds)),
+    loadRideAuditNotifications(db, rideSessions),
     loadRewardLedgerForBookings(db, allBookingIds),
     loadReports(db, reportIds),
   ]);
@@ -50,6 +52,7 @@ async function main({
     rideSessions,
     liveTrips,
     childProfiles,
+    notifications,
     rewardLedger,
     reports,
   });
@@ -64,6 +67,7 @@ async function main({
     rideSessions: rideSessions.length,
     auditEvents: rideSessions.reduce((total, ride) => total + ride.auditEvents.length, 0),
     childProfiles: childProfiles.length,
+    notifications: exportJson.notifications?.length ?? 0,
     rewardLedger: rewardLedger.length,
     reports: reports.length,
     validateCommand: `npm run validate:safety-audit-export -- ${outputPath}`,
