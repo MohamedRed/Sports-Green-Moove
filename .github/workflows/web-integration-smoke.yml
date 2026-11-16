@@ -1568,7 +1568,8 @@ env:
 jobs:
   smoke:
     name: Functions, admin, and website checks
-    runs-on: ubuntu-latest
+    # Keep the media package resolver on the validated Ubuntu release.
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
 
     permissions:
@@ -2123,7 +2124,7 @@ jobs:
 
   people-safety:
     name: People and safety service smoke
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read
@@ -2228,7 +2229,7 @@ jobs:
 
   guardian-safety:
     name: Guardian, child, and tracking service smoke
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read

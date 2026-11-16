@@ -172,7 +172,7 @@ test('service groups use separate runners and build their own unchanged backend 
   assert.equal(workflow.jobs['guardian-safety']['timeout-minutes'], 20);
   for (const key of smokeGroups) {
     const job = workflow.jobs[key];
-    assert.equal(job.needs, undefined); assert.equal(job['runs-on'], 'ubuntu-latest');
+    assert.equal(job.needs, undefined); assert.equal(job['runs-on'], 'ubuntu-24.04');
     assert.deepEqual(job.permissions, { contents: 'read' });
     const install = job.steps.findIndex(step => step.run === 'npm ci');
     const build = job.steps.findIndex(step => step.run === 'npm run build --workspace functions');
