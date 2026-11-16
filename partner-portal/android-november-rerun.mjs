@@ -3,7 +3,7 @@ const evidenceFolder = 'docs/release/evidence/android-native-rerun-2026-11-16/';
 export const androidNovemberRerun = {
   checkedAt: '2026-11-16',
   source: evidenceFolder + 'README.md',
-  checksums: evidenceFolder + 'artifact-sha256.json',
+  checksums: evidenceFolder + 'original-archives.json',
 };
 
 export const androidNovemberRerunProgress = {

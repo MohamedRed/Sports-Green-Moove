@@ -22,7 +22,7 @@ Intermittent emulator transport and cellular setup behavior still warrants
 separate diagnosis. No new media accompanies this result.
 
 Both downloaded job artifacts match the archive sizes and SHA-256 digests
-reported by GitHub. See [archive checksums](artifact-sha256.json).
+reported by GitHub. See [archive checksums](original-archives.json).
 
 The release manifest still requires Android and iPhone device tracking,
 system phone handoff, operational notifications, and sanitized safety-audit
