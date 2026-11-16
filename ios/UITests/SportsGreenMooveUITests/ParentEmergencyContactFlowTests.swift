@@ -10,7 +10,8 @@ final class ParentEmergencyContactFlowTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["emergency.empty"].waitForExistence(timeout: 6))
         let input = app.textFields["emergency.name.input"]
         input.tap(); input.typeText("Brouillon personnel")
-        let choose = app.buttons["emergency.choose-target"]
+        let contactScreen = app.scrollViews["emergency.screen"]
+        let choose = contactScreen.buttons["emergency.choose-target"]
         XCTAssertTrue(choose.waitForExistence(timeout: 6)); choose.tap()
         let keepEditing = app.buttons["Continuer la modification"]
         XCTAssertTrue(keepEditing.waitForExistence(timeout: 6)); keepEditing.tap()
@@ -28,11 +29,11 @@ final class ParentEmergencyContactFlowTests: XCTestCase {
         XCTAssertEqual(app.staticTexts["emergency.subject.club"].label, "Royal Ottignies Sports")
         app.textFields["emergency.name.input"].tap(); app.textFields["emergency.name.input"].typeText("Contact enfant fictif")
         app.textFields["emergency.phone.input"].tap(); app.textFields["emergency.phone.input"].typeText("+32470000002")
-        app.scrollViews.firstMatch.swipeUp(); app.buttons["emergency.save"].tap()
+        contactScreen.swipeUp(); app.buttons["emergency.save"].tap()
         XCTAssertTrue(app.buttons["emergency.confirm"].waitForExistence(timeout: 6)); app.buttons["emergency.confirm"].tap()
         let saved = app.staticTexts["emergency.contact.name"]
         XCTAssertTrue(saved.waitForExistence(timeout: 6)); XCTAssertEqual(saved.label, "Contact enfant fictif")
-        app.scrollViews.firstMatch.swipeDown(); app.buttons["emergency.choose-target"].tap()
+        XCTAssertTrue(choose.waitForExistence(timeout: 6)); choose.tap()
         let personal = app.buttons["emergency.targets.personal"]
         XCTAssertTrue(personal.waitForExistence(timeout: 6))
         let available = NSPredicate(format: "enabled == true")
@@ -41,12 +42,12 @@ final class ParentEmergencyContactFlowTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["emergency.empty"].waitForExistence(timeout: 6))
         XCTAssertFalse(app.staticTexts["emergency.contact.name"].exists)
         XCTAssertFalse(app.buttons["emergency.phone.open"].exists)
-        app.buttons["emergency.choose-target"].tap()
+        choose.tap()
         XCTAssertTrue(more.waitForExistence(timeout: 6)); more.tap()
         XCTAssertTrue(child.waitForExistence(timeout: 6)); child.tap()
         XCTAssertTrue(saved.waitForExistence(timeout: 6)); XCTAssertEqual(saved.label, "Contact enfant fictif")
         XCTAssertEqual(app.staticTexts["emergency.contact.phone"].label, "+32470000002")
-        app.scrollViews.firstMatch.swipeUp(); app.buttons["emergency.remove"].tap()
+        contactScreen.swipeUp(); app.buttons["emergency.remove"].tap()
         XCTAssertTrue(app.buttons["emergency.confirm"].waitForExistence(timeout: 6)); app.buttons["emergency.confirm"].tap()
         XCTAssertTrue(app.staticTexts["emergency.empty"].waitForExistence(timeout: 6))
         XCTAssertFalse(app.buttons["emergency.phone.open"].exists)

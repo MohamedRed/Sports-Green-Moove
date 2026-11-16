@@ -2,7 +2,8 @@ import test from 'node:test';
 import {withRewardNavigationChecks, withParentReservationChecks, withPaymentConnectIdentifier} from '../scripts/qa/ios-reservation-fixture-extension.mjs';
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withChildCodeChecks, withParentChildAccountChecks} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withChildCodeChecks,
+  withParentChildAccountChecks, withScopedParentEmergencyGestures} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseDocument} from 'yaml';
@@ -98,7 +99,9 @@ test('UI candidates preserve the real city button and full-size club target with
       expected = expected.replace(checkpoint, checkpoint.replace('timeout: 6))', 'timeout: 6), String(app.debugDescription.prefix(16_000)))'));
     }
     if (row.path.endsWith('/EmergencyContactFlowTests.swift')) expected = withChildCodeChecks(expected);
-    if (row.path.endsWith('/ParentEmergencyContactFlowTests.swift')) expected = withParentChildAccountChecks(expected);
+    if (row.path.endsWith('/ParentEmergencyContactFlowTests.swift')) {
+      expected = withScopedParentEmergencyGestures(withParentChildAccountChecks(expected));
+    }
     if (row.path.endsWith('/SportsGreenMooveUITests.swift')) expected = withPaymentConnectIdentifier(withParentReservationChecks(withRewardNavigationChecks(expected)));
     assert.equal(read(row.path), expected);
   }

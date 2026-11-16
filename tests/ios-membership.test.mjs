@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {assertCurrentIosAutomatedEvidence, validateIosFixtureGate} from '../scripts/qa/ios-fixture-release-evidence.mjs';
-import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withParentChildAccountChecks} from '../scripts/qa/ios-fixture-workload-contract.mjs';
+import {assertUnchangedIosFixtureWorkload, withMembershipFailureObservation, withParentChildAccountChecks,
+  withScopedParentEmergencyGestures} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import {readFileSync, readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {test} from 'node:test';
@@ -154,7 +155,8 @@ test('actual earlier SDK/UI failures preserve all eleven outcomes and lead to co
     const expected = file === 'TeamChatFlowChecks.swift' ? original.replace('    let send = app.buttons["team-chat.send"]\n',
       '    let send = app.buttons["team-chat.send"]\n' +
       '    let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: send)\n' +
-      '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n') : withParentChildAccountChecks(original);
+      '    XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 6), .completed)\n') :
+      withScopedParentEmergencyGestures(withParentChildAccountChecks(original));
     assert.equal(read(path), expected);
   }
 });

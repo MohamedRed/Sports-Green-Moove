@@ -38,10 +38,10 @@ test('the corrected acceptance changes only two entries and keeps every negative
     }
   }
 });
-test('the current concise simulation result retains the parent failure in portal history', () => {
+test('the portal retains the earlier pass and parent failure when the latest recheck is shown', () => {
   assert.deepEqual(content.iosD3Acceptance, iosD3Acceptance);
-  const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === iosD3AcceptanceProgress.source));
+  const {previous} = partitionUpdates(content.updates);
+  assert(previous.some(row => row.source === iosD3AcceptanceProgress.source));
   assert(previous.some(row => row.source.includes('ios-child-presentation-2026-11-06')));
   assert(previous.some(row => row.source.includes('ios-child-binding-2026-11-06')));
   assert.match(iosD3AcceptanceProgress.text, /en simulation/); assert.match(iosD3AcceptanceProgress.text, /restent à vérifier/);

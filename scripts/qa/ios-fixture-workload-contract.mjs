@@ -13,6 +13,21 @@ export function withParentChildAccountChecks(original) {
     '        checkParentInvitationInExistingContactCase(app)\n    }\n}\n');
 }
 
+export function withScopedParentEmergencyGestures(original) {
+  const choose = '        let choose = app.buttons["emergency.choose-target"]\n';
+  const returnToTarget = '        app.scrollViews.firstMatch.swipeDown(); app.buttons["emergency.choose-target"].tap()\n';
+  const switchTarget = '        app.buttons["emergency.choose-target"].tap()\n';
+  const swipeUp = '        app.scrollViews.firstMatch.swipeUp();';
+  for (const checkpoint of [choose, returnToTarget, switchTarget]) assert.equal(original.split(checkpoint).length, 2);
+  assert.equal(original.split(swipeUp).length, 3);
+  return original
+    .replace(choose, '        let contactScreen = app.scrollViews["emergency.screen"]\n' +
+      '        let choose = contactScreen.buttons["emergency.choose-target"]\n')
+    .replace(returnToTarget, '        XCTAssertTrue(choose.waitForExistence(timeout: 6)); choose.tap()\n')
+    .replace(switchTarget, '        choose.tap()\n')
+    .replaceAll(swipeUp, '        contactScreen.swipeUp();');
+}
+
 export function withMembershipFailureObservation(original) {
   const club = '    XCTAssertTrue(club.waitForExistence(timeout: 6)); club.tap()\n';
   const approve = '    XCTAssertTrue(approve.waitForExistence(timeout: 6)); approve.tap()\n';

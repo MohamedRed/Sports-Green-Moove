@@ -1,0 +1,19 @@
+{
+  "runId": 43927447715,
+  "attempt": 2,
+  "sourceCommit": "4c19872d44773f4da4734626704883c69d23551b",
+  "artifacts": [
+    {
+      "id": 14282387746,
+      "jobId": 133675763260,
+      "bytes": 33664095,
+      "sha256": "973d6a7cb3bff417d4c936274568871ed6526c9310cd8c5d241f044fea7debcc"
+    },
+    {
+      "id": 14280663577,
+      "jobId": 133675764602,
+      "bytes": 616420,
+      "sha256": "04669e62eb65addac91dfb41280a7e5bfaa13e7ff9134fb7342106f448b556fb"
+    }
+  ]
+}

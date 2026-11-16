@@ -26,8 +26,12 @@ import {iosParentReservations} from './ios-parent-reservations.mjs';
 import {iosConnectSelector} from './ios-connect-selector.mjs';
 import {nativeLoginRecheck} from './native-login-recheck.mjs';
 import {iosParentRow} from './ios-parent-row.mjs';
+import {androidNovemberRerun} from './android-november-rerun.mjs';
+import {iosParentContactRecheck} from './ios-parent-contact-recheck.mjs';
 
 export const nativeRechecks = {
+  androidNovemberRerun,
+  iosParentContactRecheck,
   iosConnectSelector,
   nativeLoginRecheck,
   iosParentRow,

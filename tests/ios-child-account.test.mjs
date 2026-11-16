@@ -6,6 +6,7 @@ import {parseDocument} from 'yaml';
 import {content} from '../partner-portal/content.mjs';
 import {iosChildAccount, iosChildAccountProgress} from '../partner-portal/ios-child-account.mjs';
 import {iosAutomatedEvidenceIds, assertCurrentIosAutomatedEvidence} from '../scripts/qa/ios-fixture-release-evidence.mjs';
+import {withScopedParentEmergencyGestures} from '../scripts/qa/ios-fixture-workload-contract.mjs';
 import './ios-child-binding.mjs';
 import './ios-child-presentation.mjs';
 import './ios-presentation-modules.mjs';
@@ -47,14 +48,15 @@ function modelsContainAtomicTarget() {
     host.includes('.sheet(item: $accountPresentation) { presentation in') &&
     host.includes('target: presentation.target') && !host.includes('managingAccount') && !host.includes('childTarget');
 }
-test('both original screen cases are strictly additive and keep the eleven-case inventory and deadline', () => {
+test('both original screen cases keep their assertions, eleven-case inventory and deadline', () => {
   const sources = json('docs/release/evidence/ios-fixture-gate-6fb6487-2026-11-06/source-sha256.json').files;
   for (const [name, call] of [['EmergencyContactFlowTests.swift', 'checkChildCodeInExistingContactCase(app)'],
     ['ParentEmergencyContactFlowTests.swift', 'checkParentInvitationInExistingContactCase(app)']]) {
     const path = 'ios/UITests/SportsGreenMooveUITests/' + name, row = sources.find(row => row.path === path);
     const original = read('docs/release/evidence/source-archive/' + row.sha256 + '.txt'), current = read(path);
     assert.equal(current.split(call).length, 2);
-    assert.equal(current.replace('        ' + call + '\n', ''), original);
+    const expected = name === 'ParentEmergencyContactFlowTests.swift' ? withScopedParentEmergencyGestures(original) : original;
+    assert.equal(current.replace('        ' + call + '\n', ''), expected);
   }
   const paths = 'ios/UITests/SportsGreenMooveUITests/';
   const files = readdirSync(new URL('../' + paths, import.meta.url)).filter(file => file.endsWith('.swift'));
