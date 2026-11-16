@@ -147,7 +147,8 @@ npm run validate:safety-audit-export -- docs/release/evidence/safety-audit-expor
 The export must not include secrets, tokens, passwords, API keys, or raw provider
 credentials. The validator checks that the export contains guardian consent,
 driver pickup, driver dropoff, Radar webhook reconciliation, native fallback
-location, and Stripe payment or payout reconciliation records.
+location, and a Stripe webhook report with a recorded payment or payout
+reconciliation. Retain the report ID from the release run for the export command.
 
 ## Acceptance
 
@@ -158,7 +159,8 @@ Public launch remains blocked until:
   passes against the sanitized safety-audit export.
 - `npm run validate:release-evidence -- docs/release/evidence-manifest.json`
   passes.
-- The manual Release Evidence Gate workflow passes for the same manifest path.
+- The manual Release Evidence Gate workflow passes for the same manifest and
+  sanitized audit export. Set `safety_audit_export_path` when using a custom path.
 - The manifest links passing automated user-flow evidence for Native CI, Android
   connected UI, production live smokes, Firebase rules, Stripe webhook
   reconciliation, and Android Appetize launch.

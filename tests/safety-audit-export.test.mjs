@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { parse } from "yaml";
 
 const node = process.execPath;
 const script = "scripts/validate-safety-audit-export.mjs";
@@ -45,6 +46,20 @@ try {
   assert.ok(report.matched.native_fallback_location_event.includes("liveTrips"));
   assert.ok(report.matched.payment_reconciliation_event.includes("reports"));
 
+  const unreconciledExport = join(tmpDir, "unreconciled.json");
+  const unreconciled = JSON.parse(readFileSync(validExport, "utf8"));
+  unreconciled.rewardLedger = [{ type: "ridePayment", bookingId: "booking-1" }];
+  unreconciled.reports = [
+    { type: "stripeWebhook", reconciliationStatus: "paymentIncomplete" },
+    { type: "customReport", reconciliationStatus: "paymentReconciled" },
+  ];
+  writeFileSync(unreconciledExport, JSON.stringify(unreconciled));
+  assertFailure(
+    [script, unreconciledExport],
+    /Missing audit evidence: payment_reconciliation_event/,
+    "A ledger entry and unrelated or unsuccessful reports cannot prove Stripe reconciliation.",
+  );
+
   const incompleteExport = join(tmpDir, "incomplete.json");
   writeFileSync(incompleteExport, JSON.stringify({
     rideSessions: [{ auditEvents: [{ eventType: "passengerPickup", action: "pickup" }] }],
@@ -78,6 +93,13 @@ try {
   includes(releaseReadiness, "test:safety-audit-export", "Release Readiness runs safety-audit validator tests.");
   includes(realDeviceProtocol, "validate:safety-audit-export", "Real-device protocol validates safety-audit exports.");
   includes(storeReadiness, "validate:safety-audit-export", "Store checklist documents safety-audit export validation.");
+  const releaseGate = parse(read(".github/workflows/release-evidence.yml"));
+  const inputs = releaseGate.on.workflow_dispatch.inputs;
+  const steps = releaseGate.jobs["release-evidence"].steps;
+  assert.equal(inputs.safety_audit_export_path.default, "docs/release/evidence/safety-audit-export.json");
+  const auditStep = steps.find(({ name }) => name === "Validate the sanitized safety audit export");
+  assert.equal(auditStep.env.SGM_RELEASE_AUDIT_EXPORT_PATH, "${{ inputs.safety_audit_export_path }}");
+  assert.equal(auditStep.run, 'npm run validate:safety-audit-export -- "$SGM_RELEASE_AUDIT_EXPORT_PATH"');
   includes(validator, "requiredAuditEvidence", "Safety-audit validator uses shared audit requirements.");
   includes(validator, "guardian_consent_event", "Safety-audit validator checks guardian consent evidence.");
   includes(validator, "native_fallback_location_event", "Safety-audit validator checks native fallback evidence.");

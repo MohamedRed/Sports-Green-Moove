@@ -117,9 +117,7 @@ function isPaymentReconciliationEvent(value) {
     "payoutTransferReconciled",
     "payoutTransferReversed",
   ]);
-  return value.type === "stripeWebhook" && statuses.has(value.reconciliationStatus)
-    || statuses.has(value.reconciliationStatus)
-    || ["ridePayment", "driverEarning", "payout", "refund"].includes(value.type);
+  return value.type === "stripeWebhook" && statuses.has(value.reconciliationStatus);
 }
 
 function findSecretLikeFields(records) {

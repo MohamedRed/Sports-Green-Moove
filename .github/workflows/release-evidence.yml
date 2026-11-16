@@ -7,6 +7,10 @@ on:
         description: "Path to the real release evidence manifest"
         required: true
         default: "docs/release/evidence-manifest.json"
+      safety_audit_export_path:
+        description: "Path to the sanitized export from the release device run"
+        required: true
+        default: "docs/release/evidence/safety-audit-export.json"
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -64,4 +68,11 @@ jobs:
         run: npm run validate:stripe-production-readiness
 
       - name: Validate release evidence manifest
-        run: npm run validate:release-evidence -- "${{ inputs.manifest_path }}"
+        env:
+          SGM_RELEASE_MANIFEST_PATH: ${{ inputs.manifest_path }}
+        run: npm run validate:release-evidence -- "$SGM_RELEASE_MANIFEST_PATH"
+
+      - name: Validate the sanitized safety audit export
+        env:
+          SGM_RELEASE_AUDIT_EXPORT_PATH: ${{ inputs.safety_audit_export_path }}
+        run: npm run validate:safety-audit-export -- "$SGM_RELEASE_AUDIT_EXPORT_PATH"
