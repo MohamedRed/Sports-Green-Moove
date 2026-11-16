@@ -57,7 +57,6 @@ import { createTeamReviewFlow } from './team-review-flow.mjs';
 import { createTeamConversationFlow } from './team-conversation-flow.mjs';
 export { captures } from './evidence-captures.mjs';
 import { recentProgress } from './recent-progress.mjs';
-import { productionPreflightProgress } from './production-release-preflight.mjs';
 import { blockers } from './progress-blockers.mjs';
 import {sessionExitComponents} from './session-exit-components.mjs';
 import {bookingServerRecheck} from './booking-server-recheck.mjs';
@@ -129,7 +128,7 @@ export const content = {
     checkedAt: '2026-10-23', checksums: 'docs/release/evidence/native-terminal-80c88d0c-2026-10-23/artifact-sha256.json' },
   nativeVerification,
   releaseNote: 'Tests en cours.',
-  updates: [productionPreflightProgress,
+  updates: [
     ...recentProgress,
     { date: '2026-10-16', title: 'L’échange après relancement passe en local',
       text: 'Les trois messages et la réponse du conducteur sont retrouvés. Le nouvel essai de coupure n’a pas pu démarrer.', flow: 'messages' },
