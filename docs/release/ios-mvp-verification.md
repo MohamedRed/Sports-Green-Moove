@@ -28,6 +28,17 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+On 16 November, source `97d3cc17` builds the SDK-linked app and passes all
+eleven simulator cases, including the corrected parent reservation confirmation
+and child-account fixture assertions. Simulator disposal succeeds. GitHub run
+[43922349917, job 133492651759](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43922349917/job/133492651759)
+retains a complete test transcript and zero artifacts. The retained source,
+resources and workflow match the current build inputs, so the manifest accepts
+`ios_sdk_build_ci` and `ios_fixture_ui_ci`. Physical tracking, system phone
+handoff, connected-service flows and operational evidence remain pending.
+See `evidence/ios-fixture-gate-97d3cc1-2026-11-16/` and
+`evidence/ios-automated-acceptance-97d3cc1-2026-11-16/`.
+
 At source dd09f35, run 42315882640/job 128229229902, the SDK build succeeds
 and all eleven cases execute: nine pass, two fail with three assertion failures.
 The parent directory opens, but its cancellation button inherits the row's

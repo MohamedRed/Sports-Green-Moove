@@ -2,7 +2,7 @@
   "manifestVersion": "1.0",
   "manifestStatus": "in-progress",
   "releaseCandidate": "codex/implement-plan",
-  "generatedAt": "2026-11-06",
+  "generatedAt": "2026-11-16",
   "owner": "Codex",
   "providerProductionReadiness": {
     "firebase": {
@@ -90,9 +90,13 @@
     "items": [
       {
         "id": "ios_sdk_build_ci",
-        "status": "pending",
-        "description": "SDK build succeeds at dd09f35, but the combined source-bound gate is pending after the later screen failure. Historical build and eleven-case success are retained, not inherited as current acceptance.",
+        "status": "passed",
+        "description": "SDK-linked app and all fixture bundles compile successfully at 97d3cc1. Exact current build inputs and unchanged workflow jobs match the successful source. Simulator-only automated acceptance; no physical or real-service acceptance.",
         "evidenceRefs": [
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/summary.json",
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/source-sha256.json",
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/build-input-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43922349917/job/133492651759",
           "evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42315882640/job/128229229902",
           "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
@@ -128,11 +132,11 @@
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"
         ],
         "fixtureGateProof": {
-          "source": "docs/release/evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
-          "sha256": "7218f9b60c9c675dd5d089640deae7ddc2d837792b4c3443f884085f2a4d2d40"
+          "source": "docs/release/evidence/ios-fixture-gate-97d3cc1-2026-11-16/summary.json",
+          "sha256": "8e852dd8e1db9ebd8588d172f5f0de1fb20af2034045e02222337b8208d6e156"
         },
-        "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
-        "verifiedAt": "2026-11-06",
+        "appSourceCommit": "97d3cc17ef68455cd5ee40265a8ea76e8e274e74",
+        "verifiedAt": "2026-11-16",
         "fixtureGateRecheck": {
           "source": "docs/release/evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
           "sha256": "e5a7c67332b5d8a9aca8adccf0a25d323a6289e29c652fb60265d42e6116813d"
@@ -141,9 +145,13 @@
       },
       {
         "id": "ios_fixture_ui_ci",
-        "status": "pending",
-        "description": "The later dd09f35 recheck executes eleven cases: 9 pass, 2 fail (3 assertion). Cause unconfirmed. Disposal succeeds; no artifacts. Historical success is not current repeatability, physical or release acceptance.",
+        "status": "passed",
+        "description": "All eleven original fixture screen cases and disposal pass at 97d3cc1, with no artifacts. Exact source, resources, case inventory and terminal transcript are retained. This does not accept physical, operational, emergency phone handoff or complete release flows.",
         "evidenceRefs": [
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/summary.json",
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/source-sha256.json",
+          "evidence/ios-fixture-gate-97d3cc1-2026-11-16/build-input-sha256.json",
+          "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43922349917/job/133492651759",
           "evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42315882640/job/128229229902",
           "evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
@@ -179,11 +187,11 @@
           "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42030107261/job/127268225474"
         ],
         "fixtureGateProof": {
-          "source": "docs/release/evidence/ios-fixture-gate-d3c0f7a-2026-11-06/summary.json",
-          "sha256": "7218f9b60c9c675dd5d089640deae7ddc2d837792b4c3443f884085f2a4d2d40"
+          "source": "docs/release/evidence/ios-fixture-gate-97d3cc1-2026-11-16/summary.json",
+          "sha256": "8e852dd8e1db9ebd8588d172f5f0de1fb20af2034045e02222337b8208d6e156"
         },
-        "appSourceCommit": "d3c0f7afd850dc9b7532386d67eca184f72656e6",
-        "verifiedAt": "2026-11-06",
+        "appSourceCommit": "97d3cc17ef68455cd5ee40265a8ea76e8e274e74",
+        "verifiedAt": "2026-11-16",
         "fixtureGateRecheck": {
           "source": "docs/release/evidence/ios-fixture-recheck-dd09f35-2026-11-07/summary.json",
           "sha256": "e5a7c67332b5d8a9aca8adccf0a25d323a6289e29c652fb60265d42e6116813d"

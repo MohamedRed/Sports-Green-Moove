@@ -1,5 +1,6 @@
 import {bookingServerRecheckProgress} from './booking-server-recheck.mjs';
 import {latestIosProgress} from './progress-ios-latest.mjs';
+import {iosReservationFixtureProgress} from './ios-reservation-fixture-pass.mjs';
 import {verificationBoundariesProgress} from './verification-boundaries.mjs';
 import {verificationFollowupProgress} from './verification-followup.mjs';
 import {ios584FixtureResultProgress} from './ios-584-fixture-result.mjs';
@@ -31,4 +32,14 @@ import {iosParentReservationsProgress} from './ios-parent-reservations.mjs';
 import {nativeLoginRecheckProgress} from './native-login-recheck.mjs';
 import {iosParentRowProgress} from './ios-parent-row.mjs';
 
-export const latestReleaseProgress = [iosParentRowProgress, nativeLoginRecheckProgress, iosParentReservationsProgress, iosRewardNavigationProgress, iosD3AcceptanceProgress, iosChildPresentationProgress, nativeMatrix115Progress, iosChildBindingProgress, nativeCutoff142Progress, iosChildAccountProgress, ios6fbAcceptanceProgress, ios0fbRecheckProgress, iosMembershipRecheck964Progress, nativeMatrix964Progress, nativeCopy376Progress, ios376AcceptanceProgress, nativeNetwork959Progress, iosSearchSelectionProgress, protocolQuerySecurityProgress, ios959RecheckProgress, iosLatestRecheckProgress, iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress, publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress, verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress];
+export const latestReleaseProgress = [
+  iosReservationFixtureProgress, iosParentRowProgress, nativeLoginRecheckProgress,
+  iosParentReservationsProgress, iosRewardNavigationProgress, iosD3AcceptanceProgress,
+  iosChildPresentationProgress, nativeMatrix115Progress, iosChildBindingProgress, nativeCutoff142Progress,
+  iosChildAccountProgress, ios6fbAcceptanceProgress, ios0fbRecheckProgress, iosMembershipRecheck964Progress,
+  nativeMatrix964Progress, nativeCopy376Progress, ios376AcceptanceProgress, nativeNetwork959Progress,
+  iosSearchSelectionProgress, protocolQuerySecurityProgress, ios959RecheckProgress, iosLatestRecheckProgress,
+  iosAutomatedAcceptanceProgress, iosD56FixturePassProgress, currentChatRecoveryProgress, iosViewportRecheckProgress,
+  publicationPriceProgress, ios6e89FixtureResultProgress, ios584FixtureResultProgress, verificationFollowupProgress,
+  verificationBoundariesProgress, bookingServerRecheckProgress, ...latestIosProgress,
+];
