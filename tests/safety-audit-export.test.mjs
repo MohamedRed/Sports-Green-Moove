@@ -94,6 +94,11 @@ try {
   includes(realDeviceProtocol, "validate:safety-audit-export", "Real-device protocol validates safety-audit exports.");
   includes(storeReadiness, "validate:safety-audit-export", "Store checklist documents safety-audit export validation.");
   const releaseGate = parse(read(".github/workflows/release-evidence.yml"));
+  assert.deepEqual(releaseGate.on.push.paths, [".github/workflows/release-evidence.yml"]);
+  const contract = releaseGate.jobs["evidence-contract"];
+  assert.equal(contract.if, "${{ github.event_name == 'push' }}");
+  assert.doesNotMatch(JSON.stringify(contract), /secrets\./);
+  assert.equal(releaseGate.jobs["release-evidence"].if, "${{ github.event_name == 'workflow_dispatch' }}");
   const inputs = releaseGate.on.workflow_dispatch.inputs;
   const steps = releaseGate.jobs["release-evidence"].steps;
   assert.equal(inputs.safety_audit_export_path.default, "docs/release/evidence/safety-audit-export.json");

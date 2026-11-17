@@ -1,6 +1,11 @@
 name: Release Evidence Gate
 
 on:
+  push:
+    branches:
+      - codex/implement-plan
+    paths:
+      - ".github/workflows/release-evidence.yml"
   workflow_dispatch:
     inputs:
       manifest_path:
@@ -16,8 +21,29 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  evidence-contract:
+    name: Verify the release evidence template
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Check that the template cannot pass as release evidence
+        run: npm run test:release-evidence-template
+
   release-evidence:
     name: Validate public-launch release evidence
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
 
     permissions:

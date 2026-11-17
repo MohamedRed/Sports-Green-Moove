@@ -165,3 +165,12 @@ Public launch remains blocked until:
 - The manifest links passing automated user-flow evidence for Native CI, Android
   connected UI, production live smokes, Firebase rules, Stripe webhook
   reconciliation, and Android Appetize launch.
+
+Changes to `.github/workflows/release-evidence.yml` on `codex/implement-plan`
+run the template contract check and register the workflow in GitHub Actions.
+After completing the manifest and export, launch the production evidence job
+against the candidate branch or tag that contains both reviewed files.
+
+```bash
+gh workflow run release-evidence.yml --ref codex/implement-plan
+```
