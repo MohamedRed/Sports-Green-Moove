@@ -28,14 +28,25 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+On 17 November, [run 43982027282, job 133700626840](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43982027282/job/133700626840)
+builds the SDK-linked app at `941f85c1` and passes all eleven simulator cases.
+The parent emergency-contact case saves the child contact, reopens the picker
+and verifies the saved contact after switching targets. Simulator disposal
+succeeds and the job retains zero artifacts. The retained build inputs and
+workflow match the current candidate, so the manifest accepts
+`ios_sdk_build_ci` and `ios_fixture_ui_ci`. Device tracking, system phone
+handoff and connected-service coverage remain pending. See
+`evidence/ios-fixture-gate-941f85c-2026-11-17/` and
+`evidence/ios-automated-acceptance-941f85c-2026-11-17/`.
+
 On 16 November, [run 43976135532, job 133680468538](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43976135532/job/133680468538)
 builds successfully and passes ten of eleven cases at `4d9924bb`. The parent
 case saves the child contact and checks its name. Its subsequent swipe targets
 the Options scroll view behind the sheet. The next snapshot shows Options and
 the test cannot find the contact picker. The fixture now scopes its scrolls to
 the emergency-contact sheet and opens the picker directly after the save.
-The original assertions and case inventory remain intact. The two automated
-iPhone entries are pending while the updated fixture awaits a hosted run. See
+The original assertions and case inventory remain intact. This earlier result
+reopened the two automated iPhone entries. See
 `evidence/ios-fixture-recheck-4d9924b-2026-11-16/`.
 
 On 16 November, source `97d3cc17` builds the SDK-linked app and passes all

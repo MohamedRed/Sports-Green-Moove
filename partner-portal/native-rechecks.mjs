@@ -27,10 +27,11 @@ import {iosConnectSelector} from './ios-connect-selector.mjs';
 import {nativeLoginRecheck} from './native-login-recheck.mjs';
 import {iosParentRow} from './ios-parent-row.mjs';
 import {androidNovemberRerun} from './android-november-rerun.mjs';
-import {iosParentContactRecheck} from './ios-parent-contact-recheck.mjs';
+import {iosParentContactFixturePass, iosParentContactRecheck} from './ios-parent-contact-recheck.mjs';
 
 export const nativeRechecks = {
   androidNovemberRerun,
+  iosParentContactFixturePass,
   iosParentContactRecheck,
   iosConnectSelector,
   nativeLoginRecheck,
