@@ -37,3 +37,11 @@ export const iosParentAccountGestureRecheckProgress = {
   text: 'Le test retrouve et supprime le contact enregistré. Un geste referme ensuite l’écran avant l’ouverture du compte enfant. Le contrôle doit être relancé après correction du geste.',
   source: 'docs/release/evidence/ios-fixture-recheck-14f1fa2-2026-11-17/summary.json',
 };
+
+export const iosParentAccountFixturePassProgress = {
+  date: '2026-11-17',
+  flow: 'child-emergency',
+  title: 'Le compte enfant passe le contrôle en simulation',
+  text: 'Les onze tests d’écran réussissent. Le parent retrouve le contact, le supprime et termine le contrôle du compte enfant. Les essais sur téléphone restent à faire.',
+  source: 'docs/release/evidence/ios-fixture-gate-b1429e0-2026-11-17/summary.json',
+};

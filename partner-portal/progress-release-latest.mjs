@@ -2,7 +2,8 @@ import {bookingServerRecheckProgress} from './booking-server-recheck.mjs';
 import {latestIosProgress} from './progress-ios-latest.mjs';
 import {iosReservationFixtureProgress} from './ios-reservation-fixture-pass.mjs';
 import {androidNovemberRerunProgress} from './android-november-rerun.mjs';
-import {iosParentAccountGestureRecheckProgress, iosParentContactFixturePassProgress, iosParentContactRecheckProgress} from './ios-parent-contact-recheck.mjs';
+import {iosParentAccountFixturePassProgress, iosParentAccountGestureRecheckProgress,
+  iosParentContactFixturePassProgress, iosParentContactRecheckProgress} from './ios-parent-contact-recheck.mjs';
 import {verificationBoundariesProgress} from './verification-boundaries.mjs';
 import {verificationFollowupProgress} from './verification-followup.mjs';
 import {ios584FixtureResultProgress} from './ios-584-fixture-result.mjs';
@@ -37,7 +38,8 @@ import {emergencyDialerProgress} from './emergency-dialer-pixel.mjs';
 
 export const latestReleaseProgress = [
   emergencyDialerProgress,
-  iosParentAccountGestureRecheckProgress, iosParentContactFixturePassProgress, iosParentContactRecheckProgress,
+  iosParentAccountFixturePassProgress, iosParentAccountGestureRecheckProgress,
+  iosParentContactFixturePassProgress, iosParentContactRecheckProgress,
   iosReservationFixtureProgress, androidNovemberRerunProgress,
   iosParentRowProgress, nativeLoginRecheckProgress,
   iosParentReservationsProgress, iosRewardNavigationProgress, iosD3AcceptanceProgress,

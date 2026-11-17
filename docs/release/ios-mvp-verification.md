@@ -28,13 +28,22 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
-The later 17 November [run 43995277100, job 133750987445](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43995277100/job/133750987445)
+On 17 November, [run 44000633560, job 133763493621](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/44000633560/job/133763493621)
+builds the SDK-linked app and passes all eleven simulator cases at `b1429e0f`.
+The parent case removes the saved contact, opens the child account from the
+contact sheet and completes the invitation checks. Simulator disposal succeeds
+with zero artifacts. The manifest accepts the two automated iPhone entries for
+these verified inputs. Production device and operational checks remain pending.
+See `evidence/ios-fixture-gate-b1429e0-2026-11-17/` and
+`evidence/ios-automated-acceptance-b1429e0-2026-11-17/`.
+
+The earlier 17 November [run 43995277100, job 133750987445](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43995277100/job/133750987445)
 builds successfully and passes ten of eleven simulator cases at `14f1fa25`.
 The parent case verifies the saved child contact and removes it. A downward
 swipe follows, and the accessibility snapshot shows Options instead of the
 contact sheet. The test now taps the parent account button scoped to the contact
-sheet, preserving the case and its assertions. The corrected simulator run and
-both automated iPhone manifest entries are pending. See
+sheet, preserving the case and its assertions. This failure reopened both
+automated iPhone manifest entries at that checkpoint. See
 `evidence/ios-fixture-recheck-14f1fa2-2026-11-17/`.
 
 On 17 November, [run 43982027282, job 133700626840](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43982027282/job/133700626840)
