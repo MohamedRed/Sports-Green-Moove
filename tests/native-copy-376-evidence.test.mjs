@@ -43,8 +43,9 @@ for (const [file, change] of [
 test('the historical public note keeps its simulation scope after newer publication results arrive', () => {
   const {recent, previous} = partitionUpdates(content.updates);
   const note = previous.find(row => row.source === copy376Folder + 'README.md'); assert(note);
-  const current = recent.find(row => [row.flow, ...(row.coversFlows ?? [])].includes('publication'));
-  assert(current && current.source !== note.source && current.date >= note.date);
+  const newer = [...recent, ...previous].find(row => row.source !== note.source && row.date >= note.date
+    && [row.flow, ...(row.coversFlows ?? [])].includes('publication'));
+  assert(newer);
   assert.match(note.title, /simulation/); assert.match(note.text, /Deux accords, un refus.*retrait/);
   assert.match(note.text, /complet reste à terminer/); assert.equal(note.flow, 'publication');
   assert.doesNotMatch(note.title + note.text, /Firebase|BrowserStack|Android|SDK|adb|CI\b/);

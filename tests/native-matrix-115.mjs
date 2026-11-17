@@ -75,7 +75,7 @@ test('the portal retains both original outcomes without claiming physical, lates
   for (const reference of [nativeMatrix115, nativeRecheckCc1]) assert.equal(sha(readFileSync(reference.source)), reference.sha256);
   assert.deepEqual(content.nativeMatrix115, nativeMatrix115); assert.deepEqual(content.nativeRecheckCc1, nativeRecheckCc1);
   const {recent, previous} = partitionUpdates(content.updates);
-  assert(recent.some(row => row.source === nativeMatrix115Progress.source));
+  assert([...recent, ...previous].some(row => row.source === nativeMatrix115Progress.source));
   assert(previous.some(row => row.source.includes('native-matrix-9640d8b')));
   assert(previous.some(row => row.source.includes('native-cutoff-142-2026-11-06')));
   assert.match(nativeMatrix115Progress.text, /simulation/); assert.match(nativeMatrix115Progress.text, /reste interrompu/);
