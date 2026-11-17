@@ -1,5 +1,5 @@
 import {appearanceProgress} from './appearance-flow.mjs';
-import {productionPreflightProgress} from './production-release-preflight.mjs';
+import {productionPreflightProgress, releaseGateProgress} from './production-release-preflight.mjs';
 import {feedbackVisualProgress} from './feedback-text-visual-flow.mjs';
 import {bookingDateProgress} from './booking-date-attempt.mjs';
 import {bookingDateVisualProgress} from './booking-date-visual-flow.mjs';
@@ -133,6 +133,7 @@ import {teamAlertProgress} from './team-alerts.mjs';
 
 export const currentProgress = [
   productionPreflightProgress,
+  releaseGateProgress,
   ...latestReleaseProgress,
   iosProfileCityProgress,
   iosMembershipProgress,
