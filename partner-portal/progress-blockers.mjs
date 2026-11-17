@@ -8,7 +8,6 @@ import {c84Checks} from './c84-checks.mjs';
 import {webFinalization} from './web-finalization-followup.mjs';
 import {uriSecurity} from './uri-security.mjs';
 import {paymentReturnIncident} from './payment-return-incident.mjs';
-import {emergencyDialerBlocker} from './emergency-dialer-pixel.mjs';
 
 export const blockers = [
   iosMvpBlocker,
@@ -75,7 +74,9 @@ export const blockers = [
   { id: 'booking-time-display', title: 'Mettre en ligne les horaires corrigés',
     text: 'L’ancien écart entre le trajet et les réservations est corrigé dans le nouvel essai local.',
     next: 'Rejouer sur téléphone avant publication. La correction n’est pas encore en ligne.', source: 'docs/release/evidence/local-trip-history-2026-10-18/README.md' },
-  emergencyDialerBlocker,
+  { id: 'emergency-contact', title: 'Tester le contact d’urgence',
+    text: 'L’essai du 24 octobre revient encore à l’accueil, sur un autre modèle aussi, avant de passer par notre app.',
+    next: 'Débloquer sur téléphone l’ouverture du numéro, sans appeler. Terminer l’accès de l’enfant pendant son trajet.', source: 'docs/release/evidence/emergency-dialer-samsung-2026-10-24/README.md' },
   { id: 'booking-retry-devices', title: 'Rejouer la reprise d’une réservation sur téléphone',
     text: 'Réessayer retrouve la demande malgré une confirmation perdue. Elle revient aussi après fermeture complète.',
     next: 'Rejouer la fermeture avant confirmation pour un enfant, puis depuis la recherche et entre deux téléphones.', source: 'docs/release/evidence/booking-receipt-phone-2026-10-30/README.md' },
