@@ -37,6 +37,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "22"
+          cache: npm
+
+      - name: Install validator dependencies
+        run: npm ci --ignore-scripts
 
       - name: Check that the template cannot pass as release evidence
         run: npm run test:release-evidence-template
@@ -57,6 +61,20 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: "22"
+          cache: npm
+
+      - name: Install validator dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Validate release evidence manifest
+        env:
+          SGM_RELEASE_MANIFEST_PATH: ${{ inputs.manifest_path }}
+        run: npm run validate:release-evidence -- "$SGM_RELEASE_MANIFEST_PATH"
+
+      - name: Validate the sanitized safety audit export
+        env:
+          SGM_RELEASE_AUDIT_EXPORT_PATH: ${{ inputs.safety_audit_export_path }}
+        run: npm run validate:safety-audit-export -- "$SGM_RELEASE_AUDIT_EXPORT_PATH"
 
       - name: Validate production provider configuration
         env:
@@ -92,13 +110,3 @@ jobs:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         run: npm run validate:stripe-production-readiness
-
-      - name: Validate release evidence manifest
-        env:
-          SGM_RELEASE_MANIFEST_PATH: ${{ inputs.manifest_path }}
-        run: npm run validate:release-evidence -- "$SGM_RELEASE_MANIFEST_PATH"
-
-      - name: Validate the sanitized safety audit export
-        env:
-          SGM_RELEASE_AUDIT_EXPORT_PATH: ${{ inputs.safety_audit_export_path }}
-        run: npm run validate:safety-audit-export -- "$SGM_RELEASE_AUDIT_EXPORT_PATH"

@@ -99,12 +99,19 @@ try {
   assert.equal(contract.if, "${{ github.event_name == 'push' }}");
   assert.doesNotMatch(JSON.stringify(contract), /secrets\./);
   assert.equal(releaseGate.jobs["release-evidence"].if, "${{ github.event_name == 'workflow_dispatch' }}");
+  for (const { steps: jobSteps } of Object.values(releaseGate.jobs)) {
+    const install = jobSteps.findIndex(({ run }) => run === "npm ci --ignore-scripts");
+    const validate = jobSteps.findIndex(({ run }) => run?.startsWith("npm run "));
+    assert.ok(install >= 0 && install < validate, "Install validator dependencies before running checks.");
+  }
   const inputs = releaseGate.on.workflow_dispatch.inputs;
   const steps = releaseGate.jobs["release-evidence"].steps;
   assert.equal(inputs.safety_audit_export_path.default, "docs/release/evidence/safety-audit-export.json");
   const auditStep = steps.find(({ name }) => name === "Validate the sanitized safety audit export");
   assert.equal(auditStep.env.SGM_RELEASE_AUDIT_EXPORT_PATH, "${{ inputs.safety_audit_export_path }}");
   assert.equal(auditStep.run, 'npm run validate:safety-audit-export -- "$SGM_RELEASE_AUDIT_EXPORT_PATH"');
+  const firstProviderCheck = steps.findIndex(({ env }) => /secrets\./.test(JSON.stringify(env)));
+  assert.ok(firstProviderCheck > steps.indexOf(auditStep), "Check audit evidence before exposing provider secrets to a step.");
   includes(validator, "requiredAuditEvidence", "Safety-audit validator uses shared audit requirements.");
   includes(validator, "guardian_consent_event", "Safety-audit validator checks guardian consent evidence.");
   includes(validator, "native_fallback_location_event", "Safety-audit validator checks native fallback evidence.");
