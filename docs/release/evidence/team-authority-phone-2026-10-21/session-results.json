@@ -1,0 +1,71 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a14a89072818f1eaa17900a95a6f96ec",
+  "testedAt": "2026-10-21T22:27:29.762Z",
+  "scope": "independent-team-authority-records-not-phone-ui-proof",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "initial",
+      "parentDenied": false,
+      "guardianRevision": 2,
+      "visibleParentMessages": 1,
+      "storedMessages": 2,
+      "historicalMessagesRestored": false
+    },
+    {
+      "phase": "revoked",
+      "parentDenied": true,
+      "guardianRevision": 3,
+      "visibleParentMessages": 0,
+      "storedMessages": 2,
+      "historicalMessagesRestored": false
+    },
+    {
+      "phase": "renewed",
+      "parentDenied": false,
+      "guardianRevision": 5,
+      "visibleParentMessages": 0,
+      "storedMessages": 2,
+      "historicalMessagesRestored": false
+    },
+    {
+      "phase": "new-message",
+      "parentDenied": false,
+      "guardianRevision": 5,
+      "visibleParentMessages": 1,
+      "storedMessages": 3,
+      "historicalMessagesRestored": false
+    },
+    {
+      "phase": "replied",
+      "parentDenied": false,
+      "guardianRevision": 5,
+      "visibleParentMessages": 2,
+      "storedMessages": 4,
+      "historicalMessagesRestored": false
+    }
+  ],
+  "actions": [
+    "revoke",
+    "renew",
+    "publish"
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-authority-phone-session.mjs": "b9ab8a38f5c16879bc45d4516884a46d2663adfb83702ea4eeb8f26c9f307a8d",
+    "scripts/qa/manual-team-authority-checkpoints.mjs": "885bcb3f731801d6bc9601cb3dea5e5b2ca0cf6d21da334ebb5827ba9530172e",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "functions/src/services/teamConversationAuthority.ts": "e8b52e882fa874ac6d89d38a58f9fb60c6330d73b694a444f52347f85a534e8e",
+    "functions/src/services/teamConversation.ts": "b8476cb9f1d9d62ee951d6807219061d0e9266f96fb2250b5e1d275eb616caf8",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69"
+  },
+  "adminClientClosed": true,
+  "cleanupMode": "destroy-owned-local-environment-after-session",
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "phoneUiProven": false,
+  "managerUiProven": false,
+  "twoPhoneFlowVerified": false,
+  "notificationsVerified": false,
+  "releaseEvidenceAccepted": false
+}

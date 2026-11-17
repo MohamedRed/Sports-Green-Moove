@@ -1,0 +1,51 @@
+{
+  "scope": "physical-android-support-submission-with-isolated-services",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fc5cd70102fdccb2e271cba37e9ff542",
+  "testedAt": "2026-10-22T12:44:51.149Z",
+  "appSourceCommit": "458318c3d7e64252d39c9458dd94cf04a06df79a",
+  "appSha256": "41bef01f1ce2073ccf16ff82acab6af1b94e35f96e8381668ad23ba4c5e8be44",
+  "uploadedApp": "sgm-team-reads-isolated-458318c-20261021.apk",
+  "backendBaseCommit": "8d897da9da3ae030a0075271c59d2912ed3ee8f5",
+  "controllerSource": "Retained working-tree bytes; not part of the pinned APK build",
+  "device": {
+    "name": "Google Pixel 9",
+    "os": "Android 15"
+  },
+  "completed": true,
+  "physicalDevice": true,
+  "manualNativeUiObserved": true,
+  "submissionViaPhone": true,
+  "adminReviewViaService": true,
+  "independentCheckpoints": 5,
+  "protectedRecordCount": 158,
+  "requesterResponseVerified": false,
+  "adminReviewUiVerified": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "videoCaptured": false,
+  "nativePngExportObtained": false,
+  "processRestartVerified": false,
+  "captureMethod": "Unchanged browser stream rectangles with full browser contexts",
+  "captureRectangle": {
+    "x": 626,
+    "y": 108,
+    "width": 250,
+    "height": 562
+  },
+  "publishedCaptures": {
+    "support-phone-invalid": "invalid-device.jpg",
+    "support-phone-filled": "filled-device.jpg",
+    "support-phone-submitted": "submitted-device.jpg",
+    "support-phone-reopened": "reopened-device.jpg"
+  },
+  "limitations": [
+    "Only the parent submission and screen navigation were operated on the phone.",
+    "Admin review used authenticated isolated service calls, not management UI.",
+    "No requester status/response or new notification was produced by review.",
+    "The first phone disconnected before submission. Its incomplete artifacts are retained.",
+    "The first phone application uninstall was not independently verified after session loss.",
+    "No video, process restart, live provider, payment or release acceptance."
+  ]
+}

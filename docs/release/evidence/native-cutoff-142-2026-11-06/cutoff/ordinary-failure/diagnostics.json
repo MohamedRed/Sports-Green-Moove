@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "00afabac165b191e66e82ec1534a18c6",
+  "label": "OrdinaryUiSuite",
+  "packageName": "be.sportgreenmoove.app",
+  "scope": "read-only-native-process-failure-diagnostic-not-flow-verification",
+  "recordedAt": "2026-11-06T20:25:01.927Z",
+  "host": {
+    "totalMemoryBytes": 16759308288,
+    "freeMemoryBytes": 11517804544,
+    "cpuCount": 4
+  },
+  "records": [
+    {
+      "kind": "crash",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-crash.txt",
+      "empty": true
+    },
+    {
+      "kind": "exit-info",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-exit-info.txt",
+      "empty": false
+    },
+    {
+      "kind": "process-log",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-process-log.txt",
+      "empty": false
+    },
+    {
+      "kind": "guest-memory",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-guest-memory.txt",
+      "empty": false
+    },
+    {
+      "kind": "frozen-packages",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-frozen-packages.txt",
+      "empty": false
+    },
+    {
+      "kind": "install-sessions",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-install-sessions.txt",
+      "empty": false
+    },
+    {
+      "kind": "package-operations",
+      "status": "collected",
+      "file": "OrdinaryUiSuite-package-operations.txt",
+      "empty": true
+    }
+  ]
+}

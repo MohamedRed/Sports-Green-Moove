@@ -1,0 +1,34 @@
+{
+  "headCommit": "aab9ac0a2b18fa1a2d43f4310cae2604675b86f7",
+  "checkoutCommit": "b03d069a4cc8df456f09311715b8995485c68459",
+  "allSelectedFilesMatch": true,
+  "allBuildInputsCompared": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/OnboardingScreen.kt": "c6d7fb1d18a644ddd3cb186678c92a2844e70df3c39c5282889d1559628d2333",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchScreen.kt": "510d0da310999162c1d1d5d57c830e8290b1e91e0f296472af6df2eb95d3f381",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationMessageUi.kt": "f340a55ea907dd0e19fce036f900647cb9b50025bc7fdef43be5f2b7c05f0e9d",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmColors.kt": "866061df8a5449c7a0c81cd7dab137a63a4f0ab9628a20198a536e845f108858",
+    "android/app/src/test/java/be/sportgreenmoove/app/design/SgmFormFeedbackContrastTest.kt": "76ec299920bce720b0c0824c8a7434363b36a24a3aad7f80dcd8f1fdf354f89a",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FormFeedbackLayoutTest.kt": "d0e198cc83aafa7782a9438e7b21757681405ac4904838e13a016011ced33726",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FormFeedbackCapture.kt": "b1a2373387bd8400d87603b3e0c3dd940a784bb0a8a7c00c6c6ba1957ead2178",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "49e8ddd843535ef02b2b927c21669a236cc498a3a2330dd39e5b0cae92084f02",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt": "1102af0f87a762c5ccbcbbdec7399cacb196b35e18a60b624913c75c8b74249d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextCapture.kt": "515bb819aca9ad23d575eb5a1346c31695bea9620be2682a2f5b8e84152caf5b",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmTheme.kt": "b6ba29d40fc5735fd380bff14d06835d87a1e8168baae847506af2fb92f7a21e",
+    ".github/workflows/native-ci.yml": "e8111bdf7ad3aa29759d115188914c4f73a9bb0c5c68f941f30d4dfdee5543ba"
+  },
+  "githubBlobShas": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/OnboardingScreen.kt": "e3c69a0849795470dc321e15b278c189a97fb393",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SearchScreen.kt": "ea6b84c0f18d9be160b64f1b1d5c6f33e981be67",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationMessageUi.kt": "49836be25a5a0d2299e1ed58063e7dba3c4c12a3",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmColors.kt": "2a0d98acf66d69ab170c4e9a0b203cc149948a66",
+    "android/app/src/test/java/be/sportgreenmoove/app/design/SgmFormFeedbackContrastTest.kt": "52c7115c1bace4ac2843dd4abd63ecc9447c0831",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FormFeedbackLayoutTest.kt": "2b00cbf8da27980e4400de33598a024dc98feffe",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FormFeedbackCapture.kt": "0c67f2528ddb6b2644130d1df83da1fc1e451521",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "34b0f9de67b10e040532eccb858fd4e822e0fe81",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt": "427dfa3ac628f4d5481fca234e5618cdf502410d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/FeedbackTextCapture.kt": "5e39ad26eabbeade3f16da9a73249741c0e5d53a",
+    "android/app/src/main/java/be/sportgreenmoove/app/design/SgmTheme.kt": "7426b3d95688990a3df05bc575dedf64fff02ec8",
+    ".github/workflows/native-ci.yml": "21b54039a252f94f837005fd49857384d5fa55c2"
+  }
+}

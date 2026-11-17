@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift",
+      "sha256": "cac1b043259b8f16f6ada0800a3954f26af81365b8f7dd307b13875136986831"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ChildAccountPresentation.swift",
+      "sha256": "4a2f04345ff52f4ad8ca271ac5cba999646469004b8e1ed23e2cf7914c7554b7"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "0443b7d382ebf7a168f2341171f3b3719b0a7be88be9ba8276f0ef063c9962e6"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "cfcb02e8b59a04ab46e446a4948b57d21fc31b0048c93556c41d4339d2f6506d"
+    }
+  ]
+}

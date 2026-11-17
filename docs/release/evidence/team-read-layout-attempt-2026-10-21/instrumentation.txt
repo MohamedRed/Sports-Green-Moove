@@ -1,0 +1,42 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.TeamConversationReadFlowTest:.
+Error in landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:76)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(TeamConversationReadFlowTest.kt:48)
+
+Error in narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:76)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(TeamConversationReadFlowTest.kt:28)
+
+
+Time: 18.074
+There were 2 failures:
+1) landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:76)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(TeamConversationReadFlowTest.kt:48)
+2) narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertTrue(Assert.java:53)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:76)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(TeamConversationReadFlowTest.kt:28)
+
+FAILURES!!!
+Tests run: 3,  Failures: 2
+
+

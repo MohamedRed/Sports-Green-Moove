@@ -1,0 +1,32 @@
+{
+  "scope": "failed-native-layout-and-independent-primary-copy-not-accepted-flow",
+  "ordinary": {
+    "cases": 311,
+    "passed": 252,
+    "failed": 4,
+    "skipped": 55
+  },
+  "failedLayouts": [
+    "notices-light-phone",
+    "notices-light-wide",
+    "notices-dark-phone",
+    "notices-dark-wide"
+  ],
+  "passedLayouts": [
+    "ride-light-phone",
+    "ride-light-wide",
+    "ride-dark-phone",
+    "ride-dark-wide"
+  ],
+  "originalStacks": [
+    "java.lang.AssertionError: Assert failed: The component with TestTag = 'feedback.material-error' is not displayed!\n\tat androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)\n\tat be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:90)",
+    "java.lang.IllegalStateException: Check failed.\n\tat be.sportgreenmoove.app.ui.FeedbackTextLayoutTest.feedbackTextFitsActualComponents(FeedbackTextLayoutTest.kt:93)\n",
+    "org.junit.AssumptionViolatedException: got: <false>, expected: is <true>\n\tat org.junit.Assume.assumeThat(Assume.java:106)\n\tat org.junit.Assume.assumeTrue(Assume.java:50)"
+  ],
+  "replayFailure": "primary-copy-booking-ui-response-loss",
+  "rawTranscriptRetainedPrivately": true,
+  "rawTranscriptSha256": "1d8838fd6fd44043622d2ce76c60a3f8d2865bf158b14a3a78db8a3f9047d84c",
+  "nativeLayoutsAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseAccepted": false
+}

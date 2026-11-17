@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "terminal-sdk-timeout-and-source-audit-not-success-or-root-cause",
+  "failedSourceCommit": "3954ff7cca9e97bf06314466dc6b99772f78006a",
+  "runId": 41947106575,
+  "jobId": 126992774516,
+  "configuredMinutes": 50,
+  "deadlineExceeded": true,
+  "observedBuild": {
+    "lineCount": 14024,
+    "compilerErrorCount": 0,
+    "appSwiftCompileLineCount": 0,
+    "packageGraphStartedAt": "2026-11-05T01:55:07.4661630Z",
+    "resolvedAt": "2026-11-05T02:07:29.6652810Z",
+    "lastCompileAt": "2026-11-05T02:33:19.0895750Z",
+    "lastCompileTarget": "StripePaymentSheet",
+    "cancelledAt": "2026-11-05T02:33:42.3962630Z"
+  },
+  "privateOriginalLog": {
+    "sha256": "f39f200575ad02131bab8754ba9bd778a65183e7c27e5a9d8f6f59f8bc4fed0a",
+    "bytes": 5486760,
+    "publicSelection": "selected-build-lines.txt"
+  },
+  "records": [
+    {
+      "file": "terminal-run.json",
+      "sha256": "ce96e5956ac90becee8a29fc7d4432c3f1581bfe547a8dc3b15418634a4f2b6b"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "74b5c28c8234ee63bf81c4bd92d3b95f67e27232ce2c6a62942d2b99fac652ca"
+    },
+    {
+      "file": "artifact-inventory.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "file": "transport-terminal-run.json",
+      "sha256": "3f44f6c815bb4b7a22b2bbe5aabc92c8b2c3fd4f5f0baa896a6d8af4910fb426"
+    },
+    {
+      "file": "transport-artifact-inventory.json",
+      "sha256": "2563b84c2b6127c157570af0a0fc77dc8da323e8b029c9228231fd4545461af7"
+    },
+    {
+      "file": "transport-result.json",
+      "sha256": "8c0eb04e3d9d32b01cfff6ae2e01cc7faf508680e9796a6152c8dae5525d7883"
+    },
+    {
+      "file": "transport-environment.json",
+      "sha256": "aa89367f2a87c5ca1ec4c2b7eadc927e6388d51348857c1f843947df5c4f75d9"
+    },
+    {
+      "file": "selected-build-lines.txt",
+      "sha256": "1254c50d84493a18f013882c1069e4bf5f5f544cf8c45071cfe98d98635ed475"
+    }
+  ],
+  "currentAppSourceCommit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+  "currentAppGateRunId": 41954791367,
+  "currentAppGateAccepted": false,
+  "sourceGaps": [
+    {
+      "id": "club-membership",
+      "implementedEndToEnd": false,
+      "nativeUiExecuted": false
+    },
+    {
+      "id": "booking-ride-chat",
+      "implementedEndToEnd": false,
+      "nativeUiExecuted": false
+    },
+    {
+      "id": "profile-city",
+      "implementedEndToEnd": false,
+      "nativeUiExecuted": false
+    }
+  ],
+  "rootCauseConfirmed": false,
+  "contactTransferFixSdkVerified": false,
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "transportDiagnostic": {
+    "runId": 41954791360,
+    "jobId": 127006987783,
+    "artifactId": 13381664689,
+    "scope": "generated-file-only-not-app-or-release",
+    "successfulPrimaryTransfers": 17,
+    "failedTrialIndex": 17,
+    "plannedTrials": 32,
+    "cleanupVerified": true,
+    "rootCauseConfirmed": false,
+    "releaseAccepted": false
+  }
+}

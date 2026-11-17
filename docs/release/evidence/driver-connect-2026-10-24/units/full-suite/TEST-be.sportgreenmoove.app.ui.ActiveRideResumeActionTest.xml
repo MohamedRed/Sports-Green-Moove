@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ActiveRideResumeActionTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.359Z" hostname="MRRs-MacBook-Air.local" time="0.005">
+  <properties/>
+  <testcase name="aChangedAccountCannotClearTheNewAccountsErrorOrStartTheOldRide" classname="be.sportgreenmoove.app.ui.ActiveRideResumeActionTest" time="0.002"/>
+  <testcase name="anExplicitResumeClearsThePreviousFailureBeforeAcquiringAnotherPoint" classname="be.sportgreenmoove.app.ui.ActiveRideResumeActionTest" time="0.001"/>
+  <testcase name="aNewFailureRemainsVisibleAndDoesNotOpenTheRide" classname="be.sportgreenmoove.app.ui.ActiveRideResumeActionTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

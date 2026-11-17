@@ -1,0 +1,41 @@
+{
+  "scope": "first-booking-date-native-attempt-not-accepted-visual-evidence",
+  "sourceCommit": "549c547209439bda0ec9a87b4776eb5ee0698ac5",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41590992650",
+  "ordinary": {
+    "cases": 341,
+    "passed": 266,
+    "skipped": 55,
+    "failed": 20
+  },
+  "dateCases": {
+    "executed": 24,
+    "passed": 4,
+    "failed": 20
+  },
+  "passingCases": [
+    "payments-scheduled-light-phone",
+    "payments-scheduled-dark-phone",
+    "payments-unknown-light-phone",
+    "payments-unknown-dark-phone"
+  ],
+  "failedCondition": "incomplete date text layout",
+  "failedLine": 76,
+  "captureSource": "partial-components-only",
+  "publishedCaptures": 0,
+  "allDatesAccepted": false,
+  "originalFailuresRetained": true,
+  "knownMeasuredWidth": 317,
+  "knownReportedParagraphWidth": 734,
+  "candidateUsesExistingMeasuredTextAssertion": true,
+  "candidateMeasurementCasesPlanned": 4,
+  "candidateMeasurementCasesExecuted": 0,
+  "candidateDateCasesExecuted": 0,
+  "rootCauseConfirmedForDateCases": false,
+  "productionSourcesChanged": false,
+  "assertionThresholdReduced": false,
+  "deadlineChanged": false,
+  "fallbackAdded": false,
+  "physicalDeviceAccepted": false,
+  "releaseAccepted": false
+}

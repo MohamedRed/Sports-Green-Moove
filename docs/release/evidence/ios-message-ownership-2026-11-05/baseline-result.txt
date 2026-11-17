@@ -1,0 +1,3 @@
+Baseline actual screen methods: staleInboxRestored=true staleRatingNoticeRestored=true
+Controlled callback reproduction only; no SDK, account, provider or phone request.
+{"baseline":"61c3f2048d478707494e4ad90f1819f0860842ef","sourceSha256":"ae41b517f80f7b4575051dc11011dedc0f90d185b73cb2a851e7f7c30fd1f8ac","projection":"exact-two-screen-methods-with-controlled-model-and-gateway-types","sdkBuildAccepted":false,"releaseAccepted":false}

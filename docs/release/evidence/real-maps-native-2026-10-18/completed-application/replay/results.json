@@ -1,0 +1,68 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d718aaf86712d23ecf4f388c5079cbce",
+  "testedAt": "2026-10-18T09:10:02.158Z",
+  "status": "passed",
+  "scope": "native-ui-with-local-callables-and-explicit-real-maps-not-physical-device",
+  "native": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "d718aaf86712d23ecf4f388c5079cbce",
+    "scope": "native-three-account-real-map-trip-application",
+    "completed": true,
+    "tripId": "VadE3yfHoENigR0JEtND",
+    "selectedPlaceIds": [
+      "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+      "ChIJA76xCep_wUcRIgzsJATgLZ4"
+    ],
+    "quoteText": "7512 m · 9 min",
+    "realSuggestionsSelected": true,
+    "unconfirmedPlaceBlocked": true,
+    "bothParentsConfirmedInApp": true,
+    "originalTripKeptBeforeApplication": true,
+    "parentsCannotApply": true,
+    "routeQuoteRequired": true,
+    "driverAppliedInApp": true
+  },
+  "route": {
+    "distanceMeters": 7512,
+    "durationSeconds": 560,
+    "encodedPolyline": "gnptH_pb[M_@CSD_@Zu@xAZb@Fn@PZP|DdDb@Rx@Fr@E\\SZ_@zCsGHANSf@I~@vBJh@E`@D`@R`@XLTEBCZVz@dBpAvCxA|CfArBvCdGTlA@p@Ij@O`@[Vg@Fg@U{CcDw@gA]aAKw@DkAFm@`@{A?]pI_RpB}DfBaD~CaFjAaBdE_FnDsDdCcC~KkJlIqGtJ{GlBiAtK{GhNmHpKcFnGsCVO~T}I|\\oMXHxRuFl@ARJV\\DLn@jEj@dCPj@nAdCx@tCVbAh@nAFl@Cb@D^P\\VLT^j@vBZlALr@jBhDhBdBhBhAp@n@~@nAvCnExAtB~CzEdB`ClA~BJl@N~F@PFPXP`ACfAIj@EpCUJMFOVoBM{@iH{GOU"
+  },
+  "captureFiles": [
+    "local-real-maps-selected.png",
+    "local-real-maps-applied.png"
+  ],
+  "tripId": "VadE3yfHoENigR0JEtND",
+  "proposalId": "9c95891fde929cfeaa23b21dee69817c68ad6eeec289beb1da19c5b794031f89",
+  "bookingIds": [
+    "2wCcxkAni47wuQkdafbN",
+    "1QKWL5QNyoAwJcrIbSkG"
+  ],
+  "savedTrip": {
+    "origin": {
+      "lat": 50.71606070000001,
+      "lng": 4.6055674
+    },
+    "destination": {
+      "lat": 50.669494099999994,
+      "lng": 4.6157188
+    },
+    "distanceKm": 7.512,
+    "routeDurationSeconds": 560,
+    "polylineSha256": "e8453752addcb81ec7ce996e633ec4a83d9f3ef9eef8b56c6dc461a44ca2890b"
+  },
+  "parentCount": 2,
+  "acceptedParentCount": 2,
+  "quoteThroughCallable": true,
+  "nativeUi": true,
+  "physicalDevice": false,
+  "productionDataWritten": false,
+  "paymentExercised": false,
+  "refundIssued": false,
+  "steps": [
+    {
+      "id": "real-route-application-ui",
+      "status": "passed"
+    }
+  ]
+}

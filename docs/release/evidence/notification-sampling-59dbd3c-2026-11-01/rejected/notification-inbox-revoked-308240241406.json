@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "scope": "rejected-primary-bitmap-diagnostic-not-accepted-evidence",
+  "captureName": "notification-inbox-revoked.png",
+  "imageFile": "notification-inbox-revoked-308240241406.png",
+  "imageSha256": "a5d34d2537cbd9a214d4c9f20aee448bfe897bb556cc567ad7b307a7b83c31e7",
+  "width": 1080,
+  "height": 2400,
+  "sampleStride": 16,
+  "minimumDistinctSampledColorsExclusive": 16,
+  "sampledColorCount": 10,
+  "sampledColorsArgb": [
+    "ff56735e",
+    "ff57745f",
+    "ff617d69",
+    "ff6b8673",
+    "ff799280",
+    "ffd0e8d8",
+    "ffd8ecde",
+    "ffdceee2",
+    "ffe8f4ed",
+    "fffafafa"
+  ],
+  "imageAccepted": false,
+  "flowVerified": false,
+  "replacementCaptureUsed": false,
+  "recordedAtEpochMillis": 1793531284422
+}

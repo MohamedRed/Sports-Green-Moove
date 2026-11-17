@@ -1,0 +1,47 @@
+{
+  "scope": "source-supported-foreground-intent-mismatch-not-verified-native-replay",
+  "reviewedAt": "2026-11-01T21:14:23.183Z",
+  "sourceCommit": "b9a9000ea7bac1bc9e8a3f1f0d83f9eb01229378",
+  "runId": 41349573814,
+  "jobId": 124976643675,
+  "runStatusAtInspection": "in_progress",
+  "archive": {
+    "id": 13100434670,
+    "sha256": "c496b674f0d5cf489bbebd62814eef841f8e87b45ebc1074b335149c8925ba89"
+  },
+  "previousTeardownCandidateFailed": true,
+  "library": {
+    "module": "androidx.test:core:1.6.1",
+    "aarSha256": "7a7af31c21785ddb7c4319c838847e6d4d9b5bb531f3a951481ec3b98780bf51",
+    "classesSha256": "693f6c75904659814cbc4204feae956376817e247597efd7997abcbb1e55737c"
+  },
+  "originalSourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt": "17a906f4e9ea44763adacd9806337f56a4570066477978cb097acd10850f5767",
+    "android/app/src/main/java/be/sportgreenmoove/app/MainActivity.kt": "0a7caca9627d5101f709d92f07cb23da3ea22b6e7bfce3f9d9c252f9296ccbdb"
+  },
+  "candidate": {
+    "sourceFiles": {
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt": "f7721b202e4813551737797f5407c988c82978ad01dcd5be054bd3df147ba609",
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ForegroundReturnIntent.kt": "10b5443b6103904214a1becb7a0ff895b7fd13cc6ef249c2cfb83e67af83ec87",
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ForegroundReturnIntentTest.kt": "7c4e63e15b0dfcee5454b272ead36e1443f9d458f05ca0225295b8754ed22df3",
+      "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ObservedActivityStage.kt": "5ed2cc5bd5232073146cae4a31b38749bfaa0e8736d4f3dd3d6ad7bf94e9ff0b",
+      "android/app/src/main/java/be/sportgreenmoove/app/MainActivity.kt": "0a7caca9627d5101f709d92f07cb23da3ea22b6e7bfce3f9d9c252f9296ccbdb",
+      "android/app/src/main/AndroidManifest.xml": "ba73312be8d29bc686238772f07a477c9e3251ce9b581e630f49a890c372a629",
+      "android/app/build.gradle.kts": "9ebe9d089e24be0ca7a4f8a8cf2d37e3ac1b1b2a187a5c0545ad9b92c66b976d"
+    },
+    "sourceUnchangedDuringBuild": true,
+    "nativeCasesCompiled": 2,
+    "nativeCasesExecuted": false,
+    "testApkSha256": "a41ba1b80373f0e9f4668050e4ac49857fecffee3f6f1b345c1b11e16408465b"
+  },
+  "sourceSupportedCause": true,
+  "rootCauseReproducedInIsolation": false,
+  "correctedRemoteTrialPassed": false,
+  "wholeGatePassed": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "publishedCaptures": {}
+}

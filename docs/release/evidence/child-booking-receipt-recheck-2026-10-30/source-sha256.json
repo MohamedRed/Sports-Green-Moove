@@ -1,0 +1,16 @@
+{
+  "scripts/qa/local-child-booking-receipt.mjs": "576a9cf9525b26f9e80e694f79f21287cb8cc1d5ca6688ec9852f2093c9c5d9e",
+  "scripts/qa/run-local-child-booking-receipt.mjs": "d924b6234a0a2ca838cffb23f131b015a1ab944b23aca3f5f53ad789e3e66d0d",
+  "scripts/qa/booking-receipt-target.mjs": "9e20f65fa87f05e70b3e834f19ef5961c3cf2d4d3230ff5201a242de976a3405",
+  "scripts/qa/booking-receipt-loss-proxy.mjs": "178013bac7db835824dab0346cdd15e8f71a19f8dbfa6264a851a09564caa0c4",
+  "scripts/qa/child-booking-receipt-records.mjs": "1c6434d54564464afdfbc3f89f27f6fc29c080c0e185de03f68ddbac5a64e46f",
+  "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+  "functions/src/callables/bookingRequests.ts": "257af593b77ffc601e007d052021af923ec1cabc2567caf6a53ef31561e3b0f2",
+  "functions/src/domain/bookingRequestIdentity.ts": "94c2772de1862a82fa403beb787a0e4e1a7e0143673c7068e6681205901a840a",
+  "functions/src/domain/bookingIntent.ts": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea",
+  "functions/src/callables/reservations.ts": "4a4d6916d729ed244c24adb905d0265e5ff2366b5a471b87931c3e63e8aa1ca9",
+  "scripts/diagnostics/adb-transfer-probe.mjs": "ebfe3de8c307447f81b5acec972f1d852247474a30c0ce51d31783a1f83b446f",
+  "scripts/diagnostics/run-adb-transfer-probe.mjs": "ac730ebe45d64abbf3321f778971e4eef90f17e2544eeefd4e8ec8bc1fb541d3",
+  "scripts/qa/local-network-validation-diagnostics.mjs": "9eec6680564800f72e806c9b1a3115da348d780bf3a76f969ab303227d36b064",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "5c114208797d93b0ab4da18ba0f9a97667d3769530bc040c27075854fe241ad5"
+}

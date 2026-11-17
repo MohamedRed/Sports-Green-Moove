@@ -1,0 +1,2148 @@
+{
+  "version": 1,
+  "sources": {
+    "43fb28d6733bd4c6c48c15937656eceb112b64ddcafd59e5ebb36a265f98b5cd": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "0d08ec1f27669008aa1969960126b2d3c0c7af8e0419e45bd637f124af0899b2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentGateway.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "4aa6f6ed3ec90695d254977e014e6c662a84af43db8ec68aa8972240e0793e62": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentWire.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "ce75f71b494dea3a011609450ae8b8a4cf7d1f5f296a58a9efd8efb984c15a63": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamEnrollmentGateway.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "e7f8805429f46fae00f88a17781e1dca94c829fd8bdd6dc68370d8c3f30518fd": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "ac51f2a31dd9dd59ab402696ce19d754e4de2785ed49c12a554da6333b300a92": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "bab73fcf3a7c766ca4e22e0d26cc15d962f9006e9f23ca21efc9679e1a0bd68a": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentState.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "team-screen-export-2026-10-18/completed/component-results.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "52e801f96d22fa52c37a3f0dada555d3531e6a53dd3dd21e49f38069deff07f5": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentRoute.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "team-screen-export-2026-10-18/completed/component-results.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json"
+      ]
+    },
+    "8c173b9bf07f7ddc41887916679db481ea06c14184782976790ecc748930d561": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentScreen.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "team-screen-export-2026-10-18/completed/component-results.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json"
+      ]
+    },
+    "a83db87852cde83c5adbd49527ceceab413b68a1828362953874b623bcd5af61": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentOptionDialog.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "team-screen-export-2026-10-18/completed/component-results.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "f05dd27ec46623cc9c9faa8830a4e45a7c4a098c58e8b30448535177ca5d853c": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsRoute.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "5a2590f5eccb8c091cec77916096c2831754c7dc27a57098981cf4df267f0dd7": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/GroupsScreen.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "c0df122e7e4aec8dbe0d7afaaaac95a81ce36aac78c2e0f61c96aa784e8b155e": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "037280748687ac0644421a8fe7b1069619c3e3ae0b04a0995e7cc89f20f9170d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "3dedb9c5ef4a4dc6b3c356e8b109b1595b816629cd933746b32feb4cb69b7023": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "268f8a6226b92bc6a9b250ecd1723ac16f9cdfaedef18fef6eecb1e4834fafaf": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "73a8a24d9ee0a096327b86bd2434cf96044ddc0004150e036fa54799e079c11a": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt",
+      "recoveredFromGitCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+      "reports": [
+        "local-team-enrollment-native-2026-10-18/build-checks.json"
+      ]
+    },
+    "0094b2d02f0e02385d8218948f087bc1427476218cbcc1d1288fc7646abf2717": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt",
+      "recoveredFromGitCommit": "0cb8e4c4cfdcc51f25201bfe1af8a90ec7bd3b36",
+      "reports": [
+        "team-screen-export-2026-10-18/completed/component-results.json"
+      ]
+    },
+    "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt",
+      "recoveredFromGitCommit": "dc739d66eb3b3c109cb449927ed01e1340c4a0ba",
+      "reports": [
+        "team-screen-export-2026-10-18/completed/component-results.json",
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "team-history-dialog-failure-2026-10-19/results.json",
+        "team-history-dialog-pass-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1": {
+      "sourcePath": "scripts/qa/local-team-native-fixture.mjs",
+      "recoveredFromGitCommit": "7ab53908f87e3eee0423c38ead677b2ac962e32a",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json",
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "c2948444fe14d15fd6d6460a0ffad732a34650ab1943667db58fedbb549b700c": {
+      "sourcePath": "scripts/qa/team-native-evidence.mjs",
+      "recoveredFromGitCommit": "7ab53908f87e3eee0423c38ead677b2ac962e32a",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "a9ab5988f5977c30bac29ae5ddc5529ccc67db7151cfdd1f927616541b554112": {
+      "sourcePath": "scripts/qa/local-team-enrollment-ui.mjs",
+      "recoveredFromGitCommit": "7ab53908f87e3eee0423c38ead677b2ac962e32a",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "39f3af9751c79b8aab0bbb35f6fb202d8b841f4e2bffe7088d3758e5d3b19d04": {
+      "sourcePath": "functions/src/domain/teamEnrollment.ts",
+      "recoveredFromGitCommit": "351aa4d571d2de3e0df670b4bff906250523a9e0",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-review-2026-10-18/results.json",
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "823258bcbfe7f04d1d9827a3674043f9c05d810a6c2e6c584d39192e01d6f45d": {
+      "sourcePath": "functions/src/services/teamEnrollment.ts",
+      "recoveredFromGitCommit": "351aa4d571d2de3e0df670b4bff906250523a9e0",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json",
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "ac9b1561b63960f03091fd04f638be37b62fb421505a0d1d1404cfb4539e2851": {
+      "sourcePath": "functions/src/services/teamEnrollmentViews.ts",
+      "recoveredFromGitCommit": "351aa4d571d2de3e0df670b4bff906250523a9e0",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "b2d9ce8f12972fd88e797a4acb3323c8f73e09c501c2e644386c03cc52b9e8e0": {
+      "sourcePath": "functions/src/services/teamEnrollmentAuthority.ts",
+      "recoveredFromGitCommit": "351aa4d571d2de3e0df670b4bff906250523a9e0",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json",
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "c34c3d876c3217e98a97b407993aa1e375ec4691788075b0c77fe014ddb6e502": {
+      "sourcePath": "functions/src/services/teamEnrollmentOptions.ts",
+      "recoveredFromGitCommit": "1537d256af27b74dbca0be7f3164837469333d0d",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "0c3e3aa7e3245ee0eea5af12ff971cc90a5689b5213d75fdda4fa18cbde82b82": {
+      "sourcePath": "functions/src/callables/teamEnrollment.ts",
+      "recoveredFromGitCommit": "1537d256af27b74dbca0be7f3164837469333d0d",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "e60c2abd93478e0364d21e79b9ce0c83bc5da04e0cfb2d9a4e0da09157651a31": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt",
+      "recoveredFromGitCommit": "1537d256af27b74dbca0be7f3164837469333d0d",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json"
+      ]
+    },
+    "84c26428e564093664849ed4a80985f3e8788a87c8d3b82aeeb94e375995b025": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt",
+      "recoveredFromGitCommit": "7ab53908f87e3eee0423c38ead677b2ac962e32a",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "ee2d3c4c2c449cba0307553907d6d5e151b80e44e364e60b81f70a9a7fe110fb": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt",
+      "recoveredFromGitCommit": "7ab53908f87e3eee0423c38ead677b2ac962e32a",
+      "reports": [
+        "local-team-enrollment-native-2026-10-19/team-enrollment-results.json",
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "5b7f52c2e9bbe9a05618637c913523ec8a56f5f8ddb0f4b28ae8eb76df48759a": {
+      "sourcePath": "scripts/qa/manual-team-phone-session.mjs",
+      "recoveredFromGitCommit": "a6c37d6b9b3b1b8a65cbfd612b592a29870c5df6",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json"
+      ]
+    },
+    "b2ac7a6463799ac2503e35210212a01635d191a67bc2829d8f40d2573704e1d7": {
+      "sourcePath": "scripts/qa/manual-team-phone-checkpoints.mjs",
+      "recoveredFromGitCommit": "a6c37d6b9b3b1b8a65cbfd612b592a29870c5df6",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json"
+      ]
+    },
+    "03ddcb0c221ccce3e223fd666ccbde2b404fb038e5d16152c3a4e6bd1dc81ebd": {
+      "sourcePath": "functions/src/services/teamEnrollmentReview.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "bd40bc85fa5b310d57e57fa479125f7adf9aa79f983ccda47f0e78d10e7d7974": {
+      "sourcePath": "admin/src/TeamReviewPanel.tsx",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "2c329cb276cbb685d30b97d3451b0e0a708aaede207d7bd5f5678c4ebd5f1a84": {
+      "sourcePath": "admin/src/TeamReviewController.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "520ca2cd79124b3c9fdfa95d5e264698be9d63c75e998f2eee293626280fc0ba": {
+      "sourcePath": "admin/src/teamReviewGateway.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "phone-team-enrollment-2026-10-19/session-results.json",
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "ee5d45586d16d2c94ab886b48ba8cd4de7091fed046ca4f84bdd4da8f6181e37": {
+      "sourcePath": "functions/src/callables/teamEnrollmentReview.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "abcda95966168ee1081a114fab8f6dc195dce20c74f7b0f396ef106c0bbb4b28": {
+      "sourcePath": "functions/src/index.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "209a2139bad3746c502b6055bed53e0ac16c7706d0ad141b87fdf2fce66d5b0a": {
+      "sourcePath": "functions/src/domain/guardianVerification.ts",
+      "recoveredFromGitCommit": "fc74d93ac734ce7bf73548f03aeee6abc4adbfbb",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69": {
+      "sourcePath": "functions/src/services/guardianVerification.ts",
+      "recoveredFromGitCommit": "fc74d93ac734ce7bf73548f03aeee6abc4adbfbb",
+      "reports": [
+        "local-team-review-2026-10-18/results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4": {
+      "sourcePath": "functions/src/callables/guardianVerification.ts",
+      "recoveredFromGitCommit": "fc74d93ac734ce7bf73548f03aeee6abc4adbfbb",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "4d1f899dba2465130d5e3830a7770f084520fe125b2dc06a7994778d51165598": {
+      "sourcePath": "scripts/qa/local-emulator-config.mjs",
+      "recoveredFromGitCommit": "768ef85ffbc3a2f2c1ab9c54facacd91fbc68b03",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "2782ab3e05ae42b875666a7047574ecf536695f0f315d2aec1d1a625f1cbc081": {
+      "sourcePath": "scripts/qa/local-egress-guard.mjs",
+      "recoveredFromGitCommit": "768ef85ffbc3a2f2c1ab9c54facacd91fbc68b03",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "84807267f27ff7c6e7eda3b80f68cc335f7f37a565104a75631880e61f064438": {
+      "sourcePath": "scripts/qa/local-team-review-fixture.mjs",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "c167c8ef5b4192bc9d08070a273e0418dd3d9e5a13b7c731d433545bc9a7afbb": {
+      "sourcePath": "scripts/qa/local-team-review-suite.mjs",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "b7a900bb8359b9bc29dec036c817286ae66484b70c1046f3c1f2ef8b8d73a66e": {
+      "sourcePath": "scripts/qa/run-local-team-review.mjs",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "7e15e3f65e9655b47a1422c8fb40d9b5fc54abf58eee1bcaa346f37b96973a6f": {
+      "sourcePath": "scripts/qa/local-team-review-browser.mjs",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "4b4ebaf417045e77d7e626b9e6a8f03beb14e361b0097c258f3a224808b355a6": {
+      "sourcePath": "admin/src/TeamReviewConfirmation.tsx",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "53253f85c98f560fc0e25bdc4295a682ccbd45e217a3890db67a9ae649c1502b": {
+      "sourcePath": "admin/src/teamReviewTypes.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "c32a27409da6fa0165f658390acf5aa9541a62e04a05621a2553fa99eb51de07": {
+      "sourcePath": "admin/src/teamReviewWire.ts",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "891c1b9147648770369464fcc58bc5ec4e037eeca8aa4cd15fd410033ecf0b90": {
+      "sourcePath": "admin/src/teamReview.css",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "44a5d5ee17004ca589febe72aa20afd8b106dd7c223f4e2f9926d56c0dc15fdf": {
+      "sourcePath": "admin/src/ClubDashboard.tsx",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "09d9f7d2676ff23c865028704b4c0075a927f4bcaaa137075b9d65f073afeec2": {
+      "sourcePath": "admin/src/AdminDashboard.tsx",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "a4f129ecfd2263bdfb7b82bf559a1fb22a26d275572629da095c46043c3c5c69": {
+      "sourcePath": "admin/src/App.tsx",
+      "recoveredFromGitCommit": "199c40a4cfad3926b24c0f8622636e0f0b8a2eb2",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "a7d277638fbf9d4bb043b30d0b7316022b25313f83e063625fb824fb1d1f2cf7": {
+      "sourcePath": "admin/src/useAdminAuth.ts",
+      "recoveredFromGitCommit": "c2b6fd38fecf31418367de1acf09242b313b552c",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "c3861730465b52064e60da25669a525bb7143641e53a6f302c7ea7af2aa5979f": {
+      "sourcePath": "admin/src/firebase.ts",
+      "recoveredFromGitCommit": "6b6dc94681980110b1ca0a20a8fbb122ba1eb74a",
+      "reports": [
+        "local-team-review-2026-10-18/results.json"
+      ]
+    },
+    "9d5fc75b482133cba630705bd396056bc538c2a0e95889838a633dfdc7d91881": {
+      "sourcePath": "functions/src/services/teamEnrollmentHistory.ts",
+      "recordedFrom": "verified-worktree",
+      "runId": "b5d76d685c8a79c79cf45de14476f903",
+      "reports": [
+        "team-enrollment-history-2026-10-19/services.json",
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "3df49b39526ec24db1ce7c590918cd6478f87a5fa3ff024ebee15eaaff25dcdc": {
+      "sourcePath": "functions/src/callables/teamEnrollmentHistory.ts",
+      "recordedFrom": "verified-worktree",
+      "runId": "b5d76d685c8a79c79cf45de14476f903",
+      "reports": [
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "230e3da426a5bf4debb8a11d16c38843655d56da5b75530d9cda4ef5eeac96ce": {
+      "sourcePath": "functions/src/index.ts",
+      "recordedFrom": "verified-worktree",
+      "runId": "b5d76d685c8a79c79cf45de14476f903",
+      "reports": [
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "bb3bc8ef17408b2884cc62731819f90401ad9686c12ecde7f2029c4b021f2d97": {
+      "sourcePath": "scripts/qa/local-team-history-suite.mjs",
+      "recordedFrom": "verified-worktree",
+      "runId": "b5d76d685c8a79c79cf45de14476f903",
+      "reports": [
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "035515683788bbd47831850a1ec001c4fbf6dc81176c465fbe69354710ded6f4": {
+      "sourcePath": "scripts/qa/run-local-team-history.mjs",
+      "recordedFrom": "verified-worktree",
+      "runId": "b5d76d685c8a79c79cf45de14476f903",
+      "reports": [
+        "team-enrollment-history-2026-10-19/services.json"
+      ]
+    },
+    "955678f8cdd76d7ef19d1287f21148cb68837ffd81b51bb76a2c04d36f4bec1f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/TeamEnrollmentHistoryWire.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "team-enrollment-history-2026-10-19/unit-sources.json",
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "738582a338d7de42fc24952484d7540c1ec51dda473faba3f5e13c42d1e675e9": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryState.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "team-enrollment-history-2026-10-19/unit-sources.json",
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "3affbe2c8ab65c790c3082e4769d1bc230cc7c651504a287028a55189235d329": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentHistoryWireTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "team-enrollment-history-2026-10-19/unit-sources.json"
+      ]
+    },
+    "0c6fc60de6e430451d155190b669d1ba7aaf74442d315b2bff1ec0b0519da34b": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryStateTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "team-enrollment-history-2026-10-19/unit-sources.json"
+      ]
+    },
+    "62b6ae845e191292a399685e3d25a14981054b46d61ee7bfde4abf7d24032169": {
+      "sourcePath": "scripts/qa/manual-team-history-session.mjs",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "20193834ff8a637f602a89d9ce382c7c951d896a3fbd78a55d4f72014485a968": {
+      "sourcePath": "scripts/qa/manual-team-history-checkpoints.mjs",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "11a6c5860d06fb74d34d7f5f92b815fcbbfe3356901ce34e3430567ad50331d8": {
+      "sourcePath": "scripts/qa/manual-team-history-fixture.mjs",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "c472f8b73ed381206fcc9ece3acda23710cd0c51337e9a8f72d4b3bed9d17745": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidTeamEnrollmentGateway.kt",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "b8b0dbe4ae3556760721898c36e1ebf479d34e25a63a4f2e290ad09611ebd78b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryRoute.kt",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "10cdf7d21a9623a283a018059074cf4a7975252e11d0f9723d6c30bef7f03787": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryScreen.kt",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "phone-team-history-2026-10-19/session-results.json"
+      ]
+    },
+    "5522d6832f0a520066ea03636662cbca8893719bda8bec50a8acdd132f586b37": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt",
+      "recoveredFromGitCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+      "reports": [
+        "team-history-dialog-failure-2026-10-19/results.json"
+      ]
+    },
+    "22b52e9381fafab3dd00127c8f3dce6ad0db49c155a5856152646ee6acef673a": {
+      "sourcePath": "scripts/qa/start-local-ui.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "bdb77406aeeacd7ddd303ad64d2f626bdff144f8bf9253c385594a2c873c3f5b": {
+      "sourcePath": "scripts/qa/local-runtime.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "e201505102c06666abac29879a5c682fe67cf31cc50b0e7138cfdb94bd95bbaa": {
+      "sourcePath": "scripts/qa/supervised-local-process.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "3db8deda7bb3ed9771d73dbf4fbfc3e608ad28b6deab1540e7633f6557e02311": {
+      "sourcePath": "scripts/qa/check-local-ui-shutdown.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "local-ui-shutdown-2026-10-19/services.json"
+      ]
+    },
+    "78b908560e7a0d11f7224d5dea87b1ddc0bac5855a359af02f778fbc989f1f5f": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "2ae6bd92bfe3f7fa899b6b58ea1a058839394ff592924e3bbeabc8fe4f3c15bf": {
+      "sourcePath": "functions/src/services/emergencyContactAuthority.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "3c11bfe0cc071dec62a95c73e8a5c93e254c1fb8e428c8813f1d7df1d874d03f": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json",
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "0f1ebdd08ea78605bc02b8de233fc56cd2ff261c89137c518a89e2b9e64be05f": {
+      "sourcePath": "scripts/qa/local-emergency-identity-probe.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/before.json"
+      ]
+    },
+    "d413bc995b97a1c2a46cd5a9cbe5d5d977ea51f2fc2f95afb02656cdc380484b": {
+      "sourcePath": "functions/src/callables/emergencyContact.ts",
+      "recoveredFromGitCommit": "507de8d364b21ee40327ae18fa26071fae94f09d",
+      "reports": [
+        "local-emergency-contact-2026-10-18/services.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "a6e78a25abced2ec048b13491691edffa3f11301d1cac3de0e53d8a0af3037fb": {
+      "sourcePath": "firestore.rules",
+      "recoveredFromGitCommit": "507de8d364b21ee40327ae18fa26071fae94f09d",
+      "reports": [
+        "local-emergency-contact-2026-10-18/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json"
+      ]
+    },
+    "46e05ad44ba611461022138e398e30cceee2e5c8f4b2dd4c6f58cd68650a8839": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "576c57b345a8bfa7572f364df71e85630df8e7c1da03b3ef1ee009be1d5e72ee": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactGateway.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "cd2089875faa31eb8c989cc1d309703bd550b0bccff4802892e2df85150ca52b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "360ed1bba41bcd1185e32339820932c5538b21696779a05265927f2aabc96361": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "52a691dace3ba9b91e713f0c7f7fcf05a89e89a7464854fc0ed4d26d4d2bb075": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidEmergencyDialer.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "62f3c7618664035744fe4fe1d70c6e50205aa90ce7985c315da2c210d069d49c": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "9daad857a59c6c5918d22032eba009aee235e2e46b18e8368f3b091dce93a473": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json"
+      ]
+    },
+    "359ab39ed86524bb3e1af76942bb2b016e27854e1408afdab480d378430daf35": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "ca885dde23332f83ce9fda8d6c77bae107f3d03fa2b9a8d98097f445b22a9343": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "2781f7db08deb1eb20ebde86da70699270c670274088c7c18152b588a8a81b00": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "27137868a56f00534975be256dc36fb7ff30ca562499e7217a258ab52a4e4de0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "dde40205d87be0c3e4c0e271b65c7c3e2baf5803faa1a34a784d87b1a78e4c60": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "41ff30b37e89929a61664e8ff159360af97325573146dd8a2499d55df041c23d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDestinations.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "1b37259b47c007bcfaaaba15d762be6bafefbd5790d19b9a9730bbe620b9e2db": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "80150b2e5a606ac57a674b0dc3c3685b63e51c6377e9ced180ea4495250948e0": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt",
+      "recoveredFromGitCommit": "53508fbe5e0925097a66e5f36b1b5925e835c423",
+      "reports": [
+        "local-emergency-editor-2026-10-18/build-checks.json"
+      ]
+    },
+    "0e1d15aacce5c0df07d26ede7695d8ba33ad92a77245d14ca488da8e20bbe44c": {
+      "sourcePath": "android/app/build.gradle.kts",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "02de553d7855e6df3772c99db41b0ab3e74d567620a662c830aeacc5ef4d8ea3": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactSchedulerTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "672cb09ce9f38e0b96c0f9e9d63917fa8ccf857a0209a936663f6679323cf007": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ExternalUiSynchronizationTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json"
+      ]
+    },
+    "5cbb386efc1dcf47240f4e2d9a1e3a0da7d730bb199c9468699b99ea766fda74": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "ride-emergency-prepared-2026-10-19/build-checks.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "772610752b6c8437053a884a4cd5b4cf01e14ee5ff5f526e62eb3196a4fe0e8c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt",
+      "recoveredFromGitCommit": "6cc965f7b2df816ba004ec7e65e0285cd15efd0d",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "c0c3716209d799ceb3ce0d1648d522be73fd85a512d5ab4caa5e4fccb96030ae": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt",
+      "recoveredFromGitCommit": "6d86b8f952d785d2e16064cc36fed324603b04bf",
+      "reports": [
+        "local-contact-scheduler-2026-10-18/build-checks.json",
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4648a7b2fde7a7a0141c521d749ca49da6da3e74965f78a71af72cf50283075c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyPeer.kt",
+      "recoveredFromGitCommit": "f3da854499b422b82ce726be504aaef4915c71a4",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "75f27e4cbea166444448149f4c696216c5ed4ee8da022021c10254f1d531bc91": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyEvidence.kt",
+      "recoveredFromGitCommit": "f3da854499b422b82ce726be504aaef4915c71a4",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "ae3bd07e6a6965aac8e0fc5adca0858317ecbb30e3dd92fd07e2c98a02dd5941": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyDialerDiagnostic.kt",
+      "recoveredFromGitCommit": "fa8e7c79830e457d0f267bc95b3782c8012b8ddc",
+      "reports": [
+        "local-contact-dialer-pass-2026-10-18/emergency-contact-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "ride-emergency-prepared-2026-10-19/storage-services.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865": {
+      "sourcePath": "functions/src/services/emergencyContactAuthority.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json",
+        "emergency-child-identity-2026-10-19/baseline-services.json",
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "ride-emergency-prepared-2026-10-19/storage-services.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "a1ad0ad524ec10f110c4e52b7882edfa58901f6e2e72c858cc1e86187f1c7442": {
+      "sourcePath": "scripts/qa/local-emergency-identity-suite.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/services.json"
+      ]
+    },
+    "40d23dde5dec549de9e92687a12e8f43c94f5c03e084f2708c85be4f184f97b4": {
+      "sourcePath": "scripts/qa/local-emergency-fixture-suite.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/fixture-services.json"
+      ]
+    },
+    "8552967b5b622719b6dc9b43c7e9da46d10c6c01ac37f817f369d36f85a304d1": {
+      "sourcePath": "scripts/qa/local-emergency-native-fixture.mjs",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/fixture-services.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "ecf9c80773fd25966447f8301c83a73420c2479e20910e4bd608e5164703d915": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "a250a8b60d67a354e0517b14586459bbe70264bc2f04d719e78a49f30effa42c": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "fbf56ea2382ab561dca8308d7049eb3f978f8cdffcbad888651eb603949ca685": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json",
+        "phone-emergency-preparation-2026-10-19/session-results.json",
+        "local-contact-identity-pass-2026-10-19/source-bindings.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "9144f856144308713f4dd9aed76bd154116879d03185dacec2e39c116777dcca": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/EmergencyContactWireTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "ddd28ff8592cdf15a5ac8131626130173de2b280860ff402d05f995e2bf7958c": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactStateTest.kt",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "f489d247383ae4758abdc3a9bea73c688db0c61e2bbb854133da18808994f251": {
+      "sourcePath": "functions/src/__tests__/emergency-contact.test.ts",
+      "recordedFrom": "verified-worktree",
+      "reports": [
+        "emergency-child-identity-2026-10-19/unit-sources.json"
+      ]
+    },
+    "aba64fba09a24d815940b3480a80ec607f272786c40d2b07fdac0504a3a18c5d": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentHistoryFlowTest.kt",
+      "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
+      "reports": [
+        "team-history-dialog-pass-2026-10-19/results.json"
+      ]
+    },
+    "f5b3d8325b447cb64a4977d31b7238375ef97ee73cfa4d32ecc9248be54cdd0b": {
+      "sourcePath": "scripts/run-android-ui-tests-and-collect-screenshots.sh",
+      "recoveredFromGitCommit": "b20d5ce3656e94b97cd7e105a95aefba38e8b795",
+      "reports": [
+        "team-history-dialog-pass-2026-10-19/results.json",
+        "store-pause-preparation-failure-2026-10-19/results.json"
+      ]
+    },
+    "fbbc041423ce95eb430171a4f1e86cbd1673856b0bdf47d0dcdb9fb97fc1fd7f": {
+      "sourcePath": "scripts/qa/manual-emergency-session.mjs",
+      "recordedFrom": "interrupted-preparation-worktree",
+      "reports": [
+        "phone-emergency-preparation-2026-10-19/session-results.json"
+      ]
+    },
+    "3a0ae1d8de6ba1a8b9ef0f3a1a843d52fcd6e285bf9bcef92ae907d5c9b06e99": {
+      "sourcePath": "scripts/qa/manual-emergency-checkpoints.mjs",
+      "recordedFrom": "interrupted-preparation-worktree",
+      "reports": [
+        "phone-emergency-preparation-2026-10-19/session-results.json"
+      ]
+    },
+    "eb482cb513c51131ea84ea111db3a2df7459a50ad5567d8fe760e41f249510b4": {
+      "sourcePath": "scripts/qa/disposable-store-pause.mjs",
+      "recoveredFromGitCommit": "707dd744cf31c4678e0c4792339148414cac56a8",
+      "reports": [
+        "store-pause-preparation-failure-2026-10-19/results.json"
+      ]
+    },
+    "8ac5f7729679a855a4a0a259e4c39846d3f3de007ade7dadcdb4904e500f3c0e": {
+      "sourcePath": "scripts/qa/configure-disposable-android.mjs",
+      "recoveredFromGitCommit": "707dd744cf31c4678e0c4792339148414cac56a8",
+      "reports": [
+        "store-pause-preparation-failure-2026-10-19/results.json"
+      ]
+    },
+    "7be28849a82d4e0381fc547f899a241d8d42637af60b742016a5e5ced6eb8307": {
+      "sourcePath": "scripts/qa/local-emergency-contact-ui.mjs",
+      "recoveredFromGitCommit": "685c5080f5391ba7ada966ba81e3a012183f03f6",
+      "reports": [
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "4fb227bfd597c71a8c7fe1c1781056b60f132f07f2a313ca78caa743a27c0084": {
+      "sourcePath": "scripts/qa/emergency-contact-evidence.mjs",
+      "recoveredFromGitCommit": "685c5080f5391ba7ada966ba81e3a012183f03f6",
+      "reports": [
+        "local-contact-identity-pass-2026-10-19/source-bindings.json"
+      ]
+    },
+    "d67de115a55109dc26dfcd846d0adbcdb341a13f9a2880624fc363b71f359b52": {
+      "sourcePath": "scripts/qa/local-android-session.mjs",
+      "recoveredFromRetainedSnapshot": "docs/release/evidence/disposable-installation-guard-2026-10-18/prior-source/local-android-session.mjs.txt",
+      "reports": [
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "29190aa4f85f35449c3cee1f6805ef81c16c7e793642797e43c65d9d0eaa8ad2": {
+      "sourcePath": "scripts/qa/collect-local-ui-evidence.mjs",
+      "recoveredFromGitCommit": "26bb6647c7c28a94d6a0b28a32aafa2cbcd752c2",
+      "reports": [
+        "local-team-enrollment-sdk-2026-10-18/build-checks.json"
+      ]
+    },
+    "617a39a0df046155a2b8f05c43911c4f3693645043ee0354995d711d1c405bb4": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json"
+      ]
+    },
+    "c6a3a7ee070d6fc0195e463a24664c663ba35d84a376f9fc4ac3ea15a40e5a73": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json"
+      ]
+    },
+    "e298ac1aac60290b5b734c6fc2f6952d8cab35832ac071c05921423e98ef4c19": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyEvidence.kt",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "5e67f4561de8fb4319be3f21da9f5607eccddf599350158700aed04351aacb28": {
+      "sourcePath": "scripts/qa/ride-emergency-evidence.mjs",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json"
+      ]
+    },
+    "65f0f193bb62c397d7b63abc9d5898cac66086d4a2bd4ab6771ccbbbe0a4203d": {
+      "sourcePath": "scripts/qa/verify-ride-emergency-ui.mjs",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json",
+        "ride-emergency-prepared-2026-10-19/storage-services.json"
+      ]
+    },
+    "76c085754e48ae6dddc1af4f67bfad6e4a243d8da5ec6efe2a979c0f9f8d5ab0": {
+      "sourcePath": "scripts/qa/verify-local-ride-ui.mjs",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "fd9e3680b1a6eff1c637294c59be24d838cb2072a169555eac743d5428866c64": {
+      "sourcePath": "scripts/qa/local-android-session.mjs",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/build-checks.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "d39b0cf80b2ffaad864d5d5ac5bc3609aeed7d9dec408d20fad8ce96a4fbc7d6": {
+      "sourcePath": "scripts/qa/local-ride-emergency-fixture.mjs",
+      "recordedFrom": "prepared-verification-worktree",
+      "reports": [
+        "ride-emergency-prepared-2026-10-19/storage-services.json"
+      ]
+    },
+    "08897531ecc1a2e79978db1f39b51a25d721902b64b1e405a58489a2096c2080": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "937d93dec513dc57f0a35496aad91fdb19554c8f529968edd09b689a56356b9c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideEmergencyUi.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "e497b0dc1c43a6a1c8ce1b307aa3320675b0f94906d1b1e9def7593182a85348": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recoveredFromGitCommit": "7dc5a99ab425858bad2f138d989437b2235528a7",
+      "reports": [
+        "ride-emergency-account-failure-2026-10-19/results.json"
+      ]
+    },
+    "24cfffe087de539f953a88988ca20432361fc216fe1af08457e4dd5c1a4b99d0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationLease.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "143e1ca640021f1d136bbef870af3f70ca09371f78c7c0b056517e24be4e8b41": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "fbc86cd72de3516340ba14d38e157fb69d6c6d30ef1a4def674b528aa57ebe79": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeTrackingAuthorization.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1d5e06ac2748615a959c6299571cd8a0df93c8ba8bb4a5e29cac72feda48f97f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideResume.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "be6d983a4a5daee790802f2e3cddf30986bb5e000a23a182785b028f94fab039": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "8cc1577dd4f9526c668841d197e584a4183dbc91116357a4aac716a5ca30ca74": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "5188f20acfa6a4cba7149de8f3a23b1abff41a2d5b735c3a2577adc5e2618177": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideStartup.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "dd7d45ef624a0c81c18124e3864b308b0856cd02f78a44408ae39079087eef50": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "df50b02bf4b3c15a073fd165ee219f7c05f913648e5c641152a2076bf7a9620d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json",
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "e80081750b18c9f7465b28dfe90e1c02cde075f5199dc8b0ffc18a1713e90b4d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json",
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "f594cf481f229b7f71f8b8db62e37387551f0b779cf170633791e8f2c9677c82": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideLocationLeaseTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "6f86e85119a75221276bba2c004fcf6c44bab433f7c4a09ff4adf57abffc3ab1": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/services/ActiveRideResumeTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "2811eab76aa0ee42792596142e7c901073fc0a0751ddeb7cd637f64020dd75c2": {
+      "sourcePath": "android/app/src/test/java/be/sportgreenmoove/app/ui/AppSessionShutdownTest.kt",
+      "recordedFrom": "compiled-repair-worktree",
+      "reports": [
+        "ride-location-ownership-repair-2026-10-19/results.json"
+      ]
+    },
+    "ba68b93f51e830d86ffd5291c6d1ae8491863e3d60f875ddaedf3f5fdb0e513a": {
+      "sourcePath": "functions/src/lib/clientTrips.ts",
+      "recoveredFromGitCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+      "reports": [
+        "location-freshness-2026-10-19/results.json"
+      ]
+    },
+    "fec6a6892ef9309aa0254885ee798d233d419a5505a6b59a2f001d68d4b1fc2f": {
+      "sourcePath": "functions/src/domain/locations.ts",
+      "recoveredFromGitCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+      "reports": [
+        "location-freshness-2026-10-19/results.json"
+      ]
+    },
+    "46f229cf12c573c89b58fe2acf60386de418d0995c3d5ddfae1c57feef404d54": {
+      "sourcePath": "functions/src/__tests__/location-freshness.test.ts",
+      "recordedFrom": "negative-then-repaired-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/results.json"
+      ]
+    },
+    "f51a17153d6330e290d2a810abb62391ea85cd900d909262317f01fdb3552d46": {
+      "sourcePath": "functions/src/lib/clientTrips.ts",
+      "recordedFrom": "unit-verified-freshness-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/results.json",
+        "location-freshness-2026-10-19/services.json",
+        "location-freshness-2026-10-19/initial-unclosed-client.json"
+      ]
+    },
+    "e467eb4b9a33190cc04df1a4dbb272c799db87fe070139e60676aea775300599": {
+      "sourcePath": "functions/src/domain/locations.ts",
+      "recordedFrom": "unit-verified-freshness-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/results.json",
+        "location-freshness-2026-10-19/services.json",
+        "location-freshness-2026-10-19/initial-unclosed-client.json"
+      ]
+    },
+    "42fde0e034eb24d602ff833d8910911cf906df0439c6fb4761721bbd13fb2872": {
+      "sourcePath": "functions/src/__tests__/client-trips.test.ts",
+      "recordedFrom": "unit-verified-freshness-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/results.json"
+      ]
+    },
+    "61f2d6f4d945d7620a1e1743392171d1f1c92227e797a8bd1c212827a36cdd13": {
+      "sourcePath": "functions/src/__tests__/locations.test.ts",
+      "recordedFrom": "unit-verified-freshness-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/results.json"
+      ]
+    },
+    "eaa4fde793652cc209ff20e38719892997cd9e016c10e7855ed576a0d7da9536": {
+      "sourcePath": "scripts/qa/local-location-freshness.mjs",
+      "recordedFrom": "actual-local-callable-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/services.json"
+      ]
+    },
+    "4cb8ac236b27a359bb142496a6fa180b8068ba011e6800bae70c21aa9aa153bc": {
+      "sourcePath": "functions/src/callables/locations.ts",
+      "recordedFrom": "actual-local-callable-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/services.json",
+        "location-freshness-2026-10-19/initial-unclosed-client.json",
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "c47e9dc454b7f71ab06b380464b2c6171058a539c8fe5a4c728ec0fe853fec6a": {
+      "sourcePath": "functions/src/domain/locationAccess.ts",
+      "recordedFrom": "actual-local-callable-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/services.json",
+        "location-freshness-2026-10-19/initial-unclosed-client.json"
+      ]
+    },
+    "2c75b9d88cbf86698565df1848f38688b5b4a4ab648fb2f63f5db6eca8d18ce9": {
+      "sourcePath": "scripts/qa/local-location-freshness.mjs",
+      "recordedFrom": "incomplete-local-harness-worktree",
+      "reports": [
+        "location-freshness-2026-10-19/initial-unclosed-client.json"
+      ]
+    },
+    "93abcec2286575436480610255b910870099c7feea315f65914a4cf8fd23a39c": {
+      "sourcePath": "scripts/qa/verify-ride-emergency-ui.mjs",
+      "recoveredFromGitCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+      "reports": [
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "fbe1db05afc9ef666de2eb0c3f0a653de7db548684af4d8a867540f1e6241a83": {
+      "sourcePath": "scripts/qa/ride-emergency-evidence.mjs",
+      "recoveredFromGitCommit": "a7dae8a99809ef64b17b0b189014d11411358fc0",
+      "reports": [
+        "ride-emergency-pass-2026-10-19/ride-emergency-results.json"
+      ]
+    },
+    "4f14132bd657daf8d0868f5030b039b18a0ba1be637f7b1257cf95662b68c365": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recoveredFromGitCommit": "64f9173f6bd82564b74d08e162dc9c6d2fa4d04a",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "df5601c6fa78f1ff421db47ce0dfbc59ce58cd25831ce1811aff5716edecdef5": {
+      "sourcePath": "functions/src/services/radarReconciliation.ts",
+      "recoveredFromGitCommit": "64f9173f6bd82564b74d08e162dc9c6d2fa4d04a",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "50cf14c23e4bcccd4ee8a9918ee18f62f0faea1874d1da7ea9b1ca0b0c713f2d": {
+      "sourcePath": "scripts/qa/local-location-order.mjs",
+      "recordedFrom": "original-negative-local-replay",
+      "reports": [
+        "location-order-2026-10-19/before-failure.json"
+      ]
+    },
+    "76957e46f6287a88fa7afe001c5953c885e3a6c2934e7d2dd9d8db4bef2f2c47": {
+      "sourcePath": "scripts/qa/local-location-order.mjs",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "38cc3b0e46bdeac7e5efe7cd0c0396ee0db1f4d5e236162a6f5763d88f8a5580": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json"
+      ]
+    },
+    "d4a293f240751d0dbac95e8fe6879b58a15ec3b8fc35db87a5fe7535f72d08a9": {
+      "sourcePath": "functions/src/domain/liveLocationOrder.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "56c129a9d575f702e51157220cd4ce4a116a02746b12ab70852b8f8df1f13c2b": {
+      "sourcePath": "functions/src/callables/locations.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "f38972a973285af35d8e04fff75acd4471dfc6d9a67e9016f426265a466268f2": {
+      "sourcePath": "functions/src/services/radarReconciliation.ts",
+      "recordedFrom": "completed-local-order-replay",
+      "reports": [
+        "location-order-2026-10-19/services.json",
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "ca042cc141af97b5382129510042cdd6b7fa62a9d2761f33685a5304819345ad": {
+      "sourcePath": "functions/src/__tests__/live-location-order.test.ts",
+      "recordedFrom": "338-passing-functions-unit-run",
+      "reports": [
+        "location-order-2026-10-19/results.json"
+      ]
+    },
+    "a09c4d700f9b2cc966b7215afae16dfa373c3b4c2e55c65053093e1002d67cea": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recordedFrom": "completed-transaction-reevaluation-verification",
+      "reports": [
+        "location-order-reevaluation-2026-10-19/services.json"
+      ]
+    },
+    "896df0b6e793820b295c457831fc1a4e2f8290336142e2f326c453043de7c08f": {
+      "sourcePath": "functions/src/__tests__/live-trips-write.test.ts",
+      "recordedFrom": "completed-transaction-reevaluation-verification",
+      "reports": [
+        "location-order-reevaluation-2026-10-19/results.json"
+      ]
+    },
+    "ed1d33e9fc903e63beee3340f15cb55d585e5303b5df7f8f0b563644b9d33310": {
+      "sourcePath": "scripts/qa/local-ride-observation-services.mjs",
+      "recordedFrom": "completed-ride-observation-callables",
+      "reports": [
+        "ride-observation-services-2026-10-19/services.json"
+      ]
+    },
+    "5bebb623bc9d0896f5df29e4ef7bb810d38e40ffad61772eef47302fc00fcec6": {
+      "sourcePath": "functions/src/callables/rides.ts",
+      "recordedFrom": "completed-ride-observation-callables",
+      "reports": [
+        "ride-observation-services-2026-10-19/services.json",
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "95d00e584373f011bebf1641871ed143de76ed056716e80eb6a64d08de5ea075": {
+      "sourcePath": "functions/src/lib/activeRideLookup.ts",
+      "recordedFrom": "completed-ride-observation-callables",
+      "reports": [
+        "ride-observation-services-2026-10-19/services.json",
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "c98096c6def0c490d904ba272e2aeead8ff37a39e0f173f64cd27d8fdaeec96e": {
+      "sourcePath": "functions/src/lib/clientTrips.ts",
+      "recordedFrom": "completed-ride-observation-callables",
+      "reports": [
+        "ride-observation-services-2026-10-19/services.json",
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "51a62fae40786a073b455d80c844ceef9001ac1459e9c2f826f5682562a14a54": {
+      "sourcePath": "functions/src/domain/types.ts",
+      "recordedFrom": "completed-ride-observation-callables",
+      "reports": [
+        "ride-observation-services-2026-10-19/services.json"
+      ]
+    },
+    "d7b0263abd26794926f9709006cc52219f4036aeb57e627ec3a8ece7e678e423": {
+      "sourcePath": "scripts/qa/local-ride-observation-ui.mjs",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "4a4da7c5bea428034bc241cd69e9cd115ddddc6329776eaa6eb75a34e6cf582c": {
+      "sourcePath": "scripts/qa/local-ride-observation-fixture.mjs",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "4a1b7c04c6aee94ded46b68336f3e737d7ad0fcac593ed67cc0865376b2fb754": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/data/RideObservation.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a72df20683fc21b5de4a98adbfca7d19ccd4816711e6c83fdef1f2a0d1abe01b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "902d42a1f1bbd0f2a4e0b41d5bfb1dee71aed1507fec8138e4808f0c1b307821": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationWire.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "0575530896872f5c73480f1b2f15d3646e33cb561aa973f0a57a68fd4d0b2a87": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationState.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "42cccedc52914608b9ac1599aedca2c6a233b0f6cfbbff3a642c49f2428770e3": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationEffect.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "2acb67e8a44df6f945fb76b4b1d9c22c0a825c3fee989579f5712306b33ed41f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "5c7e923f2dd9ebda6c631a04dce9a1edb5f44d575ef90de398c3b5f6d2154c60": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/RideObservationGateway.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "19f8cb998c19406fee4cd6c85b1c02305b3660741181e78edf93f34bb01c534a": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "26957960b70d86730f7513c86ed1ae30fd664f3b2ab305a065b313b1beb7bd69": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideMappers.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "7ae05f3ab8f95a19cd4691e6830a976cbc68f65e4468d0fe77aa2efa6ccaf968": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/MobileRoleSelectionEffect.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "85dc1b9ee619617eeb38e8200bac6a15430adc6d77815f7aed43fa1640113742": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/domain/RideObservationAge.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "472e93d1ad832b3555e3a017232d88b1d03e98205218bd9400d8c10af9223ac2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "5a3e42c4aacf71bea982957cd095b8c67b6fff84c632e5465661a5a6ba54fb6d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/TripsScreen.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "3c6b4e0739031d8645c75cfbc48b029f9647990cc1eb7f9191a308e35495f847": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json"
+      ]
+    },
+    "85241654dd5ef07e83769b3fae60f3bfe16f1cc925fb00832633752828bd8358": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationFlowTest.kt",
+      "recordedFrom": "completed-independent-local-ride-observation",
+      "reports": [
+        "ride-observation-native-2026-10-19/ride-observation-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "73a8c6404584e9b07d3ef9f36b6558e8993cec19222819feb1f80f1496d141ad": {
+      "sourcePath": "scripts/qa/install-disposable-test-apks.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1cd4f9688f449818950dcdf19ccf3251e4774f22e76621ed4d8c536230b0dfbf": {
+      "sourcePath": "scripts/qa/preinstalled-disposable-apks.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "cb056fd80afa1047df3d252bdfb29f4219d10215cd963f658ff86d0cad4234cf": {
+      "sourcePath": "scripts/qa/continuous-disposable-device.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8": {
+      "sourcePath": "scripts/qa/configure-continuous-disposable.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53": {
+      "sourcePath": "scripts/qa/restore-continuous-disposable.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4699ff1c33472c67cbc494fafa599f8c1098b2b38126be8e9df5c900e5c38072": {
+      "sourcePath": "scripts/qa/reset-disposable-local-apps.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc": {
+      "sourcePath": "scripts/qa/disposable-installations.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94": {
+      "sourcePath": "scripts/qa/disposable-install-admin.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "139b0cbdd24bf641e100eead197ae6b63763844d23c2c3d88efc0fbb2402bdc2": {
+      "sourcePath": "scripts/run-focused-android-ui.sh",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "9ad3b019bc39f3b6ac5d5e16e81601a4b3a77cdbccbf958ae9a684ba56a4b4c5": {
+      "sourcePath": ".github/workflows/native-focused-ui.yml",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "93c936777798af9b0c68b7aef65639fa10c6003715c7d81ec6f6f26a94676f79": {
+      "sourcePath": "scripts/qa/local-session-restoration-ui.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "c8df90c4554bde59307497cf29fa7bb110217d0672e9fd5f1440125f20aa9dfb": {
+      "sourcePath": "scripts/qa/run-local-session-restoration-ui.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "e3e4a189be571bfa571a69081315d376ad64e0b94b6d15f0d9271de4d3398ded": {
+      "sourcePath": "scripts/qa/session-restoration-fault-proxy.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802": {
+      "sourcePath": "scripts/qa/session-restoration-records.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "82f26be72a66233917adced9d208bd5e094b23ceebada745b63f12a38aa10ac0": {
+      "sourcePath": "scripts/qa/run-isolated-ride-ui.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "e9f38b269f25332ff076a991900a31f178cd740fee08ec8dd7e11257354f6bf8": {
+      "sourcePath": "scripts/qa/local-emulator-lifecycle.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6": {
+      "sourcePath": "scripts/qa/local-ui-fixtures.mjs",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "2202e40dd485eded5e6d4aa6e6001e5f197f0ffb1be20f17f7d224272d826e80": {
+      "sourcePath": "functions/src/callables/adminUsers.ts",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "5b00f22d4ff59abc0f345371b579c68b8b7fd3273d5225a97553689cd7042733": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestoration.kt",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "1cca4a60a933a3a24baf2c13a9239722298d26b157c15c1b89ee5b557a231c96": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestorationState.kt",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "f907877e4d93d62f23ec777e0006e56fbc9252b980bd7ee02e9d35adbf917b07": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json",
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "5fd3ae2abdbbaefd097d07b551727ff4d19d4f302350bd146811c30691b4ab94": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionRestorationTest.kt",
+      "recoveredFromGitCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+      "reports": [
+        "session-restoration-native-2026-10-20/session-restoration-results.json"
+      ]
+    },
+    "649802a813bdab296288fa88f95682fba4f47258e2270b920ef09e6d12570a26": {
+      "sourcePath": "scripts/qa/preinstalled-disposable-apks.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "dc173bb701636bf40fb2784cf5fdfca13b4303c5f1a77192f02445fd7f7bcf70": {
+      "sourcePath": "scripts/run-focused-android-ui.sh",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "e5e21deebd6e1a29bc0c13a21d8f692592e745313ce799304b243b8530761273": {
+      "sourcePath": ".github/workflows/native-focused-ui.yml",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "22e9251f8c3fc8a9a265223f219e85226641db51df7c4f0c2f37564835fb1fde": {
+      "sourcePath": "scripts/qa/local-session-disconnect-ui.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "62eada43bdc3c8eaa86adbe0106d8b7bfe703b0a894794e866a43259cf722377": {
+      "sourcePath": "scripts/qa/run-local-session-disconnect-ui.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "d00c39ca7428835588c0ca2945f4fa901bf70ba2337a987ff994594791cc2c84": {
+      "sourcePath": "scripts/qa/session-disconnect-evidence.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "d67d95d840c5ce58316be88f61ae580036ed78bee251eb24cc652ac010539733": {
+      "sourcePath": "scripts/qa/local-disposable-process-stop.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "6f8746d937e3ee8c4f827a112df149786f607fc3ccc2f7276b60d0fffaab0620": {
+      "sourcePath": "scripts/qa/run-isolated-ride-ui.mjs",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json",
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d645a105add5387a09189654507cc59b3b3fbc728f754924518e9f024a67a99e": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionDisconnectTest.kt",
+      "recoveredFromGitCommit": "62eef1c4df7ebb96bc98ab357b2783901fb89b7a",
+      "reports": [
+        "session-disconnect-native-2026-10-20/session-disconnect-results.json"
+      ]
+    },
+    "e13a76feee09a427a395bbcce3b81986aa066d044ed385383c60d5b37eb49970": {
+      "sourcePath": "scripts/qa/local-emergency-identity-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "4ad7ba34cb26b026c30b1090aa541b5c188544f970ea59de41c3145ce06a3a26": {
+      "sourcePath": "scripts/qa/run-local-emergency-identity-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1da49a5eca1e2916f39f9a55dbf3d564e9819a065f01c8bb851e6cff4711d5e5": {
+      "sourcePath": "scripts/qa/emergency-identity-fixture.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "98ef6c2001526597890cb546d2e956c2200037a9cb39b3490dcab19af7875820": {
+      "sourcePath": "scripts/qa/emergency-identity-exchange.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6606701f995b9052247ab13fcc05ac2ddbd20f4d39ff0117e1e5604e48f24350": {
+      "sourcePath": "scripts/qa/emergency-identity-profile-isolation.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d699a3f02a8b24ad11667cf3a94068f10f25c0d009a44731b868f029055a00f2": {
+      "sourcePath": "scripts/qa/emergency-identity-ui-evidence.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "40ca89ad41521f32931573668996c84471cff84bdf01cdf6fda7d380788aa0ef": {
+      "sourcePath": "functions/src/domain/emergencyContact.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6b64809a0107757ed356a817c1db31b80b8f52b1b7bdb1cd2107a692642b9a9a": {
+      "sourcePath": "functions/src/services/emergencyContact.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1a0b108cd70f7dee2558cdf79d8765ea2a16b7f900ee3163ad47f4265e4049dd": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "09965b0b16250983e8808a5a3c2144fe53748327345c4714f08ea87146f08632": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "ef47ccc47bbc779a52c8c3573d8d03a22ef9f314c3e20414f3251911255526c2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a2659e8ffd6a73c082932e27dc889ee56ba6be3e2baa1fd3c8b4bd6e46510350": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "102340a2512dc1a764bf55eedb2b529b46d5d5268f32ce63cfea9cd3afef08b3": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyIdentityFlowTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "352edeca6c298d20f8f64114c3c4d6c39981633e5412f9a91df79e08096b660e": {
+      "sourcePath": "scripts/qa/run-local-ride-observation-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "bf03ef5353f59d6627b0fe883fb5cf9fa7ebf745dd6300a0a18c141f03b18050": {
+      "sourcePath": "scripts/qa/local-ride-observation-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b": {
+      "sourcePath": "scripts/qa/local-ride-observation-fixture.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd": {
+      "sourcePath": "functions/src/lib/clientTrips.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "9dda3c2c64fe4eaf68df4a43396eed58d78faae7046059f097b468cd648b8edc": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideMappers.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "9e3a3bfad54f28bfadaf6729cdc2999e71791bb3fc508f1446888cc4e7529ff2": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "1ecc4df2678ba8cf2b76e4ba10eb68db1800b54a3aa438b93a3c543130bae519": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "334bad8314113f114d6b85c006f65cb0ff9f68fb638dcc8442ea1dffb82931c8": {
+      "sourcePath": "scripts/qa/local-native-startup-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "99a6ebbb5983348724b75ebc505201b701050487eee9751f972a839e7dbc3f17": {
+      "sourcePath": "scripts/qa/run-local-native-startup-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "7207af93cc20ab3bc96bc072065e59281da0156d2e8840917e47d35c4d3710cf": {
+      "sourcePath": "scripts/qa/isolated-ride-records.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "fcfe624d6285ece51395015b05643083f11827a54733dbe741258529a4ebe6f3": {
+      "sourcePath": "scripts/qa/local-mock-location-permission.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "3c34120f897ddb06b6e03df6db3bc1be9231bdc781714a0c7d916ffb5d86552a": {
+      "sourcePath": "functions/src/lib/liveTrips.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "8fa5936cabbb0aa0fb70c4294ca402ba4eccd3341b020197ee798ccc9bebb0f5": {
+      "sourcePath": "functions/src/domain/liveLocationOrder.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "67439e178bd4ddd62e8f4799180d2a3a5abfc806a4e10a0e908777a4a7e869e7": {
+      "sourcePath": "functions/src/callables/locations.ts",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "68d7931931f5811057e3da894e3c6f1031c5bf87787d19b6392b67dafd207bd9": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "c969343bed48178342abcc1c32f0a5b6e6fb07819bd74a3d021ddbea70cd6bcf": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "f9669bf5f21a773786bdd679576ca5d4c373da67ba72ce8cf9382ad53ef73e2d": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationAcknowledgement.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d27bca807230858abe4a71b4c3dd4a9ab40751aba3d598894d3df00270ae2d5f": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "3c46f076e7c0418fbf3efab377d6d133abe39d83c6a9f63fbb082221c20d7af0": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationPayloads.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "fdd7e6d52267427af0cdf48172af12704d8a3bcb2c237b4ee3b4521982b70a04": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "6126c59e05da1b716da41dfa9b2fa2a911137f47fb543d75464276a673867fdf": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "a7c880bd8b1994130d989c896a8b3e0f8004e00d5f4fd286f048f1f74820b33c": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "ae2e8d73b470edb4543cf8dfb0f14ad011cde3a2d93363dcb06469506ace7967": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeStartupCapture.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "634cabe8fa71bcacba1c8e7061245ddbbbf1b68d63fc106021d78d21650d1cb3": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideResumeAction.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "b8f9c7362c211c8f37065ca651f4d7fb3f78afc9e562cdcdeef56a874fa97a4b": {
+      "sourcePath": "scripts/qa/local-remote-ride-stop-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "46031a273ddae7c277dbc41765715207730e47b2e798d100cbf518bfa3b24766": {
+      "sourcePath": "scripts/qa/run-local-remote-ride-stop-ui.mjs",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "af661945f9567333ee2671c69bb837a72122dd68856eba4d2f36679e9db7363b": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycle.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "d1b6b0e7851ee11f54ce72e738d70ebb9529cb51f1d61f87abe504538d12a3d5": {
+      "sourcePath": "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycleWatch.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "f707294479c37bd33d5c44f3f7e8ff0b0b5ad2031bfa879c3734175585e8030e": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    },
+    "e82f57d696970482f98503d76d57a4ded041f9c4b9d1dc552d5ec9a4ef9bee79": {
+      "sourcePath": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideCompletionPeer.kt",
+      "recoveredFromGitCommit": "588fb21381a5638b19464c499a72e643f2757327",
+      "reports": [
+        "native-recheck-588fb21-2026-10-20/results.json"
+      ]
+    }
+  }
+}

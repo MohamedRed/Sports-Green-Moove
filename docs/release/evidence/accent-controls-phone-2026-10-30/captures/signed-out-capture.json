@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "signed-out",
+  "capturedAt": "2026-10-30T21:33:18.279Z",
+  "original": {
+    "file": "signed-out-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "d64b62c6089842b1c4357d9956f3fe41c4cae577ac305691b79c2cd7946a5021"
+  },
+  "crop": {
+    "file": "signed-out.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "84fac4daa5c2e8c58ae73f16bf31063e1ad70df9ae27591d9f0540cfd32b1661"
+  },
+  "rescaled": false,
+  "redacted": false
+}

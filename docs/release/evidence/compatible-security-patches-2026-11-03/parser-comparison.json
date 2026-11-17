@@ -1,0 +1,28 @@
+{
+  "scope": "pure-locked-parser-comparison-not-network-exploit-or-application-fallback-proof",
+  "beforeVersion": "10.2.0",
+  "afterVersion": "10.7.5",
+  "beforeArchiveIntegrity": "sha512-/+S6j4E9AHvW9SWMSEY9Xfy66O5PWvVEJ08O0y5JGyEKQpojb0K0GKpz/v5HJ/G0vi3D2sjGK78119oXZeE0qA==",
+  "beforeArchiveMatchesCommittedLock": true,
+  "before": {
+    "linkLocalFe80": true,
+    "linkLocalFea0": false,
+    "leadingZero": {
+      "accepted": true,
+      "normalized": "10.0.0.1"
+    },
+    "ordinaryIpv4": "8.8.8.8",
+    "ordinaryIpv6": "2001:db8::1"
+  },
+  "after": {
+    "linkLocalFe80": true,
+    "linkLocalFea0": true,
+    "leadingZero": {
+      "accepted": false,
+      "normalized": null
+    },
+    "ordinaryIpv4": "8.8.8.8",
+    "ordinaryIpv6": "2001:db8::1"
+  },
+  "networkRequestsInParserCases": 0
+}

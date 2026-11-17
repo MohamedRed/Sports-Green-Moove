@@ -1,0 +1,20 @@
+{
+  "observedAt": "2026-10-31T09:59:27.189Z",
+  "host": "127.0.0.1",
+  "closedPorts": [
+    5001,
+    8080,
+    9000,
+    9099,
+    51300
+  ],
+  "helperExitCode": 130,
+  "backendExitCode": 130,
+  "observerExitCode": 0,
+  "privateInputExitCode": 0,
+  "ownedRuntimeDirectoryAbsent": true,
+  "ownedHelperDirectoryAbsent": true,
+  "fixtureCredentialAbsent": true,
+  "ownedProcessesAbsent": true,
+  "productionWrites": false
+}

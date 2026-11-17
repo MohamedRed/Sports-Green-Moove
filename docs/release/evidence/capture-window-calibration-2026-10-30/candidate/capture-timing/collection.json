@@ -1,0 +1,32 @@
+{
+  "scope": "capture-observation-collection-not-flow-or-root-cause-proof",
+  "ok": true,
+  "ordinaryPassed": false,
+  "copyStatus": 0,
+  "copySignal": null,
+  "errorCode": null,
+  "traces": [
+    {
+      "captureName": "trip-change-parent-accepted.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 148,
+      "primaryElapsedMs": 145,
+      "primaryStartOffsetMs": 2,
+      "complete": true
+    },
+    {
+      "captureName": "trip-change-parent-review-large-text.png",
+      "primaryOutcome": "returned",
+      "errorCategory": "none",
+      "elapsedMs": 206,
+      "primaryElapsedMs": 204,
+      "primaryStartOffsetMs": 2,
+      "complete": true
+    }
+  ],
+  "files": {
+    "primary-capture-diagnostics/trip-change-parent-accepted-140632937358.json": "916b89286f1f8ad11faa883a570ee2e98a056f7d1794b11676e64af42e136051",
+    "primary-capture-diagnostics/trip-change-parent-review-large-text-138888340566.json": "832bdf412376a6fea1b5f8a18a3376453c057e3ac446fc5a2adfd1053af34471"
+  }
+}

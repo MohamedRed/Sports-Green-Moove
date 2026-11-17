@@ -1,0 +1,89 @@
+{
+  "checkedAt": "2026-11-07",
+  "sourceCommit": "05cd3f7d6869c7bfc5286ca76fcfa740d839add9",
+  "runId": 42312780331,
+  "scope": "distinct-preinstall-wifi-and-parent-home-wait-failures-not-tracking-or-root-cause-proof",
+  "matrixStoppedBeforeAppInstallation": true,
+  "matrixWifiBudgetMs": 180000,
+  "matrixWifiSamples": 59,
+  "rideCasesExecuted": 1,
+  "rideCasesFailed": 1,
+  "rideFailureSourceLine": 61,
+  "rideFailureWaitMs": 60000,
+  "parentHomeObserved": false,
+  "rideObservationStarted": false,
+  "parentAuthenticationOutcomeKnown": false,
+  "processExitAfterInstrumentation": true,
+  "currentHeadAccepted": false,
+  "rootCauseConfirmed": false,
+  "nativeDiagnosticExecutionAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "newMediaPublished": false,
+  "records": [
+    {
+      "file": "matrix/job.json",
+      "sha256": "338ff3d404a0b76e90d5dab0c935a5ff56e746bc16d3a54b565bd8d414fdb1fc"
+    },
+    {
+      "file": "ride/job.json",
+      "sha256": "fe8aaca4bf334148d1f6fab8f1061d2d12eea5fe29e382bee83f758416477416"
+    },
+    {
+      "file": "matrix/host-dns-before-launch.json",
+      "sha256": "71a31f032496ff41990b10bd8389446a0fd191d48f3ab6a8bef738ac670b0398"
+    },
+    {
+      "file": "matrix/network-readiness/outcome.json",
+      "sha256": "42922b4f0b80518bd76b29f40afa275904b385f2e79855e97f277d1802e1f1c8"
+    },
+    {
+      "file": "matrix/network-readiness/sample-000.json",
+      "sha256": "b71dc62ef00a35b1dae9aec1a88934e991846c28bdf7835cc04a8bb8ef31d279"
+    },
+    {
+      "file": "matrix/network-readiness/sample-058.json",
+      "sha256": "4ffdae604d6527b0dfc639024f2f0154aac9e506641408572fca8652cbf69578"
+    },
+    {
+      "file": "matrix/network-readiness/chat-network-validation-before.json",
+      "sha256": "e53f3c0b0899e434f95e25d31f8e2eb62e0d18fdae7fb4d6fa7fceaa20823428"
+    },
+    {
+      "file": "ride/LocalRideObservationFlowTest-instrumentation.txt",
+      "sha256": "0faa38cc6da1e551dc43108a327c4131791842f31b88e66e04dbe82a0b55ae56"
+    },
+    {
+      "file": "ride/LocalRideObservationFlowTest-diagnostics.json",
+      "sha256": "348d05cf8a789e70e7c50c55128962a0d5dff7486ac8007a39acde27c9b18888"
+    },
+    {
+      "file": "ride/LocalRideObservationFlowTest-exit-info.txt",
+      "sha256": "5e6c6a44b4d0ecf180a227b8872502329521ab62718f2af9ae69e91798a6eebc"
+    },
+    {
+      "file": "ride/LocalRideObservationFlowTest-process-log.txt",
+      "sha256": "a68d858398875fb7f5cb5b9bb6d3665a64ae29af4c1370b9e6fd111f0d42a1e6"
+    },
+    {
+      "file": "ride/ride-observation-suite-status.json",
+      "sha256": "87c0a8ab4696721355dd407af437546247a0d2fc5cacf289162bf112b41a5553"
+    },
+    {
+      "file": "ride/disposable-device-restore.json",
+      "sha256": "48e718fb8002e332fb45aa96cb5026090b548b7b145b628ae20648be32adbc14"
+    },
+    {
+      "file": "ride/host-shutdown/complete.json",
+      "sha256": "51e958ecd8bed8ffd4be765d3a791645f5293bec578f4e91c04b560b90bb52e5"
+    },
+    {
+      "file": "baseline-ride-test.kt",
+      "sha256": "aaea0961058703d8773c317ce5334f8728d82b3cd030e6258d0b1fe8aa64cde2"
+    },
+    {
+      "file": "original-archives.json",
+      "sha256": "60614e2fb87a62841c8fca905d2f726894d3a82913ce625fd9ed2e91a08c241e"
+    }
+  ]
+}

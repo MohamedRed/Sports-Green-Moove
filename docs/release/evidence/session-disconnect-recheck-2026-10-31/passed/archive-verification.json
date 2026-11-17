@@ -1,0 +1,24 @@
+{
+  "providerDigestVerified": true,
+  "originalArchivePublished": false,
+  "sizeBytes": 664380,
+  "digest": "sha256:602e863d5166a4bbd0b6287694f37b43b157ef4dcb7656425160a9bb59ee1937",
+  "selectedMemberSha256": {
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/LocalSessionDisconnectTest#disconnectFromFailedRestoration-instrumentation.txt": "5267a9445109ba5c3eab4d13484d41c20310efb87b32c2baba77a0a465f79107",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/LocalSessionDisconnectTest#reopenSignedOutSessionInNewProcess-instrumentation.txt": "ada9f7d588d23a8243341432e1aaca7f98c07e01ca33928f6d6a6dc754f300e7",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-error.png": "835fbb78333e6dbbf4dce0f55dc2cb7e5012205ab61201c5bc91204cefbc24a1",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-signed-out.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-reopened.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/session-disconnect-results.json": "876e3092f230f63443177ac57c8690a446d762b9798adc1bc0bceddac70d8f31",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/session-disconnect-app-results.json": "1cdb78a7515c768e8f053085a6157c7b457af507bba18901ff3b9aa61dd55049",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-device.json": "ff7e9102bb6900bd391dc12addc83cd6f7b9d53eb3970c47b63016dcedc6e416",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-before.json": "351a98b6bd3a4be6327f68cb6f17441ae11e63c28b21508bf1985ac272dcb46f",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/local-session-disconnect-stop.json": "9a8cc37f545e49c96541897112ab40eabbbe87f9f427773c6cd0ea224118e482",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/session-disconnect-proxy.json": "7755eb56ff5118c99ca75bfac7748ad689462295ddd3ba78d6c580be30fb1d6e",
+    "local-ui-evidence/0814f84568315ad652b1d4f66e26b33f/adb-pull-session-disconnect.json": "da1fe1bc054c05d079366d320f932d38d4c4d2253b79e71439a942239fbfa661",
+    "focused-safety-ui/session-disconnect/disposable-device-setup.json": "3a1252370b12ed97b50938a05e18204151d7bd741cf9a47c3be34dcf14c341a8",
+    "focused-safety-ui/session-disconnect/disposable-device-setup.json.claimed": "d541368f929aeca52c6516ce39c7d5e26626c155b65767365ef690e668beca4c",
+    "focused-safety-ui/session-disconnect/disposable-device-restore.json": "8332df4c8cad8e9749946d91b0519f73a20f10b5be6ab9c46f9d542be45a59bf",
+    "focused-safety-ui/session-disconnect/session-disconnect-suite-status.json": "8573f3f1846d7532397c999da43d422f44fd4c89454fd4a146a4166fa56de967"
+  }
+}

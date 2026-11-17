@@ -1,0 +1,86 @@
+{
+  "archiveSha256": "998f369577b3e0150419f380e941375de94b71c7ecc959696d9e92915fc7fbf3",
+  "archiveRetainedPrivately": true,
+  "selectedMemberComparedByteForByte": true,
+  "fullReplayResultMemberAbsent": true,
+  "members": {
+    "outputs/store-review-screenshots/ordinary-results.json": "12ac19002edd534baad6f96da876cfd4db0aa8010326461ce1271a9341b48889",
+    "outputs/store-review-screenshots/ordinary-instrumentation.txt": "4dc1136363b883e2b68f8ae3b624455aed10f5d456e1370ebf805fe4aa76aa68",
+    "outputs/store-review-screenshots/ordinary-process.json": "ac3d7e821006f5af6700d3739442c906898e81e1d15a7a8cad1b68ff01dc3bba",
+    "outputs/store-review-screenshots/native-suite-status.json": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b",
+    "outputs/store-review-screenshots/disposable-store-restore.json": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f",
+    "outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/local-chat-network-ui.json": "68156768025591f81a94b72ff6b7afb41b924dbaedac300fb0e8df4d93feb596",
+    "outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/LocalChatNetworkFlowTest-instrumentation.txt": "5a5d571a6896e623ea543ae04c5c1d727e59e021614c870395c79f1b0444d646",
+    "outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/chat-network-validation-before.json": "cbeb7457f3d0b4bab1d38da560d0c0a6834bf6b41b85b9fd0559b71061c615dc",
+    "outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/chat-network-validation-after.json": "282f9579b6dc0c4986892b084cc7dc7127cf9cc2b39034e0b82b2197b46b7c28",
+    "outputs/local-ui-evidence/31c53c811db40113e924455179fd1834/adb-pull-failure-cleanup.json": "0e2a9f0b290d2b1cbd24fbf3a767f0eb5eef99808af3382de28ae38a92ba79f3"
+  },
+  "cases": [
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureFlowTest",
+      "name": "nativeDateAndTimePickersProduceTheExpectedWireInstant",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureFlowTest",
+      "name": "invalidWireInputIsExplicitAndDoesNotInventAnotherDeparture",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureFlowTest",
+      "name": "aMissingLocalHourIsRejectedAndCanBeCorrectedWithoutReplacingTheChoice",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureFlowTest",
+      "name": "aRepeatedLocalHourNeverSilentlyChoosesOneOffset",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureFlowTest",
+      "name": "cancellingEitherNativePickerPreservesTheAcceptedChoiceWithoutAnEdit",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureLayoutTest",
+      "name": "enlargedDateAndTimeFitBothResponsiveFormatsWithoutOverlap[dark-false-width-320]",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureLayoutTest",
+      "name": "enlargedDateAndTimeFitBothResponsiveFormatsWithoutOverlap[dark-false-width-900]",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureLayoutTest",
+      "name": "enlargedDateAndTimeFitBothResponsiveFormatsWithoutOverlap[dark-true-width-320]",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchDepartureLayoutTest",
+      "name": "enlargedDateAndTimeFitBothResponsiveFormatsWithoutOverlap[dark-true-width-900]",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchCriteriaFlowTest",
+      "name": "eachOptionChangeRemovesResultsAndRejectsThePreviousBookingAction",
+      "status": "passed",
+      "reason": null
+    },
+    {
+      "className": "be.sportgreenmoove.app.ui.SearchCriteriaFlowTest",
+      "name": "navigationRetainsOptionsAndBookingUsesTheCompletedSelection",
+      "status": "passed",
+      "reason": null
+    }
+  ]
+}

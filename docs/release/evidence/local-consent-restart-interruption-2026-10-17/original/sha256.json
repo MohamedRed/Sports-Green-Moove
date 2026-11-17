@@ -1,0 +1,36 @@
+{
+  "scope": "original-failed-replay-diagnostic-not-user-flow-verification",
+  "runId": "3648702d1ab2ab208e428bd9c10c6bac",
+  "files": [
+    {
+      "name": "LocalBookingResponseLossUiTest-instrumentation.txt",
+      "bytes": 132,
+      "sha256": "74bee4df4af35250fe388b48c7dcc4383ec8aa89fca964b5571979a46579c4e6"
+    },
+    {
+      "name": "LocalBookingResponseLossUiTest-crash.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "LocalBookingResponseLossUiTest-exit-info.txt",
+      "bytes": 2517,
+      "sha256": "3f7cb34cdd8ae26b5c04794c928d19629fa5152a8f5f04fe71c66d391ea213ad"
+    },
+    {
+      "name": "LocalBookingResponseLossUiTest-process-log.txt",
+      "bytes": 66930,
+      "sha256": "31b80029c5326e992700f4dc890c12883e56acee2c1be1ac4d54bf36012040d5"
+    },
+    {
+      "name": "LocalBookingResponseLossUiTest-guest-memory.txt",
+      "bytes": 1291,
+      "sha256": "f8870731848ba01a83cebfeba0c304fe35deccd7fa316c99c082871987a4718a"
+    },
+    {
+      "name": "LocalBookingResponseLossUiTest-diagnostics.json",
+      "bytes": 990,
+      "sha256": "4eecad814c1c56cb8133d93bd6a6e81244bfe8d8fe80dcc70ac93654aa0f7595"
+    }
+  ]
+}

@@ -1,21 +1,32 @@
 import { useState } from "react";
 import { emptyRoles, issueRewardPayout, setUserRoles } from "./actions";
 import { Badge, TableSection } from "./AdminTable";
+import { ClubOperationsTables } from "./ClubOperationsTables";
 import { formatDate, formatEuro, numberValue, statusTone, textValue } from "./format";
 import { ReportsTable } from "./ReportsTable";
 import { useCollection, usePayoutCandidates } from "./useCollections";
-import { Wordmark } from "./App";
+import { Wordmark } from "./Wordmark";
+import { MembershipReviewPanel } from "./MembershipReviewPanel";
+import { GuardianReviewPanel } from "./GuardianReviewPanel";
+import { TeamReviewPanel } from "./TeamReviewPanel";
+import { UrgentSupportPanel } from "./UrgentSupportPanel";
+import { SupportReportLink } from "./SupportReportLink";
+import { RewardPayoutRow } from "./RewardPayoutRow";
 import type { FirestoreRecord, Metric, PayoutCandidate, RoleMap } from "./types";
 
 type Props = {
+  uid: string;
   userEmail: string;
   projectLabel: string;
   onSignOut: () => void;
+  canReviewClubRequests: boolean;
 };
 
-export function AdminDashboard({ userEmail, projectLabel, onSignOut }: Props) {
+export function AdminDashboard({ uid, userEmail, projectLabel, onSignOut, canReviewClubRequests }: Props) {
   const users = useCollection("users");
   const clubs = useCollection("clubs");
+  const teams = useCollection("teams");
+  const memberships = useCollection("memberships", 200);
   const trips = useCollection("trips");
   const bookings = useCollection("bookings");
   const rideSessions = useCollection("rideSessions");
@@ -30,7 +41,7 @@ export function AdminDashboard({ userEmail, projectLabel, onSignOut }: Props) {
       <aside className="sidebar" aria-label="Admin navigation">
         <Wordmark />
         <nav>
-          {["Overview", "Users", "Clubs", "Trips", "Ride sessions", "Reports", "Payouts"].map((item) => (
+          {["Overview", "Users", "Clubs", "Teams", "Memberships", "Trips", "Ride sessions", "Reports", "Payouts"].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replaceAll(" ", "-")}`}>{item}</a>
           ))}
         </nav>
@@ -53,13 +64,18 @@ export function AdminDashboard({ userEmail, projectLabel, onSignOut }: Props) {
           {metrics.map((metric) => <MetricCard metric={metric} key={metric.label} />)}
         </section>
 
-        <DataWarning states={[users, clubs, trips, bookings, rideSessions, reports, ledger, stripeAccounts]} />
+        <DataWarning states={[users, clubs, teams, memberships, trips, bookings, rideSessions, reports, ledger, stripeAccounts]} />
+        <UrgentSupportPanel />
+        <SupportReportLink listedIds={reports.items.map(report => report.id)} />
         <UsersTable users={users.items} />
-        <ClubsTable clubs={clubs.items} />
+        <MembershipReviewPanel uid={uid} />
+        {canReviewClubRequests && <GuardianReviewPanel uid={uid} />}
+        {canReviewClubRequests && <TeamReviewPanel uid={uid} />}
+        <ClubOperationsTables clubs={clubs.items} teams={teams.items} memberships={memberships.items} />
         <TripsTable trips={trips.items} bookings={bookings.items} />
         <RideSessionsTable rideSessions={rideSessions.items} />
-        <ReportsTable reports={reports.items} />
-        <PayoutsTable payouts={payouts} />
+        <ReportsTable reports={reports.items.filter(report => report.emergency !== true || report.status === "closed")} />
+        <PayoutsTable payouts={payouts} scope={`${projectLabel}:${uid}`} />
       </section>
     </main>
   );
@@ -134,17 +150,6 @@ function UserRow({ user }: { user: FirestoreRecord }) {
   );
 }
 
-function ClubsTable({ clubs }: { clubs: FirestoreRecord[] }) {
-  return (
-    <TableSection id="clubs" title="Clubs">
-      <thead><tr><th>Club</th><th>Region</th><th>Status</th></tr></thead>
-      <tbody>{clubs.map((club) => (
-        <tr key={club.id}><td>{textValue(club.name, club.id)}</td><td>{textValue(club.city ?? club.region)}</td><td><Badge tone={statusTone(club.status)}>{textValue(club.status, "public")}</Badge></td></tr>
-      ))}</tbody>
-    </TableSection>
-  );
-}
-
 function TripsTable({ trips, bookings }: { trips: FirestoreRecord[]; bookings: FirestoreRecord[] }) {
   return (
     <TableSection id="trips" title="Trips">
@@ -173,25 +178,11 @@ function RideSessionsTable({ rideSessions }: { rideSessions: FirestoreRecord[] }
   );
 }
 
-function PayoutsTable({ payouts }: { payouts: PayoutCandidate[] }) {
+function PayoutsTable({ payouts, scope }: { payouts: PayoutCandidate[]; scope: string }) {
   return (
-    <TableSection id="payouts" title="Payouts">
-      <thead><tr><th>User</th><th>Balance</th><th>Stripe</th><th>Action</th></tr></thead>
-      <tbody>{payouts.map((candidate) => <PayoutRow key={candidate.userId} candidate={candidate} />)}</tbody>
+    <TableSection id="payouts" title="Versements" className="payout-table">
+      <thead><tr><th>Bénéficiaire</th><th>Solde</th><th>Compte</th><th>Action</th></tr></thead>
+      <tbody>{payouts.map((candidate) => <RewardPayoutRow key={`${scope}:${candidate.userId}`} candidate={candidate} scope={scope} send={issueRewardPayout} />)}</tbody>
     </TableSection>
   );
-}
-
-function PayoutRow({ candidate }: { candidate: PayoutCandidate }) {
-  const [status, setStatus] = useState("");
-  async function pay() {
-    setStatus("Envoi...");
-    try {
-      await issueRewardPayout(candidate.userId, candidate.balanceCents);
-      setStatus("Payout demandé");
-    } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Erreur payout");
-    }
-  }
-  return <tr><td>{candidate.userId}</td><td>{formatEuro(candidate.balanceCents)}</td><td><Badge tone={candidate.stripeReady ? "ok" : "warning"}>{candidate.stripeReady ? "ready" : "blocked"}</Badge></td><td><button className="small-button" disabled={!candidate.stripeReady || candidate.balanceCents <= 0} onClick={pay}>Payout</button><span>{status}</span></td></tr>;
 }

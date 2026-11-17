@@ -1,0 +1,20 @@
+{
+  "scope": "local-remote-completion-service-stop-not-physical-background-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e5fd4f7428ac698cffd53a4a0c9cced3",
+  "rideSessionId": "asnQ9ZzXO2Gxy5dMS7UD",
+  "bookingId": "KVjBf0v0Ek4D65FzHIvO",
+  "childId": "sgm-qa-child-lina",
+  "backgroundStopBeforeResume": true,
+  "driverStillSignedInAtStop": true,
+  "peerCompletionAcknowledged": true,
+  "mockModeRestored": true,
+  "firestoreClientTerminated": true,
+  "screenshots": {
+    "local-native-startup-remote-started.png": "6a19b7c9392a1aaa16743e81224295e9e0f1c247ef18ee544d00e16e452596f3",
+    "local-native-startup-remote-ended.png": "32b9ecc62c85cfff58fa52c915656998eb8329a1ceb12b3df2830f870fe1f517"
+  },
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "physicalBackgroundGpsVerified": false
+}

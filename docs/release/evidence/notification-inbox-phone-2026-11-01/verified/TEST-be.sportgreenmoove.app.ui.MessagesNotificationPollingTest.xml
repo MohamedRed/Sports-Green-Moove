@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.MessagesNotificationPollingTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:27:47.662Z" hostname="MRRs-MacBook-Air.local" time="0.03">
+  <properties/>
+  <testcase name="endingTheObservationClearsReadConfirmationsBeforeTheNextOwner" classname="be.sportgreenmoove.app.ui.MessagesNotificationPollingTest" time="0.02"/>
+  <testcase name="notificationPollingDoesNotResetLoadedReviewPagesOrConversationHistory" classname="be.sportgreenmoove.app.ui.MessagesNotificationPollingTest" time="0.005"/>
+  <testcase name="aSeparateReviewFailureDoesNotDisableThePrimaryNotificationRead" classname="be.sportgreenmoove.app.ui.MessagesNotificationPollingTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

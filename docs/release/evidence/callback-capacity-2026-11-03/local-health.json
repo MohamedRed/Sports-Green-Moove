@@ -1,0 +1,27 @@
+{
+  "scope": "local-host-read-only-primary-callback-health-not-failed-ci-runner-or-payment-flow-proof",
+  "observations": [
+    {
+      "name": "SGM_STRIPE_CONNECT_RETURN_URL",
+      "at": "2026-11-03T10:13:22.271Z",
+      "durationMs": 420,
+      "reachable": true,
+      "status": 204,
+      "kind": "return"
+    },
+    {
+      "name": "SGM_STRIPE_CONNECT_REFRESH_URL",
+      "at": "2026-11-03T10:13:22.557Z",
+      "durationMs": 279,
+      "reachable": true,
+      "status": 204,
+      "kind": "refresh"
+    }
+  ],
+  "originalCiFailurePreserved": true,
+  "originalCiRerun": false,
+  "deadlinesChanged": false,
+  "providerCredentialsRead": false,
+  "paymentsAttempted": false,
+  "rootCauseConfirmed": false
+}

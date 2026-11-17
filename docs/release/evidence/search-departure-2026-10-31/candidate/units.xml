@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchDepartureInputTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-30T22:13:11.809Z" hostname="MRRs-MacBook-Air.local" time="0.001">
+  <properties/>
+  <testcase name="aRepeatedAutumnHourDoesNotSilentlyChooseAnOffset" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="validLeapDayAndMonthBoundaryRemainExact" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="summerLabelsUseTheSameZoneAsTheTripList" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="invalidWireDatesAreExplicitlyUnavailableNotReplacedWithNow" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="winterLabelsUseBelgianLocalTimeWithoutLeakingWireSyntax" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.001"/>
+  <testcase name="dateCanCrossMidnightInBelgium" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="aMissingSpringHourNeverSelectsAnImplicitReplacement" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="selectingOnlyTheDatePreservesTheOriginalClockPrecision" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="phoneTimezoneDoesNotChangeTheSearchCriteria" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <testcase name="bothExplicitInstantsOfARepeatedHourRemainReadable" classname="be.sportgreenmoove.app.ui.SearchDepartureInputTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

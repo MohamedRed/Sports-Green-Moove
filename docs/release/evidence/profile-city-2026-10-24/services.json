@@ -1,0 +1,61 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e16a4b65b91cbb5952e82e4fcbee8eef",
+  "testedAt": "2026-10-24T12:15:27.463Z",
+  "scope": "authenticated-isolated-profile-city-services-not-native-ui",
+  "checks": [
+    {
+      "id": "authentication-and-server-selected-ownership",
+      "status": "passed"
+    },
+    {
+      "id": "strict-text-revision-and-request-validation",
+      "status": "passed"
+    },
+    {
+      "id": "save-read-accent-normalization-and-account-isolation",
+      "status": "passed"
+    },
+    {
+      "id": "lost-response-retry-does-not-write-again",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-edits-have-one-winner",
+      "status": "passed"
+    },
+    {
+      "id": "clear-keeps-revision-and-old-retries-cannot-restore-the-city",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-stored-values-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "direct-client-get-list-write-and-delete-are-denied",
+      "status": "passed"
+    },
+    {
+      "id": "profile-auth-initialization-preserves-the-city",
+      "status": "passed"
+    },
+    {
+      "id": "no-search-trip-booking-role-claim-or-other-profile-side-effects",
+      "status": "passed"
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "functions/src/domain/profileCity.ts": "6e2df32aa4649c91c7eff72195aa62c987cca68c4d75d3309c56d4a3d0c90415",
+    "functions/src/services/profileCity.ts": "93d2e79b2e6f51950cabd178910536443967d3a9c910737d4c0d0ecff1f6a8d6",
+    "functions/src/callables/profileCity.ts": "6a8716d4c7c3612169ea5a88ecaea042f4a749bd436eaf97e650d1ff24612c81",
+    "scripts/qa/profile-city-services-suite.mjs": "0b0b06d248c99827075faa8e27b24960efaa123c31ff1e53b793b9fd2fcba4ee",
+    "firestore.rules": "645b46945edd3306a363cf25d471787a37ae788bafadd965637aad922b54b68b"
+  },
+  "providerRequests": 0,
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "physicalDevice": false
+}

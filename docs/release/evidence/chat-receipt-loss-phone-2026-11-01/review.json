@@ -1,0 +1,68 @@
+{
+  "scope": "physical-android-one-device-post-commit-chat-reply-loss-with-isolated-data",
+  "reviewedAt": "2026-11-01",
+  "runId": "dc542336f2f240b8fe24d961ff1f2d3e",
+  "controllerCommit": "1a8939b120480fcb87d271f8807898868f105501",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "parentIdentityObserved": true,
+  "targetConversationInitiallyEmpty": true,
+  "parentSendObserved": true,
+  "commitVerifiedBeforeWithholding": true,
+  "originalClientMessageIdObserved": true,
+  "singleConfirmedBubbleObserved": true,
+  "liveListenerReconciledWithoutExplicitRetry": true,
+  "parentReopenedSameConversation": true,
+  "driverIdentityObserved": true,
+  "driverUnreadBadgeObserved": true,
+  "driverIncomingMessageObserved": true,
+  "driverReadIndependentlyVerified": true,
+  "signedOutObserved": true,
+  "explicitRetryExercised": false,
+  "processRestartAccepted": false,
+  "peerPhoneAccepted": false,
+  "realRadioLossAccepted": false,
+  "trackingAccepted": false,
+  "iOSAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "realPayments": false,
+  "applicationDeployed": false,
+  "installedBytesIndependentlyAttested": false,
+  "wholeCurrentApkAttested": false,
+  "releaseAccepted": false,
+  "recordCheckpoints": 8,
+  "mapRequests": 0,
+  "forwardedSendCount": 1,
+  "videoRecordingAttempted": true,
+  "videoProduced": false,
+  "screenSharingPermissionsChanged": false,
+  "chromeRestarted": false,
+  "captureKind": "original-session-window-crops-not-native-exports",
+  "captureClip": {
+    "x": 615,
+    "y": 109,
+    "width": 274,
+    "height": 618
+  },
+  "publishedCaptures": [
+    "parent-confirmed",
+    "parent-reopened",
+    "driver-visible"
+  ],
+  "privateHelper": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "upstreamPort": 5002,
+    "invitationPortEnabled": false,
+    "forceLocal": false,
+    "requestLoggingEnabled": false
+  }
+}

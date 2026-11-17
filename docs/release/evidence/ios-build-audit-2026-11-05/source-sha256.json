@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-05",
+  "files": [
+    {
+      "commit": "3954ff7cca9e97bf06314466dc6b99772f78006a",
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "fb2215d5e55dd23f2164b491e06a0428431521133344972c5ac4f16543abfca9"
+    },
+    {
+      "commit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "6ce483bf1e66d4d92ac1f9d099aa31d841e6142d3666bd66e9e8e27a8f6ff0e8"
+    },
+    {
+      "commit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+      "path": "ios/Sources/SportsGreenMooveApp/GroupsScreen.swift",
+      "sha256": "e33f032f30dafe6d0c5f0e2cc1b206dba260cca8fdc7d4c94c5c31664b1867e0"
+    },
+    {
+      "commit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "sha256": "c47d89c9a5a3d3f5ff0aab182bd97c23d2e51424f0f9c48cf3670bb18c932563"
+    },
+    {
+      "commit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileScreen.swift",
+      "sha256": "7489e7a6a8c94343575b014fa68528eda6e3195fb9b6ea6491b4956049376fc3"
+    },
+    {
+      "commit": "6073b2c3106e3f15d410352a8d8494eede90d4df",
+      "path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift",
+      "sha256": "10dfce36371ebab013302de1630f1d225a7722f905df21ac563748fc05a1ea88"
+    }
+  ]
+}

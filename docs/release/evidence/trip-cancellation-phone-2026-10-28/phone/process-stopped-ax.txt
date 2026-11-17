@@ -1,0 +1,7 @@
+Browser tab: 1621934784, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
++						379 container
++							380 text pixel9Pro:/ $  dumpsys meminfo be.sportgreenmoove.app.local
++						381 text No process found for: be.sportgreenmoove.app.local
+~						366 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
+The focused UI element is 366 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 

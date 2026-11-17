@@ -1,0 +1,19 @@
+{
+  "apk-manifest.json": "91f8c0a96ca54b100e002db122a28cd4e30c017ff4ebb0ad23f778b53f75430a",
+  "artifact-metadata.json": "f30f0d9ce230091ebad5c624162bc9d3cd2c5de85149e0343615a7731bd049be",
+  "device-restoration.json": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f",
+  "host-observation.json": "3f8530b0e158540978a1f7d3ba7d01e25b89e0cfa191af3dfc98e3618363b6d6",
+  "native-run.json": "51bbd290843db9e9e2395c0c451655b3b5311b23164ed6be3cc5cda83e218cb5",
+  "native-suite-status.json": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b",
+  "ordinary-instrumentation.txt": "269cf8715dfb985a7453d83d4484d42c7b3abb4dd57b6eb1a1525e1a4370d7b2",
+  "ordinary-process.json": "ac3d7e821006f5af6700d3739442c906898e81e1d15a7a8cad1b68ff01dc3bba",
+  "ordinary-results.json": "a36d9a55c19e5a52c19fcc4ac347eff4caf713fe80047954dd53e7c4a95bf8b4",
+  "ordinary-suite.xml": "a222614171594c5391a82ed9771f49d89cb328098708b71ce6c1412f2350b5a9",
+  "source/android/app/src/androidTest/java/be/sportgreenmoove/app/services/AndroidNotificationSettingsTest.kt.txt": "9159dbc65a772e766ce48c0075659cad0ab6c196de5202adb6e04d5e64c6d52a",
+  "source/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationSettingsFlowTest.kt.txt": "3c1075749f2c49b07c89e18786fafa17c441ad8d7d652a555a8fe3d66cc0ddc4",
+  "source/android/app/src/main/java/be/sportgreenmoove/app/services/AndroidNotificationSettings.kt.txt": "e397756daf7c06c6b054a6368d2ce5f1fe9d8d9694592006219ee8bd7b99aebb",
+  "source/android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettingsRow.kt.txt": "971f5521292824405c67ac0f79757d7c926b11c22cf4b945459c6bf175219bee",
+  "source/android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettingsState.kt.txt": "3fc8a54b665a4a0f449d7a826e3a54f745685afa157a3dc1bc8e8c92919a1f7a",
+  "source-sha256.json": "22956d3f5c5e46376cd6a7f8f04e012c6bb9d455d98cdd7b0bf7ac673ec1d1a5",
+  "summary.json": "dc8d8667a762baf2728e37f7bb6fb47097c7b05179959aa28ab281c5e61900d6"
+}

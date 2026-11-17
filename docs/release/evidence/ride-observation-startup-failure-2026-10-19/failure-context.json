@@ -1,0 +1,18 @@
+{
+  "scope": "startup-anr-before-scenario-not-acceptance",
+  "accepted": false,
+  "nativeScenarioCompleted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationFlowTest.kt": "173b946cbdaf7d4b763d3e7651850f30b1350d00c19ab80128407d5cb3c2b14d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt": "8b2e654fe5b5e0579daae365748cbc4eab65e1270072c9da3c344ddd82f729fb",
+    "scripts/qa/local-ride-observation-ui.mjs": "a296bae119eb54e3c83d7cdfe93939a3681c93e082dccd379e77ea2625d8106c"
+  },
+  "apkSha256": "d82dc0f1c3f753f0366da146e02a0b107ee04dcbb2b57f92f677e8f6d54f4d5d",
+  "vm": {
+    "cpuCount": 2,
+    "memoryMiB": 2048,
+    "renderer": "swiftshader"
+  }
+}

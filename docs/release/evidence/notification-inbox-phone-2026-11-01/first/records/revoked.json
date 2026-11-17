@@ -1,0 +1,4436 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "48c356f0a99d6b9ab306f431756cb97f",
+  "observedAt": "2026-11-01T09:20:00.185Z",
+  "identity": {
+    "teamId": "sgm-qa-team-alerts",
+    "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "otherUid": "sgm-qa-team-alert-adult",
+    "verificationId": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+    "firstMessageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+    "firstNoticeId": "teamChat_860f514acc74e9691e058d05385d79d64980b98ccaba734c457d2694897ed27e",
+    "firstReadAt": {
+      "_seconds": 1793524747,
+      "_nanoseconds": 635000000
+    }
+  },
+  "state": {
+    "records": {
+      "documents": {
+        "bookings": [
+          {
+            "id": "sgm-qa-booking-approved",
+            "data": {
+              "note": "Un siege enfant est necessaire.",
+              "requesterUserId": "sgm-qa-parent",
+              "parentUserId": "sgm-qa-parent",
+              "childLabel": "Lina QA",
+              "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "childId": "sgm-qa-child-lina",
+              "seats": 1,
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "driverUserId": "sgm-qa-driver",
+              "paymentStatus": "required",
+              "status": "approved",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-booking-requested",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "note": "Rendez-vous devant le stade.",
+              "requesterUserId": "sgm-qa-parent",
+              "parentUserId": "sgm-qa-parent",
+              "childLabel": "Lina QA",
+              "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+              "childId": "sgm-qa-child-lina",
+              "driverUserId": "sgm-qa-driver",
+              "seats": 1,
+              "paymentStatus": "not_required",
+              "status": "requested",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-chat-history",
+            "data": {
+              "note": "Un siege enfant est necessaire.",
+              "requesterUserId": "sgm-qa-parent",
+              "parentUserId": "sgm-qa-parent",
+              "childLabel": "Lina QA",
+              "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "childId": "sgm-qa-child-lina",
+              "seats": 1,
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "driverUserId": "sgm-qa-driver",
+              "paymentStatus": "required",
+              "status": "cancelled",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          }
+        ],
+        "chatInboxes": [
+          {
+            "id": "3d7aa50c33a01aa8da71ede206ea2782354a1093589a6ee6ebbd0a1479a03760",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "schemaVersion": 1,
+              "userId": "sgm-qa-parent",
+              "revision": 240,
+              "unreadCount": 0,
+              "lastMessageId": "sgm-qa-history-120",
+              "lastMessageAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              },
+              "lastMessageBody": "Historique 120",
+              "lastSenderUserId": "sgm-qa-driver"
+            }
+          },
+          {
+            "id": "a0e95be7a7ba35a9866b11557f379f99511f938aa981b278fd1077a1e66ecd57",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-booking-approved",
+              "schemaVersion": 1,
+              "userId": "sgm-qa-parent",
+              "revision": 1,
+              "unreadCount": 1,
+              "lastMessageId": "sgm-qa-chat-booking",
+              "lastMessageAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+              "lastSenderUserId": "sgm-qa-driver"
+            }
+          },
+          {
+            "id": "aa9c8baf6c276cd5734ba2b4e174476df719718158507db9274590349c28ec75",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-booking-approved",
+              "schemaVersion": 1,
+              "userId": "sgm-qa-driver",
+              "revision": 1,
+              "unreadCount": 0,
+              "lastMessageId": "sgm-qa-chat-booking",
+              "lastMessageAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "lastMessageBody": "Bonjour, le point de rendez-vous QA est confirmé.",
+              "lastSenderUserId": "sgm-qa-driver"
+            }
+          },
+          {
+            "id": "e52d1592476a29898149d08e72e62451470dc21292cb2c59f9cc6751a98c2abc",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "schemaVersion": 1,
+              "userId": "sgm-qa-driver",
+              "revision": 120,
+              "unreadCount": 0,
+              "lastMessageId": "sgm-qa-history-120",
+              "lastMessageAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              },
+              "lastMessageBody": "Historique 120",
+              "lastSenderUserId": "sgm-qa-driver"
+            }
+          }
+        ],
+        "childAccountLinks": [
+          {
+            "id": "sgm-qa-team-alert-linked",
+            "data": {
+              "accountUserId": "sgm-qa-team-alert-linked",
+              "childId": "sgm-qa-team-alert-child",
+              "status": "verified"
+            }
+          }
+        ],
+        "children": [
+          {
+            "id": "sgm-qa-child-lina",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "firstName": "Lina",
+              "guardianUserIds": [
+                "sgm-qa-parent"
+              ],
+              "displayName": "Lina QA",
+              "teamId": "sgm-qa-club-green-wavre-u8",
+              "clubId": "sgm-qa-club-green-wavre",
+              "category": "U 7/8",
+              "consent": {
+                "childTracking": true,
+                "guardian": true,
+                "updatedAt": {
+                  "_seconds": 1793523861,
+                  "_nanoseconds": 757000000
+                }
+              },
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-child",
+            "data": {
+              "displayName": "Enfant alertes QA",
+              "guardianUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-team-alert-unverified",
+                "sgm-qa-team-alert-mixed",
+                "sgm-qa-team-alert-linked",
+                "sgm-qa-team-alert-child-profile"
+              ]
+            }
+          }
+        ],
+        "clubs": [
+          {
+            "id": "sgm-qa-club-green-wavre",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "memberCount": 3,
+              "name": "Green Wavre QA Club",
+              "primarySport": "Football",
+              "sport": "Football",
+              "memberInitials": [
+                "HP",
+                "HD",
+                "HC"
+              ],
+              "status": "public",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-native-approve",
+            "data": {
+              "name": "Club adhésion QA",
+              "sport": "Football",
+              "status": "public",
+              "memberCount": 1,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 384000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-native-reject",
+            "data": {
+              "name": "Club nouvelle demande QA",
+              "sport": "Football",
+              "status": "public",
+              "memberCount": 1,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 396000000
+              }
+            }
+          }
+        ],
+        "co2Ledger": [
+          {
+            "id": "sgm-qa-co2-parent",
+            "data": {
+              "sourceId": "sgm-qa-historical-ride",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "distanceMeters": 14000,
+              "rideSessionId": "sgm-qa-historical-ride",
+              "co2SavedKg": 3.2,
+              "type": "rideCompletion",
+              "userId": "sgm-qa-parent"
+            }
+          }
+        ],
+        "guardianVerificationEvents": [
+          {
+            "id": "0daf0153250de5f5bbe108f0b4c550159223b36de17a8045d679419c8e5c9989",
+            "data": {
+              "verificationId": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+              "actorUserId": "sgm-qa-parent",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-parent",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "e94159d2cc55fef06b1c2e8e1341e3bc3ce4dd9af6295a6a1f44f20c9eab932f",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 88000000
+              }
+            }
+          },
+          {
+            "id": "45e7d244948cb67bbe15a8207c76634708008d2025eb9db8b3e13cae3705ea95",
+            "data": {
+              "verificationId": "1461282c9acddf40841013476166fad1ad02185aef9eb3f74fa33671ad580310",
+              "actorUserId": "sgm-qa-club-manager",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-child-profile",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "verify",
+              "previousStatus": "requested",
+              "status": "verified",
+              "revision": 2,
+              "fingerprint": "09002da825ad3006d1e92f39a870ddfd1780b03b8d48b1ab1b881dee1dc4edd3",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 187000000
+              }
+            }
+          },
+          {
+            "id": "5573ca95511109344d199b90ea1dc780ec8e09c44c718885392fe6dc4da68388",
+            "data": {
+              "verificationId": "b0b2896026a63c7238f216f0b00e9f4ce871bddd9805d354e4f3b6e566c194b9",
+              "actorUserId": "sgm-qa-club-manager",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-mixed",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "verify",
+              "previousStatus": "requested",
+              "status": "verified",
+              "revision": 2,
+              "fingerprint": "d0b7b1d9383e016624afa42aae19a2f7462be7af22aec7a0cf679c0c32b2a5b0",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 138000000
+              }
+            }
+          },
+          {
+            "id": "625b75823c3a792e9d39bcee57b0c67a33e6a76b95e8972c37dc2e69018c52db",
+            "data": {
+              "verificationId": "c8e075269862284b06a17d304004e34c7a4f6db9760b323d5de2547ef6ffa620",
+              "actorUserId": "sgm-qa-club-manager",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-linked",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "verify",
+              "previousStatus": "requested",
+              "status": "verified",
+              "revision": 2,
+              "fingerprint": "96896aded6f67b62d2d510bda0ffe096ce0bae13eabc6092739c2a8f4b2821ce",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 163000000
+              }
+            }
+          },
+          {
+            "id": "663091449202c24b841cad8b93976dacb350e8d1babbff645fe9faceab367eb9",
+            "data": {
+              "verificationId": "c8e075269862284b06a17d304004e34c7a4f6db9760b323d5de2547ef6ffa620",
+              "actorUserId": "sgm-qa-team-alert-linked",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-linked",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "3b5725e2bc214a6902c0362d2bfc353b5d3a64da5f7ccbc78016b6222e445444",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 149000000
+              }
+            }
+          },
+          {
+            "id": "7d7b3d5fe1084bffb1a54b055b30f9d55f4eede1d4cfc0e1b005aefd6ff21afa",
+            "data": {
+              "verificationId": "1461282c9acddf40841013476166fad1ad02185aef9eb3f74fa33671ad580310",
+              "actorUserId": "sgm-qa-team-alert-child-profile",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-child-profile",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "22819b2ed52dfbd1229bee0d7b412bff01bdfc0c42ee0725d460c7c5ccfc9f5d",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 174000000
+              }
+            }
+          },
+          {
+            "id": "a4aebc476daa8c7d57a61996b790ef6cccc4e51fe9a33a104cce4217a181bd70",
+            "data": {
+              "verificationId": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+              "actorUserId": "sgm-qa-club-manager",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-parent",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "revoke",
+              "previousStatus": "verified",
+              "status": "revoked",
+              "revision": 3,
+              "fingerprint": "0d0051f71d541d90ef9966c6cb3e76a6b6ab9522eab1ed044204de872a375f31",
+              "createdAt": {
+                "_seconds": 1793524778,
+                "_nanoseconds": 158000000
+              }
+            }
+          },
+          {
+            "id": "b57af593e7ca5a01e0672f15f716cb9f5cb8200dfd8e5eb9e1fdc1b0b0df846f",
+            "data": {
+              "verificationId": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+              "actorUserId": "sgm-qa-club-manager",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-parent",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "verify",
+              "previousStatus": "requested",
+              "status": "verified",
+              "revision": 2,
+              "fingerprint": "86b324e45e6eaf4f964c9990fb8af0c25bfca5cd0c3c9e7eda612035e28f525a",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 110000000
+              }
+            }
+          },
+          {
+            "id": "e10f1c7e12c411b34c8589f3ed5f54e36e91ce2c3998cf880bf7c0f9ab42e6ae",
+            "data": {
+              "verificationId": "b0b2896026a63c7238f216f0b00e9f4ce871bddd9805d354e4f3b6e566c194b9",
+              "actorUserId": "sgm-qa-team-alert-mixed",
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-mixed",
+              "clubId": "sgm-qa-club-green-wavre",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "0e531ee8aba2795cbb46c2e07d16576b7718a83661bc6db1891afc537775ff05",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 123000000
+              }
+            }
+          }
+        ],
+        "guardianVerifications": [
+          {
+            "id": "1461282c9acddf40841013476166fad1ad02185aef9eb3f74fa33671ad580310",
+            "data": {
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-child-profile",
+              "clubId": "sgm-qa-club-green-wavre",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 174000000
+              },
+              "lastActorUserId": "sgm-qa-club-manager",
+              "revision": 2,
+              "status": "verified",
+              "updatedAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 187000000
+              }
+            }
+          },
+          {
+            "id": "b0b2896026a63c7238f216f0b00e9f4ce871bddd9805d354e4f3b6e566c194b9",
+            "data": {
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-mixed",
+              "clubId": "sgm-qa-club-green-wavre",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 123000000
+              },
+              "lastActorUserId": "sgm-qa-club-manager",
+              "revision": 2,
+              "status": "verified",
+              "updatedAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 138000000
+              }
+            }
+          },
+          {
+            "id": "c8e075269862284b06a17d304004e34c7a4f6db9760b323d5de2547ef6ffa620",
+            "data": {
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-team-alert-linked",
+              "clubId": "sgm-qa-club-green-wavre",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 149000000
+              },
+              "lastActorUserId": "sgm-qa-club-manager",
+              "revision": 2,
+              "status": "verified",
+              "updatedAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 163000000
+              }
+            }
+          },
+          {
+            "id": "e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369",
+            "data": {
+              "childId": "sgm-qa-team-alert-child",
+              "parentUserId": "sgm-qa-parent",
+              "clubId": "sgm-qa-club-green-wavre",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 88000000
+              },
+              "lastActorUserId": "sgm-qa-club-manager",
+              "revision": 3,
+              "status": "revoked",
+              "updatedAt": {
+                "_seconds": 1793524778,
+                "_nanoseconds": 158000000
+              }
+            }
+          }
+        ],
+        "memberships": [
+          {
+            "id": "sgm-qa-applicant-admin_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-applicant-admin",
+              "clubId": "sgm-qa-club-green-wavre",
+              "role": "member",
+              "status": "requested",
+              "active": false,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 302000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-approve_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-applicant-approve",
+              "clubId": "sgm-qa-club-green-wavre",
+              "role": "member",
+              "status": "requested",
+              "active": false,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 291000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-reject_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-applicant-reject",
+              "clubId": "sgm-qa-club-green-wavre",
+              "role": "member",
+              "status": "requested",
+              "active": false,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 296000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-responsive_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-applicant-responsive",
+              "clubId": "sgm-qa-club-green-wavre",
+              "role": "member",
+              "status": "requested",
+              "active": false,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 377000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-child-lina_sgm-qa-club-green-wavre",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "guardianUserId": "sgm-qa-parent",
+              "role": "child",
+              "childUserId": "sgm-qa-child-lina",
+              "clubId": "sgm-qa-club-green-wavre",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "userId": "sgm-qa-child-lina",
+              "teamIds": [
+                "sgm-qa-club-green-wavre-u8"
+              ],
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-club-manager_sgm-qa-club-green-wavre",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "role": "clubManager",
+              "clubId": "sgm-qa-club-green-wavre",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "userId": "sgm-qa-club-manager",
+              "teamIds": [
+                "sgm-qa-club-green-wavre-u8"
+              ],
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 728000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-club-manager_sgm-qa-native-approve",
+            "data": {
+              "userId": "sgm-qa-club-manager",
+              "clubId": "sgm-qa-native-approve",
+              "role": "clubManager",
+              "status": "active",
+              "active": true,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 386000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-club-manager_sgm-qa-native-reject",
+            "data": {
+              "userId": "sgm-qa-club-manager",
+              "clubId": "sgm-qa-native-reject",
+              "role": "clubManager",
+              "status": "active",
+              "active": true,
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 399000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-driver_sgm-qa-club-green-wavre",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "role": "driver",
+              "clubId": "sgm-qa-club-green-wavre",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "userId": "sgm-qa-driver",
+              "teamIds": [
+                "sgm-qa-club-green-wavre-u8"
+              ],
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 712000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-parent_sgm-qa-club-green-wavre",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "role": "parent",
+              "clubId": "sgm-qa-club-green-wavre",
+              "approvedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "userId": "sgm-qa-parent",
+              "teamIds": [
+                "sgm-qa-club-green-wavre-u8"
+              ],
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 698000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-adult_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-adult",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 683000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-child-profile_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-child-profile",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 641000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-child_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-child",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 738000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-disabled_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-disabled",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 663000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-linked_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-linked",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 620000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-mixed_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-mixed",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 595000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-unverified_sgm-qa-club-green-wavre",
+            "data": {
+              "userId": "sgm-qa-team-alert-unverified",
+              "clubId": "sgm-qa-club-green-wavre",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 515000000
+              }
+            }
+          }
+        ],
+        "messages": [
+          {
+            "id": "sgm-qa-chat-booking",
+            "data": {
+              "sourceId": "sgm-qa-booking-approved",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "senderUserId": "sgm-qa-driver",
+              "sourceType": "booking",
+              "body": "Bonjour, le point de rendez-vous QA est confirmé.",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-driver"
+              ]
+            }
+          },
+          {
+            "id": "sgm-qa-history-001",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 001",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-002",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 002",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-003",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 003",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-004",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 004",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-005",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 005",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-006",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 006",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-007",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 007",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-008",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 008",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-009",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 009",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-010",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 010",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-011",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 011",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-012",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 012",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-013",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 013",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-014",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 014",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-015",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 015",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-016",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 016",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-017",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 017",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-018",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 018",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-019",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 019",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-020",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 020",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-021",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 021",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-022",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 022",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-023",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 023",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-024",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 024",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-025",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 025",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-026",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 026",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-027",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 027",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-028",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 028",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-029",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 029",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-030",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 030",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-031",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 031",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-032",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 032",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-033",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 033",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-034",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 034",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-035",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 035",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-036",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 036",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-037",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 037",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-038",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 038",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-039",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 039",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-040",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 040",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-041",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 041",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-042",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 042",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-043",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 043",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-044",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 044",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-045",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 045",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-046",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 046",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-047",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 047",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-048",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 048",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-049",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 049",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-050",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 050",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-051",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 051",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-052",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 052",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-053",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 053",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-054",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 054",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-055",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 055",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-056",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 056",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-057",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 057",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-058",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 058",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-059",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 059",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-060",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 060",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-061",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 061",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-062",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 062",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-063",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 063",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-064",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 064",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-065",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 065",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-066",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 066",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-067",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 067",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-068",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 068",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-069",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 069",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-070",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 070",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-071",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 071",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-072",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 072",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-073",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 073",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-074",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 074",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-075",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 075",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-076",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 076",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-077",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 077",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-078",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 078",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-079",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 079",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-080",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 080",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-081",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 081",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-082",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 082",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-083",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 083",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-084",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 084",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-085",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 085",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-086",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 086",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-087",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 087",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-088",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 088",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-089",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 089",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-090",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 090",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-091",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 091",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-092",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 092",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-093",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 093",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-094",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 094",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-095",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 095",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-096",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 096",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-097",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 097",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-098",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 098",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-099",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 099",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-100",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 100",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-101",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 101",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-102",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 102",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-103",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 103",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-104",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 104",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-105",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 105",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-106",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 106",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-107",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 107",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-108",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 108",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-109",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 109",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-110",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 110",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-111",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 111",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-112",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 112",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-113",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 113",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-114",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 114",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-115",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 115",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-116",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 116",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-117",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 117",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-118",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 118",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-119",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 119",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-history-120",
+            "data": {
+              "sourceType": "booking",
+              "sourceId": "sgm-qa-chat-history",
+              "senderUserId": "sgm-qa-driver",
+              "participantUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "readByUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-driver"
+              ],
+              "body": "Historique 120",
+              "createdAt": {
+                "_seconds": 1793437462,
+                "_nanoseconds": 329000000
+              }
+            }
+          }
+        ],
+        "notifications": [
+          {
+            "id": "sgm-qa-parent-booking-approved",
+            "data": {
+              "sourceId": "sgm-qa-booking-approved",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "read": false,
+              "body": "Le conducteur QA a approuvé votre trajet.",
+              "title": "Réservation approuvée",
+              "type": "bookingApproved",
+              "userId": "sgm-qa-parent"
+            }
+          }
+        ],
+        "reports": [
+          {
+            "id": "sgm-qa-support-review",
+            "data": {
+              "reporterUserId": "sgm-qa-parent",
+              "subjectType": "other",
+              "reason": "Local QA support",
+              "description": "Isolated local support processing test",
+              "status": "open",
+              "createdAt": {
+                "_seconds": 1793523862,
+                "_nanoseconds": 284000000
+              }
+            }
+          }
+        ],
+        "rewardLedger": [
+          {
+            "id": "sgm-qa-reward-driver",
+            "data": {
+              "sourceId": "sgm-qa-historical-ride",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "amountCents": 250,
+              "rideSessionId": "sgm-qa-historical-ride",
+              "currency": "eur",
+              "type": "co2Bonus",
+              "userId": "sgm-qa-driver"
+            }
+          }
+        ],
+        "teamChatNotifications": [
+          {
+            "id": "teamChat_4f8e8a6490b81ba023470431d3a3998c4b6cf5e2e329b75b976b61eb175bff4d",
+            "data": {
+              "type": "teamMessage",
+              "title": "Nouveau message d’équipe",
+              "body": "Un nouveau message est disponible dans votre équipe.",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+              "userId": "sgm-qa-team-alert-adult",
+              "read": false,
+              "createdAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              },
+              "messageCreatedAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              }
+            }
+          },
+          {
+            "id": "teamChat_860f514acc74e9691e058d05385d79d64980b98ccaba734c457d2694897ed27e",
+            "data": {
+              "type": "teamMessage",
+              "title": "Nouveau message d’équipe",
+              "body": "Un nouveau message est disponible dans votre équipe.",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+              "userId": "sgm-qa-parent",
+              "createdAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              },
+              "messageCreatedAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              },
+              "read": true,
+              "readAt": {
+                "_seconds": 1793524747,
+                "_nanoseconds": 635000000
+              }
+            }
+          }
+        ],
+        "teamConversations": [
+          {
+            "id": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+            "data": {
+              "teamId": "sgm-qa-team-alerts",
+              "clubId": "sgm-qa-club-green-wavre",
+              "lastSequence": 1,
+              "updatedAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              }
+            }
+          }
+        ],
+        "teamEnrollmentEvents": [
+          {
+            "id": "1d600cceba14dc2d329223837d4d90daa3b8f219d6e42e7d965a9ac12f550555",
+            "data": {
+              "enrollmentId": "129652036a0ca49c30c37eda1032ce9c82967365001b7877202840403ebf2b83",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "child",
+              "subjectId": "sgm-qa-team-alert-child",
+              "requesterUserId": "sgm-qa-parent",
+              "actorUserId": "sgm-qa-parent",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "054ccb7a6779cf751c39754ccbc32d95fcd48a2b6e8a1b63e02a112a5a1f16cc",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 248000000
+              }
+            }
+          },
+          {
+            "id": "26927a1889e7b75c7d99a852f0aba5c3383bcded17c0efebef8da8c344816a28",
+            "data": {
+              "enrollmentId": "3225eab48c15d392a4fb4ffc50ae868f03d3450264cc0280596eaaa68325a468",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-adult",
+              "requesterUserId": "sgm-qa-team-alert-adult",
+              "actorUserId": "sgm-qa-club-manager",
+              "action": "approve",
+              "previousStatus": "requested",
+              "status": "approved",
+              "revision": 2,
+              "fingerprint": "abae06becf9f45db0b8f4a1d9c8d947a3718f0a628d2d818adcf3aff9e153913",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 237000000
+              }
+            }
+          },
+          {
+            "id": "843519b65a3f808fcce4b885a09880cead1a16052abd8718093a04e28872ca61",
+            "data": {
+              "enrollmentId": "33d69ff247cc9c1c9087c9763fbe0e89a4f92deca99e0f72a8f7f32c8f72b55d",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-disabled",
+              "requesterUserId": "sgm-qa-team-alert-disabled",
+              "actorUserId": "sgm-qa-team-alert-disabled",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "c3c9887485b35f8d0fbba147672b282b1ead39b01b8d85e76a3ef3b3048d0c09",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 274000000
+              }
+            }
+          },
+          {
+            "id": "b0b2d6220339d9a3dba2166cb6e9af0313cd3179f08b6a2bc51318716d54d34f",
+            "data": {
+              "enrollmentId": "57b204641617273cc5bb64e13d4aab3e19594ba56abd8f731ba49b448f48480a",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-driver",
+              "requesterUserId": "sgm-qa-driver",
+              "actorUserId": "sgm-qa-club-manager",
+              "action": "approve",
+              "previousStatus": "requested",
+              "status": "approved",
+              "revision": 2,
+              "fingerprint": "36c77838d1114809df6843c93aaf444586a75bc7f76f043dcf7251d109bcf12c",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 164000000
+              }
+            }
+          },
+          {
+            "id": "c6c174319c76c8e3d61c793cc1e6d6bea344c2588c1b0a2035e82e2a93d453a8",
+            "data": {
+              "enrollmentId": "129652036a0ca49c30c37eda1032ce9c82967365001b7877202840403ebf2b83",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "child",
+              "subjectId": "sgm-qa-team-alert-child",
+              "requesterUserId": "sgm-qa-parent",
+              "actorUserId": "sgm-qa-club-manager",
+              "action": "approve",
+              "previousStatus": "requested",
+              "status": "approved",
+              "revision": 2,
+              "fingerprint": "0d54128b159b28e83d98d235f1da375113015836248b00a47ae5d972aca0a859",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 270000000
+              }
+            }
+          },
+          {
+            "id": "cf9e158023a410642bb73e353dcf15ab312b19656371f239274308507a23ca27",
+            "data": {
+              "enrollmentId": "3225eab48c15d392a4fb4ffc50ae868f03d3450264cc0280596eaaa68325a468",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-adult",
+              "requesterUserId": "sgm-qa-team-alert-adult",
+              "actorUserId": "sgm-qa-team-alert-adult",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "0eefe120c07904218cd19da452d9bc24d9bc8ceb1530a90e5ac966eb056ba121",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 213000000
+              }
+            }
+          },
+          {
+            "id": "fb7c9c09686768768284d9cee35b1a947e4578a5242917ebcc843a805d3b3d3f",
+            "data": {
+              "enrollmentId": "57b204641617273cc5bb64e13d4aab3e19594ba56abd8f731ba49b448f48480a",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-driver",
+              "requesterUserId": "sgm-qa-driver",
+              "actorUserId": "sgm-qa-driver",
+              "action": "request",
+              "previousStatus": null,
+              "status": "requested",
+              "revision": 1,
+              "fingerprint": "994feccb28d9a86419d28796011904b60d1053d78845b22f68854f8d75f2db79",
+              "createdAt": {
+                "_seconds": 1793523930,
+                "_nanoseconds": 348000000
+              }
+            }
+          },
+          {
+            "id": "ff74d646cd83b062c7244b9cfa1f01e4921b32a25748a3e8d052fafb6fd613ff",
+            "data": {
+              "enrollmentId": "33d69ff247cc9c1c9087c9763fbe0e89a4f92deca99e0f72a8f7f32c8f72b55d",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-disabled",
+              "requesterUserId": "sgm-qa-team-alert-disabled",
+              "actorUserId": "sgm-qa-club-manager",
+              "action": "approve",
+              "previousStatus": "requested",
+              "status": "approved",
+              "revision": 2,
+              "fingerprint": "ff76808a22bf35f2246a3b02ef3abcaa201770f4962c929747fcecbda4abfbb6",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 295000000
+              }
+            }
+          }
+        ],
+        "teamEnrollments": [
+          {
+            "id": "129652036a0ca49c30c37eda1032ce9c82967365001b7877202840403ebf2b83",
+            "data": {
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "teamCreatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 734394000
+              },
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "child",
+              "subjectId": "sgm-qa-team-alert-child",
+              "childCreatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 737060000
+              },
+              "requesterUserId": "sgm-qa-parent",
+              "status": "approved",
+              "revision": 2,
+              "lastActorUserId": "sgm-qa-club-manager",
+              "createdAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 248000000
+              },
+              "updatedAt": {
+                "_seconds": 1793523932,
+                "_nanoseconds": 270000000
+              }
+            }
+          },
+          {
+            "id": "3225eab48c15d392a4fb4ffc50ae868f03d3450264cc0280596eaaa68325a468",
+            "data": {
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "teamCreatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 734394000
+              },
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-adult",
+              "childCreatedAt": null,
+              "requesterUserId": "sgm-qa-team-alert-adult",
+              "status": "approved",
+              "revision": 2,
+              "lastActorUserId": "sgm-qa-club-manager",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 213000000
+              },
+              "updatedAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 237000000
+              }
+            }
+          },
+          {
+            "id": "33d69ff247cc9c1c9087c9763fbe0e89a4f92deca99e0f72a8f7f32c8f72b55d",
+            "data": {
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "teamCreatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 734394000
+              },
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-team-alert-disabled",
+              "childCreatedAt": null,
+              "requesterUserId": "sgm-qa-team-alert-disabled",
+              "status": "approved",
+              "revision": 2,
+              "lastActorUserId": "sgm-qa-club-manager",
+              "createdAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 274000000
+              },
+              "updatedAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 295000000
+              }
+            }
+          },
+          {
+            "id": "57b204641617273cc5bb64e13d4aab3e19594ba56abd8f731ba49b448f48480a",
+            "data": {
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "teamCreatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 734394000
+              },
+              "clubId": "sgm-qa-club-green-wavre",
+              "subjectKind": "member",
+              "subjectId": "sgm-qa-driver",
+              "childCreatedAt": null,
+              "requesterUserId": "sgm-qa-driver",
+              "status": "approved",
+              "revision": 2,
+              "lastActorUserId": "sgm-qa-club-manager",
+              "createdAt": {
+                "_seconds": 1793523930,
+                "_nanoseconds": 348000000
+              },
+              "updatedAt": {
+                "_seconds": 1793523931,
+                "_nanoseconds": 164000000
+              }
+            }
+          }
+        ],
+        "teamMessageOperations": [
+          {
+            "id": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+            "data": {
+              "actorUserId": "sgm-qa-driver",
+              "fingerprint": "1a5d91a5fbba1f6af5ba06e5277dac5efe8ad5d423309a3190a8d088843a95ad",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "createdAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              }
+            }
+          }
+        ],
+        "teamPushOutbox": [
+          {
+            "id": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+            "data": {
+              "schemaVersion": 1,
+              "status": "pending",
+              "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+              "teamId": "sgm-qa-team-alerts",
+              "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+              "recipientUserIds": [
+                "sgm-qa-parent",
+                "sgm-qa-team-alert-adult"
+              ],
+              "createdAt": {
+                "_seconds": 1793524711,
+                "_nanoseconds": 633000000
+              }
+            }
+          }
+        ],
+        "teams": [
+          {
+            "id": "sgm-qa-club-green-wavre-u8",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "name": "U 7/8 QA",
+              "clubId": "sgm-qa-club-green-wavre",
+              "category": "U 7/8",
+              "status": "active",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alerts",
+            "data": {
+              "clubId": "sgm-qa-club-green-wavre",
+              "name": "Equipe alertes QA",
+              "status": "active"
+            }
+          }
+        ],
+        "trips": [
+          {
+            "id": "QV8ZayQCUISli1tAtMyO",
+            "data": {
+              "id": "QV8ZayQCUISli1tAtMyO",
+              "driverUserId": "sgm-qa-driver",
+              "status": "published",
+              "title": "Trajet QA deux places",
+              "sport": "Football",
+              "clubName": "Green Wavre QA Club",
+              "clubId": "sgm-qa-club-green-wavre",
+              "teamId": "sgm-qa-club-green-wavre-u8",
+              "category": "U 7/8",
+              "departureAt": "2026-11-02T21:04:22.649Z",
+              "origin": {
+                "lat": 50.7167,
+                "lng": 4.6167
+              },
+              "destination": {
+                "lat": 50.8503,
+                "lng": 4.3517
+              },
+              "pickupRadiusM": 1500,
+              "seatsTotal": 4,
+              "seatsAvailable": 4,
+              "baggage": "medium",
+              "returnTrip": false,
+              "priceCents": 0,
+              "driverRating": 0,
+              "driverVerified": true,
+              "supportsVehicleTracking": true,
+              "supportsChildTracking": true,
+              "co2SavedKgEstimate": 7.4,
+              "passengerInitials": [],
+              "blockedUserIds": [],
+              "createdAt": {
+                "_seconds": 1793523863,
+                "_nanoseconds": 639000000
+              },
+              "updatedAt": {
+                "_seconds": 1793523863,
+                "_nanoseconds": 639000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-trip-u8-wavre-bruxelles",
+            "data": {
+              "teamName": "U 7/8 QA",
+              "co2SavedKgEstimate": 7.4,
+              "returnTrip": true,
+              "passengerInitials": [
+                "LQ"
+              ],
+              "baggage": "medium",
+              "clubName": "Green Wavre QA Club",
+              "origin": {
+                "lng": 4.6167,
+                "lat": 50.7167
+              },
+              "destination": {
+                "lng": 4.3517,
+                "lat": 50.8503
+              },
+              "distanceKm": 28.6,
+              "pickupRadiusM": 1500,
+              "regionGeohash": "u15",
+              "supportsChildTracking": true,
+              "title": "U 7/8 · Green Wavre QA Club",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "driverRating": 4.8,
+              "supportsVehicleTracking": true,
+              "driverUserId": "sgm-qa-driver",
+              "updatedAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "driverVerified": true,
+              "blockedUserIds": [],
+              "arrivalBy": {
+                "_seconds": 1793657961,
+                "_nanoseconds": 757000000
+              },
+              "seatsTotal": 4,
+              "clubId": "sgm-qa-club-green-wavre",
+              "seatsAvailable": 2,
+              "departureAt": {
+                "_seconds": 1793653461,
+                "_nanoseconds": 757000000
+              },
+              "teamId": "sgm-qa-club-green-wavre-u8",
+              "priceCents": 350,
+              "category": "U 7/8",
+              "sport": "Football",
+              "status": "published"
+            }
+          }
+        ],
+        "users": [
+          {
+            "id": "sgm-qa-admin",
+            "data": {
+              "displayName": "Local QA Admin",
+              "email": "admin@example.test",
+              "roles": {
+                "admin": true
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-admin",
+            "data": {
+              "displayName": "Jordan QA"
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-approve",
+            "data": {
+              "displayName": "Camille QA"
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-reject",
+            "data": {
+              "displayName": "Alex QA"
+            }
+          },
+          {
+            "id": "sgm-qa-applicant-responsive",
+            "data": {
+              "displayName": "Robin QA"
+            }
+          },
+          {
+            "id": "sgm-qa-club-manager",
+            "data": {
+              "driverVerified": false,
+              "stripeStatus": null,
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "displayName": "Hermes Club QA",
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "child": false,
+                "clubManager": true
+              },
+              "verified": true,
+              "email": "c@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 723000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-driver",
+            "data": {
+              "driverVerified": true,
+              "stripeStatus": "test_ready",
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "displayName": "Hermes Driver QA",
+              "roles": {
+                "parent": true,
+                "driver": true,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "verified": true,
+              "email": "d@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 709000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-outsider",
+            "data": {
+              "displayName": "Visiteur QA",
+              "roles": {
+                "parent": true
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-parent",
+            "data": {
+              "driverVerified": false,
+              "stripeStatus": null,
+              "createdAt": {
+                "_seconds": 1793523861,
+                "_nanoseconds": 757000000
+              },
+              "displayName": "Hermes Parent QA",
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "verified": true,
+              "email": "p@example.test"
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-adult",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 680000000
+              },
+              "roles": {
+                "parent": false,
+                "driver": true,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "email": "adult-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 680000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-child-profile",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 637000000
+              },
+              "email": "child-profile-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 637000000
+              },
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "clubManager": false,
+                "child": true
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-disabled",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 658000000
+              },
+              "roles": {
+                "parent": false,
+                "driver": true,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "email": "disabled-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 658000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-linked",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 613000000
+              },
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "email": "linked-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 613000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-mixed",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 591000000
+              },
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "email": "mixed-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 591000000
+              }
+            }
+          },
+          {
+            "id": "sgm-qa-team-alert-unverified",
+            "data": {
+              "createdAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 500000000
+              },
+              "roles": {
+                "parent": true,
+                "driver": false,
+                "admin": false,
+                "child": false,
+                "clubManager": false
+              },
+              "email": "unverified-team-alert@example.test",
+              "updatedAt": {
+                "_seconds": 1793523928,
+                "_nanoseconds": 500000000
+              }
+            }
+          }
+        ]
+      },
+      "claims": [
+        {
+          "uid": "sgm-qa-admin",
+          "claims": {
+            "roleKeys": [
+              "admin"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-club-manager",
+          "claims": {
+            "roleKeys": [
+              "clubManager",
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-driver",
+          "claims": {
+            "roleKeys": [
+              "driver",
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-outsider",
+          "claims": {
+            "roleKeys": [
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-parent",
+          "claims": {
+            "roleKeys": [
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-adult",
+          "claims": {
+            "roleKeys": [
+              "driver"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-child-profile",
+          "claims": {
+            "roleKeys": [
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-disabled",
+          "claims": {
+            "roleKeys": [
+              "driver"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-linked",
+          "claims": {
+            "roleKeys": [
+              "parent"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-mixed",
+          "claims": {
+            "roleKeys": [
+              "parent",
+              "child"
+            ]
+          }
+        },
+        {
+          "uid": "sgm-qa-team-alert-unverified",
+          "claims": {
+            "roleKeys": [
+              "parent"
+            ]
+          }
+        }
+      ],
+      "liveTrips": null
+    },
+    "disabled": [
+      {
+        "uid": "sgm-qa-admin",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-club-manager",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-driver",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-outsider",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-parent",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-team-alert-adult",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-team-alert-child-profile",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-team-alert-disabled",
+        "disabled": true
+      },
+      {
+        "uid": "sgm-qa-team-alert-linked",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-team-alert-mixed",
+        "disabled": false
+      },
+      {
+        "uid": "sgm-qa-team-alert-unverified",
+        "disabled": false
+      }
+    ],
+    "guardian": {
+      "status": "revoked",
+      "revision": 3
+    },
+    "parentInbox": {
+      "userId": "sgm-qa-parent",
+      "notifications": [
+        {
+          "id": "sgm-qa-parent-booking-approved",
+          "title": "Réservation approuvée",
+          "body": "Le conducteur QA a approuvé votre trajet.",
+          "dateLabel": "01-11-2026",
+          "unread": true,
+          "initials": "RA"
+        }
+      ]
+    },
+    "otherInbox": {
+      "userId": "sgm-qa-team-alert-adult",
+      "notifications": [
+        {
+          "id": "teamChat_4f8e8a6490b81ba023470431d3a3998c4b6cf5e2e329b75b976b61eb175bff4d",
+          "title": "Nouveau message d’équipe",
+          "body": "Un nouveau message est disponible dans votre équipe.",
+          "dateLabel": "01-11-2026",
+          "unread": true,
+          "initials": "NM"
+        }
+      ]
+    },
+    "messages": [
+      {
+        "id": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Message pour vérifier l’arrivée de l’alerte QA",
+        "clientMessageId": "7691d378-ceaf-4668-8262-5f3b49f9cf3b",
+        "sequence": 1,
+        "createdAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "actorUserId": "sgm-qa-driver",
+        "fingerprint": "1a5d91a5fbba1f6af5ba06e5277dac5efe8ad5d423309a3190a8d088843a95ad",
+        "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+        "createdAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        }
+      }
+    ],
+    "alerts": [
+      {
+        "id": "teamChat_4f8e8a6490b81ba023470431d3a3998c4b6cf5e2e329b75b976b61eb175bff4d",
+        "type": "teamMessage",
+        "title": "Nouveau message d’équipe",
+        "body": "Un nouveau message est disponible dans votre équipe.",
+        "teamId": "sgm-qa-team-alerts",
+        "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+        "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "userId": "sgm-qa-team-alert-adult",
+        "read": false,
+        "createdAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        },
+        "messageCreatedAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        }
+      },
+      {
+        "id": "teamChat_860f514acc74e9691e058d05385d79d64980b98ccaba734c457d2694897ed27e",
+        "type": "teamMessage",
+        "title": "Nouveau message d’équipe",
+        "body": "Un nouveau message est disponible dans votre équipe.",
+        "teamId": "sgm-qa-team-alerts",
+        "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+        "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "userId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        },
+        "messageCreatedAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        },
+        "read": true,
+        "readAt": {
+          "_seconds": 1793524747,
+          "_nanoseconds": 635000000
+        }
+      }
+    ],
+    "envelopes": [
+      {
+        "id": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "schemaVersion": 1,
+        "status": "pending",
+        "messageId": "fb8188128d70c36c17a2fb5a049882d6e51a3c4751acec4068e6a25971001ec6",
+        "teamId": "sgm-qa-team-alerts",
+        "teamInstanceId": "538a1a7e0b68cb78695e8126973064c02e6bcc35411d6744cc5189ac5c757060",
+        "recipientUserIds": [
+          "sgm-qa-parent",
+          "sgm-qa-team-alert-adult"
+        ],
+        "createdAt": {
+          "_seconds": 1793524711,
+          "_nanoseconds": 633000000
+        }
+      }
+    ],
+    "readReceipts": []
+  },
+  "check": {
+    "id": "revoked",
+    "status": "passed",
+    "protectedRecordCount": 197,
+    "originalClaimsAndDisabledStatesUnchanged": true,
+    "liveTripsUnchanged": true,
+    "teamMessageReadReceipts": 0,
+    "phoneUiProven": false,
+    "pushDeliveryVerified": false
+  }
+}

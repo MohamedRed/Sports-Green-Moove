@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "a37cdbf263642d2a9a26a0af3cf2b0363886bb97",
+  "scope": "controlled-actual-app-search-negative-reproduction",
+  "result": "not-accepted",
+  "staleResponseRestorations": 22,
+  "callbacksMissingAccountLease": 24,
+  "resultFile": "baseline-result.txt",
+  "resultSha256": "0c2d292d156ec45935cba174027b6c804835885a2dd1f0828dec08ecfd380927",
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "nativeUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false
+}

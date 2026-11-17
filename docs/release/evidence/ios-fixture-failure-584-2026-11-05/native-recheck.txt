@@ -1,0 +1,82 @@
+PlaceSearchWireChecks passed: 21 malformed input/response groups; exact coordinates, boolean/nonfinite denial, required labels, duplicate rejection and no guessed address
+Current owned search passed: current address selection, undisplayed denial, exact two-seat child booking, changed-form denial, closed-screen denial and old-view/new-owner isolation
+SearchOwnershipChecks passed: 90 delayed address/detail/match success/error cases; account/role generations, close, background, cancellation, duplicate exclusion and actual callback drainage
+RideChatWireChecks passed: opaque byte identities, exact bodies, safe numbers, nullable names, source ownership, request/receipt correlation and source-policy parity; no SDK or phone
+RideChatDirectoryWireChecks passed: 23 malformed directory/booking groups, exact owner-derived indexes, nullable metadata and empty scanned continuation
+RideChatTimelineChecks passed: fifty-row windows, 152-message gap closure, complete directory pagination, read monotonicity, immutable rows, authoritative deletion and revision/cursor denial
+RideChatStorageChecks passed: recreated/account/source-kind isolation, byte-exact acknowledgement, immutable pending UUID, lost-receipt reconciliation, late success, corrupt/oversized/symlink denial; no volatile fallback
+RideChatStateChecks passed: fresh-grant-only drafts, edit during reads, full earlier history, visible-only read/explicit retry, persisted stable send, uncertain retry, reopen and revocation cleanup
+RideChatDirectoryChecks passed: fresh source before display, revocation during pending RPC, no resurrection, exact complete-only unread total, multi-page and empty booking continuation
+RideChatBoundaryChecks passed: 84 delayed open/history/send/read/directory/booking success/error cases across lifecycle, account/role generations and cancellation; actual callback drainage
+ProfileCityWireChecks passed: 3 persisted states, 19 malformed/foreign/noncanonical records, 9 unsafe inputs, 3 malformed envelopes and 4 invalid writes; exact null, UUID and revision payloads
+ProfileCityStateChecks passed: normalized save/removal, exact receipt, immutable unknown-write retry, failed/fresh resolution, malformed typed replies, revision exhaustion and closed-view denial; controlled gateways only
+ProfileCityBoundaryChecks passed: 32 delayed read/save success/error boundaries across account/role generations, close, background and cancellation; no stale restoration, duplicate requests or early lease release
+MembershipWireChecks passed: 8 membership-status combinations, 29 malformed/foreign identity, action, receipt, request and pagination groups; exact versioned decisions and empty-page continuation
+MembershipReviewStateChecks passed: approval/rejection readback, exact displayed version, foreign receipt lock, current authority reload, private-data scrubbing and non-manager/child denial
+MembershipStateChecks passed: real-readback-only request state, unknown/foreign receipt lock, explicit recovery, re-request, fresh active state, empty continuation and closed-view denial; controlled gateways only
+MembershipBoundaryChecks passed: 128 delayed catalog/request/review-list/decision success/error cases across account/role generations, close, background and cancellation; no stale restoration, duplicate work or premature lease release
+ReceivedRatingsWireChecks passed: 3 valid aggregates, 20 malformed/foreign aggregate groups, 3 invalid envelopes and empty-account denial
+ReceivedRatingsStateChecks passed: explicit refresh, foreign/invalid denial, empty recovery, foreground reload and 16 delayed success/error account/role/lifecycle/cancellation boundaries; controlled gateways only
+Ledger summary wire checks passed; no iOS UI or provider integration implied.
+EmergencyContactWireChecks passed: 22 malformed wire cases rejected; strict phone/name and immutable child identity checks
+EmergencyContactBoundaryChecks passed: 36 delayed read/write/dial success/error boundaries; same-UID, account/role ABA, background, close and cancellation
+EmergencyPhoneCompletionChecks passed: 6 late controlled opener cNative shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=start, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=upload, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+Native shutdown reproduction: mode=both, pending=true, authenticationCalls=0
+Ride logout reproduction: restored=false, calls=start-ride
+Publish logout reproduction: restoredNotice=false
+allbacks; no actual URL opened or call placed
+EmergencyContactChecks passed: review/cancel/save/remove, lost reply without resend, changed contact second tap, unavailable phone and private lifecycle; controlled gateways only
+GuardianContactBoundaryChecks passed: 24 delayed refresh/more success/error boundaries; busy selection, same-UID/account/role changes, close, background and cancellation
+ParentEmergencyContactChecks passed: exact verified target, immutable child write, reviewed save/removal, private lifecycle, authority failure and manager-role denial; controlled gateway only
+GuardianContactChecks passed: 14 malformed page cases, strict cursors, twenty-row continuation, verified-only targets, redaction and exact selection; controlled gateways only
+EmergencyContactRequestChecks passed: 10 exact request variants and 10 invalid inputs; Sendable request values, fresh payloads, immutable save/removal identity; no SDK or device request
+Team read/storage checks passed: visible incoming IDs only, no implicit read retry, explicit recovery, unknown-write preservation, denied authority scrubbing and child/admin rejection
+TeamChatStateChecks passed: authorized draft restore, stable-ID explicit retry, lost-receipt read reconciliation, first/retried rejection, exact body and private background state; controlled gateways only
+TeamChatEditingChecks: 12 exact-body read/input boundaries passed; no phone or provider
+TeamChatBoundaryChecks passed: 96 delayed directory/latest/earlier/send/read success/error cases; account/role generations, close, background, cancellation, duplicate denial and actual callback drainage
+TeamChatTimelineChecks passed: overlapping and disconnected heads, multi-page gap closure, full older history, authoritative contraction/empty history, immutable rows and cursor-cycle rejection
+TeamChatDirectoryChecks passed: empty-page continuation, exact/redacted choice handling, closed-view denial, duplicate failure and child/admin role rejection
+TeamChatRequestChecks passed: 18 directory/receipt/read/request groups rejected; stable write identity, exact visible-read batch and explicit null/cursor semantics
+TeamChatWireChecks passed: 32 malformed page/message groups rejected and 6 server JSON/hash identity vectors; exact account, team instance, admission, timestamps, boolean and message identity contracts
+Team admission checks passed: storage gated by fresh authority, full history replacement on admission change, earlier-page version rejection and mixed child-role denial
+TeamChatStorageChecks passed: account/team-instance file isolation, store recreation, immutable pending writes, atomic rejected release, exact acknowledgement, corrupt/oversized denial and no volatile fallback
+LocationShutdownChecks passed: 6 delayed start/upload states, all five login paths, repeated/cancelled cleanup, SDK failure and role-change admission
+TripDateLabelChecks passed: 30 date/time pairs across 3 device timezones
+Search consent checks passed: explicit consent, selection reset, response ordering and booking context
+Search app-state checks passed: pre-call consent, revoked work, gateway failure and account isolation; no provider configured
+Fixture publication seed: driver=true, origin=true, destination=true
+UI fixture ownership checks passed: thirteen established route owners and actual second-child/two-seat booking confirmation; no native screen or provider
+App-data refresh checks passed: seven logout boundaries, atomic snapshots, account/role ABA, latest request, cancellation and retry; isolated gateways only
+Authentication ownership checks passed: serialized intents, late provider mutation cleanup, cancellation, storage failure and explicit retry; isolated gateways only
+Location ownership checks passed: exact ride, pending start/upload drain and old-generation denial; no device or network used
+Ride lifecycle checks passed: 72 delayed startup boundaries, permission revocation, passenger/end isolation, local stops, duplicate denial and explicit retry; isolated services only
+Account work checks passed: explicit identity, generation isolationPayment logout reproduction: restoredNotice=false, followups=0
+Booking logout reproduction: action=request, restoredNotice=false, followups=0
+Booking logout reproduction: action=approve, restoredNotice=false, followups=0
+, old-work drain, parallel ownership and cancelled intent; local state only
+Publication ownership checks passed: 42 delayed success/error boundaries, account/role ABA, closed view and cancellation; synthetic gateways only
+Profile initialization checks passed: strict identity/roles, child-only authority, signup name, delayed preparation cleanup and authorized role selection; isolated gateways only
+Logout intent checks passed: atomic file recreation, interrupted provider identity refusal, explicit login and corrupt-policy denial; no native process-death proof
+RidePaymentChecks passed
+Payment boundaries passed: 24 delayed preparation/status success/error cases; no SDK presentation or payment requests
+Current payment checks passed: five correlated states, duplicate exclusion, error and explicit retry
+Ride payment ownership checks passed; synthetic status gateway only
+Payment screen checks passed: 28 delayed onboarding success/error boundaries; stale view actions, secure URLs, duplicate exclusion and explicit retry; synthetic gateways, no browser opened
+Booking boundaries passed: 24 delayed request/approval success/error cases; immutable account and role generations, cancellation, duplicate denial and drain
+Current booking checks passed: explicit retry, unrelated loading preservation, stale-screen and role denial, strict approval status and captured displayed trip
+Booking ownership checks passed; synthetic gateways only
+SupportChecks passed
+SupportStateChecks passed
+SupportSubmissionChecks passed: persistence, explicit retry, immutability, account isolation, bound receipts and fail-closed storage
+PendingReviewChecks passed
+Current messages passed: exact displayed review, pagination, invalid/unshown denial, acknowledged suppression, explicit refresh, unknown-write denial and malformed/foreign receipt rejection
+MessagesInboxChecks passed: 42 delayed inbox/page/rating success/error boundaries; exact account generations, lifecycle, cancellation, duplicate denial and drainage
+SportsGreenMooveNativeChecks passed
+Membership fixture state passed: approve, original fixture gateway and production review state; not hit testing or a phone
+Membership fixture state passed: reject, original fixture gateway and production review state; not hit testing or a phone
+RideChatAdapterRuntimeChecks passed: 11 actual thread adapter invalidations plus inbox source removal; cache/pending rejection, current-set authority, late callbacks and idempotent listener/auth cleanup; scripted SDK only, no SDK binary/provider/phone
+OwnedPlacesAdapterChecks passed: 15 actual address/approval success/error/identity/cancellation cases and four pre-call denials; scripted callback boundary only, no SDK binary, map service, booking storage write or phone

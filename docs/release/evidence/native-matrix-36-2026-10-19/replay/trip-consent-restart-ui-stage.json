@@ -1,0 +1,106 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+  "testedAt": "2026-10-19T11:18:03.201Z",
+  "recordType": "native-trip-consent-restart-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "nativeCaseCount": 2,
+  "steps": [
+    {
+      "id": "trip-consent-process-restart-ui",
+      "status": "passed"
+    }
+  ],
+  "tripId": "ndy4j595kia9NGTnUG5Y",
+  "bookingId": "SmxDucKrJ1Jorlrl8OkG",
+  "proposalId": "43e2b7a65c72d6299271f0bf2bdd1eb0f6de276891832397fa952ad221cceef7",
+  "native": {
+    "before": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+      "scope": "native-ui-confirmed-trip-consent-restart-stage",
+      "stage": "before",
+      "tripId": "ndy4j595kia9NGTnUG5Y",
+      "bookingId": "SmxDucKrJ1Jorlrl8OkG",
+      "actorUserId": "sgm-qa-parent",
+      "processId": 10492,
+      "completed": true,
+      "proposalId": "43e2b7a65c72d6299271f0bf2bdd1eb0f6de276891832397fa952ad221cceef7",
+      "parentConfirmed": true,
+      "notApplied": true
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 10492,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+      "scope": "native-ui-confirmed-trip-consent-restart-stage",
+      "stage": "after",
+      "tripId": "ndy4j595kia9NGTnUG5Y",
+      "bookingId": "SmxDucKrJ1Jorlrl8OkG",
+      "actorUserId": "sgm-qa-parent",
+      "processId": 10662,
+      "completed": true,
+      "sessionRestoredWithoutLogin": true,
+      "originalProposalRestored": true,
+      "parentDecisionRestored": true,
+      "duplicateDecisionActionsAbsent": true,
+      "explicitRefreshRestored": true,
+      "driverSawSameConsent": true,
+      "notApplied": true,
+      "proposalId": "43e2b7a65c72d6299271f0bf2bdd1eb0f6de276891832397fa952ad221cceef7",
+      "endedAsUserId": "sgm-qa-driver"
+    }
+  },
+  "checkpoint": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+    "tripId": "ndy4j595kia9NGTnUG5Y",
+    "bookingId": "SmxDucKrJ1Jorlrl8OkG",
+    "scope": "persisted-confirmed-trip-consent-before-process-boundary",
+    "proposalId": "43e2b7a65c72d6299271f0bf2bdd1eb0f6de276891832397fa952ad221cceef7",
+    "decisionCount": 1,
+    "notificationCount": 3,
+    "hashes": {
+      "trip": "580c812cd475ba9d91960e14cc98677290164475a639dd1dff1f6770d1686ee7",
+      "booking": "a6ea6c83085213698ae0e081fa8067a00a73b36881df5733d515a8619ac92af6",
+      "proposal": "605d6f9390c9a3d0651bd890a3ed7eaf1bc2424ef7b510d0e2b762bf9753f9de",
+      "notifications": "a323ccfd27cfdca6ae15fe66a35d508c5d5a4a09856a3052d0181653c8680588"
+    }
+  },
+  "persisted": {
+    "proposalId": "43e2b7a65c72d6299271f0bf2bdd1eb0f6de276891832397fa952ad221cceef7",
+    "decisionCount": 1,
+    "notificationCount": 3,
+    "hashes": {
+      "trip": "580c812cd475ba9d91960e14cc98677290164475a639dd1dff1f6770d1686ee7",
+      "booking": "a6ea6c83085213698ae0e081fa8067a00a73b36881df5733d515a8619ac92af6",
+      "proposal": "605d6f9390c9a3d0651bd890a3ed7eaf1bc2424ef7b510d0e2b762bf9753f9de",
+      "notifications": "a323ccfd27cfdca6ae15fe66a35d508c5d5a4a09856a3052d0181653c8680588"
+    }
+  },
+  "captureFiles": [
+    "local-trip-consent-restart-before.png",
+    "local-trip-consent-restart-after.png",
+    "local-trip-consent-restart-driver.png"
+  ],
+  "originalDecisionAndNoticesUnchanged": true,
+  "tripAndBookingUnchanged": true,
+  "parentViewScoped": true,
+  "outsiderDenied": true,
+  "unappliedTripStartDenied": true,
+  "applicationExercised": false,
+  "routeProviderExercised": false,
+  "paymentExercised": false,
+  "fullAppReplay": false,
+  "limitation": "Confirmed single-parent price consent after process death only; no pending/refused/withdrawn proposal recovery, unsent drafts, application, route, real payment or physical-device proof."
+}

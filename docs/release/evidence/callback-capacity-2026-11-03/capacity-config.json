@@ -1,0 +1,72 @@
+{
+  "scope": "read-only-service-capacity-selection-no-env-or-secret-values",
+  "observedAt": "2026-11-03T10:24:59.816Z",
+  "services": [
+    {
+      "service": "stripeconnectreturn",
+      "scaling": {
+        "maxInstanceCount": 12
+      },
+      "revisionScaling": {
+        "maxInstanceCount": 1
+      },
+      "maxInstanceRequestConcurrency": 1,
+      "cpuIdle": true,
+      "startupCpuBoost": true,
+      "startupProbe": {
+        "timeoutSeconds": 240,
+        "periodSeconds": 240,
+        "failureThreshold": 1,
+        "tcpSocket": {
+          "port": 8080
+        }
+      },
+      "readyConditions": [
+        {
+          "type": "RoutesReady",
+          "state": "CONDITION_SUCCEEDED",
+          "reason": null
+        },
+        {
+          "type": "ConfigurationsReady",
+          "state": "CONDITION_SUCCEEDED",
+          "reason": null
+        }
+      ],
+      "configOnlyNotIncidentCapacityProof": true
+    },
+    {
+      "service": "stripeconnectrefresh",
+      "scaling": {
+        "maxInstanceCount": 12
+      },
+      "revisionScaling": {
+        "maxInstanceCount": 1
+      },
+      "maxInstanceRequestConcurrency": 1,
+      "cpuIdle": true,
+      "startupCpuBoost": true,
+      "startupProbe": {
+        "timeoutSeconds": 240,
+        "periodSeconds": 240,
+        "failureThreshold": 1,
+        "tcpSocket": {
+          "port": 8080
+        }
+      },
+      "readyConditions": [
+        {
+          "type": "RoutesReady",
+          "state": "CONDITION_SUCCEEDED",
+          "reason": null
+        },
+        {
+          "type": "ConfigurationsReady",
+          "state": "CONDITION_SUCCEEDED",
+          "reason": null
+        }
+      ],
+      "configOnlyNotIncidentCapacityProof": true
+    }
+  ]
+}

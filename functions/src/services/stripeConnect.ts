@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { paymentFeeBasisPoints, paymentFeeCents } from "../domain/paymentFees.js";
 
 const apiVersion = "2026-02-25.clover";
 
@@ -35,29 +36,34 @@ export function connectedAccountFromRecord(record: { stripeAccountId?: unknown }
     : null;
 }
 
-export async function createConnectedAccount(request: ConnectedAccountRequest): Promise<ConnectedAccountResponse> {
-  const stripe = createStripeClient();
-  const response = await stripe.rawRequest("POST", "/v2/core/accounts", {
-    contact_email: request.email,
-    identity: {
-      country: request.country,
-      entity_type: "individual",
+export function buildConnectedAccountCreateParams(
+  request: ConnectedAccountRequest,
+): Stripe.AccountCreateParams {
+  return {
+    type: "express",
+    country: request.country,
+    email: request.email,
+    business_type: "individual",
+    capabilities: {
+      card_payments: { requested: true },
+      transfers: { requested: true },
     },
     metadata: {
       userId: request.userId,
       product: "sports-green-moove",
     },
-    configuration: {
-      merchant: {
-        capabilities: {
-          card_payments: { requested: true },
-          transfers: { requested: true },
-        },
-      },
-    },
+  };
+}
+
+export async function createConnectedAccount(
+  request: ConnectedAccountRequest,
+  secret?: string,
+): Promise<ConnectedAccountResponse> {
+  const stripe = createStripeClient(secret);
+  const account = await stripe.accounts.create(buildConnectedAccountCreateParams(request), {
+    idempotencyKey: `connectedAccount:${request.userId}`,
   });
 
-  const account = response as unknown as { id: string };
   return { id: account.id };
 }
 
@@ -67,32 +73,28 @@ export type ConnectedAccountLinkRequest = {
   refreshUrl: string;
 };
 
-export function buildConnectedAccountLinkCreateBody(request: ConnectedAccountLinkRequest) {
+export function buildConnectedAccountLinkCreateParams(
+  request: ConnectedAccountLinkRequest,
+): Stripe.AccountLinkCreateParams {
   return {
     account: request.accountId,
-    use_case: {
-      type: "account_onboarding",
-      account_onboarding: {
-        configurations: ["merchant"],
-        refresh_url: request.refreshUrl,
-        return_url: request.returnUrl,
-      },
-    },
+    refresh_url: request.refreshUrl,
+    return_url: request.returnUrl,
+    type: "account_onboarding",
   };
 }
 
 export async function createConnectedAccountLink(
   request: ConnectedAccountLinkRequest,
+  secret?: string,
 ): Promise<{ url: string; expiresAt?: string }> {
-  const stripe = createStripeClient();
-  const response = await stripe.rawRequest("POST", "/v2/core/account_links", buildConnectedAccountLinkCreateBody(request));
-  const link = response as unknown as { url: string; expires_at?: string };
-  return { url: link.url, expiresAt: link.expires_at };
+  const stripe = createStripeClient(secret);
+  const link = await stripe.accountLinks.create(buildConnectedAccountLinkCreateParams(request));
+  return { url: link.url, expiresAt: link.expires_at ? String(link.expires_at) : undefined };
 }
 
 export function platformFeeAmountCents(amountCents: number): number {
-  const bps = Number(process.env.PLATFORM_FEE_BPS ?? "0");
-  return Math.max(0, Math.round((amountCents * bps) / 10000));
+  return paymentFeeCents(amountCents, paymentFeeBasisPoints(process.env.PLATFORM_FEE_BPS));
 }
 
 export type RidePaymentIntentContext = {
@@ -103,15 +105,21 @@ export type RidePaymentIntentContext = {
   amountCents: number;
   currency: "eur";
   destinationStripeAccountId: string;
+  paymentAttemptId?: string;
+  platformFeeCents?: number;
 };
 
 export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentContext): {
   params: Stripe.PaymentIntentCreateParams;
   idempotencyKey: string;
 } {
-  const applicationFeeAmount = platformFeeAmountCents(context.amountCents);
+  if (!Number.isSafeInteger(context.amountCents) || context.amountCents <= 0)
+    throw new Error("Payment invoice must be a positive safe integer.");
+  const applicationFeeAmount = context.platformFeeCents ?? platformFeeAmountCents(context.amountCents);
+  if (!Number.isSafeInteger(applicationFeeAmount) || applicationFeeAmount < 0 || applicationFeeAmount > context.amountCents)
+    throw new Error("Payment fee must be an integer within the invoice amount.");
   return {
-    idempotencyKey: `ridePayment:${context.bookingId}:${context.payerUserId}`,
+    idempotencyKey: `ridePayment:${context.bookingId}:${context.payerUserId}${context.paymentAttemptId ? `:${context.paymentAttemptId}` : ""}`,
     params: {
       amount: context.amountCents,
       currency: context.currency,
@@ -125,13 +133,17 @@ export function buildRidePaymentIntentCreateParams(context: RidePaymentIntentCon
         driverUserId: context.driverUserId,
         platformFeeCents: String(applicationFeeAmount),
         product: "sports-green-moove",
+        ...(context.paymentAttemptId ? { paymentAttemptId: context.paymentAttemptId } : {}),
       },
     },
   };
 }
 
-export async function createRideDestinationPaymentIntent(context: RidePaymentIntentContext): Promise<Stripe.PaymentIntent> {
-  const stripe = createStripeClient();
+export async function createRideDestinationPaymentIntent(
+  context: RidePaymentIntentContext,
+  secret?: string,
+): Promise<Stripe.PaymentIntent> {
+  const stripe = createStripeClient(secret);
   const request = buildRidePaymentIntentCreateParams(context);
   return stripe.paymentIntents.create(request.params, { idempotencyKey: request.idempotencyKey });
 }
@@ -163,8 +175,11 @@ export function buildRewardPayoutTransferCreateParams(context: RewardPayoutTrans
   };
 }
 
-export async function createRewardPayoutTransfer(context: RewardPayoutTransferContext): Promise<Stripe.Transfer> {
-  const stripe = createStripeClient();
+export async function createRewardPayoutTransfer(
+  context: RewardPayoutTransferContext,
+  secret?: string,
+): Promise<Stripe.Transfer> {
+  const stripe = createStripeClient(secret);
   const request = buildRewardPayoutTransferCreateParams(context);
   return stripe.transfers.create(request.params, { idempotencyKey: request.idempotencyKey });
 }

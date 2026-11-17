@@ -1,0 +1,188 @@
+{
+  "conclusion": "cancelled",
+  "databaseId": 42026680118,
+  "headSha": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+  "jobs": [
+    {
+      "completedAt": "2026-11-05T13:16:12Z",
+      "conclusion": "cancelled",
+      "databaseId": 127242518564,
+      "name": "iPhone build and fixture screens",
+      "startedAt": "2026-11-05T12:23:18Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-05T12:23:21Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-05T12:23:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:23:46Z",
+          "conclusion": "success",
+          "name": "Checkout",
+          "number": 2,
+          "startedAt": "2026-11-05T12:23:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:28:31Z",
+          "conclusion": "success",
+          "name": "Inspect installed Apple tools",
+          "number": 3,
+          "startedAt": "2026-11-05T12:23:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:30:39Z",
+          "conclusion": "success",
+          "name": "Run native logic checks",
+          "number": 4,
+          "startedAt": "2026-11-05T12:28:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:30:47Z",
+          "conclusion": "success",
+          "name": "Check controlled location lifecycle without a device",
+          "number": 5,
+          "startedAt": "2026-11-05T12:30:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:30:49Z",
+          "conclusion": "success",
+          "name": "Check actual permission continuation before SDK compilation",
+          "number": 6,
+          "startedAt": "2026-11-05T12:30:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:30:53Z",
+          "conclusion": "success",
+          "name": "Check controlled emergency phone boundary without opening Phone",
+          "number": 7,
+          "startedAt": "2026-11-05T12:30:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:31:10Z",
+          "conclusion": "success",
+          "name": "Check support concurrency signature regressions",
+          "number": 8,
+          "startedAt": "2026-11-05T12:30:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:31:13Z",
+          "conclusion": "success",
+          "name": "Check approved capture bounds with generated images",
+          "number": 9,
+          "startedAt": "2026-11-05T12:31:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:31:18Z",
+          "conclusion": "success",
+          "name": "Install project generator",
+          "number": 10,
+          "startedAt": "2026-11-05T12:31:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:31:18Z",
+          "conclusion": "success",
+          "name": "Generate SDK-linked app project",
+          "number": 11,
+          "startedAt": "2026-11-05T12:31:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:31:19Z",
+          "conclusion": "success",
+          "name": "Create isolated iPhone simulator",
+          "number": 12,
+          "startedAt": "2026-11-05T12:31:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T12:36:17Z",
+          "conclusion": "success",
+          "name": "Boot isolated simulator before compiling or testing",
+          "number": 13,
+          "startedAt": "2026-11-05T12:31:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:10:10Z",
+          "conclusion": "success",
+          "name": "Compile app and all fixture test bundles",
+          "number": 14,
+          "startedAt": "2026-11-05T12:36:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:14:14Z",
+          "conclusion": "cancelled",
+          "name": "Run every built fixture test without rebuilding",
+          "number": 15,
+          "startedAt": "2026-11-05T13:10:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:14:14Z",
+          "conclusion": "skipped",
+          "name": "Validate and collect only three approved synthetic captures",
+          "number": 16,
+          "startedAt": "2026-11-05T13:14:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:14:14Z",
+          "conclusion": "skipped",
+          "name": "Retain approved iPhone captures for one day",
+          "number": 17,
+          "startedAt": "2026-11-05T13:14:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:14:14Z",
+          "conclusion": "skipped",
+          "name": "Observe fixture startup phases after a failed test step",
+          "number": 18,
+          "startedAt": "2026-11-05T13:14:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:15:45Z",
+          "conclusion": "success",
+          "name": "Dispose isolated simulator",
+          "number": 19,
+          "startedAt": "2026-11-05T13:14:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:15:50Z",
+          "conclusion": "success",
+          "name": "Post Checkout",
+          "number": 38,
+          "startedAt": "2026-11-05T13:15:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-05T13:15:53Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 39,
+          "startedAt": "2026-11-05T13:15:50Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42026680118/job/127242518564"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42026680118"
+}

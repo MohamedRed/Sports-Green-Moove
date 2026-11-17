@@ -1,0 +1,138 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cdb82bc0cd1132ac49427dada626bade",
+  "testedAt": "2026-11-05T13:08:35.398Z",
+  "scope": "original-rules-reproduce-revoked-direct-read-not-accepted",
+  "baseline": true,
+  "completed": true,
+  "checks": [
+    {
+      "id": "booking-parent-precedes-retained-requester",
+      "status": "passed"
+    },
+    {
+      "id": "booking-null-parent-uses-requester",
+      "status": "passed"
+    },
+    {
+      "id": "booking-driver-removal",
+      "status": "passed"
+    },
+    {
+      "id": "ride-participant-removal",
+      "status": "passed"
+    },
+    {
+      "id": "ride-child-removal",
+      "status": "passed"
+    },
+    {
+      "id": "ride-driver-removal",
+      "status": "passed"
+    },
+    {
+      "id": "deleted-source",
+      "status": "passed"
+    },
+    {
+      "id": "cancellation-does-not-remove-participants",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-records-and-all-account-claims-preserved",
+      "status": "passed"
+    }
+  ],
+  "observations": [
+    {
+      "id": "booking-parent-precedes-retained-requester",
+      "sourceType": "booking",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "booking-null-parent-uses-requester",
+      "sourceType": "booking",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "booking-driver-removal",
+      "sourceType": "booking",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "ride-participant-removal",
+      "sourceType": "rideSession",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "ride-child-removal",
+      "sourceType": "rideSession",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "ride-driver-removal",
+      "sourceType": "rideSession",
+      "apiAfter": "PERMISSION_DENIED",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "deleted-source",
+      "sourceType": "booking",
+      "apiAfter": "NOT_FOUND",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    },
+    {
+      "id": "cancellation-does-not-remove-participants",
+      "sourceType": "booking",
+      "apiAfter": "allowed",
+      "directGetAfter": 200,
+      "queryAfter": 200,
+      "historicalMessagePreserved": true
+    }
+  ],
+  "protectedRecordCount": 22,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "nativeUiExecuted": false,
+  "failureCode": null,
+  "sourceFiles": {
+    "scripts/qa/chat-source-access-suite.mjs": "d925bfb20d0c2b59c28e8ac1dd78c3e27d58f9f37e3fb48caf85373e35eeeff7",
+    "functions/src/callables/messages.ts": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6",
+    "functions/src/callables/chatRead.ts": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5",
+    "functions/src/lib/chatConversation.ts": "c2c6c544cbdd423c586da8d3ba95ea51886b5fd9789f4b325a982ee0db882499",
+    "functions/src/domain/access.ts": "f5d8867e3df3ba9c0817e3ff58f260b56f623a3e7de138136721d31bdff75dea",
+    "firestore.rules": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

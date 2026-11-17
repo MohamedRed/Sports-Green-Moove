@@ -1,0 +1,42 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c29923db8f4ef55fe5af1651c4872f75",
+  "scope": "sanitized-baseline-contact-projection-not-ui-or-full-record-replay",
+  "link": {
+    "id": "sgm-qa-child-link-phone",
+    "data": {
+      "accountUserId": "sgm-qa-child-link-phone",
+      "childId": "sgm-qa-child-lina",
+      "childInstanceId": "206627b2b6631dfbd156161748c2eed42790bf12c8a6f247881a94ad4e907140",
+      "status": "verified",
+      "verifiedAt": {
+        "seconds": 1793047865,
+        "nanoseconds": 851000000
+      },
+      "verifiedByUserId": "sgm-qa-parent"
+    }
+  },
+  "contactView": {
+    "accountUserId": "sgm-qa-child-link-phone",
+    "current": {
+      "accountUserId": "sgm-qa-child-link-phone",
+      "rideSessionId": "Bu8EIkzfxWgiOlXxq6Co",
+      "subjectId": "sgm-qa-child-lina",
+      "childInstanceId": "206627b2b6631dfbd156161748c2eed42790bf12c8a6f247881a94ad4e907140",
+      "childName": "Lina QA",
+      "contact": {
+        "name": "Contact enfant fictif QA",
+        "phone": "+12025550121"
+      },
+      "revision": 1
+    }
+  },
+  "claims": {
+    "uid": "sgm-qa-child-link-phone",
+    "claims": {
+      "roleKeys": [
+        "child"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "scope": "physical-android-team-enrollment-connection-recovery-not-process-restart-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "581b257773505a49a48df782d33a86fd",
+  "testedAt": "2026-10-28T14:27:15.814Z",
+  "sourceCommit": "1518a8bdf193e99d27921699fcdcf24544b1aa2c",
+  "sourceApkSha256": "12bd492f7fe4f8360e5c0e70d18e45e633c26cf8c687a0def4451aa5b9c4666f",
+  "installedBytesIndependentlyVerified": false,
+  "connectionRecoveryObserved": true,
+  "samePendingRequestRestored": true,
+  "managerRefusalObservedOnPhone": true,
+  "persistedCheckpointsPassed": 2,
+  "plannedCheckpoints": 7,
+  "completeEnrollmentJourneyAccepted": false,
+  "fullProcessRestartProven": false,
+  "physicalInternetLossProven": false,
+  "trackingVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false,
+  "newPublicMediaAdded": false
+}

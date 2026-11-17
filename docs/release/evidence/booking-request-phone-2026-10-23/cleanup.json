@@ -1,0 +1,23 @@
+{
+  "adminClientClosed": true,
+  "backendExit": 130,
+  "helperExit": 130,
+  "firstHelperExit": 0,
+  "firstHelperUnexpectedExitCauseKnown": false,
+  "firstHelperDirectoryRemoved": true,
+  "helperDirectoryRemoved": true,
+  "backendDirectoryRemoved": true,
+  "privateSessionRemoved": true,
+  "ephemeralCredentialsCleared": true,
+  "firstPhoneSessionEnded": true,
+  "secondPhoneSignedOutObserved": true,
+  "secondPhoneSessionStopped": true,
+  "uninstallAttempted": true,
+  "providerUninstallResponse": "No user apps found to uninstall.",
+  "phoneAppUninstallIndependentlyVerified": false,
+  "providerDeviceResetIndependentlyVerified": false,
+  "clipboardRestorationVerified": false,
+  "devicePolicyChanged": false,
+  "locationPermissionChanged": false,
+  "endpoints": {"host": "127.0.0.1", "ports": [5001, 8080, 9000, 9099], "closed": true}
+}

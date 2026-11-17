@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "local-actual-AppState-with-controlled-provider-identity-not-real-SDK-or-phone-proof",
+  "baseline": {
+    "sourceCommit": "91f9677b42ce0d6b9fdb537c244eb24208d78edb",
+    "sourceFile": "ios/Sources/SportsGreenMooveApp/AppState.swift",
+    "sourceSha256": "2c8723966f04456713c4408a783c6b3cc89c702fe1c3854d384930357fc4d671",
+    "comparisonBoundary": "Original AppState, shared candidate Foundation dependencies and controlled gateways; no authentication extension or policy injection in original initializer",
+    "observed": {
+      "visibleSessionRestoredAfterLogout": true,
+      "simulatedProviderIdentityRemainedAfterLogout": true,
+      "providerSignOutCallCount": 1,
+      "laterPrivateReadCount": 7
+    }
+  },
+  "candidate": {
+    "sources": "source-sha256.json",
+    "observed": {
+      "visibleSessionRestoredAfterLogout": false,
+      "simulatedProviderIdentityRemainedAfterLogout": false,
+      "providerSignOutCallCount": 2,
+      "laterPrivateReadCount": 0
+    }
+  },
+  "reproduction": {
+    "exitCode": 0,
+    "entryPoint": "reproduction.swift",
+    "log": "reproduction.txt",
+    "logSha256": "300d9d8a1310f25352518cdc68159e9a1435150621eb1c2153a90cdf1273c6e3"
+  },
+  "nativeChecks": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "languageMode": "Swift 6",
+    "actualAppStateCompiled": true,
+    "exitCode": 0,
+    "log": "native-checks.txt",
+    "logSha256": "d0f5fd24d26e5b160d0e1ccedfbffccef60f018e77b5ec7ecfdb8504a7619d08",
+    "checks": ["serialized identity intents", "four late identity completions after logout", "read-only restoration after logout", "cancellation with late success and error", "partial provider failure", "cleanup failure and explicit retry", "storage read, write and commit failure", "explicit restoration retry", "missing policy denial", "file and controller recreation", "unknown-version denial"]
+  },
+  "missingPolicyRequiresExplicitSignIn": true,
+  "sdkLinkedBuildAccepted": false,
+  "realProviderAuthenticationAccepted": false,
+  "nativeProcessDeathAccepted": false,
+  "iosSessionExitUiAccepted": false,
+  "trackingTeardownAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "remainingWork": ["profile logout action", "tracking and pending upload teardown", "real profile identity", "signup and role provisioning", "child authentication", "current-source SDK and rendered checks", "real-device release evidence"]
+}

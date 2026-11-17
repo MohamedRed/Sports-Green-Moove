@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "home",
+  "capturedAt": "2026-10-30T21:29:35.798Z",
+  "original": {
+    "file": "home-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "810c47ce37426acf4dd0295e683b610c4eda5875af34f5897d133bd9a6585a2a"
+  },
+  "crop": {
+    "file": "home.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "4122565243297838ce7d0ee03d302f6723d4bb1785f5d35d02de931e2a00b453"
+  },
+  "rescaled": false,
+  "redacted": false
+}

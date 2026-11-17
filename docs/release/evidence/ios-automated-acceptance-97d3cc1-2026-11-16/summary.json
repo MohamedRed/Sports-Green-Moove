@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-16",
+  "sourceCommit": "97d3cc17ef68455cd5ee40265a8ea76e8e274e74",
+  "fixtureGateProof": {
+    "source": "docs/release/evidence/ios-fixture-gate-97d3cc1-2026-11-16/summary.json",
+    "sha256": "8e852dd8e1db9ebd8588d172f5f0de1fb20af2034045e02222337b8208d6e156"
+  },
+  "manifestBeforeSha256": "ac0e8ae783ec421ea4e2d3f73c4c3b5788e3278acb9dfe3c06f7754cba36c288",
+  "manifestAfterSha256": "d0aa407792aebc625a5cda34bc1265af1af7d85e891818c48b7c1ed30e47d8a8",
+  "inheritedIndex": {
+    "source": "docs/release/evidence/automated-user-flow-evidence-2026-11-07T003856000Z-128229229902-recheck.json",
+    "sha256": "1e2387f2573895e7c4389410755be1de382138bc0caca1e20897bc17634649e9"
+  },
+  "indexAfterSha256": "6547504a16118bc23cb95375ba3986ba27093f15812bca2ad52ff2bc89ff0742",
+  "acceptedIds": [
+    "ios_sdk_build_ci",
+    "ios_fixture_ui_ci"
+  ],
+  "allOtherManifestSectionsPreserved": true,
+  "allOtherAutomatedEntriesPreserved": true,
+  "physicalDeviceAccepted": false,
+  "operationalEvidenceAccepted": false,
+  "releaseComplete": false
+}

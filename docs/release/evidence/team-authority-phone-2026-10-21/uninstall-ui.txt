@@ -1,0 +1,10 @@
+Browser tab: 1621932865, Title: "Google Pixel 9 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 277-282
+~								242 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
++		277 container
++			278 text Checking for any user apps to uninstall...
++			279 image
++			280 text Checking for any user apps to uninstall...
++			281 button
+The focused UI element is 242 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushStorageTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.129Z" hostname="local-test-host" time="0.027">
+  <properties></properties>
+  <testcase name="twoInstancesReserveUniqueMonotonicRevisionsWithoutLostWrites" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.014"></testcase>
+  <testcase name="privateFileRestoresTheExactUnconfirmedRequestAndClearsOnlyAfterAcknowledgement" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.003"></testcase>
+  <testcase name="logoutRemovalAndDeletionBarrierSurviveNewStorageInstances" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.002"></testcase>
+  <testcase name="duplicateUnknownMalformedAndTrailingStateCannotBeSilentlyNormalized" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.002"></testcase>
+  <testcase name="impossibleActivationAndConfirmationStatesFailRatherThanBeingRepaired" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.004"></testcase>
+  <testcase name="corruptedRecordsRemainUntouchedAndAreNeverReplacedWithAFreshIdentity" classname="be.sportgreenmoove.app.services.TeamPushStorageTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

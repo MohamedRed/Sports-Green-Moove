@@ -1,0 +1,74 @@
+{
+  "scope": "independent-simulated-network-record-checkpoints-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "721398846575459c093d6287b17bf4d6",
+  "testedAt": "2026-10-25T18:33:33.479Z",
+  "completed": false,
+  "fixture": {
+    "tripId": "YaIFuJECGhrWxPkZ5ock",
+    "bookingId": "gK0ySgBmnKCFEUPp42Xb",
+    "driverUid": "sgm-qa-driver",
+    "parentUid": "sgm-qa-parent"
+  },
+  "checkpoints": [
+    {
+      "phase": "prepared",
+      "rideId": null,
+      "vehicle": null,
+      "allOtherRootRecordsAndClaimsUnchanged": true,
+      "observedForMs": 0,
+      "simulatedNetwork": true,
+      "simulatedLocations": true,
+      "phoneUiProven": false,
+      "realNetworkLossProven": false,
+      "realMovementProven": false,
+      "childTrackingProven": false,
+      "productionWrites": false,
+      "paymentExercised": false,
+      "routeProviderRequests": 0
+    },
+    {
+      "phase": "foreground-first",
+      "rideId": "yW74fSEG6cZQ5JgV4Ftd",
+      "vehicle": {
+        "accuracyM": 1,
+        "captureClock": "serverElapsedRealtime",
+        "capturedAt": 1792953172362,
+        "deviceCapturedAt": 1792953172753,
+        "lat": 50.7167,
+        "lng": 4.6167,
+        "rideSessionId": "yW74fSEG6cZQ5JgV4Ftd",
+        "role": "driver",
+        "source": "nativeFallback",
+        "uploadedAt": 1792953172542,
+        "userId": "sgm-qa-driver"
+      },
+      "allOtherRootRecordsAndClaimsUnchanged": true,
+      "observedForMs": 0,
+      "simulatedNetwork": true,
+      "simulatedLocations": true,
+      "phoneUiProven": false,
+      "realNetworkLossProven": false,
+      "realMovementProven": false,
+      "childTrackingProven": false,
+      "productionWrites": false,
+      "paymentExercised": false,
+      "routeProviderRequests": 0
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "phoneUiProven": false,
+  "realNetworkLossProven": false,
+  "realMovementProven": false,
+  "childTrackingProven": false,
+  "productionWrites": false,
+  "routeProviderRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/manual-tracking-network-session.mjs": "1f827c41a4ef9724e53b6e97f7b8c5cd97ac79db8851953cb32b1e7a3903dcdd",
+    "scripts/qa/tracking-network-checkpoints.mjs": "b540a92b6b96a972f53768709b4ca79c960fef75e3ac6cd13d397c84614bf5ba",
+    "scripts/qa/tracking-phone-state.mjs": "7b55441bb094c74bd1168cf89dd2e9e8308a4d5e4a26f85ff18e97d04d90c9fd",
+    "scripts/qa/tracking-phone-checkpoints.mjs": "66782413ae98305efbbf3a9c89f374094c3806eab53bde650c0cd4f15b1feef5",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

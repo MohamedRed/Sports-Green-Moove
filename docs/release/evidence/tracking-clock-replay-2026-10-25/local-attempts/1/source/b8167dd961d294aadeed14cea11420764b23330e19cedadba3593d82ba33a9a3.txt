@@ -1,0 +1,64 @@
+package be.sportgreenmoove.app.services
+
+internal data class NativeServerTimeAnchor(
+    val serverTimeMs: Long,
+    val receivedElapsedNanos: Long,
+    val requestStartedElapsedNanos: Long,
+) {
+    init {
+        require(serverTimeMs in 1..MAX_SAFE_TIME)
+        require(requestStartedElapsedNanos > 0 && receivedElapsedNanos >= requestStartedElapsedNanos)
+    }
+
+    companion object {
+        const val MAX_SAFE_TIME = 9_007_199_254_740_991L
+
+        fun fromResponse(response: Any?, started: Long, received: Long): NativeServerTimeAnchor {
+            val value = ((response as? Map<*, *>)?.get("serverTimeMs") as? Number)?.toDouble()
+            require(value != null && value.isFinite() && value >= 1 && value <= MAX_SAFE_TIME.toDouble() && value % 1.0 == 0.0)
+            return NativeServerTimeAnchor(value.toLong(), received, started)
+        }
+    }
+}
+
+internal data class NativeCaptureClockState(val anchors: List<NativeServerTimeAnchor>, val minimumElapsedNanos: Long = 1) {
+    init {
+        require(anchors.isNotEmpty() && anchors.size <= 256)
+        require(minimumElapsedNanos > 0 && minimumElapsedNanos <= anchors.first().receivedElapsedNanos)
+        require(anchors.zipWithNext().all { (first, next) -> next.receivedElapsedNanos > first.receivedElapsedNanos &&
+            next.requestStartedElapsedNanos > first.requestStartedElapsedNanos })
+    }
+}
+
+internal class NativeCaptureClock(initial: NativeCaptureClockState) {
+    constructor(initial: NativeServerTimeAnchor) : this(NativeCaptureClockState(listOf(initial)))
+    private val anchors = initial.anchors.toMutableList()
+    private var minimumElapsedNanos = initial.minimumElapsedNanos
+
+    @Synchronized fun snapshot(): NativeServerTimeAnchor = anchors.last()
+    @Synchronized fun state(): NativeCaptureClockState = NativeCaptureClockState(anchors.toList(), minimumElapsedNanos)
+
+    @Synchronized fun capturedAt(captureElapsedNanos: Long, nowElapsedNanos: Long): Long {
+        require(nowElapsedNanos >= anchors.last().receivedElapsedNanos)
+        require(captureElapsedNanos >= minimumElapsedNanos && captureElapsedNanos <= nowElapsedNanos)
+        val anchor = anchors.lastOrNull { it.receivedElapsedNanos <= captureElapsedNanos } ?: anchors.first()
+        val value = anchor.serverTimeMs + Math.floorDiv(captureElapsedNanos - anchor.receivedElapsedNanos, NANOS_PER_MS)
+        require(value in 1..NativeServerTimeAnchor.MAX_SAFE_TIME)
+        return value
+    }
+
+    fun observe(response: Any?, started: Long, received: Long) = observe(NativeServerTimeAnchor.fromResponse(response, started, received))
+
+    @Synchronized fun observe(next: NativeServerTimeAnchor) {
+        val previous = anchors.last()
+        if (next.requestStartedElapsedNanos <= previous.requestStartedElapsedNanos || next.receivedElapsedNanos <= previous.receivedElapsedNanos) return
+        // A calibration applies only to fixes captured from its receipt onward; older fixes keep their original mapping.
+        anchors.add(next)
+        if (anchors.size > 256) {
+            anchors.removeAt(0)
+            minimumElapsedNanos = anchors.first().receivedElapsedNanos
+        }
+    }
+
+    companion object { private const val NANOS_PER_MS = 1_000_000L }
+}

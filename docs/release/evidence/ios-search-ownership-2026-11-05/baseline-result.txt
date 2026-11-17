@@ -1,0 +1,4 @@
+Search ownership baseline: 22 stale/private response restorations, 24 unfinished callbacks without an account lease; not accepted
+Membership fixture state passed: approve, original fixture gateway and production review state; not hit testing or a phone
+Membership fixture state passed: reject, original fixture gateway and production review state; not hit testing or a phone
+RideChatAdapterRuntimeChecks passed: 11 actual thread adapter invalidations plus inbox source removal; cache/pending rejection, current-set authority, late callbacks and idempotent listener/auth cleanup; scripted SDK only, no SDK binary/provider/phone

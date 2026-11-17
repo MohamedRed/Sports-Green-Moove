@@ -1,0 +1,26 @@
+.method static constructor <clinit>()V
+    .registers 1
+
+    .line 7
+    const-string v0, "true"
+
+    invoke-static {v0}, Ljava/lang/Boolean;->parseBoolean(Ljava/lang/String;)Z
+
+    move-result v0
+
+    sput-boolean v0, Lbe/sportgreenmoove/app/BuildConfig;->DEBUG:Z
+--
+    .line 17
+    sput-object v0, Lbe/sportgreenmoove/app/BuildConfig;->SGM_LOCAL_REAL_MAPS_UI:Ljava/lang/Boolean;
+
+    .line 19
+    const/4 v0, 0x1
+
+    invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+
+    move-result-object v0
+
+    sput-object v0, Lbe/sportgreenmoove/app/BuildConfig;->SGM_LOCAL_SUPPORT_TRACE:Ljava/lang/Boolean;
+
+    .line 21
+    sput-object v0, Lbe/sportgreenmoove/app/BuildConfig;->SGM_USE_FIREBASE_EMULATOR:Ljava/lang/Boolean;

@@ -1,0 +1,15 @@
+{
+  "reviewedAt": "2026-10-21",
+  "sourceCommit": "f6181874e304362bdea344a3cdf5aaaa7bcd5815",
+  "published": {
+    "session-recheck-error": "local-session-restoration-error.png",
+    "session-recheck-rotated-error": "local-session-restoration-rotated-error.png",
+    "session-recheck-recovered": "local-session-restoration-recovered.png",
+    "session-recheck-restored": "local-session-restoration-restored.png"
+  },
+  "identityCaptureRetainedOnly": true,
+  "mediaEdits": false,
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "wholeWorkflowSuccessClaimed": false
+}

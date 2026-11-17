@@ -1,0 +1,11 @@
+{
+  "runId": "614b78d6896cf1e31a2323ff23ce1b2f",
+  "projectId": "demo-sgm-local-qa",
+  "observedAt": "2026-10-28T16:06:08.199Z",
+  "scope": "package-scoped-console-removal-observation-not-release-proof",
+  "command": "dumpsys package be.sportgreenmoove.app.local",
+  "output": "Unable to find package: be.sportgreenmoove.app.local",
+  "initialNativeRemovalCompleted": false,
+  "providerUninstallAcknowledged": true,
+  "packageAbsenceIndependentlyObserved": true
+}

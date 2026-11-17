@@ -1,0 +1,17 @@
+{
+  "scope": "local-compilation-and-node-not-native-layout-execution",
+  "nodeSummary": [
+    "# tests 3999",
+    "# suites 0",
+    "# pass 3999",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0",
+    "# duration_ms 53189.273125"
+  ],
+  "privateTapSha256": "e3e6e1c4ce474b54cb94e16278e9e77f295ccc9ba7ca41e6d61979ad78606fab",
+  "compiledTestApkSha256": "10d3f15a128cc8b6f07039be5b3a3c01036ebb698eb2c94995d2ef50ae06feca",
+  "nativeLayoutsAccepted": false,
+  "releaseAccepted": false
+}

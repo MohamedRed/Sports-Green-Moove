@@ -1,0 +1,9 @@
+{
+  "runId": 42080158221,
+  "jobId": 127430792792,
+  "sourceCommit": "9ae6ea709da5f487a51a1542864d4cf4d0e8f4b1",
+  "step": "Verify iPhone search-to-booking contract without provider calls",
+  "conclusion": "failure",
+  "compilationStoppedBeforeContractCases": true,
+  "selectedError": "2026-11-05T18:20:54.4273643Z /home/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/Sources/SportsGreenMooveApp/TeamChatModels.swift:2:8: error: no such module 'CryptoKit'"
+}

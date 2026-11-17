@@ -1,0 +1,25 @@
+{
+  "scope": "four-prebuilt-matrix-apks-not-device-execution",
+  "copies": [
+    {
+      "applicationId": "be.sportgreenmoove.app",
+      "isolated": false,
+      "sha256": "cb328d8f28bd9e694d61e92bfaa287b5e7f21a7901711358d296494f173f4578"
+    },
+    {
+      "applicationId": "be.sportgreenmoove.app.test",
+      "isolated": false,
+      "sha256": "41cbf460139e42223f052fc56a4ff144bcecfe6681a572b6604a57eb49dd3a0d"
+    },
+    {
+      "applicationId": "be.sportgreenmoove.app.local",
+      "isolated": true,
+      "sha256": "c155fa909776434a22859b2039d2c7a61abeebf1dbb7a29335490b39cf988e96"
+    },
+    {
+      "applicationId": "be.sportgreenmoove.app.local.test",
+      "isolated": true,
+      "sha256": "ca344422bc7d367191c03e177aa4fa00f87bad4ab9217e0f82613782c736bb7c"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6465197Z androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6470524Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor(LocalGuardianVerificationFlowTest.kt:94)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6472681Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.login(LocalGuardianVerificationFlowTest.kt:87)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6475152Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:55)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6477844Z There was 1 failure:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6482100Z androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6487418Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.waitFor(LocalGuardianVerificationFlowTest.kt:94)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6489337Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.login(LocalGuardianVerificationFlowTest.kt:87)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6493132Z 	at be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest.parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation(LocalGuardianVerificationFlowTest.kt:55)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T16:55:49.6495441Z Tests run: 1,  Failures: 1

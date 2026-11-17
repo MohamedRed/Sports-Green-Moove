@@ -1,0 +1,164 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro v15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro v15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		45 container
+			46 container content
+				178 container in-session-device-react
+					179 container
+					180 container
+						181 image
+						182 button Add Device
+							183 text Add Device
+							184 text PRO
+				174 text ;
+				177 container debugger
+					186 text DevTools -  Logcat
+					187 button Download logs, ID: devtool-download-logs
+					188 button Dock to bottom, ID: devtool-change-orientation
+					189 button Collapse, ID: devtool-toggle
+					190 container device-logs
+						191 container
+							192 text be.sportgreenmoove.qa.connectivity
+							193 text field Description: Device logs dropdown, ID: react-select-8-input
+						194 container
+							195 text Info
+							196 text field Description: Log type dropwdown, ID: react-select-9-input
+						197 container
+							198 link Description: Clear logs, Value: app-live.browserstack.com/dashboard#
+							199 link Description: Pause logs, Value: app-live.browserstack.com/dashboard#
+							200 link Description: Wrap, Value: app-live.browserstack.com/dashboard#
+						201 container
+							202 search text field (settable) Search Logs
+							203 image
+							204 checkbox (settable, integer) Description: Use regex search, Value: 0, ID: search-regex-box
+							205 text Regex
+						264 container
+							265 table grid
+								266 container
+									267 row Device Selected: Pixel 9 Pro v15.0
+										268 cell
+											269 text Device Selected: Pixel 9 Pro v15.0
+									270 row Connecting to real device cloud
+										271 cell
+											272 text Connecting to real device cloud
+									273 row Starting device Pixel 9 Pro v15.0
+										274 cell
+											275 text Starting device Pixel 9 Pro v15.0
+									276 row Downloading app on Pixel 9 Pro v15.0
+										277 cell
+											278 text Downloading app on Pixel 9 Pro v15.0
+									279 row Installing app on Pixel 9 Pro v15.0
+										280 cell
+											281 text Installing app on Pixel 9 Pro v15.0
+									282 row Starting app on Pixel 9 Pro v15.0
+										283 cell
+											284 text Starting app on Pixel 9 Pro v15.0
+									285 row 10-25 19:17:52.736 I/qa.connectivity(26243): Late-enabling -Xcheck:jni
+										286 cell
+											287 text 10-25 19:17:52.736 I/qa.connectivity(26243): Late-enabling -Xcheck:jni
+									288 row 10-25 19:17:52.750 I/qa.connectivity(26243): Using CollectorTypeCMC GC.
+										289 cell
+											290 text 10-25 19:17:52.750 I/qa.connectivity(26243): Using CollectorTypeCMC GC.
+									291 row 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+										292 cell
+											293 text 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+									294 row 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+										295 cell
+											296 text 10-25 19:17:52.784 W/ziparchive(26243): Unable to open '/data/app/~~SV7HTvBPGtKNfQZ_-oU3BQ==/be.sportgreenmoove.qa.connectivity-cUFGDAeWz4T2KDydizdqTw==/base.dm': No such file or directory
+									297 row 10-25 19:17:52.977 I/qa.connectivity(26243): Compiler allocated 4206KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+										298 cell
+											299 text 10-25 19:17:52.977 I/qa.connectivity(26243): Compiler allocated 4206KB to compile void android.widget.TextView.<init>(android.content.Context, android.util.AttributeSet, int, int)
+									300 row 10-25 19:17:53.147 I/qa.connectivity(26243): Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+										301 cell
+											302 text 10-25 19:17:53.147 I/qa.connectivity(26243): Compiler allocated 5250KB to compile void android.view.ViewRootImpl.performTraversals()
+									303 row 10-25 19:18:15.097 I/qa.connectivity(26243): Background concurrent mark compact GC freed 7890KB AllocSpace bytes, 0(0B) LOS objects, 92% free, 1967KB/25MB, paused 104us,9.078ms total 50.103ms
+										304 cell
+											305 text 10-25 19:18:15.097 I/qa.connectivity(26243): Background concurrent mark compact GC freed 7890KB AllocSpace bytes, 0(0B) LOS objects, 92% free, 1967KB/25MB, paused 104us,9.078ms total 50.103ms
+							306 button Scroll to Latest
+					229 link Resize Component
+						307 text ||
+					231 tab group
+						232 tab (selected, settable, boolean) Description: Logs, Value: 1
+						233 tab (selectable, settable, boolean) Description: ADB Shell, Value: 0
+						234 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						235 tab (selectable, settable, boolean) Description: Network, Value: 0
+						236 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				308 content list
+					309 button Description: Switch Device, ID: switchBrowser
+					310 container
+						311 checkbox Description: Local testing, Value: 1, ID: appLiveToolbarLocalTesting
+							312 image
+							313 image open content menu
+							314 text Local testing
+						315 container Local Testing
+							316 text Local Testing
+							317 container
+								318 text General
+								319 checkbox (settable, integer) Description: Resolve all URLs through my network, Value: 0, ID: force-local
+								320 text Note: 
+								321 text Enabling this feature makes testing websites slower.
+								322 link Description: Read more about Local Testing configuration, Value: browserstack.com/question/781
+								323 link Description: Learn more about Local Testing, Value: browserstack.com/local-testing/app-live?ref=app-live-dock
+					324 menu zoomFeature
+						325 Description: zoom out, ID: zoom-out
+						326 Description: zoom in, ID: zoom-in
+						327 text Zoom
+					328 button Description: Record Session, ID: appLiveVideoRecording
+					329 button Description: DevTools, ID: showDebuggingOptions
+					330 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					331 button Description: Settings, ID: appLiveSessionSettings
+						332 image open content menu
+						333 text Settings
+					334 button Description: Stop Session, ID: appLiveStopSession
+						335 image
+						336 text Stop Session
+				257 container vertical-toolbar-react
+					258 container vertical-toolbar-draggable
+						259 container
+							337 button toolbar drag icon
+							261 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						262 toolbar
+							263 content list
+								338 button Description: Add Device, ID: app-live-add-device
+									339 container app-live-add-device-lead-text-wrapper
+										340 text Add Device PRO
+								341 button Description: Show Home Screen, ID: dockHomeScreen
+									342 text Show Home Screen
+								343 container volume-buttons-lead-text-wrapper
+									344 text Volume
+									345 container volumeButtons
+										346 button - Volume Decrease
+										347 button (disabled) + Volume Increase
+								348 button Description: View Open Apps, ID: view-open-apps
+									349 text View Open Apps
+								350 button Description: Install New App, ID: switch-app
+									351 text Install New App
+								352 checkbox Description: Profile Performance, Value: 0
+									353 text Profile Performance
+									354 text PRO
+								355 button Description: Capture Screenshot, ID: get-screenshot
+									356 text Capture Screenshot
+								357 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									358 text Kill/Uninstall
+								359 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									360 container android-settings-lead-text-wrapper
+										361 text Android Settings PRO New
+								362 button Rotate Device, ID: dockOrientationRealAndroid
+									363 text Rotate Device
+								364 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									365 text Change Location
+								366 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									367 text Throttle Network
+								368 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									369 text Files & Media
+								370 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									371 text Change Language
+								372 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									373 text Screen Reader
+								374 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									375 text Google Pixel 9 Pro
+									376 text v15.0
+		175 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 311 checkbox Description: Local testing, Value: 1, ID: appLiveToolbarLocalTesting

@@ -1,0 +1,120 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6c3b2fb9efa1a374d7c8eb63099243df",
+  "testedAt": "2026-10-18T21:07:45.616Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "long-composite-and-multibyte-membership-cursor-continuation",
+  "testCount": 8,
+  "steps": [
+    {
+      "id": "team-club-choices-resume-canonical-multibyte-memberships-with-cursors-over-two-kilobytes",
+      "status": "passed"
+    },
+    {
+      "id": "parent-guardian-club-choices-use-the-same-lossless-opaque-cursor-contract",
+      "status": "passed"
+    },
+    {
+      "id": "both-manager-club-directories-resume-long-canonical-membership-ids",
+      "status": "passed"
+    },
+    {
+      "id": "manager-membership-pages-preserve-composite-document-ids-without-losing-a-row",
+      "status": "passed"
+    },
+    {
+      "id": "parent-and-manager-guardian-pages-preserve-history-and-current-account-scopes",
+      "status": "passed"
+    },
+    {
+      "id": "manager-team-pages-use-the-shared-cursor-without-changing-any-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-account-list-and-club-cursors-remain-denied-after-increasing-size-support",
+      "status": "passed"
+    },
+    {
+      "id": "long-membership-decisions-still-require-current-manager-version-and-canonical-identity",
+      "status": "passed"
+    }
+  ],
+  "pages": [
+    {
+      "callable": "listTeamEnrollmentOptions",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 2152,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listGuardianParentOptions",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 2146,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listMembershipReviewClubs",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 2126,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listGuardianReviewClubs",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 2130,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listClubMemberships",
+      "firstCount": 20,
+      "secondCount": 2,
+      "cursorLength": 3136,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listMyGuardianVerifications",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 682,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listClubGuardianVerifications",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 1698,
+      "duplicateRows": 0
+    },
+    {
+      "callable": "listTeamEnrollments",
+      "firstCount": 20,
+      "secondCount": 1,
+      "cursorLength": 776,
+      "duplicateRows": 0
+    }
+  ],
+  "nativeUiExecuted": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "syntheticClubs": 21,
+  "syntheticTeamEnrollmentRows": 21,
+  "syntheticRequestedGuardianRows": 21,
+  "actualLocalMembershipApprovals": 1,
+  "livePushProven": false,
+  "sourceFiles": {
+    "functions/src/domain/firestoreDocumentId.ts": "944d6f7c9eb0dbcf2be007ad8c645e61dfa5ce12c2f4e000c136777fc51ab5a9",
+    "functions/src/lib/membershipPageCursor.ts": "c0297d4c1230b610bf1f99c527d0a14acfcf840e612a63aac07eeafc605ccb23",
+    "functions/src/callables/membershipLists.ts": "532088772abc2cef767722feda90943166f1b035250e7f877a89c59912c359f1",
+    "functions/src/callables/membershipReview.ts": "e9701071337be4bb817f1198e82fd57cb447eb541430b6df43a2008854d183ab",
+    "functions/src/callables/guardianLists.ts": "e3b5e2667d1c895af24d38a2c228ad7c0387a1797db319c0c43d0a8ada174faa",
+    "functions/src/callables/guardianParent.ts": "c9b49992059af50c45691a04d1f49e9946868c8a497d554d9cc354957792eacb",
+    "functions/src/callables/teamEnrollment.ts": "0c3e3aa7e3245ee0eea5af12ff971cc90a5689b5213d75fdda4fa18cbde82b82",
+    "functions/src/services/teamEnrollmentOptions.ts": "c34c3d876c3217e98a97b407993aa1e375ec4691788075b0c77fe014ddb6e502",
+    "scripts/qa/local-membership-cursor-suite.mjs": "d9fe9feaa106bb3643cf9fe1fcc19e3e3d33a6ed3cb5967e2b5588b3a9c5b3d2",
+    "scripts/qa/run-local-membership-cursors.mjs": "5322016c4273b86235608c91945e001034651f99e8598a8d302841b3436dfd09"
+  }
+}

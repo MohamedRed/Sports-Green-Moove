@@ -1,0 +1,25 @@
+Browser tab: 1621936161, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 92-107
+~					91 container
++						92 container
++							93 text pixel9Pro:/ $  pidof -s be.sportgreenmoove.app.local
++						94 text command invalid or not supported: pidof -s be.sportgreenmoove.app.local
++						95 link Description: Refer to the supported commands, Value: browserstack.com/docs/app-live/adb-commands
++						96 container
++							97 text pixel9Pro:/ $  dumpsys meminfo be.sportgreenmoove.app.local
++						98 text Applications Memory Usage (in Kilobytes): Uptime: 102354307 Realtime: 102354307 ** MEMINFO in pid 30127 [be.sportgreenmoove.app.local] ** Pss Private Private Swap Rss Heap Heap Heap Total Dirty Clean Dirty Total Size Alloc Free ------ ------ ------ ------ ------ ------ ------ ------ Native Heap 22578 22528 0 0 27104 33764 26744 3213 Dalvik Heap 21227 21116 0 0 28636 38065 9517 28548 Dalvik Other 27301 8624 0 0 46524 Stack 2696 2696 0 0 2700 Ashmem 31 0 0 0 988 Other dev 24 0 24 0 372 .so mmap 3462 152 0 0 65952 .jar mmap 1480 0 0 0 46444 .apk mmap 13548 0 380 0 31892 .ttf mmap 420 0 60 0 1708 .dex mmap 1990 16 4 0 4944 .oat mmap 18 0 0 0 1616 .art mmap 8497 8188 0 0 29536 Other mmap 412 4 184 0 3060 EGL mtrack 40840 40840 0 0 40840 GL mtrack 17624 17624 0 0 17624 Unknown 74403 74020 376 0 75632 TOTAL 236551 195808 1028 0 425572 71829 36261 31761 App Summary Pss(KB) Rss(KB) ------ ------ Java Heap: 29304 58172 Native Heap: 22528 27104 Code: 920 190224 Stack: 2696 2700 Graphics: 58464 58464 Private Other: 82924 System: 39715 Unknown: 88908 TOTAL PSS: 236551 TOTAL RSS: 425572 TOTAL SWAP (KB): 0 Objects Views: 22 ViewRootImpl: 1 AppContexts: 8 Activities: 1 Assets: 28 AssetManagers: 0 Local Binders: 32 Proxy Binders: 99 Parcel memory: 25 Parcel count: 82 Death Recipients: 0 WebViews: 0 SQL MEMORY_USED: 319 PAGECACHE_OVERFLOW: 195 MALLOC_SIZE: 46 DATABASES pgsz dbsz Lookaside(b) cache hits cache misses cache size Dbname PER CONNECTION STATS 4 176 110 644 294 25 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29 POOL STATS cache hits cache misses cache size Dbname 636 303 939 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29
++						99 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
++						100 text To know more about supported commands, refer to 
++						101 link Description: this documentation, Value: browserstack.com/docs/app-live/adb-commands
++						102 link Resize Component
++							103 text ||
++						104 tab group
++							105 tab (selectable, settable, boolean) Description: Logs, Value: 0
++							106 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
++							107 tab (selectable, settable, boolean) Description: Inspect, Value: 0
++							108 text Inspect
++							109 tab (selectable, settable, boolean) Description: Network, Value: 0
++							110 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+The focused UI element is 99 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 

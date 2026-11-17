@@ -38,23 +38,8 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return try await trips(for: query)
     }
 
-    func requestBooking(tripId: String, childId: String?) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            var data: [String: Any] = ["tripId": tripId, "seats": 1]
-            if let childId, !childId.isEmpty {
-                data["childId"] = childId
-            }
-            Functions.functions().httpsCallable("requestBooking").call(data) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let bookingId = payload["bookingId"] as? String {
-                    continuation.resume(returning: bookingId)
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse booking invalide."))
-                }
-            }
-        }
+    func listClubSummaries() async throws -> [ClubSummary] {
+        try await loadClubSummaries()
     }
 
     func startRide(tripId: String, bookingIds: [String]) async throws -> LiveRideSnapshot {
@@ -165,14 +150,15 @@ struct FirebaseBackendGateway: FirebaseGateway {
         return bookings
     }
 
-    func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
+    @MainActor func writeNativeLocationFallback(rideSessionId: String, role: AppRole) async throws {
         #if os(iOS) && canImport(CoreLocation)
+        guard let uid = Auth.auth().currentUser?.uid, !uid.isEmpty else { throw CancellationError() }
         let locationRole = role == .child ? "child" : "driver"
         try await NativeLocationFallbackProvider.shared.startContinuousUpdates(
             rideSessionId: rideSessionId,
             role: locationRole
         ) { update in
-            try await uploadNativeLocationUpdate(update)
+            try await uploadNativeLocationUpdate(update, uid: uid)
         }
         #else
         _ = (rideSessionId, role)
@@ -180,34 +166,33 @@ struct FirebaseBackendGateway: FirebaseGateway {
         #endif
     }
 
-    func stopNativeLocationFallback(rideSessionId: String) {
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) {
         #if os(iOS) && canImport(CoreLocation)
-        Task { @MainActor in
-            NativeLocationFallbackProvider.shared.stopContinuousUpdates(rideSessionId: rideSessionId)
-        }
+        NativeLocationFallbackProvider.shared.stopContinuousUpdates(rideSessionId: rideSessionId)
         #else
         _ = rideSessionId
         #endif
     }
 
-    #if os(iOS) && canImport(CoreLocation)
-    private func uploadNativeLocationUpdate(_ update: NativeLocationFallbackUpdate) async throws {
-        let updatesJson = try update.callableBatchJson()
-        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            Functions.functions().httpsCallable("writeLocationBatch").call(["updatesJson": updatesJson]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let payload = result?.data as? [String: Any],
-                          let written = payload["written"] as? Int,
-                          written > 0 {
-                    continuation.resume(returning: ())
-                } else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse localisation invalide."))
-                }
-            }
-        }
+    @MainActor func stopAllNativeLocationFallback() {
+        #if os(iOS) && canImport(CoreLocation)
+        NativeLocationFallbackProvider.shared.stopAllUpdates()
+        #endif
     }
-    #endif
+
+    @MainActor var nativeLocationWorkPending: Bool {
+        #if os(iOS) && canImport(CoreLocation)
+        NativeLocationFallbackProvider.shared.hasPendingWork
+        #else
+        false
+        #endif
+    }
+
+    @MainActor func awaitNativeLocationShutdown() async {
+        #if os(iOS) && canImport(CoreLocation)
+        await NativeLocationFallbackProvider.shared.awaitShutdown()
+        #endif
+    }
 
     private func trips(for query: Query) async throws -> [TripSummary] {
         let snapshot = try await documents(for: query)

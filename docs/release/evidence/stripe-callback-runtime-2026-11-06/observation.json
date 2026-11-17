@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-06",
+  "scope": "read-only-callback-runtime-observation-not-cause-or-readiness-proof",
+  "failedCheck": {
+    "sourceCommit": "6fb6487c2b9a31b84faa23a096ce345fa63cdca2",
+    "runId": 42281015447,
+    "jobId": 128109653127,
+    "observedAt": "2026-11-06T19:36:11.5025794Z",
+    "kind": "refresh-callback-timeout"
+  },
+  "logWindow": { "from": "2026-11-06T19:30:00Z", "to": "2026-11-06T19:45:00Z" },
+  "requestObservations": [
+    { "timestamp": "2026-11-06T19:35:56.608966Z", "status": 500, "latency": "0s" },
+    { "timestamp": "2026-11-06T19:36:07.879776Z", "status": 500, "latency": "0s" }
+  ],
+  "service": {
+    "name": "stripeconnectrefresh",
+    "region": "us-central1",
+    "revision": "stripeconnectrefresh-00001-six",
+    "deploymentCondition": "CONDITION_SUCCEEDED",
+    "maxInstanceCount": 1,
+    "maxInstanceRequestConcurrency": 1,
+    "cpu": "0.1666",
+    "memory": "256Mi",
+    "timeout": "60s",
+    "startupCpuBoost": true
+  },
+  "healthRequestCorrelationProven": false,
+  "rootCauseConfirmed": false,
+  "readinessAccepted": false,
+  "resourcesChanged": false,
+  "livePaymentAttempted": false,
+  "requestUrlsOrClientAddressesRetained": false,
+  "credentialsOrEnvironmentValuesRetained": false
+}

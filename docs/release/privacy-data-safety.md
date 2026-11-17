@@ -7,7 +7,7 @@ Google Play Data safety, and public privacy-policy drafting.
 
 | Category | Examples | Purpose | Linked To User | Tracking |
 | --- | --- | --- | --- | --- |
-| Account identity | name, email, Firebase UID | authentication, support, role access | yes | no |
+| Account identity | name, email, Firebase UID, federated auth tokens | authentication, support, role access | yes | no |
 | Child and guardian records | child profile, guardian ids, team memberships | guardian consent, ride participation, safety | yes | no |
 | Precise location | driver and child active-ride updates | active ride safety, ETA, stale-location warnings | yes | no |
 | Payment data | Stripe customer/payment intent ids, connected account ids | ride payment, driver rewards, payout reconciliation | yes | no |
@@ -38,6 +38,7 @@ advertising or third-party tracking.
 | Processor | Purpose | Public URL |
 | --- | --- | --- |
 | Firebase | authentication, Firestore, Realtime Database, Cloud Functions, notifications | https://firebase.google.com/support/privacy |
+| Meta | Facebook Login identity provider | https://www.facebook.com/privacy/policy/ |
 | Radar | active ride trip tracking, geofences, arrivals | https://radar.com/privacy |
 | Google Maps Platform | address search, route matrix, routes, ETA | https://policies.google.com/privacy |
 | Stripe Connect | PaymentIntents, connected accounts, transfers, payouts | https://stripe.com/privacy |
@@ -46,6 +47,7 @@ advertising or third-party tracking.
 
 - Background location: yes, only during active ride sessions for safety tracking and ETA.
 - Precise location: yes, linked to user, app functionality, not tracking.
+- Federated identity: Google and Facebook login are used only for authentication.
 - Financial information: processed by Stripe; app stores Stripe ids and ledger summaries, not raw card numbers.
 - Children: child profiles and child-device location are used only with guardian consent for ride safety.
 - Data deletion: account and child deletion must remove mutable profile records and preserve legally required payment/safety audit records.

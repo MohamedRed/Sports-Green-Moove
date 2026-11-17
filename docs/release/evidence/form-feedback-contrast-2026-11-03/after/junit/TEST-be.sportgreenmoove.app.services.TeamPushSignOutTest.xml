@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushSignOutTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-03T08:44:56.309Z" hostname="MRRs-MacBook-Air.local" time="0.015">
+  <properties/>
+  <testcase name="anotherAccountsReceiptCannotClearThePendingRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"/>
+  <testcase name="callerCancellationKeepsTheRemovalAndDoesNotLookLikeConfirmation" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <testcase name="anUnavailableServerRetainsPendingRemovalWithoutManufacturingConfirmation" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"/>
+  <testcase name="anInstallationWithoutAnyRegistrationHasNothingToConfirm" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <testcase name="aSignedOutClientNeverReplaysAnUnauthenticatedPreviousOwnersRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <testcase name="accountChangeDuringRemovalCannotAcknowledgeAsTheNextUser" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <testcase name="forcedLocalSignoutAfterConfirmationDoesNotCreateAnExtraRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <testcase name="aSilentServerWaitIsBoundedToTwoAndAHalfSeconds" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"/>
+  <testcase name="aLateRegistrationReplyCannotReactivateTheInstallationDuringSignout" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.003"/>
+  <testcase name="authenticatedRemovalIsAcknowledgedBeforeAuthClearsTheAccount" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

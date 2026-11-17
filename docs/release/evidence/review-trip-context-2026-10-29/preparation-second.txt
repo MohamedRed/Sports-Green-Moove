@@ -1,0 +1,18 @@
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Shutting down emulators.
+
+Error: firebase-tools no longer supports Java version before 21. Please install a JDK at version 21 or above to get a compatible runtime.
+file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:28
+    if (result.status !== 0) throw new Error(`${command} failed (${result.status})`);
+                                   ^
+
+Error: /opt/homebrew/Cellar/node@22/22.22.0/bin/node failed (1)
+    at Object.run (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:28:36)
+    at runEmulatorEntry (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-runtime.mjs:57:11)
+    at file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/run-local-review-context.mjs:14:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Node.js v22.22.0

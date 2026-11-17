@@ -1,0 +1,14 @@
+22:34:46.171 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+22:34:46.275 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+22:34:53.862 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - demo-sgm-local-qa-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 94ms, init: 0ms
+22:34:53.902 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace demo-sgm-local-qa-default-rtdb status Active to Active
+22:34:55.936 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace demo-sgm-local-qa, but the emulator is configured for demo-sgm-local-qa-default-rtdb. To 
+opt-out of single project mode add/set the singleProjectMode: false property in 
+the firebase.json emulators config. 
+22:34:55.944 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.NamespaceActor - demo-sgm-local-qa successfully activated FBKV (SurveyIdle(0)) wait: 5ms, init: 0ms
+22:35:02.592 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+22:35:02.599 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: demo-sgm-local-qa-default-rtdb, demo-sgm-local-qa
+22:35:02.602 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for demo-sgm-local-qa-default-rtdb
+22:35:02.602 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for demo-sgm-local-qa
+22:35:02.605 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

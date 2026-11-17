@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.380Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="aChangedNumberOrChildIdentityRequiresAnotherExplicitTap" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.002"/>
+  <testcase name="emptyIsExplicitButAReadFailureClearsThePrivateContactAndNeverLooksEmpty" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.0"/>
+  <testcase name="backgroundAndAccountDisposalInvalidateAnOutstandingRead" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"/>
+  <testcase name="missingOrDeniedPhoneAppsKeepTheVerifiedDestinationWithoutInventingAnAlternative" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"/>
+  <testcase name="otherAccountsOtherRidesAndUnsafeRepliesCannotPopulateTheScreen" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"/>
+  <testcase name="removalOrRevokedAuthorityCannotOpenThePreviouslyDisplayedNumber" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"/>
+  <testcase name="onlyAFreshMatchingContactCanOpenThePhoneAndNoWriteCapabilityIsUsed" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.0"/>
+  <testcase name="backgroundDuringFreshDialReadPreventsTheHandoff" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

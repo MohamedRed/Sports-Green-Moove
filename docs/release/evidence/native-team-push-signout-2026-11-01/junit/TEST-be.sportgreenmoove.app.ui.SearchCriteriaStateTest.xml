@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.472Z" hostname="local-test-host" time="0.004">
+  <properties></properties>
+  <testcase name="changingChildOrTrackingRequiresANewExplicitConsent" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.0"></testcase>
+  <testcase name="changingAnOptionRejectsAnAlreadyRunningSearchResponse" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.001"></testcase>
+  <testcase name="everyChangedOptionInvalidatesResultsAndTheirBookingAction" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.001"></testcase>
+  <testcase name="removedChildClearsSelectionConsentAndResultsWithoutSelectingAnotherChild" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.001"></testcase>
+  <testcase name="unchangedOptionsKeepTheCurrentResults" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.0"></testcase>
+  <testcase name="aClosedSearchLosesUnresolvedInputAndAllFormChoices" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.0"></testcase>
+  <testcase name="insufficientReturnedCapacityCannotBeRequested" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.0"></testcase>
+  <testcase name="invalidOptionsAreExplicitFailuresNotEmptySearchResults" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.001"></testcase>
+  <testcase name="bookingUsesTheCompletedSearchsSeatCountAndChild" classname="be.sportgreenmoove.app.ui.SearchCriteriaStateTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

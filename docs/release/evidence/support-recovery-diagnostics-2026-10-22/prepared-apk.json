@@ -1,0 +1,19 @@
+{
+  "baseCommit": "000ed178b3fb8cf54011ba449661b66bbe320db8",
+  "nativeSourceDirty": true,
+  "sha256": "10668e27abfc95e19256bb484860efe34770e08a5169c43ab2b605c25630d0fb",
+  "bytes": 34557999,
+  "debug": {
+    "SGM_LOCAL_SUPPORT_TRACE": true,
+    "SGM_USE_FIREBASE_EMULATOR": true,
+    "SGM_LOCAL_REAL_MAPS_UI": false
+  },
+  "release": {
+    "SGM_LOCAL_SUPPORT_TRACE": false,
+    "SGM_USE_FIREBASE_EMULATOR": true,
+    "SGM_LOCAL_REAL_MAPS_UI": false
+  },
+  "nonIsolatedTraceBuildRejected": true,
+  "nonIsolatedTraceBuildExitCode": 1,
+  "physicalDeviceObserved": false
+}

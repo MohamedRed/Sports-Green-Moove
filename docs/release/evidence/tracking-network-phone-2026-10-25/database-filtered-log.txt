@@ -1,0 +1,150 @@
+Browser tab: 1621934829, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		45 container
+			46 container content
+				180 container in-session-device-react
+					329 container
+					330 container
+						331 image
+						332 button Add Device
+							333 text Add Device
+							334 text PRO
+				176 text ;
+				442 container debugger
+					443 text DevTools -  Logcat
+					444 button Download logs, ID: devtool-download-logs
+					445 button Dock to bottom, ID: devtool-change-orientation
+					446 button Collapse, ID: devtool-toggle
+					447 container device-logs
+						448 container
+							449 text be.sportgreenmoove.app.local
+							450 text field Description: Device logs dropdown, ID: react-select-30-input
+						451 container
+							452 text Info
+							453 text field Description: Log type dropwdown, ID: react-select-31-input
+						454 container
+							455 link Description: Clear logs, Value: app-live.browserstack.com/dashboard#
+							456 link Description: Pause logs, Value: app-live.browserstack.com/dashboard#
+							457 link Description: Wrap, Value: app-live.browserstack.com/dashboard#
+						458 container
+							459 search text field (settable) Description: Search Logs, Value: PersistentConnection|WebSocket|FirebaseDatabase|SGM.FirebaseEmulator
+							460 image
+							461 checkbox (settable, integer) Description: Use regex search, Value: 1, ID: search-regex-box
+							462 text Regex
+						463 table grid
+							464 container
+								465 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqnm.a(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):5)
+									466 cell
+										467 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqnm.a(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):5)
+								468 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqjb.g(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):7)
+									469 cell
+										470 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqjb.g(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):7)
+								471 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqlr.t(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):10)
+									472 cell
+										473 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqlr.t(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):10)
+								474 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqlr.u(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):308)
+									475 cell
+										476 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqlr.u(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):308)
+								477 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqlr.c(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):16)
+									478 cell
+										479 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqlr.c(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):16)
+								480 row 10-25 17:38:18.246 W/FlagStore( 4741): at bqlx.handleMessage(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):881)
+									481 cell
+										482 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at bqlx.handleMessage(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):881)
+								483 row 10-25 17:38:18.246 W/FlagStore( 4741): at android.os.Handler.dispatchMessage(Handler.java:103)
+									484 cell
+										485 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at android.os.Handler.dispatchMessage(Handler.java:103)
+								486 row 10-25 17:38:18.246 W/FlagStore( 4741): at dphc.lN(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):1)
+									487 cell
+										488 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at dphc.lN(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):1)
+								489 row 10-25 17:38:18.246 W/FlagStore( 4741): at dphc.dispatchMessage(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):5)
+									490 cell
+										491 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at dphc.dispatchMessage(:com.google.android.gms@264131035@26.41.31 (260400-1002748488):5)
+								492 row 10-25 17:38:18.246 W/FlagStore( 4741): at android.os.Looper.loopOnce(Looper.java:232)
+									493 cell
+										494 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at android.os.Looper.loopOnce(Looper.java:232)
+								495 row 10-25 17:38:18.246 W/FlagStore( 4741): at android.os.Looper.loop(Looper.java:317)
+									496 cell
+										497 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at android.os.Looper.loop(Looper.java:317)
+								498 row 10-25 17:38:18.246 W/FlagStore( 4741): at android.os.HandlerThread.run(HandlerThread.java:85)
+									499 cell
+										500 text 10-25 17:38:18.246 W/FlagStore( 4741): 	at android.os.HandlerThread.run(HandlerThread.java:85)
+					501 link Resize Component
+						502 text ||
+					503 tab group
+						504 tab (selected, settable, boolean) Description: Logs, Value: 1
+						505 tab (selectable, settable, boolean) Description: ADB Shell, Value: 0
+						506 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						507 tab (selectable, settable, boolean) Description: Network, Value: 0
+						508 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				509 content list
+					510 button Description: Switch Device, ID: switchBrowser
+					511 container
+						512 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							513 image
+							514 image open content menu
+							515 text Local testing
+					516 menu zoomFeature
+						517 Description: zoom out, ID: zoom-out
+						518 Description: zoom in, ID: zoom-in
+						519 text Zoom
+					520 button Description: Record Session, ID: appLiveVideoRecording
+					521 button Description: DevTools, ID: showDebuggingOptions
+					522 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					523 button open content menu Settings, ID: appLiveSessionSettings
+						524 image open content menu
+						525 text Settings
+					526 button Description: Stop Session, ID: appLiveStopSession
+						527 image
+						528 text Stop Session
+				328 container vertical-toolbar-react
+					374 container vertical-toolbar-draggable
+						375 container
+							529 button toolbar drag icon
+							377 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						378 toolbar
+							379 content list
+								530 button Description: Add Device, ID: app-live-add-device
+									531 container app-live-add-device-lead-text-wrapper
+										532 text Add Device PRO
+								533 button Description: Show Home Screen, ID: dockHomeScreen
+									534 text Show Home Screen
+								535 container volume-buttons-lead-text-wrapper
+									536 text Volume
+									537 container volumeButtons
+										538 button - Volume Decrease
+										539 button (disabled) + Volume Increase
+								540 button Description: View Open Apps, ID: view-open-apps
+									541 text View Open Apps
+								542 button Description: Install New App, ID: switch-app
+									543 text Install New App
+								544 checkbox Description: Profile Performance, Value: 0
+									545 text Profile Performance
+									546 text PRO
+								547 button Description: Capture Screenshot, ID: get-screenshot
+									548 text Capture Screenshot
+								549 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									550 text Kill/Uninstall
+								551 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									552 container android-settings-lead-text-wrapper
+										553 text Android Settings PRO New
+								554 button Rotate Device, ID: dockOrientationRealAndroid
+									555 text Rotate Device
+								556 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									557 text Change Location
+								558 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									559 text Throttle Network
+								560 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									561 text Files & Media
+								562 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									563 text Change Language
+								564 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									565 text Screen Reader
+								566 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									567 text Google Pixel 9 Pro
+									568 text v15.0
+		441 text Network condition changes have been applied.
+
+The focused UI element is 461 checkbox (settable, integer) Description: Use regex search, Value: 1, ID: search-regex-box

@@ -1,0 +1,44 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 2026-10-18 00:21:35.484
+  package: be.sportgreenmoove.app.local
+    Historical Process Exit for uid=10211
+        ApplicationExitInfo #0:
+          timestamp=2026-10-18 00:25:16.313 pid=8279 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=16 (PACKAGE UPDATED) subreason=0 (UNKNOWN) status=0
+          importance=100 pss=0.00 rss=0.00 description=stop com.google.android.gms due to installPackageLI state=empty trace=null
+        ApplicationExitInfo #1:
+          timestamp=2026-10-18 00:25:05.731 pid=7572 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #2:
+          timestamp=2026-10-18 00:24:36.961 pid=7227 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #3:
+          timestamp=2026-10-18 00:24:04.401 pid=7106 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #4:
+          timestamp=2026-10-18 00:23:43.325 pid=6979 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #5:
+          timestamp=2026-10-18 00:23:36.858 pid=6895 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #6:
+          timestamp=2026-10-18 00:23:34.766 pid=6799 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #7:
+          timestamp=2026-10-18 00:23:31.379 pid=6730 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #8:
+          timestamp=2026-10-18 00:23:28.527 pid=6636 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null
+        ApplicationExitInfo #9:
+          timestamp=2026-10-18 00:23:21.696 pid=6329 realUid=10211 packageUid=10211 definingUid=10211 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=0.00 description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null

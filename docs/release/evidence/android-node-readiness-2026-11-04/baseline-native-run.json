@@ -1,0 +1,176 @@
+{
+  "runId": 41911782130,
+  "status": "completed",
+  "conclusion": "success",
+  "sourceCommit": "3e7cd40e62798ba503c383e044e25231dc3072bd",
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41911782130",
+  "scope": "unchanged-baseline-native-success-not-readiness-candidate-or-physical-proof",
+  "artifactId": 13364923777,
+  "archiveSha256": "d77a135be221ee559772de73d0e39d18732aeb131bc2e53cecdda396bbf06cec",
+  "records": [
+    {
+      "file": "baseline-ordinary-results.json",
+      "entry": "outputs/store-review-screenshots/ordinary-results.json",
+      "sha256": "823735f9a27278b167dffb9314b1162037f45e7c6f1c32d22dd6dcc47463b8e3",
+      "selection": "complete-unchanged-entry"
+    },
+    {
+      "file": "baseline-ordinary-process.json",
+      "entry": "outputs/store-review-screenshots/ordinary-process.json",
+      "sha256": "2509785f2fbd410142d443103e1dc67818030fb579b046f140c27a0d10adeb22",
+      "selection": "complete-unchanged-entry"
+    },
+    {
+      "file": "baseline-suite-status.json",
+      "entry": "outputs/store-review-screenshots/native-suite-status.json",
+      "sha256": "4f0522dbdf13e10918920a0897e5c328173ef29ba7898485f5700b0e0fd8402b",
+      "selection": "complete-unchanged-entry"
+    },
+    {
+      "file": "baseline-guardian-results.json",
+      "entry": "outputs/local-ui-evidence/ad4a363494da5426edd9fb8ceac901cd/guardian-parent-results.json",
+      "sha256": "919a299455594475a9a2d12753314340729e02281c86fdb9e945a67a8ba3ff72",
+      "selection": "complete-unchanged-entry"
+    },
+    {
+      "file": "baseline-host-disposal.json",
+      "entry": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+      "sha256": "01d9c202f64a32f6ce08047aacc4793378257a9229baa3b5f9bf4018ded8bfc4",
+      "selection": "complete-unchanged-entry"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": 126860962953,
+      "name": "Android native UI tests",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963122,
+      "name": "Android native unit tests",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963268,
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963389,
+      "name": "Native UI flow coverage",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963443,
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963486,
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963508,
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963574,
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963602,
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963628,
+      "name": "Android focused safety UI tests / Isolated chat-network-recovery",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963649,
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963821,
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963904,
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860963933,
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "jobId": 126860965131,
+      "name": "Android approved real-map UI integration",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126860965435,
+      "name": "Android approved vehicle-map UI",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126860966050,
+      "name": "Android approved parent search and booking",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126861010372,
+      "name": "iOS native checks",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126861031589,
+      "name": "iOS native UI tests",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "jobId": 126867376815,
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "ordinary": {
+    "complete": true,
+    "caseCount": 349,
+    "passed": 294,
+    "skipped": 55,
+    "failed": 0
+  },
+  "candidateReadinessPresent": false,
+  "priorRootCauseConfirmed": false,
+  "physicalDeviceAccepted": false,
+  "newMediaPublished": false,
+  "releaseAccepted": false
+}

@@ -1,0 +1,126 @@
+{
+  "scope": "previous-public-appearance-snapshot-not-current-acceptance",
+  "siteVersion": 325,
+  "siteSourceCommit": "8ac6d40e6ef0870571f0c48f63f494e7af1232a2",
+  "publicDataSha256": "e59ecc256cde7997fcf3fe188c013e2bfb1ab98ed621dc2d0b3708962a5ef573",
+  "allFlowFingerprint": "b5772455f74ec402c5b25acfa5736917c7e8db4a3332725a416868d18cacadd8",
+  "appearanceFlow": {
+    "id": "appearance",
+    "title": "Affichage et thème sombre",
+    "status": "partial",
+    "checkedAt": "2026-10-30",
+    "latestEvidence": "phone",
+    "summary": "Les libellés des boutons verts et orange sont corrigés et revus sur téléphone.",
+    "verified": "Recherche, trajets et récompenses revus en clair et en sombre, avec des données de test. Aucun paiement.",
+    "remaining": "Restent les autres textes colorés, les dates des réservations, les marges système et les essais d’accessibilité, dont l’iPhone.",
+    "accentControlReview": {
+      "source": "docs/release/evidence/accent-controls-phone-2026-10-30/review.json",
+      "checksums": "docs/release/evidence/accent-controls-phone-2026-10-30/artifact-sha256.json",
+      "checkedAt": "2026-10-30"
+    },
+    "ui": {
+      "source": "docs/release/evidence/local-ui-2026-10-15/results.json",
+      "groups": [
+        "landscape-login-ui",
+        "theme-process-restart-ui"
+      ],
+      "checkedAt": "2026-10-15"
+    },
+    "neutralTextReview": {
+      "source": "docs/release/evidence/neutral-text-visual-2026-10-30/review.json",
+      "checksums": "docs/release/evidence/neutral-text-visual-2026-10-30/artifact-sha256.json",
+      "checkedAt": "2026-10-30"
+    },
+    "images": [
+      {
+        "file": "accent-control-search-light",
+        "alt": "Recherche en clair, capture de session du 30 octobre, données de test",
+        "checkedAt": "2026-10-30",
+        "landscape": false
+      },
+      {
+        "file": "accent-control-search-dark",
+        "alt": "Recherche en sombre, capture de session du 30 octobre, données de test",
+        "checkedAt": "2026-10-30",
+        "landscape": false
+      },
+      {
+        "file": "accent-control-trips-dark",
+        "alt": "Sélections dans Mes trajets, capture de session du 30 octobre, données de test",
+        "checkedAt": "2026-10-30",
+        "landscape": false
+      },
+      {
+        "file": "accent-control-rewards-dark",
+        "alt": "Bouton orange en sombre, capture de session du 30 octobre, données de test",
+        "checkedAt": "2026-10-30",
+        "landscape": false
+      },
+      {
+        "file": "accent-control-rewards-light",
+        "alt": "Bouton orange en clair, capture de session du 30 octobre, données de test",
+        "checkedAt": "2026-10-30",
+        "landscape": false
+      },
+      {
+        "file": "neutral-text-search-light-phone",
+        "landscape": false,
+        "alt": "Recherche, thème clair, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-search-light-wide",
+        "landscape": true,
+        "alt": "Recherche, thème clair, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-search-dark-phone",
+        "landscape": false,
+        "alt": "Recherche, thème sombre, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-search-dark-wide",
+        "landscape": true,
+        "alt": "Recherche, thème sombre, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-trips-light-phone",
+        "landscape": false,
+        "alt": "Mes trajets, thème clair, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-trips-light-wide",
+        "landscape": true,
+        "alt": "Mes trajets, thème clair, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-trips-dark-phone",
+        "landscape": false,
+        "alt": "Mes trajets, thème sombre, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "neutral-text-trips-dark-wide",
+        "landscape": true,
+        "alt": "Mes trajets, thème sombre, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+        "checkedAt": "2026-10-30"
+      },
+      {
+        "file": "local-landscape",
+        "alt": "Formulaire de connexion en paysage, après défilement",
+        "checkedAt": "2026-10-15"
+      },
+      {
+        "file": "local-theme",
+        "alt": "Thème sombre conservé après relancement complet",
+        "checkedAt": "2026-10-15"
+      }
+    ],
+    "source": "docs/release/evidence/accent-controls-phone-2026-10-30/README.md"
+  }
+}

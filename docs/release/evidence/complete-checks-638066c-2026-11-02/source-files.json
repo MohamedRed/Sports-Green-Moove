@@ -1,0 +1,9 @@
+{
+  "scripts/run-android-ui-tests-and-collect-screenshots.sh": "d60a8541053c1e7a40c77f2fef224e26d43aad787d6d5ab4b897fbda88d7cabf",
+  "scripts/qa/run-ordinary-android-ui.mjs": "0336219bb17b421e33200953c663689651851f5665df4800f7d64d75741a7259",
+  "scripts/qa/collect-local-ui-evidence.mjs": "cbd89acd570620e6e68890e1b0910016916d9965b9a91297ec098fb070742de3",
+  "scripts/qa/run-local-android-flows.mjs": "71314823f1fd16a5a49781841af06f2c51d8830049e4551a77b597e07ec4e74a",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt": "1f1e5be3363b7331ca3b7b4a413c3eb4644307e5c0a4b2fc67a7d4e67bc36463",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureProbe.kt": "48867d71c8b724fc062a8c80495c26df46c1199d061c0dbf0a85555b6284619c",
+  ".github/workflows/web-integration-smoke.yml": "6d5ca1dd64533ead0964547e87537de03429bd44b6744babbc2f77df20876340"
+}

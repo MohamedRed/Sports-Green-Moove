@@ -1,0 +1,15 @@
+{
+  "scope": "observed-local-clock-substring-collision-not-remote-copy-cause",
+  "oldPredicateRejected": true,
+  "collisionField": "monotonicMs",
+  "observedMonotonicMs": 225.555708,
+  "observedPorts": [
+    [
+      5555,
+      48350
+    ]
+  ],
+  "remoteFailureExplained": false,
+  "runtimeObserverChanged": false,
+  "physicalTrialExecuted": false
+}

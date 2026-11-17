@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "c1d2a2ff017b89fe498b2537854dc5a64e6d4a0c",
+  "scope": "executed-notification-components-inside-failed-native-replay-not-push-or-phone",
+  "nativeCasesPassed": 7,
+  "ordinaryCasesPassed": 154,
+  "ordinaryCasesSkipped": 50,
+  "deviceRestorationVerified": true,
+  "hostExitVerified": false,
+  "fullCiPassed": false,
+  "pushDeliveryAccepted": false,
+  "actualNotificationSent": false,
+  "newPhysicalPhoneTrial": false,
+  "iosAccepted": false,
+  "productionWrites": false,
+  "realMoneyUsed": false,
+  "earlierLoginRootCauseConfirmed": false,
+  "releaseComplete": false
+}

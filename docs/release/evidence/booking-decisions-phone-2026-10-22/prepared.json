@@ -1,0 +1,171 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9a9c1b943b9415cf245f3fb79aa8d37f",
+  "recordedAt": "2026-10-22T11:41:19.468Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "bookings": [
+      {
+        "tripId": "TnCHANLVbXTgN7ek1H8O",
+        "bookingId": "GeDaHGKbs9QvIG82StQN",
+        "title": "Accord deux places QA"
+      },
+      {
+        "tripId": "fvxIwHCb9f5QNXlFtBqN",
+        "bookingId": "UuZsHIYX8R4FZL3Kz54O",
+        "title": "Refus deux places QA"
+      }
+    ]
+  },
+  "state": {
+    "bookings": [
+      {
+        "id": "GeDaHGKbs9QvIG82StQN",
+        "tripId": "TnCHANLVbXTgN7ek1H8O",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested",
+        "createdAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 967000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 967000000
+        },
+        "childId": "sgm-qa-child-lina",
+        "childLabel": "Lina QA"
+      },
+      {
+        "id": "UuZsHIYX8R4FZL3Kz54O",
+        "tripId": "fvxIwHCb9f5QNXlFtBqN",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 2,
+        "status": "requested",
+        "createdAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 28000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 28000000
+        },
+        "childId": "sgm-qa-child-lina",
+        "childLabel": "Lina QA"
+      }
+    ],
+    "trips": [
+      {
+        "id": "TnCHANLVbXTgN7ek1H8O",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Accord deux places QA",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-23T23:39:05.216Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "seatsAvailable": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 0,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 236000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669145,
+          "_nanoseconds": 236000000
+        }
+      },
+      {
+        "id": "fvxIwHCb9f5QNXlFtBqN",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Refus deux places QA",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-23T23:39:05.994Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "seatsAvailable": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 0,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 1000000
+        },
+        "updatedAt": {
+          "_seconds": 1792669146,
+          "_nanoseconds": 1000000
+        }
+      }
+    ],
+    "notices": [],
+    "inboxes": {
+      "parent": [],
+      "driver": [],
+      "outsider": []
+    },
+    "pendingRequestIds": [
+      "GeDaHGKbs9QvIG82StQN",
+      "UuZsHIYX8R4FZL3Kz54O",
+      "sgm-qa-booking-requested"
+    ]
+  },
+  "result": {
+    "phase": "prepared",
+    "statuses": [
+      "requested",
+      "requested"
+    ],
+    "noticeCount": 0,
+    "recipientIsolationVerified": true,
+    "physicalUiProvenByThisCheckpoint": false,
+    "pushDeliveryVerified": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

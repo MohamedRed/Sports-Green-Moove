@@ -14,7 +14,8 @@ struct SearchChildSelector: View {
                 ForEach(options.chunked(into: 2), id: \.self) { row in
                     HStack(spacing: 6) {
                         ForEach(row, id: \.self) { option in
-                            SGMChip(text: option.label, selected: option.childId == selectedChildId) {
+                            SGMChip(text: option.label, selected: option.childId == selectedChildId,
+                                testID: "search.child.\(option.childId ?? "none")") {
                                 selectedChildId = option.childId
                             }
                         }

@@ -1,0 +1,132 @@
+{
+  "scope": "local-session-disconnect-process-restart-not-physical-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "0814f84568315ad652b1d4f66e26b33f",
+  "preparedProcessId": 5040,
+  "processId": 5390,
+  "screenshots": {
+    "local-session-disconnect-error.png": "835fbb78333e6dbbf4dce0f55dc2cb7e5012205ab61201c5bc91204cefbc24a1",
+    "local-session-disconnect-signed-out.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8",
+    "local-session-disconnect-reopened.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8"
+  },
+  "authEmptyBeforeLaunch": true,
+  "signedOutScreenAfterProcessRestart": true,
+  "authEmptyAfterLaunch": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "completed": true,
+  "testedAt": "2026-10-31T13:08:06.779Z",
+  "testCount": 1,
+  "nativeCaseCount": 2,
+  "steps": [
+    {
+      "id": "session-disconnect-process-restart",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": true,
+  "native": {
+    "before": {
+      "scope": "local-session-disconnect-process-restart-not-physical-network-loss-checkpoint",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0814f84568315ad652b1d4f66e26b33f",
+      "processId": 5040,
+      "uidBefore": "sgm-qa-parent",
+      "initialFailureVisible": true,
+      "noImplicitDisconnect": true,
+      "explicitDisconnectReachedSignIn": true,
+      "authEmptyAfterDisconnect": true,
+      "screenshots": {
+        "local-session-disconnect-error.png": "835fbb78333e6dbbf4dce0f55dc2cb7e5012205ab61201c5bc91204cefbc24a1",
+        "local-session-disconnect-signed-out.png": "ed29f52b8cc6f57833fcabd5a348be93638962b09b832f0879f077f49de25db8"
+      },
+      "physicalDevice": false
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0814f84568315ad652b1d4f66e26b33f",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 5040,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    }
+  },
+  "transcripts": {
+    "LocalSessionDisconnectTest#disconnectFromFailedRestoration-instrumentation.txt": "5267a9445109ba5c3eab4d13484d41c20310efb87b32c2baba77a0a465f79107",
+    "LocalSessionDisconnectTest#reopenSignedOutSessionInNewProcess-instrumentation.txt": "ada9f7d588d23a8243341432e1aaca7f98c07e01ca33928f6d6a6dc754f300e7"
+  },
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "session-disconnect",
+    "receiptSha256": "3a1252370b12ed97b50938a05e18204151d7bd741cf9a47c3be34dcf14c341a8",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "93b505997701162924ff6590173ccf1210709fc3db00b8b11b8f30be334a3e0c",
+      "be.sportgreenmoove.app.local.test": "4d589ed18492249d96afdde919c8185d7a89bf6cf762b6a5529844ff7e71ee68"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "primaryEvidencePhase": "session-disconnect",
+  "cleanupMode": "destroy-owned-local-environment",
+  "proxyClosed": true,
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "fixtureIsolation": {
+    "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+    "allUserClaimsUnchanged": true,
+    "liveTripsUnchanged": true,
+    "collections": {
+      "bookings": 3,
+      "chatInboxes": 4,
+      "children": 1,
+      "clubs": 3,
+      "co2Ledger": 1,
+      "memberships": 10,
+      "messages": 121,
+      "notifications": 1,
+      "reports": 1,
+      "rewardLedger": 1,
+      "teams": 1,
+      "trips": 2,
+      "users": 9
+    },
+    "accountCount": 5
+  },
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "b7afd091155134cb3af2ebedcf2cc96d3bdefc83caf364b0d78f64805359a351",
+    "scripts/qa/android-case-apks.mjs": "ce5fd0144d472f41a4656c62a52316c97fb671213cd19955f2179832d05931fd",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "c5c3b5d94e3edaf456041595e00f492a138074283e3c44beec4d71a75a7d527d",
+    "scripts/qa/continuous-disposable-device.mjs": "90a7a74f1714d3d35bd2201dae47c2ab7666fca791fe5551c3d57fe75aac3876",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "5bdff5e8e0a710de1451e8644f8101a2e9fb3674a48f870e7b135a87ad07fda6",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "adc4359736699fe36891855b18e7392b767f0b57e4f073bf952dd5bb693c31cc",
+    ".github/workflows/native-focused-ui.yml": "22138ca8cb1e07d7d3128ae078949990519523afa00ab1d66d1f9eef3c128fa3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-session-disconnect-ui.mjs": "22e9251f8c3fc8a9a265223f219e85226641db51df7c4f0c2f37564835fb1fde",
+    "scripts/qa/run-local-session-disconnect-ui.mjs": "62eada43bdc3c8eaa86adbe0106d8b7bfe703b0a894794e866a43259cf722377",
+    "scripts/qa/session-disconnect-evidence.mjs": "d00c39ca7428835588c0ca2945f4fa901bf70ba2337a987ff994594791cc2c84",
+    "scripts/qa/session-restoration-fault-proxy.mjs": "7812ce45eb285106659b1d4ee280a6b4ada0c57c78f1a469497b4ecf50476ed9",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "scripts/qa/local-disposable-process-stop.mjs": "e24f95055a911973d13cf9400f50b6e4a90cfbf08face7f8d77105f16e9cb6cf",
+    "scripts/qa/run-isolated-ride-ui.mjs": "5a374021261cc64c6843e68d6f1c747670af29a221b519e4d7a59d816bd8b6f8",
+    "scripts/qa/local-emulator-lifecycle.mjs": "e9f38b269f25332ff076a991900a31f178cd740fee08ec8dd7e11257354f6bf8",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6",
+    "functions/src/callables/adminUsers.ts": "e9864262a7d1066bd563b3290807a75f8ffb8a28df40abdb95f3af69c11ee6c5",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "bd40f5caca84fe695b636d81a573f0322281e5bef2f564500fc588deb414688b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestoration.kt": "5b00f22d4ff59abc0f345371b579c68b8b7fd3273d5225a97553689cd7042733",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestorationState.kt": "1cca4a60a933a3a24baf2c13a9239722298d26b157c15c1b89ee5b557a231c96",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "5bd570aeee601b10322251de4fa1af38e4f71984d2329545c990610e82a03cdb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt": "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt": "df50b02bf4b3c15a073fd165ee219f7c05f913648e5c641152a2076bf7a9620d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionDisconnectTest.kt": "d645a105add5387a09189654507cc59b3b3fbc728f754924518e9f024a67a99e",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af"
+  }
+}

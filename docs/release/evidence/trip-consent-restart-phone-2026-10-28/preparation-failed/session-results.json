@@ -1,0 +1,23 @@
+{
+  "scope": "independent-trip-consent-record-checkpoints-not-phone-ui-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a84b1d3540d75662bb9c39b5dd2fb1b0",
+  "testedAt": "2026-10-28T12:24:31.618Z",
+  "completed": false,
+  "checkpoints": [],
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "phoneUiProven": false,
+  "wholeProcessRestartProven": false,
+  "productionWrites": false,
+  "routeProviderRequests": 0,
+  "applicationExercised": false,
+  "realPaymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-trip-consent-phone-session.mjs": "fc39e737ec9c5a850b518810eb5c1d64439d71683a915d9091a74c7e953fad0a",
+    "scripts/qa/trip-consent-phone-checkpoints.mjs": "e76730779b87533f05d5f571edd5e72f6104b9ab9eeb324f2192d541e8d4e9bf",
+    "scripts/qa/local-trip-change-ui.mjs": "fda071250791b73088cfb6ccd41cf3c075c71f69791b3b830240cc1c994c748e",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802"
+  }
+}

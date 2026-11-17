@@ -1,0 +1,57 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest:
+Error in aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest):
+java.util.concurrent.ExecutionException: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+	at com.google.android.gms.tasks.Tasks.zza(com.google.android.gms:play-services-tasks@@18.4.0:5)
+	at com.google.android.gms.tasks.Tasks.await(com.google.android.gms:play-services-tasks@@18.4.0:20)
+	at be.sportgreenmoove.app.ui.LocalMockLocation.emit(LocalMockLocation.kt:31)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:8)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:83)
+	... 8 trimmed
+Caused by: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+	at com.google.android.gms.common.api.internal.zaaa.zah(com.google.android.gms:play-services-base@@18.9.0:12)
+	at com.google.android.gms.common.api.internal.zaaa.zae(com.google.android.gms:play-services-base@@18.9.0:7)
+	at com.google.android.gms.common.api.internal.zabk.zaD(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.zabk.onConnectionSuspended(com.google.android.gms:play-services-base@@18.9.0:2)
+	at com.google.android.gms.common.api.internal.zabk.zaH(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.zabk.zaG(com.google.android.gms:play-services-base@@18.9.0:4)
+	at com.google.android.gms.common.api.internal.zabk.zad(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.GoogleApiManager.handleMessage(com.google.android.gms:play-services-base@@18.9.0:64)
+	at android.os.Handler.dispatchMessage(Handler.java:103)
+	at android.os.Looper.loopOnce(Looper.java:232)
+	at android.os.Looper.loop(Looper.java:317)
+	at android.os.HandlerThread.run(HandlerThread.java:85)
+
+
+Time: 22.79
+There was 1 failure:
+1) aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest)
+java.util.concurrent.ExecutionException: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+	at com.google.android.gms.tasks.Tasks.zza(com.google.android.gms:play-services-tasks@@18.4.0:5)
+	at com.google.android.gms.tasks.Tasks.await(com.google.android.gms:play-services-tasks@@18.4.0:20)
+	at be.sportgreenmoove.app.ui.LocalMockLocation.emit(LocalMockLocation.kt:31)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:8)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:83)
+	... 8 trimmed
+Caused by: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+	at com.google.android.gms.common.api.internal.zaaa.zah(com.google.android.gms:play-services-base@@18.9.0:12)
+	at com.google.android.gms.common.api.internal.zaaa.zae(com.google.android.gms:play-services-base@@18.9.0:7)
+	at com.google.android.gms.common.api.internal.zabk.zaD(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.zabk.onConnectionSuspended(com.google.android.gms:play-services-base@@18.9.0:2)
+	at com.google.android.gms.common.api.internal.zabk.zaH(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.zabk.zaG(com.google.android.gms:play-services-base@@18.9.0:4)
+	at com.google.android.gms.common.api.internal.zabk.zad(com.google.android.gms:play-services-base@@18.9.0:3)
+	at com.google.android.gms.common.api.internal.GoogleApiManager.handleMessage(com.google.android.gms:play-services-base@@18.9.0:64)
+	at android.os.Handler.dispatchMessage(Handler.java:103)
+	at android.os.Looper.loopOnce(Looper.java:232)
+	at android.os.Looper.loop(Looper.java:317)
+	at android.os.HandlerThread.run(HandlerThread.java:85)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

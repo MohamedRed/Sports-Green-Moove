@@ -1,0 +1,17 @@
+{
+  "scripts/qa/start-child-invitation-browser.mjs": "84db7089141393eb4e515500bd8c4a0ed581099cd8ec5da1a7df070ddd41afef",
+  "scripts/qa/child-invitation-browser-runtime.mjs": "62f0394d8d8eb6c89f3e2eedbb2e6adc8fe349bf47fcc77ba3a79309e949ac1d",
+  "admin/src/main.tsx": "785ffa0019838ee3b1bfaa92bdcc25b3cfe0ba91bb9a943f573f7524053b30a1",
+  "admin/src/ChildInvitationPage.tsx": "6a06e81b3ef54f7397e38a4943f77588bc1c1d0bc740a23175e9c05774d87ad8",
+  "admin/src/childInvitationLink.ts": "66ad6882a9c8ff54fa5a46073b37df060a5f810675193dfb22256c68fac99848",
+  "admin/src/childInvitationGateway.ts": "a1a78217ab9c5b39837a05b07b50eddd50b894998c2d0e341d7ad97e96efa422",
+  "admin/src/firebase.ts": "c3861730465b52064e60da25669a525bb7143641e53a6f302c7ea7af2aa5979f",
+  "admin/src/localFirebaseConfig.ts": "5bbb9b69e7ef0b23b20dccd544ef880352d302e4fbe353eabf36fe4c11f65910",
+  "scripts/qa/browserstack-local-policy.mjs": "2ba83b27576c25f15a2f67c266b299935f9df9f557f440ccb95b82c339f447c1",
+  "scripts/qa/scoped-browserstack-local.mjs": "6d3265c62d1f91096121ef0943d46375df23ff2953059c695f6f34344f5efc44",
+  "scripts/qa/start-scoped-browserstack-local.mjs": "3043c87a64a4566841e5e640191eb9bd044e44296d14edb21af3f292259e38b3",
+  "scripts/qa/run-scoped-browserstack-local.mjs": "1749061fe9278025b9621f4d52dd71d8b6134b363c72e7dc8aea9c709b485944",
+  "scripts/qa/private-credential-form.mjs": "94b479e494c22617cdb0f276fe9e68247f54d87d653d5b25dcd1d65a920197de",
+  "scripts/qa/private-credential-form-page.mjs": "b732d6a11865434e197ce93be2489c74ebc3eabcba7aa0be120a994b16f81b45",
+  "scripts/qa/observe-invitation-connection-block.mjs": "cac53fb83706fc38aee422a5b7182779ffdd1bc6392911635aeb183568ae7d1b"
+}

@@ -1,0 +1,94 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e767e07d3b8d9b309e5e0be1dc60a62f",
+  "testedAt": "2026-10-29T23:24:21.495Z",
+  "scope": "authenticated-isolated-received-rating-summary-not-phone-or-release",
+  "completed": true,
+  "checks": [
+    {
+      "id": "empty-is-null-not-a-fabricated-zero-or-five-star-score",
+      "status": "passed"
+    },
+    {
+      "id": "unauthenticated-and-client-selected-account-or-limit-are-rejected",
+      "status": "passed"
+    },
+    {
+      "id": "all-104-received-reviews-count-not-the-first-100-or-the-authored-total",
+      "status": "passed"
+    },
+    {
+      "id": "different-recipients-remain-separate-without-returning-raw-review-fields",
+      "status": "passed"
+    },
+    {
+      "id": "a-new-valid-review-updates-count-and-weighted-average-on-the-next-read",
+      "status": "passed"
+    },
+    {
+      "id": "duplicate-forbidden-and-invalid-ratings-cannot-inflate-the-summary",
+      "status": "passed"
+    },
+    {
+      "id": "raw-review-get-list-update-and-delete-are-not-public-to-recipients-or-other-accounts",
+      "status": "passed"
+    },
+    {
+      "id": "reading-and-refreshing-does-not-change-reviews-trust-fields-bookings-or-claims",
+      "status": "passed"
+    }
+  ],
+  "observations": [
+    {
+      "phase": "104-received",
+      "result": {
+        "userId": "sgm-qa-driver",
+        "count": 104,
+        "average": 3.4423076923076925
+      }
+    },
+    {
+      "phase": "parent",
+      "result": {
+        "userId": "sgm-qa-parent",
+        "count": 26,
+        "average": 4
+      }
+    },
+    {
+      "phase": "105-received",
+      "result": {
+        "userId": "sgm-qa-driver",
+        "count": 105,
+        "average": 3.4571428571428573
+      }
+    }
+  ],
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "failureCode": null,
+  "providerRequests": 0,
+  "phoneUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/local-received-ratings.mjs": "9f079afa7bcbe8c16cb17e30b7cb16b7ac0b958a6acbcd7ceef7ccb9f39a75dc",
+    "scripts/qa/review-history-fixture.mjs": "6a59290095137647ec0eeb0098e2fb3178e559bfff696b1639f470da51cc73b7",
+    "functions/src/domain/receivedRatings.ts": "1045100f29355444b2b1cc6b1fe5dac7e7d4b266b29a5fde1665b4633f97136c",
+    "functions/src/callables/receivedRatings.ts": "837b4d46ad31bfcae54b28be8e6d0c7adf601990fa171757c7279ba78f7c1015",
+    "functions/src/callables/feedback.ts": "2e83755f98569ada11aaef30fd8e80c903cadd64bf76c0bb081198d83e3585c5",
+    "firestore.rules": "d87a583ceec9c708ea9cc9250ea7247a74057637f9e04e3452b009f3f0e7843b",
+    "firestore.indexes.json": "38f58be2af39224e6aad2c66ebac1bc97a0b4b0e5c1e7d21c5b5e6b6a7d16dcd"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "scope": "primary-compose-capture-observation-not-flow-or-root-cause-proof",
+  "captureName": "trip-change-driver-proposed.png",
+  "sdkInvocations": 1,
+  "primaryOutcome": "returned",
+  "errorCategory": "none",
+  "elapsedMs": 213,
+  "callerIsMain": false,
+  "primaryStartOffsetMs": 5,
+  "primaryElapsedMs": 208,
+  "mainPostAccepted": true,
+  "heartbeatDelaysMs": [
+    0,
+    7,
+    52
+  ],
+  "heartbeatAtMs": [
+    51,
+    109,
+    211
+  ],
+  "maxMainQueueDelayMs": 52,
+  "samples": [],
+  "sampleFailures": 0,
+  "observerClosed": true,
+  "observerMayAffectScheduling": true,
+  "imagesWrittenByObserver": false
+}

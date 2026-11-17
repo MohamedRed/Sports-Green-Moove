@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: rotation returns encrypted credentials and independently verifies both keys
+ok 1 - rotation returns encrypted credentials and independently verifies both keys
+  ---
+  duration_ms: 6.364417
+  type: 'test'
+  ...
+# Subtest: missing settings and weak recipients fail before provider calls
+ok 2 - missing settings and weak recipients fail before provider calls
+  ---
+  duration_ms: 45.730959
+  type: 'test'
+  ...
+# Subtest: bad existing authentication prevents rotation; uncertain rotation is never retried
+ok 3 - bad existing authentication prevents rotation; uncertain rotation is never retried
+  ---
+  duration_ms: 0.364792
+  type: 'test'
+  ...
+# Subtest: incomplete revocation retains encrypted recovery without repeating rotation
+ok 4 - incomplete revocation retains encrypted recovery without repeating rotation
+  ---
+  duration_ms: 0.526083
+  type: 'test'
+  ...
+# Subtest: maintenance is manual, separate from app distribution, with read-only repository permissions
+ok 5 - maintenance is manual, separate from app distribution, with read-only repository permissions
+  ---
+  duration_ms: 0.693375
+  type: 'test'
+  ...
+# Subtest: retained completion proves credential maintenance, not a new device trial
+ok 6 - retained completion proves credential maintenance, not a new device trial
+  ---
+  duration_ms: 0.481583
+  type: 'test'
+  ...
+# Subtest: the later replacement rejects the exposed key, updates the secret and retains no plaintext recovery
+ok 7 - the later replacement rejects the exposed key, updates the secret and retains no plaintext recovery
+  ---
+  duration_ms: 30.124333
+  type: 'test'
+  ...
+# Subtest: rotation evidence membership is independent of an unrelated repository inventory larger than the process buffer
+ok 8 - rotation evidence membership is independent of an unrelated repository inventory larger than the process buffer
+  ---
+  duration_ms: 76.9375
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 520.623

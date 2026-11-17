@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "scope": "local-native-team-ui-with-sdk-manager-not-physical",
+  "selfEnrollmentId": "233f7afa6e5f923febd011dd04f30f75b8c0c39c4d095af3cee2187f93426c26",
+  "childEnrollmentId": "2fd588a3f8c7318a7532fba8b6b69ab786406ab9d88cf140cd61ff6d186963ef",
+  "guardianRevokeRequestId": "304f5a5d-b35d-408c-90ff-9ecbd110ef12",
+  "checks": [
+    {
+      "id": "cancel-without-write",
+      "status": "passed"
+    },
+    {
+      "id": "parent-request-ui",
+      "status": "passed"
+    },
+    {
+      "id": "manager-refusal-refresh",
+      "status": "passed"
+    },
+    {
+      "id": "new-request-manager-approval",
+      "status": "passed"
+    },
+    {
+      "id": "activity-recreation-reselection-fresh-read",
+      "status": "passed"
+    },
+    {
+      "id": "confirmed-owned-withdrawal",
+      "status": "passed"
+    },
+    {
+      "id": "verified-parent-child-request-approval",
+      "status": "passed"
+    },
+    {
+      "id": "revoked-parent-stale-withdrawal-denied",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revoke-visible",
+      "status": "passed"
+    },
+    {
+      "id": "account-isolation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "team-native-requested.png": "3aa9428300270057c290cf887eaed6eca5c8004c07ba680f4851aa8c83a450d4",
+    "team-native-approved.png": "2024ad6fba570a2ebda3c318cfdc67167f084ea2c77ade3790bf234d2bc2e025",
+    "team-native-child-approved.png": "b83650bbbe22ca4ca62f8710ef804bda9d4dbddeac88d53159fe098d621292b9",
+    "team-native-child-ineligible.png": "ccceef64c3ff962e483379691020f7a03443d1bc282bc08dd1b19997524ffe21",
+    "team-native-other-account.png": "b5953637b3420bba1019dbd498bf1768c567471152607025614697e9a6ac7a6e"
+  }
+}

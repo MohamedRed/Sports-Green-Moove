@@ -1,0 +1,14 @@
+{
+  "scope": "emulator-command-exit-and-local-disposal-not-device-proof",
+  "observedAt": "2026-10-30T16:55:04.428Z",
+  "commandCompleted": true,
+  "runtimeAbsent": true,
+  "localEndpointsClosed": true,
+  "ports": [
+    9099,
+    8080,
+    9000,
+    5001
+  ],
+  "productionWrites": false
+}

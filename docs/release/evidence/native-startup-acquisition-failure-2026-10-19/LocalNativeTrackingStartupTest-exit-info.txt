@@ -1,0 +1,8 @@
+ACTIVITY MANAGER PROCESS EXIT INFO (dumpsys activity exit-info)
+Last Timestamp of Persistence Into Persistent Storage: 2026-10-19 18:53:03.923
+  package: be.sportgreenmoove.app.local
+    Historical Process Exit for uid=10217
+        ApplicationExitInfo #0:
+          timestamp=2026-10-19 18:55:38.537 pid=6686 realUid=10217 packageUid=10217 definingUid=10217 user=0
+          process=be.sportgreenmoove.app.local reason=10 (USER REQUESTED) subreason=21 (FORCE STOP) status=0
+          importance=125 pss=0.00 rss=389MB description=stop be.sportgreenmoove.app.local due to finished inst state=empty trace=null

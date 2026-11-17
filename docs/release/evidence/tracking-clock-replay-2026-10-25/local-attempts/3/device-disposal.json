@@ -1,0 +1,17 @@
+{
+  "scope": "owned-local-device-disposal-not-flow-success",
+  "avdName": "sgm_clock_20261025_3",
+  "avdAbsent": true,
+  "restorationVerified": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "closed": true
+  },
+  "checkedAt": "2026-10-25T16:15:14.713Z"
+}

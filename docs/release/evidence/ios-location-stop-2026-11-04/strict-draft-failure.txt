@@ -1,0 +1,44 @@
+file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/check-ios-location-provider.mjs:16
+  if (result.status !== 0) throw new Error(`${cmd} failed (${result.status}):\n${result.stdout ?? ''}${result.stderr ?? ''}`);
+                                 ^
+
+Error: swiftc failed (1):
+/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-location-checks-Td2tDP/candidate.swift:80:89: error: capture of 'manager' with non-sendable type 'CLLocationManager' in a `@Sendable` closure
+ 78 |         let manager = CLLocationManager()
+ 79 |         self.manager = manager
+ 80 |         callbackOwner.withLock { $0 = LocationCallbackScope(managerId: ObjectIdentifier(manager), owner: id) }
+    |                                                                                         `- error: capture of 'manager' with non-sendable type 'CLLocationManager' in a `@Sendable` closure
+ 81 |         manager.delegate = self
+ 82 |         manager.desiredAccuracy = kCLLocationAccuracyBest
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/fixtures/ios-location/CoreLocation.swift:70:20: note: class 'CLLocationManager' does not conform to the 'Sendable' protocol
+ 68 | }
+ 69 | 
+ 70 | public final class CLLocationManager {
+    |                    `- note: class 'CLLocationManager' does not conform to the 'Sendable' protocol
+ 71 |     public weak var delegate: (any CLLocationManagerDelegate)?
+ 72 |     private static let status = OSAllocatedUnfairLock(initialState: CLAuthorizationStatus.authorizedAlways)
+
+/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-location-checks-Td2tDP/candidate.swift:238:50: error: capture of 'manager' with non-sendable type 'CLLocationManager' in a `@Sendable` closure
+236 |     nonisolated private func owner(for manager: CLLocationManager) -> UUID? {
+237 |         callbackOwner.withLock { scope in
+238 |             scope?.managerId == ObjectIdentifier(manager) ? scope?.owner : nil
+    |                                                  `- error: capture of 'manager' with non-sendable type 'CLLocationManager' in a `@Sendable` closure
+239 |         }
+240 |     }
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/fixtures/ios-location/CoreLocation.swift:70:20: note: class 'CLLocationManager' does not conform to the 'Sendable' protocol
+ 68 | }
+ 69 | 
+ 70 | public final class CLLocationManager {
+    |                    `- note: class 'CLLocationManager' does not conform to the 'Sendable' protocol
+ 71 |     public weak var delegate: (any CLLocationManagerDelegate)?
+ 72 |     private static let status = OSAllocatedUnfairLock(initialState: CLAuthorizationStatus.authorizedAlways)
+
+    at run (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/check-ios-location-provider.mjs:16:34)
+    at file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/check-ios-location-provider.mjs:35:21
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.22.0

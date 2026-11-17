@@ -1,0 +1,72 @@
+{
+  "cases": [
+    {
+      "id": "lost-reply-reuses-the-exact-persisted-operation",
+      "status": "passed"
+    },
+    {
+      "id": "acknowledgement-allows-a-new-explicit-operation",
+      "status": "passed"
+    },
+    {
+      "id": "changed-details-fence-the-old-attempt-before-submission",
+      "status": "passed"
+    },
+    {
+      "id": "an-already-committed-intent-does-not-submit-changed-details",
+      "status": "passed"
+    },
+    {
+      "id": "failed-resolution-preserves-the-old-operation",
+      "status": "passed"
+    },
+    {
+      "id": "mismatched-acknowledgement-does-not-clear-the-identity",
+      "status": "passed"
+    },
+    {
+      "id": "accounts-cannot-share-pending-identities",
+      "status": "passed"
+    },
+    {
+      "id": "late-acknowledgement-cannot-clear-a-new-operation",
+      "status": "passed"
+    },
+    {
+      "id": "account-switch-cannot-acknowledge-another-accounts-operation",
+      "status": "passed"
+    },
+    {
+      "id": "closed-bookings-are-recovered-without-claiming-a-new-request",
+      "status": "passed"
+    },
+    {
+      "id": "corrupt-storage-cannot-silently-create-a-fresh-identity",
+      "status": "passed"
+    },
+    {
+      "id": "disk-write-failure-blocks-network-submission",
+      "status": "passed"
+    },
+    {
+      "id": "identity-written-before-process-exit",
+      "status": "passed"
+    },
+    {
+      "id": "a-separate-process-recovers-the-same-identity-and-intent",
+      "status": "passed"
+    }
+  ],
+  "passed": true,
+  "scope": "foundation-booking-recovery-not-ios-ui",
+  "testedAt": "2026-10-29T20:54:41.201Z",
+  "separateProcessRecovery": true,
+  "swiftLanguageVersion": 6,
+  "sourceSha256": {
+    "ios/Sources/SportsGreenMooveApp/Models.swift": "7dd16448670e89929b7680f1bf79d8cb8f7e7e972704a6771690d308429270b0",
+    "ios/Sources/SportsGreenMooveApp/ReviewTripContext.swift": "9a3b6be612e2b563bd6a6cd5eada3d3bdc04d38fcba1e1ddf600bcbdbdb3cc13",
+    "ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift": "0e7a2ae4c355278a897ae2d905729336ef41682b7e9d5303a88db083c03e6c21",
+    "ios/Sources/SportsGreenMooveApp/PendingBookingStore.swift": "0d2ffbb310ecc6a77578dfeb868a9a22f98ff702494b10a63f632597a4bd0fc2",
+    "ios/Sources/SportsGreenMooveApp/BookingRequestCoordinator.swift": "0f5469e5fbf463e9207c1d90fab94f7cd8c6071b8cc957f35125e8b2cf345b9f"
+  }
+}

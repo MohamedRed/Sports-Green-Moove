@@ -1,0 +1,108 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync, existsSync } from 'node:fs';
+import { gunzipSync } from 'node:zlib';
+import { content, captures } from '../partner-portal/content.mjs';
+
+const root = new URL('../', import.meta.url);
+const base = 'docs/release/evidence/local-membership-review-2026-10-16/';
+const read = (file) => readFileSync(new URL(base + file, root), 'utf8');
+const json = (file) => JSON.parse(read(file));
+test('membership claims retain the actual sixteen-group service run', () => {
+  const run = json('services.json');
+  assert.equal(run.projectId, 'demo-sgm-local-qa');
+  assert.equal(run.scope, 'local-emulated-services-not-phone-ui');
+  assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.deepEqual(run.membershipReview, {
+    concurrentDecisionWinners: 1, approvedCount: 2, rejectedCount: 1, auditCount: 3, notificationCount: 3,
+    memberCountBefore: 3, memberCountAfter: 5, paginatedHistory: 25, paginatedManagedClubs: 26,
+    foreignManagerRejected: true, revokedManagerRejected: true, staleRerequestRejected: true, roleEscalation: false, livePush: false,
+  });
+});
+test('manual UI evidence is distinguished from persisted-state and phone evidence', () => {
+  const ui = json('ui-results.json'), persisted = json('persisted.json'), dismissed = json('dismissed.json');
+  assert.equal(ui.method, 'manual-browser-ui-with-independent-persisted-checks');
+  assert.equal(ui.scope, 'local-ui-not-physical-device');
+  assert.equal(persisted.scope, 'local-management-persisted-state-not-ui-proof');
+  assert.equal(ui.runId, persisted.runId); assert.equal(ui.runId, dismissed.runId);
+  assert(ui.steps.every((step) => step.status === 'passed'));
+  assert.equal(persisted.records.length, 3);
+  assert.deepEqual(persisted.records.map((record) => record.status), ['active', 'rejected', 'active']);
+  assert.deepEqual(persisted.records.map((record) => record.reviewer), ['sgm-qa-club-manager', 'sgm-qa-club-manager', 'sgm-qa-admin']);
+  assert.equal(persisted.reviewCount, 3); assert.equal(persisted.notificationCount, 3); assert.equal(persisted.memberCount, 5);
+  assert.equal(persisted.livePush, false); assert.equal(persisted.responsiveConfirmationStillPending, true);
+  assert.equal(dismissed.reviewCount, 0); assert.equal(dismissed.memberCount, 3);
+  assert(dismissed.records.every((record) => record.status === 'requested' && record.reviewer === null));
+  assert(Object.values(persisted.fingerprints).every((hash) => /^[a-f0-9]{64}$/.test(hash)));
+  assert.equal(ui.observations.horizontalOverflow, false);
+  const flow = content.flows.find((item) => item.id === 'clubs');
+  assert.equal(flow.status, 'partial'); assert.equal(flow.local.checkedAt, ui.testedAt.slice(0, 10));
+  assert.match(flow.remaining, /enfant/); assert.match(flow.remaining, /téléphone/);
+  assert(!content.blockers.some((item) => item.id === 'membership-review'));
+  const wideReviews = flow.images.filter((image) => ['membership-manager', 'membership-admin'].includes(image.file));
+  assert.equal(wideReviews.length, 2);
+  assert(wideReviews.every((image) => image.landscape === true));
+  assert.match(readFileSync(new URL('partner-portal/src/styles.css', root), 'utf8'), /\.media-stage\.is-landscape/);
+  assert.match(read('README.md'), /have not been deployed/);
+});
+test('reviewed images and raw unit/rules evidence remain scoped', () => {
+  for (const name of ['manager-decisions.jpg', 'admin-decisions.jpg', 'mobile-confirmation.jpg']) {
+    const bytes = readFileSync(new URL(base + name, root));
+    assert.equal(bytes.readUInt16BE(0), 0xffd8); assert.equal(bytes.readUInt16BE(bytes.length - 2), 0xffd9);
+    assert(bytes.length > 1000);
+    assert(Object.values(captures).includes(base + name));
+  }
+  assert.equal((read('controller-passed.xml').match(/<testcase\b/g) || []).length, 9);
+  assert(!/<failure\b|<error\b/.test(read('controller-passed.xml')));
+  assert.match(read('domain-passed.xml'), /tests="4" failures="0" errors="0"/);
+  assert.match(read('native-state-passed.xml'), /tests="3" skipped="0" failures="0" errors="0"/);
+  assert.match(read('rules-passed.xml'), /tests="16" failures="0" errors="0"/);
+  const rawRules = gunzipSync(readFileSync(new URL(base + 'rules-original.xml.gz', root))).toString('utf8');
+  assert.equal(read('rules-passed.xml'), rawRules.replace(/[\t ]+$/gm, ''));
+  const chat = read('chat-replay-failed.txt');
+  assert.match(chat, /ComposeTimeoutException/);
+  assert(!/OK \(/.test(chat));
+  const originalChat = gunzipSync(readFileSync(new URL(base + 'chat-replay-original.txt.gz', root))).toString('utf8');
+  assert.equal(chat, originalChat.replace(/\n+$/, '\n'));
+  const window = json('chat-window-state.json');
+  assert.equal(window.phase, 'keyboard-open');
+  assert.equal(window.windowFocused, false); assert.equal(window.keyboardVisible, false);
+  assert(existsSync(new URL(base + 'parent-denied.jpg', root)));
+  assert(!Object.values(captures).includes(base + 'parent-denied.jpg'));
+});
+test('the successful native replay retains earlier failures and its local-only scope', () => {
+  const run = json('native-replay-passed.json');
+  assert.equal(run.runId, '0d579474baf6e0e076060a3c4b11bdfc');
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 15); assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.chat.newMessageCount, 4); assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(run.search.method, 'component-ui-with-explicit-fake-gateway');
+  assert.equal(run.multiSeatSdk.method, 'native-sdk-not-ui');
+  assert.equal(run.reservationDecisions.livePayment, false);
+  assert.match(read('README.md'), /One successful replay after two failures/);
+  assert(content.blockers.some((item) => item.id === 'chat-send-stability'));
+});
+test('the repeated failure identifies the native launcher dialog without accepting a replay', () => {
+  const state = json('launcher-anr-state.json');
+  assert.equal(state.phase, 'window-ready');
+  assert.equal(state.foregroundPackage, 'android');
+  assert.equal(state.windowFocused, false);
+  assert.match(state.focusedWindows, /Application Not Responding: com.google.android.apps.nexuslauncher/);
+  assert(existsSync(new URL(base + 'launcher-anr-device.png', root)));
+  assert(!Object.values(captures).includes(base + 'launcher-anr-device.png'));
+  assert.match(read('README.md'), /launcher defect\s+itself is not claimed to be repaired/);
+});
+test('the post-isolation replay is complete without promoting phone or payment scope', () => {
+  const run = json('native-replay-isolated.json');
+  assert.equal(run.runId, 'de39fa3a290590d58dcd578e5ca0f3d5');
+  assert.equal(run.scope, 'local-ui-not-physical-device');
+  assert.equal(run.testCount, 15); assert.equal(run.steps.length, 16);
+  assert(run.steps.every((step) => step.status === 'passed'));
+  assert.equal(run.chat.newMessageCount, 4); assert.equal(run.chat.historyMessageCount, 120);
+  assert.equal(run.reservationDecisions.livePayment, false);
+  assert.equal(run.search.caseCount, 4);
+  assert.equal(run.multiSeatSdk.method, 'native-sdk-not-ui');
+  assert.match(read('README.md'), /not repeatability across phones, home navigation, network/);
+});

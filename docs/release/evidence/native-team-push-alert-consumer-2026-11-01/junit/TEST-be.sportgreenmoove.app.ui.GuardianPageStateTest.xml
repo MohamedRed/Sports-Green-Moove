@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.GuardianPageStateTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.208Z" hostname="local-test-host" time="0.006">
+  <properties></properties>
+  <testcase name="filteredEmptyPagesKeepTheContinuationAndDoNotPretendExhaustion" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.002"></testcase>
+  <testcase name="disposedPagesCannotPublishThePreviousAccountsResults" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.002"></testcase>
+  <testcase name="repeatingCursorsAndDuplicateRowsClearThePageRatherThanSilentlyTruncate" classname="be.sportgreenmoove.app.ui.GuardianPageStateTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

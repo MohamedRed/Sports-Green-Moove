@@ -1,0 +1,212 @@
+TAP version 13
+# Subtest: the CLI-resolved gzip stream closes when the client aborts a real response
+not ok 1 - the CLI-resolved gzip stream closes when the client aborts a real response
+  ---
+  duration_ms: 1157.661875
+  type: 'test'
+  location: '<repo>/tests/compression-close-security.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        bodyVerified: null,
+        encoding: 'gzip',
+        endpointClosed: true,
+        externalRequests: 0,
+    ...
+        responsePrematurelyClosed: true,
+    +   streamCloseEvents: 0,
+    -   streamCloseEvents: 1,
+        streamsCreated: 1,
+    +   streamsDestroyed: false
+    -   streamsDestroyed: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    mode: 'abort'
+    encoding: 'gzip'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: true
+    streamCloseEvents: 1
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  actual:
+    mode: 'abort'
+    encoding: 'gzip'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: false
+    streamCloseEvents: 0
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/compression-close-security.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+# Subtest: normal gzip responses preserve every payload byte and close their stream
+ok 2 - normal gzip responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 124.398
+  type: 'test'
+  ...
+# Subtest: the CLI-resolved deflate stream closes when the client aborts a real response
+not ok 3 - the CLI-resolved deflate stream closes when the client aborts a real response
+  ---
+  duration_ms: 1120.290375
+  type: 'test'
+  location: '<repo>/tests/compression-close-security.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        bodyVerified: null,
+        encoding: 'deflate',
+        endpointClosed: true,
+        externalRequests: 0,
+    ...
+        responsePrematurelyClosed: true,
+    +   streamCloseEvents: 0,
+    -   streamCloseEvents: 1,
+        streamsCreated: 1,
+    +   streamsDestroyed: false
+    -   streamsDestroyed: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    mode: 'abort'
+    encoding: 'deflate'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: true
+    streamCloseEvents: 1
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  actual:
+    mode: 'abort'
+    encoding: 'deflate'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: false
+    streamCloseEvents: 0
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/compression-close-security.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: normal deflate responses preserve every payload byte and close their stream
+ok 4 - normal deflate responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 136.066458
+  type: 'test'
+  ...
+# Subtest: the CLI-resolved br stream closes when the client aborts a real response
+not ok 5 - the CLI-resolved br stream closes when the client aborts a real response
+  ---
+  duration_ms: 1123.159542
+  type: 'test'
+  location: '<repo>/tests/compression-close-security.test.mjs:15:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        bodyVerified: null,
+        encoding: 'br',
+        endpointClosed: true,
+        externalRequests: 0,
+    ...
+        responsePrematurelyClosed: true,
+    +   streamCloseEvents: 0,
+    -   streamCloseEvents: 1,
+        streamsCreated: 1,
+    +   streamsDestroyed: false
+    -   streamsDestroyed: true
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    mode: 'abort'
+    encoding: 'br'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: true
+    streamCloseEvents: 1
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  actual:
+    mode: 'abort'
+    encoding: 'br'
+    requestsReceived: 1
+    responsePrematurelyClosed: true
+    streamsCreated: 1
+    streamsDestroyed: false
+    streamCloseEvents: 0
+    bodyVerified: ~
+    endpointClosed: true
+    externalRequests: 0
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/compression-close-security.test.mjs:16:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: normal br responses preserve every payload byte and close their stream
+ok 6 - normal br responses preserve every payload byte and close their stream
+  ---
+  duration_ms: 137.736833
+  type: 'test'
+  ...
+# Subtest: identity responses stay uncompressed and preserve every byte
+ok 7 - identity responses stay uncompressed and preserve every byte
+  ---
+  duration_ms: 108.330458
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 4
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3997.482292

@@ -1,0 +1,70 @@
+{
+  "scope": "executed-corrected-child-contact-components-not-child-signin-or-dialer",
+  "projectId": "demo-sgm-local-qa",
+  "sourceCommit": "f041cde408192e086ba37b5c10ad9be3770bb4c9",
+  "ciRunId": "39341124941",
+  "artifactId": "12230386074",
+  "testedAt": "2026-10-19T23:37:03Z",
+  "componentCaseCount": 5,
+  "caseNames": [
+    "absentContactHasNoPhoneDestinationOrEditingControl",
+    "changedContactNeedsAnotherTapAndAnUnavailablePhoneDoesNotSubstituteANumber",
+    "childContactIsReadOnlyAndFitsANarrowLargeTextScreen",
+    "deniedFreshAuthorityClearsTheNumberBeforeAnyPhoneHandoff",
+    "settingsEntryWithoutARideDoesNotReadOrManageTheChildContact"
+  ],
+  "parentComponentCaseCount": 7,
+  "parentCaseNames": [
+    "aChangedNumberNeedsAnotherTapAndAnUnavailableDialerKeepsThatNumberVisible",
+    "aLateInitialReadKeepsTheChildPickerOpenUntilTheSelectionCanBeAccepted",
+    "anInvalidLocalNumberNeverGetsSavedOrReplacedByAnotherDestination",
+    "deniedFreshChildAuthorityRemovesThePreviouslyShownNumber",
+    "fieldsActionsAndRemovalConfirmationFitANarrowScreenWithLargeText",
+    "lostReplyClearsTheFormAndExplicitRefreshDoesNotSubmitAgain",
+    "saveReloadAndCancelledRemovalKeepTheConfirmedContact"
+  ],
+  "mockedGateway": true,
+  "mockedDialer": true,
+  "actualChildSignIn": false,
+  "connectedBackend": false,
+  "dialerOpened": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "fullNativeCiVerified": false,
+  "visualCompletenessVerified": false,
+  "headingLayoutVerified": true,
+  "knownVisualDefects": [],
+  "mainNativeJobPassed": false,
+  "remainingMainFailure": "network-test-preparation",
+  "reviewedWindows": [
+    "child-emergency-access-denied-window.png",
+    "child-emergency-landscape-changed-window.png",
+    "child-emergency-readonly-narrow-window.png"
+  ],
+  "screenshots": {
+    "child-emergency-access-denied-window.png": "13b830c48d3c8f90d16009cd74bba92a5dd68cde8dddb335d377135fa0d58133",
+    "child-emergency-access-denied.png": "33782fb37ca5dc8d9e37ecd88368f8d1c2f6dee5a2d8028e2210bba96fdcdf78",
+    "child-emergency-landscape-changed-window.png": "cf74187d9584b6284230345ea25f70740907ebe75841f71107f3a9a70bfbecbb",
+    "child-emergency-landscape-changed.png": "becd9f80dad9dd62cc75cde74df7eee83c329cf7d7d116215c3e2660ba2eac02",
+    "child-emergency-readonly-narrow-window.png": "59b13dfd7927a63235be7a32eb0683942de4fc582a62efc34f10f7a71acd0589",
+    "child-emergency-readonly-narrow.png": "01a040d270e6979cc5d7c372ee8c305dc136936d4c7d4d98c29c392b49b62bd3"
+  },
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyRoute.kt": "dccfb44f832798deb57292090f4887617e34bed6016fdd20de1545d18649642c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ChildRideEmergencyState.kt": "3a5f4e97ac605a3904548d0f437493cb94210c5422f2785b213b5aa6be43541b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "1a0b108cd70f7dee2558cdf79d8765ea2a16b7f900ee3163ad47f4265e4049dd",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "09965b0b16250983e8808a5a3c2144fe53748327345c4714f08ea87146f08632",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt": "ef47ccc47bbc779a52c8c3573d8d03a22ef9f314c3e20414f3251911255526c2",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactDialogs.kt": "a2659e8ffd6a73c082932e27dc889ee56ba6be3e2baa1fd3c8b4bd6e46510350",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt": "268a80dc92b0d55416528984ba70746fd7be42a55e311c5a4230613a869e047b",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt": "77aecbb530037eb62837aebd03fe6640f18c67c5056928b98f98b9ab30c0bccc",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/EmergencyContactFlowTest.kt": "b49d939aefad563ca45fde9ff02d52acba4ebf6fb70f8e959eba45de9a92fb0c",
+    "scripts/run-android-ui-tests-and-collect-screenshots.sh": "5716ac8bbd7bbac721fdaa7d30f00215a0307b4cd82a144f3b4fb5cfc892f576"
+  },
+  "steps": [
+    {
+      "id": "child-contact-components",
+      "status": "passed"
+    }
+  ]
+}

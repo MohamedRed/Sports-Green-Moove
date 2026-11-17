@@ -1,0 +1,21 @@
+{
+  "scope": "isolated-review-trip-context-services-and-native-components-not-end-to-end-phone",
+  "testedAt": "2026-10-29T20:55:44.209Z",
+  "baselineCommit": "7e0e22ed7b5c6b207085e942c47d3d3ad48a8d2f",
+  "implementationWasUncommittedAtBuild": true,
+  "nativeComponentCases": 9,
+  "newNativeComponentCases": 3,
+  "backendUnitCases": 538,
+  "syntheticContentOnly": true,
+  "physicalDeviceTested": false,
+  "nativeServiceIntegrationVerified": false,
+  "processRestartProven": false,
+  "realNetworkLossVerified": false,
+  "fullNativeGatePassedForThisImplementation": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "realPayments": false,
+  "iosUiExecuted": false,
+  "releaseComplete": false,
+  "providerRequests": 0
+}

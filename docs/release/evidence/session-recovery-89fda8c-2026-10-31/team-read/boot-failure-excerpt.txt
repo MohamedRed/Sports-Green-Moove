@@ -1,0 +1,2 @@
+2026-10-31T21:49:08.6328809Z FATAL        | Not enough space to create userdata partition. Available: 7003.84 MB at /home/runner/.android/avd/test.avd, need 7372.80 MB.
+2026-10-31T21:59:10.9660346Z ##[error]Timeout waiting for emulator to boot.

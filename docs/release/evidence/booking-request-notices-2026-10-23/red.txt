@@ -1,0 +1,218 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run src/__tests__/booking-request-transaction.test.ts
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/android/build/qa-booking-notice.R7Cwo6/baseline/functions
+
+ ❯ src/__tests__/booking-request-transaction.test.ts (15 tests | 6 failed) 46ms
+   × booking transaction consistency > reads child authority in the same transaction and retains the requested seats and note 28ms
+     → expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+   × booking transaction consistency > preserves the original intent when a simulated SDK retry observes changed price 3ms
+     → expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+   ✓ booking transaction consistency > rechecks guardian authority on every simulated retry 1ms
+   × booking transaction consistency > a simulated retry refreshes labels but retains one booking document identity 1ms
+     → expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+   ✓ booking transaction consistency > returns the current cosmetic title without accepting changed operational terms 1ms
+   ✓ booking transaction consistency > binds a post-change booking amount to the same current applied revision 1ms
+   ✓ booking transaction consistency > retains the existing adult-booking path without inventing a child 1ms
+   ✓ booking transaction consistency > rejects a deleted child without committing a booking 0ms
+   ✓ booking transaction consistency > invalid persisted terms fail closed without writing 1ms
+   × booking transaction consistency > allows a separate fresh request after changed terms are reviewed, without saving the stale request 1ms
+     → expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+   × booking transaction consistency > uses current capacity without rejecting an unchanged intent when two seats still fit 1ms
+     → expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+   ✓ booking transaction consistency > refuses changed details even when they changed before the server call 0ms
+   ✓ booking transaction consistency > does not silently substitute server terms for a missing or malformed displayed snapshot 1ms
+   ✓ booking transaction consistency > refuses a trip without an identifiable recipient instead of silently dropping the request notice 1ms
+   × booking transaction consistency > does not commit a booking or receipt when creating its notice fails 3ms
+     → promise resolved "{ bookingId: 'new-booking', …(5) }" instead of rejecting
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > reads child authority in the same transaction and retains the requested seats and note
+AssertionError: expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:75:29
+     73|     expect(state.reads.filter((path) => !path.startsWith("bookingReque…
+     74|     expect(state.reads.filter((path) => path.startsWith("bookingReques…
+     75|     expect(state.committed).toHaveLength(3);
+       |                             ^
+     76|     expect(state.committed[1].data).toMatchObject({ uid: "parent", sta…
+     77|     expect(state.committed[0].data).toMatchObject({ seats: 2, note: "T…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > preserves the original intent when a simulated SDK retry observes changed price
+AssertionError: expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:87:61
+     85|     state.retry = () => { state.trip!.priceCents = 900; };
+     86|     await expect(invoke()).rejects.toMatchObject({ code: "aborted" });
+     87|     expect(state.attempts).toBe(2); expect(state.discarded).toHaveLeng…
+       |                                                             ^
+     88|   });
+     89|   it("rechecks guardian authority on every simulated retry", async () …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > a simulated retry refreshes labels but retains one booking document identity
+AssertionError: expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:98:29
+     96|     state.retry = () => { state.child!.displayName = "Updated child"; …
+     97|     await invoke();
+     98|     expect(state.committed).toHaveLength(3);
+       |                             ^
+     99|     expect(state.committed[0].data.childLabel).toBe("Updated child");
+    100|     expect(state.committed[0].path).toBe(state.discarded[0].path);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > allows a separate fresh request after changed terms are reviewed, without saving the stale request
+AssertionError: expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:134:29
+    132|     state.beforeTransaction = undefined;
+    133|     await invoke();
+    134|     expect(state.committed).toHaveLength(3);
+       |                             ^
+    135|     expect(state.committed[0].data).toMatchObject({ agreedPriceCents: …
+    136|       tripTermsRevision: "b".repeat(64) });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > uses current capacity without rejecting an unchanged intent when two seats still fit
+AssertionError: expected [ { …(2) }, { …(2) } ] to have a length of 3 but got 2
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:141:29
+    139|     state.beforeTransaction = () => { state.trip!.seatsAvailable = 3; …
+    140|     await invoke();
+    141|     expect(state.committed).toHaveLength(3); expect(state.committed[0]…
+       |                             ^
+    142|   });
+    143|   it("refuses changed details even when they changed before the server…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts > booking transaction consistency > does not commit a booking or receipt when creating its notice fails
+AssertionError: promise resolved "{ bookingId: 'new-booking', …(5) }" instead of rejecting
+
+- Expected
++ Received
+
+- Error {
+-   "message": "rejected promise",
++ {
++   "bookingId": "new-booking",
++   "clientRequestId": "19272a39-11d7-4f6b-ba3e-12f92e38caf1",
++   "currentBookingStatus": "requested",
++   "reused": false,
++   "status": "requested",
++   "trip": {
++     "bookingIntent": {
++       "context": {
++         "appliedChangeId": null,
++         "baggage": null,
++         "category": "U 7/8",
++         "clubId": "club",
++         "driverUserId": "driver",
++         "pickupRadiusM": null,
++         "returnTrip": null,
++         "seatsTotal": 4,
++         "supportsChildTracking": null,
++         "supportsVehicleTracking": null,
++         "teamId": null,
++       },
++       "terms": {
++         "arrivalBy": null,
++         "departureAt": "2027-01-10T10:00:00.000Z",
++         "destination": {
++           "lat": 50.8,
++           "lng": 4.3,
++         },
++         "origin": {
++           "lat": 50.7,
++           "lng": 4.6,
++         },
++         "priceCents": 250,
++       },
++     },
++     "category": "U 7/8",
++     "club": "club",
++     "dateLabel": "DIM 10 JANV.",
++     "departureLabel": "DIM 10 JANV. · 11h00",
++     "distanceLabel": "Distance à confirmer",
++     "id": "trip",
++     "mapPreview": {
++       "end": {
++         "lat": 50.8,
++         "lng": 4.3,
++       },
++       "start": {
++         "lat": 50.7,
++         "lng": 4.6,
++       },
++     },
++     "passengerInitials": [],
++     "priceLabel": "2,50 EUR",
++     "reasons": [
++       "4 places",
++       "Suivi véhicule à confirmer",
++       "Suivi enfant non inclus",
++     ],
++     "seatsAvailable": 4,
++     "seatsLabel": "4 places",
++     "sport": "Football",
++     "status": "upcoming",
++     "timeLabel": "11h00",
++     "title": "Initial",
++   },
+  }
+
+ ❯ src/__tests__/booking-request-transaction.test.ts:164:26
+    162|   it("does not commit a booking or receipt when creating its notice fa…
+    163|     state.rejectNoticeCreate = true;
+    164|     await expect(invoke()).rejects.toThrow("Notice write blocked");
+       |                          ^
+    165|     expect(state.committed).toEqual([]);
+    166|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 9 passed (15)
+   Start at  23:04:37
+   Duration  1.05s (transform 165ms, setup 0ms, collect 713ms, tests 46ms, environment 0ms, prepare 58ms)
+

@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: the Admin-resolved multipart parser preserves normal fields and files
+ok 1 - the Admin-resolved multipart parser preserves normal fields and files
+  ---
+  duration_ms: 43.418125
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer accepts a __proto__ part header without a parser crash
+ok 2 - the Admin-resolved Dicer accepts a __proto__ part header without a parser crash
+  ---
+  duration_ms: 34.094
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer accepts a constructor part header without a parser crash
+ok 3 - the Admin-resolved Dicer accepts a constructor part header without a parser crash
+  ---
+  duration_ms: 37.097084
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer completes a 70-byte boundary without blocking
+ok 4 - the Admin-resolved Dicer completes a 70-byte boundary without blocking
+  ---
+  duration_ms: 34.4345
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer completes a 251-byte boundary without blocking
+ok 5 - the Admin-resolved Dicer completes a 251-byte boundary without blocking
+  ---
+  duration_ms: 35.925583
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved Dicer completes a 252-byte boundary without blocking
+ok 6 - the Admin-resolved Dicer completes a 252-byte boundary without blocking
+  ---
+  duration_ms: 37.004792
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved parser never delivers bare CR in a multipart name
+ok 7 - the Admin-resolved parser never delivers bare CR in a multipart name
+  ---
+  duration_ms: 35.95025
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved parser never delivers bare CR in a multipart filename
+ok 8 - the Admin-resolved parser never delivers bare CR in a multipart filename
+  ---
+  duration_ms: 36.075708
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved parser never delivers bare LF in a multipart name
+ok 9 - the Admin-resolved parser never delivers bare LF in a multipart name
+  ---
+  duration_ms: 34.688917
+  type: 'test'
+  ...
+# Subtest: the Admin-resolved parser never delivers bare LF in a multipart filename
+ok 10 - the Admin-resolved parser never delivers bare LF in a multipart filename
+  ---
+  duration_ms: 34.645166
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 413.886333

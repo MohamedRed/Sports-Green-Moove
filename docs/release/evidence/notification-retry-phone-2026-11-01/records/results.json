@@ -1,0 +1,94 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "19bf6d47e3d554bc438ec9312bf1fb3e",
+  "identity": {
+    "teamId": "sgm-qa-team-alerts",
+    "teamInstanceId": "c90beafe1c386bfa6646f236292bfa6d46499d92bfb53e8870ede4c351787756",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "otherUid": "sgm-qa-team-alert-adult",
+    "firstMessageId": "8ae4f7687eccb0c537e52220209caa837a028557e0cf5988d4653609355b406d",
+    "firstNoticeId": "teamChat_3f8783b5dfabaeff836fb38d331eba822da08527993ef5d771ee21a69bdb6874",
+    "firstReadAt": {
+      "_seconds": 1793532144,
+      "_nanoseconds": 769000000
+    },
+    "nextMessageId": "db0f6099c68392e9906656451a165e5a0f2cb1c08e14f760d97764858dd17fb6",
+    "nextNoticeId": "teamChat_b4dceb291480e61eb14dfb37297fb9116bf0e3400178058271fa7f14c0428e46"
+  },
+  "observedAt": "2026-11-01T11:26:30.941Z",
+  "scope": "independent-retry-records-not-phone-or-push-proof",
+  "completed": true,
+  "failed": false,
+  "checkpoints": [
+    {
+      "id": "ready",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "arrived",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "read",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "error",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "retry-failed",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "recovered",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    },
+    {
+      "id": "next-arrived",
+      "status": "passed",
+      "protectedRecords": 198,
+      "phoneUiVerified": false,
+      "pushDeliveryVerified": false
+    }
+  ],
+  "actions": [
+    "publish",
+    "corrupt",
+    "restore",
+    "publish-next"
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "phoneUiVerified": false,
+  "pushDeliveryVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-notification-retry-phone.mjs": "69a98dfb24d530aec8ab99748c541768ce5a134ea3e176475c3722ed0a5503d9",
+    "scripts/qa/notification-retry-phone-checkpoints.mjs": "42dff96d20d1a0f72348d7a15dfded3aa243f7888953f35f29bcacc7e8af5729",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/MessagesInboxRoute.kt": "bc21a93103928785bacac23350a5ba4cbc46e90a6c00944ea8921a91bbacb8c0",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationInboxState.kt": "3803fecc03d686296ccdc74b84b4767bb2ea50c7266faa545239500f8d135949"
+  }
+}

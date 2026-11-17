@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.RouteMapViewportTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.429Z" hostname="local-test-host" time="0.0">
+  <properties></properties>
+  <testcase name="fittedEndpointsHaveRoomForBothMarkerHeads" classname="be.sportgreenmoove.app.ui.RouteMapViewportTest" time="0.0"></testcase>
+  <testcase name="absentOrUnusableLayoutCannotClaimFraming" classname="be.sportgreenmoove.app.ui.RouteMapViewportTest" time="0.0"></testcase>
+  <testcase name="resizingRequiresTheNewViewportAndAllowsOnlyPixelRounding" classname="be.sportgreenmoove.app.ui.RouteMapViewportTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

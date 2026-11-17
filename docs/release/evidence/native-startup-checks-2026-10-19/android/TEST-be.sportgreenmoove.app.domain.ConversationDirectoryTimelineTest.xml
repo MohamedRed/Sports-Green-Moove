@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-19T17:35:45.521Z" hostname="MRRs-MacBook-Air.local" time="0.013">
+  <properties/>
+  <testcase name="staleEarlierResponsesCannotReplaceANewerPreviewOrReadCount" classname="be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest" time="0.01"/>
+  <testcase name="olderConversationsSurviveLiveHeadUpdatesAndAreNotDuplicated" classname="be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest" time="0.001"/>
+  <testcase name="aCompleteServerSnapshotRemovesEntriesNoLongerPresentWithoutRegressingRevisions" classname="be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest" time="0.001"/>
+  <testcase name="burstsBiggerThanTheLiveWindowCanBePagedUntilTheOldCoverageIsReached" classname="be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

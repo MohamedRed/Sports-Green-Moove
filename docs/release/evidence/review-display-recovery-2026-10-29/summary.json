@@ -1,0 +1,21 @@
+{
+  "scope": "local-review-component-and-controlled-session-recovery-not-release",
+  "testedAt": "2026-10-29T20:18:33.796Z",
+  "baselineCommit": "0b008ece43a485c2d27bb59df73c7b366990e5cf",
+  "implementationWasUncommittedAtBuild": true,
+  "failedAssertionWasFalsePositive": true,
+  "averageClippingDefectProven": false,
+  "syntheticMaximumCount": true,
+  "componentCasesPassed": 6,
+  "componentCasesFailed": 0,
+  "originalCaptureSha256": "f061c489d0b2b8438c34ce362c4f379d97e07b2fdfcc4bfa2cde93dd711d99af",
+  "physicalDeviceTested": false,
+  "realNetworkLossVerified": false,
+  "fullNativeGatePassed": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "realPayments": false,
+  "iosUiExecuted": false,
+  "mapRequests": 0
+}

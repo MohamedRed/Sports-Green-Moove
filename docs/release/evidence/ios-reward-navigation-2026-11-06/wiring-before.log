@@ -1,0 +1,280 @@
+TAP version 13
+# Subtest: the iPhone rewards command executes an account-owned action rather than an empty closure
+not ok 1 - the iPhone rewards command executes an account-owned action rather than an empty closure
+  ---
+  duration_ms: 1.565875
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/ios-reward-navigation.test.mjs:6:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /rewardsWithdrawAction\)\s*\{\s*\}/. Input:
+    
+    'import SwiftUI\n' +
+      '\n' +
+      'struct ImpactScreen: View {\n' +
+      '    @Environment(AppState.self) private var appState\n' +
+      '\n' +
+      '    var body: some View {\n' +
+      '        let summary = appState.impactSummary\n' +
+      '        OverlayListScreen(title: "MON IMPACT CO₂", testID: UITestIdentifier.impactScreen) {\n' +
+      '            OverlayHeroMetric(value: "\\(kgValue(summary.totalCo2Kg)) kg", label: "CO₂ économisés", accent: SGM.green)\n' +
+      '            if summary.months.isEmpty {\n' +
+      '                OverlayProgressRow(title: "Aucun trajet terminé", value: "0 kg", progress: 0)\n' +
+      '            } else {\n' +
+      '                ForEach(summary.months) { month in\n' +
+      '                    OverlayProgressRow(\n' +
+      '                        title: month.label,\n' +
+      '                        value: "\\(kgValue(month.valueKg)) kg",\n' +
+      '                        progress: monthProgress(month, in: summary.months)\n' +
+      '                    )\n' +
+      '                }\n' +
+      '            }\n' +
+      '            OverlayProgressRow(title: "Distance partagée", value: "\\(summary.sharedDistanceKm) km", progress: summary.sharedDistanceKm > 0 ? 1 : 0)\n' +
+      '            OverlayProgressRow(title: "Trajets clôturés", value: "\\(summary.rideCount)", progress: summary.rideCount > 0 ? 1 : 0)\n' +
+      '        }\n' +
+      '    }\n' +
+      '}\n' +
+      '\n' +
+      'struct RewardsScreen: View {\n' +
+      '    @Environment(AppState.self) private var appState\n' +
+      '\n' +
+      '    var body: some View {\n' +
+      '        let summary = appState.rewardSummary\n' +
+      '        OverlayListScreen(title: "RÉCOMPENSES", testID: UITestIdentifier.rewardsScreen) {\n' +
+      '            OverlayHeroMetric(value: moneyLabel(summary.balanceCents), label: "Solde disponible", accent: SGM.orange)\n' +
+      '            SGMButton(title: "RETIRER MES GAINS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {}\n' +
+      '            OverlayProgressRow(title: "Prochain palier", value: percentLabel(summary.progress), progress: CGFloat(summary.progress))\n' +
+      '            ForEach(rewardTiers(summary)) { tier in\n' +
+      '                OverlayProgressRow(title: tier.label, value: tier.status, progress: tier.progress)\n' +
+      '            }\n' +
+      '            if summary.entries.isEmpty {\n' +
+      '                RewardHistoryRow(title: "Aucun mouvement enregistré", subtitle: "Reward ledger", meta: "0,00€", positive: true)\n' +
+      '            } else {\n' +
+      '                ForEach(summary.entries) { entry in\n' +
+      '                    RewardHistoryRow(title: entry.title, subtitle: entry.dateLabel, meta: entry.amountLabel, positive: entry.positive)\n' +
+      '                }\n' +
+      '            }\n' +
+      '        }\n' +
+      '    }\n' +
+      '}\n' +
+      '\n' +
+      'private struct RewardTier: Identifiable {\n' +
+      '    let id: Int\n' +
+      '    let label: String\n' +
+      '    let status: String\n' +
+      '    let progress: CGFloat\n' +
+      '}\n' +
+      '\n' +
+      'private struct RewardHistoryRow: View {\n' +
+      '    let title: String\n' +
+      '    let subtitle: String\n' +
+      '    let meta: String\n' +
+      '    let positive: Bool\n' +
+      '\n' +
+      '    var body: some View {\n' +
+      '        HStack(spacing: 12) {\n' +
+      '            SGMAvatar(initials: String(title.prefix(2)), size: 38, muted: true)\n' +
+      '            VStack(alignment: .leading, spacing: 4) {\n' +
+      '                Text(title)\n' +
+      '                    .font(.sgmBody(14, weight: .bold))\n' +
+      '                    .foregroundStyle(SGM.textPrimary)\n' +
+      '                    .lineLimit(1)\n' +
+      '                Text(subtitle)\n' +
+      '                    .font(.sgmBody(12, weight: .medium))\n' +
+      '                    .foregroundStyle(SGM.textMuted)\n' +
+      '            }\n' +
+      '            Spacer()\n' +
+      '            Text(meta)\n' +
+      '                .font(.sgmBody(11, weight: .bold))\n' +
+      '                .foregroundStyle(positive ? SGM.green : SGM.orange)\n' +
+      '                .lineLimit(1)\n' +
+      '                .minimumScaleFactor(0.72)\n' +
+      '        }\n' +
+      '        .padding(14)\n' +
+      '        .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))\n' +
+      '        .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))\n' +
+      '    }\n' +
+      '}\n' +
+      '\n' +
+      'private func monthProgress(_ month: ImpactMonthSummary, in months: [ImpactMonthSummary]) -> CGFloat {\n' +
+      '    let maxValue = months.map(\\.valueKg).max() ?? 0\n' +
+      '    guard maxValue > 0 else { return 0 }\n' +
+      '    return CGFloat(min(1, max(0, month.valueKg / maxValue)))\n' +
+      '}\n' +
+      '\n' +
+      'private func rewardTiers(_ summary: RewardSummary) -> [RewardTier] {\n' +
+      '    [500, 1_000, 2_500, 5_000].map { cents in\n' +
+      '        let reached = summary.balanceCents >= cents\n' +
+      '        let current = !reached && summary.nextTierCents == cents\n' +
+      '        return RewardTier(\n' +
+      '            id: cents,\n' +
+      '            label: "Palier \\(moneyLabel(cents))",\n' +
+      '            status: reached ? "Atteint" : (current ? "En cours" : "À venir"),\n' +
+      '            progress: reached ? 1 : (current ? CGFloat(summary.progress) : 0)\n' +
+      '        )\n' +
+      '    }\n' +
+      '}\n' +
+      '\n' +
+      'private func kgValue(_ value: Double) -> String {\n' +
+      '    let formatter = NumberFormatter()\n' +
+      '    formatter.locale = Locale(identifier: "fr_FR")\n' +
+      '    formatter.minimumFractionDigits = 1\n' +
+      '    formatter.maximumFractionDigits = 1\n' +
+      '    return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)\n' +
+      '}\n' +
+      '\n' +
+      'private func moneyLabel(_ cents: Int) -> String {\n' +
+      '    let sign = cents < 0 ? "-" : ""\n' +
+      '    let absolute = abs(cents)\n' +
+      '    return "\\(sign)\\(absolute / 100),\\(String(format: "%02d", absolute % 100))€"\n' +
+      '}\n' +
+      '\n' +
+      'private func percentLabel(_ progress: Double) -> String {\n' +
+      '    "\\(Int(min(1, max(0, progress)) * 100))%"\n' +
+      '}\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    import SwiftUI
+    
+    struct ImpactScreen: View {
+        @Environment(AppState.self) private var appState
+    
+        var body: some View {
+            let summary = appState.impactSummary
+            OverlayListScreen(title: "MON IMPACT CO₂", testID: UITestIdentifier.impactScreen) {
+                OverlayHeroMetric(value: "\(kgValue(summary.totalCo2Kg)) kg", label: "CO₂ économisés", accent: SGM.green)
+                if summary.months.isEmpty {
+                    OverlayProgressRow(title: "Aucun trajet terminé", value: "0 kg", progress: 0)
+                } else {
+                    ForEach(summary.months) { month in
+                        OverlayProgressRow(
+                            title: month.label,
+                            value: "\(kgValue(month.valueKg)) kg",
+                            progress: monthProgress(month, in: summary.months)
+                        )
+                    }
+                }
+                OverlayProgressRow(title: "Distance partagée", value: "\(summary.sharedDistanceKm) km", progress: summary.sharedDistanceKm > 0 ? 1 : 0)
+                OverlayProgressRow(title: "Trajets clôturés", value: "\(summary.rideCount)", progress: summary.rideCount > 0 ? 1 : 0)
+            }
+        }
+    }
+    
+    struct RewardsScreen: View {
+        @Environment(AppState.self) private var appState
+    
+        var body: some View {
+            let summary = appState.rewardSummary
+            OverlayListScreen(title: "RÉCOMPENSES", testID: UITestIdentifier.rewardsScreen) {
+                OverlayHeroMetric(value: moneyLabel(summary.balanceCents), label: "Solde disponible", accent: SGM.orange)
+                SGMButton(title: "RETIRER MES GAINS", variant: .orange, testID: UITestIdentifier.rewardsWithdrawAction) {}
+                OverlayProgressRow(title: "Prochain palier", value: percentLabel(summary.progress), progress: CGFloat(summary.progress))
+                ForEach(rewardTiers(summary)) { tier in
+                    OverlayProgressRow(title: tier.label, value: tier.status, progress: tier.progress)
+                }
+                if summary.entries.isEmpty {
+                    RewardHistoryRow(title: "Aucun mouvement enregistré", subtitle: "Reward ledger", meta: "0,00€", positive: true)
+                } else {
+                    ForEach(summary.entries) { entry in
+                        RewardHistoryRow(title: entry.title, subtitle: entry.dateLabel, meta: entry.amountLabel, positive: entry.positive)
+                    }
+                }
+            }
+        }
+    }
+    
+    private struct RewardTier: Identifiable {
+        let id: Int
+        let label: String
+        let status: String
+        let progress: CGFloat
+    }
+    
+    private struct RewardHistoryRow: View {
+        let title: String
+        let subtitle: String
+        let meta: String
+        let positive: Bool
+    
+        var body: some View {
+            HStack(spacing: 12) {
+                SGMAvatar(initials: String(title.prefix(2)), size: 38, muted: true)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.sgmBody(14, weight: .bold))
+                        .foregroundStyle(SGM.textPrimary)
+                        .lineLimit(1)
+                    Text(subtitle)
+                        .font(.sgmBody(12, weight: .medium))
+                        .foregroundStyle(SGM.textMuted)
+                }
+                Spacer()
+                Text(meta)
+                    .font(.sgmBody(11, weight: .bold))
+                    .foregroundStyle(positive ? SGM.green : SGM.orange)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.72)
+            }
+            .padding(14)
+            .background(SGM.bgCard, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
+            .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
+        }
+    }
+    
+    private func monthProgress(_ month: ImpactMonthSummary, in months: [ImpactMonthSummary]) -> CGFloat {
+        let maxValue = months.map(\.valueKg).max() ?? 0
+        guard maxValue > 0 else { return 0 }
+        return CGFloat(min(1, max(0, month.valueKg / maxValue)))
+    }
+    
+    private func rewardTiers(_ summary: RewardSummary) -> [RewardTier] {
+        [500, 1_000, 2_500, 5_000].map { cents in
+            let reached = summary.balanceCents >= cents
+            let current = !reached && summary.nextTierCents == cents
+            return RewardTier(
+                id: cents,
+                label: "Palier \(moneyLabel(cents))",
+                status: reached ? "Atteint" : (current ? "En cours" : "À venir"),
+                progress: reached ? 1 : (current ? CGFloat(summary.progress) : 0)
+            )
+        }
+    }
+    
+    private func kgValue(_ value: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "fr_FR")
+        formatter.minimumFractionDigits = 1
+        formatter.maximumFractionDigits = 1
+        return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)
+    }
+    
+    private func moneyLabel(_ cents: Int) -> String {
+        let sign = cents < 0 ? "-" : ""
+        let absolute = abs(cents)
+        return "\(sign)\(absolute / 100),\(String(format: "%02d", absolute % 100))€"
+    }
+    
+    private func percentLabel(_ progress: Double) -> String {
+        "\(Int(min(1, max(0, progress)) * 100))%"
+    }
+    
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/ios-reward-navigation.test.mjs:8:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.start (node:internal/test_runner/test:944:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 64.307

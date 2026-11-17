@@ -1,0 +1,34 @@
+package be.sportgreenmoove.app.ui
+
+import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.services.AndroidProviderSet
+import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.UnconfiguredAuthGateway
+import be.sportgreenmoove.app.services.UnconfiguredFirebaseGateway
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import org.junit.Assert.assertEquals
+import org.junit.Test
+
+class TripActionBookingTest {
+    @Test fun repeatedParentCardTapsMustNotResubmitAnAcknowledgedBooking() {
+        var requests = 0
+        val scope = CoroutineScope(SupervisorJob() + Dispatchers.Unconfined)
+        val providers = AndroidProviderSet(UnconfiguredAuthGateway(), object : FirebaseGateway by UnconfiguredFirebaseGateway() {
+            override suspend fun requestBooking(trip: TripSummary, childId: String?, seats: Int): String {
+                requests++
+                return "booking-$requests"
+            }
+        })
+        try {
+            repeat(3) {
+                launchTripAction(scope, providers, match("trip").summary, AppRole.Parent, emptyList(),
+                    ActiveRidePermissionGate { it() }, {}, {}, {}, {}, {})
+            }
+            assertEquals("The same parent card must not submit three acknowledged bookings", 1, requests)
+        } finally { scope.cancel() }
+    }
+}

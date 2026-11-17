@@ -1,0 +1,165 @@
+{
+  "runId": "6ff541fda69369710b0b2f632b752e1e",
+  "sourceCommit": "e3ddba1f8f53b6f77bec2ec35491838c3b495c2a",
+  "captures": [
+    {
+      "name": "history-list",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-list-context.jpg",
+      "capturedAt": "2026-10-19T12:17:36.392Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-load-more",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-load-more-context.jpg",
+      "capturedAt": "2026-10-19T12:18:14.942Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-page-2",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-page-2-context.jpg",
+      "capturedAt": "2026-10-19T12:18:30.472Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-self-approved",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-self-approved-context.jpg",
+      "capturedAt": "2026-10-19T12:20:55.487Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-confirmation",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-confirmation-context.jpg",
+      "capturedAt": "2026-10-19T12:21:05.568Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-kept-approved",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-kept-approved-context.jpg",
+      "capturedAt": "2026-10-19T12:21:21.640Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-withdrawn",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-withdrawn-context.jpg",
+      "capturedAt": "2026-10-19T12:21:38.869Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-child-read-only",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-child-read-only-context.jpg",
+      "capturedAt": "2026-10-19T12:22:18.300Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-entry",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-entry-context.jpg",
+      "capturedAt": "2026-10-19T12:22:45.818Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-club-choices",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-club-choices-context.jpg",
+      "capturedAt": "2026-10-19T12:23:02.131Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-refreshed-list",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-refreshed-list-context.jpg",
+      "capturedAt": "2026-10-19T12:23:37.961Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    },
+    {
+      "name": "history-refreshed",
+      "path": "/private/tmp/sgm-history-phone-e3ddba1-evidence/history-refreshed-context.jpg",
+      "capturedAt": "2026-10-19T12:24:00.190Z",
+      "deviceCrop": {
+        "x": 613,
+        "y": 111,
+        "width": 275,
+        "height": 610
+      },
+      "originalContextRetained": true
+    }
+  ],
+  "tunnelPolicy": {
+    "forceLocal": false,
+    "verbose": false,
+    "enableLoggingForApi": false,
+    "mitmProxy": false,
+    "folderTesting": "",
+    "includeHosts": "",
+    "excludeHosts": "",
+    "onlyAllow": "127.0.0.1,5001,0,127.0.0.1,8080,0,127.0.0.1,9000,0,127.0.0.1,9099,0,localhost,5001,0,localhost,8080,0,localhost,9000,0,localhost,9099,0"
+  },
+  "scope": "owned-enrollment-history-on-one-physical-android-phone-with-isolated-services",
+  "managerDecisions": "fixture-preparation-through-sdk-not-manager-ui",
+  "videoRecorded": false,
+  "fullProcessRestartTested": false,
+  "productionWrites": false
+}

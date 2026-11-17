@@ -1,0 +1,16 @@
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert((await call('getInbox',parent)).inbox.notifications.some(row=>row.id===later.find(n=>n.get('userId')===parent.uid).id))
+
+    at file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-alert-suite.mjs:82:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async withLocalAdminCleanup (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-admin-lifecycle.mjs:10:17)
+    at async file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-alert-suite.mjs:15:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+

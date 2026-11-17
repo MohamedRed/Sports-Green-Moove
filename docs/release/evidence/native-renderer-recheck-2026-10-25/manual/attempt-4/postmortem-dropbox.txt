@@ -1,0 +1,10 @@
+Drop box contents: 2 entries
+Max entries: 1000
+Low priority rate limit period: 2000 ms
+Low priority tags: {data_app_wtf, keymaster, system_server_wtf, system_app_strictmode, system_app_wtf, system_server_strictmode, data_app_strictmode, netstats}
+Searching for: data_app_anr
+
+========================================
+2026-10-25 21:25:48 data_app_anr (compressed text, 0 bytes)
+*** java.io.EOFException
+

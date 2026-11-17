@@ -15,12 +15,12 @@ export async function reconcileRadarEvent(normalized: NormalizedRadarEvent): Pro
   signalWritten: boolean;
 }> {
   const update = radarEventToLocationUpdate(normalized);
-  if (update) await writeLiveLocation(update);
+  const locationWritten = update ? await writeLiveLocation(update) : false;
 
   const signal = radarEventToRideSignal(normalized);
   if (signal) await writeRadarRideSignal(signal);
 
-  return { locationWritten: Boolean(update), signalWritten: Boolean(signal) };
+  return { locationWritten, signalWritten: Boolean(signal) };
 }
 
 async function writeRadarRideSignal(signal: RadarRideSignal): Promise<void> {

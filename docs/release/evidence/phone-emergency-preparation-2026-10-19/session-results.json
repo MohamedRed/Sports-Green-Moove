@@ -1,0 +1,30 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "be6c665394e26c1a27b5d46a596281dc",
+  "testedAt": "2026-10-19T13:36:41.987Z",
+  "scope": "manual-emergency-persisted-checkpoints-not-ui-or-release-proof",
+  "completed": false,
+  "checkpoints": [],
+  "sourceFiles": {
+    "scripts/qa/manual-emergency-session.mjs": "fbbc041423ce95eb430171a4f1e86cbd1673856b0bdf47d0dcdb9fb97fc1fd7f",
+    "scripts/qa/manual-emergency-checkpoints.mjs": "3a0ae1d8de6ba1a8b9ef0f3a1a843d52fcd6e285bf9bcef92ae907d5c9b06e99",
+    "scripts/qa/local-emergency-native-fixture.mjs": "8552967b5b622719b6dc9b43c7e9da46d10c6c01ac37f817f369d36f85a304d1",
+    "functions/src/domain/emergencyContact.ts": "1d26580eb363e4786862f30eecf3e3849609537315ba8a6d35de774a7ddb3c63",
+    "functions/src/services/emergencyContact.ts": "4d3a78dfc6167d10efe6855e265b709508f1462b421f15070cc79fc89c0f3e3c",
+    "functions/src/services/emergencyContactAuthority.ts": "fe2f4106830023481f033133bd54df27d528f0e903301412671dc4bf134f8865",
+    "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt": "a82aaae58bd025d9761ed6743c05e123220240c6df2ff65d2a10e56c052b1d46",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/EmergencyContactWire.kt": "ecf9c80773fd25966447f8301c83a73420c2479e20910e4bd608e5164703d915",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidEmergencyContactGateway.kt": "a250a8b60d67a354e0517b14586459bbe70264bc2f04d719e78a49f30effa42c",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidEmergencyDialer.kt": "52a691dace3ba9b91e713f0c7f7fcf05a89e89a7464854fc0ed4d26d4d2bb075",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "fbf56ea2382ab561dca8308d7049eb3f978f8cdffcbad888651eb603949ca685",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactScreen.kt": "359ab39ed86524bb3e1af76942bb2b016e27854e1408afdab480d378430daf35",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactRoute.kt": "2781f7db08deb1eb20ebde86da70699270c670274088c7c18152b588a8a81b00"
+  },
+  "fixtureCleanupVerified": true,
+  "managerDecisionMethod": "authenticated-local-sdk-request-verify-revoke",
+  "verificationPreseeded": false,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "dialerHandoffProvenByThisReport": false,
+  "childOwnAccountDialImplemented": false
+}

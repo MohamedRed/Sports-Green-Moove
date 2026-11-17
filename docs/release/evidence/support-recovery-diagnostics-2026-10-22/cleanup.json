@@ -1,0 +1,20 @@
+{
+  "physicalSessionStopped": true,
+  "appUninstallProviderConfirmed": true,
+  "appUninstallNativeDrawerVerified": true,
+  "deviceAdministrationChanged": false,
+  "networkSimulationRemoved": true,
+  "connectedWifiObserved": true,
+  "hostClipboardRestored": true,
+  "controllerClosedAfterFailure": true,
+  "controllerCompleted": false,
+  "backendExitCode": 130,
+  "helperExitCode": 0,
+  "helperProcessGroupExitVerified": true,
+  "helperPrivateDirectoryRemoved": true,
+  "privateSessionFileRemoved": true,
+  "ownedRuntimeCleanupHandlerCompleted": true,
+  "checkedPorts": [5001, 8080, 9000, 9099, 45690, 45691],
+  "listeningPortsAfterCleanup": [],
+  "productionWrites": false
+}

@@ -1,16 +1,12 @@
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { z } from "zod";
-import { rideParticipantUserIds } from "../domain/access.js";
 import { normalizeReportReviewNote, reportClosedAtValue, REPORT_STATUSES } from "../domain/reports.js";
 import { firestore } from "../lib/firebase.js";
 import { requireAdmin, requireAuth } from "../lib/https.js";
-
-type RideSessionDocument = {
-  driverUserId?: string;
-  participantUserIds?: string[];
-  status?: string;
-};
+import { parseCallableData } from "../lib/validation.js";
+import { queueUrgentSupportEmail } from "../services/supportUrgentQueue.js";
+import { submitRideRating } from "../services/ratingSubmission.js";
 
 export const submitRating = onCall(async (request) => {
   const uid = requireAuth(request.auth?.uid);
@@ -20,38 +16,8 @@ export const submitRating = onCall(async (request) => {
     score: z.number().int().min(1).max(5),
     comment: z.string().trim().max(500).optional(),
   });
-  const data = schema.parse(request.data);
-  const rideSnap = await firestore.collection("rideSessions").doc(data.rideSessionId).get();
-  if (!rideSnap.exists) throw new HttpsError("not-found", "Ride session not found.");
-
-  const ride = rideSnap.data() as RideSessionDocument;
-  if (ride.status !== "completed") {
-    throw new HttpsError("failed-precondition", "Ratings can only be submitted after completed rides.");
-  }
-
-  const participants = rideParticipantUserIds(ride);
-  if (!participants.includes(uid) || !participants.includes(data.ratedUserId)) {
-    throw new HttpsError("permission-denied", "Only ride participants can rate each other.");
-  }
-  if (data.ratedUserId === uid) {
-    throw new HttpsError("failed-precondition", "Users cannot rate themselves.");
-  }
-
-  const ratingRef = firestore.collection("ratings").doc(`${data.rideSessionId}_${uid}_${data.ratedUserId}`);
-  if ((await ratingRef.get()).exists) {
-    throw new HttpsError("already-exists", "This rating was already submitted.");
-  }
-
-  await ratingRef.create({
-    rideSessionId: data.rideSessionId,
-    authorUserId: uid,
-    ratedUserId: data.ratedUserId,
-    score: data.score,
-    comment: data.comment ?? null,
-    createdAt: Timestamp.now(),
-  });
-
-  return { ratingId: ratingRef.id };
+  const data = parseCallableData(schema, request.data);
+  return submitRideRating(uid, data);
 });
 
 export const createReport = onCall(async (request) => {
@@ -63,15 +29,21 @@ export const createReport = onCall(async (request) => {
     description: z.string().trim().min(5).max(2000),
     emergency: z.boolean().default(false),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const ref = firestore.collection("reports").doc();
 
-  await ref.set({
-    ...data,
-    reporterUserId: uid,
-    status: "open",
-    createdAt: Timestamp.now(),
-    updatedAt: Timestamp.now(),
+  const createdAt = Timestamp.now();
+  await firestore.runTransaction(async transaction => {
+    transaction.create(ref, {
+      ...data,
+      reporterUserId: uid,
+      status: "open",
+      publicReplyCount: 0,
+      lastPublicReply: null,
+      createdAt,
+      updatedAt: createdAt,
+    });
+    queueUrgentSupportEmail(transaction, ref.id, data.emergency, createdAt);
   });
 
   return { reportId: ref.id, status: "open" };
@@ -86,7 +58,7 @@ export const reviewReport = onCall(async (request) => {
     status: z.enum(REPORT_STATUSES),
     note: z.string().trim().max(1000).optional(),
   });
-  const data = schema.parse(request.data);
+  const data = parseCallableData(schema, request.data);
   const reportRef = firestore.collection("reports").doc(data.reportId);
   const reviewedAt = Timestamp.now();
   const note = normalizeReportReviewNote(data.note);

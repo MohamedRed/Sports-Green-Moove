@@ -1,0 +1,194 @@
+TAP version 13
+# Subtest: pre-installation observation is independently identified and never claims a flow or repair
+ok 1 - pre-installation observation is independently identified and never claims a flow or repair
+  ---
+  duration_ms: 14.596583
+  type: 'test'
+  ...
+# Subtest: the independent network case observes the same state before installing its test apps
+ok 2 - the independent network case observes the same state before installing its test apps
+  ---
+  duration_ms: 0.534041
+  type: 'test'
+  ...
+# Subtest: unapproved, physical, wrong-case and relative-output invocations stop before observation writes
+ok 3 - unapproved, physical, wrong-case and relative-output invocations stop before observation writes
+  ---
+  duration_ms: 6.936584
+  type: 'test'
+  ...
+# Subtest: unknown property values are redacted and do not become a ready/default log policy
+ok 4 - unknown property values are redacted and do not become a ready/default log policy
+  ---
+  duration_ms: 0.415417
+  type: 'test'
+  ...
+# Subtest: collector failure is not retried or converted to a successful bootstrap receipt
+ok 5 - collector failure is not retried or converted to a successful bootstrap receipt
+  ---
+  duration_ms: 0.201041
+  type: 'test'
+  ...
+# Subtest: the full suite observes boot state before administrator preparation or app installation
+ok 6 - the full suite observes boot state before administrator preparation or app installation
+  ---
+  duration_ms: 3.557333
+  type: 'test'
+  ...
+# Subtest: only actual validated default Wi-Fi is ready; identifiers, names and addresses never survive parsing
+ok 7 - only actual validated default Wi-Fi is ready; identifiers, names and addresses never survive parsing
+  ---
+  duration_ms: 0.716708
+  type: 'test'
+  ...
+# Subtest: private names cannot impersonate actual capabilities and unsupported or ambiguous dumps fail closed
+ok 8 - private names cannot impersonate actual capabilities and unsupported or ambiguous dumps fail closed
+  ---
+  duration_ms: 0.670583
+  type: 'test'
+  ...
+# Subtest: available Wi-Fi validation and default selection remain distinct without changing readiness
+ok 9 - available Wi-Fi validation and default selection remain distinct without changing readiness
+  ---
+  duration_ms: 0.358375
+  type: 'test'
+  ...
+# Subtest: available capabilities keep the same ready default and cannot alias the active transport array
+ok 10 - available capabilities keep the same ready default and cannot alias the active transport array
+  ---
+  duration_ms: 0.345542
+  type: 'test'
+  ...
+# Subtest: passive readiness records the initial mismatch then proceeds only after actual Wi-Fi validation
+ok 11 - passive readiness records the initial mismatch then proceeds only after actual Wi-Fi validation
+  ---
+  duration_ms: 0.687584
+  type: 'test'
+  ...
+# Subtest: already valid default Wi-Fi needs no delay, history collector or new network probe
+ok 12 - already valid default Wi-Fi needs no delay, history collector or new network probe
+  ---
+  duration_ms: 0.122875
+  type: 'test'
+  ...
+# Subtest: unmet readiness times out with no test-app installation, forced network, synthetic result or post-budget command
+ok 13 - unmet readiness times out with no test-app installation, forced network, synthetic result or post-budget command
+  ---
+  duration_ms: 0.290041
+  type: 'test'
+  ...
+# Subtest: sub-millisecond budget exhaustion before a command is a deadline, not an unavailable Android command
+not ok 14 - sub-millisecond budget exhaustion before a command is a deadline, not an unavailable Android command
+  ---
+  duration_ms: 0.22975
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:167:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /fixed budget/. Input:
+    
+    'Error: Disposable readiness observation failed; raw output withheld'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+  error: 'Disposable readiness observation failed; raw output withheld'
+  stack: |-
+    waitForDisposableWifi (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/wait-disposable-wifi.mjs:68:11)
+    Object.run (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:146:26)
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:170:26)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  operator: 'rejects'
+  stack: |-
+    async TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:170:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: a wrapped history collector cannot disguise an exhausted command budget or leak private errors
+not ok 15 - a wrapped history collector cannot disguise an exhausted command budget or leak private errors
+  ---
+  duration_ms: 0.203291
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:176:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    Error: Disposable readiness observation failed; raw output withheld
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:178:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: a real pre-deadline command failure remains unavailable, not a guessed timeout
+not ok 16 - a real pre-deadline command failure remains unavailable, not a guessed timeout
+  ---
+  duration_ms: 0.288167
+  type: 'test'
+  location: '/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:186:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/network-bootstrap-observation.test.mjs:191:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: late readiness and late history cannot turn an expired observation into acceptance
+ok 17 - late readiness and late history cannot turn an expired observation into acceptance
+  ---
+  duration_ms: 0.266333
+  type: 'test'
+  ...
+# Subtest: the observation count also remains bounded if an injected clock or delay does not advance
+ok 18 - the observation count also remains bounded if an injected clock or delay does not advance
+  ---
+  duration_ms: 0.191959
+  type: 'test'
+  ...
+# Subtest: command, parser and history failures stop once and never echo private content
+ok 19 - command, parser and history failures stop once and never echo private content
+  ---
+  duration_ms: 0.408542
+  type: 'test'
+  ...
+# Subtest: unapproved cases, non-disposable devices and existing app state are refused before evidence writes
+ok 20 - unapproved cases, non-disposable devices and existing app state are refused before evidence writes
+  ---
+  duration_ms: 0.281291
+  type: 'test'
+  ...
+# Subtest: focused entry checks passive Wi-Fi before installation while keeping the original native handover assertions
+ok 21 - focused entry checks passive Wi-Fi before installation while keeping the original native handover assertions
+  ---
+  duration_ms: 0.530667
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 18
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 131.857792

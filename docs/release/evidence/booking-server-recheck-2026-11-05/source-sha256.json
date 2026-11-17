@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "scripts/qa/local-runtime.mjs",
+      "sha256": "64b8bf2b9fbcfe5aa3d8f29664aedc57ede48ad3f72fcbea65b2f34808a600a0"
+    },
+    {
+      "path": "scripts/qa/local-java-environment.mjs",
+      "sha256": "f46fdeb378bf25e7fa0f3e396c87766d34eeb942bc850b83f3e47bb475f21de9"
+    },
+    {
+      "path": "scripts/qa/local-runtime-disposal.mjs",
+      "sha256": "cb044194e8ff1c2cd5d6fb08d730005e1c7272604cb65a8ce3c6dd02be287cb3"
+    },
+    {
+      "path": "scripts/qa/local-emulator-lifecycle.mjs",
+      "sha256": "e9f38b269f25332ff076a991900a31f178cd740fee08ec8dd7e11257354f6bf8"
+    },
+    {
+      "path": "scripts/qa/local-booking-consistency.mjs",
+      "sha256": "3a9fbcb5ebb665b9347c3ddc2918e479a7514855aaa74bc9af7624fe6b5c7195"
+    },
+    {
+      "path": "scripts/qa/local-booking-application-race.mjs",
+      "sha256": "088ce208099ff63daa9ca60e1c2a4a23819158e5545c2716716059c71501299d"
+    },
+    {
+      "path": "scripts/qa/run-local-booking-consistency.mjs",
+      "sha256": "751080ce7c46f7f5f1ec5ce7de3299a31f3646b37bc00cc461a9b13028eaf4f8"
+    },
+    {
+      "path": "scripts/qa/local-egress-guard.mjs",
+      "sha256": "2782ab3e05ae42b875666a7047574ecf536695f0f315d2aec1d1a625f1cbc081"
+    },
+    {
+      "path": "tests/local-runtime-disposal.test.mjs",
+      "sha256": "78f8e19d626e860c5d2e4644ba5c01868b53660a767689d5b618044373dde121"
+    },
+    {
+      "path": "tests/local-emulator-lifecycle.test.mjs",
+      "sha256": "d80cc6ccfa90a501998fad486e174c4541277b5c1458b4873970eb4d60322111"
+    },
+    {
+      "path": "functions/src/callables/bookingRequests.ts",
+      "sha256": "257af593b77ffc601e007d052021af923ec1cabc2567caf6a53ef31561e3b0f2"
+    },
+    {
+      "path": "functions/src/callables/bookings.ts",
+      "sha256": "6e69ede12240604c4ff0efc93535baef6bae2f532f9ffe10dbd4b3da15b12bb0"
+    },
+    {
+      "path": "functions/src/domain/bookingIntent.ts",
+      "sha256": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea"
+    },
+    {
+      "path": "functions/src/lib/clientTrips.ts",
+      "sha256": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "a7044b8f8dae734915c8949a85b1b75e22c6aa13ce9f71d675a34292512e9b79"
+    }
+  ]
+}

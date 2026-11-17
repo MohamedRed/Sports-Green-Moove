@@ -1,0 +1,397 @@
+
+> sports-green-moove@0.1.0 test:team-review
+> node scripts/qa/run-local-team-review.mjs --browser
+
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Starting emulators: auth, functions, firestore, database
+i  emulators: Detected demo project ID "demo-sgm-local-qa", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  database: Database Emulator logging to database-debug.log
+i  functions: Watching "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-OdhOHr/functions" for Cloud Functions...
+⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+✔  functions: Using node@22 from host.
+Serving at port 8710
+
+✔  functions: Loaded functions definitions from source: applyTripChanges, approveBooking, cancelBooking, cancelTrip, createReport, createRidePaymentIntent, createStripeAccount, createStripeAccountLink, createTrip, createTripChangePaymentIntent, declineBooking, endRide, getActiveRide, getChatConversation, getEmergencyContact, getInbox, getMyGuardianVerification, getOwnedTeamEnrollmentView, getRidePaymentStatus, getTeamEnrollmentView, getTripCancellation, getTripChangeApplicationQuote, getTripChangeHistory, getTripChangePaymentStatus, getTripChangePreview, getTripChangeReview, initializeUserProfile, issueRewardPayout, listChatBookingOptions, listChatConversations, listClubGuardianVerifications, listClubMemberships, listDriverBookingRequests, listGuardianParentOptions, listGuardianReviewClubs, listMembershipReviewClubs, listMyGuardianVerifications, listOwnedTeamEnrollments, listReservations, listTeamEnrollmentOptions, listTeamEnrollmentReviewTeams, listTeamEnrollments, listTrips, markChatMessagesRead, markDropoff, markPickup, proposeTripChanges, radarWebhook, requestBooking, requestClubMembership, requestTeamEnrollment, resolveBookingRequest, resolvePlace, resolveTripChangeProposal, respondToTripChanges, reviewClubMembership, reviewReport, saveEmergencyContact, searchTrips, sendChatMessage, setUserRoles, startRide, stripeConnectRefresh, stripeConnectReturn, stripeWebhook, submitRating, suggestPlaces, transitionGuardianVerification, transitionTeamEnrollment, withdrawTripChanges, writeLocationBatch.
+✔  functions[us-central1-applyTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/applyTripChanges).
+✔  functions[us-central1-approveBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/approveBooking).
+✔  functions[us-central1-cancelBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelBooking).
+✔  functions[us-central1-cancelTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelTrip).
+✔  functions[us-central1-createReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createReport).
+✔  functions[us-central1-createRidePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createRidePaymentIntent).
+✔  functions[us-central1-createStripeAccount]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccount).
+✔  functions[us-central1-createStripeAccountLink]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccountLink).
+✔  functions[us-central1-createTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTrip).
+✔  functions[us-central1-createTripChangePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTripChangePaymentIntent).
+✔  functions[us-central1-declineBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/declineBooking).
+✔  functions[us-central1-endRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/endRide).
+✔  functions[us-central1-getActiveRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getActiveRide).
+✔  functions[us-central1-getChatConversation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChatConversation).
+✔  functions[us-central1-getEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getEmergencyContact).
+✔  functions[us-central1-getInbox]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getInbox).
+✔  functions[us-central1-getMyGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getMyGuardianVerification).
+✔  functions[us-central1-getOwnedTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getOwnedTeamEnrollmentView).
+✔  functions[us-central1-getRidePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getRidePaymentStatus).
+✔  functions[us-central1-getTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTeamEnrollmentView).
+✔  functions[us-central1-getTripCancellation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripCancellation).
+✔  functions[us-central1-getTripChangeApplicationQuote]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeApplicationQuote).
+✔  functions[us-central1-getTripChangeHistory]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeHistory).
+✔  functions[us-central1-getTripChangePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePaymentStatus).
+✔  functions[us-central1-getTripChangePreview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePreview).
+✔  functions[us-central1-getTripChangeReview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeReview).
+✔  functions[us-central1-initializeUserProfile]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/initializeUserProfile).
+✔  functions[us-central1-issueRewardPayout]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/issueRewardPayout).
+✔  functions[us-central1-listChatBookingOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatBookingOptions).
+✔  functions[us-central1-listChatConversations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatConversations).
+✔  functions[us-central1-listClubGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubGuardianVerifications).
+✔  functions[us-central1-listClubMemberships]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubMemberships).
+✔  functions[us-central1-listDriverBookingRequests]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listDriverBookingRequests).
+✔  functions[us-central1-listGuardianParentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianParentOptions).
+✔  functions[us-central1-listGuardianReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianReviewClubs).
+✔  functions[us-central1-listMembershipReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMembershipReviewClubs).
+✔  functions[us-central1-listMyGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMyGuardianVerifications).
+✔  functions[us-central1-listOwnedTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listOwnedTeamEnrollments).
+✔  functions[us-central1-listReservations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listReservations).
+✔  functions[us-central1-listTeamEnrollmentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentOptions).
+✔  functions[us-central1-listTeamEnrollmentReviewTeams]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentReviewTeams).
+✔  functions[us-central1-listTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollments).
+✔  functions[us-central1-listTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTrips).
+✔  functions[us-central1-markChatMessagesRead]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markChatMessagesRead).
+✔  functions[us-central1-markDropoff]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markDropoff).
+✔  functions[us-central1-markPickup]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markPickup).
+✔  functions[us-central1-proposeTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/proposeTripChanges).
+✔  functions[us-central1-radarWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/radarWebhook).
+✔  functions[us-central1-requestBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestBooking).
+✔  functions[us-central1-requestClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestClubMembership).
+✔  functions[us-central1-requestTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestTeamEnrollment).
+✔  functions[us-central1-resolveBookingRequest]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveBookingRequest).
+✔  functions[us-central1-resolvePlace]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolvePlace).
+✔  functions[us-central1-resolveTripChangeProposal]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveTripChangeProposal).
+✔  functions[us-central1-respondToTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/respondToTripChanges).
+✔  functions[us-central1-reviewClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewClubMembership).
+✔  functions[us-central1-reviewReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewReport).
+✔  functions[us-central1-saveEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/saveEmergencyContact).
+✔  functions[us-central1-searchTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/searchTrips).
+✔  functions[us-central1-sendChatMessage]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendChatMessage).
+✔  functions[us-central1-setUserRoles]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/setUserRoles).
+✔  functions[us-central1-startRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/startRide).
+✔  functions[us-central1-stripeConnectRefresh]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectRefresh).
+✔  functions[us-central1-stripeConnectReturn]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectReturn).
+✔  functions[us-central1-stripeWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeWebhook).
+✔  functions[us-central1-submitRating]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/submitRating).
+✔  functions[us-central1-suggestPlaces]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/suggestPlaces).
+✔  functions[us-central1-transitionGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionGuardianVerification).
+✔  functions[us-central1-transitionTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionTeamEnrollment).
+✔  functions[us-central1-withdrawTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/withdrawTripChanges).
+✔  functions[us-central1-writeLocationBatch]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/writeLocationBatch).
+i  Running script: exec '/Users/mrr/.hermes/node/bin/node' '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-team-review-suite.mjs'
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 82.97ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 21.128667ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 87.444875ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 85.231459ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 19.651542ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 19.782333ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.743709ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 18.756667ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 18.095875ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.603875ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.799083ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.853ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.441958ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 13.604458ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.56375ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.334292ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.95475ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 16.589708ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.541625ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 15.641167ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.709084ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 22.756459ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.779916ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 15.972791ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.02275ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.497959ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.191041ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 13.610209ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.634ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 13.3355ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 16.883083ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.122042ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 14.4165ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 13.692584ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 14.570709ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 15.200125ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.09125ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.04325ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.909167ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 14.5745ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 14.438833ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 15.85875ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 14.184416ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 12.971709ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 13.482333ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 13.01875ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 14.618ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 15.289666ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 15.009625ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 12.434709ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 20.732958ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 17.827417ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 7.57325ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 5.702792ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 2.581042ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 57.524833ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 26.394709ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 16.990625ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 9.950292ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 78.584ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 1.899ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 1.565834ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 6.338167ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 14.809416ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentOptions"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentOptions" in 188.492ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentOptions"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentOptions" in 113.320541ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 187.51075ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 43.84075ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 998.202292ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 220.250042ms
+i  functions: Beginning execution of "us-central1-listMembershipReviewClubs"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Beginning execution of "us-central1-listMembershipReviewClubs"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Beginning execution of "us-central1-listGuardianReviewClubs"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Beginning execution of "us-central1-listGuardianReviewClubs"
+i  functions: Beginning execution of "us-central1-listGuardianReviewClubs"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Beginning execution of "us-central1-listGuardianReviewClubs"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listMembershipReviewClubs" in 629.820333ms
+i  functions: Finished "us-central1-listGuardianReviewClubs" in 495.667542ms
+i  functions: Finished "us-central1-listMembershipReviewClubs" in 614.728334ms
+i  functions: Finished "us-central1-listGuardianReviewClubs" in 545.414875ms
+i  functions: Finished "us-central1-listGuardianReviewClubs" in 582.568292ms
+i  functions: Finished "us-central1-listGuardianReviewClubs" in 289.875417ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 47.326ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 40.555792ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 218.309625ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 65.038375ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 210.4365ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 435.774666ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 90.286541ms
+i  functions: Beginning execution of "us-central1-requestTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestTeamEnrollment" in 125.694125ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 497.828833ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 72.112917ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 489.189542ms
+i  functions: Beginning execution of "us-central1-getTeamEnrollmentView"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getTeamEnrollmentView" in 48.424834ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 100.864667ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 420.841333ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 133.937791ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 441.316042ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 65.170958ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 331.799917ms
+i  functions: Beginning execution of "us-central1-transitionTeamEnrollment"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionTeamEnrollment" in 170.347916ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 981.299458ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollments"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollments" in 56.279542ms
+i  functions: Beginning execution of "us-central1-listTeamEnrollmentReviewTeams"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-listTeamEnrollmentReviewTeams" in 29.526541ms
+Team review checks passed: 8, browser: 10. No production writes.
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  functions: Stopping Functions Emulator
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  eventarc: Stopping Eventarc Emulator
+i  tasks: Stopping Cloud Tasks Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

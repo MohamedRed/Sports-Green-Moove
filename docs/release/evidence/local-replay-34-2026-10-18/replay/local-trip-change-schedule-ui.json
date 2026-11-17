@@ -1,0 +1,20 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8b6cf41fc1b2f5cb56cc3280630b8712",
+  "scope": "native-trip-change-date-and-arrival-consent-ui",
+  "completed": true,
+  "tripId": "DuNeBk5FjwIv0oaRE8YD",
+  "bookingId": "Ll7dWddQy2f9L1xrL8jM",
+  "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+  "proposedDepartureAt": "2026-10-20T09:00:00.000Z",
+  "desiredArrivalBy": "2026-10-20T10:00:00.000Z",
+  "nativeDatePickerUsed": true,
+  "nativeTimePickerUsed": true,
+  "dateCancellationPreservedDraft": true,
+  "pastDepartureBlocked": true,
+  "arrivalBeforeDepartureBlocked": true,
+  "desiredArrivalAdded": true,
+  "parentSawDatesAndArrival": true,
+  "parentConfirmed": true,
+  "notApplied": true
+}

@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-10-19T10:09:53.367Z",
+  "scope": "observed-local-console-settings-not-flow-proof",
+  "settings": {
+    "forceLocal": false,
+    "verbose": false,
+    "enableLoggingForApi": false,
+    "mitmProxy": false,
+    "folderTesting": "",
+    "includeHosts": "",
+    "excludeHosts": "",
+    "onlyAllow": "127.0.0.1,5001,0,127.0.0.1,8080,0,127.0.0.1,9000,0,127.0.0.1,9099,0,localhost,5001,0,localhost,8080,0,localhost,9000,0,localhost,9099,0"
+  }
+}

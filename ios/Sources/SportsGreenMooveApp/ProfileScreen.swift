@@ -4,9 +4,12 @@ struct ProfileScreen: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.profileScreen) {
             SGMTopBar(title: "MON PROFIL")
             ProfileIdentity()
+            if let access = appState.accountAccess {
+                ProfileReceivedRatings(access: access, gateway: appState.firebase).id(access.context.id)
+            }
             ProfileRoleSelector()
             ProfileImpactCard {
                 appState.openOverlay(.impact)
@@ -17,7 +20,9 @@ struct ProfileScreen: View {
             SGMSectionLabel("PARAMÈTRES")
             ProfileSettingsCard()
                 .padding(.horizontal, SGMSpace.padScreen)
-            SGMButton(title: "SE DÉCONNECTER", variant: .ghost) {}
+            SGMButton(title: "SE DÉCONNECTER", variant: .ghost, testID: UITestIdentifier.profileSignOutAction) {
+                appState.signOut()
+            }
                 .padding(.horizontal, SGMSpace.padScreen)
                 .padding(.top, 4)
         }
@@ -28,15 +33,8 @@ private struct ProfileRoleSelector: View {
     @Environment(AppState.self) private var appState
 
     var body: some View {
-        VStack(spacing: 6) {
-            HStack(spacing: 6) {
-                RoleChip("Parent", role: .parent)
-                RoleChip("Conducteur", role: .driver)
-            }
-            HStack(spacing: 6) {
-                RoleChip("Enfant", role: .child)
-                RoleChip("Club manager", role: .clubManager)
-            }
+        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 6) {
+            ForEach(appState.session?.roles ?? []) { role in RoleChip(role: role) }
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.bottom, 14)
@@ -45,62 +43,22 @@ private struct ProfileRoleSelector: View {
 
 private struct RoleChip: View {
     @Environment(AppState.self) private var appState
-    let title: String
     let role: AppRole
 
-    init(_ title: String, role: AppRole) {
-        self.title = title
-        self.role = role
-    }
-
     var body: some View {
-        SGMChip(text: title, selected: appState.selectedRole == role) {
-            appState.selectedRole = role
-            Task { await appState.refreshAppData() }
+        SGMChip(text: role.profileTitle, selected: appState.selectedRole == role) {
+            Task { await appState.selectAuthorizedRole(role) }
         }
-    }
-}
-
-private struct ProfileIdentity: View {
-    var body: some View {
-        VStack(spacing: 10) {
-            Text("OB")
-                .font(.sgmDisplay(30))
-                .tracking(.sgmWide(for: 30))
-                .foregroundStyle(SGM.textOnGreen)
-                .frame(width: 80, height: 80)
-                .background(
-                    LinearGradient(colors: [SGM.green, SGM.greenDark], startPoint: .topLeading, endPoint: .bottomTrailing),
-                    in: Circle()
-                )
-                .shadow(color: SGM.green.opacity(0.24), radius: 10, y: 4)
-
-            VStack(spacing: 2) {
-                Text("BAKOMBA-NZOLUVONDA")
-                    .font(.sgmDisplay(22))
-                    .tracking(.sgmWide(for: 22))
-                    .foregroundStyle(SGM.textPrimary)
-                Text("Olivier · Collège du Biéreau")
-                    .font(.sgmBody(13, weight: .medium))
-                    .foregroundStyle(SGM.textMuted)
-            }
-
-            HStack(spacing: 6) {
-                ProfilePill("GREEN-MOOVER", selected: false)
-                ProfilePill("U8 NATIONAUX", selected: true)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.horizontal, SGMSpace.padScreen)
-        .padding(.top, 16)
-        .padding(.bottom, 10)
+        .accessibilityIdentifier("profile.role.\(role.rawValue)")
     }
 }
 
 private struct ProfileImpactCard: View {
+    @Environment(AppState.self) private var appState
     let action: () -> Void
 
     var body: some View {
+        let summary = appState.impactSummary
         Button(action: action) {
             ZStack(alignment: .leading) {
                 SGM.heroGradient
@@ -112,7 +70,7 @@ private struct ProfileImpactCard: View {
                         .foregroundStyle(SGM.textOnGreen.opacity(0.5))
                     HStack(alignment: .bottom, spacing: 24) {
                         VStack(alignment: .leading, spacing: 0) {
-                            Text("12.4")
+                            Text(profileKgValue(summary.totalCo2Kg))
                                 .font(.sgmDisplay(56))
                                 .foregroundStyle(SGM.green)
                             Text("kg CO₂ économisés")
@@ -120,9 +78,8 @@ private struct ProfileImpactCard: View {
                                 .foregroundStyle(SGM.textOnGreen.opacity(0.6))
                         }
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("≈ 847 km parcourus")
-                            Text("24 trajets partagés")
-                            Text("Rang #47 Belgique")
+                            Text("\(summary.sharedDistanceKm) km partagés")
+                            Text("\(summary.rideCount) trajets clôturés")
                         }
                         .font(.sgmBody(12))
                         .foregroundStyle(SGM.textOnGreen.opacity(0.72))
@@ -139,9 +96,11 @@ private struct ProfileImpactCard: View {
 }
 
 private struct ProfileRewardsCard: View {
+    @Environment(AppState.self) private var appState
     let action: () -> Void
 
     var body: some View {
+        let summary = appState.rewardSummary
         Button(action: action) {
             VStack(spacing: 10) {
                 HStack {
@@ -151,15 +110,15 @@ private struct ProfileRewardsCard: View {
                         .tracking(.sgmWide(for: 18))
                         .foregroundStyle(SGM.textPrimary)
                     Spacer()
-                    Text("7.50€")
+                    Text(profileMoneyLabel(summary.balanceCents))
                         .font(.sgmDisplay(24))
                         .foregroundStyle(SGM.orange)
                 }
-                SGMProgressBar(progress: 0.62)
+                SGMProgressBar(progress: CGFloat(summary.progress))
                 HStack {
-                    Text("Prochain palier à 10€")
+                    Text("Prochain palier à \(profileMoneyLabel(summary.nextTierCents))")
                     Spacer()
-                    Text("62%")
+                    Text(profilePercentLabel(summary.progress))
                 }
                 .font(.sgmBody(11, weight: .medium))
                 .foregroundStyle(SGM.textMuted)
@@ -175,85 +134,20 @@ private struct ProfileRewardsCard: View {
     }
 }
 
-private struct ProfileSettingsCard: View {
-    @Environment(AppState.self) private var appState
-
-    private let rows = [
-        ProfileSetting(.groups, "Mon club", "Collège du Biéreau", AppOverlay.groups),
-        ProfileSetting(.award, "Paiements", "Stripe", AppOverlay.payments),
-        ProfileSetting(.location, "Ma ville", "Wavre, Belgique", AppOverlay.options),
-        ProfileSetting(.bell, "Notifications", "Activées", AppOverlay.options),
-        ProfileSetting(.settings, "Paramètres", "", AppOverlay.options)
-    ]
-
-    var body: some View {
-        VStack(spacing: 0) {
-            ForEach(Array(rows.enumerated()), id: \.element.id) { index, row in
-                Button {
-                    appState.openOverlay(row.destination)
-                } label: {
-                    HStack(spacing: 12) {
-                        SGMIconView(icon: row.icon, size: 18, color: SGM.textMuted)
-                        Text(row.label)
-                            .font(.sgmBody(14, weight: .semibold))
-                            .foregroundStyle(SGM.textPrimary)
-                        Spacer()
-                        if !row.value.isEmpty {
-                            Text(row.value)
-                                .font(.sgmBody(13, weight: .medium))
-                                .foregroundStyle(SGM.textMuted)
-                        }
-                        SGMIconView(icon: .chevronRight, size: 13, color: SGM.textMuted)
-                    }
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 13)
-                }
-                .buttonStyle(.plain)
-                if index < rows.count - 1 {
-                    Rectangle()
-                        .fill(SGM.border)
-                        .frame(height: 1)
-                        .padding(.leading, 46)
-                }
-            }
-        }
-        .background(SGM.bgSurface, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
-        .overlay(RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous).stroke(SGM.border, lineWidth: 1))
-    }
+private func profileKgValue(_ value: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale(identifier: "fr_FR")
+    formatter.minimumFractionDigits = 1
+    formatter.maximumFractionDigits = 1
+    return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)
 }
 
-private struct ProfilePill: View {
-    let text: String
-    let selected: Bool
-
-    init(_ text: String, selected: Bool) {
-        self.text = text
-        self.selected = selected
-    }
-
-    var body: some View {
-        Text(text)
-            .font(.sgmBody(11, weight: .bold))
-            .tracking(.sgmWide(for: 11))
-            .foregroundStyle(selected ? SGM.textOnGreen : SGM.green)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 3)
-            .background(selected ? SGM.green : SGM.bgCard, in: Capsule())
-            .overlay(Capsule().stroke(selected ? .clear : SGM.border, lineWidth: 1))
-    }
+private func profileMoneyLabel(_ cents: Int) -> String {
+    let sign = cents < 0 ? "-" : ""
+    let absolute = abs(cents)
+    return "\(sign)\(absolute / 100),\(String(format: "%02d", absolute % 100))€"
 }
 
-private struct ProfileSetting: Identifiable {
-    let id = UUID()
-    let icon: SGMIcon
-    let label: String
-    let value: String
-    let destination: AppOverlay
-
-    init(_ icon: SGMIcon, _ label: String, _ value: String, _ destination: AppOverlay) {
-        self.icon = icon
-        self.label = label
-        self.value = value
-        self.destination = destination
-    }
+private func profilePercentLabel(_ progress: Double) -> String {
+    "\(Int(min(1, max(0, progress)) * 100))%"
 }

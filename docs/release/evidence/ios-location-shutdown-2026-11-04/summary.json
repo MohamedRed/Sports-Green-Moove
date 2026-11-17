@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "controlled-authentication-and-actual-provider-wrapper-not-sdk-ui-or-physical-signout",
+  "baseline": {
+    "sourceCommit": "a226b3e265c78f58d56af892a666ae2778afc50b",
+    "substitutedFile": "ios/Sources/SportsGreenMooveApp/AppState+Authentication.swift",
+    "sha256": "885ae6ef59df00cf50227793c22204758683ccda5c09f34115ede40abd86c39c",
+    "harness": "candidate protocols and native checks; only the original authentication file is substituted unchanged",
+    "status": null,
+    "signal": "SIGTRAP",
+    "pendingLocationWork": true,
+    "authenticationCallsBeforeSettlement": 1,
+    "profileButtonWasEmpty": true,
+    "log": "baseline-result.txt"
+  },
+  "candidate": {
+    "nativePlanExitCode": 0,
+    "providerCheckExitCode": 0,
+    "swiftVersion": 6,
+    "controlledProviderStrictConcurrency": true,
+    "controlledProviderWarningsAsErrors": true,
+    "delayedStartUploadStates": 6,
+    "authenticationPathsBlocked": 5,
+    "roleChangeAdmissionChecked": true,
+    "retainedRepeatedCleanup": true,
+    "cancelledWaiterStillDrains": true,
+    "sdkSignoutFailureStillBlocks": true,
+    "continuousUploadsAwaited": 2,
+    "multipleWaiters": 2,
+    "profileActionConnected": true,
+    "addedUiCases": 1,
+    "totalRequiredUiCases": 8
+  },
+  "logs": [
+    {
+      "file": "baseline-result.txt",
+      "sha256": "bb4789e12b4c9980c80409d5bd7c6442f5a169e153f339d7ef69ba2b2c3eb8ae",
+      "privateOriginalSha256": "bb4789e12b4c9980c80409d5bd7c6442f5a169e153f339d7ef69ba2b2c3eb8ae",
+      "selection": "unchanged-result-lines"
+    },
+    {
+      "file": "candidate-result.txt",
+      "sha256": "eec29dd6ffdc529571c5c809dc51f8b98d5527e7607f17aebcdf708bf710dd9b",
+      "privateOriginalSha256": "5dd87f6fa0cbeddaaa3197374a11b71bf3d8b479a3bcab7c4328d7698b3db126",
+      "selection": "unchanged-result-lines"
+    },
+    {
+      "file": "provider-result.txt",
+      "sha256": "0196c3d6b3cc08b6b2db843079286c0774ff45271b1a90a7e11393965d6cd3fb",
+      "privateOriginalSha256": "0196c3d6b3cc08b6b2db843079286c0774ff45271b1a90a7e11393965d6cd3fb",
+      "selection": "complete-unchanged-output"
+    }
+  ],
+  "sdkLinkedBuildAccepted": false,
+  "profileUiExecuted": false,
+  "fullSignOutAccepted": false,
+  "allSdkTransportsDrained": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "releaseComplete": false
+}

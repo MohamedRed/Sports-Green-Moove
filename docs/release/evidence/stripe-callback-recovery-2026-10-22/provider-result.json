@@ -1,0 +1,34 @@
+{
+  "scope": "sanitized-read-only-provider-log-projection-not-onboarding-or-payment",
+  "sourceLogSha256": "f4b6b65692c4cf6b2bdf96198de79d0ace0132ce86d6d74823f71a6dd28ac49c",
+  "ok": true,
+  "readinessStatus": "production-configured",
+  "account": {
+    "chargesEnabled": true,
+    "payoutsEnabled": true,
+    "detailsSubmitted": true
+  },
+  "balance": {
+    "livemode": true
+  },
+  "enabledWebhookCount": 1,
+  "connectAccounts": {
+    "reachable": true,
+    "returnedAccountCount": 0,
+    "hasMore": false
+  },
+  "callbacks": {
+    "return": {
+      "reachable": true,
+      "status": 204,
+      "kind": "return"
+    },
+    "refresh": {
+      "reachable": true,
+      "status": 204,
+      "kind": "refresh"
+    }
+  },
+  "identifiersRetained": false,
+  "credentialsRetained": false
+}

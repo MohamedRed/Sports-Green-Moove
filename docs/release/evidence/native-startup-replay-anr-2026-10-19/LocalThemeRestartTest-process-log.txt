@@ -1,0 +1,45 @@
+--------- beginning of system
+I/ActivityManager(  564): dumpStackTraces pids=null
+I/ActivityManager(  564): Dumping to /data/anr/anr_2026-10-19-18-47-09-420
+W/ActivityManager(  564): Dumping Java threads failed, initiating native stack dump.
+W/ActivityManager(  564): Native stack dump failed!
+E/ActivityManager(  564): Aborted stack trace dump (current primary pid=6305); deadline exceeded.
+I/ActivityManager(  564): dumpStackTraces nativepids=null
+I/ActivityManager(  564): dumpStackTraces extraPids=null
+I/ActivityManager(  564): Done dumping
+E/ActivityManager(  564): ANR in be.sportgreenmoove.app.local
+E/ActivityManager(  564): PID: 6305
+E/ActivityManager(  564): Reason: Process ProcessRecord{bd28afa 6305:be.sportgreenmoove.app.local/u0a215} failed to complete startup
+E/ActivityManager(  564): ErrorId: 22a1aa3e-cd69-4f6e-8b39-ea686b78865d
+E/ActivityManager(  564): Frozen: false
+E/ActivityManager(  564): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager(  564): ----- Output from /proc/pressure/memory -----
+E/ActivityManager(  564): some avg10=16.49 avg60=6.00 avg300=3.15 total=37827745
+E/ActivityManager(  564): full avg10=7.51 avg60=2.58 avg300=1.34 total=18411342
+E/ActivityManager(  564): ----- End output from /proc/pressure/memory -----
+E/ActivityManager(  564): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager(  564): some avg10=59.95 avg60=47.79 avg300=35.53 total=484136356
+E/ActivityManager(  564): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager(  564): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager(  564): ----- Output from /proc/pressure/io -----
+E/ActivityManager(  564): some avg10=0.70 avg60=0.85 avg300=0.57 total=29239866
+E/ActivityManager(  564): full avg10=0.10 avg60=0.28 avg300=0.16 total=11034988
+E/ActivityManager(  564): ----- End output from /proc/pressure/io -----
+E/ActivityManager(  564): 
+E/ActivityManager(  564): CPU usage from 265ms to 25966ms later (2026-10-19 18:46:58.373 to 2026-10-19 18:47:24.073):
+E/ActivityManager(  564):   61% 564/system_server: 44% user + 16% kernel / faults: 1592 minor 1 major
+E/ActivityManager(  564):   49% 5622/com.google.android.dialer: 19% user + 30% kernel / faults: 643 minor 838 major
+E/ActivityManager(  564):   26% 958/com.android.phone: 20% user + 5.3% kernel / faults: 1802 minor
+E/ActivityManager(  564):   25% 1018/com.google.android.gms.persistent: 24% user + 1.8% kernel / faults: 397 minor
+E/ActivityManager(  564):   30% 1231/com.google.android.inputmethod.latin: 27% user + 3.3% kernel / faults: 237 minor
+E/ActivityManager(  564):   18% 847/com.android.networkstack.process: 12% user + 6% kernel / faults: 935 minor
+E/ActivityManager(  564):   18% 802/com.android.systemui: 16% user + 1.6% kernel / faults: 166 minor
+E/ActivityManager(  564):   27% 6305/be.sportgreenmoove.app.local: 7.5% user + 20% kernel / faults: 658 minor 2 major
+E/ActivityManager(  564):   14% 1055/com.google.android.apps.nexuslauncher: 11% user + 3.4% kernel / faults: 5 minor
+E/ActivityManager(  564):   20% 1469/com.google.android.googlequicksearchbox:search: 14% user + 6.2% kernel / faults: 63 minor 158 major
+E/ActivityManager(  564): 99% TOTAL: 45% user + 30% kernel + 0% iowait + 22% irq + 1.6% softirq
+E/ActivityManager(  564): CPU usage from 2078697ms to 2078697ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager(  564): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager(  564): Killing 6305:be.sportgreenmoove.app.local/u0a215 (adj 0): bg anr
+W/ActivityManager(  564): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner}
+I/ActivityManager(  564): Force stopping be.sportgreenmoove.app.local appid=10215 user=0: finished inst

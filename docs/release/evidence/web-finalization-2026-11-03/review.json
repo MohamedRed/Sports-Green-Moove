@@ -1,0 +1,22 @@
+{
+  "scope": "unchanged-source-web-diagnostic-pass-with-original-cancellation-and-native-failures-preserved",
+  "checkedAt": "2026-11-03",
+  "webSource": "c84b8e4a96f2f35d0b92f68b13904740b14d0dd3",
+  "currentChecksSource": "8bd9f503250ad022ae3d7b04b4248319f2c2a4d1",
+  "webRun": 41531744084,
+  "webAttempt": 2,
+  "webJob": 125595925328,
+  "webAggregate": 125607796006,
+  "webRecheckPassed": true,
+  "originalCancellationAccepted": false,
+  "originalCancellationCauseProven": false,
+  "workflowOrDeadlinesChanged": false,
+  "nativeMainPassed": false,
+  "nativeChatPreparationPassed": false,
+  "fullNativeGatePassed": false,
+  "physicalDeviceAccepted": false,
+  "parentApprovalAccepted": false,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "publishedMedia": []
+}

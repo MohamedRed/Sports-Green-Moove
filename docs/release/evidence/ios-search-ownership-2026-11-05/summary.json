@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "owned-iphone-search-local-not-sdk-ui-or-real-map-service",
+  "baselineRestorations": 22,
+  "baselineUnleasedCallbacks": 24,
+  "delayedCandidateCases": 90,
+  "malformedPlaceGroups": 21,
+  "scriptedAdapterCallbacks": 15,
+  "preCallSdkDenials": 4,
+  "exactTwoSeatChildBookingSelectionAndPayloadAccepted": true,
+  "retainedBookingRecoveryChecks": 14,
+  "originalFixtureCaseCount": 11,
+  "currentFixtureCaseCount": 11,
+  "deadlineMinutes": 50,
+  "currentSdkBuildAccepted": false,
+  "currentFixtureUiAccepted": false,
+  "nativeMapIntegrationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "native-result.txt",
+      "sha256": "317243f56e0ff9d4d1c4e232479140bfea705fc369bd3f4cb283b84223ebcfe3"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "syntax-result.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "adapter-result.txt",
+      "sha256": "e0324d0fdc7313825b390eea1b077f6a38e4350de330b51c0a486a82756383ab"
+    },
+    {
+      "file": "booking-recovery-result.txt",
+      "sha256": "7a660c6e91d786aef5d1ed7f858c9d7112aca0389d6a2a73875d40279b1b398b"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "454f6ad7453754d6fc13b56451115406654302f70fbe98bf158e21406825a3b6"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "2d482452384c4f58c46fd697d46d2f22556707d560ecd734309a1197c5dcb021"
+    },
+    {
+      "file": "separate-linux-rules-validation.json",
+      "sha256": "a8bd28395bdf4fc0275467e9ef00b75b2bf0cff4b883b3b5c120d5a587e9174b"
+    }
+  ]
+}

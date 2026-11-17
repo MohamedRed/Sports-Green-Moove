@@ -1,0 +1,6 @@
+--------- beginning of system
+10-17 21:45:17.575   536   592 I PackageManager: Integrity check passed for file:///data/app/vmdl572905264.tmp
+10-17 21:45:17.599   536   592 I PackageManager: Continuing with installation of file:///data/app/vmdl572905264.tmp
+10-17 21:45:17.708   536   592 I PackageManager: Update system package com.google.android.gms code path from /product/priv-app/PrebuiltGmsCore to /data/app/~~D6HncONx_8VKNJ2SglzAAQ==/com.google.android.gms-Q7Z3F9ah2PeBNIsj_l2lQQ==; Retain data and using new
+10-17 21:45:17.711   536   592 W PackageManager: Package com.google.android.gms declares library com.google.android.gms that already exists; skipping
+10-17 21:45:17.711   536   592 W PackageManager: Package com.google.android.gms declares library com.google.android.gms that already exists; skipping

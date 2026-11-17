@@ -1,0 +1,418 @@
+{
+  "checkedAt": "2026-11-06",
+  "scope": "distinct-wifi-prerequisite-and-ordinary-host-cutoff-not-root-cause-or-flow-proof",
+  "archives": [
+    {
+      "id": 13535194238,
+      "run": 42281015271,
+      "job": 128109652486,
+      "commit": "6fb6487c2b9a31b84faa23a096ce345fa63cdca2",
+      "bytes": 53415,
+      "digest": "d222397b3000e3ff5243fae97d5236bd3cb9ea43efd411a7f5fbc90d4d7f727b"
+    },
+    {
+      "id": 13539586865,
+      "run": 42285237318,
+      "job": 128124232822,
+      "commit": "142789c9459a070e9789feb8fcc5b3265688729e",
+      "bytes": 34630694,
+      "digest": "2732f38d2f18df9266628651012de99e4920dc13f6e8dce3bcded97a89d600fd"
+    }
+  ],
+  "ordinaryObservation": {
+    "scope": "partial-ordinary-transcript-observation-not-complete-test-or-cause-proof",
+    "announcedCases": 354,
+    "startedCases": 350,
+    "endedCases": 349,
+    "endedWithZero": 296,
+    "skipped": 53,
+    "endedWithFailure": 0,
+    "lastObserved": {
+      "className": "be.sportgreenmoove.app.ui.TripHistoryFlowTest",
+      "name": "parentPagesAndReopensBothClosedStatesWithoutDecisionOrApplicationActions",
+      "current": 350,
+      "status": "started"
+    },
+    "completeRunnerResultObserved": false,
+    "lastCaseHangProven": false,
+    "flowAccepted": false
+  },
+  "clockCandidateCompiledAgainstAndroidAndJUnit": true,
+  "clockCandidateUsedInjectedClockAndLogger": true,
+  "originalCaseInventory": 354,
+  "originalOrdinaryDeadlineMs": 720000,
+  "originalPerCaseDeadlineMs": 240000,
+  "originalFailureAndRestorePreserved": true,
+  "ordinaryComplete": false,
+  "rootCauseConfirmed": false,
+  "clockDeviceEmissionObserved": false,
+  "fullMatrixAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "wifi/artifact.json",
+      "sha256": "f3ab8b2a89efcf4146a31219a703d56dfb4ce49490d69d16c3ba6f085765af68"
+    },
+    {
+      "file": "wifi/job.json",
+      "sha256": "4b574d5b959f1d7c244f63e66009ad379c1aece83f87eec9021c1c23b6ccad70"
+    },
+    {
+      "file": "cutoff/artifact.json",
+      "sha256": "5c04cc6c42e6e72bac0d68194489a7b718d051db8a511e6f02fd74678c9e165d"
+    },
+    {
+      "file": "cutoff/job.json",
+      "sha256": "000887eaca8e1eca9ea71c835120935c0401dff265301ec8a6542d0f950880c4"
+    },
+    {
+      "file": "wifi/host-dns-before-launch.json",
+      "sha256": "277d79281ddbc37254ebb894ba180b84ab3a6558a6733b4eade9d5a4c5731723"
+    },
+    {
+      "file": "wifi/network-readiness/outcome.json",
+      "sha256": "d532f0c4058559b6b0a03d47058fb9177d344ff2569366bb644701f76d3a914e"
+    },
+    {
+      "file": "wifi/network-readiness/chat-network-validation-before.json",
+      "sha256": "b5123b4dad7da588dfcb8aadef7247eb757f6439ee3670a0feaf1442d616e00c"
+    },
+    {
+      "file": "cutoff/host-dns-before-launch.json",
+      "sha256": "ca20f955dc91657431f68b4869228464ab33522684f2372f6a35c9b2b1bb5f34"
+    },
+    {
+      "file": "cutoff/network-readiness/outcome.json",
+      "sha256": "c227e094c878360e4ceb0e2c74d1790e52fded315b771bac090450107474d71b"
+    },
+    {
+      "file": "cutoff/network-readiness/chat-network-validation-before.json",
+      "sha256": "a7f36c6d13f27fba1d0eaa4729b13a9f58bd52a6e4d9d89a22deb273a39f1b6b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-000.json",
+      "sha256": "69f58135bf23e6454469622114ff00e1adb964de15af8ebb45f2fa12852e6ae0"
+    },
+    {
+      "file": "wifi/network-readiness/sample-001.json",
+      "sha256": "99b9955eec25c613aafaa58fa59f072b077f258267d614fb427c883535a291bb"
+    },
+    {
+      "file": "wifi/network-readiness/sample-002.json",
+      "sha256": "b82ce2fac21d7454550632c5fd05ae9debba1c89643e6bb0a8187df5036d1623"
+    },
+    {
+      "file": "wifi/network-readiness/sample-004.json",
+      "sha256": "55b8c6720a318e07922576504dca6a640a4ae084c725df70fda87420dad23e8a"
+    },
+    {
+      "file": "wifi/network-readiness/sample-003.json",
+      "sha256": "61f1180b2e44ec87c4b7f8a2dbb87cdf491dbafe3505c979bbbded0c37308367"
+    },
+    {
+      "file": "wifi/network-readiness/sample-005.json",
+      "sha256": "ce461cf1246ce9afcb1ec1433ccafb659459056fc64db5109df07e4aaecfb0cf"
+    },
+    {
+      "file": "wifi/network-readiness/sample-006.json",
+      "sha256": "7d51f38b1bbead1659982ad78c9c46453f75f19f4a25d0555c99f512a946f43b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-007.json",
+      "sha256": "dcef605b3d529ac4c88b4376442020d461ff566d4e6c464cdfde9aff9eb09b6b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-008.json",
+      "sha256": "4269a22c3679f0eb35f681ffc5542f034e34480795f64a8e77ead59eb8d494b3"
+    },
+    {
+      "file": "wifi/network-readiness/sample-009.json",
+      "sha256": "481ee464038c712aa4f4acc9482f0e2ad10896eb8642c85f535edf3d3709a43f"
+    },
+    {
+      "file": "wifi/network-readiness/sample-010.json",
+      "sha256": "8a53908092ccb0d9c84acb897a20f394b1dd4e2b8b7c7b488cb71061aa4cdc4f"
+    },
+    {
+      "file": "wifi/network-readiness/sample-011.json",
+      "sha256": "8278265333a61b1aacc347d43aa05c0f30e118d3095bb0ecd2bd5abaadd9dc6b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-012.json",
+      "sha256": "d8e16f40ea46c20e9b0c271a990c757e1ece1cceec1cfa02f3336e200e8e8d94"
+    },
+    {
+      "file": "wifi/network-readiness/sample-013.json",
+      "sha256": "8187a141bbd639e17aab674ac240d54eea765a812ef04ed43357e3d27ecda36b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-014.json",
+      "sha256": "f7417da25de5b5ece5fbba555db7cf38ed3020b4faa77ef2dfc4d05dea3b1a69"
+    },
+    {
+      "file": "wifi/network-readiness/sample-015.json",
+      "sha256": "615bc623363e4a86578e5170adb2e53febb774424cd89cd4341b4712dc2fda39"
+    },
+    {
+      "file": "wifi/network-readiness/sample-016.json",
+      "sha256": "462b2c5b00918d0c7c5992249af91a0c638b2e5675b14051091df124b6e002cd"
+    },
+    {
+      "file": "wifi/network-readiness/sample-017.json",
+      "sha256": "a7b508f72b3bd1a7bbf4f4d7293d0356d825caadf4667b494b6c1c842da0995c"
+    },
+    {
+      "file": "wifi/network-readiness/sample-018.json",
+      "sha256": "ac5aa77bcadbe54735f5cfd2c07aa9132bbf7f87e5860a1a9ea5e88e62d72e35"
+    },
+    {
+      "file": "wifi/network-readiness/sample-019.json",
+      "sha256": "0948c2dff89f185cfeb5fa88a54d3ed3818f812c2113029d19872f906e66832f"
+    },
+    {
+      "file": "wifi/network-readiness/sample-020.json",
+      "sha256": "ff4f1cc7e8767323210934b3f452cbe53bf5f9635239535b93976bb0a12278d5"
+    },
+    {
+      "file": "wifi/network-readiness/sample-021.json",
+      "sha256": "5a0496ed28766c26d4470e8e37f3508967f11ed5dc8cdfdb6fb0d93e888a9ea3"
+    },
+    {
+      "file": "wifi/network-readiness/sample-022.json",
+      "sha256": "c060dbdc004ddd1afbbe7f844dc0177b6f2098d5aa02a25fe7bb58410b9675b4"
+    },
+    {
+      "file": "wifi/network-readiness/sample-023.json",
+      "sha256": "35de3a28f02546c556bed105128a7c1644032f0acc180af75146d89953afbd36"
+    },
+    {
+      "file": "wifi/network-readiness/sample-024.json",
+      "sha256": "dffa1c109be4cfb78d253a5ca40ff8101ea6af92447128b788163548155f427d"
+    },
+    {
+      "file": "wifi/network-readiness/sample-025.json",
+      "sha256": "b813393782b846179fac37c937bcd1eaecb4dd1ded84b53da2235ed7d5d0d3be"
+    },
+    {
+      "file": "wifi/network-readiness/sample-026.json",
+      "sha256": "7f290cf5d09f7c3918887b835acedaf13d863407afdb9ed3d66b02491931c1a5"
+    },
+    {
+      "file": "wifi/network-readiness/sample-027.json",
+      "sha256": "b6674aaf1cf16c9f1c64c3ee9ef20a23196bb8f946ec252a5a7b7be3a54528f6"
+    },
+    {
+      "file": "wifi/network-readiness/sample-028.json",
+      "sha256": "6a44fed1f92e129f30a367d0f38b158b888c54feda1d521a4cf4167cd42cf30a"
+    },
+    {
+      "file": "wifi/network-readiness/sample-029.json",
+      "sha256": "4a9f12cc7232b6b582e8b6357f089f3bb0a98523767d8810b38b6c536f56b200"
+    },
+    {
+      "file": "wifi/network-readiness/sample-030.json",
+      "sha256": "19a39971819d25268876df9f5475a1c67ffea09ff1cc9d41d8591cbb7197178b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-031.json",
+      "sha256": "3eaa03a463d9e8a7f34507c2d630ef8561c168a19323483823dd450ffae607a7"
+    },
+    {
+      "file": "wifi/network-readiness/sample-032.json",
+      "sha256": "7c930c6dc947cc3e26b8835d1ee6e61f830e6f86339ec8ab98cc878027e31477"
+    },
+    {
+      "file": "wifi/network-readiness/sample-033.json",
+      "sha256": "560472bd9effaae499f4f23c96f32e561932f6e2a19c1ed90955f0dc16566aa2"
+    },
+    {
+      "file": "wifi/network-readiness/sample-034.json",
+      "sha256": "a717791c7c0153846b00738f02e815dcafb9c272cf6fcae0edef409f2c1675e8"
+    },
+    {
+      "file": "wifi/network-readiness/sample-035.json",
+      "sha256": "81da56611af3e59b8dc3476d19a159b725239db70ddb9e5189b94f8db133bc3a"
+    },
+    {
+      "file": "wifi/network-readiness/sample-036.json",
+      "sha256": "6338806ad612398b0c5c9f495810d4e5e5b491134d037166da841cf003e2db6a"
+    },
+    {
+      "file": "wifi/network-readiness/sample-037.json",
+      "sha256": "51c612bc18b035ca31147b9c0c83b4cfed57c14221948b8d84f9532761c20cfc"
+    },
+    {
+      "file": "wifi/network-readiness/sample-038.json",
+      "sha256": "276fe7363cf5c5311d3cf83d7742dba5dd809856ae75846c6e083f79a8f7812d"
+    },
+    {
+      "file": "wifi/network-readiness/sample-039.json",
+      "sha256": "10ac4b0ce93e64ded1a77ab3717617bc04a01ec91f6f6ff54e6332c33ec9a7c2"
+    },
+    {
+      "file": "wifi/network-readiness/sample-040.json",
+      "sha256": "8e4ef91312fba8b8903292fc8d760b241ee08b4bb14b90e49cd384a50fca00e3"
+    },
+    {
+      "file": "wifi/network-readiness/sample-041.json",
+      "sha256": "44679b7971b9001202c5d34805ea71172323114072ab9cf8f5ccf27c964f50d7"
+    },
+    {
+      "file": "wifi/network-readiness/sample-042.json",
+      "sha256": "26c29c17ca831ad79fd40743324c9d6edd4be8a9fb7daad29076c84b4dda4a4b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-043.json",
+      "sha256": "f131cf27a364fbf2579d94283fcda75a4015c6c605d2ecaf94302f6b2507d6ad"
+    },
+    {
+      "file": "wifi/network-readiness/sample-044.json",
+      "sha256": "cd55167d9e442d18a21a5f5c11038e29f6b5927d255dcba56e758b980dbc584d"
+    },
+    {
+      "file": "wifi/network-readiness/sample-045.json",
+      "sha256": "e8ca2b44bfad2b3cc19ef1a2a9c920ee24e6984381c7406f49033d2aa12b9a86"
+    },
+    {
+      "file": "wifi/network-readiness/sample-046.json",
+      "sha256": "1948c5d848cbdf126f0eb6eae56e9660c2c057c77d04da567b859dcdd2d3d347"
+    },
+    {
+      "file": "wifi/network-readiness/sample-047.json",
+      "sha256": "506f2e7b54105daac26af6497cbe1c6e45e5d51103562a8fc2ab4dcde917ee9f"
+    },
+    {
+      "file": "wifi/network-readiness/sample-048.json",
+      "sha256": "d982074422146dd6e84116576911eb29bb8ac0004b2699a42fec6ccb791ab5c3"
+    },
+    {
+      "file": "wifi/network-readiness/sample-049.json",
+      "sha256": "4767d3d24bc25a8defe3c0627a3bd9f3cd44a03897bcdff929030707a8ae8dfe"
+    },
+    {
+      "file": "wifi/network-readiness/sample-050.json",
+      "sha256": "ec0f82058574500c9864928de7ee84e673475455a70d6e4b7f05f03186b8ab7e"
+    },
+    {
+      "file": "wifi/network-readiness/sample-051.json",
+      "sha256": "0a3653e71701d6a1d8b5107f5971a98190d4c5554f780ddee9cf60600f14be18"
+    },
+    {
+      "file": "wifi/network-readiness/sample-052.json",
+      "sha256": "dd77f855a8e9dbfe610b625dc28dcd25df7319a420ef29df8f64aa40ebc0d23b"
+    },
+    {
+      "file": "wifi/network-readiness/sample-053.json",
+      "sha256": "fafa7bb6c1421f32976730e82699c3525aa87a7577482f12d1557088d2515b3e"
+    },
+    {
+      "file": "wifi/network-readiness/sample-054.json",
+      "sha256": "8b3986ddb464e50a1cb5ab808dcfe057a319aeb6b29e029fd0e8040b35d81ba1"
+    },
+    {
+      "file": "wifi/network-readiness/sample-055.json",
+      "sha256": "ee5352e66e7228e758de690ce1c5a9b7780893721b77028a6d5c35ad8776b822"
+    },
+    {
+      "file": "wifi/network-readiness/sample-056.json",
+      "sha256": "121e17c86550a34b97618df60ada5fc33cdecb51112c3ad935afbbffcd61e242"
+    },
+    {
+      "file": "wifi/network-readiness/sample-057.json",
+      "sha256": "842ff0be6e48cf511f3cefd71351b0b60ca744b2ce0b39469cdb5f6f124bdd26"
+    },
+    {
+      "file": "wifi/network-readiness/sample-058.json",
+      "sha256": "dd8bb8f94f4c70162b758f6d72976caf72fb4ef85ac0b5114d1afcfc88088a9f"
+    },
+    {
+      "file": "cutoff/ordinary-process.json",
+      "sha256": "c20a8ef4a3faac2fa4ae662cf8b320d4c0dfaef289ac6d12f5bc9e5275311805"
+    },
+    {
+      "file": "cutoff/disposable-device-setup.json.replay-stopped.json",
+      "sha256": "c656c1bd2ca2fa0996d3be2973c751bf4ee04dcb0102956980f5780dd7c1e7e7"
+    },
+    {
+      "file": "cutoff/disposable-store-restore.json",
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    {
+      "file": "cutoff/native-suite-status.json",
+      "sha256": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f"
+    },
+    {
+      "file": "cutoff/ordinary-failure/diagnostics.json",
+      "sha256": "b362b7e253a35af41a10f130161f794e9a70716c8af51f965a5a4bec39021743"
+    },
+    {
+      "file": "cutoff/ordinary-failure/crash.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cutoff/ordinary-failure/exit-info.txt",
+      "sha256": "6fa05d2c6e27bb719c411301731b1f66d4cf22e8b5312d99198bfec59f69b042"
+    },
+    {
+      "file": "cutoff/ordinary-failure/process-log.txt",
+      "sha256": "619cfa6731731c9cb8398cd3b8eb5a4559866636df2f9f7954294a9fcbdd6937"
+    },
+    {
+      "file": "cutoff/ordinary-failure/frozen-packages.txt",
+      "sha256": "63fb65f7fa243eee9ee35a6e5beac1889102f5873c56d833fade34bb7e8cd470"
+    },
+    {
+      "file": "cutoff/ordinary-failure/install-sessions.txt",
+      "sha256": "028a5de11cfc058596a82ff5ee0ac89a9e2a46810c4ebac23fd7cabe99b5f0f2"
+    },
+    {
+      "file": "cutoff/ordinary-failure/guest-memory.txt",
+      "sha256": "f0cf18e8d6145b0f729b821bb7cf647085e3096d7082a49b096edc25a8dafa9e"
+    },
+    {
+      "file": "cutoff/ordinary-failure/package-operations.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "cutoff/ordinary-instrumentation.txt.gz",
+      "sha256": "e9a00233d4a77a7deb44f7df5a6a6b363d5036e075f46cc679c4e9ebb3ff17ba"
+    },
+    {
+      "file": "cutoff/network/local-chat-network-ui.json",
+      "sha256": "84757f43167b3b5af24148e905341fae35ac2e114312a6bf1564026e36225fa7"
+    },
+    {
+      "file": "cutoff/network/chat-network-validation-before.json",
+      "sha256": "bd742168de707426384c22ba0e2fd17b4226b05179268e2bd6e08d406a5b9dfe"
+    },
+    {
+      "file": "cutoff/network/chat-network-validation-after.json",
+      "sha256": "a4ea975750f6010bb2e9edfc7a963e918236e5b0f96c4121c1f5483a977ff12f"
+    },
+    {
+      "file": "cutoff/network/chat-subscriptions-after.json",
+      "sha256": "c9cc9716b8da18e4f03c55061eaddd3f6d0f48ca3757481d75273caf9663be6c"
+    },
+    {
+      "file": "cutoff/network/chat-default-selection-after.json",
+      "sha256": "f5483d71caa9a1037d2fcfdfa77b6e92243c83aa2461dd18a2624f3ef40d88b1"
+    },
+    {
+      "file": "cutoff/host-shutdown.json",
+      "sha256": "c72fa8b2363f5d1cc30edbc9ab3738f4fa2a42440f899a0d574516a41d6b46a1"
+    },
+    {
+      "file": "clock-checks.txt",
+      "sha256": "c77802539af4a3457f51069521cb05e0888e75912f6ba3a3fe07e38eb5cea668"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "fdda40b5124cfc1440304b5ed05bb4a2940873727e054df24e7f17e95392d010"
+    },
+    {
+      "file": "selected-members.json",
+      "sha256": "1fd15219e9ccde0b61f4157124d1c5103375499af43ccc77dfbb862f544fbd25"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+
+be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest:
+Error in realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.closeDialog(LocalRealMapsTripChangeTest.kt:156)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(LocalRealMapsTripChangeTest.kt:111)
+
+
+Time: 93.2
+There was 1 failure:
+1) realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.closeDialog(LocalRealMapsTripChangeTest.kt:156)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(LocalRealMapsTripChangeTest.kt:111)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

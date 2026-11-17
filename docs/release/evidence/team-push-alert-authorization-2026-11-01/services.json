@@ -1,0 +1,123 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "93e088a18422eb98dc3ccf2690073c32",
+  "testedAt": "2026-11-01T19:07:13.798Z",
+  "scope": "isolated-alert-authorization-not-native-display-or-provider-delivery",
+  "completed": true,
+  "steps": [
+    {
+      "id": "authentication-and-strict-request-reject-caller-selected-owner-content-and-route",
+      "status": "passed"
+    },
+    {
+      "id": "display-and-open-return-only-generic-copy-and-current-team-reference-without-reads-or-writes",
+      "status": "passed"
+    },
+    {
+      "id": "unknown-installation-wrong-proof-stale-revision-and-foreign-device-owner-are-denied",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-alert-and-missing-alert-have-identical-empty-responses",
+      "status": "passed"
+    },
+    {
+      "id": "read-alert-is-not-redisplayed-but-authorized-open-remains-possible-without-message-acknowledgement",
+      "status": "passed"
+    },
+    {
+      "id": "token-rotation-rejects-old-attempt-but-current-revision-can-resolve-an-existing-opaque-alert",
+      "status": "passed"
+    },
+    {
+      "id": "account-switch-rejects-the-old-owner-and-cannot-expose-that-owners-alert-to-the-new-account",
+      "status": "passed"
+    },
+    {
+      "id": "signout-tombstone-blocks-both-stale-and-current-revision-resolution-until-explicit-registration",
+      "status": "passed"
+    },
+    {
+      "id": "missing-conflicting-or-malformed-token-index-and-corrupt-registration-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "current-child-claims-disabled-state-child-profile-and-child-link-override-a-stale-adult-login",
+      "status": "passed"
+    },
+    {
+      "id": "forged-alert-identity-private-copy-missing-message-and-self-message-never-resolve",
+      "status": "passed"
+    },
+    {
+      "id": "guardian-revocation-suppresses-both-purposes-and-new-verification-cannot-recover-old-history",
+      "status": "passed"
+    },
+    {
+      "id": "adult-and-child-current-club-memberships-are-rechecked-before-display-and-open",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-and-reapproval-start-a-new-history-boundary",
+      "status": "passed"
+    },
+    {
+      "id": "closed-or-recreated-team-never-resolves-a-previous-instance-alert",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-fixtures-and-accounts-are-unchanged-no-message-receipts-or-provider-sends",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "realPhoneTokenRegistered": false,
+  "providerRequests": 0,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceFiles": {
+    "functions/src/domain/teamPushRegistration.ts": "df61ead83554ee7123d3e56e9836475e65f4fda519b6362d15730d5744079b13",
+    "functions/src/services/teamPushRegistration.ts": "e2b15a137e51fdbecfb0a510a451ff08c2ad457b82bd705f455fd5a037e9945e",
+    "functions/src/callables/teamPushRegistration.ts": "2305ef7d4b14bfb58fcea3f95b3ee0ea68956830ac6153332f8b6f432d74240c",
+    "functions/src/index.ts": "c580ad04d6298f49d8094f5e28698443d1dc4dec97ced00d91358a55e792a205",
+    "firestore.rules": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240",
+    "firestore.indexes.json": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee",
+    "scripts/qa/local-team-push-registration-suite.mjs": "93da0813efa16532f23d877579557401ebfa35aa07481f9945c8821b38e9099c",
+    "scripts/qa/run-local-team-conversation.mjs": "c945dd16cc405ad84121331798258a26449f94af07921ff5ebc59beb35ab7186",
+    "scripts/qa/team-push-registration-sources.mjs": "eff7802e5a19c0a2ef5a9ef7ae8bdc38a496b019d0d20bc3450d176ce9af7051",
+    "functions/src/services/teamConversationAccounts.ts": "8cb300424ed492d730d5e63f169ebcd0e3c3ee1af1853e205118965c43318371",
+    "functions/src/services/teamConversationAuthority.ts": "b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5",
+    "functions/src/services/teamConversationAlerts.ts": "5552e5ed5992a33871df1a69cf181d1e5496ff132e1860f17133f8868feb7dc7",
+    "functions/src/services/teamConversationOptions.ts": "530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad",
+    "functions/src/services/teamNotificationAccess.ts": "dd3ad6668c51e8744cf2eb5af7f74bd1766df5f35bd437d8ce875b02888c730b",
+    "functions/src/domain/teamPushAlert.ts": "adfdfd14155c94063dabd6dd66d264477e3e46f8772c64e6235480141541be60",
+    "functions/src/services/teamPushAlert.ts": "b34d884dec2b1d4beaa341425b78a16664ae727611bfb0ae17f2afd80327b5a8",
+    "functions/src/callables/teamPushAlert.ts": "49ec88782d19064c953684dd49b279894e3f099e83b2bd18fc523d7d175fbc00",
+    "functions/src/domain/teamConversationAlerts.ts": "694885c4087669dffca3874a57049f92c56d3c857f4cf835faef115958bca790",
+    "functions/src/domain/teamConversation.ts": "b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a",
+    "functions/src/services/teamEnrollmentAuthority.ts": "bc378c9f2b345401b1e2d8397452a170501992092caebcea563624c66e6152e0",
+    "scripts/qa/local-team-push-alert-suite.mjs": "70900e20649e8b04e89311cd0ec9d346dda00c3d3fce388dd39060803bd876a1",
+    "scripts/qa/team-push-alert-sources.mjs": "fb4a4726943d0358639363d19448dff32b8e0dd7275fe519f7dcc647d36883a3",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "scripts/qa/local-flow-client.mjs": "82a5a559b11c79888a3d426e582748d905f2f78ad9e93a5c806d0bea26dbb641"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

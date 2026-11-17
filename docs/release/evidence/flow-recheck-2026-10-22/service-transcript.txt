@@ -1,0 +1,25 @@
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:27.5105492Z fixtures: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:40.0637137Z ride-lifecycle: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:41.2531258Z publication: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:42.4069393Z booking-cancellation: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:43.3539679Z last-seat-concurrency: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:44.5102189Z multi-seat-booking: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:44.6398791Z messages-notifications: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:44.6995039Z ride-audit-ledgers: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:45.7436994Z ratings: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:46.7939187Z club-request: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:48.7210861Z support-request: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:50.2677192Z ride-passenger-safety: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:53.6562260Z chat-delivery-safety: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:10:53.9120565Z chat-post-commit-response-loss: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:00.4600418Z chat-directory-safety: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:07.5889610Z reservation-decisions: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:12.0088876Z membership-review: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:12.5629253Z trip-capacity-ownership: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:12.7615363Z team-ownership: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:23.1174181Z trip-cancellation: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:23.4380852Z trip-details-ownership: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:37.4300100Z trip-change-parent-confirmation: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:44.6094386Z trip-change-application: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:51.7071877Z trip-change-supplement: passed
+Functions, admin, and website smoke	Test isolated multi-person flows	2026-10-21T23:11:51.7089533Z Local QA: 24/24 groups passed. Evidence saved.

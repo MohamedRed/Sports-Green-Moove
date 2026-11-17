@@ -1,0 +1,51 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "testedAt": "2026-10-22T15:07:24.818Z",
+  "scope": "physical-android-written-support-replies-with-isolated-services",
+  "completed": true,
+  "physicalDevice": true,
+  "manualNativeUiObserved": true,
+  "submissionViaPhone": true,
+  "requesterResponseVerified": true,
+  "requesterStatusVerified": true,
+  "accountIsolationObserved": true,
+  "reopeningObserved": true,
+  "adminResponsesViaService": 2,
+  "adminResponseUiVerifiedOnPhone": false,
+  "processRestartVerified": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "videoCaptured": false,
+  "nativePngExportObtained": false,
+  "independentCheckpoints": 8,
+  "protectedRecordCount": 158,
+  "appSourceCommit": "e23809aca59def492636e7ad0a93f7df5e3b6ecd",
+  "appSha256": "275e20fb98b32613eb8331526a496b2bf7f494f5b88431bd9cb5b1f8f6a3b6d1",
+  "device": {
+    "provider": "BrowserStack App Live",
+    "model": "Google Pixel 9",
+    "os": "Android 15"
+  },
+  "recordingAttempt": {
+    "completed": false,
+    "reason": "Operating-system screen-sharing permission blocked recording",
+    "attemptedAt": "2026-10-22T14:54:27.860Z"
+  },
+  "nativeScreenshotExport": {
+    "completed": false,
+    "reason": "No usable native screenshot download observed"
+  },
+  "publishedCaptures": {
+    "support-followup-phone-inbox-received": "captures/inbox-received.jpg",
+    "support-followup-phone-awaiting": "captures/awaiting.jpg",
+    "support-followup-phone-answered": "captures/answered.jpg",
+    "support-followup-phone-closed": "captures/closed.jpg",
+    "support-followup-phone-reopened": "captures/reopened.jpg",
+    "support-followup-phone-driver-profile": "captures/driver-profile.jpg",
+    "support-followup-phone-foreign": "captures/foreign.jpg",
+    "support-followup-phone-restored-parent-profile": "captures/restored-parent-profile.jpg",
+    "support-followup-phone-restored": "captures/restored-context.jpg"
+  }
+}

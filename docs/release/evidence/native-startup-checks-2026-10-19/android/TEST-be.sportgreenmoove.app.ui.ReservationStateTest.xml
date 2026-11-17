@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ReservationStateTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-19T17:35:46.314Z" hostname="MRRs-MacBook-Air.local" time="0.03">
+  <properties/>
+  <testcase name="concurrentTapsCannotDispatchAnotherDecision" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.005"/>
+  <testcase name="initialLoadingIsNotACompletedEmptyHistory" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="absentItemsAndUnavailableActionsNeverDispatch" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="repeatedCursorFailsWithoutAppendingRows" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="closingSuppressesALateWriteAndRefresh" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.002"/>
+  <testcase name="closingSuppressesALateReadAndItsAppCallback" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="acknowledgedWriteWithFailedReloadIsNotReportedAsAnUnconfirmedWrite" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="uncertainDecisionRequiresExplicitReloadBeforeAnyRetry" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.001"/>
+  <testcase name="confirmedDecisionReloadsServerStateAndRefreshesTheApp" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.004"/>
+  <testcase name="reloadingInvalidatesAnOlderPageThatIgnoresCancellation" classname="be.sportgreenmoove.app.ui.ReservationStateTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

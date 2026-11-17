@@ -1,0 +1,3 @@
+Ride logout reproduction: restored=true, calls=start-ride,radar,native-start
+SportsGreenMooveNativeChecks/main.swift:7: Fatal error: Late ride start revived a signed-out account or activated tracking
+scripts/check-ios-native-plan.sh: line 70: 47943 Trace/BPT trap: 5       "${BUILD_DIR}/SportsGreenMooveNativeChecks"

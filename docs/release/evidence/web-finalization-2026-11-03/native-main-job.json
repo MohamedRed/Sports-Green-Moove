@@ -1,0 +1,164 @@
+{
+  "id": 125598569095,
+  "run_id": 41539150482,
+  "workflow_name": "Native CI",
+  "head_branch": "codex/implement-plan",
+  "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41539150482",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOS2jvF88AAAAdPkIShw",
+  "head_sha": "8bd9f503250ad022ae3d7b04b4248319f2c2a4d1",
+  "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/125598569095",
+  "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41539150482/job/125598569095",
+  "status": "completed",
+  "conclusion": "failure",
+  "created_at": "2026-11-02T22:39:50Z",
+  "started_at": "2026-11-02T22:39:52Z",
+  "completed_at": "2026-11-02T23:03:42Z",
+  "name": "Android native UI tests",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-02T22:39:52Z",
+      "completed_at": "2026-11-02T22:39:55Z"
+    },
+    {
+      "name": "Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-02T22:39:55Z",
+      "completed_at": "2026-11-02T22:40:02Z"
+    },
+    {
+      "name": "Set up JDK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-02T22:40:02Z",
+      "completed_at": "2026-11-02T22:40:02Z"
+    },
+    {
+      "name": "Set up Node for isolated app flows",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-02T22:40:02Z",
+      "completed_at": "2026-11-02T22:40:05Z"
+    },
+    {
+      "name": "Install isolated test dependencies",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-02T22:40:05Z",
+      "completed_at": "2026-11-02T22:40:13Z"
+    },
+    {
+      "name": "Set up Android SDK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-02T22:40:13Z",
+      "completed_at": "2026-11-02T22:40:18Z"
+    },
+    {
+      "name": "Compile app and tests before starting the disposable device",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-02T22:40:18Z",
+      "completed_at": "2026-11-02T22:44:48Z"
+    },
+    {
+      "name": "Reserve disk space for the unchanged disposable Android device",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8,
+      "started_at": "2026-11-02T22:44:48Z",
+      "completed_at": "2026-11-02T22:44:48Z"
+    },
+    {
+      "name": "Select one validated full-matrix renderer",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9,
+      "started_at": "2026-11-02T22:44:48Z",
+      "completed_at": "2026-11-02T22:44:48Z"
+    },
+    {
+      "name": "Enable KVM group permissions",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10,
+      "started_at": "2026-11-02T22:44:48Z",
+      "completed_at": "2026-11-02T22:44:48Z"
+    },
+    {
+      "name": "Run Android Compose UI tests",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 11,
+      "started_at": "2026-11-02T22:44:48Z",
+      "completed_at": "2026-11-02T23:03:37Z"
+    },
+    {
+      "name": "Finish bounded read-only full-matrix host observation",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-02T23:03:37Z",
+      "completed_at": "2026-11-02T23:03:37Z"
+    },
+    {
+      "name": "Upload Android instrumentation reports",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-02T23:03:37Z",
+      "completed_at": "2026-11-02T23:03:40Z"
+    },
+    {
+      "name": "Post Set up Node for isolated app flows",
+      "status": "completed",
+      "conclusion": "skipped",
+      "number": 24,
+      "started_at": "2026-11-02T23:03:40Z",
+      "completed_at": "2026-11-02T23:03:40Z"
+    },
+    {
+      "name": "Post Set up JDK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 25,
+      "started_at": "2026-11-02T23:03:40Z",
+      "completed_at": "2026-11-02T23:03:40Z"
+    },
+    {
+      "name": "Post Checkout",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 26,
+      "started_at": "2026-11-02T23:03:40Z",
+      "completed_at": "2026-11-02T23:03:40Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 27,
+      "started_at": "2026-11-02T23:03:40Z",
+      "completed_at": "2026-11-02T23:03:40Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/125598569095",
+  "labels": [
+    "ubuntu-latest"
+  ],
+  "runner_id": 1000011621,
+  "runner_name": "GitHub Actions 1000011621",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}

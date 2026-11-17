@@ -1,0 +1,56 @@
+{
+  "scope": "export-observation-not-sdk-invocation-count",
+  "reports": [
+    {
+      "file": "-device-private.log",
+      "bytes": 86902,
+      "sha256": "1b076c20a9274f70f9fd506d45ac4acdd26f55f08c490b505e1af5ccf13acb44",
+      "levels": {
+        "W": 371,
+        "E": 1
+      },
+      "pids": {
+        "17007": 30,
+        "20334": 1,
+        "20655": 1,
+        "21060": 1,
+        "21125": 1,
+        "21261": 287,
+        "21426": 28,
+        "22193": 2,
+        "23264": 8,
+        "25312": 8,
+        "27350": 5
+      },
+      "traceLineCount": 0,
+      "currentProcess9503Present": false,
+      "earlierProcess30741Present": false
+    },
+    {
+      "file": "-device-final-private.log",
+      "bytes": 86902,
+      "sha256": "1b076c20a9274f70f9fd506d45ac4acdd26f55f08c490b505e1af5ccf13acb44",
+      "levels": {
+        "W": 371,
+        "E": 1
+      },
+      "pids": {
+        "17007": 30,
+        "20334": 1,
+        "20655": 1,
+        "21060": 1,
+        "21125": 1,
+        "21261": 287,
+        "21426": 28,
+        "22193": 2,
+        "23264": 8,
+        "25312": 8,
+        "27350": 5
+      },
+      "traceLineCount": 0,
+      "currentProcess9503Present": false,
+      "earlierProcess30741Present": false
+    }
+  ],
+  "sdkCallCountMeasured": false
+}

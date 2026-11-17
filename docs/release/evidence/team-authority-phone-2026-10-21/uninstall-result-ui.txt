@@ -1,0 +1,12 @@
+Browser tab: 1621932865, Title: "Google Pixel 9 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+1 AXWebArea Google Pixel 9 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	2 container Are you sure you want to uninstall your app(s)?, ID: confirm-modal
+		3 container
+			4 heading Are you sure you want to uninstall your app(s)?, Value: 1, ID: modal-title-confirm-modal
+				5 text Are you sure you want to uninstall your app(s)?
+			6 button Close dialog
+		7 container
+			8 button Cancel
+			9 button Confirm
+
+The focused UI element is 6 button Close dialog

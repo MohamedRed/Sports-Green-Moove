@@ -1,0 +1,21 @@
+{
+  "scope": "unscaled-session-window-crop-not-native-export",
+  "phase": "trips-dark",
+  "capturedAt": "2026-10-30T21:31:19.170Z",
+  "original": {
+    "file": "trips-dark-session.jpg",
+    "width": 1200,
+    "height": 596,
+    "sha256": "54e2fa09355c9050ad559a8ba41fce50bcf950d3a68c4401bc2c00936daa2575"
+  },
+  "crop": {
+    "file": "trips-dark.png",
+    "left": 486,
+    "top": 108,
+    "width": 196,
+    "height": 439,
+    "sha256": "8f066396e653868f3abf4310190c065d4301afd674495dfaaea1beabe601aec6"
+  },
+  "rescaled": false,
+  "redacted": false
+}

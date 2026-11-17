@@ -1,0 +1,58 @@
+SGM_OWNED_BOOKING_ACCESSIBILITY_BEGIN
+2026-11-05T20:44:37.5084500Z     t =    32.16s Requesting snapshot of accessibility hierarchy for app with pid 60653
+2026-11-05T20:44:37.7099990Z     t =    32.32s Requesting snapshot of accessibility hierarchy for app with pid 60653
+2026-11-05T20:44:37.7203030Z Attributes: Application, 0x108886bc0, pid: 60653, label: 'Sports Green-mOOVe'
+2026-11-05T20:44:37.7310960Z Element subtree:
+2026-11-05T20:44:37.7810160Z  →Application, 0x108886bc0, pid: 60653, label: 'Sports Green-mOOVe'
+2026-11-05T20:44:37.7914890Z     Window (Main), 0x108886d00, {{0.0, 0.0}, {393.0, 852.0}}
+2026-11-05T20:44:37.8017140Z       Other, 0x108886e40, {{0.0, 0.0}, {393.0, 852.0}}
+2026-11-05T20:44:37.8119930Z         Other, 0x108886f80, {{0.0, 0.0}, {393.0, 852.0}}
+2026-11-05T20:44:37.8223710Z           Other, 0x1088870c0, {{0.0, 0.0}, {393.0, 852.0}}
+2026-11-05T20:44:37.8329770Z             Other, 0x108887200, {{0.0, 0.0}, {393.0, 852.0}}
+2026-11-05T20:44:37.8546230Z               ScrollView, 0x108887340, {{0.0, 0.0}, {393.0, 852.0}}, identifier: 'messages.screen'
+2026-11-05T20:44:37.8667640Z                 Other, 0x108887480, {{0.0, 59.0}, {393.0, 445.0}}
+2026-11-05T20:44:37.8825010Z                   StaticText, 0x1088875c0, {{20.0, 71.7}, {80.3, 26.7}}, label: 'MESSAGES'
+2026-11-05T20:44:37.8940950Z                   Button, 0x108887700, {{264.5, 66.5}, {37.0, 37.0}}, identifier: 'moon', label: 'Do Not Disturb'
+2026-11-05T20:44:37.9080150Z                   Button, 0x108887840, {{329.0, 62.0}, {44.0, 44.0}}, identifier: 'messages.refresh', label: 'Actualiser les messages'
+2026-11-05T20:44:37.9183990Z                   Button, 0x108887980, {{19.5, 120.5}, {114.7, 35.0}}, label: 'NOTIFS'
+2026-11-05T20:44:37.9335310Z                   Button, 0x108887ac0, {{139.2, 120.5}, {114.7, 35.0}}, identifier: 'messages.chat.tab', label: 'CHATS, 51'
+2026-11-05T20:44:37.9716110Z                     StaticText, 0x108887c00, {{169.8, 132.2}, {33.3, 11.7}}, label: 'CHATS'
+2026-11-05T20:44:37.9830170Z                     StaticText, 0x108887d40, {{210.0, 132.7}, {10.3, 10.7}}, label: '51'
+2026-11-05T20:44:37.9938030Z                   Button, 0x108887e80, {{258.8, 120.5}, {114.7, 35.0}}, identifier: 'messages.rating.tab', label: 'AVIS, 1'
+2026-11-05T20:44:38.0043780Z                     StaticText, 0x108948000, {{295.0, 132.2}, {22.3, 11.7}}, label: 'AVIS'
+2026-11-05T20:44:38.0182520Z                     StaticText, 0x108948140, {{326.7, 132.7}, {5.3, 10.7}}, label: '1'
+2026-11-05T20:44:38.0441630Z                   Button, 0x108948280, {{22.0, 179.7}, {207.3, 18.7}}, identifier: 'team-chat.entry', label: 'Conversations d’équipe'
+2026-11-05T20:44:38.0543790Z                     Image, 0x1089483c0, {{22.0, 181.3}, {30.0, 15.7}}, identifier: 'person.3', label: 'person.3'
+2026-11-05T20:44:38.0647450Z                     StaticText, 0x108948500, {{22.0, 179.7}, {207.3, 18.7}}, label: 'Conversations d’équipe'
+2026-11-05T20:44:38.0876490Z                   StaticText, 0x108948640, {{20.0, 237.2}, {169.3, 19.7}}, label: 'Réservations et trajets'
+2026-11-05T20:44:38.1168730Z                   Button, 0x108948780, {{329.0, 225.0}, {44.0, 44.0}}, identifier: 'ride-chat.new', label: 'Nouvelle conversation'
+2026-11-05T20:44:38.1279270Z                   Button, 0x1089488c0, {{20.0, 285.0}, {353.0, 123.0}}, identifier: 'ride-chat.row.booking.booking-1', label: 'U8 Nationaux vs Royal Ottignies SC, 30 novembre à 16:45, Conducteur Démo, Nora, Départ confirmé., 51', value: 51 messages non lus
+2026-11-05T20:44:38.1384330Z                     Image, 0x108948a00, {{23.7, 303.0}, {17.0, 12.0}}, identifier: 'ticket', label: 'Trailers'
+2026-11-05T20:44:38.1908950Z                     StaticText, 0x108948b40, {{56.0, 297.0}, {257.0, 18.7}}, label: 'U8 Nationaux vs Royal Ottignies SC'
+2026-11-05T20:44:38.1911480Z                     StaticText, 0x108948c80, {{56.0, 320.7}, {113.7, 14.0}}, label: '30 novembre à 16:45'
+2026-11-05T20:44:38.1913700Z                     StaticText, 0x108948dc0, {{56.0, 339.7}, {105.7, 15.0}}, label: 'Conducteur Démo'
+2026-11-05T20:44:38.2017260Z                     StaticText, 0x108948f00, {{56.0, 359.7}, {28.3, 15.0}}, label: 'Nora'
+2026-11-05T20:44:38.2125940Z                     StaticText, 0x108949040, {{56.0, 379.7}, {103.7, 16.3}}, label: 'Départ confirmé.'
+2026-11-05T20:44:38.2228430Z                     StaticText, 0x108949180, {{351.2, 305.0}, {13.7, 14.0}}, label: '51'
+2026-11-05T20:44:38.2369560Z               Button, 0x1089492c0, {{31.2, 765.0}, {31.7, 35.3}}, label: 'Accueil'
+2026-11-05T20:44:38.2590900Z                 Image, 0x108949400, {{35.0, 765.0}, {24.3, 21.3}}, identifier: 'house', label: 'Home'
+2026-11-05T20:44:38.2698380Z                 StaticText, 0x108949540, {{31.2, 789.7}, {31.7, 10.7}}, label: 'Accueil'
+2026-11-05T20:44:38.2800910Z               Button, 0x108949680, {{98.0, 766.3}, {30.0, 34.0}}, label: 'Trajets'
+2026-11-05T20:44:38.2902800Z                 Image, 0x1089497c0, {{103.0, 766.3}, {20.3, 18.7}}, identifier: 'calendar', label: 'Calendar'
+2026-11-05T20:44:38.3005030Z                 StaticText, 0x108949900, {{98.0, 789.7}, {30.0, 10.7}}, label: 'Trajets'
+2026-11-05T20:44:38.3107650Z               Button, 0x108949a40, {{258.0, 765.7}, {44.0, 41.7}}, label: 'Messages'
+2026-11-05T20:44:38.3307110Z                 Image, 0x108949b80, {{268.3, 765.7}, {23.7, 20.0}}, identifier: 'message', label: 'Message'
+2026-11-05T20:44:38.3462350Z                 StaticText, 0x108949cc0, {{258.0, 789.7}, {44.0, 10.7}}, label: 'Messages'
+2026-11-05T20:44:38.3579450Z               Button, 0x108949e00, {{334.7, 766.3}, {22.7, 34.0}}, label: 'Profil'
+2026-11-05T20:44:38.3683260Z                 Image, 0x108949f40, {{337.3, 766.3}, {17.3, 18.7}}, identifier: 'person', label: 'person'
+2026-11-05T20:44:38.3786280Z                 StaticText, 0x10894a080, {{334.7, 789.7}, {22.7, 10.7}}, label: 'Profil'
+2026-11-05T20:44:38.3889080Z               Button, 0x10894a1c0, {{173.2, 750.5}, {47.0, 47.0}}, identifier: 'plus', label: 'Add'
+2026-11-05T20:44:38.3991850Z Path to element:
+2026-11-05T20:44:38.4097590Z  →Application, 0x108886bc0, pid: 60653, label: 'Sports Green-mOOVe'
+2026-11-05T20:44:38.4212820Z Query chain:
+2026-11-05T20:44:38.4320260Z  →Find: Target Application 'be.sportgreenmoove.app'
+2026-11-05T20:44:38.4419040Z   Output: {
+2026-11-05T20:44:38.4522550Z     Application, 0x10894a300, pid: 60653, label: 'Sports Green-mOOVe'
+2026-11-05T20:44:38.4622690Z   }
+2026-11-05T20:44:38.4767030Z 
+2026-11-05T20:44:38.5058230Z 

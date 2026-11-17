@@ -1,0 +1,17 @@
+{
+  "scope": "failed-native-resume-before-clock-upload-not-tracking-verification",
+  "sourceRevisionBase": "f3aef02ee28bbdccdff2c729fbd0f46c6cb11077",
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeTrackingStartupTest.kt": "c700b9d84ffb2e0cc7390bd905e0da90c4958540d432ea270ebd15ae0f181a72",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt": "ecedc3f0f8be45528e17c9aab2e42803b3e9e2b0948a5c7aa0a5ca4e4129567f",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt": "646786a7f59962d5ff7328f00986415bf837d652ef70da11b2ca5326d37dd19f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "b71645e21f0c3f88242d674a665eb1e9d8a8aab297986e38d70c6bc492c2db4e",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeCaptureClock.kt": "b8167dd961d294aadeed14cea11420764b23330e19cedadba3593d82ba33a9a3",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/NativeLocationPayloads.kt": "e8f5acc7cfdc97e2ccee3ded8d110ec914b8e3af398d1ae6e4d85ef2076ec449",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt": "0c74416808705175f10c892839b81e0ccdfb4f803d9f33e42586cfce5062f132",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "78a013b03f008b93e3c9ed47a87e3b4053a4e9527650f8881d1586fd1a42482f",
+    "scripts/qa/local-native-startup-ui.mjs": "d3a5de7d90c173caa1f41f6a31c6ed9a643756e6c6be7948d7e35e3831693d44",
+    "scripts/qa/native-clock-startup-evidence.mjs": "c12d601dcafcb6b520fbbfbd1550242efe1017b3a31090fd3051bd1ea338a4c6"
+  },
+  "completed": false
+}

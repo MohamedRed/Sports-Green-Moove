@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-05T13:58:02.126Z" hostname="MRRs-MacBook-Air.local" time="0.113">
+  <properties/>
+  <testcase name="cancellingTheCollectorDisposesBothOwnedFlows" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.098"/>
+  <testcase name="cancellationDoesNotRemoveParticipantsButDeletionDoes" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.001"/>
+  <testcase name="parentTakesPrecedenceOverTheRetainedRequester" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.0"/>
+  <testcase name="currentRideDriverParticipantAndChildAreRequired" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.0"/>
+  <testcase name="waitsForSourceThenRevokesWithoutAnotherMessageAndDisposesTheMessageListener" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.01"/>
+  <testcase name="initialRevocationCannotOpenTheMessageListener" classname="be.sportgreenmoove.app.domain.ConversationSourceAccessTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

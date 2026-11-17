@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {createHash} from 'node:crypto';
+const root='/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025';
+const require=createRequire(root+'/package.json');
+const {initializeTestEnvironment}=require('@firebase/rules-unit-testing');
+const source=readFileSync(root+'/firestore.rules','utf8');
+const membership='resource.data.participantUserIds.hasAny([request.auth.uid])';
+const minimal=condition=>`rules_version = '2'; service cloud.firestore { match /databases/{database}/documents { match /messages/{id} { allow read: if request.auth != null && ${membership} && (${condition}); } } }`;
+const variants=[
+ ['candidate',source],
+ ['without-static-list-type',source.replace('resource.data.participantUserIds is list &&','')],
+ ['without-source-shape',source.replace("sourceId is string && sourceId.matches('[^/]+') &&",'')],
+ ['without-both-type-guards',source.replace('resource.data.participantUserIds is list &&','').replace("sourceId is string && sourceId.matches('[^/]+') &&",'')],
+ ['static-list-only',minimal('resource.data.participantUserIds is list')],
+ ['fixed-source-path',minimal("get(/databases/$(database)/documents/bookings/fixture-source).data.parentUserId == request.auth.uid")],
+ ['direct-query-bound-source',minimal("resource.data.sourceType == 'booking' && get(/databases/$(database)/documents/bookings/$(resource.data.sourceId)).data.parentUserId == request.auth.uid")],
+ ['direct-bounded-exists-source',minimal("resource.data.sourceType == 'booking' && exists(/databases/$(database)/documents/bookings/$(resource.data.sourceId)) && get(/databases/$(database)/documents/bookings/$(resource.data.sourceId)).data.parentUserId == request.auth.uid")],
+];
+const results=[];
+const observe=async action=>{try{const result=await action();return{status:'allowed',count:result.size??(result.exists?1:0)};}catch(error){return{status:error.code??error.name};}};
+for(let i=0;i<variants.length;i++){
+ const [name,rules]=variants[i];let env;
+ try{
+  env=await initializeTestEnvironment({projectId:'demo-sgm-chat-query-probe-'+i,firestore:{host:'127.0.0.1',port:8080,rules}});
+  await env.withSecurityRulesDisabled(async context=>{
+   await context.firestore().doc('bookings/fixture-source').set({parentUserId:'parent',driverUserId:'driver'});
+   await context.firestore().doc('messages/message').set({sourceType:'booking',sourceId:'fixture-source',participantUserIds:['parent','driver'],body:'QA',createdAt:new Date()});
+  });
+  const db=env.authenticatedContext('parent').firestore();
+  const query=db.collection('messages').where('participantUserIds','array-contains','parent').where('sourceType','==','booking').where('sourceId','==','fixture-source').orderBy('createdAt','desc').limit(51);
+  const getBefore=await observe(()=>db.doc('messages/message').get({source:'server'}));
+  const queryBefore=await observe(()=>query.get({source:'server'}));
+  await env.withSecurityRulesDisabled(async context=>context.firestore().doc('bookings/fixture-source').update({parentUserId:'other'}));
+  const getAfter=await observe(()=>db.doc('messages/message').get({source:'server'}));
+  const queryAfter=await observe(()=>query.get({source:'server'}));
+  results.push({name,ruleSha256:createHash('sha256').update(rules).digest('hex'),getBefore,queryBefore,getAfter,queryAfter});
+ }finally{if(env){await env.clearFirestore();await env.cleanup();}}
+}
+assert.equal(results.length,8);
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT,JSON.stringify({scope:'isolated-query-proof-diagnostic-not-production-policy',runId:process.env.SGM_LOCAL_RUN_ID,results,clientCleanupComplete:true},null,2)+'\n',{flag:'wx'});
+console.log('Eight isolated query-rule representations observed; no candidate accepted by this diagnostic.');

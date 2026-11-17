@@ -1,0 +1,966 @@
+{
+  "runId": 42085479173,
+  "jobId": 127449293466,
+  "sourceCommit": "584c61b61453878e1bd2631b48ca2fef5e9de4d4",
+  "status": "completed",
+  "conclusion": "failure",
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42085479173/job/127449293466",
+  "startedAt": "2026-11-05T18:34:10Z",
+  "completedAt": "2026-11-05T18:48:51Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:11Z",
+      "completedAt": "2026-11-05T18:34:13Z"
+    },
+    {
+      "name": "Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:13Z",
+      "completedAt": "2026-11-05T18:34:18Z"
+    },
+    {
+      "name": "Set up Node",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:18Z",
+      "completedAt": "2026-11-05T18:34:20Z"
+    },
+    {
+      "name": "Set up Java",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:20Z",
+      "completedAt": "2026-11-05T18:34:20Z"
+    },
+    {
+      "name": "Install dependencies",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:20Z",
+      "completedAt": "2026-11-05T18:34:30Z"
+    },
+    {
+      "name": "Validate required checks and report ordering",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:30Z",
+      "completedAt": "2026-11-05T18:34:30Z"
+    },
+    {
+      "name": "Validate bounded public-repository iPhone verification",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:30Z",
+      "completedAt": "2026-11-05T18:34:32Z"
+    },
+    {
+      "name": "Validate complete smoke partitioning",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:32Z",
+      "completedAt": "2026-11-05T18:34:32Z"
+    },
+    {
+      "name": "Validate bounded node readiness and retained failure scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:32Z",
+      "completedAt": "2026-11-05T18:34:32Z"
+    },
+    {
+      "name": "Validate iPhone emergency contact ownership and evidence scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:32Z",
+      "completedAt": "2026-11-05T18:34:33Z"
+    },
+    {
+      "name": "Test isolated chat proof diagnostic",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:33Z",
+      "completedAt": "2026-11-05T18:34:35Z"
+    },
+    {
+      "name": "Test approved invitation private alias",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:35Z",
+      "completedAt": "2026-11-05T18:34:36Z"
+    },
+    {
+      "name": "Test primary capture observation protocol",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:36Z",
+      "completedAt": "2026-11-05T18:34:36Z"
+    },
+    {
+      "name": "Test Functions",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:36Z",
+      "completedAt": "2026-11-05T18:34:45Z"
+    },
+    {
+      "name": "Validate bounded collection regression evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:45Z",
+      "completedAt": "2026-11-05T18:34:46Z"
+    },
+    {
+      "name": "Test Belgian trip dates across server timezones",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:46Z",
+      "completedAt": "2026-11-05T18:34:48Z"
+    },
+    {
+      "name": "Validate Belgian trip date regression evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:48Z",
+      "completedAt": "2026-11-05T18:34:48Z"
+    },
+    {
+      "name": "Validate scoped trip history evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:48Z",
+      "completedAt": "2026-11-05T18:34:48Z"
+    },
+    {
+      "name": "Test isolated trip history access and paging",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:48Z",
+      "completedAt": "2026-11-05T18:35:23Z"
+    },
+    {
+      "name": "Build Functions",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:23Z",
+      "completedAt": "2026-11-05T18:35:27Z"
+    },
+    {
+      "name": "Validate local test isolation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:27Z",
+      "completedAt": "2026-11-05T18:35:38Z"
+    },
+    {
+      "name": "Validate independent focused safety lane",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:38Z",
+      "completedAt": "2026-11-05T18:35:39Z"
+    },
+    {
+      "name": "Validate preinstalled full-matrix APKs and complete raw JUnit inventory",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:39Z",
+      "completedAt": "2026-11-05T18:35:40Z"
+    },
+    {
+      "name": "Validate retained independent Android execution and device observations",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:40Z",
+      "completedAt": "2026-11-05T18:35:40Z"
+    },
+    {
+      "name": "Test bounded restoration faults and unchanged fixture records",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:40Z",
+      "completedAt": "2026-11-05T18:35:41Z"
+    },
+    {
+      "name": "Validate guarded full-search preparation and accessible trip controls",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:41Z",
+      "completedAt": "2026-11-05T18:35:42Z"
+    },
+    {
+      "name": "Replay current search booking notice contract without map requests",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:35:42Z",
+      "completedAt": "2026-11-05T18:36:05Z"
+    },
+    {
+      "name": "Validate retained physical search and booking proof without provider calls",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:05Z",
+      "completedAt": "2026-11-05T18:36:05Z"
+    },
+    {
+      "name": "Validate driver account preparation without provider calls",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:05Z",
+      "completedAt": "2026-11-05T18:36:06Z"
+    },
+    {
+      "name": "Install media inspection tools",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:06Z",
+      "completedAt": "2026-11-05T18:36:27Z"
+    },
+    {
+      "name": "Validate physical trip consent checkpoints and retained proof",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:27Z",
+      "completedAt": "2026-11-05T18:36:27Z"
+    },
+    {
+      "name": "Validate incomplete simulated GPS attempt and preserved clock failure",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:27Z",
+      "completedAt": "2026-11-05T18:36:28Z"
+    },
+    {
+      "name": "Validate dated full native replay recheck",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:28Z",
+      "completedAt": "2026-11-05T18:36:29Z"
+    },
+    {
+      "name": "Validate neutral text contrast and native capture scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:29Z",
+      "completedAt": "2026-11-05T18:36:38Z"
+    },
+    {
+      "name": "Test readable status feedback and error colours",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:38Z",
+      "completedAt": "2026-11-05T18:36:46Z"
+    },
+    {
+      "name": "Test complete booking dates in enlarged native layouts",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:46Z",
+      "completedAt": "2026-11-05T18:36:51Z"
+    },
+    {
+      "name": "Validate role-specific accent controls and phone evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:51Z",
+      "completedAt": "2026-11-05T18:36:51Z"
+    },
+    {
+      "name": "Test custom TLS certificate verification and retained scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:51Z",
+      "completedAt": "2026-11-05T18:36:52Z"
+    },
+    {
+      "name": "Test premature response compression cleanup",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:52Z",
+      "completedAt": "2026-11-05T18:36:53Z"
+    },
+    {
+      "name": "Validate native search departure controls and blocked phone evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:53Z",
+      "completedAt": "2026-11-05T18:36:54Z"
+    },
+    {
+      "name": "Validate physical calendar retry and latest native copy evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:54Z",
+      "completedAt": "2026-11-05T18:36:54Z"
+    },
+    {
+      "name": "Validate controlled chat phone records and evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:54Z",
+      "completedAt": "2026-11-05T18:36:55Z"
+    },
+    {
+      "name": "Validate chat account-switch checkpoints",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:55Z",
+      "completedAt": "2026-11-05T18:36:55Z"
+    },
+    {
+      "name": "Test post-commit chat confirmation loss guards",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:55Z",
+      "completedAt": "2026-11-05T18:36:56Z"
+    },
+    {
+      "name": "Validate paired native network preparation observations",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:56Z",
+      "completedAt": "2026-11-05T18:36:56Z"
+    },
+    {
+      "name": "Test approved temporary network startup logging",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:56Z",
+      "completedAt": "2026-11-05T18:36:56Z"
+    },
+    {
+      "name": "Test approved invitation same-origin transport",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:56Z",
+      "completedAt": "2026-11-05T18:36:57Z"
+    },
+    {
+      "name": "Test invitation-bound phone approval observations",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:36:57Z",
+      "completedAt": "2026-11-05T18:37:01Z"
+    },
+    {
+      "name": "Test bound emulator transfer observations",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:01Z",
+      "completedAt": "2026-11-05T18:37:06Z"
+    },
+    {
+      "name": "Test explicit diagnostic toolchain selection",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:06Z",
+      "completedAt": "2026-11-05T18:37:07Z"
+    },
+    {
+      "name": "Validate complete native pass without release promotion",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:07Z",
+      "completedAt": "2026-11-05T18:37:07Z"
+    },
+    {
+      "name": "Validate failed notification capture and unchanged quality gate",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:07Z",
+      "completedAt": "2026-11-05T18:37:08Z"
+    },
+    {
+      "name": "Validate approved disposable-phone installation policy",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:08Z",
+      "completedAt": "2026-11-05T18:37:08Z"
+    },
+    {
+      "name": "Validate isolated private phone tunnel policy",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:08Z",
+      "completedAt": "2026-11-05T18:37:08Z"
+    },
+    {
+      "name": "Validate private input and stale cancellation phone evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:08Z",
+      "completedAt": "2026-11-05T18:37:09Z"
+    },
+    {
+      "name": "Validate hosted Android disk capacity guard",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:09Z",
+      "completedAt": "2026-11-05T18:37:09Z"
+    },
+    {
+      "name": "Validate physical profile and ledger evidence without provider requests",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:09Z",
+      "completedAt": "2026-11-05T18:37:09Z"
+    },
+    {
+      "name": "Validate encrypted credential rotation without provider requests",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:09Z",
+      "completedAt": "2026-11-05T18:37:09Z"
+    },
+    {
+      "name": "Validate independent contact recovery without accepting a blocked dialer",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:09Z",
+      "completedAt": "2026-11-05T18:37:10Z"
+    },
+    {
+      "name": "Validate explicit real-map test boundaries without provider calls",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:10Z",
+      "completedAt": "2026-11-05T18:37:10Z"
+    },
+    {
+      "name": "Validate bounded local response-loss injection",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:10Z",
+      "completedAt": "2026-11-05T18:37:11Z"
+    },
+    {
+      "name": "Validate native SDK response-loss injection",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:11Z",
+      "completedAt": "2026-11-05T18:37:11Z"
+    },
+    {
+      "name": "Test isolated multi-person flows",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:37:11Z",
+      "completedAt": "2026-11-05T18:38:52Z"
+    },
+    {
+      "name": "Verify isolated membership discovery and review",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:38:52Z",
+      "completedAt": "2026-11-05T18:39:16Z"
+    },
+    {
+      "name": "Verify current booking and ride chat authority",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:16Z",
+      "completedAt": "2026-11-05T18:39:38Z"
+    },
+    {
+      "name": "Set up rules configuration validation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:38Z",
+      "completedAt": "2026-11-05T18:39:39Z"
+    },
+    {
+      "name": "Validate rules configuration without cloud changes",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:39Z",
+      "completedAt": "2026-11-05T18:39:42Z"
+    },
+    {
+      "name": "Test completed review history beyond the legacy limit",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:42Z",
+      "completedAt": "2026-11-05T18:40:06Z"
+    },
+    {
+      "name": "Test private received rating summaries",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:40:06Z",
+      "completedAt": "2026-11-05T18:40:31Z"
+    },
+    {
+      "name": "Test pending review pagination across completed ride history",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:40:31Z",
+      "completedAt": "2026-11-05T18:40:59Z"
+    },
+    {
+      "name": "Test runtime proxy trust against forwarded-address spoofing",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:40:59Z",
+      "completedAt": "2026-11-05T18:40:59Z"
+    },
+    {
+      "name": "Test authenticated pending review trip context",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:40:59Z",
+      "completedAt": "2026-11-05T18:41:23Z"
+    },
+    {
+      "name": "Test immutable rating retries after connection loss",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:23Z",
+      "completedAt": "2026-11-05T18:41:46Z"
+    },
+    {
+      "name": "Test runtime multipart parser against malformed inputs",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:46Z",
+      "completedAt": "2026-11-05T18:41:46Z"
+    },
+    {
+      "name": "Validate network run evidence and temporary administration cleanup",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:46Z",
+      "completedAt": "2026-11-05T18:41:47Z"
+    },
+    {
+      "name": "Test private Android network validation history",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:47Z",
+      "completedAt": "2026-11-05T18:41:47Z"
+    },
+    {
+      "name": "Validate initial network observation before test-only transport requests",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:47Z",
+      "completedAt": "2026-11-05T18:41:48Z"
+    },
+    {
+      "name": "Validate isolated network recovery recheck without promoting physical readiness",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:48Z",
+      "completedAt": "2026-11-05T18:41:48Z"
+    },
+    {
+      "name": "Validate full native gate and published media evidence boundaries",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:48Z",
+      "completedAt": "2026-11-05T18:41:48Z"
+    },
+    {
+      "name": "Validate guardian verification contracts and retained scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:48Z",
+      "completedAt": "2026-11-05T18:41:48Z"
+    },
+    {
+      "name": "Test atomic booking decisions and recipient notifications",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:41:48Z",
+      "completedAt": "2026-11-05T18:42:30Z"
+    },
+    {
+      "name": "Check completed ride and physical-phone evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:30Z",
+      "completedAt": "2026-11-05T18:42:30Z"
+    },
+    {
+      "name": "Check truthful notification settings and isolated observation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:30Z",
+      "completedAt": "2026-11-05T18:42:30Z"
+    },
+    {
+      "name": "Test private idempotent notification acknowledgements",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:30Z",
+      "completedAt": "2026-11-05T18:42:41Z"
+    },
+    {
+      "name": "Test actual authenticated notification calls and unchanged isolated records",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:41Z",
+      "completedAt": "2026-11-05T18:43:05Z"
+    },
+    {
+      "name": "Check executed notification cases, latest replay and complete portal fingerprints",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:05Z",
+      "completedAt": "2026-11-05T18:43:06Z"
+    },
+    {
+      "name": "Validate physical guardian revocation and new team admission evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:06Z",
+      "completedAt": "2026-11-05T18:43:06Z"
+    },
+    {
+      "name": "Validate isolated phone support checkpoints",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:06Z",
+      "completedAt": "2026-11-05T18:43:06Z"
+    },
+    {
+      "name": "Validate native startup acknowledgement and temporary mock policy contracts",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:06Z",
+      "completedAt": "2026-11-05T18:43:07Z"
+    },
+    {
+      "name": "Validate reviewed native startup tour scope",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:07Z",
+      "completedAt": "2026-11-05T18:43:07Z"
+    },
+    {
+      "name": "Validate service-owned remote completion and isolated cleanup",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:07Z",
+      "completedAt": "2026-11-05T18:43:07Z"
+    },
+    {
+      "name": "Verify authorized vehicle coordinates and invalid geographic input rejection",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:07Z",
+      "completedAt": "2026-11-05T18:43:33Z"
+    },
+    {
+      "name": "Test owned enrollment history after eligibility and identity loss",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:33Z",
+      "completedAt": "2026-11-05T18:44:27Z"
+    },
+    {
+      "name": "Test owned local service process supervision",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:44:27Z",
+      "completedAt": "2026-11-05T18:44:27Z"
+    },
+    {
+      "name": "Verify actual isolated admin clients close after replay success and failure",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:44:27Z",
+      "completedAt": "2026-11-05T18:44:46Z"
+    },
+    {
+      "name": "Verify actual isolated UI service interruption cleanup",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:44:46Z",
+      "completedAt": "2026-11-05T18:45:23Z"
+    },
+    {
+      "name": "Test scoped team and verified child choices",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:45:23Z",
+      "completedAt": "2026-11-05T18:45:45Z"
+    },
+    {
+      "name": "Test shared membership cursor continuation and authorization",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:45:45Z",
+      "completedAt": "2026-11-05T18:46:11Z"
+    },
+    {
+      "name": "Test native team fixture lifecycle and fail-closed evidence contract",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:46:11Z",
+      "completedAt": "2026-11-05T18:46:33Z"
+    },
+    {
+      "name": "Test manager team review scope and real service lifecycle",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:46:33Z",
+      "completedAt": "2026-11-05T18:46:59Z"
+    },
+    {
+      "name": "Test transaction query conflict propagation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:46:59Z",
+      "completedAt": "2026-11-05T18:47:02Z"
+    },
+    {
+      "name": "Validate booking consistency and recovery evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:02Z",
+      "completedAt": "2026-11-05T18:47:03Z"
+    },
+    {
+      "name": "Validate displayed booking intent evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:03Z",
+      "completedAt": "2026-11-05T18:47:03Z"
+    },
+    {
+      "name": "Validate booking response-loss evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:03Z",
+      "completedAt": "2026-11-05T18:47:03Z"
+    },
+    {
+      "name": "Validate current default selection comparison evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:03Z",
+      "completedAt": "2026-11-05T18:47:03Z"
+    },
+    {
+      "name": "Test booking retry identity and changed-intent races",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:03Z",
+      "completedAt": "2026-11-05T18:47:49Z"
+    },
+    {
+      "name": "Test durable Swift booking recovery",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:47:49Z",
+      "completedAt": "2026-11-05T18:48:21Z"
+    },
+    {
+      "name": "Test server-only booking request receipts",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:21Z",
+      "completedAt": "2026-11-05T18:48:27Z"
+    },
+    {
+      "name": "Test Swift booking snapshot wire contract",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:27Z",
+      "completedAt": "2026-11-05T18:48:28Z"
+    },
+    {
+      "name": "Verify iPhone search-to-booking contract without provider calls",
+      "conclusion": "failure",
+      "startedAt": "2026-11-05T18:48:28Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test displayed terms against current booking conditions",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test controlled approval and cancellation overlap",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test transactional booking terms and guardian authority",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test team club ownership rules",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test server-owned trip cancellation rules",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test server-owned trip details",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test server-owned trip proposals and parent decisions",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate native trip cancellation integration",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate scoped native trip-change evidence",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate completed native parent consent evidence",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate dual-transport network prerequisites",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate input window readiness evidence",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate bounded file-sync failure diagnostics",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate explicit partner component evidence scope",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Build Admin",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate membership decision state",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate public privacy route",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate private partner portal evidence and contracts",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate physical draft and consent evidence boundaries",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate partial team connection recovery evidence",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate seven physical team process restarts",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate direct booking confirmation and phone restart",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test isolated booking reply-loss guards",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate physical trip cancellation evidence and observer boundaries",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test runtime compressed request parsing and size limits",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Verify committed publication artifacts",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate admin plan coverage",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test Stripe webhook flow",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Validate isolated payout evidence and its verification limits",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test Stripe production readiness verification",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Test live smoke cleanup",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Build Website",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:36Z"
+    },
+    {
+      "name": "Retain booking notification and cleanup results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:36Z",
+      "completedAt": "2026-11-05T18:48:38Z"
+    },
+    {
+      "name": "Retain completed review history results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:38Z",
+      "completedAt": "2026-11-05T18:48:39Z"
+    },
+    {
+      "name": "Retain received rating summary service results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:39Z",
+      "completedAt": "2026-11-05T18:48:40Z"
+    },
+    {
+      "name": "Retain pending review pagination results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:40Z",
+      "completedAt": "2026-11-05T18:48:41Z"
+    },
+    {
+      "name": "Retain pending review context results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:41Z",
+      "completedAt": "2026-11-05T18:48:43Z"
+    },
+    {
+      "name": "Retain rating retry results and local diagnostics",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:43Z",
+      "completedAt": "2026-11-05T18:48:44Z"
+    },
+    {
+      "name": "Upload isolated trip history results",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:44Z",
+      "completedAt": "2026-11-05T18:48:45Z"
+    },
+    {
+      "name": "Upload booking retry receipts",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:45Z",
+      "completedAt": "2026-11-05T18:48:46Z"
+    },
+    {
+      "name": "Upload displayed booking and wire evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:46Z",
+      "completedAt": "2026-11-05T18:48:47Z"
+    },
+    {
+      "name": "Upload controlled booking consistency evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:47Z",
+      "completedAt": "2026-11-05T18:48:47Z"
+    },
+    {
+      "name": "Upload controlled transaction conflict evidence",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:47Z",
+      "completedAt": "2026-11-05T18:48:47Z"
+    },
+    {
+      "name": "Retain authenticated search notice replay",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:47Z",
+      "completedAt": "2026-11-05T18:48:49Z"
+    },
+    {
+      "name": "Post Set up Java",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:49Z",
+      "completedAt": "2026-11-05T18:48:49Z"
+    },
+    {
+      "name": "Post Set up Node",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:48:49Z",
+      "completedAt": "2026-11-05T18:48:49Z"
+    },
+    {
+      "name": "Post Checkout",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:49Z",
+      "completedAt": "2026-11-05T18:48:49Z"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:48:49Z",
+      "completedAt": "2026-11-05T18:48:49Z"
+    }
+  ],
+  "selectedFailure": "main.swift:30: Precondition failed",
+  "compilationCompleted": true,
+  "requestComparisonFailed": true,
+  "responseGroupsExecuted": false,
+  "payloadEquivalenceEstablishedOnLinux": false,
+  "rootCauseConfirmed": false
+}

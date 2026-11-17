@@ -1,0 +1,93 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "actual location provider body with controlled CoreLocation declarations; not physical or whole sign-out proof",
+  "baseline": {
+    "sourceCommit": "84aa1349933844f78fd9180d33583301f0c35e1f",
+    "sourceFile": "ios/Sources/SportsGreenMooveApp/NativeLocationFallbackProvider.swift",
+    "sourceSha256": "dd60da0d3154e2ec96915e3737e61e589ff88ebab635fd0a42c43a36b6e62cfc",
+    "observed": {
+      "startResult": "completed",
+      "continuousStartsAfterStop": 1,
+      "localStopCalls": 0,
+      "initialUploads": 1
+    }
+  },
+  "candidate": {
+    "sources": "source-sha256.json",
+    "observed": {
+      "startResult": "cancelled",
+      "continuousStartsAfterStop": 0,
+      "localStopCalls": 1,
+      "initialUploads": 1
+    }
+  },
+  "comparison": {
+    "command": "node scripts/qa/check-ios-location-provider.mjs 84aa1349933844f78fd9180d33583301f0c35e1f",
+    "languageMode": "Swift 5 for both bodies",
+    "temporaryTransformation": "Only broaden the iOS source guard for a controlled module; method bodies are unchanged",
+    "legacyWarningRetained": "Optional authorization-status switch does not cover none",
+    "exitCode": 0,
+    "log": "before-after.txt",
+    "logSha256": "6a93a880ec4ca4c0dcf61cae74cc839b02d54f147629355ae451dcc6b4e4a99e"
+  },
+  "providerChecks": {
+    "command": "node scripts/qa/check-ios-location-provider.mjs",
+    "languageMode": "Swift 6, complete concurrency, warnings as errors",
+    "actualProviderBodyCompiled": true,
+    "realAppleLocationFrameworkUsed": false,
+    "exitCode": 0,
+    "log": "provider-checks.txt",
+    "logSha256": "0b041bbb4944b3018302c514939420871cd85652f65462d041d9d1b96dfeea2d",
+    "cases": [
+      "initial upload stop",
+      "authorization stop",
+      "capture stop",
+      "late authorization/location events",
+      "task cancellation during upload",
+      "unsettled start denial",
+      "current activation",
+      "duplicate active start",
+      "exact ride stop",
+      "global stop",
+      "initial upload failure",
+      "old manager success/error after same-ride restart"
+    ]
+  },
+  "nativeChecks": {
+    "command": "bash scripts/check-ios-native-plan.sh",
+    "languageMode": "Swift 6",
+    "exitCode": 0,
+    "log": "native-checks.txt",
+    "logSha256": "d72c33f01fb2cb510e11d1fd754758afa511e8f7e56e59567fee0cd39066a6ee",
+    "newStateCoverage": [
+      "exact ride",
+      "pending start drain",
+      "pending upload drain",
+      "old-generation denial",
+      "old finish cannot erase new owner"
+    ]
+  },
+  "sdkLinkedBuildAccepted": false,
+  "physicalGpsEvidenceAccepted": false,
+  "completedSignOutAccepted": false,
+  "issuedNetworkRequestCancellationAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "remainingWork": [
+    "wire profile logout",
+    "fence permission and ride orchestration",
+    "stop and clear all provider identity",
+    "bind and drain issued network transports",
+    "current-source SDK and rendered checks",
+    "GPS sample-quality and physical failure scenarios",
+    "operational and safety-audit evidence"
+  ],
+  "strictDraft": {
+    "exitCode": 1,
+    "log": "strict-draft-failure.txt",
+    "logSha256": "02a45613296ccfdde1e9306897e8237a8df097d4a5304a36fd0939a7ff95e17d",
+    "observed": "non-Sendable manager captured in lock closure",
+    "resolution": "compute immutable object identifier before entering the Sendable closure; no unchecked conformance or suppression"
+  }
+}

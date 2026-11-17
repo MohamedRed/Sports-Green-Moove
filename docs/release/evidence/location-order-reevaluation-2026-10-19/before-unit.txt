@@ -1,0 +1,12 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run src/__tests__/live-trips-write.test.ts --reporter=junit --outputFile=/private/tmp/sgm-location-order-reevaluation-before-20261019.xml
+
+JUNIT report written to /private/tmp/sgm-location-order-reevaluation-before-20261019.xml
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error workspace @sports-green-moove/functions@0.1.0
+npm error location /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error command failed
+npm error command sh -c vitest run src/__tests__/live-trips-write.test.ts --reporter=junit --outputFile=/private/tmp/sgm-location-order-reevaluation-before-20261019.xml

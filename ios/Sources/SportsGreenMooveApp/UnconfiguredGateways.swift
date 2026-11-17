@@ -3,26 +3,42 @@ import Foundation
 struct UnconfiguredAuthGateway: AuthGateway {
     let isConfigured = false
 
-    func currentSession() async throws -> AuthSession? { nil }
+    func currentSession() async throws -> AuthIdentity? { nil }
 
-    func signIn(email: String, password: String) async throws -> AuthSession {
+    func signIn(email: String, password: String) async throws -> AuthIdentity {
         _ = (email, password)
         throw ProviderConfigurationError(message: "Firebase iOS n'est pas configuré.")
     }
 
-    func signUp(name: String, email: String, password: String) async throws -> AuthSession {
+    func signUp(name: String, email: String, password: String) async throws -> AuthIdentity {
         _ = (name, email, password)
         throw ProviderConfigurationError(message: "Firebase iOS n'est pas configuré.")
     }
 
-    func signInWithGoogle() async throws -> AuthSession {
+    func signInWithGoogle() async throws -> AuthIdentity {
         throw ProviderConfigurationError(message: "Google Auth iOS n'est pas configuré.")
+    }
+
+    func signInWithFacebook() async throws -> AuthIdentity {
+        throw ProviderConfigurationError(message: "Facebook Auth iOS n'est pas configuré.")
     }
 
     func signOut() throws {}
 }
 
 struct UnconfiguredFirebaseGateway: FirebaseGateway {
+    func guardianContacts(uid: String, cursor: String?) async throws -> GuardianContactPage { throw EmergencyContactError.unavailable }
+    func emergencyContact(uid: String, scope: EmergencyContactScope) async throws -> EmergencyContactView? { throw EmergencyContactError.unavailable }
+    func saveEmergencyContact(uid: String, operation: EmergencyContactOperation) async throws -> Int64 { throw EmergencyContactError.unavailable }
+    func initializeProfile(identity: AuthIdentity, displayName: String?) async throws -> AuthSession {
+        throw ProviderConfigurationError(message: "Connexion indisponible.")
+    }
+    func supportReports(uid: String, cursor: String?) async throws -> SupportPage<SupportReport> {
+        try await UnconfiguredSupportGateway().supportReports(uid: uid, cursor: cursor)
+    }
+    func supportReport(uid: String, reportId: String, cursor: String?) async throws -> SupportDetail {
+        try await UnconfiguredSupportGateway().supportReport(uid: uid, reportId: reportId, cursor: cursor)
+    }
     let isConfigured = false
 
     func searchTrips() async throws -> [TripSummary] {
@@ -31,12 +47,14 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func listChildren() async throws -> [ChildSummary] { [] }
 
-    func suggestPlaces(input: String) async throws -> [PlaceSuggestion] {
+    func listClubSummaries() async throws -> [ClubSummary] { [] }
+
+    func suggestPlaces(uid: String, input: String) async throws -> [PlaceSuggestion] {
         _ = input
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
     }
 
-    func resolvePlace(placeId: String) async throws -> ResolvedPlace {
+    func resolvePlace(uid: String, placeId: String) async throws -> ResolvedPlace {
         _ = placeId
         throw ProviderConfigurationError(message: "Google Places iOS n'est pas configuré.")
     }
@@ -51,15 +69,14 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func requestBooking(tripId: String, childId: String?) async throws -> String {
-        _ = tripId
-        _ = childId
+    func requestBooking(uid: String, trip: TripSummary, childId: String?, seats: Int) async throws -> String {
+        _ = (trip, childId, seats)
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
     func getDriverBookingRequests() async throws -> [BookingRequestSummary] { [] }
 
-    func approveBooking(bookingId: String) async throws -> String {
+    func approveBooking(uid: String, bookingId: String) async throws -> String {
         _ = bookingId
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
@@ -88,17 +105,25 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
 
     func getPayableBookings() async throws -> [PayableBookingSummary] { [] }
 
-    func getInbox() async throws -> InboxSummary {
+    func getImpactSummary() async throws -> ImpactSummary {
+        .empty
+    }
+
+    func getRewardSummary() async throws -> RewardSummary {
+        .empty
+    }
+
+    func getInbox(uid: String) async throws -> InboxSummary {
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func submitRating(rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
+    func submitRating(uid: String, rideSessionId: String, ratedUserId: String, score: Int, comment: String?) async throws -> String {
         _ = (rideSessionId, ratedUserId, score, comment)
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
-    func createReport(subjectType: String, subjectId: String?, reason: String, description: String, emergency: Bool) async throws -> String {
-        _ = (subjectType, subjectId, reason, description, emergency)
+    func createReport(submission: SupportSubmission) async throws -> String {
+        _ = submission
         throw ProviderConfigurationError(message: "Cloud Functions iOS n'est pas configuré.")
     }
 
@@ -107,13 +132,17 @@ struct UnconfiguredFirebaseGateway: FirebaseGateway {
         throw ProviderConfigurationError(message: "Realtime Database iOS n'est pas configuré.")
     }
 
-    func stopNativeLocationFallback(rideSessionId: String) {
+    @MainActor func stopNativeLocationFallback(rideSessionId: String) {
         _ = rideSessionId
     }
+    @MainActor func stopAllNativeLocationFallback() {}
+    @MainActor var nativeLocationWorkPending: Bool { false }
+    @MainActor func awaitNativeLocationShutdown() async {}
 }
 
 struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {
     let isConfigured = false
+    @MainActor func stopLocalTracking() {}
 
     func startTripTracking(rideSessionId: String, role: AppRole) async throws {
         _ = (rideSessionId, role)
@@ -122,15 +151,6 @@ struct UnconfiguredRadarTrackingGateway: RadarTrackingGateway {
 
     func stopTripTracking(rideSessionId: String) async throws {
         _ = rideSessionId
-    }
-}
-
-struct UnconfiguredGoogleRoutesGateway: GoogleRoutesGateway {
-    let isConfigured = false
-
-    func explainRoute(for tripId: String) async throws -> [String] {
-        _ = tripId
-        throw ProviderConfigurationError(message: "Google Routes n'est pas configuré côté iOS.")
     }
 }
 
@@ -149,6 +169,9 @@ struct UnconfiguredStripePaymentsGateway: StripePaymentsGateway {
 
     func prepareRidePayment(bookingId: String) async throws -> PaymentSheetConfig {
         _ = bookingId
+        throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
+    }
+    func ridePaymentStatus(bookingId: String, paymentIntentId: String) async throws -> RidePaymentState {
         throw ProviderConfigurationError(message: "Stripe iOS n'est pas configuré.")
     }
 }

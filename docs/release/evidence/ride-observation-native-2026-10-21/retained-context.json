@@ -1,0 +1,24 @@
+{
+  "scope": "independent-local-ride-observation-recheck-not-physical-tracking",
+  "runId": "5c26f791631373efe029caed8864cfaf",
+  "sourceCommit": "4a3c02aebdbf6aeba875b44d4d2c2fe9f2e3e087",
+  "reviewedCaptureCount": 8,
+  "landscapeRetainedOnly": true,
+  "publishedCaptures": {
+    "ride-recheck-fresh": "local-ride-observation-fresh.png",
+    "ride-recheck-stale": "local-ride-observation-stale.png",
+    "ride-recheck-recovered": "local-ride-observation-recovered.png",
+    "ride-recheck-pickup": "local-ride-observation-pickup.png",
+    "ride-recheck-resumed": "local-ride-observation-resumed.png",
+    "ride-recheck-ended": "local-ride-observation-ended.png",
+    "ride-recheck-history": "local-ride-observation-history.png"
+  },
+  "physicalDevice": false,
+  "mapMovementVerified": false,
+  "realNetworkLossVerified": false,
+  "providerTrackingVerified": false,
+  "fullNativeSuiteVerified": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "productionWrites": false
+}

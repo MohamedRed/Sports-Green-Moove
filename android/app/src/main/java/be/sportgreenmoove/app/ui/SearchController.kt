@@ -1,45 +1,36 @@
 package be.sportgreenmoove.app.ui
 
-import androidx.compose.runtime.Composable
+import androidx.annotation.MainThread
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import be.sportgreenmoove.app.data.ChildSummary
 import be.sportgreenmoove.app.data.PlaceSuggestion
 import be.sportgreenmoove.app.data.ResolvedPlace
 import be.sportgreenmoove.app.data.TripMatchSummary
 import be.sportgreenmoove.app.data.TripSearchCriteria
 import be.sportgreenmoove.app.services.AndroidProviderSet
+import be.sportgreenmoove.app.domain.BookingReviewRequiredException
+import be.sportgreenmoove.app.domain.BookingReplyUnconfirmedException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
-@Composable
-fun rememberSearchController(
-    providers: AndroidProviderSet,
-    scope: CoroutineScope,
-    onError: (String?) -> Unit,
-    onNotice: (String) -> Unit,
-    onAppLoading: (Boolean) -> Unit,
-): SearchController = remember(providers, scope) {
-    SearchController(
-        providers = providers,
-        scope = scope,
-        onError = onError,
-        onNotice = onNotice,
-        onAppLoading = onAppLoading,
-    )
-}
-
+@MainThread
 class SearchController(
     private val providers: AndroidProviderSet,
-    private val scope: CoroutineScope,
+    scope: CoroutineScope,
     private val onError: (String?) -> Unit,
     private val onNotice: (String) -> Unit,
-    private val onAppLoading: (Boolean) -> Unit,
+    onAppLoading: (Boolean) -> Unit,
 ) {
     var origin by mutableStateOf<ResolvedPlace?>(null)
         private set
     var destination by mutableStateOf<ResolvedPlace?>(null)
+        private set
+    var originInput by mutableStateOf("")
+        private set
+    var destinationInput by mutableStateOf("")
+        private set
+    var form by mutableStateOf(defaultSearchForm())
         private set
     var originSuggestions by mutableStateOf(emptyList<PlaceSuggestion>())
         private set
@@ -49,88 +40,146 @@ class SearchController(
         private set
     var loading by mutableStateOf(false)
         private set
+    var hasSearched by mutableStateOf(false)
+        private set
+    var bookingTripId by mutableStateOf<String?>(null)
+        private set
+    var confirmedBookingTripIds by mutableStateOf(emptySet<String>())
+        private set
+    var retryBookingTripIds by mutableStateOf(emptySet<String>())
+        private set
+    private var initializedChild = false
+    private var acceptedCriteria: TripSearchCriteria? = null
+    private var matchesGeneration = 0L
+    private val requests = SearchRequests(scope, onError, { loading = it }) { busy ->
+        if (!busy) bookingTripId = null
+        onAppLoading(busy)
+    }
+
+    fun updateChildren(children: List<ChildSummary>) {
+        if (!requests.isActive) return
+        if (!initializedChild && children.isNotEmpty()) {
+            initializedChild = true
+            updateForm(form.copy(childUserId = children.first().id))
+        } else if (form.childUserId != null && children.none { it.id == form.childUserId }) {
+            updateForm(form.copy(childUserId = null))
+        }
+    }
+
+    fun updateForm(next: SearchFormState) {
+        if (!requests.isActive) return
+        val childChanged = form.childUserId != next.childUserId
+        val trackingChanged = form.requireChildTracking != next.requireChildTracking
+        val updated = if (childChanged || trackingChanged) next.copy(guardianConsent = false) else next
+        if (updated == form) return
+        if (childChanged) initializedChild = true
+        invalidateMatches()
+        form = updated
+    }
+
+    fun editPlace(target: SearchPlaceTarget, input: String = if (target == SearchPlaceTarget.Origin) originInput else destinationInput) {
+        if (!requests.isActive) return
+        requests.invalidate(target.request())
+        if (target == SearchPlaceTarget.Origin) { originInput = input; origin = null; originSuggestions = emptyList() }
+        else { destinationInput = input; destination = null; destinationSuggestions = emptyList() }
+        invalidateMatches()
+    }
 
     fun suggestPlaces(input: String, target: SearchPlaceTarget) {
-        scope.launch {
-            loading = true
-            onError(null)
-            runCatching { providers.firebase.suggestPlaces(input) }
-                .onSuccess { suggestions ->
-                    if (target == SearchPlaceTarget.Origin) {
-                        originSuggestions = suggestions
-                    } else {
-                        destinationSuggestions = suggestions
-                    }
-                }
-                .onFailure { onError(it.message) }
-            loading = false
+        if (!requests.isActive) return
+        editPlace(target, input)
+        requests.launch(target.request(), { providers.firebase.suggestPlaces(input) }) {
+            if (target == SearchPlaceTarget.Origin) originSuggestions = it else destinationSuggestions = it
         }
     }
 
     fun selectPlace(suggestion: PlaceSuggestion, target: SearchPlaceTarget) {
-        scope.launch {
-            loading = true
-            onError(null)
-            runCatching { providers.firebase.resolvePlace(suggestion.placeId) }
-                .onSuccess { place ->
-                    if (target == SearchPlaceTarget.Origin) {
-                        origin = place
-                        originSuggestions = emptyList()
-                    } else {
-                        destination = place
-                        destinationSuggestions = emptyList()
-                    }
-                }
-                .onFailure { onError(it.message) }
-            loading = false
+        if (!requests.isActive) return
+        editPlace(target)
+        requests.launch(target.request(), { providers.firebase.resolvePlace(suggestion.placeId) }) {
+            if (target == SearchPlaceTarget.Origin) { origin = it; originInput = it.label }
+            else { destination = it; destinationInput = it.label }
         }
     }
 
-    fun runSearch(form: SearchFormState) {
-        val selectedOrigin = origin
-        val selectedDestination = destination
-        if (selectedOrigin == null || selectedDestination == null) {
+    fun runSearch() {
+        if (!requests.isActive) return
+        invalidateMatches()
+        if (origin == null || destination == null) {
             onError("Choisissez un départ et une destination dans les suggestions.")
             return
         }
-        if (form.requireChildTracking && form.childUserId.isNullOrBlank()) {
-            onError("Choisissez un enfant pour activer le suivi enfant.")
+        form.validationMessage()?.let { onError(it); return }
+        val criteria = checkNotNull(currentCriteria())
+        requests.launch(SearchRequest.Matches, { providers.firebase.searchTripMatches(criteria) }) {
+            acceptedCriteria = criteria
+            matches = it
+            hasSearched = true
+        }
+    }
+
+    fun requestMatch(match: TripMatchSummary) {
+        if (!requests.isActive) return
+        if (bookingTripId != null || match.tripId in confirmedBookingTripIds) return
+        val criteria = acceptedCriteria
+        if (!hasSearched || criteria == null || criteria != currentCriteria() || match !in matches || match.tripId != match.summary.id) {
+            onError("Relancez la recherche avant de demander ce trajet.")
             return
         }
-
-        scope.launch {
-            loading = true
-            onError(null)
-            runCatching {
-                providers.firebase.searchTripMatches(
-                    TripSearchCriteria(
-                        origin = selectedOrigin,
-                        destination = selectedDestination,
-                        desiredDepartureAtIso = form.desiredDepartureAtIso,
-                        seatsNeeded = form.seatsNeeded,
-                        baggage = form.baggage,
-                        returnTrip = form.returnTrip,
-                        requireChildTracking = form.requireChildTracking,
-                        guardianConsent = form.guardianConsent,
-                        childUserId = form.childUserId,
-                    ),
-                )
-            }.onSuccess {
-                matches = it
-            }.onFailure { onError(it.message) }
-            loading = false
+        if (match.summary.seatsAvailable < criteria.seatsNeeded) {
+            onError("Ce trajet ne propose plus assez de places. Relancez la recherche.")
+            return
+        }
+        val generation = matchesGeneration
+        bookingTripId = match.tripId
+        retryBookingTripIds -= match.tripId
+        requests.launch(SearchRequest.Booking, {
+            providers.firebase.requestBooking(match.summary, criteria.childUserId, criteria.seatsNeeded)
+        }, onFailure = { failure ->
+            if (generation == matchesGeneration) {
+                if (failure is BookingReviewRequiredException) invalidateMatches()
+                else if (failure is BookingReplyUnconfirmedException) retryBookingTripIds += match.tripId
+            }
+        }) {
+            if (generation == matchesGeneration) confirmedBookingTripIds += match.tripId
+            onNotice("Demande envoyée.")
         }
     }
 
-    fun requestMatch(match: TripMatchSummary, childUserId: String?) {
-        scope.launch {
-            onAppLoading(true)
-            onError(null)
-            runCatching {
-                val bookingId = providers.firebase.requestBooking(match.tripId, childUserId)
-                onNotice("Demande envoyée: $bookingId")
-            }.onFailure { onError(it.message) }
-            onAppLoading(false)
-        }
+    fun close() {
+        requests.close()
+        origin = null
+        destination = null
+        originInput = ""
+        destinationInput = ""
+        form = defaultSearchForm()
+        initializedChild = false
+        originSuggestions = emptyList()
+        destinationSuggestions = emptyList()
+        matches = emptyList()
+        acceptedCriteria = null
+        loading = false
+        hasSearched = false
+        bookingTripId = null
+        confirmedBookingTripIds = emptySet()
+        retryBookingTripIds = emptySet()
     }
+
+    private fun currentCriteria(): TripSearchCriteria? {
+        val from = origin ?: return null
+        val to = destination ?: return null
+        if (form.validationMessage() != null) return null
+        return TripSearchCriteria(from, to, form.desiredDepartureAtIso, form.seatsNeeded, form.baggage,
+            form.returnTrip, form.requireChildTracking, form.guardianConsent, form.childUserId)
+    }
+    private fun invalidateMatches() {
+        matchesGeneration++
+        requests.invalidate(SearchRequest.Matches)
+        acceptedCriteria = null
+        matches = emptyList()
+        hasSearched = false
+        confirmedBookingTripIds = emptySet()
+        retryBookingTripIds = emptySet()
+    }
+    private fun SearchPlaceTarget.request() = if (this == SearchPlaceTarget.Origin) SearchRequest.Origin else SearchRequest.Destination
 }

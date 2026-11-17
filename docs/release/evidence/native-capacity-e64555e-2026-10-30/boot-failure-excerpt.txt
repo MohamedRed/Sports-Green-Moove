@@ -1,0 +1,3 @@
+2026-10-30T20:10:43.0000086Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -gpu software -no-snapshot -noaudio -no-boot-anim &
+2026-10-30T20:10:43.0470434Z FATAL        | Not enough space to create userdata partition. Available: 6926.72 MB at /home/runner/.android/avd/test.avd, need 7372.80 MB.
+2026-10-30T20:20:45.5546590Z ##[error]Timeout waiting for emulator to boot.

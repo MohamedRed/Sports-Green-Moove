@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "remove-unrelated-crypto-build-dependency-from-controlled-search-contract",
+  "failedLinuxCompilationRetained": true,
+  "normalizationImplementationUnchanged": true,
+  "chatCryptoImplementationUnchanged": true,
+  "localContractPassed": true,
+  "localNativeChecksPassed": true,
+  "localSignatureChecksPassed": true,
+  "linuxExecutionAccepted": false,
+  "nativeSdkAccepted": false,
+  "nativeUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "linux-failure.json",
+      "sha256": "cf056a95233bdd789b1e2d3e0b6a853afcffd8f1261f471d3a5dcd12fa3dcc3c"
+    },
+    {
+      "file": "contract-result.txt",
+      "sha256": "48126db394a904282057487bd4f68c5316e676c16a4836a0fddfbc7ef21a4404"
+    },
+    {
+      "file": "native-result.txt",
+      "sha256": "317243f56e0ff9d4d1c4e232479140bfea705fc369bd3f4cb283b84223ebcfe3"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "ce2d363a14330aadf567cdfdacca9b15deae4d83cb86c01c08956be12c3c832c"
+    }
+  ]
+}

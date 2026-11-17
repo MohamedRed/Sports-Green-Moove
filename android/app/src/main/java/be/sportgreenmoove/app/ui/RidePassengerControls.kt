@@ -28,6 +28,7 @@ import be.sportgreenmoove.app.design.SgmType
 @Composable
 fun RidePassengerStatusCard(
     ride: LiveRideSnapshot,
+    canManageRide: Boolean,
     onPickup: (RidePassengerStatus) -> Unit,
     onDropoff: (RidePassengerStatus) -> Unit,
 ) {
@@ -52,6 +53,7 @@ fun RidePassengerStatusCard(
             ride.passengers.forEach { passenger ->
                 PassengerActionRow(
                     passenger = passenger,
+                    canManageRide = canManageRide,
                     onPickup = { onPickup(passenger) },
                     onDropoff = { onDropoff(passenger) },
                 )
@@ -61,7 +63,7 @@ fun RidePassengerStatusCard(
 }
 
 @Composable
-fun RideEndCard(onEndRide: () -> Unit) {
+fun RideEndCard(readyToComplete: Boolean, onEndRide: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 16.dp)
@@ -77,16 +79,19 @@ fun RideEndCard(onEndRide: () -> Unit) {
             style = SgmType.Eyebrow.copy(color = SgmColor.Orange, fontSize = 11.sp, letterSpacing = 0.12.em),
         )
         Text(
-            "Arrête le suivi Radar et le secours GPS Firebase, puis clôture les réservations attachées.",
+            if (readyToComplete) "Termine ce trajet et arrête le partage des positions."
+            else "Tous les passagers doivent être déposés avant de terminer le trajet.",
             style = SgmType.BodyXS.copy(color = Sgm.colors.textSecondary, fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
         )
-        V2Button("TERMINER LA COURSE", onClick = onEndRide, variant = V2ButtonVariant.Orange, full = true)
+        V2Button("TERMINER LA COURSE", onClick = onEndRide, variant = V2ButtonVariant.Orange,
+            full = true, enabled = readyToComplete, testTag = SgmTestTags.ActiveRideEndAction)
     }
 }
 
 @Composable
 private fun PassengerActionRow(
     passenger: RidePassengerStatus,
+    canManageRide: Boolean,
     onPickup: () -> Unit,
     onDropoff: () -> Unit,
 ) {
@@ -99,25 +104,29 @@ private fun PassengerActionRow(
                     style = SgmType.BodySM.copy(color = Sgm.colors.textPrimary, fontSize = 14.sp, fontWeight = FontWeight.Bold),
                 )
                 Text(
-                    "Pickup ${passenger.pickupStatus.statusLabel()} · Dropoff ${passenger.dropoffStatus.statusLabel()}",
+                    "Prise en charge ${passenger.pickupStatus.statusLabel()} · Dépose ${passenger.dropoffStatus.statusLabel()}",
                     style = SgmType.BodyXS.copy(color = Sgm.colors.textMuted, fontSize = 12.sp, fontWeight = FontWeight.SemiBold),
                 )
             }
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        if (canManageRide) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             V2Button(
-                "PICKUP",
+                "PRISE EN CHARGE",
                 onClick = onPickup,
                 modifier = Modifier.weight(1f),
                 variant = if (passenger.pickupStatus == "pickedUp") V2ButtonVariant.Secondary else V2ButtonVariant.Primary,
                 size = V2ButtonSize.Sm,
+                testTag = SgmTestTags.ActiveRidePickupAction,
+                enabled = passenger.pickupStatus == "pending" && passenger.dropoffStatus == "pending",
             )
             V2Button(
-                "DROPOFF",
+                "DÉPOSE",
                 onClick = onDropoff,
                 modifier = Modifier.weight(1f),
                 variant = if (passenger.dropoffStatus == "droppedOff") V2ButtonVariant.Secondary else V2ButtonVariant.Primary,
                 size = V2ButtonSize.Sm,
+                testTag = SgmTestTags.ActiveRideDropoffAction,
+                enabled = passenger.pickupStatus == "pickedUp" && passenger.dropoffStatus == "pending",
             )
         }
     }
@@ -140,7 +149,7 @@ private fun RideTrackingLine(label: String, value: String) {
 
 private fun String.statusLabel(): String =
     when (this) {
-        "pickedUp" -> "validé"
-        "droppedOff" -> "validé"
+        "pickedUp" -> "validée"
+        "droppedOff" -> "validée"
         else -> "à confirmer"
     }

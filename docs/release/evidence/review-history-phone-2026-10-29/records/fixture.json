@@ -1,0 +1,43 @@
+{
+  "runId": "c281d6268102a59c92bf5501ae0a4a9c",
+  "fixture": {
+    "driverUid": "sgm-qa-driver",
+    "parentUid": "sgm-qa-parent",
+    "peers": [
+      "sgm-qa-parent",
+      "sgm-review-history-parent-2",
+      "sgm-review-history-parent-3",
+      "sgm-review-history-parent-4"
+    ],
+    "rides": [
+      "sgm-review-history-000",
+      "sgm-review-history-001",
+      "sgm-review-history-002",
+      "sgm-review-history-003",
+      "sgm-review-history-004",
+      "sgm-review-history-005",
+      "sgm-review-history-006",
+      "sgm-review-history-007",
+      "sgm-review-history-008",
+      "sgm-review-history-009",
+      "sgm-review-history-010",
+      "sgm-review-history-011",
+      "sgm-review-history-012",
+      "sgm-review-history-013",
+      "sgm-review-history-014",
+      "sgm-review-history-015",
+      "sgm-review-history-016",
+      "sgm-review-history-017",
+      "sgm-review-history-018",
+      "sgm-review-history-019",
+      "sgm-review-history-020",
+      "sgm-review-history-021",
+      "sgm-review-history-022",
+      "sgm-review-history-023",
+      "sgm-review-history-024",
+      "sgm-review-history-025"
+    ],
+    "freshRide": "sgm-review-history-zzz-unrated"
+  },
+  "scope": "completed-rides-and-104-ratings-prepared-not-phone-ride-or-rating-proof"
+}

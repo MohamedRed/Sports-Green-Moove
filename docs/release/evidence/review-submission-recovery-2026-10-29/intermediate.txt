@@ -1,0 +1,28 @@
+
+be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest:.
+Error in failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest):
+java.lang.AssertionError: expected:<1> but was:<2>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest.failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(ReviewSubmissionRecoveryFlowTest.kt:60)
+
+be.sportgreenmoove.app.ui.ReviewTripContextFlowTest:...
+be.sportgreenmoove.app.ui.PendingReviewPaginationFlowTest:...
+be.sportgreenmoove.app.ui.ReceivedRatingsFlowTest:...
+
+Time: 32.555
+There was 1 failure:
+1) failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest)
+java.lang.AssertionError: expected:<1> but was:<2>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.ReviewSubmissionRecoveryFlowTest.failedSubmissionKeepsTheExpandedTripContextAndRetryOnlyRemovesTheSelectedTrip(ReviewSubmissionRecoveryFlowTest.kt:60)
+
+FAILURES!!!
+Tests run: 11,  Failures: 1
+
+

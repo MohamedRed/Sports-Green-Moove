@@ -1,0 +1,13 @@
+{
+  "reviewedAt": "2026-10-22T14:35:12.739Z",
+  "note": "The native case selector was corrected to read a child in the unmerged semantics tree. Compilation passes; instrumentation remains unexecuted. Original source and build receipts are preserved.",
+  "nativeCaseSource": {
+    "path": "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportInboxFlowTest.kt",
+    "file": "source-reviewed/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportInboxFlowTest.kt",
+    "sha256": "0394ec1cc883c5117baeda8ed337853fd751803627f9c52c8733571670f7f8d1"
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "functionsUnitCases": 381,
+  "nodeContractCases": 1512
+}

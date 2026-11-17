@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "063efabc65637f7f9e260ffd74a33d47e6314bde",
+  "workflowRun": 40709878812,
+  "jobId": 122891930811,
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/40709878812/job/122891930811",
+  "artifactName": "android-generated-transfer-diagnostic",
+  "scope": "original-terminal-generated-transfer-failure-not-user-flow-or-release-proof",
+  "sourceSnapshots": {
+    "probe-source.txt": "scripts/diagnostics/adb-transfer-probe.mjs",
+    "trace-source.txt": "scripts/diagnostics/adb-transfer-trace.mjs",
+    "runner-source.txt": "scripts/diagnostics/run-adb-transfer-probe.mjs",
+    "workflow-source.txt": ".github/workflows/android-transport-probe.yml"
+  },
+  "hostIdentityBeforeAfterAvailable": false,
+  "exactCommandErrorAvailable": false,
+  "rawDaemonLogsRetained": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "sourceSha256": {
+    "probe-source.txt": "c6486b108a484995b5b1fb06ffc4d4ba22448efcaac2c8f9844cd2842cf971d2",
+    "trace-source.txt": "486a2bebf7f58060ee6c2d562f3370ad226ba6e4ffe6dd75d110ba934f32cefb",
+    "runner-source.txt": "ac730ebe45d64abbf3321f778971e4eef90f17e2544eeefd4e8ec8bc1fb541d3",
+    "workflow-source.txt": "d44e43051758c1e787dc0ec324b8dde3d49a1fd5e5282811cedb27bfa24cf31a"
+  }
+}

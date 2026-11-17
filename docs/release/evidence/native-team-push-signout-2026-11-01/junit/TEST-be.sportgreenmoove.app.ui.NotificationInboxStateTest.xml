@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.NotificationInboxStateTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.375Z" hostname="local-test-host" time="0.009">
+  <properties></properties>
+  <testcase name="accountDisposalIgnoresLateRowsAndCannotStartAnotherRead" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="anUnverifiedReadHidesExistingRowsAndRequiresExplicitRetry" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.002"></testcase>
+  <testcase name="primaryPollingAddsAndRemovesRowsWithoutDuplicatesWhileActive" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="explicitSuccessfulRetryResumesPollingButFailedRetryDoesNot" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="pauseRejectsAnUncooperativeLateFailureWithoutHidingTheNewResult" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="onlySuccessfulCurrentRowsReachReadReconciliation" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="overlappingReadsDoNotDuplicateRequestsAndCancellationCannotPublish" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <testcase name="pauseClearsPrivateRowsAndRejectsAnUncooperativeLateResponse" classname="be.sportgreenmoove.app.ui.NotificationInboxStateTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

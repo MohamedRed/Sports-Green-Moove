@@ -1,0 +1,23 @@
+
+be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest:
+Error in aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.waitFor(LocalNativeTrackingStartupTest.kt:109)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:71)
+
+
+Time: 118.368
+There was 1 failure:
+1) aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.waitFor(LocalNativeTrackingStartupTest.kt:109)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:71)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

@@ -1,0 +1,61 @@
+{
+  "sourceCommit": "9fd5bf3e599017e114cf530afb72e47c47e68cdd",
+  "reviewedAt": "2026-11-04",
+  "archives": {
+    "main": {
+      "bytes": 17654635,
+      "sha256": "fbc55e0f10aa6d0d20e15bd533c71435b48af39e55e0b32bc69c1b804cabe0a3",
+      "artifactId": 13275197684
+    },
+    "focused": {
+      "bytes": 372569,
+      "sha256": "a76b16b1aacc08adb019e9c8be7806fe9724300f1a4e6309b76f3b8d6c8d09dc",
+      "artifactId": 13274450205
+    }
+  },
+  "members": {
+    "ordinary-process.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/ordinary-process.json",
+      "encoding": "identity",
+      "originalMemberSha256": "219a5f8d64b2abbfdad848c6c50acad4193dc1f3612c4ee69d27be6cfb2a4538"
+    },
+    "ordinary-instrumentation.txt.gz": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+      "encoding": "gzip",
+      "originalMemberSha256": "75ef31a525d4c37eb1b7f2e6116ee98b9dc8ef05855855d639533e73f3e30438"
+    },
+    "native-suite-status.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "encoding": "identity",
+      "originalMemberSha256": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f"
+    },
+    "device-restoration.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "encoding": "identity",
+      "originalMemberSha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    "guardian-instrumentation.txt.gz": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/ab6367803ae0e61f86ea9d41aee83fbf/LocalGuardianVerificationFlowTest-instrumentation.txt",
+      "encoding": "gzip",
+      "originalMemberSha256": "11d5228f8bba7cf7b0f947f266abe7910ed66d36a00ceee66fbcba0c5411aab1"
+    },
+    "guardian-copy.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/ab6367803ae0e61f86ea9d41aee83fbf/adb-pull-failure-cleanup.json",
+      "encoding": "identity",
+      "originalMemberSha256": "11391b3db6f06a6aba0e8ced794c1fbf7a369af225169c9075b6fe6baa1270ea"
+    },
+    "focused-network.json": {
+      "archive": "focused",
+      "member": "local-ui-evidence/c891f859832417cfbbd9d9f699e1f6ee/local-chat-network-ui.json",
+      "encoding": "identity",
+      "originalMemberSha256": "d9da4658000d83f42220cd1c5c621ea11e12c5404a0a95443965e59f3bb78283"
+    }
+  },
+  "selectedMembersComparedByteForByte": true
+}

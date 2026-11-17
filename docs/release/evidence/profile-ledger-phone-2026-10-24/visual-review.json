@@ -1,0 +1,27 @@
+{
+  "reviewed": true,
+  "containsRealCustomerData": false,
+  "credentialsVisible": false,
+  "originalNames": {
+    "parent-ready.png": "parent-ready.png",
+    "parent-city-saved.png": "parent-city-saved.png",
+    "parent-rewards.png": "parent-rewards.png",
+    "driver-ready.png": "driver-ready.png",
+    "driver-rewards.png": "screenshot-Google Pixel 9 Pro-15.0 (1).png",
+    "driver-payments.png": "screenshot-Google Pixel 9 Pro-15.0 (2).png",
+    "parent-returned.png": "screenshot-Google Pixel 9 Pro-15.0 (3).png",
+    "parent-city-cleared.png": "screenshot-Google Pixel 9 Pro-15.0 (4).png"
+  },
+  "published": {
+    "parent-ready.png": true,
+    "parent-city-saved.png": true,
+    "parent-rewards.png": true,
+    "driver-ready.png": true,
+    "driver-rewards.png": true,
+    "parent-returned.png": true,
+    "parent-city-cleared.png": true
+  },
+  "excluded": {
+    "driver-payments.png": "Destination only; no onboarding, payment or transfer was submitted."
+  }
+}

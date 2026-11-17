@@ -1,0 +1,13 @@
+{
+  "approvedAt": "2026-11-04",
+  "maximumImages": 3,
+  "maximumTotalBytes": 2000000,
+  "retentionDays": 1,
+  "fixtureOnly": true,
+  "maximumJobMinutes": 50,
+  "previousJobMinutes": 35,
+  "jobLimitIncreaseApproved": true,
+  "additionalCacheOrArtifactStorageApproved": false,
+  "collectionRequiresExplicitManualOptIn": true,
+  "automaticPullRequestRetentionApproved": false
+}

@@ -1,0 +1,109 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripsScreen.swift",
+      "commit": "05cd3f7d6869c7bfc5286ca76fcfa740d839add9",
+      "sha256": "35bbb1f585c6298313dceeeba68b7caf4dd5776e7e6226c25b77f8277b24dbbb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ParentReservation.swift",
+      "commit": "candidate",
+      "sha256": "d0bc11a4698d421dee7c56d55c950d4a683cd58295c1f4fb32766e2d883d86dd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ParentReservationWire.swift",
+      "commit": "candidate",
+      "sha256": "2f4cf174856b589e1e000697b22f905518bfd74edc681788bb472f7a250742e8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ParentReservationState.swift",
+      "commit": "candidate",
+      "sha256": "012f7932c4b3895266cbf783216175d2dbe4b0b467790b0077bf1846843b71c6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ParentReservationsScreen.swift",
+      "commit": "candidate",
+      "sha256": "6c7b0f3b01ecf3c7fc5c1ff9e9a5f06bde432d331e11c4f11b28b95d00a76569"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseParentReservations.swift",
+      "commit": "candidate",
+      "sha256": "6bb48261eae6d2ece2f93e2ac3832e2b2ca0ebeddaa5d5459570e8b7fe68c337"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredParentReservations.swift",
+      "commit": "candidate",
+      "sha256": "20098c335130c961602f21142d8d24238d1e8598ea0634175c1c806f40757cab"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestParentReservations.swift",
+      "commit": "candidate",
+      "sha256": "14caa2e49e5ac8128a16b778b5a532d01393612972cf84656d9dd340970984c1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "commit": "candidate",
+      "sha256": "c29522ccfaa358c5909f4defd9defb91d33ec6e1ca95118ac59a5c5b5952f4bf"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripsScreen.swift",
+      "commit": "candidate",
+      "sha256": "15edaa6d0e80c35c9e2f588b25e1556815b1fab4603767815a31cccfa9c08d75"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "commit": "candidate",
+      "sha256": "fb847e9c5861eb1ced2619e16918aa3d54ed771ac14fa950269fe89af2dcd974"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ParentReservationChecks.swift",
+      "commit": "candidate",
+      "sha256": "5e20e2f423121281f06c548c43d79ab1cd7654a786b048d3cd2e79b549f48130"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/UnusedParentReservationGateway.swift",
+      "commit": "candidate",
+      "sha256": "0228e4a0b516ceafb8cfba6eb49f5360ddf9c69262aa49bbc640d9d6053a98d7"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "commit": "candidate",
+      "sha256": "87c453662ab0111ac9e7608603a0b8249daed9502e9fdd77540bba209457aa48"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ParentReservationFlowChecks.swift",
+      "commit": "candidate",
+      "sha256": "ea0f0198a2a83a21d04f44bca5f4a6f622aa21ef61249ce397aaeffedfd00a00"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "commit": "candidate",
+      "sha256": "a517a8216614268f11b27586468ff90a6cd034dab4c047f4803163c869d9c435"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "commit": "candidate",
+      "sha256": "24be6de13e9619af0935851289535015bd85a9f75572b9c8097d7452e3eaa68b"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "commit": "candidate",
+      "sha256": "18724228bb9ef171ffcacd8fe0f6f12d0ec94c545b9f4829107745c08dc820c9"
+    },
+    {
+      "path": "scripts/qa/check-ios-owned-places.sh",
+      "commit": "candidate",
+      "sha256": "f718ca1bea92bec0f02f429072c853d28e8956396eee9b4cc5c2692e2ed70701"
+    },
+    {
+      "path": "scripts/qa/ios-reservation-fixture-extension.mjs",
+      "commit": "candidate",
+      "sha256": "7550a7be61469c12169a22f6bc9e45d8394baa4e33e4303d9a09ef8e71c73b8d"
+    },
+    {
+      "path": "tests/fixtures/ios-parent-reservations/main.swift",
+      "commit": "candidate",
+      "sha256": "e2d65f361caac01da7e439919a34ff55dc3844a63b348e3f98ff99403cacd3a5"
+    }
+  ]
+}

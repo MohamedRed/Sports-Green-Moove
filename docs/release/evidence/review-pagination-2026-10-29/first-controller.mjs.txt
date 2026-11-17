@@ -1,0 +1,115 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {deleteApp} from 'firebase-admin/app';
+import {auth, call, db, denied, signIn} from './local-flow-client.mjs';
+import {seedLocalUiFixtures} from './local-ui-fixtures.mjs';
+import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
+import {collectPendingReviews} from './review-pagination-client.mjs';
+
+const steps = [], observations = {}, root = resolve(import.meta.dirname, '../..');
+const sources = ['functions/src/callables/inbox.ts', 'functions/src/callables/pendingReviews.ts',
+  'functions/src/services/pendingReviews.ts', 'functions/src/domain/pendingReviews.ts',
+  'scripts/qa/local-review-pagination.mjs', 'scripts/qa/review-pagination-client.mjs', 'scripts/qa/run-local-review-pagination.mjs'];
+const sourceFiles = Object.fromEntries(sources.map(file => [file, createHash('sha256').update(readFileSync(resolve(root, file))).digest('hex')]));
+let failure, protectedRecordCount = 0, adminClientClosed = false, firestoreClientTerminated = false;
+async function check(id, action) {
+  try {await action(); steps.push({id, status: 'passed'});}
+  catch (error) {steps.push({id, status: 'failed', error: error.code ?? error.name}); throw error;}
+  finally {console.log(`${id}: ${steps.at(-1).status}`);}
+}
+try {
+  await withLocalAdminCleanup(async () => {
+    await seedLocalUiFixtures();
+    const driver = await signIn('d@example.test'), parent = await signIn('p@example.test'), manager = await signIn('m@example.test');
+    const actors = [driver, parent, manager], originals = new Map();
+    for (const collection of await db.listCollections()) for (const row of (await collection.get()).docs) originals.set(row.ref.path, row.data());
+    const claims = await Promise.all(actors.map(async actor => (await auth.getUser(actor.uid)).customClaims));
+    protectedRecordCount = originals.size;
+    const rides = Array.from({length: 320}, (_, index) => 'sgm-paged-review-' + String(index).padStart(4, '0'));
+    const createRides = async (start, end) => {
+      const batch = db.batch();
+      for (let index = start; index < end; index++) batch.create(db.doc('rideSessions/' + rides[index]), {status: 'completed',
+        driverUserId: driver.uid, participantUserIds: index % 2 ? [parent.uid] : [driver.uid, parent.uid]});
+      await batch.commit();
+    };
+    await check('previously-omitted-31st-ride-is-reachable-for-both-accounts', async () => {
+      await createRides(0, 31);
+      for (const rideSessionId of rides.slice(0, 30)) await call('submitRating', driver, {rideSessionId, ratedUserId: parent.uid, score: 4});
+      const own = await collectPendingReviews(driver), other = await collectPendingReviews(parent);
+      assert.deepEqual(own.items.map(row => row.rideSessionId), [rides[30]]);
+      assert.equal(other.items.length, 31); assert(other.items.some(row => row.rideSessionId === rides[30]));
+      observations.previous31RideGap = {driverRequests: own.items.length, parentRequests: other.items.length, parentPages: other.pages.length};
+    });
+    await check('320-completed-rides-and-240-immutable-authenticated-ratings-are-prepared', async () => {
+      await createRides(31, 320);
+      for (const rideSessionId of rides.slice(30, 240)) await call('submitRating', driver, {rideSessionId, ratedUserId: parent.uid, score: 4});
+      const batch = db.batch();
+      for (let index = 0; index < 20; index++) batch.create(db.doc('rideSessions/sgm-paged-inactive-' + index), {
+        status: index % 2 ? 'active' : 'cancelled', driverUserId: driver.uid, participantUserIds: [driver.uid, parent.uid]});
+      batch.create(db.doc('rideSessions/sgm-paged-foreign'), {status: 'completed', driverUserId: manager.uid, participantUserIds: [manager.uid]});
+      await batch.commit();
+      assert.equal((await db.collection('ratings').where('authorUserId', '==', driver.uid).get()).size, 240);
+    });
+    let driverPages, parentPages;
+    await check('empty-rated-windows-continue-instead-of-claiming-no-pending-reviews', async () => {
+      driverPages = await collectPendingReviews(driver);
+      assert.equal(driverPages.pages[0].items.length, 0); assert(driverPages.pages[0].nextCursor);
+      assert.equal(driverPages.pages[1].items.length, 0); assert(driverPages.pages[1].nextCursor);
+      assert.deepEqual(driverPages.items.map(row => row.rideSessionId), rides.slice(240));
+      assert(driverPages.items.every(row => row.ratedUserId === parent.uid));
+      observations.driver = {requests: driverPages.items.length, pages: driverPages.pages.length, emptyContinuationPages: 2};
+    });
+    await check('all-320-parent-requests-are-reachable-without-duplicates-or-driver-rating-suppression', async () => {
+      parentPages = await collectPendingReviews(parent);
+      assert.deepEqual(parentPages.items.map(row => row.rideSessionId), rides);
+      assert(parentPages.items.every(row => row.ratedUserId === driver.uid));
+      assert.equal(parentPages.pages.length, 16); assert.equal(parentPages.pages.at(-1).nextCursor, null);
+      observations.parent = {requests: parentPages.items.length, pages: parentPages.pages.length};
+    });
+    const ratingRows = (await db.collection('ratings').get()).docs.map(row => ({id: row.id, data: row.data()}));
+    await check('repeating-the-same-cursor-is-idempotent-and-deleting-its-anchor-does-not-skip-a-ride', async () => {
+      const cursor = driverPages.pages[0].nextCursor;
+      const before = await call('getPendingReviews', driver, {cursor});
+      assert.deepEqual(await call('getPendingReviews', driver, {cursor}), before);
+      await db.doc('rideSessions/' + rides[99]).delete();
+      assert.deepEqual(await call('getPendingReviews', driver, {cursor}), before);
+    });
+    await check('cursor-account-scope-authentication-and-forged-input-are-enforced', async () => {
+      const cursor = driverPages.pages[0].nextCursor;
+      await denied('getPendingReviews', parent, {cursor}, 'PERMISSION_DENIED');
+      await denied('getPendingReviews', null, {cursor}, 'UNAUTHENTICATED');
+      for (const data of [{userId: parent.uid}, {cursor: null}, {cursor: ''}, {cursor: 'bad/cursor'},
+        {cursor, pageSize: 1000}, {cursor: Buffer.from(JSON.stringify({version: 1, scope: 'other-list', id: 'ride'})).toString('base64url')}]) {
+        await denied('getPendingReviews', driver, data, data.cursor && data.cursor !== cursor && !data.cursor.includes('/') ? 'PERMISSION_DENIED' : 'INVALID_ARGUMENT');
+      }
+      assert.deepEqual((await call('getPendingReviews', manager)).items, []);
+    });
+    await check('discovery-never-writes-ratings-or-changes-existing-records-or-claims', async () => {
+      assert.deepEqual((await db.collection('ratings').get()).docs.map(row => ({id: row.id, data: row.data()})), ratingRows);
+      for (const [path, data] of originals) assert.deepEqual((await db.doc(path).get()).data(), data, path);
+      assert.deepEqual(await Promise.all(actors.map(async actor => (await auth.getUser(actor.uid)).customClaims)), claims);
+    });
+    await check('submitting-a-later-page-review-hides-only-that-review-and-does-not-shift-the-cursor', async () => {
+      const cursor = driverPages.pages[2].nextCursor, rideSessionId = rides[270];
+      await call('submitRating', driver, {rideSessionId, ratedUserId: parent.uid, score: 5});
+      const page = await call('getPendingReviews', driver, {cursor});
+      assert(!page.items.some(row => row.rideSessionId === rideSessionId));
+      assert(page.items.some(row => row.rideSessionId === rides[280]));
+      const all = await collectPendingReviews(driver, false);
+      assert.deepEqual(all.items.map(row => row.rideSessionId), rides.slice(240).filter(id => id !== rideSessionId));
+      await denied('submitRating', driver, {rideSessionId, ratedUserId: parent.uid, score: 1}, 'ALREADY_EXISTS');
+      const others = await collectPendingReviews(parent, false);
+      assert.equal(others.items.length, 319); assert(others.items.some(row => row.rideSessionId === rideSessionId));
+      for (const row of ratingRows) assert.deepEqual((await db.doc('ratings/' + row.id).get()).data(), row.data);
+      observations.afterSubmission = {driverRequests: all.items.length, parentRequests: others.items.length, immutableRatings: 241};
+    });
+  }, {firestore: {terminate: async () => {await db.terminate(); firestoreClientTerminated = true;}},
+    closeApp: async app => {await deleteApp(app); adminClientClosed = true;}});
+} catch (error) {failure = error;}
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
+  testedAt: new Date().toISOString(), scope: 'authenticated-isolated-pending-review-pagination-not-phone-or-production',
+  completed: !failure, steps, observations, protectedRecordCount, adminClientClosed, firestoreClientTerminated,
+  productionWrites: false, phoneUiExecuted: false, providerRequests: 0, sourceFiles}, null, 2) + '\n', {flag: 'wx'});
+if (failure) throw new Error('Review pagination failed; inspect the sanitized receipt.');

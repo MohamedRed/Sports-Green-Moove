@@ -1,0 +1,10 @@
+{
+  "version": "3.1.9",
+  "tarball": "https://registry.npmjs.org/fast-uri/-/fast-uri-3.1.9.tgz",
+  "integrity": "sha512-hS/0Wt3Ya043oKXs0sIxrMpKQITXhMLIrVAKKXi4gozGC9v7YRWVnXIZzjNPTO02M9BdxLCWqK1yRXgNziVyJQ==",
+  "source": "https://github.com/fastify/fast-uri/releases/tag/v3.1.9",
+  "advisories": [
+    "https://github.com/fastify/fast-uri/security/advisories/GHSA-qw65-cvwx-89v3",
+    "https://github.com/fastify/fast-uri/security/advisories/GHSA-w74x-v6f9-j3xg"
+  ]
+}

@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {Socket} from 'node:net';
+import dns from 'node:dns';
+
+export function runUriSecurityProbe() {
+  let networkAttempts = 0;
+  const original = {connect: Socket.prototype.connect, lookup: dns.lookup, fetch: globalThis.fetch};
+  const deny = () => {networkAttempts++; throw new Error('Pure URI probes cannot request network access');};
+  Socket.prototype.connect = deny; dns.lookup = deny; globalThis.fetch = deny;
+  try {
+    const require = createRequire(import.meta.url), consumer = createRequire(require.resolve('ajv/package.json'));
+    const uri = consumer('fast-uri'), runtime = consumer('./dist/runtime/uri').default;
+    assert.equal(runtime, uri);
+    const component = {scheme: 'http', host: 'trusted.invalid', port: '@untrusted.invalid:8124', path: '/trip'};
+    const rejectsPort = action => {
+      try {action(); return false;}
+      catch (error) {return error instanceof TypeError && error.message === 'URI port is malformed.';}
+    };
+    const inert = value => typeof value === 'string' && !/^(?:javascript|data|vbscript):/i.test(value);
+    const operations = [
+      ['serialize-rejects-port-authority-injection', () => rejectsPort(() => uri.serialize({...component}))],
+      ['normalize-rejects-port-authority-injection', () => rejectsPort(() => uri.normalize({...component}))],
+      ['equal-rejects-port-authority-injection', () => rejectsPort(() => uri.equal({...component}, 'http://trusted.invalid/trip'))],
+      ['normalize-keeps-percent-encoded-scheme-inert', () => inert(uri.normalize('%6Aavascript:alert(1)'))],
+      ['resolve-keeps-percent-encoded-scheme-inert', () => inert(uri.resolve('https://trusted.invalid/', '%6Aavascript:alert(1)'))],
+      ['normalize-keeps-unicode-escaped-scheme-inert', () => inert(uri.normalize('%u006Aavascript:alert(1)'))],
+      ['parse-does-not-promote-an-encoded-scheme', () => uri.parse('%6Aavascript:alert(1)').scheme !== 'javascript'],
+      ['equal-distinguishes-encoded-and-live-schemes', () => uri.equal('%68ttp://trusted.invalid/', 'http://trusted.invalid/') === false],
+      ['valid-numeric-port-is-preserved', () => uri.serialize({scheme: 'https', host: 'trusted.invalid', port: 8443, path: '/trip'}) === 'https://trusted.invalid:8443/trip'],
+      ['ordinary-relative-reference-is-preserved', () => uri.resolve('https://trusted.invalid/api/', '../trip?seats=2#pickup') === 'https://trusted.invalid/trip?seats=2#pickup'],
+      ['ordinary-host-and-unreserved-normalization-is-preserved', () => uri.equal('https://TRUSTED.invalid/%7etrip', 'https://trusted.invalid/~trip') === true],
+      ['real-schema-validator-resolves-relative-references', () => {
+        const Ajv = consumer('./dist/ajv').default, ajv = new Ajv({strict: true});
+        ajv.addSchema({$id: 'https://trusted.invalid/schemas/defs.json', $defs: {seats: {type: 'integer', minimum: 1, maximum: 4}}});
+        const validate = ajv.compile({$id: 'https://trusted.invalid/schemas/booking.json', type: 'object',
+          properties: {seats: {$ref: 'defs.json#/$defs/seats'}}, required: ['seats'], additionalProperties: false});
+        return validate({seats: 2}) && !validate({seats: 0}) && !validate({seats: 2, extra: true});
+      }],
+    ];
+    const cases = operations.map(([id, action]) => {
+      try {return {id, passed: action() === true, unexpectedError: false};}
+      catch {return {id, passed: false, unexpectedError: true};}
+    });
+    return {scope: 'pure-real-ajv-uri-consumer-not-application-exploit-or-provider-proof',
+      version: consumer('fast-uri/package.json').version, actualConsumerMatched: true,
+      socketFetchAndLookupGuardActive: true, networkAttempts, cases};
+  } finally {
+    Socket.prototype.connect = original.connect; dns.lookup = original.lookup; globalThis.fetch = original.fetch;
+  }
+}

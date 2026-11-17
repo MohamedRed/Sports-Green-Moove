@@ -1,0 +1,35 @@
+{
+  "scope": "original-layout-diagnosis-and-unexecuted-candidate-not-passing-visual-proof",
+  "ordinary": {
+    "cases": 315,
+    "passed": 253,
+    "failed": 7,
+    "skipped": 55
+  },
+  "reviewText": {
+    "observedWidthPx": 318,
+    "availableWidthPx": 832,
+    "overflowWidth": true,
+    "overflowHeight": false
+  },
+  "input": {
+    "matchingMergedNodes": 0,
+    "matchingUnmergedNodes": 1,
+    "allFourCasesAffected": true
+  },
+  "otherOrdinaryFailure": "trip-change-framework-PixelCopy-capture",
+  "connectedReplayExitStatus": 0,
+  "remoteStopFailure": "primary-copy-remote-ride-stop",
+  "chatFailure": "validated-wifi-prerequisite-before-app",
+  "candidate": {
+    "reviewErrorFillsAvailableWidth": true,
+    "directUnmergedTextSelection": true,
+    "viewportAndThresholdsUnchanged": true,
+    "diagnosticRecordsStillUnaccepted": true,
+    "nativeExecuted": false
+  },
+  "acceptedScreenshots": [],
+  "physicalDeviceAccepted": false,
+  "backendFlowAccepted": false,
+  "releaseAccepted": false
+}

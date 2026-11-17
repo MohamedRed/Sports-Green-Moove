@@ -1,0 +1,44 @@
+
+> sports-green-moove@0.1.0 test:local-ui-shutdown
+> node scripts/qa/check-local-ui-shutdown.mjs
+
+Original SIGINT supervisor diagnostics (outcome unchanged):
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Shutting down emulators.
+
+Error: firebase-tools no longer supports Java version before 21. Please install a JDK at version 21 or above to get a compatible runtime.
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Local service exited unsuccessfully
+    at superviseLocalProcess (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/supervised-local-process.mjs:53:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/start-local-ui.mjs:16:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.22.3
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Local UI session exited before readiness
+    at file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/scripts/qa/check-local-ui-shutdown.mjs:46:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.22.3

@@ -1,0 +1,159 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest:
+INSTRUMENTATION_STATUS: test=aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: expected:<[250, 750, 1600]> but was:<[250, 1200, 1600]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples(PrimaryCaptureWindowCalibrationTest.kt:50)
+
+INSTRUMENTATION_STATUS: stream=
+Error in aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples(be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest):
+java.lang.AssertionError: expected:<[250, 750, 1600]> but was:<[250, 1200, 1600]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples(PrimaryCaptureWindowCalibrationTest.kt:50)
+
+INSTRUMENTATION_STATUS: test=aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stack=java.util.NoSuchElementException: Collection contains no element matching the predicate.
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes(PrimaryCaptureWindowCalibrationTest.kt:97)
+
+INSTRUMENTATION_STATUS: stream=
+Error in aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes(be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest):
+java.util.NoSuchElementException: Collection contains no element matching the predicate.
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes(PrimaryCaptureWindowCalibrationTest.kt:97)
+
+INSTRUMENTATION_STATUS: test=aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest:
+INSTRUMENTATION_STATUS: test=thePrimaryOperationRunsOnceAndReturnsTheSameObject
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=thePrimaryOperationRunsOnceAndReturnsTheSameObject
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=anObserverFailureCannotReplaceEitherPrimaryOutcome
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=anObserverFailureCannotReplaceEitherPrimaryOutcome
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=sampleScheduleCoversRedrawAndTheLaterCallbackWaitWithoutAddingSamples
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sampleScheduleCoversRedrawAndTheLaterCallbackWaitWithoutAddingSamples
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=theOriginalCaptureFailureIsRethrownWithoutRetry
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=theOriginalCaptureFailureIsRethrownWithoutRetry
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=disabledAndUnselectedCapturesDoNotCreateAnObserver
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.PrimaryCaptureDiagnosticsTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=disabledAndUnselectedCapturesDoNotCreateAnObserver
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TripChangeFlowTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.TripChangeFlowTest:
+INSTRUMENTATION_STATUS: test=largeTextParentSeesBothVersionsAndAcceptsWithoutApplying
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.TripChangeFlowTest
+INSTRUMENTATION_STATUS: current=8
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=8
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=largeTextParentSeesBothVersionsAndAcceptsWithoutApplying
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 16.452
+There were 2 failures:
+1) aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples(be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest)
+java.lang.AssertionError: expected:<[250, 750, 1600]> but was:<[250, 1200, 1600]>
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.failNotEquals(Assert.java:835)
+	at org.junit.Assert.assertEquals(Assert.java:120)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aLongerOperationStillRetainsTheLateSampleWithExactlyThreeSamples(PrimaryCaptureWindowCalibrationTest.kt:50)
+2) aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes(be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest)
+java.util.NoSuchElementException: Collection contains no element matching the predicate.
+	at be.sportgreenmoove.app.ui.PrimaryCaptureWindowCalibrationTest.aShortOperationObservesTheLaterBlockedMainThreadBeforeItFinishes(PrimaryCaptureWindowCalibrationTest.kt:97)
+
+FAILURES!!!
+Tests run: 8,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import { createHash, randomUUID } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { call, db, signIn } from './local-flow-client.mjs';
+
+execFileSync(process.execPath, [resolve(import.meta.dirname, 'seed-firebase-emulator.mjs')],
+  { env: process.env, stdio: ['ignore', 'pipe', 'pipe'], timeout: 90_000 });
+const parent = await signIn('p@example.test'), manager = await signIn('c@example.test');
+const childId = 'sgm-qa-child-lina', clubId = 'sgm-qa-club-green-wavre', target = { kind: 'child', childId, clubId };
+const transition = (actor, action, expectedRevision) => call('transitionGuardianVerification', actor,
+  { childId, clubId, parentUserId: parent.uid, action, expectedRevision, requestId: randomUUID() });
+await transition(parent, 'request', 0); await transition(manager, 'verify', 1);
+const originalWrite = { target, expectedRevision: 0, requestId: randomUUID(),
+  contact: { name: 'Ancien contact fictif QA', phone: '+12025550123' } };
+await call('saveEmergencyContact', parent, originalWrite);
+const ref = db.collection('children').doc(childId), before = await ref.get();
+await ref.delete(); await ref.create({ ...before.data(), displayName: 'Autre profil enfant QA' });
+const after = await ref.get(); assert(!before.createTime.isEqual(after.createTime));
+async function observeRead() {
+  try {
+    const result = await call('getEmergencyContact', parent, { target });
+    return { allowed: true, oldContactReturned: result.contact?.phone === originalWrite.contact.phone };
+  } catch (error) { return { allowed: false, code: error.code }; }
+}
+const beforeReverification = await observeRead();
+let replay;
+try { replay = { allowed: true, replayed: (await call('saveEmergencyContact', parent, originalWrite)).replayed }; }
+catch (error) { replay = { allowed: false, code: error.code }; }
+await transition(manager, 'revoke', 2); await transition(parent, 'request', 3); await transition(manager, 'verify', 4);
+const afterReverification = await observeRead();
+const files = ['functions/src/domain/emergencyContact.ts', 'functions/src/services/emergencyContactAuthority.ts',
+  'functions/src/services/emergencyContact.ts', 'scripts/qa/local-emergency-identity-probe.mjs'];
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({
+  scope: 'isolated-security-reproduction-not-passing-emergency-flow', runId: process.env.SGM_LOCAL_RUN_ID,
+  testedAt: new Date().toISOString(), projectId: 'demo-sgm-local-qa',
+  childImmutableIdentityChanged: true, beforeReverification, replay, afterReverification,
+  vulnerableBehaviorReproduced: beforeReverification.oldContactReturned === true && replay.allowed && afterReverification.oldContactReturned === true,
+  productionWrites: false, nativeUiExecuted: false, physicalDevice: false, providerRequests: 0,
+  sourceFiles: Object.fromEntries(files.map((file) => [file, createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', file))).digest('hex')]))
+}, null, 2) + '\n', { flag: 'wx' });
+console.log('Recorded isolated child-identity observations; this is a security probe, not passing phone or release evidence.');

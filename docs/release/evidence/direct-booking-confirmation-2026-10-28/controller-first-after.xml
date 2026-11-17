@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripActionBookingTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-28T16:37:25.955Z" hostname="MRRs-MacBook-Air.local" time="0.072">
+  <properties/>
+  <testcase name="accountClosureRejectsALateSuccessfulReplyAndClearsAllPrivateState" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.054"/>
+  <testcase name="openingAndDismissingEitherCardNeverCreatesABooking" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.0"/>
+  <testcase name="aFreshControllerFindsAnEarlierReservationBeyondTheFirstPage" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.009"/>
+  <testcase name="anotherChildsReservationDoesNotBlockTheAdultsExplicitRequest" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.001"/>
+  <testcase name="repeatedParentCardTapsMustNotResubmitAnAcknowledgedBooking" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.002"/>
+  <testcase name="onlyAnExplicitRetryResubmitsAnUnconfirmedReplyThroughTheExistingGateway" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.001"/>
+  <testcase name="foreignAccountsAndRepeatedCursorsAreRejectedWithoutAnyWrite" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.001"/>
+  <testcase name="changedTermsRequireReloadAndANewExplicitConfirmation" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.001"/>
+  <testcase name="repeatedConfirmationAndAnotherCardCannotChangeAnInFlightRequest" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.0"/>
+  <testcase name="aDelayedReadAfterAnAccountSwitchCannotEnableConfirmation" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.0"/>
+  <testcase name="failedHistoryReadsCannotSilentlyPermitAnotherBooking" classname="be.sportgreenmoove.app.ui.TripActionBookingTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "Actual payment screen controller and app state with synthetic gateways; signature-only SDK contracts",
+  "delayedOnboardingCases": 28,
+  "nativeChecks": {
+    "exitCode": 0,
+    "log": "native-checks.txt",
+    "logSha256": "7d91ea368e4ebce9a0065b7e0c2f25a3664d0764529111f4f5fd3baddf6584bf"
+  },
+  "callableSignatures": {
+    "exitCode": 0,
+    "log": "callable-signatures.txt",
+    "logSha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+  },
+  "staleScreenRequests": 0,
+  "currentExplicitRetryAccepted": true,
+  "secureUrlChecksAccepted": true,
+  "sdkLinkedBuildAccepted": false,
+  "renderedPaymentScreenAccepted": false,
+  "browserOpened": false,
+  "providerRequests": 0,
+  "realOnboarding": false,
+  "livePayment": false,
+  "fullSignOutAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

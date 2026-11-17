@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.304Z" hostname="local-test-host" time="0.006">
+  <properties></properties>
+  <testcase name="advancingQueuedWorkNeverBypassesTheFreshReadRevocationDenial" classname="be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest" time="0.003"></testcase>
+  <testcase name="callbackCompletionDoesNotRunTheQueuedDialContinuationWithoutSchedulerProgress" classname="be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest" time="0.002"></testcase>
+  <testcase name="advancingQueuedWorkNeverDialsAChangedDestinationWithoutAnotherTap" classname="be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

@@ -1,0 +1,314 @@
+[
+  {
+    "label": "native-focus-email",
+    "startedAt": "2026-10-22T20:58:19.991Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:20.250Z"
+  },
+  {
+    "label": "native-enter-fixture-email",
+    "startedAt": "2026-10-22T20:58:20.250Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:20.430Z"
+  },
+  {
+    "label": "native-insert-email-clipboard-chip",
+    "startedAt": "2026-10-22T20:58:34.926Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:35.055Z"
+  },
+  {
+    "label": "native-focus-password",
+    "startedAt": "2026-10-22T20:58:35.056Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:35.113Z"
+  },
+  {
+    "label": "native-enter-fixture-password",
+    "startedAt": "2026-10-22T20:58:35.114Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:35.131Z"
+  },
+  {
+    "label": "native-insert-password-clipboard-chip",
+    "startedAt": "2026-10-22T20:58:42.174Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:42.311Z"
+  },
+  {
+    "label": "native-hide-auth-keyboard",
+    "startedAt": "2026-10-22T20:58:42.311Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:42.359Z"
+  },
+  {
+    "label": "native-fixture-sign-in",
+    "startedAt": "2026-10-22T20:58:49.663Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:58:49.831Z"
+  },
+  {
+    "label": "native-open-profile",
+    "startedAt": "2026-10-22T20:59:13.654Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:59:13.946Z"
+  },
+  {
+    "label": "native-scroll-profile-options",
+    "startedAt": "2026-10-22T20:59:28.369Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:59:28.672Z"
+  },
+  {
+    "label": "native-open-options",
+    "startedAt": "2026-10-22T20:59:35.326Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:59:35.457Z"
+  },
+  {
+    "label": "native-scroll-support-form",
+    "startedAt": "2026-10-22T20:59:44.028Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:59:44.378Z"
+  },
+  {
+    "label": "native-scroll-form-bottom",
+    "startedAt": "2026-10-22T20:59:57.015Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:59:57.427Z"
+  },
+  {
+    "label": "native-focus-reason",
+    "startedAt": "2026-10-22T21:00:07.575Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:07.695Z"
+  },
+  {
+    "label": "native-select-reason",
+    "startedAt": "2026-10-22T21:00:07.695Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:07.729Z"
+  },
+  {
+    "label": "native-paste-reason",
+    "startedAt": "2026-10-22T21:00:07.732Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:07.761Z"
+  },
+  {
+    "label": "native-reason-context-menu",
+    "startedAt": "2026-10-22T21:00:16.409Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:17.729Z"
+  },
+  {
+    "label": "native-insert-reason-context-paste",
+    "startedAt": "2026-10-22T21:00:27.743Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:27.879Z"
+  },
+  {
+    "label": "native-focus-description",
+    "startedAt": "2026-10-22T21:00:27.879Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:27.945Z"
+  },
+  {
+    "label": "native-paste-description",
+    "startedAt": "2026-10-22T21:00:27.946Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:27.958Z"
+  },
+  {
+    "label": "native-insert-description-chip",
+    "startedAt": "2026-10-22T21:00:35.719Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:35.886Z"
+  },
+  {
+    "label": "native-hide-form-keyboard",
+    "startedAt": "2026-10-22T21:00:35.886Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:35.971Z"
+  },
+  {
+    "label": "native-enable-urgent",
+    "startedAt": "2026-10-22T21:00:54.765Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:00:55.030Z"
+  },
+  {
+    "label": "native-initial-send-once",
+    "startedAt": "2026-10-22T21:01:02.803Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:01:02.941Z"
+  },
+  {
+    "label": "provider-query-process-before-stop",
+    "startedAt": "2026-10-22T21:06:55.714Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:06:55.964Z"
+  },
+  {
+    "label": "native-home-for-stop",
+    "startedAt": "2026-10-22T21:07:22.195Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:07:22.538Z"
+  },
+  {
+    "label": "native-open-app-drawer-for-stop",
+    "startedAt": "2026-10-22T21:07:29.858Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:07:30.177Z"
+  },
+  {
+    "label": "native-scroll-drawer-for-stop",
+    "startedAt": "2026-10-22T21:07:38.651Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:07:38.913Z"
+  },
+  {
+    "label": "native-open-app-menu",
+    "startedAt": "2026-10-22T21:07:48.310Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:07:49.553Z"
+  },
+  {
+    "label": "native-open-app-info",
+    "startedAt": "2026-10-22T21:07:56.639Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:07:56.792Z"
+  },
+  {
+    "label": "native-force-stop-request",
+    "startedAt": "2026-10-22T21:08:03.815Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:08:03.956Z"
+  },
+  {
+    "label": "native-confirm-force-stop",
+    "startedAt": "2026-10-22T21:08:12.142Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:08:12.264Z"
+  },
+  {
+    "label": "provider-query-stopped-process",
+    "startedAt": "2026-10-22T21:08:25.589Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:08:25.922Z"
+  },
+  {
+    "label": "native-reopen-after-force-stop",
+    "startedAt": "2026-10-22T21:08:37.137Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:08:37.286Z"
+  },
+  {
+    "label": "provider-query-reopened-process",
+    "startedAt": "2026-10-22T21:08:59.489Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:09:00.317Z"
+  },
+  {
+    "label": "native-open-profile-after-restart",
+    "startedAt": "2026-10-22T21:09:15.369Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:09:15.517Z"
+  },
+  {
+    "label": "native-scroll-profile-after-restart",
+    "startedAt": "2026-10-22T21:09:24.451Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:09:24.706Z"
+  },
+  {
+    "label": "native-open-options-after-restart",
+    "startedAt": "2026-10-22T21:09:32.954Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:09:33.217Z"
+  },
+  {
+    "label": "native-scroll-form-after-restart",
+    "startedAt": "2026-10-22T21:09:41.376Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:09:41.730Z"
+  },
+  {
+    "label": "native-explicit-retry-once-after-process-restart",
+    "startedAt": "2026-10-22T21:10:22.076Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:10:22.230Z"
+  },
+  {
+    "label": "native-open-support-history-after-retry",
+    "startedAt": "2026-10-22T21:10:41.068Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:10:41.164Z"
+  },
+  {
+    "label": "native-open-restored-request-details",
+    "startedAt": "2026-10-22T21:10:50.635Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:10:50.720Z"
+  },
+  {
+    "label": "native-return-app-info-for-cleanup",
+    "startedAt": "2026-10-22T21:12:52.268Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:12:52.400Z"
+  },
+  {
+    "label": "native-uninstall-request",
+    "startedAt": "2026-10-22T21:13:01.565Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:13:01.683Z"
+  },
+  {
+    "label": "native-open-cleanup-drawer",
+    "startedAt": "2026-10-22T21:13:16.591Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:13:16.863Z"
+  },
+  {
+    "label": "native-scroll-cleanup-drawer",
+    "startedAt": "2026-10-22T21:13:26.099Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:13:26.375Z"
+  },
+  {
+    "label": "native-inspect-retained-app-icon",
+    "startedAt": "2026-10-22T21:14:02.083Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:14:03.591Z"
+  },
+  {
+    "label": "native-inspect-retained-app-info",
+    "startedAt": "2026-10-22T21:14:12.212Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:14:12.348Z"
+  },
+  {
+    "label": "native-uninstall-label-request",
+    "startedAt": "2026-10-22T21:14:23.088Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:14:23.208Z"
+  },
+  {
+    "label": "provider-reattach-same-apk-for-cleanup",
+    "startedAt": "2026-10-22T21:14:57.152Z",
+    "status": "failed",
+    "finishedAt": "2026-10-22T21:14:57.216Z"
+  },
+  {
+    "label": "provider-select-same-apk-row-for-cleanup",
+    "startedAt": "2026-10-22T21:15:24.096Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:15:24.292Z"
+  },
+  {
+    "label": "native-open-app-info-for-data-cleanup",
+    "startedAt": "2026-10-22T21:16:44.207Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T21:16:44.343Z"
+  }
+]

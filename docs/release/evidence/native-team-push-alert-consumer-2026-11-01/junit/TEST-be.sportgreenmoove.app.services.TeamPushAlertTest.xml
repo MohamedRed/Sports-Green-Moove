@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushAlertTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:45.601Z" hostname="local-test-host" time="0.06">
+  <properties></properties>
+  <testcase name="proofOnlyLeavesTheJournalInTheStrictCallableRequestAndNeverInDiagnosticStrings" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.002"></testcase>
+  <testcase name="permissionWithdrawalImmediatelyPersistsOneRemovalWithoutSigningTheUserOut" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.015"></testcase>
+  <testcase name="suppressedAlertHasNoEffectAndDoesNotModifyTheRegistration" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.004"></testcase>
+  <testcase name="signoutInvalidatesAuthorityBeforeThePlatformNotificationCleanupHook" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.003"></testcase>
+  <testcase name="tokenRefreshIsSerializedBehindResolutionAndDoesNotInvalidateTheNextTapEpoch" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.011"></testcase>
+  <testcase name="permissionWithdrawalDuringResolutionRejectsTheReceiptBeforeDisplay" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.004"></testcase>
+  <testcase name="currentConfirmedDeviceResolvesAndConsumesOnlyAfterTheActualServerResult" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.004"></testcase>
+  <testcase name="malformedRequestsCannotCarryArbitraryIdentifiersOrEpochs" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.002"></testcase>
+  <testcase name="permissionRemovalAndUnconfirmedRegistrationNeverResolve" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.003"></testcase>
+  <testcase name="signoutWhileResolvingCannotDisplayOrOpenAnEarlierResult" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.006"></testcase>
+  <testcase name="reenablingNotificationsNeedsNewTokenConfirmationButKeepsTheCurrentAccountEpoch" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.002"></testcase>
+  <testcase name="anotherAccountAndReturnToTheSameAccountCannotReuseAnEarlierEpoch" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.002"></testcase>
+  <testcase name="onlyGenericCopyAndTheExactOpaqueAlertCanBecomeATeamTarget" classname="be.sportgreenmoove.app.services.TeamPushAlertTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

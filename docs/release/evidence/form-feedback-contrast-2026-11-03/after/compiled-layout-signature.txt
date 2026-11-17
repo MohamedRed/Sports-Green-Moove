@@ -1,0 +1,10 @@
+Compiled from "FormFeedbackLayoutTest.kt"
+public final class be.sportgreenmoove.app.ui.FormFeedbackLayoutTest {
+  public static final be.sportgreenmoove.app.ui.FormFeedbackLayoutTest$Companion Companion;
+  public static final int $stable;
+  public be.sportgreenmoove.app.ui.FormFeedbackLayoutTest(java.lang.String, boolean, int, int, float);
+  public final androidx.compose.ui.test.junit4.ComposeContentTestRule getCompose();
+  public final void actualFormFeedbackIsCompleteAndReadable();
+  public static final java.util.Collection<java.lang.Object[]> cases();
+  static {};
+}

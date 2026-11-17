@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.LedgerSummaryWireTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.522Z" hostname="local-test-host" time="0.007">
+  <properties></properties>
+  <testcase name="completeTotalsAreNotRecomputedFromEightHistoryEntries" classname="be.sportgreenmoove.app.services.LedgerSummaryWireTest" time="0.005"></testcase>
+  <testcase name="foreignAndMalformedTotalsAreRejectedInsteadOfReplacingThemWithZero" classname="be.sportgreenmoove.app.services.LedgerSummaryWireTest" time="0.001"></testcase>
+  <testcase name="unboundedDuplicateUnknownAndUnsortedHistoryIsRejected" classname="be.sportgreenmoove.app.services.LedgerSummaryWireTest" time="0.001"></testcase>
+  <testcase name="emptyLedgerIsExplicitAndIntegerMinimumDoesNotOverflowFormatting" classname="be.sportgreenmoove.app.services.LedgerSummaryWireTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

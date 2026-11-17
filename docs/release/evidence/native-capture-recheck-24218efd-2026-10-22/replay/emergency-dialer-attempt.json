@@ -1,0 +1,13 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "86398f3a285a7012032289d2dc626b1f",
+  "scope": "read-only-local-dialer-attempt-diagnostic-not-flow-verification",
+  "resolvedComponent": "com.google.android.dialer\/com.android.dialer.main.impl.MainActivity",
+  "observedPackage": "com.google.android.dialer",
+  "expectedPackageAppeared": true,
+  "dialIntentCount": 1,
+  "directCallIntentCount": 0,
+  "knownAppFeedback": [],
+  "captureWritten": true,
+  "capture": "emergency-dialer-attempt.png"
+}

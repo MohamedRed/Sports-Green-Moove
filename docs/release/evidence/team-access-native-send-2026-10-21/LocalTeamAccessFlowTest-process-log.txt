@@ -1,0 +1,12 @@
+--------- beginning of system
+W/ActivityManager(  546): Slow operation: 228ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  546): Slow operation: 228ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  546): Slow operation: 229ms so far, now at startProcess: building log message
+I/ActivityManager(  546): Start proc 5681:be.sportgreenmoove.app.local.test/u0a211 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  546): Slow operation: 229ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  546): Slow operation: 230ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  546): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  546): Unable to freeze binder for 5144: -11
+I/ActivityManager(  546): Killing 5144:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  546): setHasOverlayUi called on unknown pid: 5144
+W/ActivityManager(  546): pid 1305 com.google.android.inputmethod.latin sent binder code 28 with flags 1 to frozen apps and got error -32

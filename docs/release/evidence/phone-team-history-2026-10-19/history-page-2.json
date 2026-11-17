@@ -1,0 +1,1751 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "6ff541fda69369710b0b2f632b752e1e",
+  "recordedAt": "2026-10-19T12:18:44.319Z",
+  "scope": "independent-local-history-checkpoint-not-ui-proof",
+  "phase": "history-page-2",
+  "ownedCount": 26,
+  "pageCounts": [
+    20,
+    6
+  ],
+  "selfRevision": 2,
+  "selfStatus": "approved",
+  "childStatus": "approved",
+  "childNameRedacted": true,
+  "childActions": [],
+  "identity": {
+    "clubId": "sgm-qa-team-ui-club",
+    "teamId": "sgm-qa-team-ui-team",
+    "childId": "sgm-qa-team-ui-child",
+    "parentId": "sgm-qa-parent",
+    "managerId": "sgm-qa-club-manager",
+    "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+    "selfEnrollmentId": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+    "childEnrollmentId": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5"
+  },
+  "state": {
+    "enrollments": [
+      {
+        "id": "01426b4414dffbd2e59eab64ba138c8f6c7882209a9106b0c21a0640ccae1072",
+        "teamId": "sgm-qa-history-phone-15",
+        "teamInstanceId": "5c63119f516c072e831cd03716b52a3d8a3ec146916bdba267b67e6447cc9dae",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 236785000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 293000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 293000000
+        }
+      },
+      {
+        "id": "2f99d8b6a7558685abec49f1aa5ba08f0eaffb8c6163e8b7e91c119e485a6795",
+        "teamId": "sgm-qa-history-phone-05",
+        "teamInstanceId": "08c91a5ae8f533de0dbb670bbc8de62684550a47c2c1485c4bfab92265dff17d",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 570289000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 626000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 626000000
+        }
+      },
+      {
+        "id": "3590281b9f0bd817d8bb31ce5e8677fcb642237d91465fdb0274df655e5d4bde",
+        "teamId": "sgm-qa-history-phone-02",
+        "teamInstanceId": "51256bb6bb88308607207ea8a282cccf4a3d114764f6dee9c1a6bec28d1a82cf",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 381341000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 430000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 430000000
+        }
+      },
+      {
+        "id": "3fc7d3b43c39a93fea6811fa6289e1d746b7acf3f7591d995bb120b8d1bf78ea",
+        "teamId": "sgm-qa-history-phone-14",
+        "teamInstanceId": "2da7a30c2b3baba65a816d57c4233bae03a883d6432ba0d71f8d695a480d8014",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 167962000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 220000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 220000000
+        }
+      },
+      {
+        "id": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "teamCreatedAt": {
+          "_seconds": 1792412061,
+          "_nanoseconds": 90625000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "child",
+        "subjectId": "sgm-qa-team-ui-child",
+        "childCreatedAt": {
+          "_seconds": 1792412061,
+          "_nanoseconds": 90625000
+        },
+        "requesterUserId": "sgm-qa-parent",
+        "status": "approved",
+        "revision": 2,
+        "lastActorUserId": "sgm-qa-club-manager",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 172000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 219000000
+        }
+      },
+      {
+        "id": "622acc45924a489f78a504aa0b64ba6f54f07556d9912ed2473fbc7d86a75e47",
+        "teamId": "sgm-qa-history-phone-19",
+        "teamInstanceId": "d42df87a8f6e8ef81f4b9c58c9cb1b18aa30d3fdd9102dc36a436e082633033d",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 514668000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 571000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 571000000
+        }
+      },
+      {
+        "id": "66a72b3ac97725082f5d221b7a9ccef57163c42a4a66b2602c22ac18283d2425",
+        "teamId": "sgm-qa-history-phone-12",
+        "teamInstanceId": "89c01c57e3f67f44e73dd1c00656f01bd312ea1e6a8bef8a982a61a36552a19c",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 33670000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 96000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 96000000
+        }
+      },
+      {
+        "id": "66fd543dc3f4d8b5b6e0a300e5dc158717fea8902481401e6aa6ef32a143be3d",
+        "teamId": "sgm-qa-history-phone-08",
+        "teamInstanceId": "164343ea6cd058e8fe71330f380f44f8d7a60331acd85edb5ed1c80e183c8116",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 761607000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 806000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 806000000
+        }
+      },
+      {
+        "id": "78ed86d5f411811c7e8e02219c3d8cbb54019893a57acf12dab0de4cb0f58459",
+        "teamId": "sgm-qa-history-phone-22",
+        "teamInstanceId": "b57db29108d4fd1cab2f3178c309efc0ad3ec21d69d5a4cf8454f1e58285489d",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 700759000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 762000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 762000000
+        }
+      },
+      {
+        "id": "83cb2fabcf53bbd3c69adf00aa507728714838b813530388c1111722f035c71d",
+        "teamId": "sgm-qa-history-phone-01",
+        "teamInstanceId": "0f5dd51482b3a7ef90400c637f1a0f9567a54a23da02d3efa4e53f9d5a5a3065",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 253604000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 345000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 345000000
+        }
+      },
+      {
+        "id": "8d5885cf6c9127ca4e1b76e915f25e75a2cc42c53f6ac75d7a29f267818f651f",
+        "teamId": "sgm-qa-history-phone-13",
+        "teamInstanceId": "7e2c16e453924f5334fcbbec71516bc15ef9db4a975228bfd238e56b0a937e6f",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 111506000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 160000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 160000000
+        }
+      },
+      {
+        "id": "97bb4d73d5ad895ab9633b4137b371806a3ab3e60a6db1005c30c8c29cf343f4",
+        "teamId": "sgm-qa-history-phone-07",
+        "teamInstanceId": "011df98253f778b87cfa220ae9fb8e429c5d2b476016c6eb6dd7dae18b395842",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 694308000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 746000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 746000000
+        }
+      },
+      {
+        "id": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "teamCreatedAt": {
+          "_seconds": 1792412061,
+          "_nanoseconds": 90625000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "approved",
+        "revision": 2,
+        "lastActorUserId": "sgm-qa-club-manager",
+        "createdAt": {
+          "_seconds": 1792412064,
+          "_nanoseconds": 432000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412065,
+          "_nanoseconds": 714000000
+        }
+      },
+      {
+        "id": "a25c0ddba818c1993ec949b4a0485a1c525fab786060daa37aa5a3719adf33d7",
+        "teamId": "sgm-qa-history-phone-03",
+        "teamInstanceId": "1713244d8ab4fe5e2bff90ed86f900b45b9759442dcabd75fddb977046d13ae9",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 442612000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 492000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 492000000
+        }
+      },
+      {
+        "id": "ac78e686a329e6af08711dded1f9a2745466162a41bac6eba8b632028662c147",
+        "teamId": "sgm-qa-history-phone-23",
+        "teamInstanceId": "0de55ab223d5cc60422e386a610088c49d5b8cfc8f228a6ceb50fc6505d19737",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 772074000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 833000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 833000000
+        }
+      },
+      {
+        "id": "b63b8525a60bcc6c9209f5d26ae5584bdd01d529c7a700588399d7c38da953ab",
+        "teamId": "sgm-qa-history-phone-09",
+        "teamInstanceId": "ade0077046e03749dae5fe08876a775bd528d4e0f0e9c9770e84997d4ae20fa8",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 824004000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 882000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 882000000
+        }
+      },
+      {
+        "id": "cb7ae32504ac58a78c1c7c0954ccc94033c3ecb7dff896503fac5c1a4171d604",
+        "teamId": "sgm-qa-history-phone-04",
+        "teamInstanceId": "932fb1edecebfc5d708d88688208b9e6f41422820f2459c17373541c7ad36059",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 505710000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 558000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 558000000
+        }
+      },
+      {
+        "id": "e8a876f2205be05587715d9d3fbe092fc66170a5e6df4843c9388de62ca4be5d",
+        "teamId": "sgm-qa-history-phone-06",
+        "teamInstanceId": "e50a36c14269904622dc414f9ebc393ed78ad22d35679dc2ce24817fcc87af5e",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 637334000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 684000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 684000000
+        }
+      },
+      {
+        "id": "eb8c219bc9c0bc6824978fb43c952452268a158a41014a4f4bfe8d5e9b2c47dc",
+        "teamId": "sgm-qa-history-phone-20",
+        "teamInstanceId": "e852ef85bfe932f04cee55ede2c4ec623b197817513fe4086e8734c899b0d463",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 585687000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 631000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 631000000
+        }
+      },
+      {
+        "id": "ec0a22c9a2e88fc0c66b304c57b16b9806e9f09dd770b39a290283f8c292215e",
+        "teamId": "sgm-qa-history-phone-11",
+        "teamInstanceId": "88683bfd94797a070ec3ad012e0166def487c98ce539bc37ce1b236ea4107919",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 966427000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 22000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 22000000
+        }
+      },
+      {
+        "id": "ef7de519d9ed06d0ffd282b7c8c2f09c18432363afa35af20d1b3d36acd8c616",
+        "teamId": "sgm-qa-history-phone-18",
+        "teamInstanceId": "b5cda4d6dc832612b8ab4d16dc0dbe4fa061edef347d4401407213c29f2949a3",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 437422000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 503000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 503000000
+        }
+      },
+      {
+        "id": "f035050bd3db58b3e312cbf13204c54f8c43b2fdff6b5fc84c0108a2b279e818",
+        "teamId": "sgm-qa-history-phone-21",
+        "teamInstanceId": "8b882c55fa5540f2ad39f19fe03ab22073640f0dbd36c558a92fd2e1982cf560",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 644427000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 689000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 689000000
+        }
+      },
+      {
+        "id": "f37b10728cc43052d414572c4a1957df40297c7b9fb8145f547964f6f63b861a",
+        "teamId": "sgm-qa-history-phone-17",
+        "teamInstanceId": "61e9a8fc477b85b7f5a8a44b044a99632eb4364e4bcb474372da9a307c82d058",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 376820000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 422000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 422000000
+        }
+      },
+      {
+        "id": "fa6f0d2812768ca5b945abf06d8e35a7be8b92ca7e843ead7227c456942c9792",
+        "teamId": "sgm-qa-history-phone-24",
+        "teamInstanceId": "00c89136a3331c3e68db63312ee997d44242e1c39f9b65925ee77fe47c71103f",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 849668000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 899000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 899000000
+        }
+      },
+      {
+        "id": "ff046790885f07cd13b7bae9816f2b13366998c2ed67ec60876408804f573b32",
+        "teamId": "sgm-qa-history-phone-10",
+        "teamInstanceId": "7fa990dc78fe34795bd8da30766bfe0fba6b67ade351c0b66dc1fb671ffa3801",
+        "teamCreatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 897097000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 949000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 949000000
+        }
+      },
+      {
+        "id": "ff7369061c53e07b11d7d3ccd8c2575f2add6ccec94366ed9c9ca6145ec0dbc6",
+        "teamId": "sgm-qa-history-phone-16",
+        "teamInstanceId": "ce3ebe003adcfa2646af70cde3763bcedf818bf5520a0d3b4789b08cf1a05e07",
+        "teamCreatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 306014000
+        },
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "childCreatedAt": null,
+        "requesterUserId": "sgm-qa-parent",
+        "status": "requested",
+        "revision": 1,
+        "lastActorUserId": "sgm-qa-parent",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 361000000
+        },
+        "updatedAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 361000000
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "2126394faed290c55abaa26dd3fa1a09bf600fd0946ef877285307e394e1267a",
+        "enrollmentId": "fa6f0d2812768ca5b945abf06d8e35a7be8b92ca7e843ead7227c456942c9792",
+        "teamId": "sgm-qa-history-phone-24",
+        "teamInstanceId": "00c89136a3331c3e68db63312ee997d44242e1c39f9b65925ee77fe47c71103f",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "a1d8dc83840dfc5914812e05bd79bd14bcd88e1154c298d0ab333ff1fb754ca6",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 899000000
+        }
+      },
+      {
+        "id": "28b1bd84c4a5bcf6b7dda1f1840cd3fea58ad6213c7066235dd4f191a6977754",
+        "enrollmentId": "622acc45924a489f78a504aa0b64ba6f54f07556d9912ed2473fbc7d86a75e47",
+        "teamId": "sgm-qa-history-phone-19",
+        "teamInstanceId": "d42df87a8f6e8ef81f4b9c58c9cb1b18aa30d3fdd9102dc36a436e082633033d",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "5fa1dac9b00f7bc58d151e1364932317c16ca122213f12d8b2ebfe3b88e5d87e",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 571000000
+        }
+      },
+      {
+        "id": "31b958470df8bac0dff967620b01d9818cf2e4c5690af016bf09d9677ae4bb8a",
+        "enrollmentId": "66fd543dc3f4d8b5b6e0a300e5dc158717fea8902481401e6aa6ef32a143be3d",
+        "teamId": "sgm-qa-history-phone-08",
+        "teamInstanceId": "164343ea6cd058e8fe71330f380f44f8d7a60331acd85edb5ed1c80e183c8116",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "7a87a4b915cc3f759fb84ab31e1d0d90d0695399f4679a0bd217097dd2250e4b",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 806000000
+        }
+      },
+      {
+        "id": "37f40475515f7f2aa8fa0101595b2da41cbcdcce99756e12a87f056a363cb403",
+        "enrollmentId": "8d5885cf6c9127ca4e1b76e915f25e75a2cc42c53f6ac75d7a29f267818f651f",
+        "teamId": "sgm-qa-history-phone-13",
+        "teamInstanceId": "7e2c16e453924f5334fcbbec71516bc15ef9db4a975228bfd238e56b0a937e6f",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "7ee1dc682069850f97400a1ed655d04ec5f9714063c2db13467bf0c502e39e01",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 160000000
+        }
+      },
+      {
+        "id": "4b0d2c9f455732c63dfa5da961461078561e119a048bf1f57d0c42c9232c37b1",
+        "enrollmentId": "ef7de519d9ed06d0ffd282b7c8c2f09c18432363afa35af20d1b3d36acd8c616",
+        "teamId": "sgm-qa-history-phone-18",
+        "teamInstanceId": "b5cda4d6dc832612b8ab4d16dc0dbe4fa061edef347d4401407213c29f2949a3",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "c77887909f41a54d9fb8b25cf23434dd5f0e46b20b8264489e8fc15566299cce",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 503000000
+        }
+      },
+      {
+        "id": "5a786f8a8bf88e1190171b765372d5258b43bafd5d01aef41d36dfdbda15af67",
+        "enrollmentId": "f035050bd3db58b3e312cbf13204c54f8c43b2fdff6b5fc84c0108a2b279e818",
+        "teamId": "sgm-qa-history-phone-21",
+        "teamInstanceId": "8b882c55fa5540f2ad39f19fe03ab22073640f0dbd36c558a92fd2e1982cf560",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "8929c7bdc450b8981f4c0f1859da304642affebe7c1e38499411b487ccf7fb63",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 689000000
+        }
+      },
+      {
+        "id": "5c8aef5e1290422850e0af90620a2e43d9857268e056a3106e125fdecd8e1e7c",
+        "enrollmentId": "ff046790885f07cd13b7bae9816f2b13366998c2ed67ec60876408804f573b32",
+        "teamId": "sgm-qa-history-phone-10",
+        "teamInstanceId": "7fa990dc78fe34795bd8da30766bfe0fba6b67ade351c0b66dc1fb671ffa3801",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "cc8ebab18001b17cc01cacb19a6fe8ca7f10298f31c3d1e474a5819ceff1b3c5",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 949000000
+        }
+      },
+      {
+        "id": "5e04c300ea07f6cd51cfab7abb87ec073a0143c39d640858ad8661b472c8262c",
+        "enrollmentId": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "b718ce302f9cb8003ebaf660571fc1e32e539cec1f98a7b756db7fbba0be74cd",
+        "createdAt": {
+          "_seconds": 1792412064,
+          "_nanoseconds": 432000000
+        }
+      },
+      {
+        "id": "6ca8bdf06d3b41c8187c9ed1a9b7e3ef9540fe86428d484848f24972638d1721",
+        "enrollmentId": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "child",
+        "subjectId": "sgm-qa-team-ui-child",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-club-manager",
+        "action": "approve",
+        "previousStatus": "requested",
+        "status": "approved",
+        "revision": 2,
+        "fingerprint": "87b449fbef8179ea5b5a428c8a5eab1f26731a0bd6f930b73bdedd9ae6fbd766",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 219000000
+        }
+      },
+      {
+        "id": "754319ea9fdb62083eb539351ef3e47afd8b3e3857b55cb005a2122facaa82be",
+        "enrollmentId": "ac78e686a329e6af08711dded1f9a2745466162a41bac6eba8b632028662c147",
+        "teamId": "sgm-qa-history-phone-23",
+        "teamInstanceId": "0de55ab223d5cc60422e386a610088c49d5b8cfc8f228a6ceb50fc6505d19737",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "a76092784571c6f8af3c1ea3d3a13cc3922ab409d231a519f007c8a4e1d4af52",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 833000000
+        }
+      },
+      {
+        "id": "793e1b15504c8b38507c7e3dba12a56bf2f9b36313167cb33feccfdec3ca0a6a",
+        "enrollmentId": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-club-manager",
+        "action": "approve",
+        "previousStatus": "requested",
+        "status": "approved",
+        "revision": 2,
+        "fingerprint": "e00d3641039e8d4862ca3ed5b924c15e5c37ce4d12931c042554f839b5725994",
+        "createdAt": {
+          "_seconds": 1792412065,
+          "_nanoseconds": 714000000
+        }
+      },
+      {
+        "id": "810a9c084fc3645086c2320e648950cd46281554d3f8b56ce43cb86992156b74",
+        "enrollmentId": "01426b4414dffbd2e59eab64ba138c8f6c7882209a9106b0c21a0640ccae1072",
+        "teamId": "sgm-qa-history-phone-15",
+        "teamInstanceId": "5c63119f516c072e831cd03716b52a3d8a3ec146916bdba267b67e6447cc9dae",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "8754b51e80cc75887b812824ff5696061d6b250db8b2de3deab170058242d3ce",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 293000000
+        }
+      },
+      {
+        "id": "81d0f8e1b67efca132fc225be6b32bf3100bb7d0f6614286513a26a6a786d76e",
+        "enrollmentId": "97bb4d73d5ad895ab9633b4137b371806a3ab3e60a6db1005c30c8c29cf343f4",
+        "teamId": "sgm-qa-history-phone-07",
+        "teamInstanceId": "011df98253f778b87cfa220ae9fb8e429c5d2b476016c6eb6dd7dae18b395842",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "105fc09e4c695302e816ad39b966f1637460d09d68d33f41b4e1a7045dde7f27",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 746000000
+        }
+      },
+      {
+        "id": "8ad635760afe8066d50896509168365a3ecfaa1d53dbeefd25272fb8cba61db7",
+        "enrollmentId": "b63b8525a60bcc6c9209f5d26ae5584bdd01d529c7a700588399d7c38da953ab",
+        "teamId": "sgm-qa-history-phone-09",
+        "teamInstanceId": "ade0077046e03749dae5fe08876a775bd528d4e0f0e9c9770e84997d4ae20fa8",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "700a58f1be57a96b7d6eb93d8b0c8ed5f5f209f80e27a10b9b5cb34250740571",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 882000000
+        }
+      },
+      {
+        "id": "907a581aeeae9410a4ecb39f3fe9a3defacee78d7a1abd73865c58f4742ef963",
+        "enrollmentId": "ff7369061c53e07b11d7d3ccd8c2575f2add6ccec94366ed9c9ca6145ec0dbc6",
+        "teamId": "sgm-qa-history-phone-16",
+        "teamInstanceId": "ce3ebe003adcfa2646af70cde3763bcedf818bf5520a0d3b4789b08cf1a05e07",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "703c5943bc12271469e5c9319a724f4063aca5179db5f1899b126bacee9e7a1a",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 361000000
+        }
+      },
+      {
+        "id": "9ed737ef9cb1a679bd7056f0012db9693c99bc89cf43db383d1f63c7e193e17b",
+        "enrollmentId": "a25c0ddba818c1993ec949b4a0485a1c525fab786060daa37aa5a3719adf33d7",
+        "teamId": "sgm-qa-history-phone-03",
+        "teamInstanceId": "1713244d8ab4fe5e2bff90ed86f900b45b9759442dcabd75fddb977046d13ae9",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "4fb34e779cb3590d1a127a7e0171b265aa1678feb2f8b04347428aafa115ab87",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 492000000
+        }
+      },
+      {
+        "id": "a092c7899aa2f167a20a45bb916e9c49f3c9683d9ebb83bc50614c7954f88cb7",
+        "enrollmentId": "2f99d8b6a7558685abec49f1aa5ba08f0eaffb8c6163e8b7e91c119e485a6795",
+        "teamId": "sgm-qa-history-phone-05",
+        "teamInstanceId": "08c91a5ae8f533de0dbb670bbc8de62684550a47c2c1485c4bfab92265dff17d",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "0ad40aff84660f9e509303b7214da592684c6bc982e9cd0e811839664ac05c1f",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 626000000
+        }
+      },
+      {
+        "id": "bf62c1eab1fa1bc83ab07baae4c34fd9948b98a2eea93ed7893acaed41e42c89",
+        "enrollmentId": "e8a876f2205be05587715d9d3fbe092fc66170a5e6df4843c9388de62ca4be5d",
+        "teamId": "sgm-qa-history-phone-06",
+        "teamInstanceId": "e50a36c14269904622dc414f9ebc393ed78ad22d35679dc2ce24817fcc87af5e",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "110288e54339e9dae6b9142664f12f157b5ba36f4993759a0c992133aacfe445",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 684000000
+        }
+      },
+      {
+        "id": "cc118bbcafee4e06ad3e0f6802b18d86b7a442f8d621092a07a2631e1625a259",
+        "enrollmentId": "f37b10728cc43052d414572c4a1957df40297c7b9fb8145f547964f6f63b861a",
+        "teamId": "sgm-qa-history-phone-17",
+        "teamInstanceId": "61e9a8fc477b85b7f5a8a44b044a99632eb4364e4bcb474372da9a307c82d058",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "a8888a9ff5603de90b8aeffb218ac3f6b4abd99256cafc708c412c64fe4671b8",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 422000000
+        }
+      },
+      {
+        "id": "cd7b441acdb34db994e45902fb8177cf202722553e5e459466b40523e519f319",
+        "enrollmentId": "ec0a22c9a2e88fc0c66b304c57b16b9806e9f09dd770b39a290283f8c292215e",
+        "teamId": "sgm-qa-history-phone-11",
+        "teamInstanceId": "88683bfd94797a070ec3ad012e0166def487c98ce539bc37ce1b236ea4107919",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "e5db4a65856f0d2af937fdb94fd8bf0d44324ef8f9e59f272451444b12ea3b93",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 22000000
+        }
+      },
+      {
+        "id": "ce5dadb788d6e2765c15d62ef1ca9a3fa03d02fa1e8d9ebce07a856d3c364669",
+        "enrollmentId": "eb8c219bc9c0bc6824978fb43c952452268a158a41014a4f4bfe8d5e9b2c47dc",
+        "teamId": "sgm-qa-history-phone-20",
+        "teamInstanceId": "e852ef85bfe932f04cee55ede2c4ec623b197817513fe4086e8734c899b0d463",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "a1620eb4b2f7f0b0e78c333de813d0f3e70d6a9a3019a2d622e153a4c31dcb98",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 631000000
+        }
+      },
+      {
+        "id": "dedcdb81f4069368876b3a7af9b4d54cff3bcddcf7c6bf3cffe99c9a362072c8",
+        "enrollmentId": "78ed86d5f411811c7e8e02219c3d8cbb54019893a57acf12dab0de4cb0f58459",
+        "teamId": "sgm-qa-history-phone-22",
+        "teamInstanceId": "b57db29108d4fd1cab2f3178c309efc0ad3ec21d69d5a4cf8454f1e58285489d",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "54cee7baf7cacd03c361820f36b550cc66ae73121b52dde8fa698bb7c0d84d11",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 762000000
+        }
+      },
+      {
+        "id": "e54b88d8df704fa2660146ebbdfe674003f0bca587131434d9e05026f5dd2a18",
+        "enrollmentId": "cb7ae32504ac58a78c1c7c0954ccc94033c3ecb7dff896503fac5c1a4171d604",
+        "teamId": "sgm-qa-history-phone-04",
+        "teamInstanceId": "932fb1edecebfc5d708d88688208b9e6f41422820f2459c17373541c7ad36059",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "0a6d6969c646dd7af374979c39b2f52b9a8e1679b2b9cbd1d710c3552662d249",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 558000000
+        }
+      },
+      {
+        "id": "e8778f6195c0243d826c1b44e69e440accb6d3398b87b3752b330841da2b09dc",
+        "enrollmentId": "66a72b3ac97725082f5d221b7a9ccef57163c42a4a66b2602c22ac18283d2425",
+        "teamId": "sgm-qa-history-phone-12",
+        "teamInstanceId": "89c01c57e3f67f44e73dd1c00656f01bd312ea1e6a8bef8a982a61a36552a19c",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "31b423e245a7f478b7f628d619f705c56367db1fbc9c2838b6ab8439e76ea6e1",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 96000000
+        }
+      },
+      {
+        "id": "f05f953e43106b6f604370fb8fc077976030ab0d017660f8ab7e7a52f481c6f2",
+        "enrollmentId": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5",
+        "teamId": "sgm-qa-team-ui-team",
+        "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "child",
+        "subjectId": "sgm-qa-team-ui-child",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "092ecf5735cc2d4deb1419400c28853b51077e744680890b66103027115f947f",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 172000000
+        }
+      },
+      {
+        "id": "f07855aaeb8347d8a2f4234a91eaf5c167662e1a715ac1a139b05118a9719124",
+        "enrollmentId": "3fc7d3b43c39a93fea6811fa6289e1d746b7acf3f7591d995bb120b8d1bf78ea",
+        "teamId": "sgm-qa-history-phone-14",
+        "teamInstanceId": "2da7a30c2b3baba65a816d57c4233bae03a883d6432ba0d71f8d695a480d8014",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "1a7df0a289bf2cdc501039f43341de452077d8e62a852ec2588defa32f11a254",
+        "createdAt": {
+          "_seconds": 1792412067,
+          "_nanoseconds": 220000000
+        }
+      },
+      {
+        "id": "f4b016543b5f5449e5f14948ac18031ac2f1020f6a8c4dd5b26b8bbde739df03",
+        "enrollmentId": "83cb2fabcf53bbd3c69adf00aa507728714838b813530388c1111722f035c71d",
+        "teamId": "sgm-qa-history-phone-01",
+        "teamInstanceId": "0f5dd51482b3a7ef90400c637f1a0f9567a54a23da02d3efa4e53f9d5a5a3065",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "f29716d51f31baf33871aeb63c6cb7cce5362e35b8cdd5c3b45a8e15b22ce9a8",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 345000000
+        }
+      },
+      {
+        "id": "f929cf04e2b18f8577264822ecba81c91eb6f51cbf03bc06ae7b249c150989bc",
+        "enrollmentId": "3590281b9f0bd817d8bb31ce5e8677fcb642237d91465fdb0274df655e5d4bde",
+        "teamId": "sgm-qa-history-phone-02",
+        "teamInstanceId": "51256bb6bb88308607207ea8a282cccf4a3d114764f6dee9c1a6bec28d1a82cf",
+        "clubId": "sgm-qa-team-ui-club",
+        "subjectKind": "member",
+        "subjectId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "actorUserId": "sgm-qa-parent",
+        "action": "request",
+        "previousStatus": null,
+        "status": "requested",
+        "revision": 1,
+        "fingerprint": "192989dfa9f44e01822c5066e7a72501ffcaf26176aa314d3633b3262569c223",
+        "createdAt": {
+          "_seconds": 1792412066,
+          "_nanoseconds": 430000000
+        }
+      }
+    ],
+    "guardian": {
+      "childId": "sgm-qa-team-ui-child",
+      "parentUserId": "sgm-qa-parent",
+      "clubId": "sgm-qa-team-ui-club",
+      "createdAt": {
+        "_seconds": 1792412062,
+        "_nanoseconds": 542000000
+      },
+      "lastActorUserId": "sgm-qa-club-manager",
+      "revision": 3,
+      "status": "revoked",
+      "updatedAt": {
+        "_seconds": 1792412067,
+        "_nanoseconds": 988000000
+      }
+    },
+    "membership": {
+      "userId": "sgm-qa-parent",
+      "clubId": "sgm-qa-team-ui-club",
+      "role": "member",
+      "active": false,
+      "status": "inactive"
+    },
+    "first": {
+      "items": [
+        {
+          "id": "01426b4414dffbd2e59eab64ba138c8f6c7882209a9106b0c21a0640ccae1072",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-15",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "5c63119f516c072e831cd03716b52a3d8a3ec146916bdba267b67e6447cc9dae",
+          "teamName": "Equipe historique 15 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "2f99d8b6a7558685abec49f1aa5ba08f0eaffb8c6163e8b7e91c119e485a6795",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-05",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "08c91a5ae8f533de0dbb670bbc8de62684550a47c2c1485c4bfab92265dff17d",
+          "teamName": "Equipe historique 5 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "3590281b9f0bd817d8bb31ce5e8677fcb642237d91465fdb0274df655e5d4bde",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-02",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "51256bb6bb88308607207ea8a282cccf4a3d114764f6dee9c1a6bec28d1a82cf",
+          "teamName": "Equipe historique 2 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "3fc7d3b43c39a93fea6811fa6289e1d746b7acf3f7591d995bb120b8d1bf78ea",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-14",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "2da7a30c2b3baba65a816d57c4233bae03a883d6432ba0d71f8d695a480d8014",
+          "teamName": "Equipe historique 14 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-team-ui-team",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+          "teamName": "Equipe inscriptions QA",
+          "subjectKind": "child",
+          "subjectId": "sgm-qa-team-ui-child",
+          "subjectName": null,
+          "status": "approved",
+          "revision": 2,
+          "eligible": false,
+          "allowedActions": []
+        },
+        {
+          "id": "622acc45924a489f78a504aa0b64ba6f54f07556d9912ed2473fbc7d86a75e47",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-19",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "d42df87a8f6e8ef81f4b9c58c9cb1b18aa30d3fdd9102dc36a436e082633033d",
+          "teamName": "Equipe historique 19 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "66a72b3ac97725082f5d221b7a9ccef57163c42a4a66b2602c22ac18283d2425",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-12",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "89c01c57e3f67f44e73dd1c00656f01bd312ea1e6a8bef8a982a61a36552a19c",
+          "teamName": "Equipe historique 12 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "66fd543dc3f4d8b5b6e0a300e5dc158717fea8902481401e6aa6ef32a143be3d",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-08",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "164343ea6cd058e8fe71330f380f44f8d7a60331acd85edb5ed1c80e183c8116",
+          "teamName": "Equipe historique 8 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "78ed86d5f411811c7e8e02219c3d8cbb54019893a57acf12dab0de4cb0f58459",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-22",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "b57db29108d4fd1cab2f3178c309efc0ad3ec21d69d5a4cf8454f1e58285489d",
+          "teamName": "Equipe historique 22 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "83cb2fabcf53bbd3c69adf00aa507728714838b813530388c1111722f035c71d",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-01",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "0f5dd51482b3a7ef90400c637f1a0f9567a54a23da02d3efa4e53f9d5a5a3065",
+          "teamName": "Equipe historique 1 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "8d5885cf6c9127ca4e1b76e915f25e75a2cc42c53f6ac75d7a29f267818f651f",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-13",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "7e2c16e453924f5334fcbbec71516bc15ef9db4a975228bfd238e56b0a937e6f",
+          "teamName": "Equipe historique 13 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "97bb4d73d5ad895ab9633b4137b371806a3ab3e60a6db1005c30c8c29cf343f4",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-07",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "011df98253f778b87cfa220ae9fb8e429c5d2b476016c6eb6dd7dae18b395842",
+          "teamName": "Equipe historique 7 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-team-ui-team",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+          "teamName": "Equipe inscriptions QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "approved",
+          "revision": 2,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "a25c0ddba818c1993ec949b4a0485a1c525fab786060daa37aa5a3719adf33d7",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-03",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "1713244d8ab4fe5e2bff90ed86f900b45b9759442dcabd75fddb977046d13ae9",
+          "teamName": "Equipe historique 3 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "ac78e686a329e6af08711dded1f9a2745466162a41bac6eba8b632028662c147",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-23",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "0de55ab223d5cc60422e386a610088c49d5b8cfc8f228a6ceb50fc6505d19737",
+          "teamName": "Equipe historique 23 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "b63b8525a60bcc6c9209f5d26ae5584bdd01d529c7a700588399d7c38da953ab",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-09",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "ade0077046e03749dae5fe08876a775bd528d4e0f0e9c9770e84997d4ae20fa8",
+          "teamName": "Equipe historique 9 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "cb7ae32504ac58a78c1c7c0954ccc94033c3ecb7dff896503fac5c1a4171d604",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-04",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "932fb1edecebfc5d708d88688208b9e6f41422820f2459c17373541c7ad36059",
+          "teamName": "Equipe historique 4 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "e8a876f2205be05587715d9d3fbe092fc66170a5e6df4843c9388de62ca4be5d",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-06",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "e50a36c14269904622dc414f9ebc393ed78ad22d35679dc2ce24817fcc87af5e",
+          "teamName": "Equipe historique 6 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "eb8c219bc9c0bc6824978fb43c952452268a158a41014a4f4bfe8d5e9b2c47dc",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-20",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "e852ef85bfe932f04cee55ede2c4ec623b197817513fe4086e8734c899b0d463",
+          "teamName": "Equipe historique 20 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "ec0a22c9a2e88fc0c66b304c57b16b9806e9f09dd770b39a290283f8c292215e",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-11",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "88683bfd94797a070ec3ad012e0166def487c98ce539bc37ce1b236ea4107919",
+          "teamName": "Equipe historique 11 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        }
+      ],
+      "nextCursor": "eyJ2ZXJzaW9uIjoxLCJzY29wZSI6IltcInNnbS1xYS1wYXJlbnRcIixcIm93bmVkLXRlYW0tZW5yb2xsbWVudHNcIl0iLCJpZCI6ImVjMGEyMmM5YTJlODhmYzBjNjZiMzA0YzU3YjE2Yjk4MDZlOWYwOWRkNzcwYjM5YTI5MDI4M2Y4YzI5MjIxNWUifQ"
+    },
+    "second": {
+      "items": [
+        {
+          "id": "ef7de519d9ed06d0ffd282b7c8c2f09c18432363afa35af20d1b3d36acd8c616",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-18",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "b5cda4d6dc832612b8ab4d16dc0dbe4fa061edef347d4401407213c29f2949a3",
+          "teamName": "Equipe historique 18 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "f035050bd3db58b3e312cbf13204c54f8c43b2fdff6b5fc84c0108a2b279e818",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-21",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "8b882c55fa5540f2ad39f19fe03ab22073640f0dbd36c558a92fd2e1982cf560",
+          "teamName": "Equipe historique 21 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "f37b10728cc43052d414572c4a1957df40297c7b9fb8145f547964f6f63b861a",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-17",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "61e9a8fc477b85b7f5a8a44b044a99632eb4364e4bcb474372da9a307c82d058",
+          "teamName": "Equipe historique 17 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "fa6f0d2812768ca5b945abf06d8e35a7be8b92ca7e843ead7227c456942c9792",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-24",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "00c89136a3331c3e68db63312ee997d44242e1c39f9b65925ee77fe47c71103f",
+          "teamName": "Equipe historique 24 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "ff046790885f07cd13b7bae9816f2b13366998c2ed67ec60876408804f573b32",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-10",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "7fa990dc78fe34795bd8da30766bfe0fba6b67ade351c0b66dc1fb671ffa3801",
+          "teamName": "Equipe historique 10 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        },
+        {
+          "id": "ff7369061c53e07b11d7d3ccd8c2575f2add6ccec94366ed9c9ca6145ec0dbc6",
+          "requesterUserId": "sgm-qa-parent",
+          "teamId": "sgm-qa-history-phone-16",
+          "clubId": "sgm-qa-team-ui-club",
+          "teamInstanceId": "ce3ebe003adcfa2646af70cde3763bcedf818bf5520a0d3b4789b08cf1a05e07",
+          "teamName": "Equipe historique 16 QA",
+          "subjectKind": "member",
+          "subjectId": "sgm-qa-parent",
+          "subjectName": null,
+          "status": "requested",
+          "revision": 1,
+          "eligible": false,
+          "allowedActions": [
+            "withdraw"
+          ]
+        }
+      ],
+      "nextCursor": null
+    },
+    "self": {
+      "id": "98b3f906de0ed65164ca6636c2a80f4da0a2880d7deb9ea5ed1edb62fb210816",
+      "requesterUserId": "sgm-qa-parent",
+      "teamId": "sgm-qa-team-ui-team",
+      "clubId": "sgm-qa-team-ui-club",
+      "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+      "teamName": "Equipe inscriptions QA",
+      "subjectKind": "member",
+      "subjectId": "sgm-qa-parent",
+      "subjectName": null,
+      "status": "approved",
+      "revision": 2,
+      "eligible": false,
+      "allowedActions": [
+        "withdraw"
+      ]
+    },
+    "child": {
+      "id": "42d2daf439f5944caf89f0fa0ecbd46e3252f05759ab95a0c7e2cb22dc3acfb5",
+      "requesterUserId": "sgm-qa-parent",
+      "teamId": "sgm-qa-team-ui-team",
+      "clubId": "sgm-qa-team-ui-club",
+      "teamInstanceId": "2c8a589926a4866a2c4230798cde34f10662bd5a1b90bcc0c9d3a5a0b0aec39a",
+      "teamName": "Equipe inscriptions QA",
+      "subjectKind": "child",
+      "subjectId": "sgm-qa-team-ui-child",
+      "subjectName": null,
+      "status": "approved",
+      "revision": 2,
+      "eligible": false,
+      "allowedActions": []
+    }
+  }
+}

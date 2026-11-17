@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9241a517826f08df719333adbed6dcac",
+  "recordedAt": "2026-10-28T11:50:42.171Z",
+  "result": {
+    "phase": "driver-signed-in",
+    "status": "passed",
+    "sharedRecordsUnchanged": true,
+    "accountClaimsUnchanged": true,
+    "liveDataUnchanged": true,
+    "proposalCreated": false,
+    "physicalUiProvenByThisCheckpoint": false,
+    "processStopProvenByThisCheckpoint": false,
+    "draftStorageProvenByThisCheckpoint": false
+  }
+}

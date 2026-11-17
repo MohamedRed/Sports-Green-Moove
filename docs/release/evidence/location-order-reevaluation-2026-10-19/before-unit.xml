@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="3" failures="1" errors="0" time="0.007020125">
+    <testsuite name="src/__tests__/live-trips-write.test.ts" timestamp="2026-10-19T15:55:07.915Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="1" errors="0" skipped="0" time="0.007020125">
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; rechecks time on transaction reevaluation so a later valid capture cannot appear future" time="0.005208208">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(8) } to be undefined" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(8) } to be undefined
+
+- Expected: 
+undefined
+
++ Received: 
+{
+  &quot;accuracyM&quot;: 8,
+  &quot;capturedAt&quot;: 1792423999990,
+  &quot;lat&quot;: 50.715,
+  &quot;lng&quot;: 4.612,
+  &quot;rideSessionId&quot;: &quot;qa-ride&quot;,
+  &quot;role&quot;: &quot;driver&quot;,
+  &quot;source&quot;: &quot;nativeFallback&quot;,
+  &quot;uploadedAt&quot;: 1792424000000,
+  &quot;userId&quot;: &quot;qa-driver&quot;,
+}
+
+ ❯ Object.transaction src/__tests__/live-trips-write.test.ts:19:58
+ ❯ Module.writeLiveLocation src/lib/liveTrips.ts:13:45
+ ❯ src/__tests__/live-trips-write.test.ts:22:18
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; propagates a child register commit result" time="0.000526125">
+        </testcase>
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; does not manufacture success when the transaction fails" time="0.000655417">
+        </testcase>
+    </testsuite>
+</testsuites>

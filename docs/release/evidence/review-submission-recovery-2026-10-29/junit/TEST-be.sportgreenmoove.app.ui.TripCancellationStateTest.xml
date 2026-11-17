@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripCancellationStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-29T23:23:55.560Z" hostname="MRRs-MacBook-Air.local" time="0.017">
+  <properties/>
+  <testcase name="overlappingActionsAndEditsDoNotDispatch" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.005"/>
+  <testcase name="uncertaintyLocksDraftUntilRefreshAndPreservesExactIntent" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.002"/>
+  <testcase name="closingIgnoresLateReadAndCallback" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.002"/>
+  <testcase name="refreshDiscoversRecordedCancellationWithoutAnotherWrite" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.001"/>
+  <testcase name="changedRevisionRequiresReviewAndANewRequest" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.001"/>
+  <testcase name="confirmedCancellationIsRetainedWhenAppRefreshFails" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.001"/>
+  <testcase name="invalidReceiptNeverClaimsSuccessOrRefreshes" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.001"/>
+  <testcase name="requiresAnAuthoritativePreviewAndValidReason" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.002"/>
+  <testcase name="closingDropsPrivateStateAndIgnoresLateWrite" classname="be.sportgreenmoove.app.ui.TripCancellationStateTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

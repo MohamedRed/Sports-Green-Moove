@@ -1,0 +1,324 @@
+[
+  {
+    "sequence": 1,
+    "label": "provider-collapse-diagnostics",
+    "startedAt": "2026-10-22T20:16:08.780Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:08.952Z"
+  },
+  {
+    "sequence": 2,
+    "label": "provider-open-local-testing",
+    "startedAt": "2026-10-22T20:16:09.311Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:09.611Z"
+  },
+  {
+    "sequence": 3,
+    "label": "provider-dismiss-local-testing-popover",
+    "startedAt": "2026-10-22T20:16:15.812Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:15.906Z"
+  },
+  {
+    "sequence": 4,
+    "label": "native-focus-parent-email",
+    "startedAt": "2026-10-22T20:16:26.698Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:26.857Z"
+  },
+  {
+    "sequence": 5,
+    "label": "native-paste-parent-email-chip",
+    "startedAt": "2026-10-22T20:16:39.970Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:40.102Z"
+  },
+  {
+    "sequence": 6,
+    "label": "native-focus-parent-password",
+    "startedAt": "2026-10-22T20:16:40.455Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:40.507Z"
+  },
+  {
+    "sequence": 7,
+    "label": "native-paste-parent-password-chip",
+    "startedAt": "2026-10-22T20:16:50.980Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:51.135Z"
+  },
+  {
+    "sequence": 8,
+    "label": "native-parent-sign-in",
+    "startedAt": "2026-10-22T20:16:51.472Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:16:51.526Z"
+  },
+  {
+    "sequence": 9,
+    "label": "provider-open-supported-adb-shell",
+    "startedAt": "2026-10-22T20:17:32.912Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:17:33.178Z"
+  },
+  {
+    "sequence": 10,
+    "label": "diagnostic-prepared-meminfo",
+    "startedAt": "2026-10-22T20:17:47.982Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:17:48.476Z"
+  },
+  {
+    "sequence": 11,
+    "label": "diagnostic-prepared-network",
+    "startedAt": "2026-10-22T20:18:06.193Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:18:06.363Z"
+  },
+  {
+    "sequence": 12,
+    "label": "provider-collapse-shell-before-native-navigation",
+    "startedAt": "2026-10-22T20:18:20.706Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:18:20.979Z"
+  },
+  {
+    "sequence": 13,
+    "label": "native-preflight-open-launcher",
+    "startedAt": "2026-10-22T20:18:31.905Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:18:32.177Z"
+  },
+  {
+    "sequence": 14,
+    "label": "native-preflight-open-app-drawer",
+    "startedAt": "2026-10-22T20:18:41.486Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:18:41.724Z"
+  },
+  {
+    "sequence": 15,
+    "label": "native-preflight-scroll-to-isolated-app",
+    "startedAt": "2026-10-22T20:18:54.622Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:18:54.849Z"
+  },
+  {
+    "sequence": 16,
+    "label": "native-preflight-app-icon-menu",
+    "startedAt": "2026-10-22T20:19:04.485Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:19:05.716Z"
+  },
+  {
+    "sequence": 17,
+    "label": "native-preflight-open-app-info",
+    "startedAt": "2026-10-22T20:19:15.451Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:19:15.590Z"
+  },
+  {
+    "sequence": 18,
+    "label": "native-preflight-return-to-app",
+    "startedAt": "2026-10-22T20:19:27.541Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:19:27.747Z"
+  },
+  {
+    "sequence": 19,
+    "label": "native-open-parent-profile",
+    "startedAt": "2026-10-22T20:19:40.043Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:19:40.164Z"
+  },
+  {
+    "sequence": 20,
+    "label": "native-scroll-profile-settings",
+    "startedAt": "2026-10-22T20:19:50.330Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:19:50.630Z"
+  },
+  {
+    "sequence": 21,
+    "label": "native-open-options",
+    "startedAt": "2026-10-22T20:20:00.654Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:00.800Z"
+  },
+  {
+    "sequence": 22,
+    "label": "native-scroll-to-request-form",
+    "startedAt": "2026-10-22T20:20:09.949Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:10.175Z"
+  },
+  {
+    "sequence": 23,
+    "label": "native-focus-request-reason",
+    "startedAt": "2026-10-22T20:20:24.264Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:24.495Z"
+  },
+  {
+    "sequence": 24,
+    "label": "native-select-request-reason",
+    "startedAt": "2026-10-22T20:20:25.247Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:25.283Z"
+  },
+  {
+    "sequence": 25,
+    "label": "native-open-selected-reason-menu",
+    "startedAt": "2026-10-22T20:20:36.177Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:37.217Z"
+  },
+  {
+    "sequence": 26,
+    "label": "native-paste-isolated-reason",
+    "startedAt": "2026-10-22T20:20:47.154Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:47.387Z"
+  },
+  {
+    "sequence": 27,
+    "label": "native-focus-request-description",
+    "startedAt": "2026-10-22T20:20:47.847Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:47.931Z"
+  },
+  {
+    "sequence": 28,
+    "label": "native-paste-isolated-description",
+    "startedAt": "2026-10-22T20:20:58.080Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:58.260Z"
+  },
+  {
+    "sequence": 29,
+    "label": "native-hide-request-keyboard",
+    "startedAt": "2026-10-22T20:20:58.630Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:20:58.691Z"
+  },
+  {
+    "sequence": 30,
+    "label": "native-enable-urgent",
+    "startedAt": "2026-10-22T20:21:16.718Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:21:17.041Z"
+  },
+  {
+    "sequence": 31,
+    "label": "native-initial-send-once",
+    "startedAt": "2026-10-22T20:21:30.744Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:21:31.004Z"
+  },
+  {
+    "sequence": 32,
+    "label": "provider-open-network-control-after-send",
+    "startedAt": "2026-10-22T20:21:42.241Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:21:42.567Z"
+  },
+  {
+    "sequence": 33,
+    "label": "provider-apply-offline-mode",
+    "startedAt": "2026-10-22T20:21:52.682Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:21:52.903Z"
+  },
+  {
+    "sequence": 34,
+    "label": "native-open-launcher-while-pending-offline",
+    "startedAt": "2026-10-22T20:22:38.776Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:22:39.111Z"
+  },
+  {
+    "sequence": 35,
+    "label": "provider-open-network-restoration-after-incomplete-run",
+    "startedAt": "2026-10-22T20:25:30.506Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:25:30.811Z"
+  },
+  {
+    "sequence": 36,
+    "label": "provider-remove-offline-mode",
+    "startedAt": "2026-10-22T20:25:36.294Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:25:36.430Z"
+  },
+  {
+    "sequence": 37,
+    "label": "provider-open-shell-for-restoration-check",
+    "startedAt": "2026-10-22T20:26:19.059Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:26:19.316Z"
+  },
+  {
+    "sequence": 38,
+    "label": "diagnostic-network-after-remove-offline-request",
+    "startedAt": "2026-10-22T20:26:28.868Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:26:29.046Z"
+  },
+  {
+    "sequence": 39,
+    "label": "provider-collapse-shell-after-restoration-check",
+    "startedAt": "2026-10-22T20:27:36.860Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:27:37.143Z"
+  },
+  {
+    "sequence": 40,
+    "label": "provider-inspect-restored-network-profile",
+    "startedAt": "2026-10-22T20:27:47.012Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:27:47.343Z"
+  },
+  {
+    "sequence": 41,
+    "label": "provider-dismiss-network-profile",
+    "startedAt": "2026-10-22T20:27:59.380Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:27:59.499Z"
+  },
+  {
+    "sequence": 42,
+    "label": "provider-open-disposable-app-cleanup",
+    "startedAt": "2026-10-22T20:27:59.859Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:28:00.125Z"
+  },
+  {
+    "sequence": 43,
+    "label": "provider-request-disposable-app-uninstall",
+    "startedAt": "2026-10-22T20:28:04.689Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:28:04.884Z"
+  },
+  {
+    "sequence": 44,
+    "label": "provider-confirm-disposable-app-uninstall",
+    "startedAt": "2026-10-22T20:28:56.629Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:28:56.958Z"
+  },
+  {
+    "sequence": 45,
+    "label": "native-verify-cleaned-app-drawer",
+    "startedAt": "2026-10-22T20:29:53.206Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:29:54.466Z"
+  },
+  {
+    "sequence": 46,
+    "label": "provider-stop-incomplete-test-session",
+    "startedAt": "2026-10-22T20:35:19.614Z",
+    "status": "completed",
+    "finishedAt": "2026-10-22T20:35:21.047Z"
+  }
+]

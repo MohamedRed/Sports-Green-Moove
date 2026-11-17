@@ -1,0 +1,65 @@
+{
+  "scope": "incomplete-local-attempts-not-service-acceptance",
+  "attempts": [
+    {
+      "file": "sgm-ios-membership-services-20261105.log",
+      "sha256": "f6fe812150ac2f2e50695008614a78aa2bef66ca209fe9f480b692e1061c8b5f",
+      "completed": false,
+      "finalReceiptPresent": false,
+      "completedStepNames": [
+        "fixtures",
+        "ride-lifecycle",
+        "publication",
+        "booking-cancellation",
+        "last-seat-concurrency",
+        "multi-seat-booking",
+        "messages-notifications",
+        "ride-audit-ledgers",
+        "ratings",
+        "club-request",
+        "support-request",
+        "ride-passenger-safety",
+        "chat-delivery-safety",
+        "chat-post-commit-response-loss",
+        "chat-directory-safety",
+        "reservation-decisions",
+        "membership-review",
+        "trip-capacity-ownership",
+        "team-ownership",
+        "trip-cancellation",
+        "trip-details-ownership",
+        "trip-change-parent-confirmation",
+        "trip-change-application"
+      ],
+      "processAbsentObserved": true,
+      "ownedRuntimeDisposed": true,
+      "endpointsClosedObserved": true
+    },
+    {
+      "file": "sgm-ios-membership-services-recovered-20261105.log",
+      "sha256": "2e278bf16d80869f7c238120cfc5c3ce59d68ef638c8f1306b309de341f518fc",
+      "completed": false,
+      "finalReceiptPresent": false,
+      "completedStepNames": [
+        "fixtures",
+        "ride-lifecycle",
+        "publication",
+        "booking-cancellation",
+        "last-seat-concurrency",
+        "multi-seat-booking",
+        "messages-notifications",
+        "ride-audit-ledgers",
+        "ratings",
+        "club-request",
+        "support-request",
+        "ride-passenger-safety",
+        "chat-delivery-safety",
+        "chat-post-commit-response-loss",
+        "chat-directory-safety"
+      ],
+      "processAbsentObserved": true,
+      "ownedRuntimeDisposed": true,
+      "endpointsClosedObserved": true
+    }
+  ]
+}

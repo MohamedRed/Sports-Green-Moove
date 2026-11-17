@@ -1,0 +1,18 @@
+{
+  "scope": "native-draft-storage-error-components-with-simulated-failures-not-connected-or-physical-proof",
+  "sourceCommit": "8da690b7be967bf7e90a0de3f61d09fe181909eb",
+  "testedAt": "2026-10-21T17:41:03Z",
+  "componentCases": { "executed": 2, "passed": 2, "failed": 0 },
+  "ordinarySuite": { "executed": 190, "failed": 0, "errors": 0 },
+  "simulatedStorageFailures": true,
+  "nativeComponentUiVerified": true,
+  "connectedServicesVerified": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "notificationsVerified": false,
+  "releaseReady": false,
+  "publishedCaptures": {
+    "team-draft-errors-read": "team-draft-read-error.png",
+    "team-draft-errors-write": "team-draft-write-error.png"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "scope": "existing-unaccepted-original-image-sampling-not-new-render",
+  "decoder": "ffmpeg-rgb24",
+  "images": [
+    {
+      "path": "docs/release/evidence/feedback-input-width-2026-11-03/diagnostics/input-light-phone.png",
+      "sha256": "2ad72934f63f913a51ba73b075f4965d2a6790428372447e46fcf1fb1736d8f8",
+      "width": 960,
+      "height": 2100,
+      "coarseUniqueColors": 30,
+      "fullUniqueColors": 464,
+      "thresholdStrictlyGreaterThan": 16,
+      "acceptedScreenshot": false
+    },
+    {
+      "path": "docs/release/evidence/feedback-input-width-2026-11-03/diagnostics/input-light-wide.png",
+      "sha256": "c41344582ae2764d84fbd5e890707f49177360d738d92a910c3188cf1badf0c3",
+      "width": 900,
+      "height": 600,
+      "coarseUniqueColors": 14,
+      "fullUniqueColors": 384,
+      "thresholdStrictlyGreaterThan": 16,
+      "acceptedScreenshot": false
+    },
+    {
+      "path": "docs/release/evidence/feedback-input-width-2026-11-03/diagnostics/input-dark-phone.png",
+      "sha256": "c68a96ff0fd2237bf5a42578477a9457d654531b1652020d60ccf41beaf5b531",
+      "width": 960,
+      "height": 2100,
+      "coarseUniqueColors": 30,
+      "fullUniqueColors": 465,
+      "thresholdStrictlyGreaterThan": 16,
+      "acceptedScreenshot": false
+    },
+    {
+      "path": "docs/release/evidence/feedback-input-width-2026-11-03/diagnostics/input-dark-wide.png",
+      "sha256": "6d9cc16d1963aebad65c7128af9c916d518d1cc942c6f6e05f51389329b78238",
+      "width": 900,
+      "height": 600,
+      "coarseUniqueColors": 14,
+      "fullUniqueColors": 387,
+      "thresholdStrictlyGreaterThan": 16,
+      "acceptedScreenshot": false
+    }
+  ]
+}

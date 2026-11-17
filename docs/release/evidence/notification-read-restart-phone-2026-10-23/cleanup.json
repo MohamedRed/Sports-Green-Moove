@@ -1,0 +1,22 @@
+{
+  "observerClosed": true,
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "backendDirectoryRemoved": true,
+  "privateSessionRemoved": true,
+  "helperDirectoryRemoved": true,
+  "ephemeralCredentialsCleared": true,
+  "phoneSignedOutObserved": true,
+  "phoneSessionStopped": true,
+  "dashboardObservedAfterStop": true,
+  "uninstallAttemptedInAndroidUi": true,
+  "packageStillInstalledAfterAttempt": true,
+  "appUninstallVerified": false,
+  "launcherAbsenceVerified": false,
+  "providerResetIndependentlyVerified": false,
+  "clipboardRestorationVerified": false,
+  "personalDevicesChanged": false,
+  "globalPhoneSettingsChanged": false,
+  "administrationPolicyChanged": false,
+  "endpoints": {"host": "127.0.0.1", "ports": [5001, 8080, 9000, 9099], "closed": true}
+}

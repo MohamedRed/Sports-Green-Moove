@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-22",
+  "capturedAt": "2026-10-22T16:12:43.770Z",
+  "scope": "separate-local-service-and-native-component-checks-not-connected-phone-flow",
+  "services": {
+    "source": "services.json",
+    "checks": 12,
+    "completed": true,
+    "protectedRecordCount": 19
+  },
+  "components": {
+    "executed": 2,
+    "transport": "in-process-simulated-response",
+    "narrowRecoveryCase": {
+      "widthDp": 320,
+      "fontScale": 1.3
+    },
+    "persistence": "real-local-file-store",
+    "recreated": "screen-state-not-app-process",
+    "physicalDevice": false
+  },
+  "baseCommit": "f819e9b0399494919a8440e0bed71b03cad46469",
+  "dirtySource": true,
+  "appSha256": "33c29854583a6a6a081ffeab6e4d17b847faf2656c6549cdd3f69972d6030eca",
+  "testApkSha256": "ad703b9f645144d4915f8903184ed73eb71044760cc0d2c6388484f7a8ac9ac7",
+  "sourceFiles": {
+    "functions/src/domain/supportSubmission.ts": "2feb22a469bd8c2625a314d8865dda44a0ef35053de0516901f1ad7db5bf3a6d",
+    "functions/src/services/supportSubmission.ts": "17ab601284311b431b0a099f8630b92ed5eabb3e842b8ed155b811a7064fc30d",
+    "functions/src/callables/supportSubmission.ts": "8c8242a66996ac58d7fae2656a0101de99ee39c0324befcc3d60bed49378d59d",
+    "android/app/src/main/java/be/sportgreenmoove/app/data/SupportSubmission.kt": "1765f7514324263213343c18f09b1e0e016506084e002d7c231b1ec931dcb18f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/SupportSubmissionStore.kt": "9be505201024567df425399f3eb2ae8a89be12f200cc6952a80cb072f854bc3b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt": "4a0097dba81a3474da82f09ffc7cab2ec5ff581581ec77856f36956bf3d5ba2e",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SupportSubmissionState.kt": "473ccf14274c16d5ffb4822868225ff496d372924f3fe9bf87e376fc016dbfd0",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsReportCard.kt": "60d823a10ee444eef8b9ac109a5518dbe01856f3035843196b0c6d8a83321aab",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SupportSubmissionFlowTest.kt": "b069a849af48ca6fa0cf113a8e85e0f65b697a03352756080cf013afcab612b7",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/SupportSubmissionStateTest.kt": "20bdb29dcf2b487bf58fc944b6e97a7a0671db4896f727c2567b42962a13780b",
+    "android/app/src/test/java/be/sportgreenmoove/app/services/SupportSubmissionStoreTest.kt": "cbebc0cfe978cef58a63bababdb8cd5f82ea75f729bc14cbf067026441920a81",
+    "ios/Sources/SportsGreenMooveApp/SupportSubmission.swift": "7b5c2c69d67cb9d71d90452ba50764bd9ddadb9290671c8ec1312d022d265c0e",
+    "ios/Sources/SportsGreenMooveApp/SupportSubmissionState.swift": "6434d3c6e38f74531bbc9adb74600e3db1e43c606afeb9b6f9b1fcf7c6534f85",
+    "ios/Sources/SportsGreenMooveApp/SupportSubmissionCard.swift": "c9b8ff6189e5633b8cbcedeef9ec16c4e551545dd0ccdc928ffa0a6c4f213666",
+    "ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift": "1bbaf7ff0292202d87f68c1bfe3514bfecde47a008cee373b08818febef38b54",
+    "ios/Tests/SportsGreenMooveNativeChecks/SupportSubmissionChecks.swift": "4215b3fe250bfb1135e5f7783907f835da4e9967ed72da0d35a4bff648c366fc",
+    "scripts/qa/local-support-submission-suite.mjs": "2dae1f021c4aaeef4f1884b2c9b4fbcfb3a9de70e9a1386253635089b946569d",
+    "scripts/qa/run-local-support-submission.mjs": "bafa39da9b8d8a34d329953ae9d63a10e3c59a7a3c0e03af62d889980ccaa588",
+    "scripts/qa/post-commit-loss-proxy.mjs": "a61a64631cc3149f4e3e04a74e508ebff9f77f065e0c9fc01242d87e8d419f24"
+  },
+  "clip": {
+    "source": "recording-original.mp4",
+    "start": 10,
+    "end": 20,
+    "poster": 14,
+    "audio": false,
+    "speed": 1,
+    "recordingOnlyAssertionPauseMs": 1200
+  },
+  "images": [
+    "images/support-submission-unconfirmed.png",
+    "images/support-submission-restored.png",
+    "images/support-submission-confirmed.png",
+    "images/support-submission-storage-error.png"
+  ],
+  "fullAppNetworkRecoveryVerified": false,
+  "appProcessRestartVerified": false,
+  "physicalDevice": false,
+  "iosPhysicalUiVerified": false,
+  "urgentEscalationVerified": false,
+  "emergencyCallVerified": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "releaseComplete": false
+}

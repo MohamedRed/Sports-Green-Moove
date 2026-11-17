@@ -1,0 +1,12 @@
+not ok 1865 - both required suites pass
+not ok 1881 - isolated replay failure is never overwritten by ordinary success
+not ok 1883 - missing driver account connect-opening.png fails collection but still replays and restores
+not ok 1884 - missing driver account connect-narrow.png fails collection but still replays and restores
+not ok 1885 - missing session-exit-narrow.png fails collection without suppressing replay or restoration
+not ok 1886 - missing session-exit-wide-dark.png fails collection without suppressing replay or restoration
+not ok 1887 - missing received-rating capture fails the gate without suppressing replay or restoration
+not ok 1889 - missing review-trip-context-large-text.png fails collection but still executes independent replay and cleanup
+not ok 1890 - missing review-trip-context-unavailable.png fails collection but still executes independent replay and cleanup
+not ok 1891 - missing review-trip-context-choices.png fails collection but still executes independent replay and cleanup
+not ok 1924 - store cleanup failure cannot produce a green suite or overwrite an earlier failure
+not ok 1926 - host observation follows verified cleanup and never replaces the suite outcome

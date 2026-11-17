@@ -1,0 +1,53 @@
+{
+  "scope": "pre-assertion-layout-diagnostic-not-accepted-evidence",
+  "case": "notices-light-wide",
+  "assertionsPassed": false,
+  "textLayouts": [
+    {
+      "tag": "feedback.info",
+      "bounds": "Rect.fromLTRB(110.0, 910.0, 970.0, 950.0)",
+      "layouts": [
+        {
+          "widthPx": 832,
+          "heightPx": 20,
+          "lineCount": 1,
+          "overflowWidth": false,
+          "overflowHeight": false,
+          "constraints": "Constraints(minWidth = 0, maxWidth = 832, minHeight = 0, maxHeight = 560)"
+        }
+      ]
+    },
+    {
+      "tag": "feedback.warning",
+      "bounds": "Rect.fromLTRB(110.0, 982.0, 970.0, 1022.0)",
+      "layouts": [
+        {
+          "widthPx": 832,
+          "heightPx": 20,
+          "lineCount": 1,
+          "overflowWidth": false,
+          "overflowHeight": false,
+          "constraints": "Constraints(minWidth = 0, maxWidth = 832, minHeight = 0, maxHeight = 488)"
+        }
+      ]
+    },
+    {
+      "tag": "review.submission.error",
+      "bounds": "Rect.fromLTRB(124.0, 1168.0, 442.0, 1190.0)",
+      "layouts": [
+        {
+          "widthPx": 318,
+          "heightPx": 22,
+          "lineCount": 1,
+          "overflowWidth": true,
+          "overflowHeight": false,
+          "constraints": "Constraints(minWidth = 0, maxWidth = 832, minHeight = 0, maxHeight = 318)"
+        }
+      ]
+    }
+  ],
+  "semantics": "Printing with useUnmergedTree = 'true'\nNode #1873 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px\n |-Node #1874 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px\n   Shape = 'RectangleShape'\n    |-Node #1875 at (l=90.0, t=900.0, r=990.0, b=1500.0)px, Tag: 'feedback.viewport'\n      Shape = 'RectangleShape'\n       |-Node #1876 at (l=110.0, t=910.0, r=970.0, b=950.0)px, Tag: 'feedback.info'\n       | Focused = 'false'\n       | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 14.0.dp), topEnd = CornerSize(size = 14.0.dp), bottomEnd = CornerSize(size = 14.0.dp), bottomStart = CornerSize(size = 14.0.dp))'\n       | Text = '[Connexion rétablie.]'\n       | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n       | MergeDescendants = 'true'\n       |-Node #1877 at (l=110.0, t=982.0, r=970.0, b=1022.0)px, Tag: 'feedback.warning'\n       | Focused = 'false'\n       | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 14.0.dp), topEnd = CornerSize(size = 14.0.dp), bottomEnd = CornerSize(size = 14.0.dp), bottomStart = CornerSize(size = 14.0.dp))'\n       | Text = '[Réseau indisponible. Réessayez.]'\n       | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n       | MergeDescendants = 'true'\n       |-Node #1879 at (l=110.0, t=1044.0, r=970.0, b=1279.0)px, Tag: 'messages.rating-prompt.action'\n         Shape = 'RoundedCornerShape(topStart = CornerSize(size = 16.0.dp), topEnd = CornerSize(size = 16.0.dp), bottomEnd = CornerSize(size = 16.0.dp), bottomStart = CornerSize(size = 16.0.dp))'\n          |-Node #1881 at (l=124.0, t=1058.0, r=160.0, b=1094.0)px\n          | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'\n          |  |-Node #1882 at (l=133.0, t=1067.0, r=152.0, b=1085.0)px\n          |    Text = '[AC]'\n          |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1883 at (l=170.0, t=1065.0, r=956.0, b=1087.0)px\n          | Text = '[Avis conducteur]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1884 at (l=124.0, t=1104.0, r=365.0, b=1126.0)px, Tag: 'review.trip.unavailable'\n          | Text = '[Détails du trajet indisponibles]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1885 at (l=124.0, t=1136.0, r=380.0, b=1158.0)px\n          | Text = '[Comment s'est passé le trajet ?]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1886 at (l=124.0, t=1168.0, r=442.0, b=1190.0)px, Tag: 'review.submission.error'\n          | Text = '[Envoi de l'avis non confirmé. Réessayez.]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1887 at (l=124.0, t=1200.0, r=243.0, b=1218.0)px\n          | Text = '[Touchez une note.]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #1889 at (l=124.0, t=1228.0, r=149.0, b=1265.0)px, Tag: 'messages.rating-prompt.action.1'\n          | Focused = 'false'\n          | Text = '[★]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n          | MergeDescendants = 'true'\n          |-Node #1890 at (l=153.0, t=1228.0, r=178.0, b=1265.0)px, Tag: 'messages.rating-prompt.action.2'\n          | Focused = 'false'\n          | Text = '[★]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n          | MergeDescendants = 'true'\n          |-Node #1891 at (l=182.0, t=1228.0, r=207.0, b=1265.0)px, Tag: 'messages.rating-prompt.action.3'\n          | Focused = 'false'\n          | Text = '[★]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n          | MergeDescendants = 'true'\n          |-Node #1892 at (l=211.0, t=1228.0, r=236.0, b=1265.0)px, Tag: 'messages.rating-prompt.action.4'\n          | Focused = 'false'\n          | Text = '[★]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n          | MergeDescendants = 'true'\n          |-Node #1893 at (l=240.0, t=1228.0, r=265.0, b=1265.0)px, Tag: 'messages.rating-prompt.action.5'\n            Focused = 'false'\n            Text = '[★]'\n            Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]\n            MergeDescendants = 'true'",
+  "physicalDevice": false,
+  "backendCalls": false,
+  "releaseAccepted": false
+}

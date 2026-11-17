@@ -1,0 +1,34 @@
+{
+  "sourceCommit": "9c9d94659c196b24cd6f1005ec4f8f8f07865953",
+  "reason": "Explicit original pagination-source snapshots for immutable earlier reports",
+  "files": {
+    "functions/src/lib/membershipPageCursor.ts": {
+      "file": "source-history/functions/src/lib/membershipPageCursor.ts",
+      "sha256": "dafe8fedabb3bd1e844b35c6ad0518117ff7bbca37017b2cf8ca1ed653e43424"
+    },
+    "functions/src/callables/guardianParent.ts": {
+      "file": "source-history/functions/src/callables/guardianParent.ts",
+      "sha256": "bf699bc30d24e23a98238817a074f14c154b734973232ecfd41346891c348c38"
+    },
+    "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt": {
+      "file": "source-history/android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt",
+      "sha256": "4ec2c985f8ec462587873189931ee8c9cf01f2b78da161366e4e4d308b85220f"
+    },
+    "functions/src/callables/guardianLists.ts": {
+      "file": "source-history/functions/src/callables/guardianLists.ts",
+      "sha256": "38cf0067dea01df235efb2ed7871f783a6fdec6fd0f706206f7721f7f92ef650"
+    },
+    "admin/src/guardianReviewWire.ts": {
+      "file": "source-history/admin/src/guardianReviewWire.ts",
+      "sha256": "7f3388f09bc8f7fb0acf256a1c13c5fa5164fc917dfa0caec1bb0551b37a7e89"
+    },
+    "functions/src/callables/teamEnrollment.ts": {
+      "file": "source-history/functions/src/callables/teamEnrollment.ts",
+      "sha256": "84f77eda0d7e76c100431ed7a31b8bd8cdf79bbd4669c5de82b07600bc5c2a8f"
+    },
+    "functions/src/services/teamEnrollmentOptions.ts": {
+      "file": "source-history/functions/src/services/teamEnrollmentOptions.ts",
+      "sha256": "937080e4c008d25828526e82f11357bd57174b1696f5b69f505c05a09a941127"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "cacb57c0c70b987c509b43f7a02cb168",
+  "testedAt": "2026-10-22T16:08:06.313Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "support-written-replies-private-admin-notes",
+  "completed": true,
+  "checks": [
+    {
+      "id": "owner-reads-only-public-status-and-own-content",
+      "status": "passed"
+    },
+    {
+      "id": "anonymous-other-user-and-extra-owner-input-denied",
+      "status": "passed"
+    },
+    {
+      "id": "admin-public-reply-closes-once-with-private-note-preserved",
+      "status": "passed"
+    },
+    {
+      "id": "changed-operation-and-stale-other-response-refused",
+      "status": "passed"
+    },
+    {
+      "id": "duplicate-after-newer-status-does-not-roll-back",
+      "status": "passed"
+    },
+    {
+      "id": "same-operation-race-creates-one-reply",
+      "status": "passed"
+    },
+    {
+      "id": "different-response-race-requires-refresh",
+      "status": "passed"
+    },
+    {
+      "id": "lost-post-commit-response-retries-original-without-duplicate",
+      "status": "passed"
+    },
+    {
+      "id": "ticket-pagination-is-complete-and-owner-scoped",
+      "status": "passed"
+    },
+    {
+      "id": "reply-pagination-is-complete-and-report-scoped",
+      "status": "passed"
+    },
+    {
+      "id": "raw-report-and-reply-operation-reads-denied-to-parent",
+      "status": "passed"
+    },
+    {
+      "id": "contradictory-public-history-is-refused-not-silently-hidden",
+      "status": "passed"
+    },
+    {
+      "id": "reads-do-not-write-and-protected-records-and-claims-stay-unchanged",
+      "status": "passed"
+    }
+  ],
+  "browser": null,
+  "protectedRecordCount": 19,
+  "adminClientClosed": true,
+  "nativeUi": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false
+}

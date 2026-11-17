@@ -1,0 +1,91 @@
+{
+  "scope": "local-emulated-services-not-phone-ui",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ca568aa470b7c3d26803f2212163e756",
+  "testedAt": "2026-10-19T19:29:23.592Z",
+  "steps": [
+    {
+      "id": "vehicle-map-points",
+      "status": "passed"
+    }
+  ],
+  "testCount": 1,
+  "checks": [
+    {
+      "id": "missing-location-is-not-replaced-with-a-route-anchor",
+      "status": "passed"
+    },
+    {
+      "id": "old-position-keeps-its-original-time-and-stale-status",
+      "status": "passed"
+    },
+    {
+      "id": "parent-and-driver-read-the-actual-selected-vehicle-coordinates-without-child-coordinates",
+      "status": "passed"
+    },
+    {
+      "id": "invalid-future-and-delayed-inputs-do-not-move-the-retained-position",
+      "status": "passed"
+    },
+    {
+      "id": "different-ride-child-or-replaced-driver-points-are-not-exposed",
+      "status": "passed"
+    },
+    {
+      "id": "authentication-participation-and-write-role-are-enforced-before-coordinate-access",
+      "status": "passed"
+    },
+    {
+      "id": "completion-removes-the-active-coordinate-response",
+      "status": "passed"
+    }
+  ],
+  "completion": {
+    "auditEventCount": 2,
+    "bookingCount": 1,
+    "co2LedgerCount": 1,
+    "completionVerified": true,
+    "claimsUnchanged": true
+  },
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 3,
+      "co2Ledger": 1,
+      "rewardLedger": 0
+    },
+    "zeroDistanceImpactVerified": true,
+    "otherLiveRidesPreserved": true
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "mapSdkVerified": false,
+  "mapMovementVerified": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-vehicle-map-services.mjs": "3574aa74333c79e526bc18fe56121819014167b61673cdb5d09aa32218677fb3",
+    "scripts/qa/run-local-vehicle-map-services.mjs": "7dc02aff5d5db40efc7badb04774070cbf4729d7375a11912ec1a41d414b1b8f",
+    "functions/src/domain/vehicleMapPoint.ts": "3978d10b21b8956a5fb7d104b3771d8b83a45448f8651861b69c89ea64bbaff5",
+    "functions/src/lib/clientTrips.ts": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd",
+    "functions/src/callables/rides.ts": "5bebb623bc9d0896f5df29e4ef7bb810d38e40ffad61772eef47302fc00fcec6",
+    "functions/src/lib/activeRideLookup.ts": "95d00e584373f011bebf1641871ed143de76ed056716e80eb6a64d08de5ea075",
+    "functions/src/domain/access.ts": "f5d8867e3df3ba9c0817e3ff58f260b56f623a3e7de138136721d31bdff75dea"
+  },
+  "adminClientClosed": true,
+  "emulatorCliExitedSuccessfully": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

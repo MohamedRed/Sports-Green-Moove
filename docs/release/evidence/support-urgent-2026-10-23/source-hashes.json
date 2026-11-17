@@ -1,0 +1,30 @@
+{
+  "parentCommit": "fb628d5bb881c661a3dc174c7ed84c7843eb6b24",
+  "workingTreeSources": true,
+  "sha256": {
+    "admin/src/AdminDashboard.tsx": "38b4f76656e94be15aa616584b2d99e87a7be91849c535b2b7de348569274c6f",
+    "admin/src/AdminTable.tsx": "88ea6d5a0d03bb135d9eb4aef4a1931f7fcdaabfdbd8cec4adac197bd3665759",
+    "admin/src/ReportsTable.tsx": "057e1ffccc740757c55848a07a764b9a76edb63fe3b56f4fd9fbb345b0ec4b83",
+    "admin/src/SupportEmailStatus.tsx": "d74328b63d3f2ec992d4caad0c19235a97bf1c6ea04e3af9ed5f25cb81dd916e",
+    "admin/src/SupportReportLink.tsx": "f486ae359e608b6fe3ec872a0b9494f9c531bc690e197edd38d4f0b4266f3ae3",
+    "admin/src/UrgentSupportPanel.tsx": "00e9231100118e1555e9524d443d3bc18dff2218e8419482c7d2975bb37aabe7",
+    "admin/src/actions.ts": "4aafad868bac80feaec8970a50ac01ae48bf126a53f86005d06bf01caecd0c84",
+    "admin/src/controls.css": "02b4d3946f588731eb9afbfaf355ae00e64bd6e8ccd5c150104e4db0a32036f8",
+    "admin/src/support.css": "b0ed050013169941556464eda041f67a59f4dc8dff62251611dd64187486879d",
+    "admin/src/useUrgentSupport.ts": "934250913625ca875ff68a70554057879582fae61128bb8b1a740f09bd088881",
+    "firestore.indexes.json": "a98e4ecd8b885ab0caae3b6e6926eb916de477973ed656d2ed5b934ab79ceff2",
+    "firestore.rules": "d7d31211377c91b945d7195c57280a3c8e24e56e191087a804c75aa5e3d3bac0",
+    "functions/src/__tests__/support-urgent-email.test.ts": "e55bb01efe2486e314c056b2120f3f09ce931039218460de79c4907c81de0af9",
+    "functions/src/callables/feedback.ts": "0486e01d2261c74792a9b5272a76be7797fb9c11ef0debbc713adf6ffe0f2fba",
+    "functions/src/domain/supportUrgentEmail.ts": "e341054decf27d0de3fd00b3d4d8db5bada30fe78a5a7ca4d48ea9821e656173",
+    "functions/src/index.ts": "677366169c448272d8211463219f0ea8da279ba0eb14ed006b474ee51bfe0bed",
+    "functions/src/services/supportMailProvider.ts": "c0e7bac55660ade9d452ba9dc547345f85546b64c6d263692500a01eac705fce",
+    "functions/src/services/supportSubmission.ts": "3bcc891aa5fe9719a12c8976a741f43b3ae04336029635c2462b3b8b50e8aedd",
+    "functions/src/services/supportUrgentDelivery.ts": "0052c2e8c5abd2f90a6cec6d63db0e6b7998c2acf5833075f88a745b4bee63c7",
+    "functions/src/services/supportUrgentQueue.ts": "806ac0096b831d08c026b2d68a9e3c13187044e47412909d203cac5289d2f9cb",
+    "functions/src/supportUrgentEmail.ts": "8e5ef987c9cb03f07eda55783c3e5253ea87a5732a90e050b56c740d9a5a1d83",
+    "scripts/qa/local-runtime.mjs": "81af67cae095eed9751e984a3d890fbdc556ee78c524eca0efd948e33bd1ae1e",
+    "scripts/qa/local-support-urgent-suite.mjs": "dd264fcd5f31031860cf54892f99f2b8ef235f214bae72ed6746ea16bdcd89b1",
+    "scripts/qa/run-local-support-urgent.mjs": "c13bb0e742163f5ae8c85340315f65715ca66113c0b92d86942b9e010ed92613"
+  }
+}

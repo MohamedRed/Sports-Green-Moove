@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.079Z" hostname="local-test-host" time="0.033">
+  <properties></properties>
+  <testcase name="aDifferentIdentityCannotClearTheIntentWithoutAnActualMatchingSignIn" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.002"></testcase>
+  <testcase name="versionOnePermissionRemovalDoesNotBecomeAnAccountLogout" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.001"></testcase>
+  <testcase name="unacknowledgedRemovalSurvivesReconstructionAndIsReplayedOnlyAfterExplicitSignIn" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.017"></testcase>
+  <testcase name="aKnownVersionOneSignedOutRemovalMigratesWithoutResettingIdentityOrCounters" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.001"></testcase>
+  <testcase name="failedIntentPersistenceDisablesAutoInitAndNeverSendsAnUnpersistedRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.0"></testcase>
+  <testcase name="acknowledgedRemovalStillPreventsAutomaticSessionRestorationAfterReconstruction" classname="be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest" time="0.012"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

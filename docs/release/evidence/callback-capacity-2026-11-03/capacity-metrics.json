@@ -1,0 +1,27 @@
+{
+  "scope": "read-only-incident-capacity-metrics-not-customer-data",
+  "observedAt": "2026-11-03T10:27:20.177Z",
+  "queries": [
+    {
+      "metric": "run.googleapis.com/request_count",
+      "queryFailed": true,
+      "httpStatus": 403,
+      "errorCode": 403,
+      "rawMessageWithheld": true
+    },
+    {
+      "metric": "run.googleapis.com/container/instance_count",
+      "queryFailed": true,
+      "httpStatus": 403,
+      "errorCode": 403,
+      "rawMessageWithheld": true
+    },
+    {
+      "metric": "run.googleapis.com/container/startup_latencies",
+      "queryFailed": true,
+      "httpStatus": 403,
+      "errorCode": 403,
+      "rawMessageWithheld": true
+    }
+  ]
+}

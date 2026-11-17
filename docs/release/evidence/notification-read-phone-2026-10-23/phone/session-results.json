@@ -1,0 +1,79 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "65daf701a9ae609e0cfde11012a80dbe",
+  "testedAt": "2026-10-23T20:09:33.896Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "initial",
+      "result": {
+        "selectedStillUnread": true,
+        "allRecordsUnchanged": true
+      }
+    },
+    {
+      "phase": "read",
+      "result": {
+        "protectedRecordCount": 167,
+        "selectedReadAtMillis": 1792785880069,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    },
+    {
+      "phase": "driver",
+      "result": {
+        "protectedRecordCount": 167,
+        "selectedReadAtMillis": 1792785880069,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    },
+    {
+      "phase": "reopened",
+      "result": {
+        "protectedRecordCount": 167,
+        "selectedReadAtMillis": 1792785880069,
+        "allOtherRecordsUnchanged": true,
+        "allClaimsUnchanged": true,
+        "liveTripsUnchanged": true,
+        "inboxes": {
+          "parentConfirmedRead": true,
+          "otherNoticeUnread": true,
+          "driverInboxScoped": true,
+          "outsiderInboxScoped": true,
+          "foreignWritesDenied": true
+        }
+      }
+    }
+  ],
+  "scope": "independent-notification-phone-checkpoints-not-ui-or-process-death-proof",
+  "adminClientClosed": true,
+  "protectedRecordCount": 167,
+  "nativeProcessIdsMeasured": false,
+  "physicalTrackingAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "scripts/qa/manual-notification-read-phone-session.mjs": "0be81f8a2f53b094c85fde77f5145bbd8d3ef83775928f65111175d22ff57c3e",
+    "scripts/qa/local-notification-read-ui.mjs": "3529c76b1181d340281cfca3728e65f257651188887267088ec7627a2e2b15e1",
+    "scripts/qa/notification-read-restart-evidence.mjs": "bac79673bff406ae84b513da6618f8db34c8588db0530cb600e2a7a32f37dc03",
+    "functions/src/callables/notificationRead.ts": "2bd44abcdbe8941f53cbe9283a3ee647ae3258ed602e05064a3a084e6926dafe"
+  }
+}

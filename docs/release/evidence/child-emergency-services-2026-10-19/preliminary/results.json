@@ -1,0 +1,120 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c250469794322c879d1defc32157972f",
+  "testedAt": "2026-10-19T22:20:18.287Z",
+  "scope": "local-child-read-service-not-native-or-dialer",
+  "steps": [
+    {
+      "id": "child-reads-only-its-active-ride-with-an-explicit-empty-contact",
+      "status": "passed"
+    },
+    {
+      "id": "separately-verified-parent-choice-persists-its-authorization-provenance",
+      "status": "passed"
+    },
+    {
+      "id": "strangers-adults-and-spoofed-child-identities-cannot-read-the-contact",
+      "status": "passed"
+    },
+    {
+      "id": "the-child-read-capability-never-enables-self-or-child-contact-writes",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-foreign-and-pre-profile-ride-identities-fail-closed",
+      "status": "passed"
+    },
+    {
+      "id": "manager-revocation-blocks-the-child-until-a-new-explicit-parent-verification",
+      "status": "passed"
+    },
+    {
+      "id": "removing-the-current-parent-child-relationship-revokes-child-reading",
+      "status": "passed"
+    },
+    {
+      "id": "current-parent-role-membership-and-club-status-are-rechecked-on-every-read",
+      "status": "passed"
+    },
+    {
+      "id": "missing-or-unrelated-parent-provenance-never-becomes-an-empty-or-guessed-contact",
+      "status": "passed"
+    },
+    {
+      "id": "malformed-contact-and-immutable-child-markers-are-refused",
+      "status": "passed"
+    },
+    {
+      "id": "legacy-contact-presence-requires-explicit-review-without-fallback-or-data-loss",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-parent-removal-is-versioned-and-does-not-authorize-a-phone-destination",
+      "status": "passed"
+    },
+    {
+      "id": "recreating-the-verification-club-requires-a-fresh-manager-decision",
+      "status": "passed"
+    },
+    {
+      "id": "a-recreated-child-never-inherits-an-old-ride-or-the-prior-contact",
+      "status": "passed"
+    },
+    {
+      "id": "other-records-claims-live-rides-and-private-operation-counts-remain-protected",
+      "status": "passed"
+    }
+  ],
+  "testCount": 15,
+  "firstIsolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 1,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "secondIsolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 1,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "adminClientClosed": true,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "dialerOpened": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/domain/emergencyContact.ts": "40ca89ad41521f32931573668996c84471cff84bdf01cdf6fda7d380788aa0ef",
+    "functions/src/services/emergencyContact.ts": "6b64809a0107757ed356a817c1db31b80b8f52b1b7bdb1cd2107a692642b9a9a",
+    "functions/src/services/childRideEmergencyContact.ts": "832dbf18373df18fc6f27b04ad8d644310ce4def399d15f254c7340c96942044",
+    "functions/src/callables/emergencyContact.ts": "250cb025b035a1482c15760d0414ca4bcd243526dc114425682c702349ea97ab",
+    "scripts/qa/local-child-emergency-suite.mjs": "014b5cc5b92bf4ca4ec4ff9107e31dcd9eba4895253897dae2d3dca45bffbb0e",
+    "scripts/qa/child-emergency-fixture.mjs": "c8db1066bdfd19007a228b24200c60c6369af4afe0dc6563b421a05970611da0",
+    "scripts/qa/run-local-child-emergency.mjs": "4c2a30da8f9fb619ebbfd28964096cf1b8688c83f94d94f74f9732bb568fe2af"
+  },
+  "emulatorCliExitedSuccessfully": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

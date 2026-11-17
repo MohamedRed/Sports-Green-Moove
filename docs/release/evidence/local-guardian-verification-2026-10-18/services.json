@@ -1,0 +1,107 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "72295138fe071852baa6b6bc7fbdbc31",
+  "testedAt": "2026-10-18T15:01:06.999Z",
+  "scope": "isolated-guardian-verification-services-not-native-ui",
+  "checks": [
+    {
+      "id": "declared-parent-request-is-not-verified",
+      "status": "passed"
+    },
+    {
+      "id": "signed-out-denied",
+      "status": "passed"
+    },
+    {
+      "id": "extra-verification-field-denied",
+      "status": "passed"
+    },
+    {
+      "id": "another-parent-cannot-act-for-owner",
+      "status": "passed"
+    },
+    {
+      "id": "parent-manager-cannot-self-verify",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-manager-denied",
+      "status": "passed"
+    },
+    {
+      "id": "admin-alone-denied",
+      "status": "passed"
+    },
+    {
+      "id": "manager-role-without-current-membership-denied",
+      "status": "passed"
+    },
+    {
+      "id": "lost-reply-replay-does-not-create-another-event",
+      "status": "passed"
+    },
+    {
+      "id": "operation-identity-cannot-change-meaning",
+      "status": "passed"
+    },
+    {
+      "id": "stale-decision-denied-without-mutation",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-manager-decisions-have-one-winner",
+      "status": "passed"
+    },
+    {
+      "id": "inactive-manager-cannot-revoke-with-stale-role-claim",
+      "status": "passed"
+    },
+    {
+      "id": "parent-can-withdraw-after-leaving-club",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-needs-a-new-parent-request-before-verification",
+      "status": "passed"
+    },
+    {
+      "id": "old-success-replay-returns-current-revoked-state-with-no-new-write",
+      "status": "passed"
+    },
+    {
+      "id": "removed-child-link-cannot-be-verified",
+      "status": "passed"
+    },
+    {
+      "id": "archived-club-denies-grants-but-still-permits-revocation",
+      "status": "passed"
+    },
+    {
+      "id": "corrupt-stored-record-fails-closed",
+      "status": "passed"
+    },
+    {
+      "id": "private-direct-access-and-immutable-audit-boundaries",
+      "status": "passed"
+    }
+  ],
+  "testCount": 20,
+  "steps": [
+    {
+      "id": "guardian-verification-services",
+      "status": "passed"
+    }
+  ],
+  "providerRequests": 0,
+  "teamChatImplemented": false,
+  "childEmergencyImplemented": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "functions/src/domain/guardianVerification.ts": "209a2139bad3746c502b6055bed53e0ac16c7706d0ad141b87fdf2fce66d5b0a",
+    "functions/src/services/guardianVerification.ts": "da9bee7eadc066949e5b4ef45f142b8577cfe49b8ab4f85f999a62aa82d69a69",
+    "functions/src/callables/guardianVerification.ts": "53252c2bc6e2463d7904f281637d87dd975e6c597068232f214cc554033dbae4",
+    "firestore.rules": "cfbc4ab8d06c0f6b635a55e68ea912214a793e9d121ff282efd70a6b582dec45",
+    "scripts/qa/local-guardian-verification-suite.mjs": "9166e89d73d21904031ec3db3dbc8168b5c119985f9e74e19568448b700fef8b"
+  }
+}

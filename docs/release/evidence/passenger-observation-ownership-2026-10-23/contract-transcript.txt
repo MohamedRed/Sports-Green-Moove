@@ -1,0 +1,226 @@
+TAP version 13
+# Subtest: latest full replay failed at ride completion without replacing the earlier network failure
+ok 1 - latest full replay failed at ride completion without replacing the earlier network failure
+  ---
+  duration_ms: 4.124458
+  type: 'test'
+  ...
+# Subtest: terminal service success is separate from failed native replay and unstarted phone checkpoints
+ok 2 - terminal service success is separate from failed native replay and unstarted phone checkpoints
+  ---
+  duration_ms: 6.296958
+  type: 'test'
+  ...
+# Subtest: current native blocker follows the latest incomplete CI, not an immutable historical gallery
+ok 3 - current native blocker follows the latest incomplete CI, not an immutable historical gallery
+  ---
+  duration_ms: 440.113875
+  type: 'test'
+  ...
+# Subtest: completed matrix is distinct from a cancelled focused job after verified fixture and policy restoration
+ok 4 - completed matrix is distinct from a cancelled focused job after verified fixture and policy restoration
+  ---
+  duration_ms: 2.629833
+  type: 'test'
+  ...
+# Subtest: later preparation failure retains its original negative receipt without replacing historical matrix success
+ok 5 - later preparation failure retains its original negative receipt without replacing historical matrix success
+  ---
+  duration_ms: 4.023958
+  type: 'test'
+  ...
+# Subtest: latest boot failure and ten restored focused cases never imply a full replay or every host process gone
+ok 6 - latest boot failure and ten restored focused cases never imply a full replay or every host process gone
+  ---
+  duration_ms: 2.551625
+  type: 'test'
+  ...
+# Subtest: the retained original boot log is tracked despite the general runtime-log ignore rule
+ok 7 - the retained original boot log is tracked despite the general runtime-log ignore rule
+  ---
+  duration_ms: 34.125208
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: summary.json row => { row.fullCiPassed = true; }
+ok 8 - latest boot evidence rejects unsupported state: summary.json row => { row.fullCiPassed = true; }
+  ---
+  duration_ms: 15.020708
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: summary.json row => { row.matrixExecuted = true; }
+ok 9 - latest boot evidence rejects unsupported state: summary.json row => { row.matrixExecuted = true; }
+  ---
+  duration_ms: 28.14775
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: summary.json row => { row.allHostProcessesGone = true; }
+ok 10 - latest boot evidence rejects unsupported state: summary.json row => { row.allHostProcessesGone = true; }
+  ---
+  duration_ms: 14.059625
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: focused/native-startup-host.json row => { row.finalState = 'gone'; }
+ok 11 - latest boot evidence rejects unsupported state: focused/native-startup-host.json row => { row.finalState = 'gone'; }
+  ---
+  duration_ms: 10.475667
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: focused/team-access-restore.json row => { row.restoration.launcher = false; }
+ok 12 - latest boot evidence rejects unsupported state: focused/team-access-restore.json row => { row.restoration.launcher = false; }
+  ---
+  duration_ms: 10.567125
+  type: 'test'
+  ...
+# Subtest: latest boot evidence rejects unsupported state: artifact-sha256.json row => { delete row['native-job.log']; }
+ok 13 - latest boot evidence rejects unsupported state: artifact-sha256.json row => { delete row['native-job.log']; }
+  ---
+  duration_ms: 12.852125
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: summary.json row => row.fullCiPassed = true
+ok 14 - latest terminal record rejects unsupported state: summary.json row => row.fullCiPassed = true
+  ---
+  duration_ms: 9.067166
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: summary.json row => row.emulatorProcessExitVerified = true
+ok 15 - latest terminal record rejects unsupported state: summary.json row => row.emulatorProcessExitVerified = true
+  ---
+  duration_ms: 10.012958
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: summary.json row => row.earlierTransportFailureExplained = true
+ok 16 - latest terminal record rejects unsupported state: summary.json row => row.earlierTransportFailureExplained = true
+  ---
+  duration_ms: 12.478584
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: native-run.json row => row.conclusion = 'success'
+ok 17 - latest terminal record rejects unsupported state: native-run.json row => row.conclusion = 'success'
+  ---
+  duration_ms: 10.059792
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: focused-results.json row => row.isolatedFixtureCleanupVerified = false
+ok 18 - latest terminal record rejects unsupported state: focused-results.json row => row.isolatedFixtureCleanupVerified = false
+  ---
+  duration_ms: 10.34275
+  type: 'test'
+  ...
+# Subtest: latest terminal record rejects unsupported state: copies/adb-pull-trip-consent-recovery.json row => row.completed = false
+ok 19 - latest terminal record rejects unsupported state: copies/adb-pull-trip-consent-recovery.json row => row.completed = false
+  ---
+  duration_ms: 13.88175
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: summary.json value => value.fullNativeReplayCompleted = true
+ok 20 - rejects unsupported recheck state: summary.json value => value.fullNativeReplayCompleted = true
+  ---
+  duration_ms: 24.411708
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: summary.json value => value.newPhoneFlowCompleted = true
+ok 21 - rejects unsupported recheck state: summary.json value => value.newPhoneFlowCompleted = true
+  ---
+  duration_ms: 9.140542
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: summary.json value => value.releaseComplete = true
+ok 22 - rejects unsupported recheck state: summary.json value => value.releaseComplete = true
+  ---
+  duration_ms: 9.298166
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: summary.json value => value.phoneHelperOutcome.rootCauseEstablished = true
+ok 23 - rejects unsupported recheck state: summary.json value => value.phoneHelperOutcome.rootCauseEstablished = true
+  ---
+  duration_ms: 12.609709
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: web-run.json value => value.conclusion = 'failure'
+ok 24 - rejects unsupported recheck state: web-run.json value => value.conclusion = 'failure'
+  ---
+  duration_ms: 15.042084
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: native-run.json value => value.conclusion = 'success'
+ok 25 - rejects unsupported recheck state: native-run.json value => value.conclusion = 'success'
+  ---
+  duration_ms: 37.143041
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: session-results.json value => value.completed = true
+ok 26 - rejects unsupported recheck state: session-results.json value => value.completed = true
+  ---
+  duration_ms: 13.495875
+  type: 'test'
+  ...
+# Subtest: rejects unsupported recheck state: cleanup.json value => value.endpoints.closed = false
+ok 27 - rejects unsupported recheck state: cleanup.json value => value.endpoints.closed = false
+  ---
+  duration_ms: 12.902917
+  type: 'test'
+  ...
+# Subtest: new phone controller contracts and retained results run in smoke without another provider request
+ok 28 - new phone controller contracts and retained results run in smoke without another provider request
+  ---
+  duration_ms: 0.371708
+  type: 'test'
+  ...
+# Subtest: the selected-id API proof is an independently completed seven-group authenticated run
+ok 29 - the selected-id API proof is an independently completed seven-group authenticated run
+  ---
+  duration_ms: 6.389458
+  type: 'test'
+  ...
+# Subtest: stream ownership, cancellation and lifecycle retain identity checks and server authorization
+ok 30 - stream ownership, cancellation and lifecycle retain identity checks and server authorization
+  ---
+  duration_ms: 2.156083
+  type: 'test'
+  ...
+# Subtest: age uses structured server observations, elapsed realtime and complete request latency
+ok 31 - age uses structured server observations, elapsed realtime and complete request latency
+  ---
+  duration_ms: 0.721667
+  type: 'test'
+  ...
+# Subtest: passenger commands cannot compete with live observation or weaken ride completion
+ok 32 - passenger commands cannot compete with live observation or weaken ride completion
+  ---
+  duration_ms: 0.84475
+  type: 'test'
+  ...
+# Subtest: activity recreation keeps the exact configured local database instead of resolving a second SDK instance
+ok 33 - activity recreation keeps the exact configured local database instead of resolving a second SDK instance
+  ---
+  duration_ms: 0.712541
+  type: 'test'
+  ...
+# Subtest: the independent native replay cannot replace the original full suite or turn failed setup into success
+ok 34 - the independent native replay cannot replace the original full suite or turn failed setup into success
+  ---
+  duration_ms: 0.8635
+  type: 'test'
+  ...
+# Subtest: external distribution cannot reuse the exposed key or publish an unready backend on push
+ok 35 - external distribution cannot reuse the exposed key or publish an unready backend on push
+  ---
+  duration_ms: 15.511333
+  type: 'test'
+  ...
+# Subtest: the original startup failure stays negative instead of supplying a native or physical pass
+ok 36 - the original startup failure stays negative instead of supplying a native or physical pass
+  ---
+  duration_ms: 5.380292
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 965.947292

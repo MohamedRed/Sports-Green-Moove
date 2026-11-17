@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="26" failures="0" errors="0" time="8.46273125">
+    <testsuite name="tests/chat-inbox-rules.test.ts" timestamp="2026-10-16T09:17:22.213Z" hostname="MRRs-MacBook-Air.local" tests="1" failures="0" errors="0" skipped="0" time="1.656491167">
+        <testcase classname="tests/chat-inbox-rules.test.ts" name="private conversation index rules &gt; allows only the owner to read or query an entry and no client to modify it" time="0.728632875">
+            <system-err>
+[2026-10-16T09:17:21.010Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x6f81cbb3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L141, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L141, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.021Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x6f81cbb4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L141, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.031Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x6f81cbb5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L141, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.044Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x6f81cbb6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;delete&apos; @ L141, false for &apos;delete&apos; @ L184
+
+            </system-err>
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/membership-rules.test.ts" timestamp="2026-10-16T09:17:22.214Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="1.821055583">
+        <testcase classname="tests/membership-rules.test.ts" name="club membership boundaries &gt; does not turn a requested ordinary membership into club-management access" time="0.548888333">
+            <system-err>
+[2026-10-16T09:17:20.800Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61fc9403 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L96:32 for &apos;update&apos; @ L96, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L96, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:20.850Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61fc9404 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L108, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/membership-rules.test.ts" name="club membership boundaries &gt; allows scoped active manager reads, but decisions cannot bypass the server audit" time="0.272656708">
+            <system-err>
+[2026-10-16T09:17:21.061Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61fc940a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L108, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.090Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61fc940b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L108, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L108, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.120Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x61fc940c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;delete&apos; @ L108, false for &apos;delete&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/membership-rules.test.ts" name="club membership boundaries &gt; revokes club access when the manager is disabled, even with an unexpired role claim" time="0.079629917">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/security-rules.test.ts" timestamp="2026-10-16T09:17:22.214Z" hostname="MRRs-MacBook-Air.local" tests="12" failures="0" errors="0" skipped="0" time="2.789918542">
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; keeps user role and verification fields admin-owned" time="0.736327334">
+            <system-err>
+[2026-10-16T09:17:20.739Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e63 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L76:24 for &apos;update&apos; @ L76, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L76, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; lets only existing guardians update child profiles" time="0.174143125">
+            <system-err>
+[2026-10-16T09:17:21.258Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e68 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L86:24 for &apos;update&apos; @ L86, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L86, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.272Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e69 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L86:24 for &apos;update&apos; @ L86, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L86, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; keeps trips controlled by admins and protects driver-owned fields" time="0.155866084">
+            <system-err>
+[2026-10-16T09:17:21.340Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e6b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L113, false for &apos;create&apos; @ L184, evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;create&apos; @ L113, false for &apos;create&apos; @ L184
+
+[2026-10-16T09:17:21.382Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e6d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.393Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e6e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.402Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e6f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.410Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e70 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.427Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e71 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; limits ride session reads to admins, drivers, and participants" time="0.123643334">
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; requires messages to be written through Cloud Functions" time="0.0492635">
+            <system-err>
+[2026-10-16T09:17:21.595Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e78 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L136, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L136, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.610Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e79 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L136, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L136, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; restricts message history queries and prevents forged read acknowledgements" time="0.113264583">
+            <system-err>
+[2026-10-16T09:17:21.712Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e7e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L136, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.717Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e7f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L136, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.722Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e80 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;delete&apos; @ L136, false for &apos;delete&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Firestore rules &gt; requires ratings and reports to be written through Cloud Functions" time="0.066406917">
+            <system-err>
+[2026-10-16T09:17:21.755Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e81 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L155, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L155, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.760Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e82 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L175, false for &apos;create&apos; @ L184, false for &apos;update&apos; @ L175, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.791Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x33e21e85 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L175, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Realtime Database rules &gt; limits live trip reads to admins, drivers, and participants" time="0.144888792">
+            <system-err>
+[2026-10-16T09:17:21.937Z]  @firebase/database: FIREBASE WARNING: set at /liveTrips/ride-1/vehicle failed: permission_denied 
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Realtime Database rules &gt; allows users to write only their own presence" time="0.029090583">
+            <system-err>
+[2026-10-16T09:17:21.966Z]  @firebase/database: FIREBASE WARNING: set at /presence/bob failed: permission_denied 
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Storage rules &gt; limits avatar writes to the owner" time="0.110997666">
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Storage rules &gt; limits club assets to club managers and admins" time="0.038153916">
+        </testcase>
+        <testcase classname="tests/security-rules.test.ts" name="Storage rules &gt; keeps report attachments under the reporter namespace" time="0.056207833">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/trip-capacity-rules.test.ts" timestamp="2026-10-16T09:17:22.216Z" hostname="MRRs-MacBook-Air.local" tests="10" failures="0" errors="0" skipped="0" time="2.195265958">
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:4}" time="0.478638167">
+            <system-err>
+[2026-10-16T09:17:20.739Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9c5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsTotal&quot;:8}" time="0.146584042">
+            <system-err>
+[2026-10-16T09:17:20.901Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9c8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:8,&quot;seatsTotal&quot;:8}" time="0.093520208">
+            <system-err>
+[2026-10-16T09:17:21.006Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9cb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:-1}" time="0.108929417">
+            <system-err>
+[2026-10-16T09:17:21.104Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9ce error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsTotal&quot;:0}" time="0.084320708">
+            <system-err>
+[2026-10-16T09:17:21.195Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9d1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;seatsAvailable&quot;:&quot;4&quot;}" time="0.0713145">
+            <system-err>
+[2026-10-16T09:17:21.279Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9d4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies a direct driver capacity mutation: {&quot;title&quot;:&quot;Atomic change must fail&quot;,&quot;seatsAvailable&quot;:4}" time="0.056343541">
+            <system-err>
+[2026-10-16T09:17:21.332Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9d7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies removing seatsAvailable through a replacement document" time="0.0656165">
+            <system-err>
+[2026-10-16T09:17:21.400Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9da error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L113, false for &apos;create&apos; @ L184, evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; denies removing seatsTotal through a replacement document" time="0.053647042">
+            <system-err>
+[2026-10-16T09:17:21.453Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9dd error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;create&apos; @ L113, false for &apos;create&apos; @ L184, evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+        <testcase classname="tests/trip-capacity-rules.test.ts" name="booking-owned trip capacity &gt; keeps the working driver title edit without permitting parent or outsider mutations" time="0.117055042">
+            <system-err>
+[2026-10-16T09:17:21.538Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9e2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.545Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9e3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.560Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9e4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.570Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9e5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L114:24 for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184, false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+[2026-10-16T09:17:21.587Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC &apos;Write&apos; stream 0x4dc9e9e6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for &apos;update&apos; @ L114, false for &apos;update&apos; @ L184
+
+            </system-err>
+        </testcase>
+    </testsuite>
+</testsuites>

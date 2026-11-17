@@ -1,0 +1,112 @@
+{
+  "scope": "local-session-restoration-ui-not-physical-network-loss",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b197c7575d68ed9fd69375f586b8ce59",
+  "uid": "sgm-qa-parent",
+  "screenshots": {
+    "local-session-restoration-error.png": "835fbb78333e6dbbf4dce0f55dc2cb7e5012205ab61201c5bc91204cefbc24a1",
+    "local-session-restoration-rotated-error.png": "3776f61dd3a64de34f14e1598e2890a8a9dc1804c16a748a88180868d63ef1dd",
+    "local-session-restoration-recovered.png": "94be80930d92386b02aaffd95f0110786bfe12d11bef355d52d796a2701449b1",
+    "local-session-restoration-restored.png": "ff32325b7d3efea8505acf894b0e179a200a69bca6c81455113132921632aa91",
+    "local-session-restoration-identity.png": "a9d9bf7ee7801277f1c315a087782f620f8a1e694979caa425cde9df274bf3d2"
+  },
+  "initialFailureVisible": true,
+  "failureSurvivedRotation": true,
+  "explicitRetryRecoveredSameParent": true,
+  "healthyRotationRestoredSameParent": true,
+  "profileIdentityVerified": true,
+  "restorationAttempts": 4,
+  "orientationRestored": true,
+  "parentSignedOut": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "completed": true,
+  "testedAt": "2026-10-31T21:53:45.963Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "session-restoration",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": true,
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "session-restoration",
+    "receiptSha256": "8ac1fa469b9f28258eb219169e5444b5f1e1178061293f55911a58cac92afcd2",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "45bc17118c078686a5b734888733be42fac404ac40fccbed5c88990397b3b285",
+      "be.sportgreenmoove.app.local.test": "64974f22d3fdfdafdb606beedcac5e4e198063b2b08f81a485e0406cdc252d94"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "primaryEvidencePhase": "session-restoration",
+  "transportObservations": {
+    "scope": "read-only-local-session-transport-not-flow-verification",
+    "observationCount": 8,
+    "failureObserved": false
+  },
+  "transcriptSha256": "630e6f0dc28c755a15ce4283b234df570bca5c217cb46a7f034b38e0a31dc4a9",
+  "cleanupMode": "destroy-owned-local-environment",
+  "proxyClosed": true,
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "fixtureIsolation": {
+    "allTopLevelCollectionsUnchangedExceptParentTimestamp": true,
+    "allUserClaimsUnchanged": true,
+    "liveTripsUnchanged": true,
+    "collections": {
+      "bookings": 3,
+      "chatInboxes": 4,
+      "children": 1,
+      "clubs": 3,
+      "co2Ledger": 1,
+      "memberships": 10,
+      "messages": 121,
+      "notifications": 1,
+      "reports": 1,
+      "rewardLedger": 1,
+      "teams": 1,
+      "trips": 2,
+      "users": 9
+    },
+    "accountCount": 5
+  },
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "b7afd091155134cb3af2ebedcf2cc96d3bdefc83caf364b0d78f64805359a351",
+    "scripts/qa/android-case-apks.mjs": "ce5fd0144d472f41a4656c62a52316c97fb671213cd19955f2179832d05931fd",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "c5c3b5d94e3edaf456041595e00f492a138074283e3c44beec4d71a75a7d527d",
+    "scripts/qa/continuous-disposable-device.mjs": "90a7a74f1714d3d35bd2201dae47c2ab7666fca791fe5551c3d57fe75aac3876",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "5bdff5e8e0a710de1451e8644f8101a2e9fb3674a48f870e7b135a87ad07fda6",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "adc4359736699fe36891855b18e7392b767f0b57e4f073bf952dd5bb693c31cc",
+    ".github/workflows/native-focused-ui.yml": "22138ca8cb1e07d7d3128ae078949990519523afa00ab1d66d1f9eef3c128fa3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-session-restoration-ui.mjs": "aa535d2dc35a93d658ae8955bf0160d5cefce77fe8bec3a6dbbb622d5b2ae392",
+    "scripts/qa/run-local-session-restoration-ui.mjs": "c8df90c4554bde59307497cf29fa7bb110217d0672e9fd5f1440125f20aa9dfb",
+    "scripts/qa/session-restoration-fault-proxy.mjs": "7812ce45eb285106659b1d4ee280a6b4ada0c57c78f1a469497b4ecf50476ed9",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "scripts/qa/session-transport-observations.mjs": "62d29be58c0d8d1effa0851819fdd03e7222d09e96bcab41820e93c89161c564",
+    "scripts/qa/run-isolated-ride-ui.mjs": "5a374021261cc64c6843e68d6f1c747670af29a221b519e4d7a59d816bd8b6f8",
+    "scripts/qa/local-emulator-lifecycle.mjs": "e9f38b269f25332ff076a991900a31f178cd740fee08ec8dd7e11257354f6bf8",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6",
+    "functions/src/callables/adminUsers.ts": "e9864262a7d1066bd563b3290807a75f8ffb8a28df40abdb95f3af69c11ee6c5",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "bd40f5caca84fe695b636d81a573f0322281e5bef2f564500fc588deb414688b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestoration.kt": "5b00f22d4ff59abc0f345371b579c68b8b7fd3273d5225a97553689cd7042733",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestorationState.kt": "1cca4a60a933a3a24baf2c13a9239722298d26b157c15c1b89ee5b557a231c96",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "5bd570aeee601b10322251de4fa1af38e4f71984d2329545c990610e82a03cdb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt": "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppSessionShutdown.kt": "df50b02bf4b3c15a073fd165ee219f7c05f913648e5c641152a2076bf7a9620d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionRestorationTest.kt": "3da6470304aa8272ce908747d329fc026dea19f8865349cf836cca6faa6b019d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionTransportDiagnostics.kt": "3bcb5a55c1011f96cbe106411dcaaeb96edb000c5dc1d6b2f6f17e9d3a5fb139",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f954c52324a786bbf2cd98de9d49cec2750ea70ad48bd2d9f57a30248bf67af"
+  }
+}

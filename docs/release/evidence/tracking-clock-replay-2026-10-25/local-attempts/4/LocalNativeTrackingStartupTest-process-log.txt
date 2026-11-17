@@ -1,0 +1,188 @@
+--------- beginning of system
+I/ActivityManager( 2098): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: start instr
+W/ActivityManager( 2098): Slow operation: 138ms so far, now at startProcess: asking zygote to start proc
+W/ActivityManager( 2098): Slow operation: 1011ms so far, now at startProcess: returned from zygote!
+W/ActivityManager( 2098): Slow operation: 1062ms so far, now at startProcess: done updating battery stats
+W/ActivityManager( 2098): Slow operation: 1063ms so far, now at startProcess: building log message
+I/ActivityManager( 2098): Start proc 6462:be.sportgreenmoove.app.local/u0a208 for added application be.sportgreenmoove.app.local
+W/ActivityManager( 2098): Slow operation: 1063ms so far, now at startProcess: starting to update pids map
+W/ActivityManager( 2098): Slow operation: 1112ms so far, now at startProcess: done updating pids map
+I/ActivityManager( 2098): Skip duplicated ANR, pid=6237 No response to onStartJob
+I/ActivityManager( 2098): dumpStackTraces nativepids=null
+I/ActivityManager( 2098): dumpStackTraces extraPids=null
+I/ActivityManager( 2098): Done dumping
+I/ActivityManager( 2098): Extending process start timeout by 9996ms for ProcessRecord{dae3dae 6430:com.google.android.gms.persistent/u0a144}
+I/ActivityManager( 2098): Skip duplicated ANR, pid=6237 No response to onStartJob
+E/ActivityManager( 2098): ANR in com.google.android.googlequicksearchbox:search
+E/ActivityManager( 2098): PID: 6237
+E/ActivityManager( 2098): Reason: No response to onStartJob
+E/ActivityManager( 2098): ErrorId: 0c53da1f-5230-4358-b1a3-2d0abc596c96
+E/ActivityManager( 2098): Frozen: false
+E/ActivityManager( 2098): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager( 2098): ----- Output from /proc/pressure/memory -----
+E/ActivityManager( 2098): some avg10=6.19 avg60=6.70 avg300=5.30 total=37926384
+E/ActivityManager( 2098): full avg10=0.38 avg60=0.30 avg300=0.20 total=2587660
+E/ActivityManager( 2098): ----- End output from /proc/pressure/memory -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): some avg10=92.62 avg60=92.72 avg300=79.14 total=528018980
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager( 2098): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/io -----
+E/ActivityManager( 2098): some avg10=5.93 avg60=4.85 avg300=5.17 total=43110192
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=1170584
+E/ActivityManager( 2098): ----- End output from /proc/pressure/io -----
+E/ActivityManager( 2098): 
+E/ActivityManager( 2098): CPU usage from 166ms to 7104ms later (2026-10-25 17:25:29.702 to 2026-10-25 17:25:36.639):
+E/ActivityManager( 2098):   35% 5055/com.android.settings: 2.8% user + 32% kernel / faults: 14 minor
+E/ActivityManager( 2098):   18% 2098/system_server: 10% user + 8.8% kernel / faults: 335 minor
+E/ActivityManager( 2098):   12% 394/surfaceflinger: 3.5% user + 9% kernel / faults: 2 minor
+E/ActivityManager( 2098):   9.6% 6237/com.google.android.googlequicksearchbox:search: 8.3% user + 1.3% kernel / faults: 936 minor
+E/ActivityManager( 2098):   9.8% 3545/com.google.android.as.oss: 7.1% user + 2.7% kernel / faults: 1451 minor
+E/ActivityManager( 2098):   8.9% 4705/kworker/0:4-virtio_vsock: 0% user + 8.9% kernel
+E/ActivityManager( 2098):   8.3% 6428/app_process: 6% user + 2.3% kernel / faults: 1286 minor 11 major
+E/ActivityManager( 2098):   6.7% 366/android.hardware.graphics.composer3-service.ranchu: 0.4% user + 6.3% kernel
+E/ActivityManager( 2098):   5.9% 6430/com.google.android.gms.persistent: 5.3% user + 0.6% kernel / faults: 629 minor
+E/ActivityManager( 2098):   4.9% 2334/com.android.systemui: 4.5% user + 0.4% kernel / faults: 54 minor
+E/ActivityManager( 2098): 100% TOTAL: 27% user + 40% kernel + 28% irq + 4.6% softirq
+E/ActivityManager( 2098): CPU usage from 593086ms to 593086ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager( 2098): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager( 2098): Killing 6237:com.google.android.googlequicksearchbox:search/u0a143 (adj 100): bg anr
+W/ActivityManager( 2098): Slow operation: 203ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager( 2098): Slow operation: 203ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager( 2098): Slow operation: 270ms so far, now at attachApplicationLocked: after updateOomAdjLocked
+W/ActivityManager( 2098): Slow operation: 577ms so far, now at finishAttachApplicationInner: after mServices.attachApplicationLocked
+W/ActivityManager( 2098): Slow operation: 581ms so far, now at finishAttachApplicationInner: after dispatching broadcasts
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.googlequicksearchbox/com.google.apps.tiktok.account.data.manager.AccountSyncService in 4000ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.googlequicksearchbox/com.google.android.apps.gsa.shared.util.keepalive.StandaloneKeepAlive$KeepAliveService in 123996ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.googlequicksearchbox/androidx.work.impl.background.systemjob.SystemJobService in 14000ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.googlequicksearchbox/com.google.android.apps.gsa.tasks.BackgroundTasksJobService in 24000ms for connection
+W/ActivityManager( 2098): Slow operation: 91ms so far, now at startProcess: done starting proc!
+W/ActivityManager( 2098): Slow operation: 133ms so far, now at startProcess: asking zygote to start proc
+W/ActivityManager( 2098): Slow operation: 944ms so far, now at startProcess: returned from zygote!
+W/ActivityManager( 2098): Slow operation: 945ms so far, now at startProcess: done updating battery stats
+W/ActivityManager( 2098): Slow operation: 945ms so far, now at startProcess: building log message
+I/ActivityManager( 2098): Start proc 6505:com.google.android.googlequicksearchbox:search/u0a143 for service {com.google.android.googlequicksearchbox/com.google.apps.tiktok.account.data.manager.AccountSyncService}
+W/ActivityManager( 2098): Slow operation: 945ms so far, now at startProcess: starting to update pids map
+W/ActivityManager( 2098): Slow operation: 945ms so far, now at startProcess: done updating pids map
+W/ActivityManager( 2098): Slow operation: 318ms so far, now at attachApplicationLocked: before bindApplication
+W/ActivityManager( 2098): Slow operation: 339ms so far, now at attachApplicationLocked: immediately before bindApplication
+W/ActivityManager( 2098): Slow operation: 424ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager( 2098): Slow operation: 425ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager( 2098): Slow operation: 426ms so far, now at attachApplicationLocked: after updateOomAdjLocked
+I/ActivityManager( 2098): Extending process start timeout by 12038ms for ProcessRecord{e123342 6462:be.sportgreenmoove.app.local/u0a208}
+W/ActivityManager( 2098): Timeout executing service: ServiceRecord{ae82950 u0 com.google.android.gms/.fitness.service.recording.FitRecordingBroker c:com.google.android.gms}
+I/ActivityManager( 2098): Collecting stacks for pid 6430 into temporary file temp_anr_2795642130863007435.txt
+I/ActivityManager( 2098): dumpStackTraces pids=null
+I/ActivityManager( 2098): Dumping to /data/anr/anr_2026-10-25-17-26-04-704
+I/ActivityManager( 2098): dumpStackTraces nativepids=null
+I/ActivityManager( 2098): dumpStackTraces extraPids=null
+I/ActivityManager( 2098): Done dumping
+E/ActivityManager( 2098): ANR in com.google.android.gms.persistent
+E/ActivityManager( 2098): PID: 6430
+E/ActivityManager( 2098): Reason: executing service com.google.android.gms/.fitness.service.recording.FitRecordingBroker, waited 22409ms
+E/ActivityManager( 2098): ErrorId: a5384b2a-59cb-424c-85f9-fdff73d5812c
+E/ActivityManager( 2098): Frozen: false
+E/ActivityManager( 2098): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager( 2098): ----- Output from /proc/pressure/memory -----
+E/ActivityManager( 2098): some avg10=1.46 avg60=4.48 avg300=4.89 total=38581527
+E/ActivityManager( 2098): full avg10=0.14 avg60=0.26 avg300=0.20 total=2711253
+E/ActivityManager( 2098): ----- End output from /proc/pressure/memory -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): some avg10=89.99 avg60=91.86 avg300=80.43 total=559864876
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager( 2098): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/io -----
+E/ActivityManager( 2098): some avg10=2.36 avg60=4.32 avg300=5.02 total=44565885
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=1170798
+E/ActivityManager( 2098): ----- End output from /proc/pressure/io -----
+E/ActivityManager( 2098): 
+E/ActivityManager( 2098): CPU usage from 27280ms to -190ms ago (2026-10-25 17:25:36.639 to 2026-10-25 17:26:04.109):
+E/ActivityManager( 2098):   35% 5055/com.android.settings: 2% user + 33% kernel / faults: 56 minor
+E/ActivityManager( 2098):   22% 2098/system_server: 14% user + 8.1% kernel / faults: 1644 minor
+E/ActivityManager( 2098):   14% 6430/com.google.android.gms.persistent: 10% user + 3.6% kernel / faults: 4973 minor 2 major
+E/ActivityManager( 2098):   10% 366/android.hardware.graphics.composer3-service.ranchu: 0.3% user + 9.9% kernel
+E/ActivityManager( 2098):   10% 6462/be.sportgreenmoove.app.local: 6.9% user + 3.2% kernel / faults: 11294 minor 5 major
+E/ActivityManager( 2098):   9.5% 394/surfaceflinger: 2.9% user + 6.6% kernel / faults: 2 minor
+E/ActivityManager( 2098):   5.2% 3680/com.google.android.gms.unstable: 2.7% user + 2.5% kernel / faults: 788 minor 1594 major
+E/ActivityManager( 2098):   6.1% 5639/com.google.android.gms: 4.4% user + 1.7% kernel / faults: 1574 minor 3 major
+E/ActivityManager( 2098):   4.8% 2334/com.android.systemui: 4.1% user + 0.7% kernel / faults: 248 minor
+E/ActivityManager( 2098):   4.7% 3545/com.google.android.as.oss: 2.3% user + 2.3% kernel / faults: 3512 minor
+E/ActivityManager( 2098): 99% TOTAL: 29% user + 42% kernel + 25% irq + 2.9% softirq
+E/ActivityManager( 2098): CPU usage from 627470ms to 627470ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager( 2098): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager( 2098): Killing 6430:com.google.android.gms.persistent/u0a144 (adj 0): bg anr
+I/ActivityManager( 2098): Collecting stacks for pid 6462 into temporary file temp_anr_8041116105310661342.txt
+I/ActivityManager( 2098): dumpStackTraces pids=null
+I/ActivityManager( 2098): Dumping to /data/anr/anr_2026-10-25-17-26-07-358
+W/ActivityManager( 2098): pid 5639 com.google.android.gms sent binder code 98 with flags 2 to frozen apps and got error -32
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.gcm.http.GoogleHttpService in 1000ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.wearable.service.WearableControlService in 42002ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.server.GoogleLocationService in 155264ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.contextmanager.service.ContextManagerService in 217768ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentBoundBrokerService in 10815ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.GoogleLocationManagerService in 257764ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.fido.authenticator.service.AuthenticatorService in 20814ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.geotimezone.GeoTimeZoneService in 51817ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.fido.fido2.pollux.CableAuthenticatorService in 84000ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.location.geocode.GeocodeService in 337764ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.server.HardwareArProviderService in 377764ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentApiServiceNoInstantApps in 457764ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.config.ConfigService in 61817ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.gcm.GcmService in 647544ms for start-requested
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.network.NetworkLocationService in 497764ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.lockbox.service.LockboxBrokerService in 30813ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentDirectBootAwareApiService in 71816ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.fused.FusedLocationService in 687544ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.auth.account.authenticator.GoogleAccountAuthenticatorService in 727544ms for connection
+W/ActivityManager( 2098): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentIntentOperationService in 767540ms for start-requested
+W/ActivityManager( 2098): Slow operation: 121ms so far, now at startProcess: asking zygote to start proc
+W/ActivityManager( 2098): Slow operation: 124ms so far, now at startProcess: done starting proc!
+I/ActivityManager( 2098): dumpStackTraces nativepids=null
+I/ActivityManager( 2098): dumpStackTraces extraPids=null
+I/ActivityManager( 2098): Done dumping
+W/ActivityManager( 2098): pid 6505 com.google.android.googlequicksearchbox:search sent binder code 46 with flags 2 to frozen apps and got error -32
+W/ActivityManager( 2098): Slow operation: 963ms so far, now at startProcess: returned from zygote!
+W/ActivityManager( 2098): Slow operation: 964ms so far, now at startProcess: done updating battery stats
+W/ActivityManager( 2098): Slow operation: 964ms so far, now at startProcess: building log message
+I/ActivityManager( 2098): Start proc 6561:com.google.android.gms.persistent/u0a144 for service {com.google.android.gms/com.google.android.gms.chimera.PersistentDirectBootAwareApiService}
+W/ActivityManager( 2098): Slow operation: 972ms so far, now at startProcess: starting to update pids map
+E/ActivityManager( 2098): ANR in be.sportgreenmoove.app.local
+E/ActivityManager( 2098): PID: 6462
+E/ActivityManager( 2098): Reason: Process ProcessRecord{e123342 6462:be.sportgreenmoove.app.local/u0a208} failed to complete startup
+E/ActivityManager( 2098): ErrorId: c9d5edf0-daaa-429b-851d-524e7bdba0ab
+E/ActivityManager( 2098): Frozen: false
+E/ActivityManager( 2098): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager( 2098): ----- Output from /proc/pressure/memory -----
+E/ActivityManager( 2098): some avg10=1.20 avg60=4.34 avg300=4.86 total=38581933
+E/ActivityManager( 2098): full avg10=0.12 avg60=0.25 avg300=0.20 total=2711659
+E/ActivityManager( 2098): ----- End output from /proc/pressure/memory -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): some avg10=89.44 avg60=91.70 avg300=80.48 total=562202304
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager( 2098): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager( 2098): ----- Output from /proc/pressure/io -----
+E/ActivityManager( 2098): some avg10=1.93 avg60=4.17 avg300=4.99 total=44605275
+E/ActivityManager( 2098): full avg10=0.00 avg60=0.00 avg300=0.00 total=1170798
+E/ActivityManager( 2098): ----- End output from /proc/pressure/io -----
+E/ActivityManager( 2098): 
+E/ActivityManager( 2098): CPU usage from 3215ms to -3019ms ago (2026-10-25 17:26:04.109 to 2026-10-25 17:26:10.343):
+E/ActivityManager( 2098):   47% 5055/com.android.settings: 3.1% user + 44% kernel / faults: 14 minor
+E/ActivityManager( 2098):   26% 6462/be.sportgreenmoove.app.local: 17% user + 9.1% kernel / faults: 9097 minor 30 major
+E/ActivityManager( 2098):   19% 6505/com.google.android.googlequicksearchbox:search: 14% user + 4.8% kernel / faults: 3218 minor
+E/ActivityManager( 2098):   14% 2098/system_server: 6% user + 8.1% kernel / faults: 488 minor
+E/ActivityManager( 2098):   9.4% 366/android.hardware.graphics.composer3-service.ranchu: 0.1% user + 9.2% kernel
+E/ActivityManager( 2098):   6.5% 394/surfaceflinger: 3% user + 3.5% kernel / faults: 2 minor
+E/ActivityManager( 2098):   3.9% 3680/com.google.android.gms.unstable: 0.8% user + 3% kernel / faults: 90 minor 135 major
+E/ActivityManager( 2098):   3.5% 2059/zygote64: 0.4% user + 3% kernel / faults: 20 minor
+E/ActivityManager( 2098):   2.8% 2334/com.android.systemui: 2.5% user + 0.3% kernel / faults: 64 minor
+E/ActivityManager( 2098):   2.4% 16/rcu_preempt: 0% user + 2.4% kernel
+E/ActivityManager( 2098): 98% TOTAL: 27% user + 48% kernel + 20% irq + 0.9% softirq
+E/ActivityManager( 2098): CPU usage from 630875ms to 630875ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager( 2098): 0% TOTAL: 0% user + 0% kernel
+W/ActivityManager( 2098): Slow operation: 1224ms so far, now at startProcess: done updating pids map
+I/ActivityManager( 2098): Killing 6462:be.sportgreenmoove.app.local/u0a208 (adj 0): bg anr
+W/ActivityManager( 2098): Slow operation: 64ms so far, now at finishAttachApplicationInner: after dispatching broadcasts
+W/ActivityManager( 2098): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner}
+I/ActivityManager( 2098): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst
+W/ActivityManager( 2098): pid 2098 system sent binder code 18 with flags 1 to frozen apps and got error -32
+W/ActivityManager( 2098): Error shutting down UiAutomationConnection

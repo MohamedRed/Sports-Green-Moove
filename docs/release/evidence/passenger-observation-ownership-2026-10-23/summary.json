@@ -1,0 +1,36 @@
+{
+  "scope": "local-passenger-command-observation-ownership-unit-and-apk-build",
+  "checkedAt": "2026-10-23",
+  "baselineCommit": "7c7bb699dfd59b5a66ef1a7656296da26c9bdddc",
+  "targeted": {
+    "tests": 17,
+    "failures": 0,
+    "skipped": 0
+  },
+  "fullUnit": {
+    "suites": 78,
+    "tests": 497,
+    "failures": 0,
+    "skipped": 0
+  },
+  "competingPassengerReadRemoved": true,
+  "nativeTestApkCompiled": true,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "ciFailureCauseProven": false,
+  "completionRulesChanged": false,
+  "applicationDeployed": false,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt": "a6b0e943e02e92e37bc9c191dee27341fdd58c484ede69753680fe2e3bf465d0",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "fdc139d14971617e87b2f08ac2eda6a23295ce5b92915dacbe40ea6571095cd9",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationState.kt": "0575530896872f5c73480f1b2f15d3646e33cb561aa973f0a57a68fd4d0b2a87",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ActiveRideObservationEffect.kt": "42cccedc52914608b9ac1599aedca2c6a233b0f6cfbbff3a642c49f2428770e3",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/AppDataState.kt": "a69e89ffb8dc0fa0583d9a291f2d9437cd4f1e85680d44238983b820ceaab4bb",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/RideMonitorScreen.kt": "9e3a3bfad54f28bfadaf6729cdc2999e71791bb3fc508f1446888cc4e7529ff2",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRideObservationGateway.kt": "a72df20683fc21b5de4a98adbfca7d19ccd4816711e6c83fdef1f2a0d1abe01b",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/PassengerStatusObservationOwnershipTest.kt": "aa93094944f3e65d255100732c79ef9e3219bbcc70d0118bbb5e4f7852683f92",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideFlowTest.kt": "08897531ecc1a2e79978db1f39b51a25d721902b64b1e405a58489a2096c2080"
+  }
+}

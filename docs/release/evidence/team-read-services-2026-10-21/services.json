@@ -1,0 +1,94 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "180beebe29a02046b2fce880fc6a4928",
+  "testedAt": "2026-10-21T19:32:18.922Z",
+  "scope": "local-team-read-services-not-native-or-push-proof",
+  "completed": true,
+  "steps": [
+    {
+      "id": "current-admission-count-excludes-old-history-and-own-sends",
+      "status": "passed"
+    },
+    {
+      "id": "read-endpoint-requires-auth-authority-account-bound-window-and-exact-input",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-and-reconnected-replays-persist-one-private-receipt",
+      "status": "passed"
+    },
+    {
+      "id": "outgoing-message-does-not-create-an-incoming-receipt-or-unread-count",
+      "status": "passed"
+    },
+    {
+      "id": "acknowledging-selected-messages-keeps-unseen-messages-unread",
+      "status": "passed"
+    },
+    {
+      "id": "pre-admission-missing-and-cross-team-identities-reject-the-whole-batch",
+      "status": "passed"
+    },
+    {
+      "id": "contradictory-receipt-and-negative-unread-count-fail-explicitly",
+      "status": "passed"
+    },
+    {
+      "id": "direct-receipt-read-and-write-denied-including-manager-and-admin",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-and-renewal-recheck-authority-and-reset-only-the-visible-history",
+      "status": "passed"
+    },
+    {
+      "id": "separate-team-counts-and-receipts-remain-independent",
+      "status": "passed"
+    },
+    {
+      "id": "exact-counts-span-pages-with-equal-timestamps-without-marking-unseen-rows",
+      "status": "passed"
+    },
+    {
+      "id": "current-child-role-cannot-read-or-acknowledge-with-a-stale-adult-token",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "notificationsVerified": false,
+  "adminClientClosed": true,
+  "sourceFiles": {
+    "functions/src/domain/teamConversationRead.ts": "1461121905e2d6788ed2811d8e92f9ac8c4a492eb9273f17b3530c048773fda4",
+    "functions/src/services/teamConversationRead.ts": "11656304858210fdf621db3ed8a25b5aa213314e9f17460e55df648378ef20d3",
+    "functions/src/services/teamConversation.ts": "b8476cb9f1d9d62ee951d6807219061d0e9266f96fb2250b5e1d275eb616caf8",
+    "functions/src/services/teamConversationAuthority.ts": "e8b52e882fa874ac6d89d38a58f9fb60c6330d73b694a444f52347f85a534e8e",
+    "functions/src/services/teamConversationOptions.ts": "7b726d5c7d592e9a419d10538dc8a38a23196e137946775d75189a78d11bc4c6",
+    "functions/src/callables/teamConversation.ts": "5a86d842cb26e5cdae75b30e240501daf772d76643360f4d0ef19b9b285e8a01",
+    "firestore.rules": "856f694bf27d8c3c279353b2b282555d56f6e3be8485c76ed4df2ba8300791d9",
+    "firestore.indexes.json": "db44f6fd2e637982999df4e11d616229e46b0f65614fc50870a689f4b65ec372",
+    "scripts/qa/local-team-read-suite.mjs": "b5d60f8036ce58d9326d9e0f7297c9818d51f2240fde5f1da522d50d9b51e942",
+    "scripts/qa/run-local-team-conversation.mjs": "dacc5f7369afa5aa4998a0277eaa40f3bfce29f26c36f6886de4d82a7a293875",
+    "scripts/qa/team-chat-access-ui-fixture.mjs": "aa475db82d562298a68969b960ab3736f13e049760ab77a6826e5e1adfa70d6b",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

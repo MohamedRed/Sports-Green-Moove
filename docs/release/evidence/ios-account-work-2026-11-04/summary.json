@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-04",
+  "baseline": {
+    "sourceCommit": "20ca1458b9927fa354a1586c261c166d9b77d016",
+    "log": "baseline.txt",
+    "logSha256": "778edf80fb7b2d872638f7686b70bf58ac6a9a63a2b0a25bda2f9ad69594c15a",
+    "exitCode": 133,
+    "restoredNotice": true,
+    "historicalFullAppBuildAccepted": false
+  },
+  "candidate": {
+    "log": "native-checks.txt",
+    "logSha256": "822270f7ff1ef8bfc25495b7e652fb2d7898bef1512b6a70104f94b5d0d73bc3",
+    "exitCode": 0,
+    "restoredNotice": false,
+    "delayedPublicationCases": 42,
+    "currentSuccessAndExplicitRetryAccepted": true
+  },
+  "scope": "Actual account scope, app-state refresh and publication controller with synthetic gateways",
+  "sdkLinkedBuildAccepted": false,
+  "renderedAccountSwitchAccepted": false,
+  "completeTransportDrainAccepted": false,
+  "fullSignOutAccepted": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

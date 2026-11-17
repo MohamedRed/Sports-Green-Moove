@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "a23cb9d67f6163156150dbfd320aff7e7ae95835",
+  "runId": 41901262613,
+  "jobId": 126823997145,
+  "status": "completed",
+  "conclusion": "failure",
+  "configuredMinutes": 50,
+  "failureKind": "swift-permission-continuation-type-inference",
+  "failureSource": "ios/Sources/SportsGreenMooveApp/ActiveRidePermissionGate.swift:144",
+  "underlyingBuildSlownessCause": "unknown",
+  "artifactCount": 0,
+  "capturesAccepted": 0,
+  "fixtureUiExecuted": false,
+  "cleanupSucceeded": true,
+  "selection": {
+    "fullLogSha256": "9206f50316b5e9153a28adfc7a72bd00a193206dd081ce1820f53e571c2bd48b",
+    "lineRanges": [
+      [
+        18629,
+        18636
+      ],
+      [
+        18718,
+        18718
+      ]
+    ],
+    "excerptSha256": "74571957b66ad9eb5791d1afba68175fb961e9e7eaa93a662b902e8ca7d11e0e",
+    "terminalSha256": "0c4d92d51fc719dec007cf57473f434092fc9a718809d2c8bd7974b3c9e4801f"
+  },
+  "bridgeCheck": {
+    "exitCode": 0,
+    "log": "bridge-check.txt",
+    "logSha256": "7478221c85c561630b8235c4d2f0a91a5d38c9dddbd27fa2d3d0a695791adbec",
+    "scope": "Actual extracted method with synthetic manager; not complete coordinator or SDK"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "newNativeMediaPublished": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false
+}

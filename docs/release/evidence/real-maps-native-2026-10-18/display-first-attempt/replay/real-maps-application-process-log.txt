@@ -1,0 +1,10 @@
+--------- beginning of system
+I/ActivityManager(  540): Start proc 7501:be.sportgreenmoove.app.local.test/u0a210 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  540): Slow operation: 152ms so far, now at attachApplicationLocked: immediately before bindApplication
+W/ActivityManager(  540): Slow operation: 160ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager(  540): Slow operation: 160ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager(  540): Slow operation: 160ms so far, now at attachApplicationLocked: after updateOomAdjLocked
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.local appid=10209 user=0: finished inst
+E/ActivityManager(  540): Unable to freeze binder for 6976: -11
+I/ActivityManager(  540): Killing 6976:be.sportgreenmoove.app.local/u0a209 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  540): setHasOverlayUi called on unknown pid: 6976

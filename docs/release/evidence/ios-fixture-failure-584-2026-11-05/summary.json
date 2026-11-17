@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "584c61b61453878e1bd2631b48ca2fef5e9de4d4",
+  "runId": 42085479023,
+  "jobId": 127462307445,
+  "conclusion": "cancelled",
+  "sdkBuild": "success",
+  "fixtureStep": "failure",
+  "casesExecuted": 11,
+  "passed": 8,
+  "failed": 3,
+  "assertionFailures": 5,
+  "disposal": "success",
+  "artifactCount": 0,
+  "deadlineMinutes": 50,
+  "publicationSeedOrderFailureReproduced": true,
+  "fixtureRoleAndPlacesChecksPassed": true,
+  "actualFixtureBookingConfirmationPassedLocally": true,
+  "emergencyNavigationCandidateOnly": true,
+  "bookingUiCauseConfirmed": false,
+  "candidateSdkAccepted": false,
+  "candidateUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "103792bc4e73ec23793147b07c7e8ee6b914ef77e653317c9c02649951b09ffe"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "f57a8ca0320a439ee0f3758c9b63355a876f6b5413863595451f08509a974fdb"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "c4515bad80dec0a518622dc0739f98d69044e966afd9f5b03de4c63af46e1685"
+    },
+    {
+      "file": "selected-failures.txt",
+      "sha256": "e42b1fa9ce04f3a3e3d3bd0fb4943ca386a2fbbbb2cc92337a60513950500750"
+    },
+    {
+      "file": "seed-baseline.txt",
+      "sha256": "e038aefa777df9dacee70791035a088bbae1ffac82a3c9477684821a730c43ab"
+    },
+    {
+      "file": "native-recheck.txt",
+      "sha256": "1ffb4ffc83f8342a571ec91f572c23d2d02ae6329691201353bcf8adb74c5b56"
+    },
+    {
+      "file": "signature-recheck.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "050bc75a8d02ed576335942779495aca4abd27836ba04062622141e8d7d5ad55"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "4449f3841e693ad4af65f3ad6bb933dad2a82a23080d02ab1a2a2a2dc36e7683"
+    }
+  ]
+}

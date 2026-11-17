@@ -1,0 +1,20 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c523d9964eedfab26927ba88f9fad1",
+  "scope": "native-ui-confirmed-trip-consent-restart-stage",
+  "stage": "after",
+  "tripId": "VEjS1BAGug8HriCFdpRj",
+  "bookingId": "JHig3qlugiLlmEnR1BsI",
+  "actorUserId": "sgm-qa-parent",
+  "processId": 11689,
+  "completed": true,
+  "sessionRestoredWithoutLogin": true,
+  "originalProposalRestored": true,
+  "parentDecisionRestored": true,
+  "duplicateDecisionActionsAbsent": true,
+  "explicitRefreshRestored": true,
+  "driverSawSameConsent": true,
+  "notApplied": true,
+  "proposalId": "2329dc17891f427314f53ce514c1ad5b61fcd3a45d4dc88650619d4dfa40a608",
+  "endedAsUserId": "sgm-qa-driver"
+}

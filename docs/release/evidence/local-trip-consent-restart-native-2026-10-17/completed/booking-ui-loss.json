@@ -1,0 +1,47 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "7c07413926f6fe767cbafb38ee5a9654",
+  "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+  "ui": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "7c07413926f6fe767cbafb38ee5a9654",
+    "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+    "tripId": "QsUgHfBM5N1qZ0oqX6zm",
+    "completed": true,
+    "sendingObservedBeforeDispatch": true,
+    "clientRequestId": "c88dbd5d-e923-4375-bf92-d08b3e1fe71a",
+    "unconfirmedReplyVisible": true,
+    "retryActionVisible": true,
+    "pendingIdentityPersisted": true,
+    "confirmedVisible": true,
+    "secondSubmissionActionAbsent": true,
+    "staleCallbackIgnored": true,
+    "sdkCalls": 2,
+    "bookingId": "gS3aHLMRIRpq1vAUphNd",
+    "pendingClearedAfterAcknowledgement": true
+  },
+  "attempts": [
+    {
+      "number": 1,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": true,
+      "commit": {
+        "bookingId": "gS3aHLMRIRpq1vAUphNd",
+        "clientRequestId": "c88dbd5d-e923-4375-bf92-d08b3e1fe71a",
+        "bookingCount": 1,
+        "receiptCount": 1,
+        "createdAtMillis": 1792276589155
+      }
+    },
+    {
+      "number": 2,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    }
+  ],
+  "bookingCount": 1,
+  "receiptCount": 1,
+  "completed": true,
+  "livePayment": false,
+  "productionDeployed": false
+}

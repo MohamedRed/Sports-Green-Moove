@@ -1,0 +1,28 @@
+{
+  "first": {
+    "sha256": "2427130280d4f13248f2fa2160456007d46ec22e94df69a0654345f5a69cb00b",
+    "region": {
+      "left": 38,
+      "top": 90,
+      "width": 125,
+      "height": 120
+    },
+    "mean": 235.40597777777776,
+    "stdDev": 22.726759651700938,
+    "min": 54,
+    "max": 255
+  },
+  "verified": {
+    "sha256": "cbead2406408b73bff3ff0359e6c934f208ea606c16a8c8e3969d7dc15611a04",
+    "region": {
+      "left": 38,
+      "top": 90,
+      "width": 125,
+      "height": 120
+    },
+    "mean": 250,
+    "stdDev": 0,
+    "min": 250,
+    "max": 250
+  }
+}

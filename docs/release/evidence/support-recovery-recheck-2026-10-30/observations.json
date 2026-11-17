@@ -1,0 +1,30 @@
+{
+  "scope": "manual-session-observations-not-independent-radio-causality",
+  "networkMethod": "provider-offline-mode-0kbps-not-persistent-wifi-disable",
+  "offlineCaptureFileModifiedAt": "2026-10-30T15:53:30.226Z",
+  "parentHistoryRows": 2,
+  "newReports": 1,
+  "preexistingProtectedReports": 1,
+  "newVideo": false,
+  "recordingFailure": "desktop-screen-sharing-permission-modal-no-permission-change",
+  "captures": "original-browser-session-captures-not-native-exports",
+  "parentIdentity": "p@example.test",
+  "foreignIdentity": "d@example.test",
+  "foreignFormEmptyObserved": true,
+  "foreignHistoryEmptyObserved": true,
+  "parentHistoryRestoredObserved": true,
+  "newPublicCapture": {
+    "file": "captures/10-parent-history-session.png",
+    "clip": {
+      "x": 460,
+      "y": 111,
+      "width": 198,
+      "height": 435
+    }
+  },
+  "retainedArtifactsExcludeCredentialEntry": true,
+  "mapRequests": 0,
+  "realPayments": 0,
+  "realEmails": 0,
+  "productionWrites": false
+}

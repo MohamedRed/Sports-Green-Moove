@@ -1,0 +1,14 @@
+{
+  "scope": "compiled-source-and-JVM-not-native-layout-execution",
+  "jvm": {
+    "tests": 820,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 116
+  },
+  "apkSha256": "367931af08543dba027c25bfcd53f605b894cc2763b104449b8f62723fe86c30",
+  "testApkSha256": "fb02fe9a12b82dd79b0eed1f3ad2098a4e25b7e891b31091f04734e0edab32c9",
+  "nativeLayoutsAccepted": false,
+  "releaseAccepted": false
+}

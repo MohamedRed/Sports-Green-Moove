@@ -1,0 +1,13 @@
+{
+  "observedAt": "2026-10-22T19:54:55.617Z",
+  "networkRestored": true,
+  "networkProof": "network-restored.json",
+  "networkSimulationRemoved": true,
+  "deviceAdministrationChanged": false,
+  "hostClipboardRestored": true,
+  "nativeForceStopObserved": true,
+  "nativeForceStopScope": "cleanup-only-not-pending-request-restart-test",
+  "appUninstallRequested": true,
+  "appUninstallIndependentlyVerified": false,
+  "notes": "Launcher icon remained visible after provider and native uninstall requests; no removal claim."
+}

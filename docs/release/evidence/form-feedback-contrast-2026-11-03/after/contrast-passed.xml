@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-03T08:44:55.859Z" hostname="MRRs-MacBook-Air.local" time="0.009">
+  <properties/>
+  <testcase name="formFeedbackRemainsReadable[light-auth]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.006"/>
+  <testcase name="formFeedbackRemainsReadable[light-search]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[light-chat-error]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[light-chat-limit]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[light-chat-sending]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[dark-auth]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[dark-search]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[dark-chat-error]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.001"/>
+  <testcase name="formFeedbackRemainsReadable[dark-chat-limit]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <testcase name="formFeedbackRemainsReadable[dark-chat-sending]" classname="be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest" time="0.0"/>
+  <system-out><![CDATA[{"case":"light-auth","contrastRatio":6.092589354752622,"minimum":4.5}
+{"case":"light-search","contrastRatio":6.092589354752622,"minimum":4.5}
+{"case":"light-chat-error","contrastRatio":6.092589354752622,"minimum":4.5}
+{"case":"light-chat-limit","contrastRatio":6.092589354752622,"minimum":4.5}
+{"case":"light-chat-sending","contrastRatio":7.52839461401664,"minimum":4.5}
+{"case":"dark-auth","contrastRatio":8.470091498025255,"minimum":4.5}
+{"case":"dark-search","contrastRatio":8.470091498025255,"minimum":4.5}
+{"case":"dark-chat-error","contrastRatio":8.470091498025255,"minimum":4.5}
+{"case":"dark-chat-limit","contrastRatio":8.470091498025255,"minimum":4.5}
+{"case":"dark-chat-sending","contrastRatio":8.742966014200627,"minimum":4.5}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

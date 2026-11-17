@@ -1,0 +1,16 @@
+{
+  "reference": {
+    "source": "docs/release/evidence/ios-fixture-recheck-05cd3f7-2026-11-07/summary.json",
+    "sha256": "f5886903b52fb0543d59383a979b0ec6e57a8cbfe6780c2e1b9b965dc3ce7058"
+  },
+  "manifestBeforeSha256": "fd9fef1ede400a88d70f84caeacfcc376f959281ea77bbc9b44c2449aacf1d98",
+  "manifestAfterSha256": "929ef74b6140654c0dddc039d9f375dfe59d1215686ad9df22623a42921cc6ae",
+  "indexAfterSha256": "e368628fda2d8001ff31813277e987738e5dd864744f58e1e5c1ede7d255121e",
+  "inheritedEvidence": {
+    "source": "docs/release/evidence/automated-user-flow-evidence-2026-11-06T235522542Z-ios-parent-reservations.json",
+    "sha256": "6b3b624b87a931f069988d401d984ee6881f5f5564f10e5b70b343267d5fc29a"
+  },
+  "onlyIosAcceptanceReopened": true,
+  "historicalProofsPreserved": true,
+  "releaseComplete": false
+}

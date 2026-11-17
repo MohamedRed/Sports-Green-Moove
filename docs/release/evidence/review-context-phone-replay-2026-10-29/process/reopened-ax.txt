@@ -1,0 +1,112 @@
+Browser tab: 1621935623, Title: "Google Pixel 9 Pro 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1".
+1 AXWebArea Google Pixel 9 Pro 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9+Pro&zoom_to_fit=true&full_screen=true&speed=1
+	2 container bd-dashboard
+		45 container
+			46 container content
+				129 container in-session-device-react
+					130 container
+					131 container
+						132 image
+						133 button Add Device
+							134 text Add Device
+							135 text PRO
+				126 text ;
+				224 container debugger
+					225 text DevTools -  ADB Shell
+					226 button Download logs, ID: devtool-download-logs
+					227 button Dock to bottom, ID: devtool-change-orientation
+					228 button Collapse, ID: devtool-toggle
+					307 container
+						308 container
+							309 text pixel9Pro:/ $  dumpsys meminfo be.sportgreenmoove.app.local
+						310 text Applications Memory Usage (in Kilobytes): Uptime: 8126681 Realtime: 8126681 ** MEMINFO in pid 28786 [be.sportgreenmoove.app.local] ** Pss Private Private Swap Rss Heap Heap Heap Total Dirty Clean Dirty Total Size Alloc Free ------ ------ ------ ------ ------ ------ ------ ------ Native Heap 25531 25468 0 0 30060 37928 28974 5358 Dalvik Heap 23997 23872 0 0 31396 46698 11675 35023 Dalvik Other 28629 9040 0 0 48772 Stack 2708 2708 0 0 2712 Ashmem 18 0 0 0 984 Other dev 20 0 20 0 368 .so mmap 3941 156 0 0 66132 .jar mmap 1717 0 0 0 46752 .apk mmap 3603 76 628 0 16888 .ttf mmap 645 0 240 0 1912 .dex mmap 6454 88 8 0 30072 .oat mmap 24 0 0 0 1680 .art mmap 8525 8172 0 0 29540 Other mmap 562 4 212 0 3068 EGL mtrack 40840 40840 0 0 40840 GL mtrack 19404 19404 0 0 19404 Unknown 75593 75224 360 0 76808 TOTAL 242211 205052 1468 0 447388 84626 40649 40381 App Summary Pss(KB) Rss(KB) ------ ------ Java Heap: 32044 60936 Native Heap: 25468 30060 Code: 1576 203000 Stack: 2708 2712 Graphics: 60244 60244 Private Other: 84480 System: 35691 Unknown: 90436 TOTAL PSS: 242211 TOTAL RSS: 447388 TOTAL SWAP (KB): 0 Objects Views: 56 ViewRootImpl: 3 AppContexts: 6 Activities: 1 Assets: 26 AssetManagers: 0 Local Binders: 76 Proxy Binders: 122 Parcel memory: 17 Parcel count: 70 Death Recipients: 1 WebViews: 0 SQL MEMORY_USED: 304 PAGECACHE_OVERFLOW: 195 MALLOC_SIZE: 46 DATABASES pgsz dbsz Lookaside(b) cache hits cache misses cache size Dbname PER CONNECTION STATS 4 176 118 1502 589 25 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29 POOL STATS cache hits cache misses cache size Dbname 1494 598 2092 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29
+						311 container
+							312 text pixel9Pro:/ $  dumpsys meminfo be.sportgreenmoove.app.local
+						313 text No process found for: be.sportgreenmoove.app.local
+						314 container
+							315 text pixel9Pro:/ $  dumpsys meminfo be.sportgreenmoove.app.local
+						316 text Applications Memory Usage (in Kilobytes): Uptime: 8425645 Realtime: 8425645 ** MEMINFO in pid 19239 [be.sportgreenmoove.app.local] ** Pss Private Private Swap Rss Heap Heap Heap Total Dirty Clean Dirty Total Size Alloc Free ------ ------ ------ ------ ------ ------ ------ ------ Native Heap 15850 15788 0 0 20388 26804 20671 2398 Dalvik Heap 8486 8364 0 0 15916 38407 9602 28805 Dalvik Other 17497 7680 0 0 27868 Stack 2852 2852 0 0 2856 Ashmem 17 0 0 0 984 Other dev 24 0 24 0 372 .so mmap 3271 152 0 0 65116 .jar mmap 1438 0 0 0 45216 .apk mmap 2650 76 316 0 16060 .ttf mmap 350 0 72 0 1320 .dex mmap 6391 88 4 0 29952 .oat mmap 21 0 0 0 1680 .art mmap 8458 8116 0 0 29540 Other mmap 444 4 184 0 2764 EGL mtrack 40840 40840 0 0 40840 GL mtrack 16844 16844 0 0 16844 Unknown 75384 75208 168 0 76596 TOTAL 200817 176012 768 0 394312 65211 30273 31203 App Summary Pss(KB) Rss(KB) ------ ------ Java Heap: 16480 45456 Native Heap: 15788 20388 Code: 884 179160 Stack: 2852 2856 Graphics: 57684 57684 Private Other: 83092 System: 24037 Unknown: 88768 TOTAL PSS: 200817 TOTAL RSS: 394312 TOTAL SWAP (KB): 0 Objects Views: 19 ViewRootImpl: 1 AppContexts: 6 Activities: 1 Assets: 26 AssetManagers: 0 Local Binders: 41 Proxy Binders: 71 Parcel memory: 16 Parcel count: 66 Death Recipients: 1 WebViews: 0 SQL MEMORY_USED: 207 PAGECACHE_OVERFLOW: 101 MALLOC_SIZE: 46 DATABASES pgsz dbsz Lookaside(b) cache hits cache misses cache size Dbname PER CONNECTION STATS 4 176 123 249 107 24 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29 POOL STATS cache hits cache misses cache size Dbname 249 108 357 /data/user/0/be.sportgreenmoove.app.local/databases/firestore.%5BDEFAULT%5D.demo-sgm-local-qa.%28default%29
+						317 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 
+						318 text To know more about supported commands, refer to 
+						319 link Description: this documentation, Value: browserstack.com/docs/app-live/adb-commands
+						320 link Resize Component
+							321 text ||
+						322 tab group
+							323 tab (selectable, settable, boolean) Description: Logs, Value: 0
+							324 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+							325 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+							326 text Inspect
+							327 tab (selectable, settable, boolean) Description: Network, Value: 0
+							328 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				244 content list
+					245 button Description: Switch Device, ID: switchBrowser
+					246 container
+						247 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							248 image
+							249 image open content menu
+							250 text Local testing
+					251 menu zoomFeature
+						252 Description: zoom out, ID: zoom-out
+						253 Description: zoom in, ID: zoom-in
+						254 text Zoom
+					255 button Description: Record Session, ID: appLiveVideoRecording
+					256 button Description: DevTools, ID: showDebuggingOptions
+					257 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					258 button Description: Settings, ID: appLiveSessionSettings
+						259 image open content menu
+						260 text Settings
+					261 button Description: Stop Session, ID: appLiveStopSession
+						262 image
+						263 text Stop Session
+				217 container vertical-toolbar-react
+					218 container vertical-toolbar-draggable
+						219 container
+							264 button toolbar drag icon
+							221 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						222 toolbar
+							223 content list
+								265 button Description: Add Device, ID: app-live-add-device
+									266 container app-live-add-device-lead-text-wrapper
+										267 text Add Device PRO
+								268 button Description: Show Home Screen, ID: dockHomeScreen
+									269 text Show Home Screen
+								270 container volume-buttons-lead-text-wrapper
+									271 text Volume
+									272 container volumeButtons
+										273 button - Volume Decrease
+										274 button (disabled) + Volume Increase
+								275 button Description: View Open Apps, ID: view-open-apps
+									276 text View Open Apps
+								277 button Description: Install New App, ID: switch-app
+									278 text Install New App
+								279 checkbox Description: Profile Performance, Value: 0
+									280 text Profile Performance
+									281 text PRO
+								282 button Description: Capture Screenshot, ID: get-screenshot
+									283 text Capture Screenshot
+								284 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									285 text Kill/Uninstall
+								286 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									287 container android-settings-lead-text-wrapper
+										288 text Android Settings PRO
+								289 button Rotate Device, ID: dockOrientationRealAndroid
+									290 text Rotate Device
+								291 button (collapsed) Description: Scroll speed, ID: appLiveScrollSensitivity, Secondary Actions: Expand
+									292 container appLiveScrollSensitivity-lead-text-wrapper
+										293 text Scroll speed New
+								294 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									295 text Change Location
+								296 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									297 text Throttle Network
+								298 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									299 text Files & Media
+								300 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									301 text Change Language
+								302 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									303 text Screen Reader
+								304 button (collapsed) Description: Device info: Google Pixel 9 Pro, v15.0, ID: device-info, Secondary Actions: Expand
+									305 text Google Pixel 9 Pro
+									306 text v15.0
+
+The focused UI element is 317 text entry area (settable) Description: adb-shell-editor, Value: pixel9Pro:/ $ 

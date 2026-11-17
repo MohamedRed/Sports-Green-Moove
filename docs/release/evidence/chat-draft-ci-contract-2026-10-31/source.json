@@ -1,0 +1,8 @@
+{
+  "head": "86746f4c1a9c58a583073e0f64292ec1146cda90",
+  "runId": 41242479843,
+  "chatNetwork": {"jobId": 124659032314, "artifactId": 13057853752, "conclusion": "failure", "finalParentAssertionLine": 162, "expected": "", "actual": "Brouillon privé du parent QA.", "updatedInstrumentationExecuted": false},
+  "sessionRestoration": {"jobId": 124659032291, "artifactId": 13057658997, "conclusion": "failure", "homeWaitMs": 60000, "recoveredProxyStatus": 200, "rootCauseEstablished": false, "repairAccepted": false},
+  "fullNativeGateAccepted": false,
+  "releaseAccepted": false
+}

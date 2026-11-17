@@ -1,0 +1,39 @@
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift:27:29: error: cannot find type 'AccountAccess' in scope
+25 |         switch self { case .child: nil; case .parent(_, let target): target }
+26 |     }
+27 |     @MainActor init(access: AccountAccess, view: EmergencyContactView?) throws {
+   |                             `- error: cannot find type 'AccountAccess' in scope
+28 |         guard access.isCurrent else { throw ChildAccountError.invalidResponse }
+29 |         if let view {
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift:30:43: error: cannot infer contextual base in reference to member 'parent'
+28 |         guard access.isCurrent else { throw ChildAccountError.invalidResponse }
+29 |         if let view {
+30 |             guard access.context.role == .parent, !access.context.grantedRoles.contains(.child),
+   |                                           `- error: cannot infer contextual base in reference to member 'parent'
+31 |                 view.ownerUid == access.context.uid else { throw ChildAccountError.invalidResponse }
+32 |             self = .parent(UUID(), try ChildAccountTarget(view: view))
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift:30:90: error: cannot infer contextual base in reference to member 'child'
+28 |         guard access.isCurrent else { throw ChildAccountError.invalidResponse }
+29 |         if let view {
+30 |             guard access.context.role == .parent, !access.context.grantedRoles.contains(.child),
+   |                                                                                          `- error: cannot infer contextual base in reference to member 'child'
+31 |                 view.ownerUid == access.context.uid else { throw ChildAccountError.invalidResponse }
+32 |             self = .parent(UUID(), try ChildAccountTarget(view: view))
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift:34:43: error: cannot infer contextual base in reference to member 'child'
+32 |             self = .parent(UUID(), try ChildAccountTarget(view: view))
+33 |         } else {
+34 |             guard access.context.role == .child, access.context.grantedRoles == [.child] else { throw ChildAccountError.invalidResponse }
+   |                                           `- error: cannot infer contextual base in reference to member 'child'
+35 |             self = .child(UUID())
+36 |         }
+
+/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift:34:83: error: reference to member 'child' cannot be resolved without a contextual type
+32 |             self = .parent(UUID(), try ChildAccountTarget(view: view))
+33 |         } else {
+34 |             guard access.context.role == .child, access.context.grantedRoles == [.child] else { throw ChildAccountError.invalidResponse }
+   |                                                                                   `- error: reference to member 'child' cannot be resolved without a contextual type
+35 |             self = .child(UUID())
+36 |         }

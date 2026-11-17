@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-06",
+  "sourceCommit": "376addb0d2dcc98a0c145247afb40d80dc8bfd34",
+  "scope": "retained-verified-consent-stage-and-later-primary-copy-disconnect-not-full-replay",
+  "consentStageVerified": true,
+  "inputsDeviceCasePassed": true,
+  "transportDisconnectObserved": true,
+  "cleanupCopyPassed": true,
+  "primaryCopyPassed": false,
+  "inputsHostStageVerified": false,
+  "copyRootCauseConfirmed": false,
+  "daemonRestartProven": false,
+  "fullReplayAccepted": false,
+  "wholeNativeGateAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newMedia": 0,
+  "releaseComplete": false
+}

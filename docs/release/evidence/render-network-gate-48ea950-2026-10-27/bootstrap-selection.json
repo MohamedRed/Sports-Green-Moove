@@ -1,0 +1,43 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a6b5bf6993a4fe1dae62e3115ff1e907",
+  "phase": "before",
+  "scope": "read-only-disposable-default-selection-history",
+  "recordedAt": "2026-10-26T22:44:28.126Z",
+  "source": "bounded-controller-log-history-not-current-os-state",
+  "recognizedEventCount": 6,
+  "unrecognizedMessageCount": 1,
+  "eventsTruncated": false,
+  "events": [
+    {
+      "type": "subscriptions-changed"
+    },
+    {
+      "type": "carrier-configuration-missing"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": false,
+      "satelliteEnabledOrEnabling": false
+    },
+    {
+      "type": "subscriptions-changed"
+    },
+    {
+      "type": "carrier-configuration-missing"
+    },
+    {
+      "type": "readiness",
+      "subscriptionsInitialized": true,
+      "carrierConfigurationsLoaded": false,
+      "satelliteEnabledOrEnabling": false
+    }
+  ],
+  "lastReadiness": {
+    "type": "readiness",
+    "subscriptionsInitialized": true,
+    "carrierConfigurationsLoaded": false,
+    "satelliteEnabledOrEnabling": false
+  }
+}

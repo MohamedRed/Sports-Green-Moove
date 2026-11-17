@@ -1,0 +1,43 @@
+[0/1] Planning build
+Building for debugging...
+[0/5] Write sources
+[1/5] Write swift-version--1AB21518FC5DEDBE.txt
+[3/14] Compiling SportsGreenMooveApp FirebaseSupportGateway.swift
+[4/14] Compiling SportsGreenMooveApp GatewayContracts.swift
+[5/14] Compiling SportsGreenMooveApp OptionsScreen.swift
+[6/19] Compiling SportsGreenMooveApp SupportModels.swift
+[7/19] Compiling SportsGreenMooveApp SupportInboxState.swift
+[8/19] Compiling SportsGreenMooveApp UITestAppStateFactory.swift
+[9/19] Compiling SportsGreenMooveApp SupportWire.swift
+[10/19] Compiling SportsGreenMooveApp SupportInboxScreen.swift
+[11/19] Emitting module SportsGreenMooveApp
+[12/37] Compiling SportsGreenMooveApp UnconfiguredGateways.swift
+[13/40] Compiling SportsGreenMooveApp FirebaseNativeGateway.swift
+[14/40] Compiling SportsGreenMooveApp FirebaseRadarTrackingGateway.swift
+[15/40] Compiling SportsGreenMooveApp GroupsScreen.swift
+[16/40] Compiling SportsGreenMooveApp ActiveRidePermissionGate.swift
+[17/40] Compiling SportsGreenMooveApp ActiveRideStartup.swift
+[18/40] Compiling SportsGreenMooveApp AppShell.swift
+[19/40] Compiling SportsGreenMooveApp AppState+RidePayments.swift
+[20/40] Compiling SportsGreenMooveApp NativePaymentSheetFlow.swift
+[21/40] Compiling SportsGreenMooveApp NativePlanPolicies.swift
+[22/40] Compiling SportsGreenMooveApp PaymentsScreen.swift
+[23/40] Compiling SportsGreenMooveApp ProfileScreen.swift
+[24/40] Compiling SportsGreenMooveApp PublishController.swift
+[25/40] Compiling SportsGreenMooveApp PublishScreen.swift
+[26/40] Compiling SportsGreenMooveApp SecondaryScreens.swift
+[27/40] Compiling SportsGreenMooveApp SportsGreenMooveApp.swift
+[28/40] Compiling SportsGreenMooveApp TripsScreen.swift
+[29/40] Compiling SportsGreenMooveApp AppState.swift
+[30/40] Compiling SportsGreenMooveApp AppStateRideLifecycle.swift
+[31/40] Compiling SportsGreenMooveApp AuthScreen.swift
+[32/40] Compiling SportsGreenMooveApp RidePaymentVerification.swift
+[33/40] Compiling SportsGreenMooveApp SGMComponents.swift
+[34/40] Compiling SportsGreenMooveApp SearchScreen.swift
+[35/40] Compiling SportsGreenMooveApp HomeScreen.swift
+[36/40] Compiling SportsGreenMooveApp ImpactRewardsScreens.swift
+[37/40] Compiling SportsGreenMooveApp MessagesScreen.swift
+[37/40] Write Objects.LinkFileList
+[38/40] Linking SportsGreenMooveApp
+[39/40] Applying SportsGreenMooveApp
+Build complete! (3.98s)

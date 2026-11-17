@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TripChangePersistenceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:50.056Z" hostname="MRRs-MacBook-Air.local" time="0.415">
+  <properties/>
+  <testcase name="requestPersistenceFailurePreventsNetworkWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.16"/>
+  <testcase name="failedSaveKeepsTypedInputAndBlocksSubmissionUntilExplicitRetry" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.065"/>
+  <testcase name="unknownProposalIsResolvedAfterReopeningWithoutAnotherSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.024"/>
+  <testcase name="parentReviewsNeverAccessDriverDraftStorage" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.01"/>
+  <testcase name="openingUnrelatedClosedHistoryNeverDeletesAnUnsentDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.005"/>
+  <testcase name="editedInputDoesNotKeepAnObsoleteUnrecordedSubmission" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.054"/>
+  <testcase name="accountAndTripScopesNeverLoadEachOthersDraft" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.005"/>
+  <testcase name="failedReadDoesNotCreateAnEmptyDraftOrWrite" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.002"/>
+  <testcase name="staleDraftIsRetainedButCannotBeSubmittedUntilExplicitlyReplaced" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.076"/>
+  <testcase name="rawInvalidFieldsSurviveNewStateWithoutWritesToTheTrip" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.003"/>
+  <testcase name="unrecordedRequestCanOnlyBeResentExplicitlyWithSameIdentity" classname="be.sportgreenmoove.app.ui.TripChangePersistenceTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

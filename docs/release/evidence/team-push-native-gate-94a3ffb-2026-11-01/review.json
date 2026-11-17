@@ -1,0 +1,26 @@
+{
+  "scope": "failed-native-capture-gate-not-runtime-or-release-proof",
+  "sourceCommit": "94a3ffb6c535264a8535184eda3f9b8dc01c54a2",
+  "testedAt": "2026-11-01T14:45:53Z",
+  "fullGatePassed": false,
+  "rootCauseConfirmed": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt": "1f1e5be3363b7331ca3b7b4a413c3eb4644307e5c0a4b2fc67a7d4e67bc36463",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "7f8931f8d4f8d33d4fe13ce59fd16b499a6e4be40c8036bcf9433c4be47a58e2",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PrimaryCaptureDiagnostics.kt": "4b7e428fc7af971d550c3951da3658e0f687181bd304c87e2e4d4d5674773dd9",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamPushPrivateStorageTest.kt": "3f2fcd65026521560459db34ccc800feb5036cc158272bf3ea0e05e9a359a8ed"
+  },
+  "ordinary": {
+    "cases": 286,
+    "passed": 230,
+    "skipped": 54,
+    "failed": 2
+  },
+  "privateStorageCasePassed": true,
+  "physicalDevice": false,
+  "runtimeCallbacksExecuted": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "rawArchiveDigestIndependentlyMatched": false,
+  "publishedCaptures": {}
+}

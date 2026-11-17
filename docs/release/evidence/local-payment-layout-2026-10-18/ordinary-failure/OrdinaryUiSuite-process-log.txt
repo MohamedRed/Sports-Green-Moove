@@ -1,0 +1,13 @@
+--------- beginning of system
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app appid=10209 user=0: finished inst
+E/ActivityManager(  540): Unable to freeze binder for 6480: -11
+I/ActivityManager(  540): Killing 6480:be.sportgreenmoove.app/u0a209 (adj 0): stop be.sportgreenmoove.app due to finished inst
+W/ActivityManager(  540): setHasOverlayUi called on unknown pid: 6480
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app appid=10209 user=-1: deletePackageX
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app appid=10209 user=0: pkg removed
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.test appid=10210 user=-1: deletePackageX
+I/ActivityManager(  540): Killing 6566:be.sportgreenmoove.app.test/u0a210 (adj 900): stop be.sportgreenmoove.app.test due to deletePackageX
+W/ActivityManager(  540): setHasOverlayUi called on unknown pid: 6566
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.test appid=10210 user=0: pkg removed
+W/ActivityManager(  540): Unable to start service Intent { cmp=com.google.android.gms/swu } U=0: not found
+W/ActivityManager(  540): Unable to start service Intent { cmp=com.google.android.apps.tachyon/.clientapi.ClientApiService } U=0: not found

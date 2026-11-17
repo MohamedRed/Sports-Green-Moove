@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.441Z" hostname="local-test-host" time="0.014">
+  <properties></properties>
+  <testcase name="repeatedBookingTapsDoNotDispatchConcurrentWrites" classname="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" time="0.002"></testcase>
+  <testcase name="anInvalidNewFormCancelsThePreviousSearchInsteadOfShowingItsMatches" classname="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" time="0.003"></testcase>
+  <testcase name="aSupersededErrorCannotReplaceTheLatestSuccessfulChoice" classname="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" time="0.002"></testcase>
+  <testcase name="anOldBookingCompletionCannotClearTheNextSessionsLoadingState" classname="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" time="0.003"></testcase>
+  <testcase name="aQueuedBookingCannotStartAfterLogout" classname="be.sportgreenmoove.app.ui.SearchControllerSafetyTest" time="0.004"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

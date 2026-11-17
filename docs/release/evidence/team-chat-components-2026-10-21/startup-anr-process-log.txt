@@ -1,0 +1,44 @@
+--------- beginning of system
+I/ActivityManager(  553): Collecting stacks for pid 4948 into temporary file temp_anr_5983544646514211519.txt
+I/ActivityManager(  553): dumpStackTraces pids=null
+I/ActivityManager(  553): Dumping to /data/anr/anr_2026-10-21-13-15-05-209
+W/ActivityManager(  553): Unable to start service Intent { act=android.intent.action.QUICKSTEP_SERVICE pkg=com.google.android.apps.nexuslauncher } U=0: not found
+I/ActivityManager(  553): dumpStackTraces nativepids=null
+I/ActivityManager(  553): dumpStackTraces extraPids=null
+I/ActivityManager(  553): Done dumping
+E/ActivityManager(  553): ANR in be.sportgreenmoove.app.local
+E/ActivityManager(  553): PID: 4948
+E/ActivityManager(  553): Reason: Process ProcessRecord{e1d67e4 4948:be.sportgreenmoove.app.local/u0a208} failed to complete startup
+E/ActivityManager(  553): ErrorId: dfaf002c-25ca-49ae-ab8c-d5dc46f02813
+E/ActivityManager(  553): Frozen: false
+E/ActivityManager(  553): Load: 0.0 / 0.0 / 0.0
+E/ActivityManager(  553): ----- Output from /proc/pressure/memory -----
+E/ActivityManager(  553): some avg10=25.07 avg60=13.39 avg300=5.15 total=20741078
+E/ActivityManager(  553): full avg10=5.17 avg60=3.06 avg300=1.27 total=5604631
+E/ActivityManager(  553): ----- End output from /proc/pressure/memory -----
+E/ActivityManager(  553): ----- Output from /proc/pressure/cpu -----
+E/ActivityManager(  553): some avg10=86.35 avg60=81.39 avg300=40.56 total=163477317
+E/ActivityManager(  553): full avg10=0.00 avg60=0.00 avg300=0.00 total=0
+E/ActivityManager(  553): ----- End output from /proc/pressure/cpu -----
+E/ActivityManager(  553): ----- Output from /proc/pressure/io -----
+E/ActivityManager(  553): some avg10=15.98 avg60=14.53 avg300=8.15 total=35788867
+E/ActivityManager(  553): full avg10=1.03 avg60=1.07 avg300=0.90 total=5448206
+E/ActivityManager(  553): ----- End output from /proc/pressure/io -----
+E/ActivityManager(  553): 
+E/ActivityManager(  553): CPU usage from 6ms to 5802ms later (2026-10-21 13:15:03.444 to 2026-10-21 13:15:09.239):
+E/ActivityManager(  553):   70% 4540/com.android.vending: 23% user + 47% kernel / faults: 3835 minor 8 major
+E/ActivityManager(  553):   36% 553/system_server: 22% user + 13% kernel / faults: 4367 minor 95 major
+E/ActivityManager(  553):   37% 1103/com.android.settings: 4.4% user + 32% kernel / faults: 27 minor
+E/ActivityManager(  553):   22% 1492/com.google.android.gms: 14% user + 8% kernel / faults: 3161 minor 126 major
+E/ActivityManager(  553):   18% 2408/com.google.android.gms.unstable: 9% user + 9% kernel / faults: 3342 minor 150 major
+E/ActivityManager(  553):   11% 383/android.hardware.graphics.composer3-service.ranchu: 1.7% user + 10% kernel / faults: 2 minor
+E/ActivityManager(  553):   11% 405/surfaceflinger: 3.5% user + 8.4% kernel / faults: 28 minor 12 major
+E/ActivityManager(  553):   9.3% 9/kworker/0:1-virtio_vsock: 0% user + 9.3% kernel
+E/ActivityManager(  553):   10% 1236/com.google.android.gms.persistent: 8% user + 2.1% kernel / faults: 2353 minor 26 major
+E/ActivityManager(  553):   6.9% 55/kswapd0: 0% user + 6.9% kernel
+E/ActivityManager(  553): 97% TOTAL: 26% user + 46% kernel + 2.2% iowait + 20% irq + 1.9% softirq
+E/ActivityManager(  553): CPU usage from 210001ms to 210001ms ago (1970-01-01 00:00:00.000 to 1970-01-01 00:00:00.000) with 0% awake:
+E/ActivityManager(  553): 0% TOTAL: 0% user + 0% kernel
+I/ActivityManager(  553): Killing 4948:be.sportgreenmoove.app.local/u0a208 (adj 0): bg anr
+W/ActivityManager(  553): Crash of app be.sportgreenmoove.app.local running instrumentation ComponentInfo{be.sportgreenmoove.app.local.test/be.sportgreenmoove.app.ui.DisposableAndroidJUnitRunner}
+I/ActivityManager(  553): Force stopping be.sportgreenmoove.app.local appid=10208 user=0: finished inst

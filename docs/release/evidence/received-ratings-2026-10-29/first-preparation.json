@@ -1,0 +1,35 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e8e1308819b67a5851fc09b5832d161b",
+  "testedAt": "2026-10-29T18:19:34.465Z",
+  "scope": "authenticated-isolated-received-rating-summary-not-phone-or-release",
+  "completed": false,
+  "checks": [],
+  "observations": [],
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "phoneUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/local-received-ratings.mjs": "3853afd520e63d49210e386ea12a0f31b0469a1becd9b48c5e036793e65bb60c",
+    "scripts/qa/review-history-fixture.mjs": "6a59290095137647ec0eeb0098e2fb3178e559bfff696b1639f470da51cc73b7",
+    "functions/src/domain/receivedRatings.ts": "1045100f29355444b2b1cc6b1fe5dac7e7d4b266b29a5fde1665b4633f97136c",
+    "functions/src/callables/receivedRatings.ts": "837b4d46ad31bfcae54b28be8e6d0c7adf601990fa171757c7279ba78f7c1015",
+    "functions/src/callables/feedback.ts": "0486e01d2261c74792a9b5272a76be7797fb9c11ef0debbc713adf6ffe0f2fba",
+    "firestore.rules": "d87a583ceec9c708ea9cc9250ea7247a74057637f9e04e3452b009f3f0e7843b",
+    "firestore.indexes.json": "1ee38a9e9b6b14d21ea5e4e6b645bfbc8b66f844a9fc2eda264d8974ed17fc2e"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

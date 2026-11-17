@@ -1,0 +1,30 @@
+2026-11-16T23:26:38.3182810Z ** TEST BUILD SUCCEEDED **
+2026-11-16T23:27:46.5693680Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' started.
+2026-11-16T23:28:48.5275470Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' passed (62.851 seconds).
+2026-11-16T23:28:48.5314740Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' started.
+2026-11-16T23:29:36.4479800Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' passed (47.914 seconds).
+2026-11-16T23:29:36.4633700Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 110.765 (110.769) seconds
+2026-11-16T23:29:36.4638970Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' started.
+2026-11-16T23:30:27.3693630Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/ParentEmergencyContactFlowTests.swift:35: error: -[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact] : Failed to tap "emergency.choose-target" Button: No matches found for Elements matching predicate '"emergency.choose-target" IN identifiers' from input {(
+2026-11-16T23:30:31.3302090Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' failed (54.795 seconds).
+2026-11-16T23:30:31.3307800Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' started.
+2026-11-16T23:31:01.2416800Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (29.994 seconds).
+2026-11-16T23:31:01.2420850Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' started.
+2026-11-16T23:31:37.5281380Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (36.295 seconds).
+2026-11-16T23:31:37.5331810Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 66.289 (66.292) seconds
+2026-11-16T23:31:37.5333190Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' started.
+2026-11-16T23:32:10.3889430Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' passed (32.253 seconds).
+2026-11-16T23:32:10.4655480Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' started.
+2026-11-16T23:32:47.2160190Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (37.370 seconds).
+2026-11-16T23:32:47.2164030Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' started.
+2026-11-16T23:33:32.7091610Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (45.476 seconds).
+2026-11-16T23:33:32.8347910Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' started.
+2026-11-16T23:34:43.9145450Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' passed (71.275 seconds).
+2026-11-16T23:34:43.9246100Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' started.
+2026-11-16T23:35:51.9842310Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (68.074 seconds).
+2026-11-16T23:35:51.9902110Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' started.
+2026-11-16T23:37:22.2013460Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' passed (90.216 seconds).
+2026-11-16T23:37:22.2362470Z 	 Executed 5 tests, with 0 failures (0 unexpected) in 312.411 (312.415) seconds
+2026-11-16T23:37:22.2382480Z 	 Executed 11 tests, with 1 failure (0 unexpected) in 576.512 (576.531) seconds
+2026-11-16T23:37:22.2383970Z 	 Executed 11 tests, with 1 failure (0 unexpected) in 576.512 (576.535) seconds
+2026-11-16T23:38:39.6496780Z ** TEST EXECUTE FAILED **

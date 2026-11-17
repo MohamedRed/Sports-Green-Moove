@@ -1,0 +1,14 @@
+{
+  "scope": "complete-enabled-ci-before-review-trip-context-not-current-implementation-release",
+  "sourceCommit": "7e0e22ed7b5c6b207085e942c47d3d3ad48a8d2f",
+  "ciRunId": 40950260135,
+  "nativeGatePassed": true,
+  "checkedAt": "2026-10-29",
+  "newReviewContextCovered": false,
+  "physicalDeviceAccepted": false,
+  "newMediaAccepted": false,
+  "releaseComplete": false,
+  "earlierTransportRootCauseConfirmed": false,
+  "productionWrites": false,
+  "safetyAuditAccepted": false
+}

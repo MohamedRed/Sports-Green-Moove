@@ -1,0 +1,27 @@
+{
+  "scope": "local-native-team-access-partial-before-parent-reply-not-completed-case",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ca601e46acc007f8290fa61a6624fdb1",
+  "sourceCommit": "d032cca83cf04ca4af3c1a2291f7942725e47e93",
+  "workflowRunId": 39616349845,
+  "jobId": 119278331944,
+  "testedAt": "2026-10-21T14:34:04Z",
+  "nativeCaseCompleted": false,
+  "allElevenCheckpointsAccepted": false,
+  "independentStoredStateVerified": false,
+  "otherTeamParentReplyVerified": false,
+  "returnToOriginalTeamVerified": false,
+  "sendFailureCauseVerified": false,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "notificationsVerified": false,
+  "fullProcessRestartProven": false,
+  "observedCallableSendInvocations": 6,
+  "failureLocation": "LocalTeamChatUi.send:51; LocalTeamAccessFlowTest:72",
+  "publishedCaptures": {
+    "team-access-attempt-initial": "team-access-initial-window.png",
+    "team-access-attempt-remaining": "team-access-remaining-window.png",
+    "team-access-attempt-revoked": "team-access-revoked-window.png",
+    "team-access-attempt-renewed": "team-access-renewed-window.png"
+  }
+}

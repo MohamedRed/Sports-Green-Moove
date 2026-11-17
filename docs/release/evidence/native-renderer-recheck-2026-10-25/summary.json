@@ -1,0 +1,24 @@
+{
+  "scope": "failed-renderer-recheck-and-independent-team-copy-failure-not-release-proof",
+  "matrixRunId": 40224919474,
+  "sourceCommit": "25359420c8ef067504cb4b74fe0715e35b522481",
+  "focusedRunId": 40226545552,
+  "focusedJobId": 121269009772,
+  "ordinary": {
+    "passed": 165,
+    "skipped": 54,
+    "failed": 1
+  },
+  "replay": {
+    "groups": 37,
+    "cases": 40,
+    "passed": true
+  },
+  "focusedScreenAssertionsCompleted": true,
+  "focusedPrimaryCopyPassed": false,
+  "fullGatePassed": false,
+  "rendererRootCauseFixed": false,
+  "physicalDeviceAccepted": false,
+  "releaseScenariosAccepted": false,
+  "publicMedia": []
+}

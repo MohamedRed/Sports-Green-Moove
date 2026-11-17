@@ -1,0 +1,16 @@
+{
+  "phase": "cancellation-confirmed",
+  "capturedAt": "2026-10-30T19:32:20.052Z",
+  "original": "cancellation-confirmed.jpg",
+  "originalSha256": "f96897ed11ca2a72fb430936ac11f631f997b98a443513200312e4f6fa0b631f",
+  "cropSha256": "224e17a2f5de49dc5ae8939fad72dab58e0be754eddb95d59fa0d86db8a5eebc",
+  "crop": {
+    "left": 649,
+    "top": 107,
+    "width": 254,
+    "height": 564
+  },
+  "originalWidth": 1440,
+  "originalHeight": 722,
+  "source": "session-window-not-native-device-export"
+}

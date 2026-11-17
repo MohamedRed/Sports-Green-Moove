@@ -1,0 +1,696 @@
+Android native UI tests	Run Android Compose UI tests	﻿2026-10-22T20:13:57.1254734Z ##[group]Run reactivecircus/android-emulator-runner@v2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1255308Z with:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1255631Z   api-level: 35
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1256010Z   target: google_apis_playstore
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1256423Z   arch: x86_64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1256764Z   profile: pixel_6
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1257320Z   script: bash scripts/run-android-ui-tests-and-collect-screenshots.sh
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1257976Z   cores: 2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1258294Z   avd-name: test
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1258655Z   force-avd-creation: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1259083Z   emulator-boot-timeout: 600
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1259506Z   emulator-port: 5554
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1260192Z   emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1261018Z   disable-animations: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1261443Z   disable-spellchecker: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1262082Z   disable-linux-hw-accel: auto
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1262521Z   enable-hw-keyboard: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1262924Z   channel: stable
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1263297Z env:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1263653Z   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1264317Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1265195Z   JAVA_HOME_21_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.12-1/x64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1265875Z   MAVEN_ARGS: -ntp
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1266263Z   ANDROID_HOME: /usr/local/lib/android/sdk
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1266789Z   ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1267592Z   SGM_GOOGLE_MAPS_ANDROID_API_KEY: ***
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1268076Z   SGM_LOCAL_DISPOSABLE_EMULATOR: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1268554Z   SGM_PAUSE_TEST_PHONE_STORE: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1269229Z   SGM_BLOCK_TEST_PHONE_INSTALLS: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1269726Z   SGM_TEST_PHONE_ADMIN_APPROVED: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1270172Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1975344Z ##[group]Configure emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1978078Z API level: 35
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1978769Z System image API level: 35
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1979529Z target: google_apis_playstore
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1980206Z CPU architecture: x86_64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1980841Z Hardware profile: pixel_6
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1983999Z Cores: 2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1984603Z RAM size: 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1985406Z Heap size: 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1986027Z SD card path or size: 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1986628Z Disk size: 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1987172Z AVD name: test
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1987809Z force avd creation: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1988491Z Emulator boot timeout: 600
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1989145Z emulator port: 5554
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1990366Z emulator options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1991457Z disable animations: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1992426Z disable spellchecker: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1993277Z disable Linux hardware acceleration: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1994180Z enable hardware keyboard: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1994930Z Channel: 0 (stable)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1995491Z Script:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1996430Z bash scripts/run-android-ui-tests-and-collect-screenshots.sh
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1997362Z Pre emulator launch script:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1998222Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.1999000Z ##[group]Install Android SDK
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:13:57.2042491Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:03.6040780Z Installing latest build tools, platform tools, and platform.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:03.6059961Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-35'> /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:05.3077690Z Installing latest emulator.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:05.3095318Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:13.9897024Z Installing system images.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:13.9915417Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-35;google_apis_playstore;x86_64' --channel=0 > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:37.6389032Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:37.6390999Z ##[group]Create AVD
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:37.6391629Z Creating AVD.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:37.6413112Z [command]/usr/bin/sh -c \echo no | avdmanager create avd --force -n test --package 'system-images;android-35;google_apis_playstore;x86_64' --device 'pixel_6'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:38.4296078Z Loading local repository...                                                     
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:38.4313319Z [=========                              ] 25% Loading local repository...       
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:38.4314541Z [=========                              ] 25% Fetch remote repository...        
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:38.4315702Z [=======================================] 100% Fetch remote repository...       
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:38.6057415Z Auto-selecting single ABI x86_64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.0920048Z [command]/usr/bin/sh -c \printf 'hw.cpu.ncore=2\n' >> /home/runner/.android/avd/test.avd/config.ini
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.0941286Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.0943788Z ##[group]Launch Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.0944435Z Starting emulator.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.0963311Z [command]/usr/bin/sh -c \/usr/local/lib/android/sdk/emulator/emulator -port 5554 -avd test -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim &
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1087673Z INFO         | Android emulator version 37.2.12.0 (build_id 16428233) (CL:N/A)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1088900Z INFO         | Graphics backend: gfxstream
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1090261Z INFO         | Found systemPath /usr/local/lib/android/sdk/system-images/android-35/google_apis_playstore/x86_64/
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1553457Z INFO         | Saving last run QEMU version for the AVD to 2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1562737Z INFO         | Increasing RAM size to 2560MB
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1582917Z INFO         | Guest GLES Driver: Auto (ext controls)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1593331Z INFO         | emuglConfig_init: vulkan_mode_selected:swiftshader gles_mode_selected:swiftshader
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1594479Z INFO         | Checking system compatibility:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1595366Z INFO         |   Checking: hasSufficientDiskSpace
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1596384Z INFO         |      Ok: Disk space requirements to run avd: `test` are met
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1597273Z INFO         |   Checking: hasSufficientHwGpu
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1598258Z INFO         |      Ok: Hardware GPU compatibility checks are not required
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1599156Z INFO         |   Checking: hasSufficientSystem
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1600117Z INFO         |      Ok: System requirements to run avd: `test` are met
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:39.1602579Z WARNING      | Feature QuickbootFileBacked is disabled due to stability issues, if you really want that, the environment variable ANDROID_EMU_FORCE_QUICKBOOT_FILE_BACKED need to set to 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2033510Z ERROR        | Unable to connect to adb daemon on port: 5037
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2046891Z INFO         | Storing crashdata in: /tmp/android-runner/emu-crash-37.2.12.db, detection is enabled for process: 3521
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2048208Z INFO         | Initializing gfxstream backend
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2058572Z INFO         | startOpenglesRendererImpl: gpu info
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2059205Z INFO         | 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2062538Z INFO         | initIcdPaths: ICD set to 'swiftshader', using Swiftshader ICD
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2064476Z INFO         | Setting ICD filenames for the loader = /usr/local/lib/android/sdk/emulator/lib64/vulkan/vk_swiftshader_icd.json
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2066640Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2068787Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/qemu/linux-x86_64/lib64/vulkan/libvulkan.so.1]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2070382Z INFO         | SharedLibrary::open for [/usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2071291Z INFO         | Added library: /usr/local/lib/android/sdk/emulator/lib64/vulkan/libvulkan.so
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2133691Z INFO         | Selecting Vulkan device: SwiftShader Device (Subzero), Version: 1.3.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2135398Z INFO         | Using Vulkan externalMemoryMode: OpaqueFd for VkEmulation
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2277278Z INFO         | Format VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 does not support YCbCr sampler conversion
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2346751Z INFO         | SharedLibrary::open for [libX11]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2347788Z WARNING      | Could not open libX11.so, try libX11.so.6
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2348718Z INFO         | SharedLibrary::open for [libX11.so.6]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2349501Z INFO         | SharedLibrary::open for [libX11-xcb]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2350103Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2350737Z INFO         | SharedLibrary::open for [libX11-xcb.so.1]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2403698Z INFO         | Initializing VkEmulation features:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2404881Z INFO         |     glInteropSupported: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2405903Z INFO         |     useDeferredCommands: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2406804Z INFO         |     createResourceWithRequirements: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2407722Z INFO         |     useVulkanComposition: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2408559Z INFO         |     useVulkanNativeSwapchain: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2409363Z INFO         |     enable guestRenderDoc: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2410137Z INFO         |     ASTC LDR emulation mode: Gpu
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2410895Z INFO         |     enable ETC2 emulation: true
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2411957Z INFO         |     enable Ycbcr emulation: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2412751Z INFO         |     guestVulkanOnly: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2413214Z INFO         |     useDedicatedAllocations: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2414062Z INFO         |     guestVulkanMaxApiVersion: 1.3.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2414560Z INFO         |     enableProtectedMemoryEmulation: false
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2415079Z INFO         | Graphics Adapter Vendor Google (Google Inc.)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2415765Z INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (Google SwiftShader)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2416513Z INFO         | Graphics API Version OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2419834Z INFO         | Graphics API Extensions GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2422553Z INFO         | Graphics Device Extensions N/A
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2423412Z INFO         | Disabling sparse binding feature support
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2503940Z INFO         | Sending adb public key [QAAAAMd7tBsJKt+orVLw4HBPGMiqMN5Gq6OKOJLYOl7ZB8ez1GCQL8ikB5vRvYjiIOVFPbeqhFgd5B8DfLFzbfYkBwbu85oxFdROEzphBT9WTgAa7QLqgVdrCDLU7FIQ4z748pyEQcIUlXxGDfu7ZdYXTNL+PLGRTqEIMyv/4z3hL3zLZR8s0TFvtUmbGTL8tdOUnHjTW8zm4VBKMXLTUqhT1MI1dWhEUegy5sbcW+361OVSd4VGJcNwmhp9OVCpsEQGBExmRQTzdkcIrNV5ckULSJr7lsXlmFt1Ghuyf1XuDOaEuOwVzpfi+vsmRX+Hrt9xAM5EvC/+XTPjoEom156tsUE06ObBjb9UeQ6ZCyvouhQiW/sbvIwBJNiM/IuXssyejDz7d134RwCDDCbXMl1rZCroRxEw9vgzAdTUPO42myo92059j8uVJK50hBVafu2weD6LhFQlT7zwA1VLg94v4QDna3E/KKHsCvN3WNcRroK5rE9L+rW8eppuMdfRS2hawpaNp3tBGWk5I4HpS+ngB7rTc2AV/379Knc6PvlHak6XAf8/uhasTfA1fLymU+lBvx/Ggr+qmlOgcIoE6yaBFxK7T1HD8yWrjSDXnZDs9H6iIOMScfZw+HyhgUVzvmObkM2lsQGVNVTepaRo53xIXQU5HCBhTpB/QVSyY9TT5TXssGfLJgEAAQA= runner@unknown]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2507714Z INFO         | Userspace boot properties:
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2508393Z INFO         |   androidboot.boot_devices=pci0000:00/0000:00:03.0 pci0000:00/0000:00:06.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2508998Z INFO         |   androidboot.dalvik.vm.heapsize=576m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2509798Z INFO         |   androidboot.debug.hwui.renderer=skiagl
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2510308Z INFO         |   androidboot.debug.sf.nobootanimation=1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2510775Z INFO         |   androidboot.hardware=ranchu
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2511245Z INFO         |   androidboot.hardware.gltransport=pipe
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2511896Z INFO         |   androidboot.hardware.vulkan=ranchu
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2512336Z INFO         |   androidboot.logcat=*:V
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2512776Z INFO         |   androidboot.opengles.version=196608
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2513189Z INFO         |   androidboot.qemu=1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2518219Z INFO         |   androidboot.qemu.adb.pubkey=QAAAAMd7tBsJKt+orVLw4HBPGMiqMN5Gq6OKOJLYOl7ZB8ez1GCQL8ikB5vRvYjiIOVFPbeqhFgd5B8DfLFzbfYkBwbu85oxFdROEzphBT9WTgAa7QLqgVdrCDLU7FIQ4z748pyEQcIUlXxGDfu7ZdYXTNL+PLGRTqEIMyv/4z3hL3zLZR8s0TFvtUmbGTL8tdOUnHjTW8zm4VBKMXLTUqhT1MI1dWhEUegy5sbcW+361OVSd4VGJcNwmhp9OVCpsEQGBExmRQTzdkcIrNV5ckULSJr7lsXlmFt1Ghuyf1XuDOaEuOwVzpfi+vsmRX+Hrt9xAM5EvC/+XTPjoEom156tsUE06ObBjb9UeQ6ZCyvouhQiW/sbvIwBJNiM/IuXssyejDz7d134RwCDDCbXMl1rZCroRxEw9vgzAdTUPO42myo92059j8uVJK50hBVafu2weD6LhFQlT7zwA1VLg94v4QDna3E/KKHsCvN3WNcRroK5rE9L+rW8eppuMdfRS2hawpaNp3tBGWk5I4HpS+ngB7rTc2AV/379Knc6PvlHak6XAf8/uhasTfA1fLymU+lBvx/Ggr+qmlOgcIoE6yaBFxK7T1HD8yWrjSDXnZDs9H6iIOMScfZw+HyhgUVzvmObkM2lsQGVNVTepaRo53xIXQU5HCBhTpB/QVSyY9TT5TXssGfLJgEAAQA= runner@unknown
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2522452Z INFO         |   androidboot.qemu.avd_name=test
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2523013Z INFO         |   androidboot.qemu.camera_hq_edge_processing=0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2523566Z INFO         |   androidboot.qemu.camera_protocol_ver=1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2524080Z INFO         |   androidboot.qemu.cpuvulkan.version=4206592
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2524876Z INFO         |   androidboot.qemu.gltransport.drawFlushInterval=800
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2525421Z INFO         |   androidboot.qemu.gltransport.name=pipe
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2525903Z INFO         |   androidboot.qemu.hwcodec.avcdec=2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2526370Z INFO         |   androidboot.qemu.hwcodec.hevcdec=2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2526834Z INFO         |   androidboot.qemu.hwcodec.vpxdec=2
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2527440Z INFO         |   androidboot.qemu.settings.system.screen_off_timeout=2147483647
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2527986Z INFO         |   androidboot.qemu.skin=1080x2400
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2528433Z INFO         |   androidboot.qemu.virtiowifi=1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2528856Z INFO         |   androidboot.qemu.vsync=60
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2529314Z INFO         |   androidboot.serialno=EMULATOR37X2X12X0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2530104Z INFO         |   androidboot.vbmeta.digest=9b597927025d4f62f4594a14632a8d3763239f29c0b7af229e0b6ebcddcdea60
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2530757Z INFO         |   androidboot.vbmeta.hash_alg=sha256
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2531211Z INFO         |   androidboot.vbmeta.size=6720
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2531942Z INFO         |   androidboot.veritymode=enforcing
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2703913Z WARNING: cannnot unmap ptr 0x7fc30b401000 as it is in the protected range from 0x7fc26b400000 to 0x7fc30b600000
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:40.2866329Z INFO         | Monitoring duration of emulator setup.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.2957964Z INFO         | Activated packet streamer for bluetooth emulation
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.2959159Z INFO         | Successfully initialized netsim WiFi
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3026043Z INFO         | Setting display: 0 configuration to: 1080x2400, dpi: 420x420 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3026997Z INFO         | setDisplayActiveConfig: id:0, 1080x2400
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3027688Z INFO         | emulatorSetupEnvironment: Environment scene is not required
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3105139Z USER_INFO    | Emulator is performing a full startup. This may take upto two minutes, or more.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3107768Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:41.3960716Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:49.1024074Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:49.1064355Z * daemon not running; starting now at tcp:5037
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:49.3905584Z * daemon started successfully
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:49.3937117Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:49.3937709Z adb: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:51.4002485Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:51.4039618Z adb: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:51.4048975Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:53.4119546Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:53.4339936Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:55.4404016Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:55.4635352Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:57.4784446Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:57.4955487Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:59.5054099Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:14:59.5219193Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:01.5275437Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:01.5530916Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:03.5596260Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:03.5763852Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:05.5824593Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:05.6291985Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:07.6354591Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:07.6526207Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:09.6624149Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:09.6866243Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:11.6915182Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:11.7091045Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:13.7162261Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:13.7329912Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:14.7544481Z INFO         | Boot completed in 35618 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:14.7547412Z INFO         | Increasing screen off timeout, logcat buffer size to 2M.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:14.8027966Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:14.9058768Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:15.7364559Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:15.7412467Z adb: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:15.7422424Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:15.9492490Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device offline'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:16.9901436Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device offline'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:17.7466904Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:17.7512798Z adb: device offline
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:17.7521081Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:18.0152014Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device offline'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:19.7615417Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell getprop sys.boot_completed
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:19.9082914Z 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:19.9156649Z Emulator booted.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:19.9203355Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell input keyevent 82
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:22.7130940Z Disabling animations.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:22.7155741Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global window_animation_scale 0.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:22.7824033Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global transition_animation_scale 0.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:22.9394179Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put global animator_duration_scale 0.0
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:23.0882325Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:23.0973288Z [command]/usr/bin/sh -c bash scripts/run-android-ui-tests-and-collect-screenshots.sh
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:24.6386450Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:26.0013321Z ERROR        | Failed to find ColorBuffer: 64
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:26.0073528Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:26.9318931Z Daemon will be stopped at the end of the build 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:44.1393192Z > Task :app:preBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:44.1458430Z > Task :app:preDebugBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:44.1489077Z > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:44.1494954Z > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:44.2342758Z > Task :app:generateDebugBuildConfig UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.3321971Z > Task :app:checkDebugAarMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.6354777Z > Task :app:processDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.6382948Z > Task :app:compileDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.6426307Z > Task :app:generateDebugResValues UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.8326040Z > Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.8329198Z > Task :app:generateDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.9353585Z > Task :app:mergeDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.9383412Z > Task :app:packageDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.9410224Z > Task :app:parseDebugLocalResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:46.9412950Z > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:47.0316721Z > Task :app:extractDeepLinksDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:47.2367485Z > Task :app:processDebugMainManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:47.2455202Z > Task :app:processDebugManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:47.2498830Z > Task :app:processDebugManifestForPackage UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.1316933Z > Task :app:processDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.7343244Z > Task :app:compileDebugKotlin UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.7373425Z > Task :app:javaPreCompileDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.8335142Z > Task :app:compileDebugJavaWithJavac UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.8365923Z > Task :app:mergeDebugShaders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.8384503Z > Task :app:compileDebugShaders NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.8417964Z > Task :app:generateDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.9343206Z > Task :app:mergeDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.9372982Z > Task :app:compressDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:48.9398832Z > Task :app:desugarDebugFileDependencies UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:49.0362948Z > Task :app:dexBuilderDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.1324389Z > Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.1352697Z > Task :app:processDebugJavaRes UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.3363146Z > Task :app:mergeDebugJavaResource UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.5333339Z > Task :app:checkDebugDuplicateClasses UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.7463316Z > Task :app:mergeExtDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.7552868Z > Task :app:mergeLibDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.7582907Z > Task :app:mergeProjectDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:50.7683125Z > Task :app:mergeDebugJniLibFolders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.0342332Z > Task :app:mergeDebugNativeLibs UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.0416059Z > Task :app:stripDebugDebugSymbols UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.0454157Z > Task :app:validateSigningDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.0483367Z > Task :app:writeDebugAppMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.0522326Z > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.1329934Z > Task :app:packageDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.1342850Z > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.1373078Z > Task :app:assembleDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.1413114Z > Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.1447552Z > Task :app:preDebugAndroidTestBuild SKIPPED
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3331977Z > Task :app:processDebugAndroidTestManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3377140Z > Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3396170Z > Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3397312Z > Task :app:processDebugAndroidTestNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3398431Z > Task :app:compileDebugAndroidTestNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.3399436Z > Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.4346226Z > Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.4368759Z > Task :app:generateDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.4397785Z > Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.4418998Z > Task :app:processDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.7343408Z > Task :app:compileDebugAndroidTestKotlin UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8363398Z > Task :app:javaPreCompileDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8416522Z > Task :app:compileDebugAndroidTestJavaWithJavac UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8445045Z > Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8503899Z > Task :app:compileDebugAndroidTestShaders NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8623133Z > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8664053Z > Task :app:mergeDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8682883Z > Task :app:compressDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.8713026Z > Task :app:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:51.9360199Z > Task :app:dexBuilderDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.0327046Z > Task :app:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.0350523Z > Task :app:processDebugAndroidTestJavaRes UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.1403472Z > Task :app:mergeDebugAndroidTestJavaResource UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.1423099Z > Task :app:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2342227Z > Task :app:mergeExtDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2414523Z > Task :app:mergeLibDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2423528Z > Task :app:mergeProjectDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2513258Z > Task :app:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2552779Z > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2603100Z > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.2604234Z > Task :app:validateSigningDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3346556Z > Task :app:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3348004Z > Task :app:packageDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3349289Z > Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3350991Z > Task :app:assembleDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3352342Z > Task :qa-install-guard:preBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3353405Z > Task :qa-install-guard:preDebugBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3354529Z > Task :qa-install-guard:mergeDebugNativeDebugMetadata NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3355866Z > Task :qa-install-guard:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.3357159Z > Task :qa-install-guard:checkDebugAarMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4366610Z > Task :qa-install-guard:processDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4423449Z > Task :qa-install-guard:compileDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4483152Z > Task :qa-install-guard:generateDebugResValues UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4537608Z > Task :qa-install-guard:mapDebugSourceSetPaths UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4584136Z > Task :qa-install-guard:generateDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4622855Z > Task :qa-install-guard:mergeDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4646788Z > Task :qa-install-guard:packageDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4713346Z > Task :qa-install-guard:parseDebugLocalResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.4775356Z > Task :qa-install-guard:createDebugCompatibleScreenManifests UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.5335149Z > Task :qa-install-guard:extractDeepLinksDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.5336701Z > Task :qa-install-guard:processDebugMainManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.5362920Z > Task :qa-install-guard:processDebugManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.5393715Z > Task :qa-install-guard:processDebugManifestForPackage UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.5423481Z > Task :qa-install-guard:processDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6343149Z > Task :qa-install-guard:compileDebugKotlin UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6345916Z > Task :qa-install-guard:javaPreCompileDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6372902Z > Task :qa-install-guard:compileDebugJavaWithJavac NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6374797Z > Task :qa-install-guard:mergeDebugShaders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6402933Z > Task :qa-install-guard:compileDebugShaders NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6433000Z > Task :qa-install-guard:generateDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6463013Z > Task :qa-install-guard:mergeDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6492868Z > Task :qa-install-guard:compressDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6494464Z > Task :qa-install-guard:desugarDebugFileDependencies UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.6523083Z > Task :qa-install-guard:dexBuilderDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7364571Z > Task :qa-install-guard:mergeDebugGlobalSynthetics UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7372514Z > Task :qa-install-guard:processDebugJavaRes UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7432345Z > Task :qa-install-guard:mergeDebugJavaResource UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7456998Z > Task :qa-install-guard:checkDebugDuplicateClasses UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7478664Z > Task :qa-install-guard:mergeExtDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7502832Z > Task :qa-install-guard:mergeLibDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7530999Z > Task :qa-install-guard:mergeProjectDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7570684Z > Task :qa-install-guard:mergeDebugJniLibFolders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7602749Z > Task :qa-install-guard:mergeDebugNativeLibs NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7715452Z > Task :qa-install-guard:stripDebugDebugSymbols NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7788377Z > Task :qa-install-guard:validateSigningDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7858909Z > Task :qa-install-guard:writeDebugAppMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.7943116Z > Task :qa-install-guard:writeDebugSigningConfigVersions UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8423164Z > Task :qa-install-guard:packageDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8453265Z > Task :qa-install-guard:createDebugApkListingFileRedirect UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8470288Z > Task :qa-install-guard:assembleDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8502891Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8553026Z BUILD SUCCESSFUL in 29s
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:15:52.8642733Z 105 actionable tasks: 105 up-to-date
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:04.6568670Z To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:06.7554014Z Daemon will be stopped at the end of the build 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:16.7563311Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:16.7595451Z > Configure project :app
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:16.7668373Z Passing custom test runner argument android.testInstrumentationRunnerArguments.sgmBlockInstallations from gradle.properties or command line is not compatible with configuration caching. Please specify this argument using android gradle dsl.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:22.4573413Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:22.4584995Z > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:22.4626022Z > Task :app:preBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:22.4665459Z > Task :app:preDebugBuild UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:22.6560800Z > Task :app:generateDebugBuildConfig UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.0550649Z > Task :app:checkDebugAarMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.2573434Z > Task :app:processDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.2608269Z > Task :app:compileDebugNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.2663576Z > Task :app:generateDebugResValues UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.4573349Z > Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.4602869Z > Task :app:generateDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.6568139Z > Task :app:mergeDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.6593149Z > Task :app:packageDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.6663328Z > Task :app:parseDebugLocalResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.6683341Z > Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.6692809Z > Task :app:extractDeepLinksDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.9558610Z > Task :app:processDebugMainManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.9574384Z > Task :app:processDebugManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:24.9575791Z > Task :app:processDebugManifestForPackage UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:25.5580107Z > Task :app:processDebugResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:25.9565508Z > Task :app:compileDebugKotlin UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.0550669Z > Task :app:javaPreCompileDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.0610066Z > Task :app:compileDebugJavaWithJavac UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.0635926Z > Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.0679294Z > Task :app:preDebugAndroidTestBuild SKIPPED
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2601237Z > Task :app:processDebugAndroidTestManifest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2623323Z > Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2624528Z > Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2625691Z > Task :app:processDebugAndroidTestNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2626982Z > Task :app:compileDebugAndroidTestNavigationResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.2628333Z > Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.3565199Z > Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.3603341Z > Task :app:generateDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.3632810Z > Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.3662629Z > Task :app:processDebugAndroidTestResources UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.6566626Z > Task :app:compileDebugAndroidTestKotlin UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.6583490Z > Task :app:javaPreCompileDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.7603500Z > Task :app:compileDebugAndroidTestJavaWithJavac UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.7605346Z > Task :app:mergeDebugShaders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.7633164Z > Task :app:compileDebugShaders NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.7662988Z > Task :app:generateDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.8553660Z > Task :app:mergeDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.8582846Z > Task :app:compressDebugAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.8609389Z > Task :app:desugarDebugFileDependencies UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:26.9549407Z > Task :app:dexBuilderDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.3579711Z > Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.4563629Z > Task :app:processDebugJavaRes UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.5559472Z > Task :app:mergeDebugJavaResource UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.6564698Z > Task :app:checkDebugDuplicateClasses UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.8598831Z > Task :app:mergeExtDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.8642582Z > Task :app:mergeLibDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.8673359Z > Task :app:mergeProjectDexDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:27.8702646Z > Task :app:mergeDebugJniLibFolders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.0584276Z > Task :app:mergeDebugNativeLibs UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.0620031Z > Task :app:stripDebugDebugSymbols UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.0662767Z > Task :app:validateSigningDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.0693523Z > Task :app:writeDebugAppMetadata UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.0733296Z > Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1583212Z > Task :app:packageDebug UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1613037Z > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1673393Z > Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1675205Z > Task :app:compileDebugAndroidTestShaders NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1703703Z > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1733112Z > Task :app:mergeDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1762892Z > Task :app:compressDebugAndroidTestAssets UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.1764787Z > Task :app:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.2595821Z > Task :app:dexBuilderDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.2653280Z > Task :app:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.2683436Z > Task :app:processDebugAndroidTestJavaRes UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3583075Z > Task :app:mergeDebugAndroidTestJavaResource UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3603179Z > Task :app:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3663230Z > Task :app:mergeExtDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3693233Z > Task :app:mergeLibDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3694637Z > Task :app:mergeProjectDexDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3723402Z > Task :app:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3753266Z > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.3785189Z > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.4593329Z > Task :app:validateSigningDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.4623254Z > Task :app:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.4652762Z > Task :app:packageDebugAndroidTest UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:28.4654010Z > Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:38.1552701Z [EmulatorConsole]: Failed to start Emulator console for 5554
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:16:58.4548808Z > Task :app:connectedDebugAndroidTest
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:18.1566113Z Starting 197 tests on emulator-5554 - 15
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:28.1579950Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:28.1603348Z emulator-5554 - 15 Tests 5/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:38.1557960Z emulator-5554 - 15 Tests 7/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:48.1553017Z emulator-5554 - 15 Tests 10/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:17:58.1553351Z emulator-5554 - 15 Tests 14/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:08.1548828Z emulator-5554 - 15 Tests 17/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:11.3089533Z ERROR        | Failed to find ColorBuffer: 852
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:11.3113097Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:18.1578028Z emulator-5554 - 15 Tests 19/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:28.1583434Z emulator-5554 - 15 Tests 21/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:38.1593322Z emulator-5554 - 15 Tests 25/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:47.9333970Z ERROR        | Failed to find ColorBuffer: 1201
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:47.9372588Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:48.1553517Z emulator-5554 - 15 Tests 28/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:18:58.1548068Z emulator-5554 - 15 Tests 33/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:01.7165016Z ERROR        | Failed to find ColorBuffer: 1397
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:01.7182888Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:08.1613085Z emulator-5554 - 15 Tests 37/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:08.3034459Z ERROR        | Failed to find ColorBuffer: 1456
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:08.3086096Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:11.8920856Z ERROR        | Failed to find ColorBuffer: 1497
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:11.8923211Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:14.7126232Z ERROR        | Failed to find ColorBuffer: 1530
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:14.7152497Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:18.1548661Z emulator-5554 - 15 Tests 40/197 completed. (0 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5554586Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5680384Z > Task :app:connectedDebugAndroidTest
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5709363Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5759977Z be.sportgreenmoove.app.ui.LiveBackendAuthFlowTest > disposableEmailSignupReachesAuthenticatedHome[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5832517Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.5894233Z be.sportgreenmoove.app.ui.LocalAppFlowTest > isolatedParentLoginCalendarSupportAndSessionRestart[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.6572246Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.6575085Z be.sportgreenmoove.app.ui.LocalBookingDecisionsFlowTest > parentCancelsPendingAndApprovedAndDriverDeclinesWithConfirmation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.7558726Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.7594313Z be.sportgreenmoove.app.ui.LocalBookingResponseLossTest > recoverUnconfirmedBooking[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.8562236Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:24.8594390Z be.sportgreenmoove.app.ui.LocalBookingResponseLossTest > prepareUnconfirmedBooking[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.7582294Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.7608170Z be.sportgreenmoove.app.ui.LocalBookingResponseLossUiTest > theParentRetriesALostReplyAndTheConfirmedResultHasNoSecondSubmissionAction[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.7632007Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.7633699Z be.sportgreenmoove.app.ui.LocalChatFlowTest > twoWayConversationDraftHistoryLiveDeliveryAndAccessControl[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.8573508Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.8644471Z be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest > networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.9585228Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.9596071Z be.sportgreenmoove.app.ui.LocalChatProcessRestartTest > reopenConfirmedConversation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.9622023Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:25.9653626Z be.sportgreenmoove.app.ui.LocalChatProcessRestartTest > prepareConfirmedConversation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:26.8547859Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:26.8564808Z be.sportgreenmoove.app.ui.LocalChatResponseLossTest > committedMessageSurvivesALostReplyAndRejectedRetryWithoutDuplication[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:26.8570201Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:26.8614056Z be.sportgreenmoove.app.ui.LocalConversationDirectoryFlowTest > discoversOldConversationsAndStartsTheFirstExchangeFromAReservation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.0592955Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.0595193Z be.sportgreenmoove.app.ui.LocalDriverFlowTest > driverApprovesPendingBookingAndSignsOut[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.0623382Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.0654816Z be.sportgreenmoove.app.ui.LocalEmergencyContactFlowTest > actualContactSaveRevocationRecreationDialerRemovalAndAccountIsolation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.1600105Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.1653008Z be.sportgreenmoove.app.ui.LocalEmergencyIdentityFlowTest > recreatedChildRejectsTheOpenFormAndRequiresFreshVerification[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.1682264Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.1704643Z be.sportgreenmoove.app.ui.LocalGuardianVerificationFlowTest > parentRequestManagerDecisionWithdrawalReopenRestartAndAccountIsolation[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2600018Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2634412Z be.sportgreenmoove.app.ui.LocalLandscapeLoginTest > landscapeLoginScrollsToInputsAndSubmit[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2662082Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2693940Z be.sportgreenmoove.app.ui.LocalMembershipFlowTest > requestDecisionRefreshRerequestRestartAndAnotherAccount[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2721889Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2723788Z be.sportgreenmoove.app.ui.LocalMultiSeatSdkTest > nativeGatewayPersistsTheSelectedTwoSeats[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2751976Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.2783800Z be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest > aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3568270Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3594717Z be.sportgreenmoove.app.ui.LocalParentSearchBookingTest > parentSearchesAndRequestsTwoSeatsThenDriverApprovesAndParentCancelsInApp[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3622075Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3666440Z be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest > realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3714609Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3721394Z be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest > completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3723108Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.3724650Z be.sportgreenmoove.app.ui.LocalRideFlowTest > driverCompletesRideAndParentSubmitsReview[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4562421Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4565455Z be.sportgreenmoove.app.ui.LocalRideObservationFlowTest > parentReceivesLiveChangesAndClockAgingWithoutLeavingTheRide[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4566638Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4568034Z be.sportgreenmoove.app.ui.LocalSessionDisconnectTest > reopenSignedOutSessionInNewProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4568948Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4570242Z be.sportgreenmoove.app.ui.LocalSessionDisconnectTest > disconnectFromFailedRestoration[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4571462Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4573403Z be.sportgreenmoove.app.ui.LocalSessionRestorationTest > failedRestorationSurvivesRotationAndExplicitRetryKeepsTheSameParent[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4574565Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4576328Z be.sportgreenmoove.app.ui.LocalTeamAccessFlowTest > multipleChildrenAndTeamsRefreshCurrentHistoryWithoutMergingConversations[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4577500Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4579665Z be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest > currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4582676Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4584201Z be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest > recoverAndSendPrivateDraftInNewProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4585253Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.4586666Z be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest > preparePrivateTeamDraft[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5551320Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5571067Z be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest > acknowledgedDraftStaysEmptyInThirdProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5572895Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5574951Z be.sportgreenmoove.app.ui.LocalTeamEnrollmentFlowTest > requestsDecisionsRecreationWithdrawalAndVerificationLossUseActualStorage[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5576591Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5578304Z be.sportgreenmoove.app.ui.LocalThemeRestartTest > savedThemeIsRestoredInANewAppProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5580117Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5582397Z be.sportgreenmoove.app.ui.LocalTripCancellationFlowTest > driverCancelsAndParentSeesClosedReservationsAndPendingRefund[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5583764Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5585695Z be.sportgreenmoove.app.ui.LocalTripChangeFlowTest > twoParentsConfirmSeparatelyWhileRefusalAndWithdrawalKeepTheInitialTrip[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5587001Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5589186Z be.sportgreenmoove.app.ui.LocalTripChangeInputsFlowTest > parentConfirmsNewTimeWhileUnconfirmedAddressesAndMissingRouteCannotBeApplied[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5590803Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5593128Z be.sportgreenmoove.app.ui.LocalTripChangeScheduleFlowTest > parentConfirmsNewDateAndArrivalOnlyAfterInvalidScheduleIsCorrected[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5594551Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5595946Z be.sportgreenmoove.app.ui.LocalTripConsentRecoveryTest > prepareRecoveryStates[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5596930Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5598340Z be.sportgreenmoove.app.ui.LocalTripConsentRecoveryTest > reopenRecoveryStates[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5599614Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.5601081Z be.sportgreenmoove.app.ui.LocalTripConsentRestartTest > reopenConfirmedConsent[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6559715Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6584794Z be.sportgreenmoove.app.ui.LocalTripConsentRestartTest > prepareConfirmedConsent[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6585790Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6587450Z be.sportgreenmoove.app.ui.LocalTripDraftRestartTest > recoverUnfinishedTripDraftInNewProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6595851Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6597862Z be.sportgreenmoove.app.ui.LocalTripDraftRestartTest > prepareUnfinishedTripDraft[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6598858Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6600568Z be.sportgreenmoove.app.ui.LocalTripScheduleDraftRestartTest > recoverScheduleDraftInNewProcess[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6601858Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:27.6603388Z be.sportgreenmoove.app.ui.LocalTripScheduleDraftRestartTest > prepareScheduleDraft[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:28.1572193Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:28.1632542Z emulator-5554 - 15 Tests 150/197 completed. (47 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:30.8553275Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:30.8572874Z > Task :app:connectedDebugAndroidTest
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:30.8632964Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:30.8675856Z be.sportgreenmoove.app.ui.LocalVehicleMapFlowTest > parentSeesActualVehicleMarkerMoveAfterAuthenticatedDriverPoints[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:38.1594314Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:38.1636189Z emulator-5554 - 15 Tests 158/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:48.1547433Z emulator-5554 - 15 Tests 163/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:49.8937055Z ERROR        | Failed to find ColorBuffer: 2043
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:49.8954839Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:19:58.1547648Z emulator-5554 - 15 Tests 169/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:08.1546616Z emulator-5554 - 15 Tests 172/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:16.6959490Z ERROR        | Failed to find ColorBuffer: 2298
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:16.7014615Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:18.1547723Z emulator-5554 - 15 Tests 174/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:27.3920589Z ERROR        | Failed to find ColorBuffer: 2427
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:27.3922924Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:28.1588054Z emulator-5554 - 15 Tests 179/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:31.2094061Z ERROR        | Failed to find ColorBuffer: 2456
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:31.2132867Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:38.1564164Z emulator-5554 - 15 Tests 184/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:48.1593731Z emulator-5554 - 15 Tests 189/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:20:58.1559583Z emulator-5554 - 15 Tests 196/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:08.1573204Z emulator-5554 - 15 Tests 202/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:18.1546621Z emulator-5554 - 15 Tests 204/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:28.1563195Z emulator-5554 - 15 Tests 209/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:38.1547406Z emulator-5554 - 15 Tests 213/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:48.1577119Z emulator-5554 - 15 Tests 216/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:51.6827849Z ERROR        | Failed to find ColorBuffer: 3495
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:51.6828984Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:54.8996388Z ERROR        | Failed to find ColorBuffer: 3532
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:54.9001111Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:55.6850066Z ERROR        | Failed to find ColorBuffer: 3536
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:55.6851370Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:21:58.1548397Z emulator-5554 - 15 Tests 219/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:08.1589683Z emulator-5554 - 15 Tests 222/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:18.1546322Z emulator-5554 - 15 Tests 226/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:18.7903122Z ERROR        | Failed to find ColorBuffer: 3807
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:18.7933207Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:28.1573135Z emulator-5554 - 15 Tests 229/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:38.1545995Z emulator-5554 - 15 Tests 231/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:48.1553017Z emulator-5554 - 15 Tests 233/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:54.3013342Z ERROR        | Failed to find ColorBuffer: 4117
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:54.3045442Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:22:58.1548506Z emulator-5554 - 15 Tests 235/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:08.1573132Z emulator-5554 - 15 Tests 238/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:14.2292092Z ERROR        | Failed to find ColorBuffer: 4297
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:14.2307587Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:17.3387472Z ERROR        | Failed to find ColorBuffer: 4335
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:17.3412523Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:17.9873226Z ERROR        | Failed to find ColorBuffer: 4347
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:17.9984534Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:18.1546499Z emulator-5554 - 15 Tests 240/197 completed. (48 skipped) (0 failed)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:18.7724753Z ERROR        | Failed to find ColorBuffer: 4351
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:18.7762859Z ERROR        | Failed to bind to texture: invalid color buffer.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.2549534Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.2552624Z > Task :app:connectedDebugAndroidTest
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.2582176Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.2612498Z be.sportgreenmoove.app.ui.VehicleMapLayoutTest > aStaleObservationStillShowsItsArrivalEstimateBelowTheMap[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.9562350Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:24.9582870Z be.sportgreenmoove.app.ui.VehicleMapLayoutTest > theArrivalEstimateStaysOutsideTheMapOnANarrowLargeTextScreen[emulator-5554 - 15] [33mSKIPPED [0m
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:26.7564733Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:26.7575227Z Finished 247 tests on emulator-5554 - 15
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:28.4554568Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:28.4584552Z BUILD SUCCESSFUL in 7m 25s
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:28.4613141Z 71 actionable tasks: 1 executed, 70 up-to-date
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.1711547Z pull: building file list...
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.1741393Z ##[warning]No Android store-review screenshots were pulled from /sdcard/Download/sgm-store-review
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2550738Z node:internal/modules/run_main:123
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2551946Z     triggerUncaughtException(
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2552602Z     ^
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2552854Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2553633Z AssertionError [ERR_ASSERTION]: Select one available disposable Android emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2554597Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/run-local-android-flows.mjs:15:1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2555414Z     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2556125Z     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2556893Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2557402Z   generatedMessage: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2557706Z   code: 'ERR_ASSERTION',
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2557995Z   actual: undefined,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2558266Z   expected: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2558522Z   operator: '==',
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2558782Z   diff: 'simple'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2558998Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2559128Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.2559244Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3002421Z Ordinary tests: 0; component evidence: 1; local replay: 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3423275Z node:internal/modules/run_main:123
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3424026Z     triggerUncaughtException(
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3424538Z     ^
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3424793Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3425808Z AssertionError [ERR_ASSERTION]: Exactly one disposable emulator must be connected
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3426471Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3426640Z 0 !== 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3426841Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3428148Z     at disposableAndroidShell (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/disposable-android-shell.mjs:17:10)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3430192Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/restore-disposable-store.mjs:9:18
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3431659Z     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3433111Z     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3434485Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3435414Z   generatedMessage: false,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3435938Z   code: 'ERR_ASSERTION',
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3436360Z   actual: 0,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3436728Z   expected: 1,
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3437212Z   operator: 'strictEqual',
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3437699Z   diff: 'simple'
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3438062Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3438252Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3438445Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3477144Z ##[error]The process '/usr/bin/sh' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3479147Z ##[group]Terminate Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3496011Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3536981Z OK: killing emulator, bye bye
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3537741Z OK
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3540099Z INFO         | Wait for emulator (pid 3521) 20 seconds to shutdown gracefully before kill;you can set environment variable ANDROID_EMULATOR_WAIT_TIME_BEFORE_KILL(in seconds) to change the default value (20 seconds)
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3541617Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3542673Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3712887Z USER_INFO    | Snapshots have been disabled by the user, save request is ignored.
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.3714694Z INFO         | Saving snapshot 'default_boot' took 0 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.6289985Z ERROR        | stop: Not implemented
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.6291935Z WARNING      | Emulator client has not yet been configured.. Call configure me first!
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.6426055Z INFO         | removeAll
+Android native UI tests	Run Android Compose UI tests	2026-10-22T20:23:29.6976597Z WARNING      | Netsim Wifi dns:///localhost:45537 is gone due to Stream removed (CANCELLED)

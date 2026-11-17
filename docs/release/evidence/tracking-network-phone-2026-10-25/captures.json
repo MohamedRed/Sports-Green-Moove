@@ -1,0 +1,72 @@
+{
+  "public": [
+    "offline-stale",
+    "manual-screen-return",
+    "after-manual-return-observation"
+  ],
+  "files": {
+    "after-manual-return-observation": {
+      "sha256": "8a0d9cc8b97c37fcb306a6b1c0fce1b9a5f4624e2936bf53f5faa3e763b1cd84",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "before-loss": {
+      "sha256": "b96dc8ba20a651995df9c07bbb9e9731801a4ac5aa269e97a06b645ce25b1166",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    },
+    "before-manual-resume": {
+      "sha256": "eebe6afadc13fd9d353f06f64549fbd8e7f285bd701afd9b71705f9f7b384df9",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    },
+    "manual-screen-return": {
+      "sha256": "07a0d4de42375f9e5bcf103f776cb891eb62db46aa36f6137c79e36da473def7",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "offline-stale": {
+      "sha256": "3ea2eeb5c8861cb3042c0bea6b749c209749deef0a12f37c04425e4fb5c5014b",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": true
+    },
+    "resumed": {
+      "sha256": "d9550fc267f2c233efc4c7c7bfbc2bb3b9deff0d3b0275960cb6ed6165818efc",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    },
+    "signed-out-stable": {
+      "sha256": "6f9224f7c7d816cd873cea0d001b8018e2f33ed6ded191431c0b878911b5e57c",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    },
+    "signed-out": {
+      "sha256": "840e5502f0910975e371172483cfcbd6f68a2199eed5649d5643b3e0d8598767",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    },
+    "still-stale-after-restoration": {
+      "sha256": "e27787419030cb6d7379548035eb8e940963f335f76346a259fef3cb4ee6cbef",
+      "width": 253,
+      "height": 564,
+      "source": "unscaled-browser-device-viewport",
+      "visuallyReviewed": false
+    }
+  }
+}

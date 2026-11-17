@@ -1,0 +1,157 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+  "recordedAt": "2026-10-22T19:46:01.670Z",
+  "fixture": {
+    "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+    "parentUid": "sgm-qa-parent",
+    "foreignUid": "sgm-qa-driver",
+    "foreignReadDenied": false,
+    "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+    "requestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+    "originalReport": {
+      "id": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "subjectType": "other",
+      "subjectId": null,
+      "reason": "Support coupure QA",
+      "description": "Demande de test avant une coupure.",
+      "emergency": true,
+      "reporterUserId": "sgm-qa-parent",
+      "status": "open",
+      "publicReplyCount": 0,
+      "lastPublicReply": null,
+      "createdAt": {
+        "_seconds": 1792698226,
+        "_nanoseconds": 807000000
+      },
+      "updatedAt": {
+        "_seconds": 1792698226,
+        "_nanoseconds": 807000000
+      }
+    },
+    "originalOperation": {
+      "id": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "requesterUserId": "sgm-qa-parent",
+      "clientRequestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+      "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+      "createdAt": {
+        "_seconds": 1792698226,
+        "_nanoseconds": 807000000
+      }
+    }
+  },
+  "state": {
+    "reports": [
+      {
+        "id": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "subjectType": "other",
+        "subjectId": null,
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "reporterUserId": "sgm-qa-parent",
+        "status": "open",
+        "publicReplyCount": 0,
+        "lastPublicReply": null,
+        "createdAt": {
+          "_seconds": 1792698226,
+          "_nanoseconds": 807000000
+        },
+        "updatedAt": {
+          "_seconds": 1792698226,
+          "_nanoseconds": 807000000
+        }
+      }
+    ],
+    "operations": [
+      {
+        "id": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "requesterUserId": "sgm-qa-parent",
+        "clientRequestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+        "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "createdAt": {
+          "_seconds": 1792698226,
+          "_nanoseconds": 807000000
+        }
+      }
+    ],
+    "attempts": [
+      {
+        "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+        "recordedAt": "2026-10-22T19:43:46.862Z",
+        "receipt": {
+          "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+          "clientRequestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+          "requesterUserId": "sgm-qa-parent",
+          "status": "open",
+          "reused": false
+        },
+        "committed": {
+          "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+          "operationId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+          "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+          "originalContentVerified": true
+        }
+      }
+    ],
+    "held": {
+      "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+      "recordedAt": "2026-10-22T19:43:46.862Z",
+      "receipt": {
+        "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "clientRequestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+        "requesterUserId": "sgm-qa-parent",
+        "status": "open",
+        "reused": false
+      },
+      "committed": {
+        "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "operationId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "digest": "c70630d9100ed520e0b31c627af4ce8d5a2b4204e884238987a3489d0e0b8d0d",
+        "originalContentVerified": true
+      }
+    },
+    "released": {
+      "runId": "e2b4cfa90b966402102f5eb0675bf28e",
+      "releasedAt": "2026-10-22T19:45:41.308Z",
+      "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+      "handlerClosedBeforeReleaseAt": null,
+      "receiptUnchanged": true
+    },
+    "expired": false,
+    "notifications": [],
+    "requesterView": {
+      "report": {
+        "id": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+        "reason": "Support coupure QA",
+        "description": "Demande de test avant une coupure.",
+        "emergency": true,
+        "status": "open",
+        "createdAtMillis": 1792698226807,
+        "updatedAtMillis": 1792698226807,
+        "replyCount": 0,
+        "lastReply": null
+      },
+      "replies": {
+        "items": [],
+        "nextCursor": null
+      }
+    },
+    "foreignList": null,
+    "replies": []
+  },
+  "result": {
+    "phase": "uncertain",
+    "reportId": "2252053a2937532b437643150622640d456a259cdd63a22b85be85aed4834c3e",
+    "requestId": "9b18e15f-4214-4b12-9aa8-5c0886ea8301",
+    "reportCount": 1,
+    "operationCount": 1,
+    "attemptCount": 1,
+    "urgent": true,
+    "originalContentUnchanged": true
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

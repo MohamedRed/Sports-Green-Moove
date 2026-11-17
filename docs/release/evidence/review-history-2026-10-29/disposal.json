@@ -1,0 +1,14 @@
+{
+  "scope": "independent-loopback-endpoints-not-phone-proof",
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  },
+  "checkedAt": "2026-10-29T16:57:26.110Z"
+}

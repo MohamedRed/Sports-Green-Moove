@@ -1,0 +1,563 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "isolated-chat-source-authorization-not-native-ui-or-production",
+  "baselineCommit": "d51c0f8c50fd2c148bf751bec07a4a380bac0ae4",
+  "serviceChecks": 9,
+  "rulesTests": 219,
+  "androidUnitTests": {
+    "tests": 840,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "protectedRecords": 22,
+  "rulesPolicySha256": "456c338efa467879a2d9ea9ae3f5b84dad828cb5f2a108b3c65a9698f0eee350",
+  "records": [
+    {
+      "file": "baseline.json",
+      "sha256": "dcc4459ceff6e0af1050d93940af3950a54f8bf48abe7f053c34d8009f738571"
+    },
+    {
+      "file": "first-candidate-failed.json",
+      "sha256": "abab885de2a960f3ac8ae50528abc0302f137228e4e73336194d4037fdab9e16"
+    },
+    {
+      "file": "query-observation-failed.json",
+      "sha256": "7260ee4380a3b874fd91acc21c1d759755666872ac5f3a103d998ca9ec045994"
+    },
+    {
+      "file": "field-binding-failed.json",
+      "sha256": "a705ade7f11f86c849095aaaf949eae6ecaaa8fc5406321b7bc3c721e12590ae"
+    },
+    {
+      "file": "query-compatible.json",
+      "sha256": "aa92bb5fb9da1870060ff5ae3e85b3ac783be545a95091d006bf9e080551a9b9"
+    },
+    {
+      "file": "query-proof-diagnostic.json",
+      "sha256": "8982a7677be29adc2a887dd873689189ef0800e44dd3d6d7a5f6e640c36c2720"
+    },
+    {
+      "file": "message-listener-negative.json",
+      "sha256": "57a1b63a848466a399b6490c3d1e95294d149afd893708947f3e72d1a3f38a42"
+    },
+    {
+      "file": "message-listener-negative-cleanup.json",
+      "sha256": "0e018c068dccbd5fd862943cbd11b605e973afc5903db4d7a1d8546997e35f60"
+    },
+    {
+      "file": "runner-argument-failure-cleanup.json",
+      "sha256": "0e018c068dccbd5fd862943cbd11b605e973afc5903db4d7a1d8546997e35f60"
+    },
+    {
+      "file": "source-listener-negative.json",
+      "sha256": "55f613f6cd097ad4d01c2c5ce8eaf57c66843df8c71060ffc2bbd53b23d59c9c"
+    },
+    {
+      "file": "source-listener-negative-cleanup.json",
+      "sha256": "0e018c068dccbd5fd862943cbd11b605e973afc5903db4d7a1d8546997e35f60"
+    },
+    {
+      "file": "services.json",
+      "sha256": "b135276dc033fdd319c89ea88ad29af54c9f7b62ca7f2b0326002a415b972643"
+    },
+    {
+      "file": "rules.json",
+      "sha256": "352a5e697560633d18d52579354a0b9d0156204f616ca1f67c5289020f0ca183"
+    },
+    {
+      "file": "rules-cleanup.json",
+      "sha256": "c0b31590229859489e11bd995a8dd34741016c1e167442dd4d7daf6fb4113d49"
+    },
+    {
+      "file": "terraform-validation.json",
+      "sha256": "4cd9eddc4d07c5aff74dadb6b3544f98186f6705ac60e0d94d545fc42b45b9b6"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.data.BookingIntentSnapshotTest.xml",
+      "sha256": "bc745e5105fac689f1497ebe8d8e1161b2541ffd4a6fae1918d7898a6ea2b4c6"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.design.SgmAccentContrastTest.xml",
+      "sha256": "bddf2e2313f02b41b41e94310d01b0da4c4809bd7c18e8d35dd7b38c1128e3be"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.design.SgmFeedbackContrastTest.xml",
+      "sha256": "9767a86245bc70648970c0cece8184289b04a1fd626ac1e791e0c7255d387ff4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.design.SgmFormFeedbackContrastTest.xml",
+      "sha256": "e630f3cfbbbd73411d26eb0dd5b7d5f6d26a4c1625cf4037c4ae89678a3455a2"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.design.SgmTextContrastTest.xml",
+      "sha256": "a4896f083be875ad6904f32310b5c0f1106d94cd56d8636ceb8975d07bf5163f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.AuthFormPolicyTest.xml",
+      "sha256": "c041b59000a6841fabdf38cab4937e7f7e9ad44c184c6bf06fa53c420c63deeb"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.ClubMembershipStateTest.xml",
+      "sha256": "6537cc5fa1ea29e3449462ab8544f303243df713c335d49074806560553dd226"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest.xml",
+      "sha256": "9294c220cf4fce8495673e2088e2e211a78ebddfb7c9bf2765ec90deed182994"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.ConversationSourceAccessTest.xml",
+      "sha256": "7ad6df0ef259939a7148f9f6c7204e39b222983c208f124aa3d7aa4bccf3b815"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.ConversationTimelineTest.xml",
+      "sha256": "b00dff77da9c27c53430cdcf81c4b96e21b2a58c7eb6f7519619f0339468563c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.MapRoutePolylineTest.xml",
+      "sha256": "a287b18a02e09bf4f4b2930bd8c376193af083ca5610f60b2c4118f8d5410a94"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.NativePlanPoliciesTest.xml",
+      "sha256": "192d810c6ea08bb4d6e4a55b68ec46ae00eb6b6dc019722bc368a34f71a95255"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.PublishDraftFactoryTest.xml",
+      "sha256": "3f437079a1b9b84deaba1d73fbdd8468aae25135497b8aaeaca42adcb022ced7"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.RideAccessPolicyTest.xml",
+      "sha256": "b27053ed3f6dd3ff31e2f53a8947eb6ba2ede36900ee7bbdf40e077a6b855eb4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.RideObservationAgeTest.xml",
+      "sha256": "be0d375fdc22d3ffba1f33229e01c60c3890654e3f72cfa4baa80ce6bd0abf69"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.RidePaymentVerificationTest.xml",
+      "sha256": "95b35254a86cb7af9771700e5fa95f2ad33e1b1ef04bb210ff032b46c80cb5f4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.TripCalendarTest.xml",
+      "sha256": "f18d9bda2422d13c04f05d8b536606c3d48484b412cc8f9c2d3827039fb8e13c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.domain.UserFacingErrorPolicyTest.xml",
+      "sha256": "9cc7cdb778498e3ca01abe9c3ab7f32d7fc49ffa02d6b952bbf01e93530e81a5"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ActiveRideLifecycleTest.xml",
+      "sha256": "bdfacbf8f0aa3bc5a089663846441bb9bd2744bb28de1e471047fa9051a03509"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest.xml",
+      "sha256": "fe8a35a2e76877720db36f335160db05302eddaa7ef1f77de626f3c644668287"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ActiveRideResumeTest.xml",
+      "sha256": "f24a9968042019608f88eab9bd0af8acaa5ce86469b6738f0fb0a7377ad84c55"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.BookingIntentMappingTest.xml",
+      "sha256": "1792d795f0accd5dec30cff042e3e50764597840ffd7f7d205e3da51c3f82a98"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.BookingRequestCoordinatorTest.xml",
+      "sha256": "4a965eabf27fea741f7559bbc691115444878a0e6120e4845854fe3a48361f4c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.BookingRequestPayloadTest.xml",
+      "sha256": "3b65824e68b439c8a765359a57025b4d85dc8ae6717ef476f9621063e7c7d819"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ChildRideEmergencyWireTest.xml",
+      "sha256": "80fb177571ea8c21f130fc2cc5805578252ce8ac9a9ce0c0411eb6a1a4c1d524"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ConversationDirectoryMappersTest.xml",
+      "sha256": "44e81e7f9c0e9917427c5952a33674e99d40e449c51d5f82975948dbc109969c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.EmergencyContactWireTest.xml",
+      "sha256": "f5ee2edb966603baa9790fb11671c8af741581cddbd20f2f506f4f30e023cc54"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.GuardianVerificationWireTest.xml",
+      "sha256": "6d310c49af8d2eec84f9ef854926385a954eb4a85251adb71348dc3a802eccbe"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.InitializedAuthProfileWireTest.xml",
+      "sha256": "e25e0d93476ed79310089140cdae086146f917d9a592c98adb6def4acca84737"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.LedgerSummaryWireTest.xml",
+      "sha256": "fe6fd3ac34f773ab46b194a4fa7c62cb49f07cc30b8bf96a665edc173972a6de"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.MembershipPageTokenTest.xml",
+      "sha256": "6f6bbaa10bbca627a03d2979096ebc87b2bd376e151c0462d0d35e0262f6ae6e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.NativeCaptureClockTest.xml",
+      "sha256": "2b921dc106d7c1370ab66a7912bc71ef2bfb263d2d1ee71fb77bdb7d303d6b3f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest.xml",
+      "sha256": "9962d0b7931a06a199b751aed23a865efdc0e2ff9946de15823e826dc08bf5d8"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.NotificationInboxWireTest.xml",
+      "sha256": "8d277b13524b5186d51fe5ab6f8de27b280a71f6d71c837d24e08ce0e2896e5a"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.NotificationReadReceiptTest.xml",
+      "sha256": "a9be251d43ec20be6a5caeae6668ab0338d61b3423c7cfc1a71325dd22a1a97e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.PendingReviewParserTest.xml",
+      "sha256": "7bcd795004cb37ea9039097487396740dc16bd6d71512c49dfe05786e8fdde3a"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ProfileCityWireTest.xml",
+      "sha256": "a9a661a48debd14b39c8828738b773efd76d42354d105c7b1a270242b511dbd4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.QueuedTeamPushTokenSourceTest.xml",
+      "sha256": "68ab350ef376bd1ced9b14e7a707a3957251039710b095b8a4035ce414fb9538"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ReceivedRatingsParserTest.xml",
+      "sha256": "141757dbddd839c5b2eceef22e6463136f8c952f6f79f8d260cc6bf07e083de2"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ReservationPayloadsTest.xml",
+      "sha256": "bda8d7ab5b3900fbdd0bca1d8a3feef8d7f6acb5a9c65c58302dec2082e348f9"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.ReviewTripContextParserTest.xml",
+      "sha256": "d451e99f5548050493a95845fecbf039193b8047c04787236727e59f099a1723"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.RideObservationTraceTest.xml",
+      "sha256": "8b3eb3a53b95acec5de44d5174d9cab4076a3f5ebf159867553cff30b63bf17c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.RideObservationWireTest.xml",
+      "sha256": "7ee60e23ee17c60c7e20868d8600aaf05ad1cfd96319035d67254772ae1e7f42"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.RidePaymentCoordinatorTest.xml",
+      "sha256": "185bb9d11e87b41865abebb9f1686b366bb7bc62334438c31a43f862206062e6"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.StripeConnectCoordinatorTest.xml",
+      "sha256": "c87a9a5065ba2489dbb038d38bac64a4fa99acc68ad1dff1b72221e3674dca4e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.SupportCallTraceTest.xml",
+      "sha256": "3b74d6c44ed674a16c2151809357e09e49a0da4bcd103efca17850cb418986b6"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.SupportSubmissionStoreTest.xml",
+      "sha256": "4c9403bdca8068ea3f4c8dffecaaf8c9ad961bf16aa6635c45cfb97ddb1fbb98"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.SupportWireTest.xml",
+      "sha256": "6fc65a61bc72427481355a4da35f2d245e4e4f2a0062e74c0eb2cf23fb325c24"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamConversationWireTest.xml",
+      "sha256": "677da76d0a9b6e127daf5664f6637f80d22d1000da6ca11f43c2b7a9603af4c6"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamEnrollmentHistoryWireTest.xml",
+      "sha256": "86d777b2f3d0d329f51089a79cb6000eafe3236bd38b134c95380858f868baa1"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamEnrollmentWireTest.xml",
+      "sha256": "578b1359b70522c91515832890cb0e2a0a8442f34cb9d7b84fbfd50b13b94c71"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushAlertTest.xml",
+      "sha256": "0e0d30cc42bb545e2690f69d6071396c033d733d1f98d6920d6f9b2bc7c14b5a"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushJournalTest.xml",
+      "sha256": "07e1c0e16e2cda8445f7408969996abdb7351bfb772dabdb177d2887d8f7f793"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushLifecycleTest.xml",
+      "sha256": "1b9522ee22f65b394d026bda7e970314873d883d68ac1fdd3c4f92d80988666f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushRegistrationWireTest.xml",
+      "sha256": "3a3ffba38f1a79e9f8bf569ee4cf297050db1fa524ec2bc906a8c48b14399433"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushSignOutDurabilityTest.xml",
+      "sha256": "9e19ceaa6182a80277282c44b609bf4cd54c4e78ed868640131f8f6ab1fee3fa"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushSignOutTest.xml",
+      "sha256": "3869abaf0f574e584a0bd3bc2032ba17d945406a224d5eccfbf42fcdfdf2eeea"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TeamPushStorageTest.xml",
+      "sha256": "442eea60f9847ee0e8cadf863248fdfeb9a3afd08de28347c8e885dd5291e67c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TripCancellationMappingTest.xml",
+      "sha256": "c60f98c445c85fbf843e8906e588c45fdafd83c0e21eff6a8483a3cb90fc1f74"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TripChangeHistoryMappingTest.xml",
+      "sha256": "a3438f36adf4c375812b02c93191b12073bfd5e386de0a5d0543a73a9d2bae92"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TripChangeMappingTest.xml",
+      "sha256": "74a9b92478bca702a5dfdb7d91bfc415ce2a52e1a414e949b523d26d5ea7c2fa"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.TripDateMappersTest.xml",
+      "sha256": "61924699dddbb96030757a6af05a66d39142b6c3f7db6d76124caa50d23042eb"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.services.VehicleMapPointWireTest.xml",
+      "sha256": "6d195fe0c1dc0e6fef89551a3a0b9bd5170a17c2c4ada6e9e7fab158cf97fde1"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.testing.WindowFocusSnapshotTest.xml",
+      "sha256": "e33f1d3f77c9dff84fd601603bf128fa72ed7a44b7eed871fd15ebbd6345510c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ActiveRideObservationStateTest.xml",
+      "sha256": "63d7e11944c6044a86fca06d3681d47c4c109958891bd09d72e7ceaf290b0f9f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ActiveRideResumeActionTest.xml",
+      "sha256": "1e6c9f56327100a8a31b4e3e4bb8c7674c8c16919d28f46a8ae1ee9506fe118b"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.AppDataStateTest.xml",
+      "sha256": "04d17f4304154c4a07d0c689805cdff00131afa3df1c79629215250dd5daab81"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.AppSessionShutdownTest.xml",
+      "sha256": "e6f2b284dcebd826b6dcf80143df0f1a4a8bbcd767f5668e38391e8bf2a84ac3"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ChildAccountLinkStateTest.xml",
+      "sha256": "0ec1a64b9447f14a295d2588e44a49aa7502063b504a47ffe7232ade1408f731"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ChildInvitationStateTest.xml",
+      "sha256": "397d327df6f9f374442fc8e7d4a52e9aecab229be649202dc554ed556c43e84b"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest.xml",
+      "sha256": "c9dbb0b7d73bdd07c33d308778b82c4503ed5313507ad627a01fc637ae4d183e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ConversationComposerStateTest.xml",
+      "sha256": "3d6f3beb3b1896c42bbbd0309c6068947f6a8f7ae3dc1e12e768c97021057658"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ConversationDirectoryStateTest.xml",
+      "sha256": "a9e9ca2c065280f3572f86db25f2e029b7b726391fe301c61a32d1f6a68fb4f2"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ConversationDraftStateTest.xml",
+      "sha256": "2993dcb6238f07cddb45c368c021a3773788f5b4e8231f50fe355234f7e352d8"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ConversationStateTest.xml",
+      "sha256": "0374c973118d351c72923077d6418fda9c5fbc01c967017e35d768288ee0b835"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest.xml",
+      "sha256": "f2cd6fd9a2b1373351227f56fd9826aec8c88d5c471d337af585c4a7834d74ff"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.EmergencyContactSelectionTest.xml",
+      "sha256": "60c6c3770bf57624dfa295d53e09ef8576200e4ef1916cf7446f5584ad6c64c4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.EmergencyContactStateTest.xml",
+      "sha256": "4cfe87d9b0c75156aed3ef30f2709631b7f3f8a03b66f0fa5e9bf43304faa26c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.EmergencyRideAccessTest.xml",
+      "sha256": "f74b10303e3c1a9a13d3d89a059834efa58ed7140b45e6dc3a2e846351777569"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.GroupsStateTest.xml",
+      "sha256": "a416f449917e93c7bc9df0943147a1cbf55978edffb8af1ad7eefe9197718a84"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.GuardianPageStateTest.xml",
+      "sha256": "1d7c0f35beeea2047a77ec62d3f1744f9d69acdca0adbf36b62bda96d8399753"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.GuardianVerificationStateTest.xml",
+      "sha256": "5c38adfbdad6c3237127e140bd3a58996ee260132db0c026b2b916ae5d820179"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.MessagesNotificationPollingTest.xml",
+      "sha256": "b6b806be91d49b2be0f63313d94e704d4e11316b6c79e24a43a114f9263eb692"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.NotificationInboxStateTest.xml",
+      "sha256": "d8f3e0e528d709431f9c8bc939fd5f1ceeba45df8604e9915ff7b5a5ae1ae64f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.NotificationReadStateTest.xml",
+      "sha256": "eb922eb1a2fa5d8a536b0f4fe12a98219a7a44934ba3a2ffb29de97834105e2d"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.NotificationSettingsStateTest.xml",
+      "sha256": "58fddfa73ac5a16ed49bf9bd1a1f3c94d5d2782c7192ff944e9dba41bf03d5dd"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.PassengerStatusObservationOwnershipTest.xml",
+      "sha256": "6d062af8c33d91c6c791b149dc478efb3b967d9150502393bc4218aea45ecd3e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.PendingReviewsStateTest.xml",
+      "sha256": "62193eac0714afa073f9f1df7bfa1a987bc7b4f21e297cb5711d395bb2899f02"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ProfileCityStateTest.xml",
+      "sha256": "40af4b3d0b8c2b2423ff71210efd64dc340bcea0382c0debd2ae57e4022d5c27"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ReceivedRatingLabelsTest.xml",
+      "sha256": "c695df4727c06d688fc0fa3a3b2142f8eec35d2dcd1adcf97206d5875e012981"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ReceivedRatingsStateTest.xml",
+      "sha256": "ebe5dc1fb289d78d57baba857cf6e8fce758f6a1505dd5a82e6eaa1dd7ee5546"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ReservationStateTest.xml",
+      "sha256": "b8ac67c127c6053374fa6467eacc9b3d9235cdc09deb1dd08e4f07a727d53d91"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.ReviewSubmissionStateTest.xml",
+      "sha256": "d7f0b0413188b1977b7adda602d1cfef8066047d2398ababa17552b6171c9a73"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.RouteMapViewportTest.xml",
+      "sha256": "2c95f99f9852df7eaf4a80a7e8562f64bbb1284e66419f9e5c32e9695de22a55"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchBookingBindingTest.xml",
+      "sha256": "0b51800d5e115d44d77478aeaf4c0083afecd7d0e0e1f474cd080969503defbb"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchBookingFeedbackTest.xml",
+      "sha256": "a10442e593fc090724396dd5a087f59bd6d445cb80beee6110018df53249bbd4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchBookingRecoveryTest.xml",
+      "sha256": "eee489dc95814a7753a091d62e8d2630508ee712c5c82958d9b7db05a53af49c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchControllerLifecycleTest.xml",
+      "sha256": "1988f94eae6d2945639a3f2773d5b0998bc12f873aa626778374e28d3c89bd0e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchControllerRequestsTest.xml",
+      "sha256": "006d6f71c7cb36d839e9b84e182197a7065ba1a88882b83bab577356329a58ba"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchControllerSafetyTest.xml",
+      "sha256": "7df1ee951f29694e04a8da7e891ad29131a6f80460fa9cf297092e6e32f177f7"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchCriteriaStateTest.xml",
+      "sha256": "2f57a2017bfd0da3170b99a83385ec55c3fe9098d3d0b2157073ce7a1bd0c2fc"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SearchDepartureInputTest.xml",
+      "sha256": "fdf73efa754c27078f117ae76a96d5c4da59a8a758e563ca8712a8bf6b26d4f4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SessionRestorationStateTest.xml",
+      "sha256": "ae01e6bd9137b6bc8a56050136daeab7fe44437adad137a28a2b33fc946402cd"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SessionRoleSelectionTest.xml",
+      "sha256": "77c9c9db34f401d581d76a8d7205779b462bc52e4dc7df6fb0a86a3a048cd339"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SessionShutdownStateTest.xml",
+      "sha256": "ea640a8b26a21effe7adf043c84b033de428b1adff4c392a9f78a3f513ed5a7c"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SupportInboxStateTest.xml",
+      "sha256": "c768858ebb3143091f3f18998b7f28b371ef211c9ab671dcd104ec38b33bf7ae"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.SupportSubmissionStateTest.xml",
+      "sha256": "355b393358cdb8dd5f75722197d6a8a7d48738d4a48176b11dff18dbdaf0ec10"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamConversationDraftStateTest.xml",
+      "sha256": "afbf0ae3ba4c52eb3b6164ce8cc76257aeb9b53d893030df412c21d9301370d4"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamConversationReadStateTest.xml",
+      "sha256": "371a62e46ebe16f43396dfea3c5d0d1c32575420b5a7fd35528e72de66ad3809"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamConversationStateTest.xml",
+      "sha256": "a678a7a34b60382e32f6a85310308e65c653e558c3eaad4ac7150f672f081a37"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest.xml",
+      "sha256": "6bf12b89e9b59998fa902a1fe2fe0a296cfa8f5866def07ee720614c55a1e61f"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamEnrollmentStateTest.xml",
+      "sha256": "1dbde66bee1895df6da7b153fe960be380e89f2c1a609c545997478ae3d5c520"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TeamPushOpenStateTest.xml",
+      "sha256": "0e727dad90c1fa22d471dfad96c6755be5789892daa9404971cba122c6c537fa"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripActionBookingTest.xml",
+      "sha256": "8c49df945e367d9387d7fe495586fc11fe5037ae966d36a28933c0685e1ebaaa"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripCancellationStateTest.xml",
+      "sha256": "4d2858cc24339028e2b19dcef93c40afdb705971ce2062ebe39a375a50eae8ff"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripChangeDraftTest.xml",
+      "sha256": "8a2130f12d1156fda624320f048f2a89f5da201d7889e35389ea53203d9e7d1e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripChangeHistoryStateTest.xml",
+      "sha256": "759830f619e1d4305a8b7191da727f22990ac136a8bf096252c1d35086d9ff07"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripChangePersistenceTest.xml",
+      "sha256": "0c36eb1d187aa128babc7517251eb43d841c80c09a7ca5f5bf75d802c180f16e"
+    },
+    {
+      "file": "units/TEST-be.sportgreenmoove.app.ui.TripChangeStateTest.xml",
+      "sha256": "a3bfa1ab05e81dbce39e087d0c537711e2838c7996a7ce60573b2968f364d5f3"
+    }
+  ],
+  "originalMessageListenerExpectationFailed": true,
+  "independentSourceObserverRequired": true,
+  "productionRulesApplied": false,
+  "nativeUiAccepted": false,
+  "iphoneConversationImplemented": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "newMedia": 0
+}

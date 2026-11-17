@@ -1,0 +1,54 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ab1e0382323cd68b5028fbbff12ae0c1",
+  "testedAt": "2026-10-23T19:27:21.579Z",
+  "scope": "authenticated-local-notification-services-not-native-ui",
+  "fixture": {
+    "selectedNoticeId": "bookingDecision_9b9ea7053ad2ffd7474d612885f1c5ca9945c9c22bf8d0efacfa2c5cf52009eb",
+    "controlNoticeId": "bookingDecision_fa14bf960a5c5bfb50f28ea8eef601372954618c04d6e67a44bbbfc5556e7b6f",
+    "driverNoticeId": "bookingDecision_c7422e7a331d387f06186bfaf1cf1fbb92cd06455c95d52daed707d59a49f0ac"
+  },
+  "checkpoint": {
+    "protectedRecordCount": 167,
+    "selectedReadAtMillis": 1792783641372,
+    "allOtherRecordsUnchanged": true,
+    "allClaimsUnchanged": true,
+    "liveTripsUnchanged": true
+  },
+  "checks": [
+    {
+      "id": "booking-generated-owned-unread-notices",
+      "status": "passed"
+    },
+    {
+      "id": "authenticated-call-changes-only-selected-read-fields",
+      "status": "passed"
+    },
+    {
+      "id": "fresh-inboxes-and-foreign-rejection-preserve-all-records",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-replay-preserves-first-server-timestamp",
+      "status": "passed"
+    }
+  ],
+  "completed": true,
+  "nativeUiExecuted": false,
+  "physicalPhoneAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "adminClientClosed": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e557d3152883d7d150112c72049f447f",
+  "phase": "after",
+  "recordedAt": "2026-10-30T12:11:01.873Z",
+  "scope": "read-only-disposable-network-validation-history",
+  "schemaVersion": 1,
+  "source": "bounded-android-validation-history-not-current-capabilities-or-selection-reason",
+  "atomicObservation": false,
+  "groupCount": 4,
+  "groups": [
+    {
+      "ordinal": 1,
+      "transportMatched": true,
+      "transports": [
+        "wifi"
+      ],
+      "probeLineCount": 8,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "transportMatched": true,
+      "transports": [
+        "cellular"
+      ],
+      "probeLineCount": 4,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "transportMatched": false,
+      "transports": [],
+      "probeLineCount": 8,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    },
+    {
+      "ordinal": 4,
+      "transportMatched": false,
+      "transports": [],
+      "probeLineCount": 16,
+      "unrecognizedProbeLineCount": 0,
+      "eventsTruncated": false,
+      "events": [
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "http",
+          "result": "http-response",
+          "httpStatus": 204
+        },
+        {
+          "probe": "dns",
+          "result": "success"
+        },
+        {
+          "probe": "https",
+          "result": "http-response",
+          "httpStatus": 204
+        }
+      ]
+    }
+  ],
+  "identifiersRetained": false,
+  "addressesRetained": false,
+  "probeTargetsRetained": false,
+  "rawLogsRetained": false,
+  "newProbesIssued": false,
+  "flowCompleted": false
+}
