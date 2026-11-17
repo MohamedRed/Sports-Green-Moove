@@ -105,6 +105,11 @@ The example's placeholder allowance does not relax the two-platform structure.
 These checks validate recorded evidence, not the truth of an unreviewed video or
 manual attestation. A maintainer must still inspect the linked results.
 
+For iPhone push testing in App Live, record the installed candidate build and
+its installation source. BrowserStack documents [TestFlight for development push](https://www.browserstack.com/docs/app-live/native-device-features#push-notifications)
+and [entitlements support for uploaded enterprise-signed builds](https://www.browserstack.com/docs/app-live/advanced-features/iOS-entitlements).
+Verify push registration on the chosen device before running the delivery matrix.
+
 ## Store Review Captures
 
 Capture screenshots and policy documents for every store review evidence item in
@@ -123,6 +128,10 @@ Capture screenshots and policy documents for every store review evidence item in
 | `stale_location_warning_screenshot` | Stale-location warning state. |
 | `emergency_contact_action_screenshot` | Enabled emergency-contact action and its verified dialer handoff, without placing a call. A static panel or non-empty image is not action evidence; see `../contracts/emergency-contact.md`. |
 | `permission_education_screenshot` | Permission education before OS permission prompts. |
+
+Before testing the emergency action, confirm that the device can open its system
+Phone interface. The [Pixel 9 Pro prerequisite check](evidence/emergency-dialer-pixel-2026-11-17/README.md)
+returned to Home. Keep the capture pending on a device where the dialer cannot open.
 
 ## Audit Exports
 
