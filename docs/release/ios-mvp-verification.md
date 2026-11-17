@@ -28,13 +28,22 @@ The release manifest separately requires `ios_sdk_build_ci` and
 
 ## Current Proof And Historical Results
 
+The later 17 November [run 43995277100, job 133750987445](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43995277100/job/133750987445)
+builds successfully and passes ten of eleven simulator cases at `14f1fa25`.
+The parent case verifies the saved child contact and removes it. A downward
+swipe follows, and the accessibility snapshot shows Options instead of the
+contact sheet. The test now taps the parent account button scoped to the contact
+sheet, preserving the case and its assertions. The corrected simulator run and
+both automated iPhone manifest entries are pending. See
+`evidence/ios-fixture-recheck-14f1fa2-2026-11-17/`.
+
 On 17 November, [run 43982027282, job 133700626840](https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/43982027282/job/133700626840)
 builds the SDK-linked app at `941f85c1` and passes all eleven simulator cases.
 The parent emergency-contact case saves the child contact, reopens the picker
 and verifies the saved contact after switching targets. Simulator disposal
-succeeds and the job retains zero artifacts. The retained build inputs and
-workflow match the current candidate, so the manifest accepts
-`ios_sdk_build_ci` and `ios_fixture_ui_ci`. Device tracking, system phone
+succeeds and the job retains zero artifacts. Its retained build inputs and
+workflow supported acceptance of `ios_sdk_build_ci` and `ios_fixture_ui_ci`
+at that checkpoint. Device tracking, system phone
 handoff and connected-service coverage remain pending. See
 `evidence/ios-fixture-gate-941f85c-2026-11-17/` and
 `evidence/ios-automated-acceptance-941f85c-2026-11-17/`.

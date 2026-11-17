@@ -29,3 +29,11 @@ export const iosParentContactFixturePassProgress = {
   text: 'Les onze tests d’écran réussissent. Après l’enregistrement, le test rouvre le choix du contact et retrouve le contact enfant. Le suivi, l’appel et les notifications restent à vérifier sur téléphone.',
   source: iosParentContactFixturePass.source,
 };
+
+export const iosParentAccountGestureRecheckProgress = {
+  date: '2026-11-17',
+  flow: 'child-emergency',
+  title: 'Le contrôle du compte enfant doit être rejoué',
+  text: 'Le test retrouve et supprime le contact enregistré. Un geste referme ensuite l’écran avant l’ouverture du compte enfant. Le contrôle doit être relancé après correction du geste.',
+  source: 'docs/release/evidence/ios-fixture-recheck-14f1fa2-2026-11-17/summary.json',
+};

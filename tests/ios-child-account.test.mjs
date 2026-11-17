@@ -64,7 +64,9 @@ test('both original screen cases keep their assertions, eleven-case inventory an
   const workflow = parseDocument(read('.github/workflows/ios-mvp-verification.yml')).toJSON();
   assert.equal(workflow.jobs['ios-fixture-verification']['timeout-minutes'], 50);
   assert.equal(workflow.on.workflow_dispatch.inputs.retain_approved_captures.default, false);
-  assert.doesNotMatch(read(paths + 'ChildAccountFlowChecks.swift'), /XCTSkip|screenshot\(|sleep\(|captureApproved/);
+  const checks = read(paths + 'ChildAccountFlowChecks.swift');
+  assert.match(checks, /app\.scrollViews\["emergency\.screen"\]\.buttons\["child-account\.entry\.parent"\]/);
+  assert.doesNotMatch(checks, /XCTSkip|screenshot\(|sleep\(|captureApproved|swipeDown\(/);
 });
 test('retained actual checks reopen only iPhone acceptance and never accept a new SDK or connected journey', () => {
   const report = json(iosChildAccount.source); assert.equal(sha(read(iosChildAccount.source)), iosChildAccount.sha256);

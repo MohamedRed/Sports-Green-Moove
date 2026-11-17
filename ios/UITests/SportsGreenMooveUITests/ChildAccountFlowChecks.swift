@@ -16,9 +16,10 @@ import XCTest
 }
 
 @MainActor func checkParentInvitationInExistingContactCase(_ app: XCUIApplication) {
-    app.scrollViews["emergency.screen"].swipeDown()
-    let entry = app.buttons["child-account.entry.parent"]
-    XCTAssertTrue(entry.waitForExistence(timeout: 6)); XCTAssertTrue(entry.isEnabled); entry.tap()
+    let entry = app.scrollViews["emergency.screen"].buttons["child-account.entry.parent"]
+    XCTAssertTrue(entry.waitForExistence(timeout: 6))
+    XCTAssertTrue(entry.isEnabled)
+    entry.tap()
     let create = app.buttons["child-invitation.create"], share = app.buttons["child-invitation.share"]
     XCTAssertTrue(create.waitForExistence(timeout: 6))
     let enabled = NSPredicate(format: "enabled == true")
