@@ -35,8 +35,10 @@ import {iosParentReservationsProgress} from './ios-parent-reservations.mjs';
 import {nativeLoginRecheckProgress} from './native-login-recheck.mjs';
 import {iosParentRowProgress} from './ios-parent-row.mjs';
 import {emergencyDialerProgress} from './emergency-dialer-pixel.mjs';
+import {androidTeamAccessRetryProgress} from './android-team-access-retry.mjs';
 
 export const latestReleaseProgress = [
+  androidTeamAccessRetryProgress,
   emergencyDialerProgress,
   iosParentAccountFixturePassProgress, iosParentAccountGestureRecheckProgress,
   iosParentContactFixturePassProgress, iosParentContactRecheckProgress,
