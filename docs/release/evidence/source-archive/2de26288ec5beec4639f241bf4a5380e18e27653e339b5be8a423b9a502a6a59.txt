@@ -1,0 +1,17 @@
+.child-invitation-page { min-height: 100svh; padding: 32px 24px 64px; background: var(--bg-surface); color: var(--text-primary); font-family: var(--font-body); letter-spacing: 0; }
+.child-invitation-brand, .child-invitation-content { width: min(100%, 440px); margin-inline: auto; }
+.child-invitation-brand { padding-block: 16px 64px; }
+.child-invitation-brand .wordmark { width: fit-content; max-width: 100%; font-family: var(--font-display); }
+.child-invitation-brand .wordmark strong, .child-invitation-brand .wordmark em { color: var(--c-green-dark); }
+.child-invitation-brand .wordmark, .child-invitation-brand .wordmark b { color: var(--text-primary); }
+.child-invitation-content h1 { font-size: 32px; line-height: 1.15; margin: 0 0 28px; overflow-wrap: anywhere; }
+.child-invitation-content p { color: var(--text-secondary); font-size: 16px; line-height: 1.6; margin: 0 0 24px; }
+.child-invitation-content form { display: grid; gap: 22px; }
+.child-invitation-content label { display: grid; gap: 8px; font-size: 14px; font-weight: 600; }
+.child-invitation-content input { border: 1px solid var(--border); background: var(--bg-surface); color: var(--text-primary); border-radius: 6px; min-height: 48px; padding: 12px; font-size: 16px; }
+.child-invitation-content input:focus-visible { outline: 2px solid var(--c-green-dark); outline-offset: 3px; }
+.child-invitation-primary { display: flex; align-items: center; justify-content: center; min-height: 48px; border: 0; border-radius: 6px; background: var(--c-green-dark); color: var(--text-on-green); font-size: 16px; font-weight: 600; padding: 12px 20px; text-align: center; overflow-wrap: anywhere; }
+.child-invitation-primary:disabled { opacity: .65; cursor: wait; }
+.child-invitation-primary:focus-visible, .child-invitation-privacy:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 4px; }
+.child-invitation-privacy { justify-self: center; color: var(--text-secondary); font-size: 14px; padding: 8px; }
+@media (max-width: 480px) { .child-invitation-page { padding: 20px 20px 40px; } .child-invitation-brand { padding-block: 12px 48px; } .child-invitation-content h1 { font-size: 28px; } }

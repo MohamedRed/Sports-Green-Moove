@@ -32,6 +32,7 @@ enum class SgmIcon {
     Check,
     Flag,
     Leaf,
+    Refresh,
 }
 
 @Composable
@@ -45,6 +46,11 @@ fun SgmLineIcon(
         fun p(x: Float, y: Float) = Offset(size.width * x, size.height * y)
 
         when (icon) {
+            SgmIcon.Refresh -> {
+                drawArc(tint, 40f, 290f, false, p(0.18f, 0.18f), Size(size.width * 0.64f, size.height * 0.64f), style = stroke)
+                drawLine(tint, p(0.80f, 0.12f), p(0.80f, 0.34f), stroke.width, StrokeCap.Round)
+                drawLine(tint, p(0.58f, 0.34f), p(0.80f, 0.34f), stroke.width, StrokeCap.Round)
+            }
             SgmIcon.Home -> {
                 drawLine(tint, p(0.16f, 0.48f), p(0.50f, 0.18f), stroke.width, StrokeCap.Round)
                 drawLine(tint, p(0.50f, 0.18f), p(0.84f, 0.48f), stroke.width, StrokeCap.Round)

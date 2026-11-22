@@ -1,3 +1,5 @@
+import type { ReviewTripContext } from "./reviewTripContext.js";
+
 export type ClientInboxSummary = {
   notifications: ClientInboxNotification[];
   chats: ClientInboxChat[];
@@ -31,6 +33,7 @@ export type ClientInboxReviewPrompt = {
   title: string;
   prompt: string;
   initials: string;
+  tripContext?: ReviewTripContext | null;
 };
 
 export type InboxDocument<T extends Record<string, unknown> = Record<string, unknown>> = {
@@ -44,6 +47,10 @@ type NotificationDocument = {
   read?: unknown;
   createdAt?: unknown;
 };
+
+export function compareInboxNotificationTimes(a: InboxDocument<NotificationDocument>, b: InboxDocument<NotificationDocument>): number {
+  return millis(b.data.createdAt) - millis(a.data.createdAt);
+}
 
 type MessageDocument = {
   sourceType?: unknown;

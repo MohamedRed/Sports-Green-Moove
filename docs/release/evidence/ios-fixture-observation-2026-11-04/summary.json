@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "01a2f0585183f2a6d20b004f8f1cfd2374ca070b",
+  "runId": 41843194537,
+  "jobId": 126619888914,
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41843194537/job/126619888914",
+  "conclusion": "cancelled",
+  "startedAt": "2026-11-04T13:59:52Z",
+  "completedAt": "2026-11-04T14:37:05Z",
+  "sdkLinkedAppCompiledAndLaunched": true,
+  "separateBuildStepAccepted": false,
+  "fixtureSuite": {
+    "executed": 7, "passed": 6, "failed": 1, "unexpectedFailures": 0,
+    "startedAt": "2026-11-04T14:23:41.8322590Z",
+    "completedAt": "2026-11-04T14:32:40.9071110Z",
+    "durationSeconds": 538.577,
+    "cases": [
+      {"suite": "SearchConsentFlowTests", "name": "testExplicitConsentAndChildChangeInvalidateResults", "result": "passed", "durationSeconds": 92.755},
+      {"suite": "SearchConsentFlowTests", "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection", "result": "passed", "durationSeconds": 38.643},
+      {"suite": "SportsGreenMooveUITests", "name": "testActiveRideIdentifiers", "result": "passed", "durationSeconds": 35.317},
+      {"suite": "SportsGreenMooveUITests", "name": "testAuthFlowIdentifiers", "result": "passed", "durationSeconds": 73.316},
+      {"suite": "SportsGreenMooveUITests", "name": "testMessagesChatAndRatingIdentifiers", "result": "failed", "durationSeconds": 71.397},
+      {"suite": "SportsGreenMooveUITests", "name": "testPublishSearchAndBookingIdentifiers", "result": "passed", "durationSeconds": 115.312},
+      {"suite": "SportsGreenMooveUITests", "name": "testSecondaryFlowIdentifiers", "result": "passed", "durationSeconds": 111.837}
+    ],
+    "failure": {
+      "file": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "line": 81,
+      "message": "XCTAssertTrue failed - Missing UI identifier: messages.rating-prompt.action.5"
+    }
+  },
+  "simulatorDisposal": "success",
+  "testProcessFinalizationCause": "unknown",
+  "privateOriginalWorkflowLogs": {
+    "format": "zip", "integrityCheck": "unzip -t passed", "bytes": 693033,
+    "sha256": "4cc572f6be133b7be52e2048f50e7307fc0590f6fb26741ac64fb5c0d7dbf292"
+  },
+  "privateFormattedJobLog": {
+    "bytes": 6999376,
+    "sha256": "072991a9cd0951abe39d411fabc2b4600528cf13696b3f4b1e72bd1e2c3bd1ba"
+  },
+  "fullUiGateAccepted": false,
+  "iosEndToEndFlowsAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

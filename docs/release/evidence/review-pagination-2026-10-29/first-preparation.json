@@ -1,0 +1,35 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ae9e1fb839b209f336219e32d045ff7d",
+  "testedAt": "2026-10-29T19:22:15.699Z",
+  "scope": "authenticated-isolated-pending-review-pagination-not-phone-or-production",
+  "completed": false,
+  "steps": [],
+  "observations": {},
+  "protectedRecordCount": 0,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "phoneUiExecuted": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/callables/inbox.ts": "b830c130038a2b64861c3a63fcb2ac804b95832815e0dfa811491c35c7e28f80",
+    "functions/src/callables/pendingReviews.ts": "79449a1b7a9077d082cb5cd91d6dab3049eca9139a6a824594fbd697f7a647d8",
+    "functions/src/services/pendingReviews.ts": "96c006d836d5396eeb88ea036fd5815fe04bf9568ddc45e8a2b1e5bd74e9c5ff",
+    "functions/src/domain/pendingReviews.ts": "a742b3c155893457c7a9726d126a7cfa4bf39dc41eb42f4bd22e80fe120b300c",
+    "scripts/qa/local-review-pagination.mjs": "7434f03a420da9400fadb573e3698c8fdd36c7fcb81741f245a4f5538d1277d4",
+    "scripts/qa/review-pagination-client.mjs": "17712b46c5965796e3e566ed2f5de05871d7476da520aec85f4e3ac776651b3a",
+    "scripts/qa/run-local-review-pagination.mjs": "d7ba557b95c39a07f59a142c7338f8fdf30452f187c9f2aeec2dfd559893d8f3"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

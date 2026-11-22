@@ -49,19 +49,17 @@ export function buildPublishedTrip(
   input: CreateTripInput,
   driver: DriverPublishState,
 ): Trip {
-  return {
+  const trip: Trip = {
     id,
     driverUserId,
     status: "published",
     title: input.title,
     sport: input.sport,
     clubName: input.clubName,
-    teamName: input.teamName,
     clubId: input.clubId,
     teamId: input.teamId,
     category: input.category,
     departureAt: input.departureAt,
-    arrivalBy: input.arrivalBy,
     origin: input.origin,
     destination: input.destination,
     pickupRadiusM: input.pickupRadiusM,
@@ -75,11 +73,16 @@ export function buildPublishedTrip(
     supportsVehicleTracking: input.supportsVehicleTracking,
     supportsChildTracking: input.supportsChildTracking,
     co2SavedKgEstimate: input.co2SavedKgEstimate,
-    distanceKm: input.distanceKm,
     passengerInitials: input.passengerInitials ?? [],
-    regionGeohash: input.regionGeohash,
     blockedUserIds: input.blockedUserIds ?? [],
   };
+
+  if (input.teamName !== undefined) trip.teamName = input.teamName;
+  if (input.arrivalBy !== undefined) trip.arrivalBy = input.arrivalBy;
+  if (input.distanceKm !== undefined) trip.distanceKm = input.distanceKm;
+  if (input.regionGeohash !== undefined) trip.regionGeohash = input.regionGeohash;
+
+  return trip;
 }
 
 function ratingValue(value: unknown): number {

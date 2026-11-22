@@ -1,0 +1,121 @@
+import assert from 'node:assert/strict';
+import {randomUUID,createHash} from 'node:crypto';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {deleteApp} from 'firebase-admin/app';
+import {seedLocalUiFixtures} from './local-ui-fixtures.mjs';
+import {auth,db,call,denied} from './local-flow-client.mjs';
+import {withLocalAdminCleanup} from './local-admin-lifecycle.mjs';
+import {prepareTeamAlertFixture} from './team-alert-fixture.mjs';
+import {fetchLocalQa} from './local-http-request.mjs';
+
+const steps=[],passed=id=>steps.push({id,status:'passed'});
+let adminClientClosed=false,firestoreClientTerminated=false,protectedBaselinePreserved=false;
+await withLocalAdminCleanup(async()=>{
+  await seedLocalUiFixtures();const f=await prepareTeamAlertFixture(),{parent,driver,manager,otherAdult}=f.actors;
+  const baseline=new Map();for(const collection of await db.listCollections())for(const row of (await collection.get()).docs)
+    baseline.set(row.ref.path,row.data());
+  const claims=(await auth.listUsers(1000)).users.map(user=>({uid:user.uid,claims:user.customClaims??{},disabled:user.disabled}));
+  const send=(body,clientMessageId=randomUUID())=>({...f.target,body,clientMessageId});
+  const notices=()=>db.collection('teamChatNotifications').where('teamInstanceId','==',f.target.expectedTeamInstanceId).get();
+  const outbox=()=>db.collection('teamPushOutbox').where('teamInstanceId','==',f.target.expectedTeamInstanceId).get();
+  const entries=db.collection('teamConversations').doc(f.target.expectedTeamInstanceId).collection('entries');
+  const request=send('Contenu privé du message QA, jamais copié dans une alerte.');
+  const duplicate=await Promise.all([call('sendTeamChatMessage',driver,request),call('sendTeamChatMessage',driver,request)]);
+  assert.equal(duplicate[0].messageId,duplicate[1].messageId);assert.deepEqual(duplicate.map(row=>row.reused).sort(),[false,true]);
+  assert.equal((await entries.get()).size,1);const first=await notices(),queue=await outbox();
+  assert.equal(first.size,2);assert.deepEqual(first.docs.map(row=>row.get('userId')).sort(),[parent.uid,otherAdult.uid].sort());
+  assert.equal(queue.size,1);assert.equal(queue.docs[0].get('status'),'pending');
+  assert.deepEqual(queue.docs[0].get('recipientUserIds'),[parent.uid,otherAdult.uid].sort());
+  assert(!JSON.stringify([...first.docs.map(row=>row.data()),queue.docs[0].data()]).includes(request.body));
+  for(const row of first.docs) {
+    assert.equal(row.get('title'),'Nouveau message d’équipe');
+    assert.equal(row.get('body'),'Un nouveau message est disponible dans votre équipe.');assert.equal(row.get('read'),false);
+    assert(row.get('messageCreatedAt').isEqual((await entries.doc(row.get('messageId')).get()).get('createdAt')));
+  }
+  passed('concurrent-send-creates-two-eligible-generic-alerts-and-one-pending-push-envelope');
+  passed('sender-unverified-parent-child-claims-child-profile-linked-login-disabled-and-club-only-manager-excluded');
+  await denied('sendTeamChatMessage',driver,{...request,body:'Autre contenu QA'},'ALREADY_EXISTS');
+  assert.equal((await notices()).size,2);assert.equal((await outbox()).size,1);
+  passed('same-intent-retry-and-conflicting-content-never-duplicate-alerts-or-push-envelope');
+  const notice=first.docs.find(row=>row.get('userId')===parent.uid);
+  const inbox=await call('getInbox',parent);assert(inbox.inbox.notifications.some(row=>row.id===notice.id));
+  await denied('markNotificationRead',manager,{userId:parent.uid,notificationId:notice.id},'PERMISSION_DENIED');
+  await denied('markNotificationRead',manager,{userId:manager.uid,notificationId:notice.id},'NOT_FOUND');
+  await call('markNotificationRead',parent,{userId:parent.uid,notificationId:notice.id});
+  assert.equal((await notice.ref.get()).get('read'),true);
+  const conversation=await call('getTeamChatMessages',parent,f.target);
+  assert.equal(conversation.items.length,1);assert.equal(conversation.items[0].needsRead,true);
+  assert.equal((await entries.parent.collection('readReceipts').get()).size,0);
+  passed('inbox-alert-is-visible-and-owned-alert-read-does-not-acknowledge-team-message');
+  const url=`http://127.0.0.1:8080/v1/projects/demo-sgm-local-qa/databases/(default)/documents/teamPushOutbox/${queue.docs[0].id}`;
+  const direct=await fetchLocalQa(url,{headers:{authorization:`Bearer ${parent.token}`}});assert.equal(direct.status,403);
+  const privateAlert=await fetchLocalQa(url.replace('teamPushOutbox/'+queue.docs[0].id,'teamChatNotifications/'+notice.id),
+    {headers:{authorization:`Bearer ${parent.token}`}});assert.equal(privateAlert.status,403);
+  passed('push-envelope-is-not-readable-by-a-recipient-through-client-database-access');
+  await f.guardian(parent,'revoke',2);
+  assert(!(await call('getInbox',parent)).inbox.notifications.some(row=>row.id===notice.id));
+  await denied('markNotificationRead',parent,{userId:parent.uid,notificationId:notice.id},'NOT_FOUND');
+  await f.guardian(parent,'request',3);await f.guardian(parent,'verify',4);
+  assert(!(await call('getInbox',parent)).inbox.notifications.some(row=>row.id===notice.id));
+  await denied('markNotificationRead',parent,{userId:parent.uid,notificationId:notice.id},'NOT_FOUND');
+  passed('guardian-revocation-and-new-verification-hide-earlier-alerts-and-reject-old-read-requests');
+  await f.guardian(f.actors.unverified,'request',0);await f.guardian(f.actors.unverified,'verify',1);
+  assert(!(await call('getInbox',f.actors.unverified)).inbox.notifications.some(row=>row.id===notice.id));
+  const fresh=await call('sendTeamChatMessage',driver,send('Après le nouvel accord QA'));
+  const later=(await notices()).docs.filter(row=>row.get('messageId')===fresh.messageId);
+  assert.deepEqual(later.map(row=>row.get('userId')).sort(),[parent.uid,otherAdult.uid,f.actors.unverified.uid].sort());
+  passed('newly-verified-parent-receives-only-subsequent-alerts');
+  const counts=async()=>[(await entries.get()).size,(await notices()).size,(await outbox()).size];
+  const before=await counts(),child=db.collection('children').doc(f.childId);
+  await child.update({guardianUserIds:[...f.guardianIds,...Array.from({length:497},(_,i)=>'sgm-qa-alert-cap-'+i)]});
+  await denied('sendTeamChatMessage',driver,send('Audience trop grande QA'),'RESOURCE_EXHAUSTED');
+  assert.deepEqual(await counts(),before);await child.update({guardianUserIds:f.guardianIds});
+  passed('excessive-audience-rejects-before-any-message-alert-or-push-envelope-write');
+  const secondEnrollment=await f.prepareSecondChild();
+  const twoChildren=await call('sendTeamChatMessage',driver,send('Deux enfants, une seule alerte QA'));
+  const twoChildParent=(await notices()).docs.filter(row=>row.get('messageId')===twoChildren.messageId&&row.get('userId')===parent.uid);
+  assert.equal(twoChildParent.length,1);
+  passed('two-qualifying-children-do-not-duplicate-a-parent-alert');
+  await call('transitionTeamEnrollment',manager,{enrollmentId:f.childEnrollment.view.id,action:'revoke',
+    expectedRevision:f.childEnrollment.approved.revision,requestId:randomUUID()});
+  const retained=await call('getInbox',parent);
+  assert(retained.inbox.notifications.some(row=>row.id===twoChildParent[0].id));
+  assert(!retained.inbox.notifications.some(row=>row.id===later.find(n=>n.get('userId')===parent.uid).id));
+  await call('transitionTeamEnrollment',manager,{enrollmentId:secondEnrollment.view.id,action:'revoke',
+    expectedRevision:secondEnrollment.approved.revision,requestId:randomUUID()});
+  assert(!(await call('getInbox',parent)).inbox.notifications.some(row=>later.some(n=>n.id===row.id)));
+  assert(!(await call('getInbox',parent)).inbox.notifications.some(row=>row.id===twoChildParent[0].id));
+  passed('one-qualifying-child-preserves-access-and-removing-the-last-hides-alerts');
+  await db.collection('teams').doc(f.teamId).delete();
+  await db.collection('teams').doc(f.teamId).create({clubId:f.clubId,name:'Equipe recréée QA',status:'active'});
+  assert(!(await call('getInbox',otherAdult)).inbox.notifications.some(row=>row.id.startsWith('teamChat_')));
+  passed('manager-revocation-and-recreated-team-cannot-recover-earlier-alerts');
+  // Fixture lifecycle changes are owned by this trial; every original unrelated record remains protected.
+  assert(f.parentVerificationId);
+  const owned=new Set([`teams/${f.teamId}`,`guardianVerifications/${f.parentVerificationId}`,
+    `teamEnrollments/${f.childEnrollment.view.id}`]);
+  assert.equal((await db.doc(`guardianVerifications/${f.parentVerificationId}`).get()).get('revision'),5);
+  assert.equal((await db.doc(`teamEnrollments/${f.childEnrollment.view.id}`).get()).get('status'),'revoked');
+  assert.equal((await db.doc(`teams/${f.teamId}`).get()).get('name'),'Equipe recréée QA');
+  for(const [path,data]of baseline)if(!owned.has(path)) {
+    const after=(await db.doc(path).get()).data();assert.deepEqual(after,data,path);
+  }
+  assert.deepEqual((await auth.listUsers(1000)).users.map(user=>({uid:user.uid,claims:user.customClaims??{},disabled:user.disabled})),claims);
+  protectedBaselinePreserved=true;
+},{firestore:{terminate:async()=>{await db.terminate();firestoreClientTerminated=true;}},
+  closeApp:async app=>{await deleteApp(app);adminClientClosed=true;}});
+const paths=['functions/src/domain/teamConversationAlerts.ts','functions/src/services/teamConversationAlerts.ts',
+  'functions/src/domain/inbox.ts','firestore.rules','firestore.indexes.json','scripts/qa/run-local-team-conversation.mjs',
+  'functions/src/services/teamEnrollmentAuthority.ts',
+  'functions/src/services/teamNotificationAccess.ts','functions/src/services/teamConversationAuthority.ts',
+  'functions/src/services/teamConversation.ts','functions/src/callables/inbox.ts','functions/src/callables/notificationRead.ts',
+  'scripts/qa/team-alert-fixture.mjs','scripts/qa/local-team-alert-suite.mjs'];
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT,JSON.stringify({projectId:'demo-sgm-local-qa',runId:process.env.SGM_LOCAL_RUN_ID,
+  testedAt:new Date().toISOString(),scope:'local-team-alerts-and-pending-push-envelope-not-native-or-push-delivery',completed:true,steps,
+  isolation:{protectedBaselinePreserved},adminClientClosed,firestoreClientTerminated,
+  physicalDevice:false,nativeUiExecuted:false,pushDeliveryVerified:false,phoneTokenRegistered:false,productionWrites:false,
+  providerRequests:0,mapRequests:0,realPayments:false,
+  sourceFiles:Object.fromEntries(paths.map(file=>[file,createHash('sha256').update(readFileSync(resolve(import.meta.dirname,'../..',file))).digest('hex')]))
+},null,2)+'\n',{flag:'wx'});
+console.log(`Passed ${steps.length} local team-alert cases; phone push remains unimplemented and unverified.`);

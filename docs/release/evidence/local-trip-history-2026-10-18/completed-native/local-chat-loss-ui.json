@@ -1,0 +1,12 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fa5204526c51182f1de9203112d01814",
+  "sourceId": "7YIpONW6aIXtTFmn2AMT",
+  "scope": "native-sdk-controlled-post-commit-reply-loss",
+  "completed": true,
+  "firestoreAcknowledgementDeferred": true,
+  "initialReplyLost": true,
+  "rejectedRetryRetained": true,
+  "finalSendConfirmed": true,
+  "networkRestored": true
+}

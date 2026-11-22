@@ -1,0 +1,76 @@
+import { randomUUID } from "node:crypto";
+import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import { HttpsError } from "firebase-functions/v2/https";
+import { invitationHash, invitationRecordSchema, redemptionDigest, type InvitationRedemption } from "../domain/childInvitation.js";
+import { roleMapForRoleKeys } from "../domain/roles.js";
+import { firestore } from "../lib/firebase.js";
+import { invitationUnavailable, requireInvitationCurrentAuthority } from "./childInvitationAuthority.js";
+import { enableInvitedChildAccount, prepareInvitedChildAccount } from "./childInvitationAuth.js";
+
+export async function redeemChildInvitation(input: InvitationRedemption) {
+  const hash = invitationHash(input.token), requestDigest = redemptionDigest(input);
+  const ref = firestore.collection("childAccountInvitations").doc(hash);
+  const reserved = await firestore.runTransaction(async transaction => {
+    const parsed = invitationRecordSchema.safeParse((await transaction.get(ref)).data());
+    if (!parsed.success || parsed.data.status === "revoked") throw invitationUnavailable();
+    const invitation = parsed.data;
+    const identity = await requireInvitationCurrentAuthority(transaction, invitation, hash);
+    const now = Timestamp.now(), recent = invitation.attemptWindowAt && now.toMillis() - invitation.attemptWindowAt.toMillis() < 60_000;
+    if (recent && (invitation.attemptCount ?? 0) >= 5) return { denied: "rate" as const };
+    const attempts = { attemptWindowAt: recent ? invitation.attemptWindowAt : now,
+      attemptCount: recent ? (invitation.attemptCount ?? 0) + 1 : 1 };
+    transaction.update(ref, attempts);
+    if (invitation.status !== "pending") {
+      if (invitation.requestDigest !== requestDigest || invitation.email !== input.email ||
+        !invitation.accountUserId || !invitation.childName) return { denied: "details" as const };
+      return { ...invitation, ...attempts, accountUserId: invitation.accountUserId, childName: invitation.childName };
+    }
+    if (invitation.expiresAt.toMillis() <= Date.now()) return { denied: "expired" as const };
+    const value = { ...invitation, status: "provisioning" as const, accountUserId: randomUUID(),
+      requestDigest, email: input.email, childName: identity.childName, ...attempts };
+    transaction.update(ref, value);
+    return value;
+  });
+  if ("denied" in reserved) {
+    if (reserved.denied === "rate") throw new HttpsError("resource-exhausted", "Wait before retrying this invitation.");
+    throw invitationUnavailable();
+  }
+  const uid = reserved.accountUserId;
+  try { await prepareInvitedChildAccount(uid, hash, input.email, input.password, reserved.childName); }
+  catch (error) {
+    if (error instanceof HttpsError && ["already-exists", "invalid-argument"].includes(error.code)) {
+      await firestore.runTransaction(async transaction => {
+        const current = await transaction.get(ref);
+        if (current.get("status") === "provisioning" && current.get("accountUserId") === uid && current.get("requestDigest") === requestDigest)
+          transaction.update(ref, { status: "pending", accountUserId: FieldValue.delete(), requestDigest: FieldValue.delete(),
+            email: FieldValue.delete(), childName: FieldValue.delete() });
+      });
+    }
+    throw error;
+  }
+  await firestore.runTransaction(async transaction => {
+    const parsed = invitationRecordSchema.safeParse((await transaction.get(ref)).data());
+    if (!parsed.success || !["provisioning", "accepted"].includes(parsed.data.status) ||
+      parsed.data.accountUserId !== uid || parsed.data.requestDigest !== requestDigest)
+      throw invitationUnavailable();
+    const invitation = parsed.data;
+    await requireInvitationCurrentAuthority(transaction, invitation, hash);
+    const accountRef = firestore.collection("childAccountInvitationAccounts").doc(uid), userRef = firestore.collection("users").doc(uid);
+    const [account, user] = await transaction.getAll(accountRef, userRef);
+    if (invitation.status === "accepted") {
+      const roles = user.get("roles");
+      if (account.get("invitationHash") !== hash || user.get("childInvitationHash") !== hash || roles?.child !== true ||
+        ["parent", "driver", "clubManager", "admin"].some(role => roles?.[role] === true)) throw invitationUnavailable();
+      return;
+    }
+    if (account.exists || user.exists) throw invitationUnavailable();
+    const now = Timestamp.now();
+    transaction.create(accountRef, { invitationHash: hash, parentUserId: invitation.parentUserId,
+      childId: invitation.childId, clubId: invitation.clubId, childInstanceId: invitation.childInstanceId });
+    transaction.create(userRef, { displayName: reserved.childName, email: input.email, childInvitationHash: hash,
+      roles: roleMapForRoleKeys(["child"]), createdAt: now, updatedAt: now });
+    transaction.update(ref, { status: "accepted", acceptedAt: now });
+  });
+  await enableInvitedChildAccount(uid, hash, input.email);
+  return { created: true, parentApprovalRequired: true };
+}

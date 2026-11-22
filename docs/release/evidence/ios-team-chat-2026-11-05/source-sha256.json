@@ -1,0 +1,209 @@
+{
+  "checkedAt": "2026-11-05",
+  "files": [
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "2d25d39ff1c719f1bf90e8543b620440affdfabb136260d2a89fd5204d935d7e"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "4374e49fd7a1383d5e0d3478d1f89122715d19d8593029da7bf831ad8502bc06"
+    },
+    {
+      "path": "firestore.indexes.json",
+      "sha256": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee"
+    },
+    {
+      "path": "firestore.rules",
+      "sha256": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240"
+    },
+    {
+      "path": "functions/src/callables/teamConversation.ts",
+      "sha256": "5a86d842cb26e5cdae75b30e240501daf772d76643360f4d0ef19b9b285e8a01"
+    },
+    {
+      "path": "functions/src/domain/teamConversation.ts",
+      "sha256": "b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a"
+    },
+    {
+      "path": "functions/src/domain/teamConversationRead.ts",
+      "sha256": "1461121905e2d6788ed2811d8e92f9ac8c4a492eb9273f17b3530c048773fda4"
+    },
+    {
+      "path": "functions/src/services/teamConversation.ts",
+      "sha256": "e9ee8522c7aaaa98f0b350f79fcfa129709d01ad0614ee9d830223a641793d23"
+    },
+    {
+      "path": "functions/src/services/teamConversationAuthority.ts",
+      "sha256": "b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5"
+    },
+    {
+      "path": "functions/src/services/teamConversationOptions.ts",
+      "sha256": "530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad"
+    },
+    {
+      "path": "functions/src/services/teamConversationRead.ts",
+      "sha256": "11656304858210fdf621db3ed8a25b5aa213314e9f17460e55df648378ef20d3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseTeamChatGateway.swift",
+      "sha256": "042f5b4ef9c2a4516fab712fcd728742ddc5e8b8081703d026bb1fbf84577bad"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "bdd1cccc9f34a8fa9033e9fbe96bb15e2e4d3e413f4f513e8688aee73ea159fd"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/MessagesScreen.swift",
+      "sha256": "c47d89c9a5a3d3f5ff0aab182bd97c23d2e51424f0f9c48cf3670bb18c932563"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatComposer.swift",
+      "sha256": "141b842b74e88cee76d3d20e793e4a54c8d0ca180ef9633330f77e0411bcd0c3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryState.swift",
+      "sha256": "f06239c483400d558a02f23e067079844c6201abf709629b6f628361af373e7e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDirectoryView.swift",
+      "sha256": "c8b760485fd0adade01c558839a54e271364a66c6e5b87b4d8a6aeae011aba71"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatDraftStore.swift",
+      "sha256": "3cb91688c1ec553a4d3d674cd87fb01a3803a9c09aeb2a65ce1975990e766740"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatMessageViews.swift",
+      "sha256": "0f35c5069020ad77a8f43e9c9de88d091c4e26e08949bbc5528c869452820aef"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "sha256": "f02528090ca01dd026a4dce4948ae41f9aa098378352d98253ae43572ba39016"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatPolicy.swift",
+      "sha256": "b03b0bc45a3c10ad4861654cb9e20518666237bc2cd63a2e4740552c8623f602"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatRequest.swift",
+      "sha256": "d817caf8a4062d9a9d81ec0af6563218cfd58dd398e4a087457fabc7443a0fa8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatState.swift",
+      "sha256": "904ac629950d85ebbfd95098cae038b561787dd9bfde73d0093d6ac33ddaab81"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatThreadView.swift",
+      "sha256": "1be835d718db755eb63340b40e9db92ab18412d088ba8a671a78d8bdd95b1694"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatTimeline.swift",
+      "sha256": "441d3d3dd303bb504926e37b2e93885b22f05ff4287b56c38ee01bc85baa87d2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatWire.swift",
+      "sha256": "633c75c22b076f4c15463b0e97f1b15951677f28638036587b7536e683134c69"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestTeamChat.swift",
+      "sha256": "14c9a7379428a2e514ee0beb34b0265556633d5568e98b615f6524138d244373"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredTeamChatGateway.swift",
+      "sha256": "660212ae3f12f8d9fa0c6fe3730b2951425570dd3ad27838311c3656bed56123"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatBoundaryChecks.swift",
+      "sha256": "34a0502a476321eb3f05e4bd16a73cb6efedf21a6ac585c0c1d2e15d89d0cde2"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatProbe.swift",
+      "sha256": "5e8549669eec70d816451673b50bc8c125754d93ef6c6de199b00d296fc4a6f9"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStateChecks.swift",
+      "sha256": "1fff1ac2839fe929217740ddbb92e240867290c3e720dd0ccb4c978b2f5ce333"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatStorageChecks.swift",
+      "sha256": "3841af3224d8b718dc445cc008f7dc663f10435d45ff9c280c47d3ac54237fdc"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatTimelineChecks.swift",
+      "sha256": "789b636480075b2b1ca83485318403df78c7a5c4d95edc220a9bee4db46f4196"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatWireChecks.swift",
+      "sha256": "8a078b4fc929777ade8772a9c0969ec6efb5381c49b85340b34c0044629ee72e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "ba0e5d8088c954620018e8b0f508c940ea64e423c70cfbe131ff0896664be863"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "sha256": "7a5e0307708b04aba111d2f0b8929045733397c764aa9386b671d20ad52bc3f3"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift",
+      "sha256": "231a4d3c4f9f8cfe7a357e0da065e303790a10a6e67c1585ce0d057b71344544"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "de984b685819e7e4f84009f5833f58ef0e5df72028058f110cc09cd17540f755"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "ed023cfe39a13a6a0a07574f52f4c292a1428a22d838fa0a608c8db45e4c1b85"
+    },
+    {
+      "path": "scripts/qa/local-team-chat-options-suite.mjs",
+      "sha256": "e3990d1a77495910f7a2e3b62731b54f0c9be74e6b8c5e3e4748d3629bcac7b2"
+    },
+    {
+      "path": "scripts/qa/local-team-conversation-suite.mjs",
+      "sha256": "d5251019e978d47904f320daef05ad105744afe46470caf9dd5f894212cbab49"
+    },
+    {
+      "path": "scripts/qa/local-team-read-suite.mjs",
+      "sha256": "b5d60f8036ce58d9326d9e0f7297c9818d51f2240fde5f1da522d50d9b51e942"
+    },
+    {
+      "path": "scripts/qa/local-ui-fixtures.mjs",
+      "sha256": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6"
+    },
+    {
+      "path": "scripts/qa/run-local-team-conversation.mjs",
+      "sha256": "3c7f633207b04e7fbd5e288a1b2f0f8e6b85073e8efd792dda68eb7ba4ac1466"
+    },
+    {
+      "path": "scripts/qa/team-chat-access-ui-fixture.mjs",
+      "sha256": "aa475db82d562298a68969b960ab3736f13e049760ab77a6826e5e1adfa70d6b"
+    },
+    {
+      "path": "scripts/qa/team-conversation-ui-fixture.mjs",
+      "sha256": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/FirebaseFunctions.swift",
+      "sha256": "3ad75c8acfed8b696146a82a8c1efc67d666e0b545af8647c04a6b7018e4ab6b"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/GatewayContext.swift",
+      "sha256": "34ba2d6d2e5f8333902294135894443c3c491530dc6ac79434c92ae7e226ccd3"
+    },
+    {
+      "path": "tests/ios-contact-request.test.mjs",
+      "sha256": "7aaf4435dafefc7579dea00397146f04fcaea599df934edbd0e6108b4086e2e3"
+    },
+    {
+      "path": "tests/ios-team-chat.test.mjs",
+      "sha256": "a283f0243f3e344b75387c98d776d62013fbe16c41c44149494a7aaa0778c854"
+    },
+    {
+      "path": "tests/web-smoke-sharding.test.mjs",
+      "sha256": "e85244df06dc4240ba58468f8923fa7aa1eca33332eb0066836d4b0277f9585b"
+    }
+  ]
+}

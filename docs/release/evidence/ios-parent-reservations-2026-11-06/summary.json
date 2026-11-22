@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-06",
+  "recordedAt": "2026-11-06T23:55:22.542Z",
+  "baselineCommit": "05cd3f7d6869c7bfc5286ca76fcfa740d839add9",
+  "nativePlanExitCode": 0,
+  "signaturesExitCode": 0,
+  "malformedResponsesRejected": 21,
+  "delayedStateBoundaries": 12,
+  "pagingRejections": 4,
+  "deniedNonParentRoles": 3,
+  "actualAdapterCallbacks": 12,
+  "adapterPreCallDenials": 5,
+  "unknownWriteAutomaticRetries": 0,
+  "originalFixtureCases": 11,
+  "extraFixtureCases": 0,
+  "existingCaseExtensions": 1,
+  "deadlineMinutes": 50,
+  "previousEvidencePreserved": true,
+  "onlyIosPendingDescriptionsChanged": true,
+  "sdkLinkedBuildAccepted": false,
+  "nativeScreenExecuted": false,
+  "liveBackendMutationAccepted": false,
+  "refundSettled": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "native-checks.txt",
+      "sha256": "e248aff834f72a650c06383f981ddbad2fa5f5ea21383c6b74e0c1148eb79bc7"
+    },
+    {
+      "file": "signature-checks.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "manifest-before.json",
+      "sha256": "162d34a5abf12c7a5c52b88d4cc985594d10d660f155d15a169c8e473bff60b6"
+    },
+    {
+      "file": "manifest-after.json",
+      "sha256": "fd9fef1ede400a88d70f84caeacfcc376f959281ea77bbc9b44c2449aacf1d98"
+    },
+    {
+      "file": "index-after.json",
+      "sha256": "6b3b624b87a931f069988d401d984ee6881f5f5564f10e5b70b343267d5fc29a"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "ccecb7e484cce23ccce1e05bb8f6ad80f06c2cbaab7d6d7a97ad18e4137b9586"
+    }
+  ]
+}

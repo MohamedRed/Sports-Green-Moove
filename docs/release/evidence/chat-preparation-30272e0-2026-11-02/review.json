@@ -1,0 +1,20 @@
+{
+  "scope": "focused-chat-network-preparation-failure-not-message-resend-or-cause-proof",
+  "sourceCommit": "30272e0ca56d3c50ffdf0258f8a13eabf1b49d9f",
+  "workflowId": 41445572945,
+  "jobId": 125277691092,
+  "artifactId": 13142393131,
+  "testedAt": "2026-11-02",
+  "networkPreparationFailed": true,
+  "draftReached": true,
+  "mobileDefaultAvailable": false,
+  "messageResendExecuted": false,
+  "sourceSpecificFullGatePassed": false,
+  "rootCauseConfirmed": false,
+  "previousSuccessInvalidated": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": false,
+  "changedTestConditions": false,
+  "releaseAccepted": false,
+  "publishedMedia": []
+}

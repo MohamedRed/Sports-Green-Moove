@@ -1,0 +1,12 @@
+{
+  "beforeCommit": "86746f4c1a9c58a583073e0f64292ec1146cda90",
+  "afterCommit": "89fda8c3f0555a3c77366a77af6e419ab92c5e42",
+  "files": {
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestoration.kt": "5b00f22d4ff59abc0f345371b579c68b8b7fd3273d5225a97553689cd7042733",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SessionRestorationState.kt": "1cca4a60a933a3a24baf2c13a9239722298d26b157c15c1b89ee5b557a231c96",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "bd40f5caca84fe695b636d81a573f0322281e5bef2f564500fc588deb414688b",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalSessionRestorationTest.kt": "3da6470304aa8272ce908747d329fc026dea19f8865349cf836cca6faa6b019d",
+    "scripts/qa/session-restoration-fault-proxy.mjs": "7812ce45eb285106659b1d4ee280a6b4ada0c57c78f1a469497b4ecf50476ed9"
+  },
+  "wholeApkIdentityClaimed": false
+}

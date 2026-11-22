@@ -1,0 +1,555 @@
+[
+  {
+    "file": "TEST-be.sportgreenmoove.app.data.BookingIntentSnapshotTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.design.SgmTextContrastTest.xml",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.AuthFormPolicyTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.ClubMembershipStateTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.ConversationDirectoryTimelineTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.ConversationTimelineTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.MapRoutePolylineTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.NativePlanPoliciesTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.PublishDraftFactoryTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.RideAccessPolicyTest.xml",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.RideObservationAgeTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.RidePaymentVerificationTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.TripCalendarTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.domain.UserFacingErrorPolicyTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ActiveRideLifecycleTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ActiveRideLocationLeaseTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ActiveRideResumeTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.BookingIntentMappingTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.BookingRequestCoordinatorTest.xml",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.BookingRequestPayloadTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ChildRideEmergencyWireTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ConversationDirectoryMappersTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.EmergencyContactWireTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.GuardianVerificationWireTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.MembershipPageTokenTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.NativeLocationAcknowledgementTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.ReservationPayloadsTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.RideObservationWireTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.RidePaymentCoordinatorTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.SupportCallTraceTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.SupportSubmissionStoreTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.SupportWireTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TeamConversationWireTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TeamEnrollmentHistoryWireTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TeamEnrollmentWireTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TripCancellationMappingTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TripChangeHistoryMappingTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TripChangeMappingTest.xml",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.TripDateMappersTest.xml",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.services.VehicleMapPointWireTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.testing.WindowFocusSnapshotTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ActiveRideObservationStateTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ActiveRideResumeActionTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.AppDataStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.AppSessionShutdownTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ConversationComposerStateTest.xml",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ConversationDirectoryStateTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.EmergencyContactSchedulerTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.EmergencyContactSelectionTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.EmergencyContactStateTest.xml",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.GroupsStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.GuardianPageStateTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.GuardianVerificationStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.NotificationSettingsStateTest.xml",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.PassengerStatusObservationOwnershipTest.xml",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.ReservationStateTest.xml",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.RouteMapViewportTest.xml",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchBookingBindingTest.xml",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchBookingFeedbackTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchBookingRecoveryTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchControllerLifecycleTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchControllerRequestsTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchControllerSafetyTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SearchCriteriaStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SessionRestorationStateTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SessionRoleSelectionTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SupportInboxStateTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.SupportSubmissionStateTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TeamConversationDraftStateTest.xml",
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TeamConversationReadStateTest.xml",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TeamConversationStateTest.xml",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TeamEnrollmentHistoryStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TeamEnrollmentStateTest.xml",
+    "tests": 12,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TripCancellationStateTest.xml",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TripChangeDraftTest.xml",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TripChangeHistoryStateTest.xml",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TripChangePersistenceTest.xml",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "file": "TEST-be.sportgreenmoove.app.ui.TripChangeStateTest.xml",
+    "tests": 19,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+]

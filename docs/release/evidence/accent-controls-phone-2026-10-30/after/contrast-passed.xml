@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.design.SgmAccentContrastTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-10-30T21:21:01.663Z" hostname="MRRs-MacBook-Air.local" time="0.015">
+  <properties/>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-app]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.01"/>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-surface]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"/>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-card]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-elevated]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-input]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-app]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"/>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-surface]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-card]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-elevated]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-input]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-light-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-light-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-icon]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-icon]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[hero-start-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[hero-end-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[material-light-primary]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <testcase name="roleMeetsItsContrastThreshold[material-dark-primary]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"/>
+  <system-out><![CDATA[{"case":"light-accent-text-app","minimum":4.5,"contrastRatio":5.7828117424056735}
+{"case":"light-accent-text-surface","minimum":4.5,"contrastRatio":6.240018634960785}
+{"case":"light-accent-text-card","minimum":4.5,"contrastRatio":5.525185747428838}
+{"case":"light-accent-text-elevated","minimum":4.5,"contrastRatio":6.240018634960785}
+{"case":"light-accent-text-input","minimum":4.5,"contrastRatio":5.732354454750286}
+{"case":"dark-accent-text-app","minimum":4.5,"contrastRatio":8.010924049755399}
+{"case":"dark-accent-text-surface","minimum":4.5,"contrastRatio":7.466133790631757}
+{"case":"dark-accent-text-card","minimum":4.5,"contrastRatio":6.921158534783436}
+{"case":"dark-accent-text-elevated","minimum":4.5,"contrastRatio":5.931318946027096}
+{"case":"dark-accent-text-input","minimum":4.5,"contrastRatio":6.250848451416514}
+{"case":"on-green-text","minimum":4.5,"contrastRatio":7.38106479588164}
+{"case":"on-orange-text","minimum":4.5,"contrastRatio":6.35575453417362}
+{"case":"on-green-light-text","minimum":4.5,"contrastRatio":11.436217869271827}
+{"case":"on-orange-light-text","minimum":4.5,"contrastRatio":7.871620767741993}
+{"case":"on-green-icon","minimum":3.0,"contrastRatio":7.38106479588164}
+{"case":"on-orange-icon","minimum":3.0,"contrastRatio":6.35575453417362}
+{"case":"hero-start-text","minimum":4.5,"contrastRatio":15.42429524297931}
+{"case":"hero-end-text","minimum":4.5,"contrastRatio":12.159201919186646}
+{"case":"material-light-primary","minimum":4.5,"contrastRatio":6.240018634960785}
+{"case":"material-dark-primary","minimum":4.5,"contrastRatio":7.38106479588164}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

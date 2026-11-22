@@ -1,0 +1,93 @@
+Browser tab: 1621933501, Title: "Google Pixel 9 15.0", URL: "https://app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1".
+0 AXWebArea Google Pixel 9 15.0, URL: app-live.browserstack.com/dashboard#os=android&os_version=15.0&device=Google+Pixel+9&zoom_to_fit=true&full_screen=true&speed=1
+	1 container bd-dashboard
+		44 container
+			45 container content
+				159 container in-session-device-react
+					160 container
+					161 container
+						162 image
+						163 button Add Device
+							164 text Add Device
+							165 text PRO
+				156 text ;
+				387 container
+					388 button Expand
+					389 button Dock to bottom
+					390 text Dev Tools
+					391 tab group
+						392 tab (selectable, settable, boolean) Description: Logs, Value: 0
+						394 tab (selected, settable, boolean) Description: ADB Shell, Value: 1
+						395 tab (selectable, settable, boolean) Description: Inspect, Value: 0
+						396 tab (selectable, settable, boolean) Description: Network, Value: 0
+						397 tab (selectable, settable, boolean) Description: Performance, Value: 0
+PRO
+				302 content list
+					303 button Description: Switch Device, ID: switchBrowser
+					304 container
+						305 button Description: Local testing, ID: appLiveToolbarLocalTesting
+							306 image
+							307 image open content menu
+							308 text Local testing
+					309 menu zoomFeature
+						310 Description: zoom out, ID: zoom-out
+						311 Description: zoom in, ID: zoom-in
+						312 text Zoom
+					313 button Description: Record Session, ID: appLiveVideoRecording
+					314 button Description: DevTools, ID: showDebuggingOptions
+					315 button (disabled) Description: Report a bug, ID: appLiveBugReporting
+					316 button open content menu Settings, ID: appLiveSessionSettings
+						317 image open content menu
+						318 text Settings
+					319 button Description: Stop Session, ID: appLiveStopSession
+						320 image
+						321 text Stop Session
+				244 container vertical-toolbar-react
+					245 container vertical-toolbar-draggable
+						246 container
+							322 button toolbar drag icon
+							248 button (expanded) Description: collapse toolbar, Secondary Actions: Collapse
+						249 toolbar
+							250 content list
+								323 button Description: Add Device, ID: app-live-add-device
+									324 container app-live-add-device-lead-text-wrapper
+										325 text Add Device PRO
+								326 button Description: Show Home Screen, ID: dockHomeScreen
+									327 text Show Home Screen
+								328 container volume-buttons-lead-text-wrapper
+									329 text Volume
+									330 container volumeButtons
+										331 button - Volume Decrease
+										332 button (disabled) + Volume Increase
+								333 button Description: View Open Apps, ID: view-open-apps
+									334 text View Open Apps
+								335 button Description: Install New App, ID: switch-app
+									336 text Install New App
+								337 checkbox Description: Profile Performance, Value: 0
+									338 text Profile Performance
+									339 text PRO
+								340 button Description: Capture Screenshot, ID: get-screenshot
+									341 text Capture Screenshot
+								342 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand
+									343 text Kill/Uninstall
+								344 button (collapsed) Description: Android Settings, ID: android-settings, Secondary Actions: Expand
+									345 container android-settings-lead-text-wrapper
+										346 text Android Settings PRO New
+								347 button Rotate Device, ID: dockOrientationRealAndroid
+									348 text Rotate Device
+								349 button (collapsed) Change Location, ID: location, Secondary Actions: Expand
+									350 text Change Location
+								351 button (collapsed) Description: Throttle Network, ID: network-simulation, Secondary Actions: Expand
+									352 text Throttle Network
+								353 button (collapsed) Files & Media, ID: media-upload, Secondary Actions: Expand
+									354 text Files & Media
+								355 button (collapsed) Description: Change Language, ID: change-locale, Secondary Actions: Expand
+									356 text Change Language
+								357 button (collapsed) Screen Reader, ID: accessibility-toggle, Secondary Actions: Expand
+									358 text Screen Reader
+								359 button (collapsed) Description: Device info: Google Pixel 9, v15.0, ID: device-info, Secondary Actions: Expand
+									360 text Google Pixel 9
+									361 text v15.0
+		398 text Succesfully uninstalled your app(s)!
+
+The focused UI element is 342 button (collapsed) Description: Kill/Uninstall, ID: app-options, Secondary Actions: Expand

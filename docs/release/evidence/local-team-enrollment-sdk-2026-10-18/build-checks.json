@@ -1,0 +1,24 @@
+{
+  "scope": "local-emulator-profile-unit-and-native-test-apk-build-not-ui-execution",
+  "unitCaseCount": 16,
+  "nativeTestApkCompiled": true,
+  "nativeUiExecuted": false,
+  "managerNativeUiImplemented": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "artifacts": {
+    "fixtures.json": "e2b45fdc88777f4b270efeeab663112bf11147dfc55735d327a5153c58c7436a",
+    "local-build.log": "482996fe287ea970811ca680e05f0f06c39439be058ae4b9d6dfedcf7699db85",
+    "team-state-unit-tests.xml": "d198f90519d6815482f570f844cc143ee38dc596e0b496fe74555cca4f7e8958",
+    "team-wire-unit-tests.xml": "d158ddde2bbdbdeee325dc4c4f44ff1a5f915ad8f663a2e7660ee9afd5e222e9"
+  },
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt": "84c26428e564093664849ed4a80985f3e8788a87c8d3b82aeeb94e375995b025",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt": "ee2d3c4c2c449cba0307553907d6d5e151b80e44e364e60b81f70a9a7fe110fb",
+    "scripts/qa/local-team-enrollment-ui.mjs": "a9ab5988f5977c30bac29ae5ddc5529ccc67db7151cfdd1f927616541b554112",
+    "scripts/qa/local-team-native-fixture.mjs": "e3f417debd53d591a2d03029c9d6e69ff1e2efe124e77d393945002567093df1",
+    "scripts/qa/team-native-evidence.mjs": "c2948444fe14d15fd6d6460a0ffad732a34650ab1943667db58fedbb549b700c",
+    "scripts/qa/local-android-session.mjs": "d67de115a55109dc26dfcd846d0adbcdb341a13f9a2880624fc363b71f359b52",
+    "scripts/qa/collect-local-ui-evidence.mjs": "29190aa4f85f35449c3cee1f6805ef81c16c7e793642797e43c65d9d0eaa8ad2"
+  }
+}

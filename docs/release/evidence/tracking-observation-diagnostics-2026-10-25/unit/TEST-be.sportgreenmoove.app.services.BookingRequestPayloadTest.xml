@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.BookingRequestPayloadTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-25T18:26:34.428Z" hostname="MRRs-MacBook-Air.local" time="0.002">
+  <properties/>
+  <testcase name="aChildlessRequestDoesNotInventAChild" classname="be.sportgreenmoove.app.services.BookingRequestPayloadTest" time="0.0"/>
+  <testcase name="invalidCapacityOrIdentifiersFailBeforeDispatch" classname="be.sportgreenmoove.app.services.BookingRequestPayloadTest" time="0.001"/>
+  <testcase name="aLaterTripObjectCannotReplaceThePreviouslyDisplayedSnapshot" classname="be.sportgreenmoove.app.services.BookingRequestPayloadTest" time="0.0"/>
+  <testcase name="theSelectedSeatCountAndChildAreSentUnchanged" classname="be.sportgreenmoove.app.services.BookingRequestPayloadTest" time="0.0"/>
+  <testcase name="missingOrInvalidDisplayedTermsCannotBeDispatched" classname="be.sportgreenmoove.app.services.BookingRequestPayloadTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

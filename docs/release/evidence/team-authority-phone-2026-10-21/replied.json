@@ -1,0 +1,81 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a14a89072818f1eaa17900a95a6f96ec",
+  "recordedAt": "2026-10-21T22:27:02.899Z",
+  "result": {
+    "phase": "replied",
+    "parentDenied": false,
+    "guardianRevision": 5,
+    "visibleParentMessages": 2,
+    "storedMessages": 4,
+    "historicalMessagesRestored": false
+  },
+  "state": {
+    "guardian": {
+      "status": "verified",
+      "revision": 5
+    },
+    "parentDenied": false,
+    "parentMessageIds": [
+      "fcc30f587808524a054e696e18c0473e56f8b0d33b739697477654a0f780c4b7",
+      "a2f4eb3ecb6f81e2450002799729f671ee488804fe0b7e27534efe5ba64aa905"
+    ],
+    "otherParentMessageIds": [
+      "fcc30f587808524a054e696e18c0473e56f8b0d33b739697477654a0f780c4b7",
+      "a2f4eb3ecb6f81e2450002799729f671ee488804fe0b7e27534efe5ba64aa905",
+      "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3"
+    ],
+    "entries": [
+      {
+        "id": "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Message avant arrivée QA",
+        "sequence": 1,
+        "clientMessageId": "c3cb2127-1146-41e5-af6b-aa63b969747d"
+      },
+      {
+        "id": "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Bonjour équipe QA",
+        "sequence": 2,
+        "clientMessageId": "e4e98a3a-4c51-4c82-8b38-639b96ad89ce"
+      },
+      {
+        "id": "a2f4eb3ecb6f81e2450002799729f671ee488804fe0b7e27534efe5ba64aa905",
+        "senderUserId": "sgm-qa-driver",
+        "body": "Après nouvel accord QA",
+        "sequence": 3,
+        "clientMessageId": "2af3a045-f10a-41e3-bee7-13f8fa546d15"
+      },
+      {
+        "id": "fcc30f587808524a054e696e18c0473e56f8b0d33b739697477654a0f780c4b7",
+        "senderUserId": "sgm-qa-parent",
+        "body": "Réponse après nouvel accord QA",
+        "sequence": 4,
+        "clientMessageId": "17cf72f8-745a-4731-879c-9984536dc93a"
+      }
+    ],
+    "parentMessageId": "fcc30f587808524a054e696e18c0473e56f8b0d33b739697477654a0f780c4b7",
+    "operationIds": [
+      "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+      "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3",
+      "a2f4eb3ecb6f81e2450002799729f671ee488804fe0b7e27534efe5ba64aa905",
+      "fcc30f587808524a054e696e18c0473e56f8b0d33b739697477654a0f780c4b7"
+    ],
+    "lastSequence": 4
+  },
+  "identity": {
+    "earlyMessageId": "13fea51ba154f27d96ef769fb4ca41af05c26a1bdab667f1675fd57f0f62107e",
+    "initialMessageId": "1a84c613d1d5b8ea8e4e7e7091cc203c1f5b1aa37c46d538f4cce69fc552f9e3",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver",
+    "newMessageId": "a2f4eb3ecb6f81e2450002799729f671ee488804fe0b7e27534efe5ba64aa905"
+  },
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "phoneUiProven": false
+}

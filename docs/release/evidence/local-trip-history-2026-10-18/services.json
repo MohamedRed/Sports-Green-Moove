@@ -1,0 +1,32 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "0bc861052ea7b29c075f707c2f5cc0de",
+  "testedAt": "2026-10-18T00:26:14.277Z",
+  "scope": "isolated-trip-history-services-not-native-or-production",
+  "result": {
+    "proposalCount": 13,
+    "pageSize": 10,
+    "actorCounts": [
+      13,
+      13,
+      13,
+      7
+    ],
+    "microsecondAndIdOrdering": true,
+    "scopedReviewBookingIds": true,
+    "laterParentCannotSeeEarlierProposals": true,
+    "guardianRevocationDenied": true,
+    "signedOutDenied": true,
+    "crossAccountCursorDenied": true,
+    "crossTripCursorDenied": true,
+    "recordsUnchanged": true,
+    "forgedParentListDenied": true,
+    "cancelledBookingHistoryPreserved": true,
+    "cancelledBeforeHash": "59e8a7fa6ee73ba1dae113706123c58ddffad07a35badabe6bcae2414739cbec",
+    "cancelledAfterHash": "59e8a7fa6ee73ba1dae113706123c58ddffad07a35badabe6bcae2414739cbec",
+    "beforeHash": "83f9a7b5c3558ce7fc78c7df0950586ab3c35278e677927c94885b452147e018",
+    "afterHash": "83f9a7b5c3558ce7fc78c7df0950586ab3c35278e677927c94885b452147e018",
+    "nativeUiExercised": false,
+    "productionDeployed": false
+  }
+}

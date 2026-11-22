@@ -9,6 +9,10 @@
     <string name="active_ride_permission_cancel">Annuler</string>
     <string name="active_ride_permission_cancelled">Suivi de course annulé avant l\'autorisation de localisation.</string>
     <string name="active_ride_permission_blocked">Le suivi de course nécessite la position précise, l\'arrière-plan et les notifications pendant la course active.</string>
+    <string name="guardian_consent_title">Consentement tuteur</string>
     <string name="child_tracking_guardian_consent">Le suivi enfant est activé uniquement avec consentement du responsable légal et pendant une course active.</string>
-    <string name="privacy_policy_summary">Les données Firebase, Radar, Google Maps Platform et Stripe Connect sont utilisées pour Auth, trajets, localisation active, itinéraires, paiements et support.</string>
+    <string name="child_safety_disclosure_title">Sécurité enfant</string>
+    <string name="child_tracking_safety_disclosure">Parents, conducteurs, enfants autorisés et admins voient uniquement les statuts nécessaires pendant une course active. Le suivi s\'arrête hors session.</string>
+    <string name="privacy_policy_summary_title">Données et partenaires</string>
+    <string name="privacy_policy_summary">Les données Firebase, Meta, Radar, Google Maps Platform et Stripe Connect sont utilisées pour Auth, trajets, localisation active, itinéraires, paiements et support.</string>
 </resources>

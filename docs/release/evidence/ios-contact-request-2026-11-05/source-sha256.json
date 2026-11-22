@@ -1,0 +1,86 @@
+{
+  "baselineCommit": "8cc5511d6e88e2a453c3663e426874ffbdce8764",
+  "scope": "typed-contact-request-candidate-not-sdk-ui-acceptance",
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactRequest.swift",
+      "sha256": "524710a6ea3edc575f00bb1ddba424142385beb1036493bb2c94261ca4f8bc2c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift",
+      "sha256": "97192a684f27eba844185306cfa16d032d4e153521618f6e3e5272030807abf6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseFeedbackGateway.swift",
+      "sha256": "c51e5789e8a0ed163dc8d0376e41f8b3ef05fa6583d80abe7d264bb3ae675b4a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift",
+      "sha256": "f99f9b233439f5044ec22c36a0482e0e2ef014d2ed7db2600d13127dda2c5afb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift",
+      "sha256": "3c6a9044f06cfd156b14836fc93f62ef8ec8ce6bd4dba9c85db51558641ab54f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactModels.swift",
+      "sha256": "6f43379d00e03e016773b166ad3eecb63752bd9dde2c38ca7fa91c3f793a9c2d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactRequestChecks.swift",
+      "sha256": "83cf62dab04d475e45c2b776746e2bcf2be4c9e730db6893bd31b1fe6fc65a3e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "73b3bec49c80a6d9c34f585f8d87d069634492edd8a8e2efee67700083ca38d6"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "051a45261ee54df28141f4428cee4167eef6b928f64cc00e6cbdbf0f65138e68"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "0cb6925a0f2b7b9c2930d7de6f51cacc8d65dd5bb220b2db4c0fc83c6e9c1d95"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/FirebaseFunctions.swift",
+      "sha256": "2c6b4c141a2703553bd1b36fb188de04e59fe6416a1bbdfe62fd8c8dd2471da9"
+    },
+    {
+      "path": "scripts/qa/retain-ios-contact-request.mjs",
+      "sha256": "7fea1872468bb106d262cfe846dc7151af533fd09c4d0b9544291eff6b16115d"
+    },
+    {
+      "path": "tests/ios-contact-request.test.mjs",
+      "sha256": "e9e16bdc2d8bea07a19c9f93d089488a6502dafaf24565d2412c2346a1fd89f2"
+    },
+    {
+      "path": "tests/ios-emergency-contact.test.mjs",
+      "sha256": "3e16a341a1d99a5df9d85016ed8497cf0379be61fc6809c5b9b9222189c2dfd9"
+    },
+    {
+      "path": "tests/ios-parent-contact.test.mjs",
+      "sha256": "b0ef25bc432badcbe93d96087bb6cfab57dec589a18b5e760a7dca7b0f885ff2"
+    },
+    {
+      "path": "tests/web-smoke-sharding.test.mjs",
+      "sha256": "56f33cac4ad7cbc3ac646be0243d30d0f2508c4994a581f61a2e2e6ab3a0f135"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "fb2215d5e55dd23f2164b491e06a0428431521133344972c5ac4f16543abfca9"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "3ab47f438c93df54f2392d69e703245427ce60d26c9602313b0ff9e367bcd2e4"
+    },
+    {
+      "path": "docs/release/ios-mvp-verification.md",
+      "sha256": "66d2ec1ed884fe725bd2609e8c8927f2c82ecbf67df2e6c57572583a044df055"
+    },
+    {
+      "path": "partner-portal/progress-current.mjs",
+      "sha256": "9678d2577d8b32f119f4a1957706f0e4b28a074f5cceb21b1d57fd2ba819b42a"
+    }
+  ]
+}

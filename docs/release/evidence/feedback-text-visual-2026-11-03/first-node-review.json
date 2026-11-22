@@ -1,0 +1,15 @@
+{
+  "scope": "initial-local-guard-failures-not-accepted-validation",
+  "tests": 4005,
+  "passed": 4003,
+  "failed": 2,
+  "privateTapSha256": "aae7bde6d7bdf07bd9ce1f014339c239cb8f496ee6dfa88c8b84d019955e3194",
+  "failureNames": [
+    "not ok 1080 - a failed system-dialer prerequisite adds no accepted app capture, handoff or release evidence",
+    "not ok 2242 - the later source passes the main matrix but preserves the separate network failure and cancelled web gate"
+  ],
+  "legacyArchiveRestoredWithoutChangingIts85EntryAssertions": true,
+  "priorAllFlowFingerprintPreserved": "b5772455f74ec402c5b25acfa5736917c7e8db4a3332725a416868d18cacadd8",
+  "appearanceOnlyDeltaValidatedAgainstRetainedPublication": true,
+  "acceptedAsPassing": false
+}

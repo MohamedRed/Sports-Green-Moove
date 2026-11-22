@@ -1,0 +1,83 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4824baf09e2d7b29f4919e4ad6768a95",
+  "testedAt": "2026-10-29T23:15:06.352Z",
+  "scope": "authenticated-isolated-review-trip-context-not-phone-or-production",
+  "completed": true,
+  "steps": [
+    {
+      "id": "inbox-context-comes-from-the-selected-completed-trip-with-explicit-local-time",
+      "status": "passed"
+    },
+    {
+      "id": "both-accounts-reach-all-contexts-through-the-same-pagination-contract",
+      "status": "passed"
+    },
+    {
+      "id": "missing-or-unrelated-details-remain-explicitly-unavailable-without-dropping-the-review",
+      "status": "passed"
+    },
+    {
+      "id": "discovery-does-not-write-any-prepared-or-original-record-or-claim",
+      "status": "passed"
+    },
+    {
+      "id": "another-account-cannot-request-parent-context-or-reuse-its-cursor",
+      "status": "passed"
+    },
+    {
+      "id": "rating-a-later-context-removes-only-that-ride-and-leaves-the-other-account-untouched",
+      "status": "passed"
+    },
+    {
+      "id": "review-label-enrichment-and-submission-preserve-all-trip-records-and-account-claims",
+      "status": "passed"
+    }
+  ],
+  "observations": {
+    "firstPage": {
+      "reviews": 20,
+      "currentContextCount": 20
+    },
+    "pagination": {
+      "accounts": 2,
+      "pagesPerAccount": 2,
+      "contextualRequestsPerAccount": 25,
+      "unavailableRequestsPerAccount": 7
+    },
+    "submission": {
+      "score": 5,
+      "parentRemaining": 31,
+      "driverUnchanged": true,
+      "ratingCount": 1
+    }
+  },
+  "protectedRecordCount": 158,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "phoneUiExecuted": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "functions/src/callables/inbox.ts": "b830c130038a2b64861c3a63fcb2ac804b95832815e0dfa811491c35c7e28f80",
+    "functions/src/callables/pendingReviews.ts": "79449a1b7a9077d082cb5cd91d6dab3049eca9139a6a824594fbd697f7a647d8",
+    "functions/src/callables/feedback.ts": "2e83755f98569ada11aaef30fd8e80c903cadd64bf76c0bb081198d83e3585c5",
+    "functions/src/services/pendingReviews.ts": "94b8af0612b3b15718880376572d9678de1b163bf4dca828863616a2bdf0a42e",
+    "functions/src/domain/pendingReviews.ts": "a742b3c155893457c7a9726d126a7cfa4bf39dc41eb42f4bd22e80fe120b300c",
+    "functions/src/domain/inbox.ts": "6aa9b21f1d041274784646de8223e75245bc974fb5877c7ba3896e2211fc7b09",
+    "functions/src/domain/reviewTripContext.ts": "9a0a014f9c30da3b5b04b9710f979c4f32b5e846e67a4cd1b750ee350a7aede8",
+    "scripts/qa/local-review-context.mjs": "2db6c48adbd29ca51deb8f2504ac457126f307d092ede9b1e61bcd3ef98f6165",
+    "scripts/qa/run-local-review-context.mjs": "a652c53a37e28c4277dec742a51e8ddba2668d65ca0d5579e748642ae3c04c3e"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

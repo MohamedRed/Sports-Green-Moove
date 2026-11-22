@@ -1,0 +1,101 @@
+{
+  "artifactId": 13525793386,
+  "bytes": 30646910,
+  "sha256": "48be67f0332d978822978dbcf3b09634c0832c9299200a3843d545902506b64e",
+  "members": [
+    {
+      "file": "primary-copy.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/adb-pull-trip-change-inputs.json",
+      "bytes": 6601,
+      "sha256": "d75620b494735c9e076dc51b8fe18a2ed8b8553624993233262b9e0b96bf7493"
+    },
+    {
+      "file": "cleanup-copy.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/adb-pull-failure-cleanup.json",
+      "bytes": 7164,
+      "sha256": "016e8bcd49bfc62dbfb82bd4374ff02e3549651fa3d294677ec3838a93c723c4"
+    },
+    {
+      "file": "sync-diagnostics.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/adb-sync-trip-change-inputs-diagnostics.json",
+      "bytes": 2332,
+      "sha256": "430b2ec66889f715e22844a87e035bbf80babadc121eb65c6ab4be1811724b52"
+    },
+    {
+      "file": "inputs-device.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/local-trip-change-inputs-ui.json",
+      "bytes": 595,
+      "sha256": "3f5d3358fc23f53a3f764a247d0a6c463ad65071fb0273d457afa372816e1d19"
+    },
+    {
+      "file": "inputs-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/LocalTripChangeInputsFlowTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "c8fc55300e27ffee40f8a638e9b632274d938794a07a2f3a291743b4c79dd940"
+    },
+    {
+      "file": "consent-stage.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/trip-change-ui-stage.json",
+      "bytes": 2548,
+      "sha256": "7990b2a0f1994f5e1946ddb8d2a0967dc12b1a120533062d308b82f0465269fc"
+    },
+    {
+      "file": "consent-primary-copy.json",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/adb-pull-trip-change-parent-confirmation.json",
+      "bytes": 6649,
+      "sha256": "87a8b4a435d16889af15402da1bd10d9505da8c93251c7292a7e84e3faad058b"
+    },
+    {
+      "file": "consent-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/LocalTripChangeFlowTest-instrumentation.txt",
+      "bytes": 168,
+      "sha256": "f1ed4e45b197c8d37b0415f423c2a0fa8224ca434e582504e90fe0705efb7d16"
+    },
+    {
+      "file": "ordinary-results.json",
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "bytes": 75145,
+      "sha256": "b49152aae877e9f8412df60e79e3db58eb4e48ce626f40abd94057dfb7aacb9e"
+    },
+    {
+      "file": "suite-status.json",
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "bytes": 115,
+      "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b"
+    },
+    {
+      "file": "device-restoration.json",
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "bytes": 368,
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    {
+      "file": "host-exit.json",
+      "member": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+      "bytes": 394,
+      "sha256": "a69d6cf5d7672ff02ebfc59cddd9a186a5417f9c57c6dada5bbe69402d11534f"
+    },
+    {
+      "file": "guest-process-log.txt",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/evidence-copy-trip-change-inputs-process-log.txt",
+      "bytes": 410,
+      "sha256": "3fe6f2282d5ab75e938c2e64c80dc96303bf41c10546eddb453aac8d13cfb928"
+    },
+    {
+      "file": "guest-memory.txt",
+      "member": "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/evidence-copy-trip-change-inputs-guest-memory.txt",
+      "bytes": 1292,
+      "sha256": "e21020db201cf86b5fcbd3a1119b13f98b8e77f1792ba7a1a48429c342a9ab20"
+    },
+    {
+      "file": "host-disk-capacity.json",
+      "member": "outputs/host-disk-capacity.json",
+      "bytes": 311,
+      "sha256": "3608011b9f4506c1d9da24805b70b1fa8f82160d5f7f26045e58d01af7cd5140"
+    }
+  ],
+  "absentMembers": [
+    "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/trip-change-inputs-ui-stage.json",
+    "outputs/local-ui-evidence/a70f4bb8d6a6fafc4dc1b7a0c7b8c339/results.json"
+  ]
+}

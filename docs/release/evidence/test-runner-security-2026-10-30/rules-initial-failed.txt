@@ -1,0 +1,7 @@
+
+> sports-green-moove@0.1.0 test:rules
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage "vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts tests/team-ownership-rules.test.ts tests/trip-cancellation-rules.test.ts tests/trip-details-rules.test.ts tests/trip-change-rules.test.ts tests/booking-request-rules.test.ts tests/child-account-link-rules.test.ts"
+
+i  emulators: Shutting down emulators.
+
+Error: firebase-tools no longer supports Java version before 21. Please install a JDK at version 21 or above to get a compatible runtime.

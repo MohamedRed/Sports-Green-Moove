@@ -1,0 +1,74 @@
+{
+  "scope": "sanitized-host-transport-observations-not-root-cause-or-flow-proof",
+  "phase": "component-transfer",
+  "observedAt": "2026-10-30T12:54:33.772Z",
+  "observations": [
+    {
+      "command": "version",
+      "completed": true,
+      "status": 0,
+      "signal": null,
+      "errorCode": null
+    },
+    {
+      "command": "devices -l",
+      "completed": true,
+      "status": 0,
+      "signal": null,
+      "errorCode": null
+    }
+  ],
+  "bridgeVersion": "1.0.41",
+  "platformToolsVersion": "37.0.1-15733141",
+  "emulatorStates": {
+    "device": 0,
+    "offline": 1,
+    "unauthorized": 0,
+    "other": 0
+  },
+  "daemonLog": {
+    "available": true,
+    "tailLimitBytes": 65536,
+    "signals": {
+      "killServer": 0,
+      "serverRestart": 0,
+      "transportOffline": 0,
+      "writeFailure": 0
+    }
+  },
+  "daemonEvents": {
+    "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+    "available": true,
+    "rawLogsRetained": false,
+    "sourceTailLimitBytes": 65536,
+    "selectedPids": null,
+    "eventLimit": 64,
+    "matchedEventCount": 2,
+    "droppedEventCount": 0,
+    "unselectedPidLineCount": 0,
+    "unclassifiedTransportLineCount": 0,
+    "events": [
+      {
+        "timestampLocal": "10-30 12:45:37.732",
+        "pid": 3783,
+        "tid": 3791,
+        "source": "transport.cpp",
+        "emulatorPort": 5554,
+        "kind": "connection-terminated-read-failed",
+        "errno": null
+      },
+      {
+        "timestampLocal": "10-30 12:54:33.725",
+        "pid": 3783,
+        "tid": 3860,
+        "source": "transport.cpp",
+        "emulatorPort": 5554,
+        "kind": "connection-terminated-read-failed",
+        "errno": null
+      }
+    ]
+  },
+  "rawLogsRetained": false,
+  "deviceMutationRequested": false,
+  "retryPerformed": false
+}

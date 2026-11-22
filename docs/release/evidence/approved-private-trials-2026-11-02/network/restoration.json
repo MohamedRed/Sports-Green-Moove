@@ -1,0 +1,21 @@
+{
+  "scope": "approved-temporary-network-startup-logging-not-flow-or-repair",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "46022c6011b6926519ee735db37cfd20",
+  "property": "persist.log.tag.MultiSimSettingController",
+  "originalValue": "",
+  "enabledValue": "D",
+  "testAppsAbsent": true,
+  "rebootRequests": 1,
+  "bootTransitionObserved": true,
+  "loggingSettingsChanged": true,
+  "radioSettingsChanged": false,
+  "rawLogsRetained": false,
+  "flowExecuted": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "restored": false,
+  "completed": false,
+  "failed": true,
+  "finishedAt": "2026-11-02T18:44:02.963Z"
+}

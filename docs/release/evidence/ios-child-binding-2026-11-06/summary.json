@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-11-06",
+  "scope": "sdk-compiler-crash-before-screen-tests-not-timeout-or-flow-proof",
+  "sourceCommit": "43aec2bf3a825bf4e0bfe90fd38305d435e430e3",
+  "runId": 42291733409,
+  "jobId": 128154620043,
+  "originalJobLogBytes": 6856661,
+  "originalJobLogSha256": "6ced244a01f44c72a98c2c8e03a80a791d84754588bc9eab7cd56fc5da2f2249",
+  "sdkBuild": "failure",
+  "compilerVersion": "6.3.3",
+  "compilerCrashFile": "ChildAccountScreen.swift",
+  "compilerCrashSymbol": "$sSSScA_pSgIeAghgg_SSIeAghn_TR",
+  "fixtureCasesExecuted": 0,
+  "plannedCases": 11,
+  "disposal": "success",
+  "artifactCount": 0,
+  "deadlineMinutes": 50,
+  "timedOut": false,
+  "bindingConversionCauseConfirmedByComparison": false,
+  "correctedSdkBuildAccepted": false,
+  "correctedScreenFlowAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "01976c32662e995ae7f58c0470f5322e5f6f7a67f1f4279818fb48decb83b7c7"
+    },
+    {
+      "file": "compiler-failure.txt",
+      "sha256": "db2c5e6f4d60e6852c775c57fbc4008aaca9352aec8c1d15ed2fbbbb323b0e3d"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "25b39fc59d251151376a9b8d40aeac7dbc248efab191af80dccb93135fc74f0d"
+    }
+  ]
+}

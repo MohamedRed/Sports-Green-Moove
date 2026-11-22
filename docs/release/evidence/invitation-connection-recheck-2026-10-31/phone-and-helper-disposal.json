@@ -1,0 +1,22 @@
+{
+  "scope": "observed-disposable-phone-and-owned-helper-disposal-not-package-inventory",
+  "observedAt": "2026-10-31T22:33:05.813Z",
+  "providerDashboardObserved": true,
+  "sessionStopped": true,
+  "uninstallResponse": "No user apps found to uninstall.",
+  "uninstallSucceeded": false,
+  "independentPackageAbsenceProven": false,
+  "parentSignedIn": false,
+  "childSignedIn": false,
+  "devicePolicyChanged": false,
+  "hostBrowserPermissionChanged": false,
+  "hostAppsOnDevicePermissionObserved": "on",
+  "hostClipboardRestored": true,
+  "helperRequestedStop": true,
+  "helperExitCode": 130,
+  "helperGroupExitVerified": true,
+  "helperProcessesAbsent": true,
+  "helperDirectoryAbsent": true,
+  "temporaryPagePortClosed": true,
+  "allSelectedServiceListenersClosed": true
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "executed-feedback-components-not-full-app-or-physical",
+  "case": "ride-dark-wide",
+  "screen": "ride",
+  "dark": true,
+  "widthDp": 900,
+  "heightDp": 600,
+  "density": 1,
+  "fontScale": 1.3,
+  "physicalDevice": false,
+  "backendCalls": false,
+  "mapsRendered": false,
+  "productionWrites": false,
+  "capturedAtEpochMillis": 1793681864212,
+  "viewportSha256": "f4cdd01f6abc0cf03f54b8eeed6b437b625fd821c0473b2ab4f0ec4664e61cb1",
+  "windowSha256": "b286d3699e3fdec90227192a489912bd7eb0b9326e0322f70a14210697a2b387",
+  "completed": true
+}

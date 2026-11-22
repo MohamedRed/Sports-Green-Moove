@@ -1,0 +1,22 @@
+{
+  "scope": "owned-runtime-disposal-not-browser-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "426605251d11cf7c5c681ec70b987503",
+  "closedAt": "2026-11-02T08:15:41.498Z",
+  "processGroupExited": true,
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001,
+      4185
+    ],
+    "closed": true
+  },
+  "privatePhoneSessionAbsent": true,
+  "privateSignupInputAbsent": true,
+  "failed": false
+}

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="10" failures="9" errors="0" time="0.019927833">
+    <testsuite name="src/__tests__/location-freshness.test.ts" timestamp="2026-10-19T15:01:01.522Z" hostname="MRRs-MacBook-Air.local" tests="10" failures="9" errors="0" skipped="0" time="0.019927833">
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps a two-minute-old position stale when it arrives just now" time="0.007810667">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   &quot;stale&quot;: true,
+-   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · il y a 2 min&quot;,
++   &quot;stale&quot;: false,
++   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · à l&apos;instant&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:11:70
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; cannot refresh an old position with a future client upload timestamp" time="0.001076792">
+            <failure message="expected false to be true // Object.is equality" type="AssertionError">
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/location-freshness.test.ts:16:89
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the exact existing ninety-second freshness boundary" time="0.000773333">
+            <failure message="expected false to be true // Object.is equality" type="AssertionError">
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/__tests__/location-freshness.test.ts:20:75
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; never calls a missing observation time fresh just because receipt time exists" time="0.001176666">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   &quot;stale&quot;: true,
+-   &quot;vehicleLastUpdateLabel&quot;: &quot;Position à vérifier&quot;,
++   &quot;stale&quot;: false,
++   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · à l&apos;instant&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:23:43
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; does not label malformed observation times as just now" time="0.000651">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   &quot;stale&quot;: true,
+-   &quot;vehicleLastUpdateLabel&quot;: &quot;Position à vérifier&quot;,
++   &quot;stale&quot;: false,
++   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · à l&apos;instant&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:27:57
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps future observations unverified rather than clamping their age to zero" time="0.00068275">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: true, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   &quot;stale&quot;: true,
+-   &quot;vehicleLastUpdateLabel&quot;: &quot;Position à vérifier&quot;,
++   &quot;stale&quot;: false,
++   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · à l&apos;instant&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:30:64
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; still shows a recently observed real timestamp as recent" time="0.001210625">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: false, …(1) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(6) } to match object { stale: false, …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    &quot;stale&quot;: false,
+-   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · il y a 30 s&quot;,
++   &quot;vehicleLastUpdateLabel&quot;: &quot;Secours GPS · à l&apos;instant&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:33:69
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; orders child observations by when they were captured, not when they arrived" time="0.002502625">
+            <failure message="expected &apos;Radar · à l\&apos;instant&apos; to be &apos;Secours GPS · il y a 30 s&apos; // Object.is equality" type="AssertionError">
+AssertionError: expected &apos;Radar · à l\&apos;instant&apos; to be &apos;Secours GPS · il y a 30 s&apos; // Object.is equality
+
+Expected: &quot;Secours GPS · il y a 30 s&quot;
+Received: &quot;Radar · à l&apos;instant&quot;
+
+ ❯ src/__tests__/location-freshness.test.ts:45:39
+            </failure>
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the missing first-point state distinct from a malformed received point" time="0.000828208">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; sets native receipt time on the server instead of trusting an optional client value" time="0.001187833">
+            <failure message="expected { rideSessionId: &apos;qa-ride&apos;, …(8) } to match object { userId: &apos;qa-driver&apos;, …(3) }
+(5 matching properties omitted from actual)" type="AssertionError">
+AssertionError: expected { rideSessionId: &apos;qa-ride&apos;, …(8) } to match object { userId: &apos;qa-driver&apos;, …(3) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    &quot;capturedAt&quot;: 1759999880000,
+    &quot;source&quot;: &quot;nativeFallback&quot;,
+-   &quot;uploadedAt&quot;: 1760000000000,
++   &quot;uploadedAt&quot;: 1760086400000,
+    &quot;userId&quot;: &quot;qa-driver&quot;,
+  }
+
+ ❯ src/__tests__/location-freshness.test.ts:55:20
+            </failure>
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "controlled-ios-client-and-separate-local-backend-not-sdk-or-native-integration",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "uiSyntaxExitCode": 0,
+    "delayedBoundaries": 96,
+    "malformedMessageGroups": 32,
+    "requestReceiptGroups": 18,
+    "identityVectors": 6
+  },
+  "records": [
+    {
+      "file": "native-result.txt",
+      "sha256": "a8e04d8a12b180744c1b608e43d06209ba1fbbf9f6f57fd4743f7cdbba6e1222"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "conversation-services.json",
+      "sha256": "76da6e90be968217087e78deabf74c22df6d8322f221761491b50ba5319cf193"
+    },
+    {
+      "file": "directory-services.json",
+      "sha256": "3c6b20b7f5aafde90519ff490bbb24ae6f6f74d3f877d12420eb1188a80b8913"
+    },
+    {
+      "file": "read-services.json",
+      "sha256": "b9dddc6b8f2fe8cf5dc19772a57a8e098c4fa63a089037e9be5dd0c18f853f6c"
+    }
+  ],
+  "fixtureCaseCount": 11,
+  "fixtureTeamJourneyPrepared": true,
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "fullConversationAccepted": false,
+  "notificationsAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "remaining": [
+    "actual SDK build",
+    "native screen layout and interaction",
+    "native-to-local-service integration",
+    "closed-app notification delivery and account cleanup",
+    "unknown send across revoked and restored admission",
+    "booking conversation UI",
+    "full physical and release evidence"
+  ]
+}

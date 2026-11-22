@@ -1,0 +1,19 @@
+{
+  "functions/src/domain/rewards.ts": "58711328eeb6f54781fe60a14b62c0efc4aa614253caa379e91264d21b6ff3ad",
+  "functions/src/__tests__/co2-rewards.test.ts": "783f274f6668ecffe6c6b16bab05775cdb722fc3fd2a0cad2ed3270cf269cb8f",
+  "functions/src/domain/rewardPayout.ts": "3a58d1f86f20d668055da7b526f1181841b72a3c6fe75e79cc08745f19f80275",
+  "functions/src/services/rewardPayout.ts": "e80eb95575cdc14df786f79711a8ba06aa36dfe010b58e688fbbc27fdf95afed",
+  "functions/src/services/payoutReversals.ts": "0ab0e81ea03a0e3ea7af74710750764d19784acf325462a039ebf1a847b1c6d0",
+  "functions/src/services/stripePayoutReconciliation.ts": "c4935d7ec00a39a4e8db0244e2b6584e9da65c8cd2a6dc26dc72ae291074b184",
+  "functions/src/callables/payments.ts": "a64781096c2ac24a7008468c5fb5b82ded7b2fb848054304a409a78ec833fc9b",
+  "admin/src/RewardPayoutRow.tsx": "65bbdc4c12b8a7989098a914843ddc67103d7af36de57e00916f680bc59837a6",
+  "admin/src/rewardPayoutRequest.ts": "033a33e1edd0981ce81e2acd9527a592b6b677a2f5c329c77c1342efbc39c86f",
+  "admin/src/payouts.css": "34a8e5116f7f7ec94fdfa7338a236efb486634dd0a512b120ee07b2f09c05b82",
+  "admin/src/actions.ts": "9db029e3bd64f68c445e0182f87fa4ba4887700a816f8c6e7309a0f266355c65",
+  "admin/src/AdminDashboard.tsx": "574f40094fd525a2ba97398f821048dc6a12fe31e7b3bd3d49010c51fcd530f3",
+  "tests/reward-payout-flow.test.ts": "d1f7a50239be51a854422a1676a8696615196a1f0dc01377fe6899d5554bf65f",
+  "tests/admin-payout-request.test.ts": "3a6d9a557b1f9fe010adfe6610ea96ab1f1c77f0eadbfa4859b421930905a5cd",
+  "tests/stripe-webhook-flow.test.ts": "3a654e32478841e04dbe902a7841ae7803c8a9acb24ec6742fba324af1d98257",
+  "tests/fixtures/reward-payout-component.tsx": "8cd86d42bc7ff52656f806a9765bc99d0676c22bdba1aee7fd69be24c6ea3158",
+  "scripts/qa/check-payout-component.mjs": "ff6b3ccb6d150e5838bdec08ac5283d4526336b7368f40267476e3e67c6298b8"
+}

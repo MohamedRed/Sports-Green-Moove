@@ -1,0 +1,20 @@
+{
+  "scope": "terminal-boot-failure-and-focused-cleanup-observations-not-full-matrix-proof",
+  "checkedAt": "2026-10-22",
+  "sourceCommit": "bea9e0eee215b2b7b531b923c6dc81816e6ef964",
+  "runId": 39865744186,
+  "matrixJobId": 120127371201,
+  "focusedCasesPassed": 10,
+  "focusedRestorationsVerified": 10,
+  "focusedHostGone": 9,
+  "focusedHostZombie": 1,
+  "fullMatrixCompiled": true,
+  "matrixExecuted": false,
+  "fullCiPassed": false,
+  "rootCauseConfirmed": false,
+  "earlierTransportFailureExplained": false,
+  "allHostProcessesGone": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "newCapturesAccepted": []
+}

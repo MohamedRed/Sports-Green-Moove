@@ -1,0 +1,13 @@
+{
+  "scope": "completed-independent-local-map-movement-not-physical-tracking",
+  "sourceCommit": "0fa64e812969c5690db62a7d4f39f51e3cb4deb6",
+  "sourceRunId": 39325056323,
+  "reviewedCaptures": ["local-vehicle-map-first.png", "local-vehicle-map-moved.png"],
+  "captureReview": "loaded-street-map-full-route-anchors-and-green-vehicle-pin-at-two-distinct-locations",
+  "orientation": "portrait",
+  "physicalDevice": false,
+  "fullNativeSuiteVerified": false,
+  "providerTrackingVerified": false,
+  "childPositionsVerified": false,
+  "etaVerified": false
+}

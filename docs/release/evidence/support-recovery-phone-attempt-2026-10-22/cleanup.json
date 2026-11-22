@@ -1,0 +1,21 @@
+{
+  "physicalSessionStopped": true,
+  "physicalSessionProof": "captures/session-stopped-state.txt",
+  "networkRestored": true,
+  "networkProof": "captures/network-restored.json",
+  "networkSimulationRemoved": true,
+  "deviceAdministrationChanged": false,
+  "appUninstallIndependentlyVerified": false,
+  "appUninstallScope": "requested-but-launcher-icon-still-visible",
+  "hostClipboardRestored": true,
+  "controllerClosed": true,
+  "backendExitCode": 130,
+  "helperExitCode": 130,
+  "helperProcessGroupExitVerified": true,
+  "helperPrivateDirectoryRemoved": true,
+  "privateSessionFileRemoved": true,
+  "ownedRuntimeCleanupHandlerCompleted": true,
+  "listeningPortsAfterCleanup": [],
+  "checkedPorts": [5001, 8080, 9000, 9099, 45690, 45691],
+  "productionWrites": false
+}

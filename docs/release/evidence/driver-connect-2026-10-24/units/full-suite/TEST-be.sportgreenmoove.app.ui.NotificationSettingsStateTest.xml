@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-25T10:45:57.429Z" hostname="MRRs-MacBook-Air.local" time="0.001">
+  <properties/>
+  <testcase name="blockedPermissionIsReadRatherThanAssumedAllowed" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <testcase name="openingSettingsNeverOptimisticallyGrantsPermission" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.001"/>
+  <testcase name="allowedPermissionIsReadFromTheDevice" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <testcase name="returningFromSettingsReadsTheCurrentPermissionAndClearsTheOldError" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <testcase name="deniedSettingsActivityDoesNotChangePermission" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <testcase name="missingSettingsActivityIsAnErrorWithoutAnotherLaunch" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <testcase name="anExplicitNewOpeningClearsItsPreviousError" classname="be.sportgreenmoove.app.ui.NotificationSettingsStateTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

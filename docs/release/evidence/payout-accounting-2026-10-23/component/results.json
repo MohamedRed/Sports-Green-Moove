@@ -1,0 +1,41 @@
+{
+  "testedAt": "2026-10-23T17:09:42.359Z",
+  "scope": "local-management-component-simulated-gateway-not-payout-or-phone",
+  "steps": [
+    {
+      "id": "one-explicit-submit-disables-double-send",
+      "status": "passed"
+    },
+    {
+      "id": "lost-confirmation-survives-reload-with-frozen-amount-and-identity",
+      "status": "passed"
+    },
+    {
+      "id": "pending-control-fits-desktop-and-small-mobile",
+      "status": "passed"
+    },
+    {
+      "id": "confirmation-clears-only-the-matching-pending-request",
+      "status": "passed"
+    },
+    {
+      "id": "corrupt-journal-blocks-new-transfer-without-a-fallback",
+      "status": "passed"
+    }
+  ],
+  "screenshots": [
+    "payout-pending-1440.png",
+    "payout-pending-768.png",
+    "payout-pending-390.png",
+    "payout-pending-320.png"
+  ],
+  "viewports": [
+    1440,
+    768,
+    390,
+    320
+  ],
+  "externalRequests": 0,
+  "realTransfers": false,
+  "nativeOrPhysicalPhone": false
+}

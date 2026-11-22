@@ -1,0 +1,38 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.TeamConversationReadFlowTest:.
+Error in landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest):
+java.lang.AssertionError: Text layout overflow: [text=5 non lus, size=144 x 45, constraints=Constraints(minWidth = 0, maxWidth = 2252, minHeight = 0, maxHeight = Infinity), widthOverflow=true, heightOverflow=false]
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:77)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(TeamConversationReadFlowTest.kt:49)
+
+Error in narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest):
+java.lang.AssertionError: Text layout overflow: [text=99+ non lus, size=243 x 59, constraints=Constraints(minWidth = 0, maxWidth = 692, minHeight = 0, maxHeight = Infinity), widthOverflow=true, heightOverflow=false]
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:77)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(TeamConversationReadFlowTest.kt:29)
+
+
+Time: 24.203
+There were 2 failures:
+1) landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest)
+java.lang.AssertionError: Text layout overflow: [text=5 non lus, size=144 x 45, constraints=Constraints(minWidth = 0, maxWidth = 2252, minHeight = 0, maxHeight = Infinity), widthOverflow=true, heightOverflow=false]
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:77)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.landscapeReadFailureStaysUnreadUntilRetryAndDirectoryKeepsTheRemainder(TeamConversationReadFlowTest.kt:49)
+2) narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(be.sportgreenmoove.app.ui.TeamConversationReadFlowTest)
+java.lang.AssertionError: Text layout overflow: [text=99+ non lus, size=243 x 59, constraints=Constraints(minWidth = 0, maxWidth = 692, minHeight = 0, maxHeight = Infinity), widthOverflow=true, heightOverflow=false]
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.assertTextFits(TeamConversationReadFlowTest.kt:77)
+	at be.sportgreenmoove.app.ui.TeamConversationReadFlowTest.narrowLargeTextCountAndVisibleOnlyReadsDoNotMarkTheWholeThread(TeamConversationReadFlowTest.kt:29)
+
+FAILURES!!!
+Tests run: 3,  Failures: 2
+
+

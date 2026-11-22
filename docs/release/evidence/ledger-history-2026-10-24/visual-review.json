@@ -1,0 +1,13 @@
+{
+  "reviewed": true,
+  "containsRealCustomerData": false,
+  "published": {
+    "ledger-history-impact.png": true,
+    "ledger-history-restored.png": true,
+    "ledger-history-foreign.png": true,
+    "ledger-history-return.png": true
+  },
+  "excluded": {
+    "ledger-history-balance.png": "Duplicate balance view; the activity-recreated capture is used in the tour."
+  }
+}

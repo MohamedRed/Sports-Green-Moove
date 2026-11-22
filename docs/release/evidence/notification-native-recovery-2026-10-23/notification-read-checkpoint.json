@@ -1,0 +1,23 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "b5503afe3db7991c77ee96a925156ae7",
+  "fixture": {
+    "selectedNoticeId": "bookingDecision_9394eb42e104f80e4af7c2bd6f3d2297d57ed425ff274d15db7200de3e098b2f",
+    "controlNoticeId": "bookingDecision_ec4e2e05788707f4574496c349d11aa35b2f3ac93c2ed0d5b366aa6587ed375a",
+    "driverNoticeId": "bookingDecision_c8015fc8b4090c3b30a0062f15b025829ca2d7e43c15dcba563386d374d53056"
+  },
+  "checkpoint": {
+    "protectedRecordCount": 176,
+    "selectedReadAtMillis": 1792787998750,
+    "allOtherRecordsUnchanged": true,
+    "allClaimsUnchanged": true,
+    "liveTripsUnchanged": true
+  },
+  "inboxes": {
+    "parentConfirmedRead": true,
+    "otherNoticeUnread": true,
+    "driverInboxScoped": true,
+    "outsiderInboxScoped": true,
+    "foreignWritesDenied": true
+  }
+}

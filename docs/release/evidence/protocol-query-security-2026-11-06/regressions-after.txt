@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: the actual protocol parser rejects an unfinished option through parse
+ok 1 - the actual protocol parser rejects an unfinished option through parse
+  ---
+  duration_ms: 117.292334
+  type: 'test'
+  ...
+# Subtest: the actual protocol parser rejects an unfinished option through load
+ok 2 - the actual protocol parser rejects an unfinished option through load
+  ---
+  duration_ms: 58.806084
+  type: 'test'
+  ...
+# Subtest: the actual protocol parser rejects an unfinished option through loadSync
+ok 3 - the actual protocol parser rejects an unfinished option through loadSync
+  ---
+  duration_ms: 56.06675
+  type: 'test'
+  ...
+# Subtest: ordinary ride data retains its actual protocol round trip through parse
+ok 4 - ordinary ride data retains its actual protocol round trip through parse
+  ---
+  duration_ms: 59.44425
+  type: 'test'
+  ...
+# Subtest: ordinary ride data retains its actual protocol round trip through load
+ok 5 - ordinary ride data retains its actual protocol round trip through load
+  ---
+  duration_ms: 61.425
+  type: 'test'
+  ...
+# Subtest: ordinary ride data retains its actual protocol round trip through loadSync
+ok 6 - ordinary ride data retains its actual protocol round trip through loadSync
+  ---
+  duration_ms: 63.296041
+  type: 'test'
+  ...
+# Subtest: ordinary ride data retains its actual protocol round trip through wire
+ok 7 - ordinary ride data retains its actual protocol round trip through wire
+  ---
+  duration_ms: 72.355667
+  type: 'test'
+  ...
+# Subtest: the actual payment query utility handles a noncallable buffer marker as ordinary data
+ok 8 - the actual payment query utility handles a noncallable buffer marker as ordinary data
+  ---
+  duration_ms: 67.944875
+  type: 'test'
+  ...
+# Subtest: the payment-resolved query encoder safely coerces a noncallable string property: comma
+ok 9 - the payment-resolved query encoder safely coerces a noncallable string property: comma
+  ---
+  duration_ms: 62.179959
+  type: 'test'
+  ...
+# Subtest: the payment-resolved query encoder safely coerces a noncallable string property: comma-encoded
+ok 10 - the payment-resolved query encoder safely coerces a noncallable string property: comma-encoded
+  ---
+  duration_ms: 57.014625
+  type: 'test'
+  ...
+# Subtest: ordinary payment parameter serialization remains unchanged: v1
+ok 11 - ordinary payment parameter serialization remains unchanged: v1
+  ---
+  duration_ms: 60.689625
+  type: 'test'
+  ...
+# Subtest: ordinary payment parameter serialization remains unchanged: v2
+ok 12 - ordinary payment parameter serialization remains unchanged: v2
+  ---
+  duration_ms: 55.58925
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 841.464375

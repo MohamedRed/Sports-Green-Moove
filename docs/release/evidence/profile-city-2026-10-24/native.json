@@ -1,0 +1,51 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "0f3b62b38f6e38af6608ed71ab3efbab",
+  "testedAt": "2026-10-24T12:32:19.624Z",
+  "scope": "connected-isolated-android-profile-city-not-physical",
+  "connectedCases": 1,
+  "componentCases": 3,
+  "activityRecreation": true,
+  "fullProcessRestart": false,
+  "parentRevision": 2,
+  "driverRevision": 1,
+  "protectedRecordsUnchanged": true,
+  "claimsUnchanged": true,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/profile-city-ui-suite.mjs": "21beb01f5dfc86016856e798ed46c894e12e72f91b5090b4712702d66581364f",
+    "scripts/qa/run-profile-city-ui.mjs": "9be3e90434f0bfa8034944e778626ce6a2a0348a9ac59597384dc1d098e39726",
+    "scripts/qa/collect-local-ui-evidence.mjs": "54c7730f1bb4c5c876268bd545be78fdd8d54b6c235adc7396bc55b866694ced",
+    "android/app/src/main/java/be/sportgreenmoove/app/data/ProfileCity.kt": "2e7c865d38c663c5bdd25db26e763b75b32f275a9828e1625fcdacd0ef392df0",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidProfileCityGateway.kt": "73215b0d2f412f660bb92486e33b15d5efcf58848b5acaba951b0baa20c98d32",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileCityState.kt": "6dfb38a00db871998ba540a3d672cc4cdf3f1b77eba6b74e7fd8209a210247ca",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileCityHost.kt": "772d6d1a653fa94394341ef434a6797da756bf3100bb86a89d10b3da0de2253c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileCityDialog.kt": "5657eb9a8510cb8094ab986961bf2092825f727a1d90ec0dc0005515af363b18",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileRoute.kt": "90267179c2b3c7ccfc1da3c27d4f1fcf74884413464ce7920ff0d5584da193a3",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileScreen.kt": "674b959f07a83458d0fb63b0759a71033e091cbf4e50290afef2244a44e5e641",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt": "707abe3d6014f82e209c1634139930c8caa0fe95d5067e58e498d4b9bd1ddc6a",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "ddd5dd3df3e3ff15907abb25baccf604bdedf31a1c53f58b5162cd0a38a646f8",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidRuntime.kt": "f2e666212a3e82a72cb07954e51fac1a5ade6d0e81bdd7b63730c1546f09ce5b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ProfileCityGateway.kt": "d7073c79a5f345faf3596c3ea3776ba355b2af2c0d09d33803abac7ff1f8ffee",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ProfileCityFlowTest.kt": "7c9472e56a8b34acfbea2df51821b330364a4d44509d4a3276d2d59ea4b269fa",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalProfileCityFlowTest.kt": "f70cd984f52cf62729a021bac042251242588f89138cb6e53b869218f09b144b"
+  },
+  "apkHashes": {
+    "apk/debug/app-debug.apk": "e5673c6808637c63fc99ccaff542357a5ebf6d6021b316a4a48639d5cf112f7f",
+    "apk/androidTest/debug/app-debug-androidTest.apk": "922b5276746bd72d7597b8ba9a706498b49eef240352f4d5dec49766ee8ac3c4"
+  },
+  "screenshots": {
+    "profile-city-editor-window.png": "209312d27186ce006758d41f1a0f339d44dcf8902b52943a68a093fbb64a5d6b",
+    "profile-city-editor.png": "c709ff8563fe0f59a5e012d38ea1c111c6f33ee657b130d69d4ce1590e86a96c",
+    "profile-city-saved.png": "2e99d8f7291c72a997bbde1c0714b2c7d39b9471e235bb01cd88b56d4a19ea40",
+    "profile-city-restored.png": "76eaada43d7fe88e27da6d4cb6204507bf981a172c9a7296cced1318b279058e",
+    "profile-city-other-account.png": "4229bbe4b8741e5127ae0fb6153205f542a6a787d12315c1651dc0c5c79ffdc0",
+    "profile-city-removed.png": "609494d0818ac5a9f52599cdb0aa317b15d447cbe901d7804c5e0421d4a5c2d5"
+  },
+  "localPackagesRemoved": true,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "temporaryAdministrationUsed": false
+}

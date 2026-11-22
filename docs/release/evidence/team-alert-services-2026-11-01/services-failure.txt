@@ -1,0 +1,52 @@
+AssertionError [ERR_ASSERTION]: guardianVerifications/e605553067511959da675b5cb8c900f15d84fa4c675a2d3aa9b3948bc89a1369
++ actual - expected
+... Skipped lines
+
+  {
+    childId: 'sgm-qa-team-alert-child',
+    clubId: 'sgm-qa-club-green-wavre',
+    createdAt: Timestamp {
+      _nanoseconds: 95000000,
+...
+    parentUserId: 'sgm-qa-parent',
++   revision: 5,
+-   revision: 2,
+    status: 'verified',
+    updatedAt: Timestamp {
++     _nanoseconds: 92000000,
++     _seconds: 1793521386
+-     _nanoseconds: 119000000,
+-     _seconds: 1793521378
+    }
+  }
+
+    at file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-alert-suite.mjs:85:58
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async withLocalAdminCleanup (file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-admin-lifecycle.mjs:10:17)
+    at async file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-alert-suite.mjs:15:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: {
+    childId: 'sgm-qa-team-alert-child',
+    parentUserId: 'sgm-qa-parent',
+    clubId: 'sgm-qa-club-green-wavre',
+    createdAt: Timestamp { _seconds: 1793521378, _nanoseconds: 95000000 },
+    lastActorUserId: 'sgm-qa-club-manager',
+    revision: 5,
+    status: 'verified',
+    updatedAt: Timestamp { _seconds: 1793521386, _nanoseconds: 92000000 }
+  },
+  expected: {
+    childId: 'sgm-qa-team-alert-child',
+    parentUserId: 'sgm-qa-parent',
+    clubId: 'sgm-qa-club-green-wavre',
+    createdAt: Timestamp { _seconds: 1793521378, _nanoseconds: 95000000 },
+    lastActorUserId: 'sgm-qa-club-manager',
+    revision: 2,
+    status: 'verified',
+    updatedAt: Timestamp { _seconds: 1793521378, _nanoseconds: 119000000 }
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+

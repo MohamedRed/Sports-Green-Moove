@@ -1,0 +1,31 @@
+TAP version 13
+# Subtest: readiness stays unpublished while its temporary JSON is incomplete
+not ok 1 - readiness stays unpublished while its temporary JSON is incomplete
+  ---
+  duration_ms: 5016.499542
+  type: 'test'
+  location: '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/android/build/qa-notice-restart.HTv0Qn/readiness-red/tests/supervised-local-process.test.mjs:38:1'
+  failureType: 'testCodeFailure'
+  error: 'Fixture did not become ready'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    waitForExistence (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/build/qa-notice-restart.HTv0Qn/readiness-red/tests/supervised-local-process.test.mjs:17:31)
+    async file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/build/qa-notice-restart.HTv0Qn/readiness-red/tests/supervised-local-process.test.mjs:40:5
+    async withFixture (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/build/qa-notice-restart.HTv0Qn/readiness-red/tests/supervised-local-process.test.mjs:23:16)
+    async TestContext.<anonymous> (file:///Users/mrr/.codex/worktrees/cb61/Sports%20Green-Moove/android/build/qa-notice-restart.HTv0Qn/readiness-red/tests/supervised-local-process.test.mjs:39:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5092.009458

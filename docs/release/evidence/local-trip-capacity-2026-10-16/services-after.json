@@ -1,0 +1,154 @@
+{
+  "runId": "7aeb2b90da53b0cc1032b6ac7fcb0ded",
+  "testedAt": "2026-10-16T09:16:21.777Z",
+  "projectId": "demo-sgm-local-qa",
+  "scope": "local-emulated-services-not-phone-ui",
+  "steps": [
+    {
+      "id": "fixtures",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle",
+      "status": "passed"
+    },
+    {
+      "id": "publication",
+      "status": "passed"
+    },
+    {
+      "id": "booking-cancellation",
+      "status": "passed"
+    },
+    {
+      "id": "last-seat-concurrency",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-booking",
+      "status": "passed"
+    },
+    {
+      "id": "messages-notifications",
+      "status": "passed"
+    },
+    {
+      "id": "ride-audit-ledgers",
+      "status": "passed"
+    },
+    {
+      "id": "ratings",
+      "status": "passed"
+    },
+    {
+      "id": "club-request",
+      "status": "passed"
+    },
+    {
+      "id": "support-request",
+      "status": "passed"
+    },
+    {
+      "id": "ride-passenger-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-delivery-safety",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-safety",
+      "status": "passed"
+    },
+    {
+      "id": "reservation-decisions",
+      "status": "passed"
+    },
+    {
+      "id": "membership-review",
+      "status": "passed"
+    },
+    {
+      "id": "trip-capacity-ownership",
+      "status": "passed"
+    }
+  ],
+  "lifecycle": {
+    "projectId": "demo-sgm-local-qa",
+    "tripId": "RLl0Lsj5sZcrqcvrAoyR",
+    "bookingId": "vLFI8vRy9gPAbCMtAHJB",
+    "rideSessionId": "J3vdsKjyIE7vgwK7aziX",
+    "payment": {
+      "status": "blocked_by_missing_local_payment_account",
+      "error": "Driver Stripe account is required before paid rides."
+    },
+    "lifecycle": {
+      "booking": "completed",
+      "ride": "completed",
+      "pickup": "pickedUp",
+      "dropoff": "droppedOff",
+      "co2SavedKg": 3.81,
+      "rewardCents": 46,
+      "rtdbMeta": {
+        "status": "completed",
+        "namespace": "demo-sgm-local-qa"
+      },
+      "inboxChats": 3
+    }
+  },
+  "scenarios": {
+    "multiSeat": {
+      "requestedSeats": 2,
+      "seatsBefore": 4,
+      "seatsAfterApproval": 2,
+      "seatsAfterCancellation": 4,
+      "repeatedCancellationRejected": true,
+      "livePayment": false
+    }
+  },
+  "reservationDecisions": {
+    "declinedSeatsBefore": 4,
+    "declinedSeatsAfter": 4,
+    "declineNotificationCount": 1,
+    "cancellationSeatsBefore": 2,
+    "cancellationSeatsAfter": 4,
+    "concurrentCancellationWinners": 1,
+    "concurrentDecisionWinners": 1,
+    "historicalBookingsPerRole": 25,
+    "activePassengerCancellationRejected": true,
+    "malformedActiveRideRejected": true,
+    "livePayment": false
+  },
+  "membershipReview": {
+    "concurrentDecisionWinners": 1,
+    "approvedCount": 2,
+    "rejectedCount": 1,
+    "auditCount": 3,
+    "notificationCount": 3,
+    "memberCountBefore": 3,
+    "memberCountAfter": 5,
+    "paginatedHistory": 25,
+    "paginatedManagedClubs": 26,
+    "foreignManagerRejected": true,
+    "revokedManagerRejected": true,
+    "staleRerequestRejected": true,
+    "roleEscalation": false,
+    "livePush": false
+  },
+  "tripCapacity": {
+    "requestedSeats": 2,
+    "seatsAfterApproval": 2,
+    "rejectedOwnerMutations": 7,
+    "rejectedOtherActors": 3,
+    "titleEditAllowed": true,
+    "seatsAfterCancellation": 4,
+    "repeatedCancellationRejected": true,
+    "method": "authenticated-local-firestore-and-callable-with-persisted-checks",
+    "livePayment": false,
+    "nativeUi": false
+  },
+  "limits": [
+    "No live provider payments, GPS, device tracking or push delivery tested.",
+    "Membership screen decisions, trip editing/cancellation and refund settlement require separate evidence."
+  ]
+}

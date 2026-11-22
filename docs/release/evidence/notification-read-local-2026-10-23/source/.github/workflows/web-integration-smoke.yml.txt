@@ -1,0 +1,1195 @@
+name: Web Integration Smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "tests/team-chat-*.test.mjs"
+      - "tests/team-conversation-contract.test.mjs"
+      - "tests/emergency-phone-recovery.test.mjs"
+      - "scripts/security/rotate-browserstack-key.mjs"
+      - "tests/browserstack-key-rotation.test.mjs"
+      - ".github/workflows/android-browserstack.yml"
+      - "tests/team-review*.mjs"
+      - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
+      - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
+      - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
+      - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
+      - "tests/team-phone-evidence.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
+      - "tests/fixtures/supervised-service.mjs"
+      - "tests/proxy-trust-security.test.mjs"
+      - "tests/multipart-security.test.mjs"
+      - "tests/helpers/multipart-security-probe.mjs"
+      - "tests/native-network-precondition-evidence.test.mjs"
+      - "tests/native-matrix-36-evidence.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
+      - "tests/membership-cursor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/MembershipPageTokenTest.kt"
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollment*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt"
+      - "tests/team-enrollment-contract.test.mjs"
+      - "tests/emergency-contact-completed-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
+      - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-search-feedback-evidence.test.mjs"
+      - "tests/subscription-diagnosis-evidence.test.mjs"
+      - "tests/booking-request-rules.test.ts"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroid*Mapper*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/PassengerStatusObservationOwnershipTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/data/BookingIntentSnapshotTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/Booking*Test.kt"
+      - "ios/Sources/SportsGreenMooveApp/*.swift"
+      - "tests/booking-display-evidence.test.mjs"
+      - ".github/workflows/web-integration-smoke.yml"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
+      - "admin/**"
+      - "docs/contracts/**"
+      - "functions/**"
+      - "website/**"
+      - "partner-portal/**"
+      - "docs/release/evidence/**"
+      - "scripts/build-partner-portal.mjs"
+      - "tests/partner-portal.test.mjs"
+      - "tests/partner-portal-team-history.test.mjs"
+      - "tests/partner-portal-native-startup.test.mjs"
+      - "tests/partner-portal-ui.test.mjs"
+      - "tests/partner-portal.browser.mjs"
+      - "tests/partner-portal-child-contact.browser.mjs"
+      - "tests/partner-component-scope.test.mjs"
+      - "tests/search-criteria-evidence.test.mjs"
+      - "tests/reservation-evidence.test.mjs"
+      - "tests/trip-capacity-evidence.test.mjs"
+      - "tests/trip-capacity-rules.test.ts"
+      - "tests/team-ownership-rules.test.ts"
+      - "tests/team-ownership-evidence.test.mjs"
+      - "tests/guardian-verification-contract.test.mjs"
+      - "tests/guardian-review-controller.test.mjs"
+      - "tests/guardian-review-evidence.test.mjs"
+      - "tests/guardian-parent-contract.test.mjs"
+      - "tests/emergency-contact-contract.test.mjs"
+      - "tests/child-emergency-contract.test.mjs"
+      - "tests/emergency-contact-editor-contract.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
+      - "tests/manual-emergency-checkpoints.test.mjs"
+      - "tests/ride-emergency-evidence.test.mjs"
+      - "tests/ride-emergency-completed-evidence.test.mjs"
+      - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
+      - "tests/location-order-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/notification-settings-contract.test.mjs"
+      - "tests/notification-settings-phone-evidence.test.mjs"
+      - "tests/notification-native-recheck.test.mjs"
+      - "tests/notification-read-*.test.*"
+      - "tests/native-copy-ce282274.test.mjs"
+      - "tests/portal-evidence-fingerprints.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidNotificationSettings.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/NotificationSettingsStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationSettingsFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/services/AndroidNotificationSettingsTest.kt"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/partner-portal-vehicle-map.browser.mjs"
+      - "tests/remote-ride-stop-evidence.test.mjs"
+      - "tests/partner-portal-remote-ride-stop.test.mjs"
+      - "tests/partner-portal-remote-stop.browser.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ExternalUiSynchronizationTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContact*Test.kt"
+      - "tests/local-replay-34-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
+      - "tests/trip-cancellation-rules.test.ts"
+      - "tests/trip-details-rules.test.ts"
+      - "tests/trip-details-evidence.test.mjs"
+      - "tests/trip-change-rules.test.ts"
+      - "tests/trip-change-evidence.test.mjs"
+      - "tests/trip-change-application-evidence.test.mjs"
+      - "tests/trip-supplement-evidence.test.mjs"
+      - "tests/helpers/**"
+      - "tests/trip-cancellation-evidence.test.mjs"
+      - "tests/trip-cancellation-native.test.mjs"
+      - "tests/trip-change-native.test.mjs"
+      - "tests/trip-change-native-evidence.test.mjs"
+      - "tests/trip-consent-completed-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TripChange*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Trip*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTrip*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeDecisionAwait.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Map*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/RouteMapViewportTest.kt"
+      - "android/app/build.gradle.kts"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripFormTestInput.kt"
+      - "tests/firestore-streaming-policy.test.mjs"
+      - "tests/trip-contention-evidence.test.mjs"
+      - "tests/booking-consistency-evidence.test.mjs"
+      - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/manual-ride-phone-checkpoints.test.mjs"
+      - "tests/ride-completion-recheck-evidence.test.mjs"
+      - "tests/manual-support-phone-checkpoints.test.mjs"
+      - "tests/support-phone-evidence.test.mjs"
+      - "tests/support-followup.test.mjs"
+      - "tests/manual-support-followup-checkpoints.test.mjs"
+      - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/support-submission.test.mjs"
+      - "tests/support-urgent-contract.test.mjs"
+      - "tests/manual-support-urgent-checkpoints.test.mjs"
+      - "tests/support-urgent-phone-evidence.test.mjs"
+      - "tests/support-response-gate.test.mjs"
+      - "tests/manual-support-recovery-checkpoints.test.mjs"
+      - "tests/support-recovery-phone-evidence.test.mjs"
+      - "tests/native-copy-recheck-evidence.test.mjs"
+      - "tests/flow-recheck.test.mjs"
+      - "docs/release/evidence/native-preparation-3904dd80-2026-10-22/**"
+      - "docs/release/evidence/native-terminal-a6d8a630-2026-10-22/**"
+      - "tests/booking-decisions-phone-evidence.test.mjs"
+      - "tests/native-capture-recheck-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingFeedbackLayoutTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingFeedbackTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingReviewFlowTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
+      - "tests/ui-collection-evidence.test.mjs"
+      - "tests/membership-review-controller.test.mjs"
+      - "tests/membership-evidence.test.mjs"
+      - "tests/partner-portal.browser.mjs"
+      - "tests/partner-portal-child-contact.browser.mjs"
+      - "scripts/qa/**"
+      - "tests/local-emulator-config.test.mjs"
+      - "tests/real-maps-local.test.mjs"
+      - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map-display.test.mjs"
+      - "tests/real-map-framing-evidence.test.mjs"
+      - "tests/payment-confirmation-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
+      - "tests/browserstack-isolated-tunnel.test.mjs"
+      - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/manual-team-draft-views.test.mjs"
+      - "tests/manual-team-read-checkpoints.test.mjs"
+      - "tests/manual-team-authority-checkpoints.test.mjs"
+      - "tests/team-chat-authority-phone-evidence.test.mjs"
+      - "tests/team-chat-read-phone-evidence.test.mjs"
+      - "tests/browserstack-isolated-booking-evidence.test.mjs"
+      - "tests/browserstack-parent-search-evidence.test.mjs"
+      - "tests/native-draft-and-map-stage-evidence.test.mjs"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/local-ui-config.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/conversation-test-input.test.mjs"
+      - "tests/trip-change-ui.test.mjs"
+      - "tests/trip-change-inputs-ui.test.mjs"
+      - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart.test.mjs"
+      - "tests/trip-draft-restart.test.mjs"
+      - "tests/trip-consent-recovery.test.mjs"
+      - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-date-evidence.test.mjs"
+      - "tests/trip-history-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeHistoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeDraftRecord.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripDraftPersistenceFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripDraftRestartTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
+      - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
+      - "tests/trip-consent-restart-completed-evidence.test.mjs"
+      - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
+      - "tests/native-suite-runner.test.mjs"
+      - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/continuous-device-evidence.test.mjs"
+      - "tests/session-restoration-fault-proxy.test.mjs"
+      - "tests/session-restoration-records.test.mjs"
+      - "tests/session-restoration-retained-evidence.test.mjs"
+      - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-restoration-recovery.test.mjs"
+      - "tests/ride-observation-preparation.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
+      - "tests/session-disconnect.test.mjs"
+      - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-retained-evidence.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchBookingCheckpoint.kt"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
+      - "tests/native-recheck-evidence.test.mjs"
+      - "tests/native-copy-failure-b158.test.mjs"
+      - "tests/neutral-text-contrast.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/design/Sgm*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
+      - "tests/partner-portal-session-restoration.browser.mjs"
+      - "tests/partner-portal-support-followup.browser.mjs"
+      - "tests/partner-portal-support-submission.browser.mjs"
+      - "tests/independent-native-evidence.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
+      - "scripts/run-focused-android-ui.sh"
+      - ".github/workflows/native-focused-ui.yml"
+      - "tests/native-process-failure-evidence.test.mjs"
+      - "tests/adb-sync-failure-diagnostics.test.mjs"
+      - "tests/local-http-request.test.mjs"
+      - "tests/fixtures/local-idle-http-server.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt"
+      - "tests/input-readiness-evidence.test.mjs"
+      - "docs/release/evidence/local-input-readiness-2026-10-17/**"
+      - "docs/release/evidence/local-schedule-preparation-2026-10-17/**"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationTestInteractions.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadiness.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadinessTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowDiagnostics.kt"
+      - "android/app/src/debug/java/be/sportgreenmoove/app/testing/WindowFocusSnapshot.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/testing/WindowFocusSnapshotTest.kt"
+      - "docs/release/evidence/native-input-focus-2026-10-18/**"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/AuthTestInteractions.kt"
+      - "tests/fixtures/adb-evidence-process.mjs"
+      - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
+      - "tests/support-process-restart-phone-evidence.test.mjs"
+      - "tests/disposable-store-pause.test.mjs"
+      - "tests/disposable-store-diagnostics.test.mjs"
+      - "tests/disposable-installations.test.mjs"
+      - "tests/disposable-install-admin.test.mjs"
+      - "tests/native-membership-config.test.mjs"
+      - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
+      - "tests/dual-transport-evidence.test.mjs"
+      - "tests/dual-transport-completed-evidence.test.mjs"
+      - "tests/local-modem-diagnostics.test.mjs"
+      - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/local-replay-33-evidence.test.mjs"
+      - "docs/release/evidence/local-replay-33-2026-10-18/**"
+      - "tests/default-selection-evidence.test.mjs"
+      - "tests/chat-process-restart.test.mjs"
+      - "tests/session-restoration.test.mjs"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SessionRestorationStateTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Session*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Session*.kt"
+      - "tests/chat-restart-recheck-evidence.test.mjs"
+      - "tests/native-membership-evidence.test.mjs"
+      - "tests/chat-network-evidence.test.mjs"
+      - "tests/cellular-request-evidence.test.mjs"
+      - "tests/local-chat-response-loss.test.mjs"
+      - "tests/native-chat-loss.test.mjs"
+      - "tests/native-chat-loss-receipt.test.mjs"
+      - "tests/native-chat-loss-evidence.test.mjs"
+      - "tests/chat-composer-intent.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/ConversationComposerStateTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamConversation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversation*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamConversationDraftStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversation*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationFlowTest.kt"
+      - "android/app/src/main/AndroidManifest.xml"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Reservation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ReservationModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ConversationDirectoryMappers.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/RememberSearchController.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt"
+      - "tests/local-egress-guard.test.mjs"
+      - "tests/chat-index-command.test.mjs"
+      - "scripts/prepare-chat-inbox.mjs"
+      - "scripts/lib/chat-index-command.mjs"
+      - "database.rules.json"
+      - "firebase.json"
+      - "firestore.indexes.json"
+      - "firestore.rules"
+      - "package-lock.json"
+      - "package.json"
+      - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
+      - "tests/stripe-webhook-flow.test.ts"
+      - "tests/reward-payout-flow.test.ts"
+      - "tests/admin-payout-request.test.ts"
+      - "tests/payout-accounting-evidence.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "docs/release/evidence-manifest.json"
+      - "docs/release/evidence/stripe-callback-outage-2026-10-22/**"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
+      - "scripts/lib/live-smoke-cleanup.mjs"
+      - "scripts/live-backend-flow-smoke.mjs"
+      - "tests/live-smoke-cleanup.test.mjs"
+  push:
+    branches:
+      - main
+    paths:
+      - "tests/team-chat-*.test.mjs"
+      - "tests/team-conversation-contract.test.mjs"
+      - "tests/emergency-phone-recovery.test.mjs"
+      - "scripts/security/rotate-browserstack-key.mjs"
+      - "tests/browserstack-key-rotation.test.mjs"
+      - ".github/workflows/android-browserstack.yml"
+      - "tests/team-review*.mjs"
+      - "tests/native-build-before-boot.test.mjs"
+      - "tests/android-junit-transcript.test.mjs"
+      - "tests/android-matrix-preparation.test.mjs"
+      - "tests/native-current-matrix-evidence.test.mjs"
+      - "tests/disposable-installation-activation.test.mjs"
+      - "tests/adb-host-health.test.mjs"
+      - "tests/emulator-host-observation.test.mjs"
+      - "tests/disposable-launcher-cleanup.test.mjs"
+      - "tests/team-enrollment-sdk.test.mjs"
+      - "tests/team-club-identity.test.mjs"
+      - "tests/team-phone-evidence.test.mjs"
+      - "tests/team-enrollment-history-contract.test.mjs"
+      - "tests/retained-source-evidence.test.mjs"
+      - "tests/manual-team-history-checkpoints.test.mjs"
+      - "tests/supervised-local-process.test.mjs"
+      - "tests/local-entry-command.test.mjs"
+      - "tests/fixtures/signal-entry.mjs"
+      - "tests/fixtures/supervised-service.mjs"
+      - "tests/proxy-trust-security.test.mjs"
+      - "tests/multipart-security.test.mjs"
+      - "tests/helpers/multipart-security-probe.mjs"
+      - "tests/native-network-precondition-evidence.test.mjs"
+      - "tests/native-matrix-36-evidence.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTeamEnrollmentPeer.kt"
+      - "tests/membership-cursor-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/MembershipPageToken.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/GuardianVerificationWire.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/MembershipPageTokenTest.kt"
+      - "tests/team-enrollment-native-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TeamEnrollmentModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamEnrollment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamEnrollment*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamEnrollmentStateTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TeamEnrollmentWireTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamEnrollmentFlowTest.kt"
+      - "tests/team-enrollment-contract.test.mjs"
+      - "tests/emergency-contact-completed-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Booking*.kt"
+      - "tests/booking-recovery-evidence.test.mjs"
+      - "tests/booking-ui-loss.test.mjs"
+      - "tests/booking-search-feedback-evidence.test.mjs"
+      - "tests/subscription-diagnosis-evidence.test.mjs"
+      - "tests/booking-request-rules.test.ts"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/BookingIntentSnapshot.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/Models.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/BookingRequestPayload.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroid*Mapper*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ProviderContracts.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/PassengerStatusObservationOwnershipTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/data/BookingIntentSnapshotTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/Booking*Test.kt"
+      - "ios/Sources/SportsGreenMooveApp/*.swift"
+      - "tests/booking-display-evidence.test.mjs"
+      - ".github/workflows/web-integration-smoke.yml"
+      - ".github/workflows/native-ci.yml"
+      - ".github/workflows/native-vehicle-map-ui.yml"
+      - "scripts/run-vehicle-map-android-ui.sh"
+      - "tests/vehicle-map-display.test.mjs"
+      - "tests/vehicle-map-retained-evidence.test.mjs"
+      - "admin/**"
+      - "docs/contracts/**"
+      - "functions/**"
+      - "website/**"
+      - "partner-portal/**"
+      - "docs/release/evidence/**"
+      - "scripts/build-partner-portal.mjs"
+      - "tests/partner-portal.test.mjs"
+      - "tests/partner-portal-team-history.test.mjs"
+      - "tests/partner-portal-native-startup.test.mjs"
+      - "tests/partner-portal-ui.test.mjs"
+      - "tests/partner-portal.browser.mjs"
+      - "tests/partner-component-scope.test.mjs"
+      - "tests/search-criteria-evidence.test.mjs"
+      - "tests/reservation-evidence.test.mjs"
+      - "tests/trip-capacity-evidence.test.mjs"
+      - "tests/trip-capacity-rules.test.ts"
+      - "tests/team-ownership-rules.test.ts"
+      - "tests/team-ownership-evidence.test.mjs"
+      - "tests/guardian-verification-contract.test.mjs"
+      - "tests/guardian-review-controller.test.mjs"
+      - "tests/guardian-review-evidence.test.mjs"
+      - "tests/guardian-parent-contract.test.mjs"
+      - "tests/emergency-contact-contract.test.mjs"
+      - "tests/child-emergency-contract.test.mjs"
+      - "tests/emergency-contact-editor-contract.test.mjs"
+      - "tests/emergency-contact-native.test.mjs"
+      - "tests/emergency-contact-identity.test.mjs"
+      - "tests/emergency-identity-ui.test.mjs"
+      - "tests/emergency-identity-profile-isolation.test.mjs"
+      - "tests/manual-emergency-checkpoints.test.mjs"
+      - "tests/ride-emergency-evidence.test.mjs"
+      - "tests/ride-emergency-completed-evidence.test.mjs"
+      - "tests/ride-location-ownership.test.mjs"
+      - "tests/location-freshness-evidence.test.mjs"
+      - "tests/location-order-evidence.test.mjs"
+      - "tests/ride-observation-contract.test.mjs"
+      - "tests/notification-settings-contract.test.mjs"
+      - "tests/notification-settings-phone-evidence.test.mjs"
+      - "tests/notification-native-recheck.test.mjs"
+      - "tests/notification-read-*.test.*"
+      - "tests/native-copy-ce282274.test.mjs"
+      - "tests/portal-evidence-fingerprints.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/NotificationSettings*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Profile*Screen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/ProfileSettingsCard.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/OptionsScreen.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/AndroidNotificationSettings.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/NotificationSettingsStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NotificationSettingsFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/services/AndroidNotificationSettingsTest.kt"
+      - "tests/native-startup-contract.test.mjs"
+      - "tests/remote-ride-stop-contract.test.mjs"
+      - "tests/vehicle-map-contract.test.mjs"
+      - "tests/partner-portal-vehicle-map.browser.mjs"
+      - "tests/remote-ride-stop-evidence.test.mjs"
+      - "tests/partner-portal-remote-ride-stop.test.mjs"
+      - "tests/partner-portal-remote-stop.browser.mjs"
+      - "tests/native-startup-evidence.test.mjs"
+      - "tests/local-mock-location-permission.test.mjs"
+      - "tests/local-emulator-log-evidence.test.mjs"
+      - "tests/local-emulator-lifecycle.test.mjs"
+      - "tests/isolated-ride-records.test.mjs"
+      - "tests/ride-observation-evidence.test.mjs"
+      - "tests/disposable-local-app-reset.test.mjs"
+      - "tests/emergency-contact-scheduler.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*Emergency*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ExternalUiSynchronizationTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContact*Test.kt"
+      - "tests/local-replay-34-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/EmergencyContactModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Emergency*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Emergency*.kt"
+      - "tests/trip-cancellation-rules.test.ts"
+      - "tests/trip-details-rules.test.ts"
+      - "tests/trip-details-evidence.test.mjs"
+      - "tests/trip-change-rules.test.ts"
+      - "tests/trip-change-evidence.test.mjs"
+      - "tests/trip-change-application-evidence.test.mjs"
+      - "tests/trip-supplement-evidence.test.mjs"
+      - "tests/helpers/**"
+      - "tests/trip-cancellation-evidence.test.mjs"
+      - "tests/trip-cancellation-native.test.mjs"
+      - "tests/trip-change-native.test.mjs"
+      - "tests/trip-change-native-evidence.test.mjs"
+      - "tests/trip-consent-completed-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripChangeInput.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TripChange*Test.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/services/TripChange*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Trip*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTrip*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeDecisionAwait.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRealMapsTripChangeTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/RealMapDisplayEvidence.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Map*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/RouteMapViewportTest.kt"
+      - "android/app/build.gradle.kts"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripFormTestInput.kt"
+      - "tests/firestore-streaming-policy.test.mjs"
+      - "tests/trip-contention-evidence.test.mjs"
+      - "tests/booking-consistency-evidence.test.mjs"
+      - "tests/booking-notice-atomicity.test.mjs"
+      - "tests/manual-booking-phone-checkpoints.test.mjs"
+      - "tests/manual-ride-phone-checkpoints.test.mjs"
+      - "tests/ride-completion-recheck-evidence.test.mjs"
+      - "tests/manual-support-phone-checkpoints.test.mjs"
+      - "tests/support-phone-evidence.test.mjs"
+      - "tests/support-followup.test.mjs"
+      - "tests/manual-support-followup-checkpoints.test.mjs"
+      - "tests/support-followup-phone-evidence.test.mjs"
+      - "tests/support-submission.test.mjs"
+      - "tests/support-urgent-contract.test.mjs"
+      - "tests/manual-support-urgent-checkpoints.test.mjs"
+      - "tests/support-urgent-phone-evidence.test.mjs"
+      - "tests/support-response-gate.test.mjs"
+      - "tests/manual-support-recovery-checkpoints.test.mjs"
+      - "tests/support-recovery-phone-evidence.test.mjs"
+      - "tests/native-copy-recheck-evidence.test.mjs"
+      - "tests/flow-recheck.test.mjs"
+      - "docs/release/evidence/native-preparation-3904dd80-2026-10-22/**"
+      - "docs/release/evidence/native-terminal-a6d8a630-2026-10-22/**"
+      - "tests/booking-decisions-phone-evidence.test.mjs"
+      - "tests/native-capture-recheck-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReviewRequiredException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/BookingReplyUnconfirmedException.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/V2Components.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingFeedbackLayoutTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/MeasuredTextAssertions.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingFeedbackTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicy.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/domain/UserFacingErrorPolicyTest.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SearchBookingRecoveryTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/BookingReviewFlowTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Trip*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Trip*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripCancellationModels.kt"
+      - "tests/ui-collection-evidence.test.mjs"
+      - "tests/membership-review-controller.test.mjs"
+      - "tests/membership-evidence.test.mjs"
+      - "tests/partner-portal.browser.mjs"
+      - "scripts/qa/**"
+      - "tests/local-emulator-config.test.mjs"
+      - "tests/real-maps-local.test.mjs"
+      - "tests/real-maps-ui.test.mjs"
+      - "tests/real-map-display.test.mjs"
+      - "tests/real-map-framing-evidence.test.mjs"
+      - "tests/payment-confirmation-contract.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/RidePaymentVerification.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Payment*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/*Payment*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentConfirmationLayoutTest.kt"
+      - "tests/browserstack-isolated-tunnel.test.mjs"
+      - "tests/scoped-browserstack-local.test.mjs"
+      - "tests/manual-team-draft-views.test.mjs"
+      - "tests/manual-team-read-checkpoints.test.mjs"
+      - "tests/manual-team-authority-checkpoints.test.mjs"
+      - "tests/team-chat-authority-phone-evidence.test.mjs"
+      - "tests/team-chat-read-phone-evidence.test.mjs"
+      - "tests/browserstack-isolated-booking-evidence.test.mjs"
+      - "tests/browserstack-parent-search-evidence.test.mjs"
+      - "tests/native-draft-and-map-stage-evidence.test.mjs"
+      - ".github/workflows/native-real-maps-ui.yml"
+      - ".github/actions/native-test-setup/**"
+      - "scripts/run-real-maps-android-ui.sh"
+      - "tests/local-ui-config.test.mjs"
+      - "tests/local-evidence-collection.test.mjs"
+      - "tests/conversation-test-input.test.mjs"
+      - "tests/trip-change-ui.test.mjs"
+      - "tests/trip-change-inputs-ui.test.mjs"
+      - "tests/trip-change-schedule-ui.test.mjs"
+      - "tests/trip-schedule-completed-evidence.test.mjs"
+      - "tests/trip-consent-restart.test.mjs"
+      - "tests/trip-draft-restart.test.mjs"
+      - "tests/trip-consent-recovery.test.mjs"
+      - "tests/trip-consent-recovery-completed-evidence.test.mjs"
+      - "tests/trip-date-evidence.test.mjs"
+      - "tests/trip-history-evidence.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeHistoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/TripChangeDraftRecord.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripDraftPersistenceFlowTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripDraftRestartTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripHistoryFlowTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripDateLabels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/domain/TripCalendar.kt"
+      - "docs/release/evidence/local-trip-consent-recovery-native-2026-10-17/**"
+      - "tests/trip-consent-restart-completed-evidence.test.mjs"
+      - "docs/release/evidence/local-trip-consent-restart-native-2026-10-17/**"
+      - "tests/native-suite-runner.test.mjs"
+      - "tests/native-focused-runner.test.mjs"
+      - "tests/continuous-disposable-device.test.mjs"
+      - "tests/continuous-device-evidence.test.mjs"
+      - "tests/session-restoration-fault-proxy.test.mjs"
+      - "tests/session-restoration-records.test.mjs"
+      - "tests/session-restoration-retained-evidence.test.mjs"
+      - "tests/session-restoration-recheck.test.mjs"
+      - "tests/session-restoration-recovery.test.mjs"
+      - "tests/ride-observation-preparation.test.mjs"
+      - "tests/session-transport-observations.test.mjs"
+      - "tests/session-disconnect.test.mjs"
+      - "tests/session-disconnect-retained-evidence.test.mjs"
+      - "tests/parent-search-booking-preparation.test.mjs"
+      - "tests/search-maps-budget.test.mjs"
+      - "tests/search-booking-runner.test.mjs"
+      - "tests/search-booking-retained-evidence.test.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/SearchBookingCheckpoint.kt"
+      - "tests/search-maps-bridge.test.mjs"
+      - ".github/workflows/native-search-booking-ui.yml"
+      - "scripts/run-search-booking-android-ui.sh"
+      - "tests/native-recheck-evidence.test.mjs"
+      - "tests/native-copy-failure-b158.test.mjs"
+      - "tests/neutral-text-contrast.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/design/Sgm*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/design/SgmTextContrastTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/NeutralText*.kt"
+      - "tests/partner-portal-session-restoration.browser.mjs"
+      - "tests/partner-portal-support-followup.browser.mjs"
+      - "tests/partner-portal-support-submission.browser.mjs"
+      - "tests/independent-native-evidence.test.mjs"
+      - "tests/fixtures/continuous-disposable-device.mjs"
+      - "scripts/run-focused-android-ui.sh"
+      - ".github/workflows/native-focused-ui.yml"
+      - "tests/native-process-failure-evidence.test.mjs"
+      - "tests/adb-sync-failure-diagnostics.test.mjs"
+      - "tests/local-http-request.test.mjs"
+      - "tests/fixtures/local-idle-http-server.mjs"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeFlowTest.kt"
+      - "tests/input-readiness-evidence.test.mjs"
+      - "docs/release/evidence/local-input-readiness-2026-10-17/**"
+      - "docs/release/evidence/local-schedule-preparation-2026-10-17/**"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationTestInteractions.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadiness.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowReadinessTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/InputWindowDiagnostics.kt"
+      - "android/app/src/debug/java/be/sportgreenmoove/app/testing/WindowFocusSnapshot.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/testing/WindowFocusSnapshotTest.kt"
+      - "docs/release/evidence/native-input-focus-2026-10-18/**"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/AuthTestInteractions.kt"
+      - "tests/fixtures/adb-evidence-process.mjs"
+      - "tests/disposable-android.test.mjs"
+      - "tests/disposable-emulator-selection.test.mjs"
+      - "tests/android-support-call-trace.test.mjs"
+      - "tests/support-process-restart-phone-evidence.test.mjs"
+      - "tests/disposable-store-pause.test.mjs"
+      - "tests/disposable-store-diagnostics.test.mjs"
+      - "tests/disposable-installations.test.mjs"
+      - "tests/disposable-install-admin.test.mjs"
+      - "tests/native-membership-config.test.mjs"
+      - "tests/chat-network-config.test.mjs"
+      - "tests/dual-transport-config.test.mjs"
+      - "tests/network-start-observation.test.mjs"
+      - "tests/dual-transport-evidence.test.mjs"
+      - "tests/dual-transport-completed-evidence.test.mjs"
+      - "tests/local-modem-diagnostics.test.mjs"
+      - "tests/local-default-selection-diagnostics.test.mjs"
+      - "tests/network-bootstrap-observation.test.mjs"
+      - "tests/pr-user-flow-checks.test.mjs"
+      - "tests/local-replay-33-evidence.test.mjs"
+      - "docs/release/evidence/local-replay-33-2026-10-18/**"
+      - "tests/default-selection-evidence.test.mjs"
+      - "tests/chat-process-restart.test.mjs"
+      - "tests/session-restoration.test.mjs"
+      - "scripts/run-android-ui-tests-and-collect-screenshots.sh"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/SessionRestorationStateTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Session*.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Session*.kt"
+      - "tests/chat-restart-recheck-evidence.test.mjs"
+      - "tests/native-membership-evidence.test.mjs"
+      - "tests/chat-network-evidence.test.mjs"
+      - "tests/cellular-request-evidence.test.mjs"
+      - "tests/local-chat-response-loss.test.mjs"
+      - "tests/native-chat-loss.test.mjs"
+      - "tests/native-chat-loss-receipt.test.mjs"
+      - "tests/native-chat-loss-evidence.test.mjs"
+      - "tests/chat-composer-intent.test.mjs"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Conversation*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/ConversationComposerStateTest.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*TeamConversation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/TeamConversation*.kt"
+      - "android/app/src/test/java/be/sportgreenmoove/app/ui/TeamConversationDraftStateTest.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamConversation*Test.kt"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ConversationFlowTest.kt"
+      - "android/app/src/main/AndroidManifest.xml"
+      - "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/Local*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Search*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/Reservation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/*Reservation*.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ReservationModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/data/ConversationDirectoryModels.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/ConversationDirectoryMappers.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/RememberSearchController.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt"
+      - "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidGateway.kt"
+      - "tests/local-egress-guard.test.mjs"
+      - "tests/chat-index-command.test.mjs"
+      - "scripts/prepare-chat-inbox.mjs"
+      - "scripts/lib/chat-index-command.mjs"
+      - "database.rules.json"
+      - "firebase.json"
+      - "firestore.indexes.json"
+      - "firestore.rules"
+      - "package-lock.json"
+      - "package.json"
+      - "storage.rules"
+      - "tests/admin-plan-coverage.test.mjs"
+      - "tests/stripe-webhook-flow.test.ts"
+      - "tests/reward-payout-flow.test.ts"
+      - "tests/admin-payout-request.test.ts"
+      - "tests/payout-accounting-evidence.test.mjs"
+      - "tests/stripe-production-readiness.test.mjs"
+      - "tests/release-gaps.test.mjs"
+      - "docs/release/evidence-manifest.json"
+      - "docs/release/evidence/stripe-callback-outage-2026-10-22/**"
+      - "scripts/check-stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-production-readiness.mjs"
+      - "scripts/lib/stripe-readiness-http.mjs"
+      - "scripts/lib/live-smoke-cleanup.mjs"
+      - "scripts/live-backend-flow-smoke.mjs"
+      - "tests/live-smoke-cleanup.test.mjs"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  smoke:
+    name: Functions, admin, and website smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate required checks and report ordering
+        run: npm run test:pr-user-flow-checks
+
+      - name: Test Functions
+        run: npm test --workspace functions
+
+      - name: Test Belgian trip dates across server timezones
+        run: |
+          for timezone in UTC America/Los_Angeles Asia/Tokyo; do
+            TZ="$timezone" npm test --workspace functions -- src/__tests__/client-trip-dates.test.ts
+          done
+
+      - name: Validate Belgian trip date regression evidence
+        run: node --test tests/trip-date-evidence.test.mjs
+
+      - name: Validate scoped trip history evidence
+        run: node --test tests/trip-history-evidence.test.mjs tests/local-replay-33-evidence.test.mjs tests/local-replay-34-evidence.test.mjs
+
+      - name: Test isolated trip history access and paging
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-history/results.json
+        run: node scripts/qa/run-local-trip-history.mjs
+
+      - name: Build Functions
+        run: npm run build --workspace functions
+
+      - name: Validate local test isolation
+        run: npm run test:local-flow-isolation
+      - name: Validate independent focused safety lane
+        run: node --test tests/native-focused-runner.test.mjs tests/continuous-disposable-device.test.mjs tests/emulator-host-observation.test.mjs tests/disposable-launcher-cleanup.test.mjs
+      - name: Validate preinstalled full-matrix APKs and complete raw JUnit inventory
+        run: node --test tests/android-junit-transcript.test.mjs tests/android-matrix-preparation.test.mjs
+      - name: Validate retained independent Android execution and device observations
+        run: node --test tests/independent-native-evidence.test.mjs tests/continuous-device-evidence.test.mjs
+      - name: Test bounded restoration faults and unchanged fixture records
+        run: node --test tests/session-transport-observations.test.mjs tests/session-restoration-fault-proxy.test.mjs tests/session-restoration-records.test.mjs tests/session-restoration-retained-evidence.test.mjs tests/session-restoration-recheck.test.mjs tests/session-restoration-recovery.test.mjs tests/ride-observation-preparation.test.mjs tests/session-disconnect.test.mjs tests/session-disconnect-retained-evidence.test.mjs
+      - name: Validate guarded full-search preparation and accessible trip controls
+        run: node --test tests/parent-search-booking-preparation.test.mjs tests/search-maps-budget.test.mjs tests/search-booking-runner.test.mjs tests/search-maps-bridge.test.mjs tests/search-booking-retained-evidence.test.mjs
+      - name: Validate dated full native replay recheck
+        run: node --test tests/native-recheck-evidence.test.mjs tests/native-copy-failure-b158.test.mjs
+      - name: Validate neutral text contrast and native capture scope
+        run: node --test tests/neutral-text-contrast.test.mjs
+
+      - name: Validate approved disposable-phone installation policy
+        run: node --test tests/disposable-installations.test.mjs tests/disposable-install-admin.test.mjs tests/disposable-store-pause.test.mjs tests/disposable-store-diagnostics.test.mjs
+
+      - name: Validate isolated private phone tunnel policy
+        run: node --test tests/browserstack-isolated-tunnel.test.mjs tests/browserstack-isolated-booking-evidence.test.mjs tests/browserstack-parent-search-evidence.test.mjs tests/scoped-browserstack-local.test.mjs tests/manual-team-draft-views.test.mjs tests/manual-team-read-checkpoints.test.mjs tests/manual-team-authority-checkpoints.test.mjs
+      - name: Validate encrypted credential rotation without provider requests
+        run: node --test tests/browserstack-key-rotation.test.mjs
+      - name: Validate independent contact recovery without accepting a blocked dialer
+        run: node --test tests/emergency-phone-recovery.test.mjs
+
+      - name: Validate explicit real-map test boundaries without provider calls
+        run: node --test tests/real-maps-local.test.mjs tests/real-maps-ui.test.mjs tests/real-map-display.test.mjs tests/real-map-framing-evidence.test.mjs tests/native-draft-and-map-stage-evidence.test.mjs tests/payment-confirmation-contract.test.mjs
+
+      - name: Validate bounded local response-loss injection
+        run: node --test tests/local-chat-response-loss.test.mjs
+
+      - name: Validate native SDK response-loss injection
+        run: node --test tests/native-chat-loss.test.mjs tests/native-chat-loss-receipt.test.mjs tests/native-chat-loss-evidence.test.mjs
+
+      - name: Test isolated multi-person flows
+        run: npm run test:local-flows
+
+      - name: Test runtime proxy trust against forwarded-address spoofing
+        run: node --test tests/proxy-trust-security.test.mjs
+
+      - name: Test runtime multipart parser against malformed inputs
+        run: node --test tests/multipart-security.test.mjs
+
+      - name: Validate network run evidence and temporary administration cleanup
+        run: node --test tests/native-network-precondition-evidence.test.mjs tests/native-matrix-36-evidence.test.mjs
+
+      - name: Validate initial network observation before test-only transport requests
+        run: node --test tests/network-start-observation.test.mjs tests/native-current-matrix-evidence.test.mjs tests/disposable-installation-activation.test.mjs
+
+      - name: Validate guardian verification contracts and retained scope
+        run: node --test tests/guardian-verification-contract.test.mjs
+      - name: Test atomic booking decisions and recipient notifications
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/booking-notices.json
+        run: npm run test:booking-notices && node --test tests/booking-notice-atomicity.test.mjs tests/manual-booking-phone-checkpoints.test.mjs tests/flow-recheck.test.mjs tests/booking-decisions-phone-evidence.test.mjs tests/native-capture-recheck-evidence.test.mjs
+      - name: Check completed ride and physical-phone evidence
+        run: node --test tests/manual-ride-phone-checkpoints.test.mjs tests/ride-completion-recheck-evidence.test.mjs
+      - name: Check truthful notification settings and isolated observation
+        run: node --test tests/notification-settings-contract.test.mjs tests/notification-settings-phone-evidence.test.mjs
+      - name: Test private idempotent notification acknowledgements
+        run: npm run test:notification-reads
+      - name: Check executed notification cases, latest replay and complete portal fingerprints
+        run: node --test tests/notification-native-recheck.test.mjs tests/native-copy-ce282274.test.mjs tests/portal-evidence-fingerprints.test.mjs
+      - name: Validate physical guardian revocation and new team admission evidence
+        run: node --test tests/team-chat-authority-phone-evidence.test.mjs
+      - name: Validate isolated phone support checkpoints
+        run: node --test tests/manual-support-phone-checkpoints.test.mjs tests/support-phone-evidence.test.mjs
+      - name: Test private requester support replies and explicit retry
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-followup.json
+        run: npm run test:support-followup && node --test tests/support-followup.test.mjs tests/manual-support-followup-checkpoints.test.mjs tests/support-followup-phone-evidence.test.mjs
+      - name: Validate terminal native copy failure and passing support components
+        run: node --test tests/native-copy-recheck-evidence.test.mjs
+      - name: Verify requester support submission recovery and urgent flag in isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-submission.json
+        run: npm run test:support-submission && node --test tests/support-submission.test.mjs
+
+      - name: Verify support-only urgent alerts and idempotent mail delivery in isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/support-urgent.json
+        run: npm run test:support-urgent && node --test tests/support-urgent-contract.test.mjs tests/manual-support-urgent-checkpoints.test.mjs tests/support-urgent-phone-evidence.test.mjs
+      - name: Validate private real-phone support recovery observation safeguards
+        run: node --test tests/support-response-gate.test.mjs tests/manual-support-recovery-checkpoints.test.mjs tests/support-recovery-phone-evidence.test.mjs
+      - name: Validate isolated device readiness and private support call diagnostics
+        run: node --test tests/disposable-emulator-selection.test.mjs tests/android-support-call-trace.test.mjs tests/support-process-restart-phone-evidence.test.mjs
+
+      - name: Test team-only adult conversations and admission-scoped history
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-conversation-services.json
+        run: npm run test:team-conversation && node --test tests/team-conversation-contract.test.mjs
+      - name: Test multi-child grants and cross-team conversation isolation
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-access-changes.json
+        run: npm run test:team-chat-access-changes && node --test tests/team-chat-access-changes.test.mjs tests/team-chat-native-access.test.mjs tests/team-chat-native-attempt-access.test.mjs tests/team-chat-native-access-retained.test.mjs tests/team-chat-draft-restart.test.mjs tests/team-chat-draft-persistence.test.mjs
+      - name: Verify isolated team conversation directory
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-options.json
+        run: npm run test:team-chat-options && node --test tests/team-chat-native-contract.test.mjs tests/team-chat-ui-evidence.test.mjs tests/team-chat-connected-contract.test.mjs tests/team-chat-native-attempt.test.mjs tests/team-chat-connected-retained.test.mjs
+      - name: Verify isolated team read state and retained evidence
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/team-chat-reads.json
+        run: npm run test:team-chat-reads && node --test tests/team-chat-read-contract.test.mjs tests/team-chat-read-evidence.test.mjs tests/team-chat-read-connected-evidence.test.mjs tests/team-chat-read-component-attempt.test.mjs tests/team-chat-read-components-evidence.test.mjs tests/team-chat-read-phone-evidence.test.mjs
+
+      - name: Test isolated guardian verification authority and lifecycle
+        run: npm run test:guardian-verification
+
+      - name: Test guardian review permissions, pagination and decision state
+        run: npm run test:guardian-review && node --test tests/guardian-review-controller.test.mjs tests/guardian-review-evidence.test.mjs
+
+      - name: Test parent verification choices and authoritative state reads
+        run: npm run test:guardian-parent && node --test tests/guardian-parent-contract.test.mjs
+
+      - name: Test private emergency contact ownership and revocation
+        run: npm run test:emergency-contact && node --test tests/emergency-contact-contract.test.mjs tests/emergency-contact-editor-contract.test.mjs tests/emergency-contact-native.test.mjs tests/emergency-contact-scheduler.test.mjs
+      - name: Test child emergency reading with preseeded private account links
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/child-emergency-services.json
+        run: npm run test:child-emergency && node --test tests/child-emergency-contract.test.mjs
+      - name: Test immutable child contact identity and independently verified fixtures
+        run: npm run test:emergency-contact-identity && npm run test:emergency-contact-fixture && npm run test:ride-emergency-fixture && node --test tests/emergency-contact-identity.test.mjs tests/manual-emergency-checkpoints.test.mjs tests/ride-emergency-evidence.test.mjs tests/ride-location-ownership.test.mjs tests/ride-emergency-completed-evidence.test.mjs
+
+      - name: Test authoritative team enrollment without granting conversation access
+        run: npm run test:team-enrollment && node --test tests/team-enrollment-contract.test.mjs tests/emergency-contact-completed-evidence.test.mjs
+
+      - name: Test team enrollment across club recreation with verified disposal
+        id: team_club_identity
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-team-club-identity/results.json
+        run: npm run test:team-club-identity && node --test tests/team-club-identity.test.mjs
+
+      - name: Validate recreated child contact UI evidence contract
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/emergency-identity-fixture.json
+        run: node scripts/qa/run-emergency-identity-fixture.mjs && node --test tests/emergency-identity-ui.test.mjs tests/emergency-identity-profile-isolation.test.mjs
+
+      - name: Verify observation freshness through isolated authenticated location calls
+        run: npm run test:location-freshness && node --test tests/location-freshness-evidence.test.mjs
+
+      - name: Verify atomic observation ordering through concurrent location calls
+        run: npm run test:location-order && node --test tests/location-order-evidence.test.mjs
+
+      - name: Verify selected ride observer authorization and remote lifecycle responses
+        run: npm run test:ride-observation-services && node --test tests/ride-observation-contract.test.mjs tests/ride-observation-evidence.test.mjs tests/disposable-local-app-reset.test.mjs
+      - name: Validate native startup acknowledgement and temporary mock policy contracts
+        run: node --test tests/native-startup-contract.test.mjs tests/native-startup-evidence.test.mjs tests/local-mock-location-permission.test.mjs tests/local-emulator-log-evidence.test.mjs tests/local-emulator-lifecycle.test.mjs tests/isolated-ride-records.test.mjs
+      - name: Validate reviewed native startup tour scope
+        run: node --test tests/partner-portal-native-startup.test.mjs
+      - name: Validate service-owned remote completion and isolated cleanup
+        run: node --test tests/remote-ride-stop-contract.test.mjs tests/remote-ride-stop-evidence.test.mjs tests/partner-portal-remote-ride-stop.test.mjs tests/isolated-ride-records.test.mjs
+      - name: Verify authorized vehicle coordinates and invalid geographic input rejection
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-vehicle-map-services.json
+        run: npm run test:vehicle-map-services && node --test tests/vehicle-map-contract.test.mjs tests/vehicle-map-display.test.mjs tests/vehicle-map-retained-evidence.test.mjs
+
+      - name: Test owned enrollment history after eligibility and identity loss
+        run: npm run test:team-enrollment-history && npm run test:team-history-phone-fixture && node --test tests/team-enrollment-history-contract.test.mjs tests/retained-source-evidence.test.mjs tests/manual-team-history-checkpoints.test.mjs
+      - name: Test owned local service process supervision
+        run: node --test tests/supervised-local-process.test.mjs tests/local-entry-command.test.mjs
+      - name: Verify actual isolated UI service interruption cleanup
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-local-ui-shutdown.json
+        run: npm run test:local-ui-shutdown
+
+      - name: Test scoped team and verified child choices
+        run: npm run test:team-options && node --test tests/team-enrollment-native-contract.test.mjs
+
+      - name: Test shared membership cursor continuation and authorization
+        run: npm run test:membership-cursors && node --test tests/membership-cursor-contract.test.mjs
+
+      - name: Test native team fixture lifecycle and fail-closed evidence contract
+        run: npm run test:team-native-fixtures && node --test tests/team-enrollment-sdk.test.mjs tests/team-phone-evidence.test.mjs tests/adb-host-health.test.mjs tests/native-build-before-boot.test.mjs
+
+      - name: Test manager team review scope and real service lifecycle
+        run: npm run test:team-review && node --test tests/team-review-controller.test.mjs tests/team-review-wire.test.mjs tests/team-review-evidence.test.mjs
+
+      - name: Test transaction query conflict propagation
+        run: node --test tests/firestore-streaming-policy.test.mjs tests/trip-contention-evidence.test.mjs
+
+      - name: Validate booking consistency and recovery evidence
+        run: node --test tests/booking-consistency-evidence.test.mjs
+
+      - name: Validate displayed booking intent evidence
+        run: node --test tests/booking-display-evidence.test.mjs
+
+      - name: Validate booking response-loss evidence
+        run: node --test tests/booking-recovery-evidence.test.mjs tests/subscription-diagnosis-evidence.test.mjs tests/booking-ui-loss.test.mjs tests/booking-search-feedback-evidence.test.mjs
+
+      - name: Validate current default selection comparison evidence
+        run: node --test tests/default-selection-evidence.test.mjs
+
+      - name: Test booking retry identity and changed-intent races
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-recovery/transport.json
+        run: npm run test:booking-response-loss
+
+      - name: Test durable Swift booking recovery
+        env:
+          SGM_SWIFT_BOOKING_RECOVERY_OUTPUT: ${{ runner.temp }}/sgm-booking-recovery/swift.json
+        run: npm run test:booking-recovery-wire
+
+      - name: Test server-only booking request receipts
+        run: npx firebase emulators:exec --project sports-green-moove-rules-test --only firestore "npx vitest run tests/booking-request-rules.test.ts"
+
+      - name: Test Swift booking snapshot wire contract
+        env:
+          SGM_SWIFT_BOOKING_OUTPUT: ${{ runner.temp }}/sgm-booking-wire/results.json
+        run: |
+          mkdir -p "${{ runner.temp }}/sgm-booking-wire"
+          npm run test:booking-intent-wire
+
+      - name: Test displayed terms against current booking conditions
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-display/results.json
+        run: npm run test:booking-display
+
+      - name: Test controlled approval and cancellation overlap
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-trip-contention/results.json
+        run: npm run test:trip-contention
+
+      - name: Test transactional booking terms and guardian authority
+        env:
+          SGM_LOCAL_FLOW_OUTPUT: ${{ runner.temp }}/sgm-booking-consistency/results.json
+        run: npm run test:booking-consistency
+
+      - name: Test team club ownership rules
+        run: npm run test:team-ownership-rules
+
+      - name: Test server-owned trip cancellation rules
+        run: npm run test:trip-cancellation-rules
+
+      - name: Test server-owned trip details
+        run: npm run test:trip-details-rules
+
+      - name: Test server-owned trip proposals and parent decisions
+        run: npm run test:trip-change-rules
+
+      - name: Validate native trip cancellation integration
+        run: node --test tests/trip-cancellation-native.test.mjs tests/trip-change-native.test.mjs
+
+      - name: Validate scoped native trip-change evidence
+        run: node --test tests/trip-change-native-evidence.test.mjs
+
+      - name: Validate completed native parent consent evidence
+        run: node --test tests/trip-consent-completed-evidence.test.mjs
+
+      - name: Validate dual-transport network prerequisites
+        run: node --test tests/dual-transport-config.test.mjs tests/dual-transport-evidence.test.mjs tests/dual-transport-completed-evidence.test.mjs
+
+      - name: Validate input window readiness evidence
+        run: node --test tests/input-readiness-evidence.test.mjs
+
+      - name: Validate bounded file-sync failure diagnostics
+        run: node --test tests/adb-sync-failure-diagnostics.test.mjs
+
+      - name: Validate explicit partner component evidence scope
+        run: node --test tests/partner-component-scope.test.mjs
+
+      - name: Build Admin
+        run: npm run build --workspace admin
+
+      - name: Validate membership decision state
+        run: node --test tests/membership-review-controller.test.mjs
+
+      - name: Validate public privacy route
+        run: npm run test:privacy-policy-page
+
+      - name: Validate private partner portal evidence and contracts
+        run: node --test tests/partner-portal.test.mjs tests/partner-portal-team-history.test.mjs tests/search-criteria-evidence.test.mjs tests/reservation-evidence.test.mjs tests/trip-capacity-evidence.test.mjs tests/membership-evidence.test.mjs tests/native-membership-evidence.test.mjs tests/chat-network-evidence.test.mjs tests/cellular-request-evidence.test.mjs tests/chat-composer-intent.test.mjs tests/team-ownership-evidence.test.mjs tests/trip-cancellation-evidence.test.mjs tests/trip-details-evidence.test.mjs tests/trip-change-evidence.test.mjs tests/trip-change-application-evidence.test.mjs tests/trip-supplement-evidence.test.mjs tests/ui-collection-evidence.test.mjs tests/chat-restart-recheck-evidence.test.mjs
+
+      - name: Validate admin plan coverage
+        run: npm run test:admin-plan-coverage
+
+      - name: Test Stripe webhook flow
+        run: npm run test:stripe-webhook-flow
+      - name: Validate isolated payout evidence and its verification limits
+        run: node --test tests/payout-accounting-evidence.test.mjs
+
+      - name: Test Stripe production readiness verification
+        run: npm run test:stripe-production-readiness && npm run test:release-gaps
+
+      - name: Test live smoke cleanup
+        run: npm run test:live-smoke-cleanup
+
+      - name: Build Website
+        run: npm run build --workspace website
+
+      - name: Retain booking notification and cleanup results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-booking-notices
+          path: ${{ runner.temp }}/booking-notices.json
+          if-no-files-found: ignore
+
+      - name: Upload club identity trial and disposal evidence
+        if: always() && steps.team_club_identity.outcome != 'skipped'
+        uses: actions/upload-artifact@v7
+        with:
+          name: team-club-identity-results
+          path: ${{ runner.temp }}/sgm-team-club-identity/**
+          if-no-files-found: error
+
+      - name: Upload isolated trip history results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-history-results
+          path: ${{ runner.temp }}/sgm-trip-history/**
+          if-no-files-found: ignore
+
+      - name: Upload booking retry receipts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-recovery-results
+          path: ${{ runner.temp }}/sgm-booking-recovery/**
+          if-no-files-found: ignore
+
+      - name: Upload displayed booking and wire evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-display-results
+          path: |
+            ${{ runner.temp }}/sgm-booking-display/**
+            ${{ runner.temp }}/sgm-booking-wire/**
+          if-no-files-found: ignore
+
+      - name: Upload controlled booking consistency evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: booking-consistency-results
+          path: ${{ runner.temp }}/sgm-booking-consistency/**
+          if-no-files-found: ignore
+
+      - name: Upload controlled transaction conflict evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: trip-contention-results
+          path: ${{ runner.temp }}/sgm-trip-contention/**
+          if-no-files-found: ignore

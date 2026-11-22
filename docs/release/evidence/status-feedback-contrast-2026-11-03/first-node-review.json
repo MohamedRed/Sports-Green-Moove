@@ -1,0 +1,17 @@
+{
+  "scope": "shell-harness-missing-new-required-fixtures-not-product-feedback-failure",
+  "tests": 3961,
+  "passed": 3949,
+  "failed": 12,
+  "originalFullTapSha256": "7140fac4095db589ef66a37a57fa353d7dfd5fde3ed0c061e35a9eb98881c993",
+  "originalFullTapPreservedPrivately": true,
+  "originalAssertionsRelaxed": false,
+  "harnessSources": {
+    "before": {
+      "tests/native-suite-runner.test.mjs": "659457115bce16b4d46478c86fe3fcfa15606a74385f1927b67a46395086ece1"
+    },
+    "after": {
+      "tests/native-suite-runner.test.mjs": "faf311a4447d3fd1fc26a719e03e24417737d809e8cf62af4974ac9230b13ad5"
+    }
+  }
+}

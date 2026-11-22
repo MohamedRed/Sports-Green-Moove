@@ -1,0 +1,36 @@
+{
+  "scope": "failed-network-preparation-not-chat-retry-or-release-proof",
+  "sourceCommit": "e2bb5d264a158137624ed041300acdc370061103",
+  "testedAt": "2026-11-01T15:39:14Z",
+  "fullGatePassed": false,
+  "mainJobPassed": true,
+  "ordinary": {
+    "cases": 286,
+    "passed": 232,
+    "skipped": 54,
+    "failed": 0
+  },
+  "focused": {
+    "lanes": 11,
+    "passed": 10,
+    "failed": 1
+  },
+  "failedPhase": "network-preparation",
+  "failedLine": 83,
+  "requestedCellularAvailableCallbacks": 0,
+  "wifiReadinessEarlierPassed": true,
+  "chatRetryOutcomeReached": false,
+  "privateStorageCasePassed": true,
+  "rootCauseConfirmed": false,
+  "physicalDevice": false,
+  "runtimeCallbacksExecuted": false,
+  "pushDeliveryVerified": false,
+  "releaseAccepted": false,
+  "rawArchiveDigestIndependentlyMatched": false,
+  "publishedCaptures": {},
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "a5293f3abf5880aab211d2c4ca2e47f80564709401452926ba449fa5ef66e380",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt": "5c875ea6ddbef45021441f20bbef78d3ebf27d97657ff97057209406c115a965",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TeamPushPrivateStorageTest.kt": "3f2fcd65026521560459db34ccc800feb5036cc158272bf3ea0e05e9a359a8ed"
+  }
+}

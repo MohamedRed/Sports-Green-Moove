@@ -1,0 +1,50 @@
+name: Approved Network Startup Observation
+
+on:
+  workflow_call:
+    inputs:
+      approved:
+        type: boolean
+        required: true
+
+jobs:
+  startup-observation:
+    if: ${{ inputs.approved }}
+    name: Temporary network logs (not a flow pass)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+      - run: npm ci
+      - run: node --test tests/network-startup-logging.test.mjs
+      - uses: android-actions/setup-android@v4
+      - name: Enable acceleration on the disposable runner
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Observe one approved cold startup and restore logging
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          SGM_LOCAL_DISPOSABLE_EMULATOR: "true"
+          SGM_NETWORK_STARTUP_LOGGING_APPROVED: "true"
+          SGM_NETWORK_DIAGNOSTIC_DEVICE_OWNED: "true"
+        with:
+          api-level: 35
+          target: google_apis_playstore
+          arch: x86_64
+          profile: pixel_6
+          emulator-options: -no-window -gpu software -no-snapshot -noaudio -no-boot-anim
+          script: node scripts/qa/run-network-startup-logging.mjs "${{ github.workspace }}/android/app/build/outputs/network-startup-logging"
+      - name: Retain sanitized states and restoration only
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: approved-network-startup-logging
+          path: android/app/build/outputs/network-startup-logging/**/*.json
+          if-no-files-found: error

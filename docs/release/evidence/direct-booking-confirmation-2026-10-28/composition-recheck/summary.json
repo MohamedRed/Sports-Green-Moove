@@ -1,0 +1,15 @@
+{
+  "scope": "post-phone-home-composition-extraction-local-unit-and-compilation-only",
+  "phoneRerun": false,
+  "installedApkSourceUnchanged": false,
+  "nativeComponentTestsExecuted": false,
+  "nativeComponentTestsCompiled": true,
+  "suites": 92,
+  "tests": 613,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "preparationFailure": "six temporary-directory creation failures: No space left on device",
+  "preparationProductCodeChanged": false,
+  "resolution": "Removed previously generated temporary publication archives; repeated the same local unit and component compilation command"
+}

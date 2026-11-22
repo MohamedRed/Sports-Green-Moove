@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TripCancellationMappingTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-25T16:06:33.343Z" hostname="MRRs-MacBook-Air.local" time="0.145">
+  <properties/>
+  <testcase name="rejectsTruncatedFractionalOrConflictingCounts" classname="be.sportgreenmoove.app.services.TripCancellationMappingTest" time="0.125"/>
+  <testcase name="mapsReadyAndExactConfirmedReceipt" classname="be.sportgreenmoove.app.services.TripCancellationMappingTest" time="0.003"/>
+  <testcase name="cancelledTripRemainsPastEvenBeforeDepartureAndRetainsOwnership" classname="be.sportgreenmoove.app.services.TripCancellationMappingTest" time="0.003"/>
+  <testcase name="rejectsMalformedOrUnrelatedReceipts" classname="be.sportgreenmoove.app.services.TripCancellationMappingTest" time="0.006"/>
+  <testcase name="payloadContainsOnlyValidatedIntent" classname="be.sportgreenmoove.app.services.TripCancellationMappingTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,24 @@
+{
+  "scope": "failed-disposable-device-setup-not-flow-proof",
+  "serial": "emulator-5574",
+  "storeCleanup": {
+    "method": "restricted-store-background",
+    "restored": true,
+    "verified": false,
+    "observed": {
+      "storeStopped": false,
+      "background": {
+        "RUN_IN_BACKGROUND": "ignore",
+        "RUN_ANY_IN_BACKGROUND": "deny"
+      },
+      "mapsRuntime": {
+        "playStoreEnabled": true,
+        "playServicesEnabled": true,
+        "playServicesVersion": "24.23.35"
+      },
+      "locationEnabled": true,
+      "noActiveStoreInstall": true
+    }
+  },
+  "adminCleanup": null
+}

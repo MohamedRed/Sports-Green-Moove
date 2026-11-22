@@ -1,0 +1,33 @@
+{
+  "scope": "physical-android-whole-trip-cancellation-not-concurrent-race-or-release-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "ba4fa4587cedfc8c4c4dd14d1924a266",
+  "testedAt": "2026-10-28T18:40:59.931Z",
+  "sourceBaselineCommit": "ce93e568b7f636c0d6ce39f91daec4c4b80d72e7",
+  "sourceApkSha256": "2b881a93effb05578b748fcc50f3f5299552f985b83fc953dd729cfdd1e67fc0",
+  "installedBytesIndependentlyVerified": false,
+  "device": "Google Pixel 9 Pro / Android 15",
+  "physicalDeviceCount": 1,
+  "completedCheckpoints": 12,
+  "publicCaptureMethod": "browser-session-window-not-native-export",
+  "publicCaptureCount": 7,
+  "publicCaptures": [
+    "01-cancellation-preview",
+    "02-cancellation-recorded",
+    "04-reopened-cancelled-history",
+    "05-parent-child-reservations",
+    "06-parent-notice",
+    "07-second-parent-reservation",
+    "08-second-parent-notice"
+  ],
+  "concurrentRaceProven": false,
+  "refundDeliveryVerified": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "productionDeployed": false,
+  "releaseComplete": false,
+  "realPaymentExercised": false,
+  "providerMapRequests": 0,
+  "videoAccepted": false,
+  "nativeScreenshotExportAccepted": false
+}

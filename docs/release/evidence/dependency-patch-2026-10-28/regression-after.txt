@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: installed root multipart encoder escapes hostile field metadata
+ok 1 - installed root multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 81.010792
+  type: 'test'
+  ...
+# Subtest: installed root multipart encoder escapes hostile filename metadata
+ok 2 - installed root multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 61.976292
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile field metadata
+ok 3 - installed cli multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 61.430042
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile filename metadata
+ok 4 - installed cli multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 61.334917
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 0
+ok 5 - build-resolved secure ID generator terminates with size 0
+  ---
+  duration_ms: 46.377333
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size -1
+ok 6 - build-resolved secure ID generator terminates with size -1
+  ---
+  duration_ms: 44.300166
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 8
+ok 7 - build-resolved secure ID generator terminates with size 8
+  ---
+  duration_ms: 45.52
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 0
+ok 8 - build-resolved nonsecure ID generator terminates with size 0
+  ---
+  duration_ms: 41.366208
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size -1
+ok 9 - build-resolved nonsecure ID generator terminates with size -1
+  ---
+  duration_ms: 40.597584
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 8
+ok 10 - build-resolved nonsecure ID generator terminates with size 8
+  ---
+  duration_ms: 39.535791
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 0
+ok 11 - build-resolved customRandom ID generator terminates with size 0
+  ---
+  duration_ms: 44.463916
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size -1
+ok 12 - build-resolved customRandom ID generator terminates with size -1
+  ---
+  duration_ms: 46.974208
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 8
+ok 13 - build-resolved customRandom ID generator terminates with size 8
+  ---
+  duration_ms: 43.524791
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects large offsets before expanding lines
+ok 14 - build-resolved source map rejects large offsets before expanding lines
+  ---
+  duration_ms: 47.983917
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects fractional offsets before expanding lines
+ok 15 - build-resolved source map rejects fractional offsets before expanding lines
+  ---
+  duration_ms: 44.398875
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects nested offsets before expanding lines
+ok 16 - build-resolved source map rejects nested offsets before expanding lines
+  ---
+  duration_ms: 42.776917
+  type: 'test'
+  ...
+# Subtest: ordinary source-map sections are still accepted
+ok 17 - ordinary source-map sections are still accepted
+  ---
+  duration_ms: 43.0305
+  type: 'test'
+  ...
+# Subtest: untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+ok 18 - untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+  ---
+  duration_ms: 57.383834
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 945.684292

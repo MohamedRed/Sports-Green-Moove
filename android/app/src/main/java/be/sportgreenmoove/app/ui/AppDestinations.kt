@@ -2,20 +2,24 @@ package be.sportgreenmoove.app.ui
 
 import be.sportgreenmoove.app.data.AppRole
 
-fun DemoScreen.toTopLevel(): DemoScreen =
+fun AppScreen.toTopLevel(): AppScreen =
     when (this) {
-        DemoScreen.Search -> DemoScreen.Home
-        DemoScreen.Ride -> DemoScreen.Trips
-        in profileChildScreens -> DemoScreen.Profile
+        AppScreen.Search -> AppScreen.Home
+        AppScreen.Ride -> AppScreen.Trips
+        in profileChildScreens -> AppScreen.Profile
         else -> this
     }
 
 private val profileChildScreens = setOf(
-    DemoScreen.Groups,
-    DemoScreen.Impact,
-    DemoScreen.Rewards,
-    DemoScreen.Options,
-    DemoScreen.Payments,
+    AppScreen.Groups,
+    AppScreen.Guardians,
+    AppScreen.TeamEnrollments,
+    AppScreen.Impact,
+    AppScreen.Rewards,
+    AppScreen.Options,
+    AppScreen.Support,
+    AppScreen.EmergencyContacts,
+    AppScreen.Payments,
 )
 
 fun roleLabel(role: AppRole): String =
@@ -27,7 +31,10 @@ fun roleLabel(role: AppRole): String =
         AppRole.Admin -> "Admin"
     }
 
-enum class DemoScreen {
+internal fun canManageTeamEnrollment(roles: Set<AppRole>) = AppRole.Child !in roles &&
+    roles.any { it in setOf(AppRole.Parent, AppRole.Driver, AppRole.ClubManager) }
+
+enum class AppScreen {
     Home,
     Trips,
     Publish,
@@ -35,9 +42,13 @@ enum class DemoScreen {
     Profile,
     Search,
     Groups,
+    Guardians,
+    TeamEnrollments,
     Impact,
     Rewards,
     Options,
+    Support,
+    EmergencyContacts,
     Payments,
     Ride,
 }

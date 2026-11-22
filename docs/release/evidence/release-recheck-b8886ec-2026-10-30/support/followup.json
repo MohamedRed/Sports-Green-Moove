@@ -1,0 +1,109 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fd70e813a7346361e4a47c1c95da0d47",
+  "testedAt": "2026-10-30T14:51:14.149Z",
+  "scope": "local-emulated-services-not-phone-ui",
+  "coverage": "support-written-replies-private-admin-notes",
+  "completed": true,
+  "checks": [
+    {
+      "id": "owner-reads-only-public-status-and-own-content",
+      "status": "passed"
+    },
+    {
+      "id": "anonymous-other-user-and-extra-owner-input-denied",
+      "status": "passed"
+    },
+    {
+      "id": "admin-public-reply-closes-once-with-private-note-preserved",
+      "status": "passed"
+    },
+    {
+      "id": "changed-operation-and-stale-other-response-refused",
+      "status": "passed"
+    },
+    {
+      "id": "duplicate-after-newer-status-does-not-roll-back",
+      "status": "passed"
+    },
+    {
+      "id": "same-operation-race-creates-one-reply",
+      "status": "passed"
+    },
+    {
+      "id": "different-response-race-requires-refresh",
+      "status": "passed"
+    },
+    {
+      "id": "lost-post-commit-response-retries-original-without-duplicate",
+      "status": "passed"
+    },
+    {
+      "id": "ticket-pagination-is-complete-and-owner-scoped",
+      "status": "passed"
+    },
+    {
+      "id": "reply-pagination-is-complete-and-report-scoped",
+      "status": "passed"
+    },
+    {
+      "id": "raw-report-and-reply-operation-reads-denied-to-parent",
+      "status": "passed"
+    },
+    {
+      "id": "contradictory-public-history-is-refused-not-silently-hidden",
+      "status": "passed"
+    },
+    {
+      "id": "reads-do-not-write-and-protected-records-and-claims-stay-unchanged",
+      "status": "passed"
+    }
+  ],
+  "browser": {
+    "checkedAt": "2026-10-30T14:51:13.995Z",
+    "scope": "local-admin-browser-not-requester-native-or-phone",
+    "checks": [
+      {
+        "id": "administrator-opens-separate-private-note-and-public-response-fields",
+        "status": "passed"
+      },
+      {
+        "id": "response-form-fits-desktop-and-small-mobile",
+        "status": "passed"
+      },
+      {
+        "id": "lost-confirmation-keeps-one-immutable-explicit-retry",
+        "status": "passed"
+      },
+      {
+        "id": "requester-reads-written-response-and-status-but-never-internal-notes",
+        "status": "passed"
+      },
+      {
+        "id": "sign-out-removes-private-response-controls",
+        "status": "passed"
+      }
+    ],
+    "screenshots": [
+      "support-response-1440.png",
+      "support-response-768.png",
+      "support-response-390.png",
+      "support-response-320.png",
+      "support-response-confirmed-mobile.png"
+    ],
+    "viewports": [
+      1440,
+      768,
+      390,
+      320
+    ],
+    "externalRequests": 0,
+    "productionWrites": false
+  },
+  "protectedRecordCount": 19,
+  "adminClientClosed": true,
+  "nativeUi": false,
+  "physicalDevice": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false
+}

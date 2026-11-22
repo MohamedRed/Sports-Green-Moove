@@ -1,0 +1,26 @@
+{
+  "scope": "single-case-continuous-installation-guard-not-flow-proof",
+  "case": "team-read-components",
+  "serial": "emulator-5554",
+  "mapsRuntime": {
+    "playStoreEnabled": true,
+    "playServicesEnabled": true,
+    "playServicesVersion": "24.23.35"
+  },
+  "originalBackground": {
+    "RUN_IN_BACKGROUND": "allow",
+    "RUN_ANY_IN_BACKGROUND": "allow"
+  },
+  "originalStoreStopped": false,
+  "apkHashes": {
+    "be.sportgreenmoove.app.local": "e929c4b0874219d0811d300159ef9df31168199e2d502e0a4cd1eda56581dea4",
+    "be.sportgreenmoove.app.local.test": "0f585dd842e3626bd84d5b68a929d97f324215e4f818e1c8a4e3d916dad81d50"
+  },
+  "installAdmin": {
+    "packageName": "be.sportgreenmoove.qa.installguard",
+    "originalBlocked": false,
+    "policyReady": true,
+    "noAccounts": true
+  },
+  "storeStoppedAfterLock": true
+}

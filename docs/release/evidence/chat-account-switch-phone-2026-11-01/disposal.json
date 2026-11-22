@@ -1,0 +1,35 @@
+{
+  "observedAt": "2026-11-01T00:22:54.295Z",
+  "signedOutObserved": true,
+  "networkSimulationDisabledObserved": true,
+  "providerUninstallResult": "No user apps found to uninstall.",
+  "providerUninstallCompletionAccepted": false,
+  "packageAbsenceIndependentlyVerified": false,
+  "firstStopClickDidNotEndSession": true,
+  "secondExplicitStopEndedSession": true,
+  "sessionEnded": true,
+  "idleDashboardObserved": true,
+  "privateSessionAbsent": true,
+  "runtimeAbsent": true,
+  "helperDirectoryAbsent": true,
+  "helperRequestedStop": true,
+  "helperExitCode": 130,
+  "helperGroupExitVerified": true,
+  "ownedProcessesAbsent": true,
+  "backendExitCode": 130,
+  "ports": {
+    "host": "127.0.0.1",
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "closed": true
+  },
+  "clipboardCleared": true,
+  "originalHostClipboardRestorationVerified": false,
+  "deviceAdministratorChanged": false,
+  "screenSharingPermissionsChanged": false,
+  "chromeRestarted": false
+}

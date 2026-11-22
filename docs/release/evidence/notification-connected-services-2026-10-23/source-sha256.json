@@ -1,0 +1,10 @@
+{
+  "scripts/qa/local-notification-read-ui.mjs": "3529c76b1181d340281cfca3728e65f257651188887267088ec7627a2e2b15e1",
+  "scripts/qa/local-notification-read-services.mjs": "b4cdf27b04c1f380a97b2053a08c3ddd9483e0aa10e2be7cbe7a9a4e40802dfb",
+  "scripts/qa/run-notification-read-services.mjs": "183430db3e1ff2dfd625863fb667675fba682893c77833f68df5827056e38020",
+  "scripts/qa/notification-read-restart-evidence.mjs": "bac79673bff406ae84b513da6618f8db34c8588db0530cb600e2a7a32f37dc03",
+  "scripts/qa/local-android-session.mjs": "ed027669c7424450fad7372fca78c170644f1b4d47ab7e3cf2b15833ef8b296d",
+  "scripts/qa/local-disposable-process-stop.mjs": "e24f95055a911973d13cf9400f50b6e4a90cfbf08face7f8d77105f16e9cb6cf",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNotificationReadFlowTest.kt": "a47d1e251b1e067e33619998e8597f931880100a5b62c45e39ea7db6376a654f",
+  "tests/notification-read-replay.test.mjs": "39b87e0c1476bb9979a99eb571610972723086ba57a466ffff29bda2aeb74f21"
+}

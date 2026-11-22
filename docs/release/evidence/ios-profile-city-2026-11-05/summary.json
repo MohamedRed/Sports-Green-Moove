@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "controlled-iphone-profile-city-and-separate-isolated-backend",
+  "baselineCommit": "eef1c4cb1f7b4f773ddfbf8a47a28e767a85564a",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "uiSyntaxExitCode": 0,
+    "persistedStates": 3,
+    "malformedRecords": 19,
+    "unsafeInputs": 9,
+    "malformedEnvelopes": 3,
+    "invalidWrites": 4,
+    "delayedBoundaries": 32,
+    "serviceGroups": 10
+  },
+  "records": [
+    {
+      "file": "native-result.txt",
+      "sha256": "824c86a981fdcaf280b9e08186241fab33f743d575bf941e1c566fea748ec0bd"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "services.json",
+      "sha256": "c7a0ec3b3f9bf48f89eaa69f1554fba8530914fce612152368faec262eb3ccbd"
+    },
+    {
+      "file": "cleanup-observation.json",
+      "sha256": "3e195351f42a2675abaed281a8115bda57ee847ed8b29d34bf350e2f4de8ae1a"
+    }
+  ],
+  "profileOnly": true,
+  "searchDefaultsChanged": false,
+  "stableUnknownWriteRetry": true,
+  "fixtureAssertionsPrepared": true,
+  "fixtureCaseCount": 11,
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "remaining": [
+    "actual current SDK build and all eleven fixture UI cases",
+    "native layout/accessibility and authenticated service integration",
+    "booking/ride chat and full physical/operational release evidence"
+  ]
+}

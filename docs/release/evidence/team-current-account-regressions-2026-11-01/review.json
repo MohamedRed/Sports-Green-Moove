@@ -1,0 +1,79 @@
+{
+  "scope": "five-team-service-regressions-after-current-account-guard-not-phone-or-release",
+  "testedAt": "2026-11-01T13:23:57.731Z",
+  "runs": [
+    {
+      "name": "conversation",
+      "runId": "dcb03b21b84a29895c4f4503d880ccfd",
+      "testedAt": "2026-11-01T13:22:05.280Z",
+      "steps": 18
+    },
+    {
+      "name": "directory",
+      "runId": "49131b0c302ca8385036339fd97a9e65",
+      "testedAt": "2026-11-01T13:22:30.791Z",
+      "steps": 6
+    },
+    {
+      "name": "reads",
+      "runId": "3c51d997d369f00e6acfa6f096e86289",
+      "testedAt": "2026-11-01T13:23:01.362Z",
+      "steps": 12
+    },
+    {
+      "name": "alerts",
+      "runId": "04091f9f506a2a246be5b80bb2b206cd",
+      "testedAt": "2026-11-01T13:23:30.753Z",
+      "steps": 11
+    },
+    {
+      "name": "inbox",
+      "runId": "3f4378a0c36ca7828858d1c82390fb40",
+      "testedAt": "2026-11-01T13:23:57.731Z",
+      "steps": 7
+    }
+  ],
+  "flowCount": 5,
+  "serviceCases": 54,
+  "sourceFiles": {
+    "functions/src/domain/teamConversation.ts": "b90111b3b438c3ed7553188fb034f8aabe5e19b8f7d595bab5ce77d211f4184a",
+    "functions/src/services/teamConversationAuthority.ts": "b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5",
+    "functions/src/services/teamConversation.ts": "e9ee8522c7aaaa98f0b350f79fcfa129709d01ad0614ee9d830223a641793d23",
+    "functions/src/callables/teamConversation.ts": "5a86d842cb26e5cdae75b30e240501daf772d76643360f4d0ef19b9b285e8a01",
+    "firestore.rules": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240",
+    "scripts/qa/local-team-conversation-suite.mjs": "d5251019e978d47904f320daef05ad105744afe46470caf9dd5f894212cbab49",
+    "scripts/qa/run-local-team-conversation.mjs": "92867ae236ed09fd117c7a38501100a2bf571dd2fdb3e3ca7aa070073b1604aa",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "scripts/qa/local-team-chat-options-suite.mjs": "e3990d1a77495910f7a2e3b62731b54f0c9be74e6b8c5e3e4748d3629bcac7b2",
+    "functions/src/services/teamConversationOptions.ts": "530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad",
+    "functions/src/domain/teamConversationRead.ts": "1461121905e2d6788ed2811d8e92f9ac8c4a492eb9273f17b3530c048773fda4",
+    "functions/src/services/teamConversationRead.ts": "11656304858210fdf621db3ed8a25b5aa213314e9f17460e55df648378ef20d3",
+    "firestore.indexes.json": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee",
+    "scripts/qa/local-team-read-suite.mjs": "b5d60f8036ce58d9326d9e0f7297c9818d51f2240fde5f1da522d50d9b51e942",
+    "scripts/qa/team-chat-access-ui-fixture.mjs": "aa475db82d562298a68969b960ab3736f13e049760ab77a6826e5e1adfa70d6b",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6",
+    "functions/src/domain/teamConversationAlerts.ts": "694885c4087669dffca3874a57049f92c56d3c857f4cf835faef115958bca790",
+    "functions/src/services/teamConversationAlerts.ts": "5552e5ed5992a33871df1a69cf181d1e5496ff132e1860f17133f8868feb7dc7",
+    "functions/src/domain/inbox.ts": "5e4b1465df655a27ccb34d4f64892209ac5696a6c7f48ab8a20a7e964010cbf3",
+    "functions/src/services/teamEnrollmentAuthority.ts": "bc378c9f2b345401b1e2d8397452a170501992092caebcea563624c66e6152e0",
+    "functions/src/services/teamNotificationAccess.ts": "dd3ad6668c51e8744cf2eb5af7f74bd1766df5f35bd437d8ce875b02888c730b",
+    "functions/src/callables/inbox.ts": "bd5b9de58c3a3b2729da09ddc5ea20b4ae50485ee28f7c12ffe64da3e4796664",
+    "functions/src/callables/notificationRead.ts": "4a3d5c90c054b38b53f7c64496db89db3a5624a58d07db77b4fbdd940be7a012",
+    "scripts/qa/team-alert-fixture.mjs": "ec98442dbeb89790f4c675b77232f1680c5d4045afad64b03215cc06c5734cde",
+    "scripts/qa/local-team-alert-suite.mjs": "9f61f97ec4978901ef43a41b395db89e339b6c48fa6bc7fc4b1f06f865efe73b",
+    "functions/src/callables/notificationInbox.ts": "b86251df5df24c06c31487229431c5000ffb032482682ee79c8385589ee4f502",
+    "functions/src/index.ts": "135358e6390b2a907974e7fdaa3bc3980527114a986c326d52dd581cc41abf37",
+    "scripts/qa/local-notification-inbox-suite.mjs": "a3c594e859acd351ad9cac340cff9ef22445fe713abb3088242741a05a3b3ac4",
+    "functions/src/services/teamConversationAccounts.ts": "8cb300424ed492d730d5e63f169ebcd0e3c3ee1af1853e205118965c43318371"
+  },
+  "legacySourcePrePostBound": false,
+  "individualFirestoreClientTerminationIndependentlyRecordedForFirstThree": false,
+  "physicalDevice": false,
+  "nativeUiExecuted": false,
+  "pushDeliveryVerified": false,
+  "productionWrites": false,
+  "releaseAccepted": false,
+  "wholeHeadAttested": false,
+  "providerRequests": 0,
+  "publishedCaptures": {}
+}

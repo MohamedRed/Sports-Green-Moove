@@ -1,0 +1,14 @@
+{
+  "providerDigestVerified": true,
+  "originalArchivePublished": false,
+  "sizeBytes": 11391,
+  "digest": "sha256:ff1e93b17e424142fdc16afeb8ee33131d7aaa0dc7973a888eac0d5d86d21acd",
+  "selectedMemberSha256": {
+    "local-ui-evidence/db3c14fbbcd8ce43297b1662dfcb14be/LocalSessionDisconnectTest#disconnectFromFailedRestoration-instrumentation.txt": "c79a2b29381c62f9304360b677cabfbedd57d621e1b796eb295a07ac339e80e6",
+    "local-ui-evidence/db3c14fbbcd8ce43297b1662dfcb14be/session-disconnect-proxy-failed.json": "1444d8727014406b5ff205bba1f7b16429975e5e2d4c461a17fd5c8e7612e8fa",
+    "focused-safety-ui/session-disconnect/disposable-device-setup.json": "04708bc3b9387ee68ad8a5e4ecd634d8f413e5b56f9142aee8dc46bc84bfe64d",
+    "focused-safety-ui/session-disconnect/disposable-device-setup.json.claimed": "d541368f929aeca52c6516ce39c7d5e26626c155b65767365ef690e668beca4c",
+    "focused-safety-ui/session-disconnect/disposable-device-restore.json": "8332df4c8cad8e9749946d91b0519f73a20f10b5be6ab9c46f9d542be45a59bf",
+    "focused-safety-ui/session-disconnect/session-disconnect-suite-status.json": "ec573dec1b38e27e3974005c391644828b80ddc07f586109d3693f1f7447cb13"
+  }
+}

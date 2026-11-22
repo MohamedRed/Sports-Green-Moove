@@ -1,0 +1,20 @@
+2026-11-06T22:01:06.3537390Z     t =    52.93s Tap "child-account.back" Button
+2026-11-06T22:01:06.3741060Z     t =    52.94s     Find the "child-account.back" Button
+2026-11-06T22:01:06.4306490Z     t =    53.03s     Check for interrupting elements affecting "child-account.back" Button
+2026-11-06T22:01:10.5936550Z     t =    57.19s Tap "child-account.back" Button
+2026-11-06T22:01:10.6173500Z     t =    57.20s     Find the "child-account.back" Button
+2026-11-06T22:01:10.6778840Z     t =    57.26s     Check for interrupting elements affecting "child-account.back" Button
+2026-11-06T22:03:21.3387220Z     t =    86.13s Waiting 6.0s for "child-account.entry.parent" Button to exist
+2026-11-06T22:03:22.3764240Z     t =    87.18s     Checking `Expect predicate `existsNoRetry == 1` for object "child-account.entry.parent" Button`
+2026-11-06T22:03:22.3867690Z     t =    87.18s         Checking existence of `"child-account.entry.parent" Button`
+2026-11-06T22:03:22.4753870Z     t =    87.28s Find the "child-account.entry.parent" Button
+2026-11-06T22:03:22.5618530Z     t =    87.36s Tap "child-account.entry.parent" Button
+2026-11-06T22:03:22.5819990Z     t =    87.37s     Find the "child-account.entry.parent" Button
+2026-11-06T22:03:22.6367860Z     t =    87.45s     Check for interrupting elements affecting "child-account.entry.parent" Button
+2026-11-06T22:03:36.5479230Z     t =   101.31s Find the "child-invitation.share" Button
+2026-11-06T22:03:37.5718410Z     t =   102.38s     Find the "child-invitation.share" Button (retry 1)
+2026-11-06T22:03:38.6572090Z     t =   103.45s     Find the "child-invitation.share" Button (retry 2)
+2026-11-06T22:03:39.0098180Z     t =   103.76s     Find: Elements matching predicate '"child-invitation.share" IN identifiers'
+2026-11-06T22:03:39.0622570Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/ChildAccountFlowChecks.swift:26: error: -[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact] : Failed to get matching snapshot: No matches found for Elements matching predicate '"child-invitation.share" IN identifiers' from input {(
+2026-11-06T22:03:39.1591030Z     Button, identifier: 'child-account.entry.parent', label: 'Compte de l’enfant',
+2026-11-06T22:03:39.1610270Z     Button, identifier: 'child-account.back', label: 'Retour'

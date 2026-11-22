@@ -1,0 +1,13 @@
+{
+  "scope": "failed-local-emulator-preparation-not-session-replay",
+  "failedBeforeBoot": true,
+  "fullLocalSessionReplayStarted": false,
+  "requiredUserdataFreeMb": 7372.8,
+  "observedAvailableFreeMb": 5391.83,
+  "androidImageAltered": false,
+  "backendStarted": false,
+  "virtualDeviceDirectoryAbsent": true,
+  "adbDeviceAbsent": true,
+  "rootCauseOfPriorSessionFailureEstablished": false,
+  "releaseAccepted": false
+}

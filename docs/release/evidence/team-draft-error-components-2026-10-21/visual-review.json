@@ -1,0 +1,13 @@
+{
+  "reviewedOriginals": [
+    "team-draft-read-error.png",
+    "team-draft-read-error-window.png",
+    "team-draft-write-error.png",
+    "team-draft-write-error-window.png"
+  ],
+  "published": {
+    "team-draft-errors-read": "team-draft-read-error.png",
+    "team-draft-errors-write": "team-draft-write-error.png"
+  },
+  "review": "Both original root captures are readable narrow portrait component states with enlarged text. The read failure shows explicit retry without a blank composer; the write failure keeps the typed body visible. Full-window originals include test-host status bar overlap and are retained but not published. Recovery after retry is verified by the passing test methods, not pictured in these error-state captures."
+}

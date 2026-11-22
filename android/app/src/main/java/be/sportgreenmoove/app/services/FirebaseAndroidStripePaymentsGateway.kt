@@ -43,6 +43,13 @@ class FirebaseAndroidStripePaymentsGateway : StripePaymentsGateway {
         val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse paiement invalide.")
         return mapPaymentSheetConfig(payload)
     }
+
+    override suspend fun ridePaymentStatus(bookingId: String, paymentIntentId: String): be.sportgreenmoove.app.domain.RidePaymentState {
+        val result = functions.getHttpsCallable("getRidePaymentStatus")
+            .call(mapOf("bookingId" to bookingId, "paymentIntentId" to paymentIntentId)).await()
+        val payload = result.data as? Map<*, *> ?: throw ProviderConfigurationException("Réponse paiement invalide.")
+        return be.sportgreenmoove.app.domain.mapRidePaymentState(payload, bookingId, paymentIntentId)
+    }
 }
 
 private fun mapPaymentSheetConfig(payload: Map<*, *>): PaymentSheetConfig {
@@ -50,7 +57,8 @@ private fun mapPaymentSheetConfig(payload: Map<*, *>): PaymentSheetConfig {
     val paymentIntentId = payload["paymentIntentId"] as? String
     val clientSecret = payload["clientSecret"] as? String
     val publishableKey = payload["publishableKey"] as? String
-    val amountCents = (payload["amountCents"] as? Number)?.toInt()
+    val amount = (payload["amountCents"] as? Number)?.toDouble()
+    val amountCents = amount?.takeIf { it.isFinite() && it > 0 && it <= Int.MAX_VALUE && it % 1.0 == 0.0 }?.toInt()
     val currency = payload["currency"] as? String
 
     if (

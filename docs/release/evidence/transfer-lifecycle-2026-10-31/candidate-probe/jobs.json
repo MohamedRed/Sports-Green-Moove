@@ -1,0 +1,129 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 124540583874,
+      "run_id": 41202387017,
+      "workflow_name": "Android Transport Diagnostic",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41202387017",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_zJ_wg",
+      "head_sha": "51c183e7af60a79c3096d55e65eb0b33ce1b0d26",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124540583874",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41202387017/job/124540583874",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T12:43:44Z",
+      "started_at": "2026-10-31T12:43:46Z",
+      "completed_at": "2026-10-31T12:46:22Z",
+      "name": "Generated-file transport (not release)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T12:43:47Z",
+          "completed_at": "2026-10-31T12:43:49Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T12:43:49Z",
+          "completed_at": "2026-10-31T12:43:57Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T12:43:57Z",
+          "completed_at": "2026-10-31T12:44:00Z"
+        },
+        {
+          "name": "Install locked diagnostic test dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T12:44:00Z",
+          "completed_at": "2026-10-31T12:44:39Z"
+        },
+        {
+          "name": "Test diagnostic boundaries without a device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T12:44:39Z",
+          "completed_at": "2026-10-31T12:44:39Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T12:44:39Z",
+          "completed_at": "2026-10-31T12:44:49Z"
+        },
+        {
+          "name": "Enable disposable virtual-device acceleration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T12:44:49Z",
+          "completed_at": "2026-10-31T12:44:49Z"
+        },
+        {
+          "name": "Run fixed primary transfers without app accounts or provider requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T12:44:49Z",
+          "completed_at": "2026-10-31T12:46:17Z"
+        },
+        {
+          "name": "Retain only sanitized command outcomes and trace counts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T12:46:17Z",
+          "completed_at": "2026-10-31T12:46:19Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-31T12:46:19Z",
+          "completed_at": "2026-10-31T12:46:19Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-31T12:46:19Z",
+          "completed_at": "2026-10-31T12:46:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-31T12:46:19Z",
+          "completed_at": "2026-10-31T12:46:20Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124540583874",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010459,
+      "runner_name": "GitHub Actions 1000010459",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

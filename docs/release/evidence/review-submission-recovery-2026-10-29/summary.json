@@ -1,0 +1,15 @@
+{
+  "scope": "isolated-review-submission-recovery-components-and-callables-not-phone",
+  "testedAt": "2026-10-29T23:26:18.139Z",
+  "nativeComponentCases": 11,
+  "newNativeCases": 2,
+  "backendUnitCases": 547,
+  "implementationUncommittedAtBuild": true,
+  "physicalNetworkLossProven": false,
+  "physicalDeviceTested": false,
+  "iosUiExecuted": false,
+  "productionDeployed": false,
+  "productionWrites": false,
+  "fullNativeGatePassed": false,
+  "releaseComplete": false
+}

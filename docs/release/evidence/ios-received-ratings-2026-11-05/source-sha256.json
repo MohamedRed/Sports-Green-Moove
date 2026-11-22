@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-11-05",
+  "files": [
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "6ce483bf1e66d4d92ac1f9d099aa31d841e6142d3666bd66e9e8e27a8f6ff0e8"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "04f6a52762f863f8251f9ef9c3504cdc0c8b5db3437932450421cad61e5ae13e"
+    },
+    {
+      "path": "firestore.indexes.json",
+      "sha256": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee"
+    },
+    {
+      "path": "firestore.rules",
+      "sha256": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240"
+    },
+    {
+      "path": "functions/src/callables/feedback.ts",
+      "sha256": "2e83755f98569ada11aaef30fd8e80c903cadd64bf76c0bb081198d83e3585c5"
+    },
+    {
+      "path": "functions/src/callables/receivedRatings.ts",
+      "sha256": "837b4d46ad31bfcae54b28be8e6d0c7adf601990fa171757c7279ba78f7c1015"
+    },
+    {
+      "path": "functions/src/domain/receivedRatings.ts",
+      "sha256": "1045100f29355444b2b1cc6b1fe5dac7e7d4b266b29a5fde1665b4633f97136c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseReceivedRatingsGateway.swift",
+      "sha256": "091ff0cea407e8e66fa6d21572d0c0810ec992990b915b250c6799f98e42cfc8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "9c27d1ac32c64ebc58d70e8b446b03a980f69ae06630c4f9956f26efd0ff962f"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileReceivedRatings.swift",
+      "sha256": "d2b112c901fcb47f6c62da2617ca8f779d59ef240e3638b07a10de57c48e2110"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ProfileScreen.swift",
+      "sha256": "7489e7a6a8c94343575b014fa68528eda6e3195fb9b6ea6491b4956049376fc3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatings.swift",
+      "sha256": "2bb93f4d3ace9870301d0b9f582c661458010007890c6c4397c06d2068bd375c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ReceivedRatingsState.swift",
+      "sha256": "ebf900b530756505993fd736d8355424433c67689bd88cc2e90390b5d9a30309"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsChecks.swift",
+      "sha256": "a607d7e49d1d1f909f0990dea85abc2322791dac54c2c75065997d0be7507315"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ReceivedRatingsProbe.swift",
+      "sha256": "b530a01659380e7b892dd7fa968b455f7cf26de9ce2f6811d0e2a8479f682bc0"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "a048f148a30053de0862e3df71585900434ecb178a250f1a3d5d67474c76bfa5"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "sha256": "34fb911014536c51eaf75af6d291bdf5fb1b5d8bb2e0fcb2895cd8e44c8b7fbd"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "ed86370d1fd80b5a517844897624832831d5cd605dfc8ec6f30b6ed90e91a666"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "5192653e9561d144dbe97539ffc1af16a2002ba88b9f0ecaab8e9fd0a4c8b1a3"
+    },
+    {
+      "path": "scripts/qa/local-received-ratings.mjs",
+      "sha256": "9f079afa7bcbe8c16cb17e30b7cb16b7ac0b958a6acbcd7ceef7ccb9f39a75dc"
+    },
+    {
+      "path": "scripts/qa/review-history-fixture.mjs",
+      "sha256": "6a59290095137647ec0eeb0098e2fb3178e559bfff696b1639f470da51cc73b7"
+    },
+    {
+      "path": "tests/fixtures/ios-support-concurrency/GatewayContext.swift",
+      "sha256": "73c8ce3d2dd324ac18e347de2828352f5318c4778124c3744412e25da8cf5ca6"
+    },
+    {
+      "path": "tests/ios-received-ratings.test.mjs",
+      "sha256": "22fc1a92ad56100c6527836d3779999e9868f21b1e2356910e30af694f0621b3"
+    },
+    {
+      "path": "tests/ios-team-chat.test.mjs",
+      "sha256": "a3dd6066423ee00df9c78d9bc04fd55c09c3a256749802595d9f860bc3d413fe"
+    },
+    {
+      "path": "tests/web-smoke-sharding.test.mjs",
+      "sha256": "d0301a49f45e6a6cc41dd9d4a4f88a2471f4333c52f6ba2b88e2e77a50a38a08"
+    }
+  ]
+}

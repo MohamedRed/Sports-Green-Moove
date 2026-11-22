@@ -1,0 +1,1448 @@
+{
+  "scope": "isolated-generated-file-transfer-not-user-flow-or-release-proof",
+  "runId": "4eb7413342499d75de97962c462cadae",
+  "startedAt": "2026-10-31T13:44:48.654Z",
+  "plannedTrials": 32,
+  "trials": [
+    {
+      "index": 0,
+      "startedAt": "2026-10-31T13:44:50.056Z",
+      "elapsedMs": 99,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 1,
+      "startedAt": "2026-10-31T13:44:50.166Z",
+      "elapsedMs": 65,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 2,
+      "startedAt": "2026-10-31T13:44:50.241Z",
+      "elapsedMs": 74,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 3,
+      "startedAt": "2026-10-31T13:44:50.324Z",
+      "elapsedMs": 61,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 4,
+      "startedAt": "2026-10-31T13:44:50.392Z",
+      "elapsedMs": 87,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 5,
+      "startedAt": "2026-10-31T13:44:50.489Z",
+      "elapsedMs": 143,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 6,
+      "startedAt": "2026-10-31T13:44:50.640Z",
+      "elapsedMs": 113,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 7,
+      "startedAt": "2026-10-31T13:44:50.761Z",
+      "elapsedMs": 59,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 8,
+      "startedAt": "2026-10-31T13:44:50.829Z",
+      "elapsedMs": 131,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 9,
+      "startedAt": "2026-10-31T13:44:50.970Z",
+      "elapsedMs": 111,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 10,
+      "startedAt": "2026-10-31T13:44:51.089Z",
+      "elapsedMs": 135,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 11,
+      "startedAt": "2026-10-31T13:44:51.231Z",
+      "elapsedMs": 89,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 12,
+      "startedAt": "2026-10-31T13:44:51.334Z",
+      "elapsedMs": 89,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 13,
+      "startedAt": "2026-10-31T13:44:51.430Z",
+      "elapsedMs": 114,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 14,
+      "startedAt": "2026-10-31T13:44:51.551Z",
+      "elapsedMs": 68,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 15,
+      "startedAt": "2026-10-31T13:44:51.627Z",
+      "elapsedMs": 108,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 16,
+      "startedAt": "2026-10-31T13:44:51.742Z",
+      "elapsedMs": 69,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 17,
+      "startedAt": "2026-10-31T13:44:51.819Z",
+      "elapsedMs": 63,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 18,
+      "startedAt": "2026-10-31T13:44:51.889Z",
+      "elapsedMs": 111,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 19,
+      "startedAt": "2026-10-31T13:44:52.007Z",
+      "elapsedMs": 97,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 20,
+      "startedAt": "2026-10-31T13:44:52.114Z",
+      "elapsedMs": 73,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 21,
+      "startedAt": "2026-10-31T13:44:52.206Z",
+      "elapsedMs": 148,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 22,
+      "startedAt": "2026-10-31T13:44:52.362Z",
+      "elapsedMs": 101,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 23,
+      "startedAt": "2026-10-31T13:44:52.479Z",
+      "elapsedMs": 163,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 24,
+      "startedAt": "2026-10-31T13:44:52.649Z",
+      "elapsedMs": 75,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 25,
+      "startedAt": "2026-10-31T13:44:52.731Z",
+      "elapsedMs": 65,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 26,
+      "startedAt": "2026-10-31T13:44:52.803Z",
+      "elapsedMs": 61,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 751,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 27,
+      "startedAt": "2026-10-31T13:44:52.872Z",
+      "elapsedMs": 69,
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 750,
+        "recognizedFailure": false,
+        "unclassifiedFailure": false
+      },
+      "commandCompleted": true,
+      "integrityVerified": true
+    },
+    {
+      "index": 28,
+      "startedAt": "2026-10-31T13:44:52.949Z",
+      "elapsedMs": 47,
+      "status": 1,
+      "signal": null,
+      "errorCode": null,
+      "signals": {
+        "deviceOffline": false,
+        "deviceMissing": false,
+        "transportClosed": false,
+        "permissionDenied": false,
+        "noSpace": false,
+        "timedOut": false
+      },
+      "outputCoverage": {
+        "present": true,
+        "byteCount": 643,
+        "recognizedFailure": false,
+        "unclassifiedFailure": true
+      },
+      "commandCompleted": false,
+      "integrityVerified": false
+    }
+  ],
+  "completed": false,
+  "stage": "transfers",
+  "appInstalled": false,
+  "accountsUsed": false,
+  "retryPerformed": false,
+  "alternateTransportUsed": false,
+  "rootCauseConfirmed": false,
+  "releaseAccepted": false,
+  "lastPreparationCommand": {
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "signals": {
+      "deviceOffline": false,
+      "deviceMissing": false,
+      "transportClosed": false,
+      "permissionDenied": false,
+      "noSpace": false,
+      "timedOut": false
+    },
+    "outputCoverage": {
+      "present": true,
+      "byteCount": 793,
+      "recognizedFailure": false,
+      "unclassifiedFailure": false
+    }
+  },
+  "fixtures": [
+    {
+      "name": "generated-0.bin",
+      "size": 147456,
+      "sha256": "3e6ed466d21807047a1ee31c684a88fd3bbe214700823f1ccbbd1a9072920e7e"
+    },
+    {
+      "name": "generated-1.bin",
+      "size": 1048576,
+      "sha256": "b2974b7cefcb30858f36ff82a57a91b8b28cb76668ea0b776b6f827063c08264"
+    },
+    {
+      "name": "generated-2.bin",
+      "size": 4194304,
+      "sha256": "b03821ba054f3ebc7cd7ca04bb4f9230c19673a62ecda260d023e5f82c10372f"
+    }
+  ],
+  "hostBefore": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-31T13:44:49.996Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 4,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        4224,
+        4380,
+        4384,
+        4388,
+        4392,
+        4396,
+        4399,
+        4401,
+        4404,
+        4408,
+        4410,
+        4414,
+        4418,
+        4424
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 329,
+      "events": [
+        {
+          "timestampLocal": "10-31 13:44:38.865",
+          "pid": 4224,
+          "tid": 4232,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 4224,
+        "startedAtLocal": "Sat Oct 31 13:44:14 2026"
+      },
+      {
+        "pid": 4380,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4384,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4388,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4392,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4396,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4399,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4401,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4404,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4408,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4410,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4414,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4418,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      },
+      {
+        "pid": 4424,
+        "startedAtLocal": "Sat Oct 31 13:44:49 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "processes": [
+        {
+          "pid": 4224,
+          "startTicks": "20618",
+          "connections": [
+            {
+              "inode": "28271",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            },
+            {
+              "inode": "28448",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 39291,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "30119",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 39395,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "28434",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 45277,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "28455",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 46821,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "28475",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 47029,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "27129",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 56261,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "30144",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 57405,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "28463",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 57511,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "29069",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 58857,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "27140",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 59493,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "30155",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 60231,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "27149",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 60957,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "29080",
+              "state": "01",
+              "listening": false,
+              "localPort": 5037,
+              "remotePort": 60977,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            },
+            {
+              "inode": "29946",
+              "state": "01",
+              "listening": false,
+              "localPort": 36257,
+              "remotePort": 5555,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4380,
+          "startTicks": "24100",
+          "connections": [
+            {
+              "inode": "28433",
+              "state": "01",
+              "listening": false,
+              "localPort": 45277,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4384,
+          "startTicks": "24107",
+          "connections": [
+            {
+              "inode": "28440",
+              "state": "01",
+              "listening": false,
+              "localPort": 56261,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4388,
+          "startTicks": "24114",
+          "connections": [
+            {
+              "inode": "28447",
+              "state": "01",
+              "listening": false,
+              "localPort": 39291,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4392,
+          "startTicks": "24125",
+          "connections": [
+            {
+              "inode": "29068",
+              "state": "01",
+              "listening": false,
+              "localPort": 58857,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4396,
+          "startTicks": "24131",
+          "connections": [
+            {
+              "inode": "27132",
+              "state": "01",
+              "listening": false,
+              "localPort": 46821,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4399,
+          "startTicks": "24135",
+          "connections": [
+            {
+              "inode": "28462",
+              "state": "01",
+              "listening": false,
+              "localPort": 57511,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4401,
+          "startTicks": "24138",
+          "connections": [
+            {
+              "inode": "29079",
+              "state": "01",
+              "listening": false,
+              "localPort": 60977,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4404,
+          "startTicks": "24145",
+          "connections": [
+            {
+              "inode": "28468",
+              "state": "01",
+              "listening": false,
+              "localPort": 39395,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4408,
+          "startTicks": "24158",
+          "connections": [
+            {
+              "inode": "27139",
+              "state": "01",
+              "listening": false,
+              "localPort": 59493,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4410,
+          "startTicks": "24160",
+          "connections": [
+            {
+              "inode": "29092",
+              "state": "01",
+              "listening": false,
+              "localPort": 57405,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4414,
+          "startTicks": "24170",
+          "connections": [
+            {
+              "inode": "28474",
+              "state": "01",
+              "listening": false,
+              "localPort": 47029,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4418,
+          "startTicks": "24177",
+          "connections": [
+            {
+              "inode": "27148",
+              "state": "01",
+              "listening": false,
+              "localPort": 60957,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        },
+        {
+          "pid": 4424,
+          "startTicks": "24185",
+          "connections": [
+            {
+              "inode": "30154",
+              "state": "01",
+              "listening": false,
+              "localPort": 60231,
+              "remotePort": 5037,
+              "localAddress": "loopback",
+              "remoteAddress": "loopback"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "traceBefore": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 0,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 1,
+      "transportWriteFailed": 0
+    }
+  },
+  "emulatorBefore": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-10-31T13:44:50.036Z",
+    "monotonicMs": 1522.472745,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4056,
+      "startedTicks": "19617",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "28247",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28248",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28243",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28244",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28389",
+        "state": "01",
+        "listening": false,
+        "localPort": 5555,
+        "remotePort": 36257,
+        "localAddress": "loopback",
+        "remoteAddress": "loopback"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "traceAfter": {
+    "available": true,
+    "tailClipped": false,
+    "scope": "bounded-host-transport-error-counts-not-root-cause",
+    "rawLogsRetained": false,
+    "counts": {
+      "messageReadEnded": 1,
+      "payloadReadEnded": 1,
+      "readOverflow": 0,
+      "badHeader": 0,
+      "writeEnded": 0,
+      "transportReadFailed": 2,
+      "transportWriteFailed": 0
+    }
+  },
+  "hostAfter": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-31T13:44:53.000Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "daemonEvents": {
+      "scope": "allowlisted-adb-daemon-transport-events-not-disconnect-cause",
+      "available": true,
+      "rawLogsRetained": false,
+      "sourceTailLimitBytes": 65536,
+      "selectedPids": [
+        4224
+      ],
+      "eventLimit": 64,
+      "matchedEventCount": 1,
+      "droppedEventCount": 0,
+      "unselectedPidLineCount": 0,
+      "unclassifiedTransportLineCount": 439,
+      "events": [
+        {
+          "timestampLocal": "10-31 13:44:52.995",
+          "pid": 4224,
+          "tid": 4302,
+          "source": "transport.cpp",
+          "emulatorPort": 5554,
+          "kind": "connection-terminated-read-failed",
+          "errno": null
+        }
+      ]
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 4224,
+        "startedAtLocal": "Sat Oct 31 13:44:14 2026"
+      }
+    ],
+    "socketOwnership": {
+      "scope": "same-user-adb-loopback-socket-ownership-not-disconnect-cause",
+      "completed": true,
+      "deviceCommandRequested": false,
+      "rawNetworkTablesRetained": false,
+      "argumentsRead": false,
+      "environmentRead": false,
+      "processes": [
+        {
+          "pid": 4224,
+          "startTicks": "20618",
+          "connections": [
+            {
+              "inode": "28271",
+              "state": "0A",
+              "listening": true,
+              "localPort": 5037,
+              "remotePort": 0,
+              "localAddress": "loopback",
+              "remoteAddress": "wildcard"
+            }
+          ]
+        }
+      ],
+      "unavailableProcessCount": 0,
+      "unavailableReason": null
+    }
+  },
+  "emulatorAfter": {
+    "scope": "bound-emulator-process-and-loopback-sockets-not-guest-lifecycle-or-disconnect-cause",
+    "observedAt": "2026-10-31T13:44:53.033Z",
+    "monotonicMs": 4517.96861,
+    "atomicObservation": false,
+    "identity": {
+      "pid": 4056,
+      "startedTicks": "19617",
+      "executable": "qemu-system-x86_64-headless",
+      "port": 5554,
+      "avd": "test"
+    },
+    "processState": "present",
+    "socketsObserved": true,
+    "connections": [
+      {
+        "inode": "28247",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28248",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5554,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28243",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      },
+      {
+        "inode": "28244",
+        "state": "0A",
+        "listening": true,
+        "localPort": 5555,
+        "remotePort": 0,
+        "localAddress": "loopback",
+        "remoteAddress": "wildcard"
+      }
+    ],
+    "rawArgumentsRetained": false,
+    "environmentRead": false,
+    "deviceCommandsRequested": false
+  },
+  "cleanup": {
+    "remoteCreatedOrPartiallyCreated": true,
+    "removed": false,
+    "absenceVerified": false
+  },
+  "finishedAt": "2026-10-31T13:44:53.056Z",
+  "success": false
+}

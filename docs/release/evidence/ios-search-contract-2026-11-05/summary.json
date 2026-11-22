@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-05",
+  "baseCommit": "cd76635276252e9feabf25e0cf8b90750728f6b8",
+  "scope": "controlled-server-serializer-and-actual-swift-gateway-not-live-service-or-phone",
+  "baselineMalformedGroupsAccepted": 8,
+  "validServerSummaries": 3,
+  "malformedResponseGroupsRejected": 60,
+  "directNonfiniteScoresRejected": 3,
+  "delayedSdkBoundaryCases": 4,
+  "preCallIdentityDenials": 1,
+  "secondChildTwoSeatPayloadAndSnapshotChecked": true,
+  "originalUiCaseCount": 11,
+  "currentUiCaseCount": 11,
+  "deadlineMinutes": 50,
+  "sdkBuildAccepted": false,
+  "fixtureUiAccepted": false,
+  "liveServiceAccepted": false,
+  "linuxContractExecutionAccepted": false,
+  "realMapIntegrationAccepted": false,
+  "completeBookingFlowAccepted": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "baseline-result.txt",
+      "sha256": "7e583f58dff67615d31995ce49ad319334a07de0f3911603710122ce97b0c491"
+    },
+    {
+      "file": "contract-result.txt",
+      "sha256": "48126db394a904282057487bd4f68c5316e676c16a4836a0fddfbc7ef21a4404"
+    },
+    {
+      "file": "native-result.txt",
+      "sha256": "317243f56e0ff9d4d1c4e232479140bfea705fc369bd3f4cb283b84223ebcfe3"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "96bd50d0a2efd2c444b78e05aec6e4a4c15076c3ac8cb4c9519005c9fe6a7c73"
+    },
+    {
+      "file": "baseline-source-sha256.json",
+      "sha256": "a152d64ee168a8ac115d0ab1a393e3f185c556b6502b8eeaa39e27dfb674c474"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "195cec93891ede1e93e8665c69aa9a998c5e02801b3237fa6555a05ad6d4a8c3"
+    },
+    {
+      "file": "service-attempt.json",
+      "sha256": "4834ab1e6c818a88457bd07daa7d489257692ad6a41058e30f7bd8da6a01c463"
+    }
+  ]
+}

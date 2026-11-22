@@ -1,0 +1,26 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2679432Z TypeError: fetch failed
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2680276Z     at node:internal/deps/undici/undici:15270:13
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2681638Z     at async signIn (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-flow-client.mjs:23:20)
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2683735Z     at async verifyTripChangeUi (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-trip-change-ui.mjs:44:18)
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2685711Z     at async file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:105:23 {
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2686807Z   [cause]: SocketError: other side closed
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2687678Z       at Socket.<anonymous> (node:internal/deps/undici/undici:6505:28)
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2688193Z       at Socket.emit (node:events:531:35)
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2688711Z       at endReadableNT (node:internal/streams/readable:1698:12)
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2689400Z       at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2689924Z     code: 'UND_ERR_SOCKET',
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2690181Z     socket: {
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2690479Z       localAddress: '127.0.0.1',
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2690782Z       localPort: 60810,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2691108Z       remoteAddress: undefined,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2691425Z       remotePort: undefined,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2691756Z       remoteFamily: undefined,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2692063Z       timeout: undefined,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2692393Z       bytesWritten: 1677,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2692678Z       bytesRead: 3487
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2692910Z     },
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2693213Z     [Symbol(undici.error.UND_ERR)]: true,
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2693645Z     [Symbol(undici.error.UND_ERR_SOCKET)]: true
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2693946Z   }
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2694137Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-17T14:56:20.2694248Z 

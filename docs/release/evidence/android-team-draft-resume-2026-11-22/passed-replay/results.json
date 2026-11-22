@@ -1,0 +1,34 @@
+{
+  "scope": "physical-android-team-draft-replay-with-isolated-services-not-release-acceptance",
+  "runId": "0b88240e51758342440e0b75274c05f6",
+  "projectId": "demo-sgm-local-qa",
+  "sourceCommit": "b8f7db6d0bf645a0eca5747ddd07b081568a0149",
+  "completedAt": "2026-11-22T14:27:00.021Z",
+  "device": {
+    "model": "Google Pixel 10",
+    "os": "Android 16"
+  },
+  "approvedUpload": {
+    "filename": "app-debug.apk",
+    "date": "2026-11-17",
+    "applicationId": "be.sportgreenmoove.app.local",
+    "sha256": "29ae56b521ee11e6e3d47af7a58b4a15ce46d2580c4c954db8f76358c7c9f186"
+  },
+  "phoneScenarioCompleted": true,
+  "independentRecordCheckpoints": 6,
+  "protectedRecords": 158,
+  "oneExplicitParentSendInThisReplay": true,
+  "providerAppKillActions": 2,
+  "accountOrder": [
+    "sgm-qa-parent",
+    "sgm-qa-driver",
+    "sgm-qa-parent"
+  ],
+  "fullProcessRestartProven": false,
+  "twoPhoneFlowVerified": false,
+  "unreadStateVerified": false,
+  "notificationsVerified": false,
+  "trackingVerified": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false
+}

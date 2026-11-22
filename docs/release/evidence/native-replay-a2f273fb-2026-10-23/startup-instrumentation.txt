@@ -1,0 +1,67 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest:
+Error in aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.waitFor(LocalNativeTrackingStartupTest.kt:127)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$1$0(LocalNativeTrackingStartupTest.kt:85)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$HryMJY4pnOlyoAGhD9hDIqJpa8A(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda2.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step$0(LocalNativeTrackingStartupTest.kt:57)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$hKgqHCKalaTypKgSnJq3pO-PW9E(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:83)
+
+
+Time: 85.245
+There was 1 failure:
+1) aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.waitFor(LocalNativeTrackingStartupTest.kt:127)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$1$0(LocalNativeTrackingStartupTest.kt:85)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$HryMJY4pnOlyoAGhD9hDIqJpa8A(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda2.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step$0(LocalNativeTrackingStartupTest.kt:57)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$hKgqHCKalaTypKgSnJq3pO-PW9E(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:83)
+	Suppressed: java.util.concurrent.ExecutionException: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+		at com.google.android.gms.tasks.Tasks.zza(com.google.android.gms:play-services-tasks@@18.4.0:5)
+		at com.google.android.gms.tasks.Tasks.await(com.google.android.gms:play-services-tasks@@18.4.0:20)
+		at be.sportgreenmoove.app.ui.LocalMockLocation.emit(LocalMockLocation.kt:31)
+		at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed$lambda$0(LocalMockLocationFeed.kt:13)
+		at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.$r8$lambda$b1SQFtrtqzR8f3BGEdhpPaLs1hQ(Unknown Source:0)
+		at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+		at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+		at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+		at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:308)
+		at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+		at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+		... 1 more
+	Caused by: com.google.android.gms.common.api.ApiException: 20: The connection to Google Play services was lost due to service disconnection.
+		at com.google.android.gms.common.api.internal.zaaa.zah(com.google.android.gms:play-services-base@@18.9.0:12)
+		at com.google.android.gms.common.api.internal.zaaa.zae(com.google.android.gms:play-services-base@@18.9.0:7)
+		at com.google.android.gms.common.api.internal.zabk.zaD(com.google.android.gms:play-services-base@@18.9.0:3)
+		at com.google.android.gms.common.api.internal.zabk.onConnectionSuspended(com.google.android.gms:play-services-base@@18.9.0:2)
+		at com.google.android.gms.common.api.internal.zabk.zaH(com.google.android.gms:play-services-base@@18.9.0:3)
+		at com.google.android.gms.common.api.internal.zabk.zaG(com.google.android.gms:play-services-base@@18.9.0:4)
+		at com.google.android.gms.common.api.internal.zabk.zad(com.google.android.gms:play-services-base@@18.9.0:3)
+		at com.google.android.gms.common.api.internal.GoogleApiManager.handleMessage(com.google.android.gms:play-services-base@@18.9.0:64)
+		at android.os.Handler.dispatchMessage(Handler.java:103)
+		at android.os.Looper.loopOnce(Looper.java:232)
+		at android.os.Looper.loop(Looper.java:317)
+		at android.os.HandlerThread.run(HandlerThread.java:85)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

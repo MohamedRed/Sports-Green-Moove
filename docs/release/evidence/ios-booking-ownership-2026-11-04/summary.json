@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "Actual app-state request/approval methods with suspended synthetic gateways",
+  "baseline": {
+    "sourceCommit": "0d502700fbbcbf66682912b0f44557c6f4feeaba",
+    "exitCode": 133,
+    "requestRestoredNotice": true,
+    "approvalRestoredNotice": true,
+    "approvalFollowupReads": 7,
+    "log": "baseline.txt",
+    "logSha256": "7c8a73d932ec3a650452cb528dadb941cb6b1c6a3811336e7b4592192b71dca4"
+  },
+  "candidate": {
+    "exitCode": 0,
+    "requestRestoredNotice": false,
+    "approvalRestoredNotice": false,
+    "approvalFollowupReads": 0,
+    "delayedBookingCases": 24,
+    "displayedBookingTermsPreserved": true,
+    "bookingReviewIsolation": true,
+    "explicitRetryAccepted": true,
+    "log": "native-checks.txt",
+    "logSha256": "9d17501f6c0c0d047d555ee76d0bb0c5029040eeedd6cfe4780b6f359ceb7fe3"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "renderedBookingAccepted": false,
+  "completeTransportDrainAccepted": false,
+  "fullSignOutAccepted": false,
+  "providerRequests": 0,
+  "liveBooking": false,
+  "productionWrites": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false
+}

@@ -1,0 +1,20 @@
+{
+  "adb-pull-failure-cleanup.json": "79907adb3b572729bb0e49c0875698f949f94ca751fb87d2ba65471569ddea7f",
+  "artifact-metadata.json": "8a9a4caee3dd4969d8ca3920122ca744ef8d04b97b5e0e24b238e74a290d5abe",
+  "collector-failure-excerpt.txt": "153a01233ddeb74b001a07a2f5e4678479e892663aabdeb72cbee9f2366d32b5",
+  "disposable-store-restore.json": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f",
+  "host-observation.json": "0813af8f26cc0cf89b2df065c908e7808b0b6e7874d41f558ccbf3e7c17acd87",
+  "local-notification-read-after.json": "ccec7e788adf00e048f9928a861ee8e9620306320dd25665de9c6e261cefa784",
+  "local-notification-read-before.json": "526f2c3fdcd2417e7a656d71515ff81bbd528707a746ed680ff520c2f4464e1b",
+  "local-notification-read-stop.json": "ba2e820c999f1f5a70dfc6f585a4a4fd339d333c4a8af21539d59235c100dbee",
+  "native-run.json": "4481d86bc7e28d9a46bedd8921eddeada94ba3902c58b17d676a01eb60b6681f",
+  "native-suite-status.json": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f",
+  "notification-read-checkpoint.json": "b7b1cc5a3bdaa6642e81c77cadcea9bf61c8e9702d47191366851c354cedbad3",
+  "ordinary-instrumentation.txt": "c3b8ab1b8b96fd68fe407b668cd20cac656e70fef92bfb6bb7cfdae04a761c4b",
+  "ordinary-results.json": "732f475cf14ec6f34e11f86b28b0297546799bf6127717abb94139145a45ba69",
+  "source/android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNotificationReadFlowTest.kt.txt": "2b55b050b7d42e633210da7fd8c131eb9ef9bd7a8a796e979d985681968fe140",
+  "source/scripts/qa/collect-local-ui-evidence.mjs.txt": "e170b5166a1fd7c74bfcd6aef6bb277d95db2411728fe2a07bfd006f472d117a",
+  "source/scripts/qa/local-android-session.mjs.txt": "ed027669c7424450fad7372fca78c170644f1b4d47ab7e3cf2b15833ef8b296d",
+  "source/scripts/qa/local-notification-read-ui.mjs.txt": "3529c76b1181d340281cfca3728e65f257651188887267088ec7627a2e2b15e1",
+  "summary.json": "7242b12598ee904a1e861ea7837cc537d90585183f4fa0e49428d40f978a9019"
+}

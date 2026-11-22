@@ -1,0 +1,28 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "78f4cf82070a97654f888a5cae6cc889",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "childUid": "sgm-qa-child-link-phone",
+    "childId": "sgm-qa-child-lina",
+    "clubId": "sgm-qa-club-green-wavre",
+    "childInstanceId": "02501bf8ef24596c0b3b9757cee7b14840b81bbaa209b6f3104118e9eb66f177",
+    "childName": "Lina QA",
+    "parentEmail": "p@example.test",
+    "childEmail": "child-link@example.test"
+  },
+  "preparedAt": "2026-10-26T09:17:03.837Z",
+  "scope": "isolated-fixture-not-child-signup-or-phone-proof",
+  "childAccountProvisionedByFixture": true,
+  "accountLinkPreseeded": false,
+  "approvalCodePreseeded": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "sourceFiles": {
+    "scripts/qa/child-account-phone-runtime.mjs": "23e0fc2e9a3556a455931ecd091fc9d9ba22a94581d20fc8044deeedf087a16d",
+    "scripts/qa/child-account-phone-fixture.mjs": "367c5916d399a5eb19e785c03f17b16e756e5f6d3c3a59e55b0fab3db2d7cfb2",
+    "scripts/qa/seed-firebase-emulator.mjs": "2fed6cb235dca11b6f1667614297d2bcfeb0368158a46cddcb990227b07e2f64",
+    "scripts/qa/child-emergency-fixture.mjs": "357f4e4ff947b88a79271e7000f910bc8e78defb93ad822905d6885e6259d566"
+  }
+}

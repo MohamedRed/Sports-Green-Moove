@@ -1,0 +1,39 @@
+
+be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest:
+Error in realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest):
+java.lang.AssertionError: Failed to assert the following: (Text + EditableText = [Accords reçus : 1 / 2])
+Semantics of the node:
+Node #698 at (l=85.0, t=517.0, r=413.0, b=562.0)px, Tag: 'trip.change.consents'
+Text = '[Accords reçus : 0 / 2]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+Has 10 siblings
+Selector used: (TestTag = 'trip.change.consents')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals(Assertions.kt:185)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals$default(Assertions.kt:181)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(LocalRealMapsTripChangeTest.kt:106)
+
+
+Time: 48.248
+There was 1 failure:
+1) realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest)
+java.lang.AssertionError: Failed to assert the following: (Text + EditableText = [Accords reçus : 1 / 2])
+Semantics of the node:
+Node #698 at (l=85.0, t=517.0, r=413.0, b=562.0)px, Tag: 'trip.change.consents'
+Text = '[Accords reçus : 0 / 2]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+Has 10 siblings
+Selector used: (TestTag = 'trip.change.consents')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals(Assertions.kt:185)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals$default(Assertions.kt:181)
+	at be.sportgreenmoove.app.ui.LocalRealMapsTripChangeTest.realPlacesAndRouteAreAppliedByDriverOnlyAfterBothParentsConfirm(LocalRealMapsTripChangeTest.kt:106)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

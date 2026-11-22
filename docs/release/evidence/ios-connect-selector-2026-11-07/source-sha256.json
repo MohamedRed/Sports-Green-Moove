@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/PaymentsScreen.swift",
+      "commit": "candidate",
+      "sha256": "c0fe6018f70e2948147ea532f4bf2a682e723edc531aed9f88c617fb8279f90a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestIdentifiers.swift",
+      "commit": "candidate",
+      "sha256": "68d4791ec72b414683a09e25870c003499c1f23f25514d9645de02d6fa44119e"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/SportsGreenMooveUITests.swift",
+      "commit": "candidate",
+      "sha256": "c7710440e498b91a46a7b3773d5f0946c379476c631f0ba7ddf5aea4e85039aa"
+    },
+    {
+      "path": "scripts/qa/ios-reservation-fixture-extension.mjs",
+      "commit": "candidate",
+      "sha256": "423b0659918a75a3bccddcd68649db406d7d2361e0713cfd4db74d150b7e629f"
+    }
+  ]
+}

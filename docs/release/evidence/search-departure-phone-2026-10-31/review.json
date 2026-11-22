@@ -1,0 +1,66 @@
+{
+  "scope": "physical-android-search-date-and-time-not-search-results-or-booking",
+  "reviewedAt": "2026-10-31",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4d142924e3a1ef46d51a9e9c68070304",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "physicalDateChoiceAccepted": true,
+  "physicalTimeChoiceAccepted": true,
+  "calendarCancellationAccepted": true,
+  "returnToSearchAccepted": true,
+  "darkSearchVisualAccepted": true,
+  "signedOutObserved": true,
+  "initialDate": "01/11/2026",
+  "initialTime": "12:53",
+  "selectedDate": "03/11/2026",
+  "selectedTime": "15:30",
+  "zoneLabel": "Bruxelles",
+  "checkpointCount": 12,
+  "captureKind": "original-session-window-crops-not-native-device-exports",
+  "captureClip": {
+    "x": 440,
+    "y": 99,
+    "width": 240,
+    "height": 510
+  },
+  "publishedCaptures": {
+    "search-departure-calendar-open": "captures/calendar-open.jpg",
+    "search-departure-clock-selected": "captures/clock-selected.jpg",
+    "search-departure-clock-chosen": "captures/clock-chosen.jpg",
+    "search-departure-search-reopened": "captures/search-reopened.jpg",
+    "search-departure-dark": "captures/dark.jpg"
+  },
+  "privateHelperScope": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "forceLocal": false,
+    "aliasEnabled": false,
+    "invitationPagePortEnabled": false,
+    "startupDiagnosticApproved": true,
+    "requestLoggingEnabled": false
+  },
+  "previousAuthenticationFailureCauseEstablished": false,
+  "helperExitCauseEstablished": false,
+  "installedBytesIndependentlyAttested": false,
+  "packageRemovalIndependentlyVerified": false,
+  "physicalSearchRecoveryAccepted": false,
+  "physicalBookingRecoveryAccepted": false,
+  "searchSubmitted": false,
+  "fullProcessRestartAccepted": false,
+  "realMapsExercised": false,
+  "mapRequests": 0,
+  "realPaymentsExercised": false,
+  "productionWrites": false,
+  "iOSUiAccepted": false,
+  "screenReaderAccepted": false,
+  "releaseAccepted": false,
+  "priorAttempt": "docs/release/evidence/search-departure-2026-10-31/review.json"
+}

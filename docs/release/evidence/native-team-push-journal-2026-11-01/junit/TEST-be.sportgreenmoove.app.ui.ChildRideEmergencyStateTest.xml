@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:05:22.861Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="discoveryReplyAfterLeavingTheScreenCannotRestorePrivateData" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.002"></testcase>
+  <testcase name="aChangedNumberOrChildIdentityRequiresAnotherExplicitTap" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.002"></testcase>
+  <testcase name="emptyIsExplicitButAReadFailureClearsThePrivateContactAndNeverLooksEmpty" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.0"></testcase>
+  <testcase name="discoversTheChildContactWithoutAnAdultRideAndRechecksThatRideBeforeDialing" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"></testcase>
+  <testcase name="backgroundAndAccountDisposalInvalidateAnOutstandingRead" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"></testcase>
+  <testcase name="missingOrDeniedPhoneAppsKeepTheVerifiedDestinationWithoutInventingAnAlternative" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.0"></testcase>
+  <testcase name="otherAccountsOtherRidesAndUnsafeRepliesCannotPopulateTheScreen" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"></testcase>
+  <testcase name="removalOrRevokedAuthorityCannotOpenThePreviouslyDisplayedNumber" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"></testcase>
+  <testcase name="onlyAFreshMatchingContactCanOpenThePhoneAndNoWriteCapabilityIsUsed" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.0"></testcase>
+  <testcase name="noRideAndDeniedDiscoveryAreDistinctAndNeverRetainThePreviousNumber" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.001"></testcase>
+  <testcase name="backgroundDuringFreshDialReadPreventsTheHandoff" classname="be.sportgreenmoove.app.ui.ChildRideEmergencyStateTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

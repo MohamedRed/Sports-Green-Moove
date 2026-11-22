@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 4,
+  "scope": "primary-compose-capture-observation-not-flow-or-root-cause-proof",
+  "sampleScheduleMs": [
+    250,
+    750,
+    1600
+  ],
+  "captureName": "trip-change-parent-accepted.png",
+  "sdkInvocations": 1,
+  "primaryOutcome": "threw",
+  "errorCategory": "pixelcopy-callback-wait",
+  "elapsedMs": 1128,
+  "callerIsMain": false,
+  "primaryStartOffsetMs": 1,
+  "primaryElapsedMs": 1127,
+  "mainPostAccepted": true,
+  "heartbeatDelaysMs": [
+    0,
+    0
+  ],
+  "heartbeatAtMs": [
+    50,
+    100
+  ],
+  "maxMainQueueDelayMs": 0,
+  "samples": [],
+  "sampleFailures": 0,
+  "observerClosed": true,
+  "observerTerminationVerified": false,
+  "observerMayAffectScheduling": true,
+  "imagesWrittenByObserver": false
+}

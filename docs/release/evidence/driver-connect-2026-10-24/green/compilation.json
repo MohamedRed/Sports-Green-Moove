@@ -1,0 +1,8 @@
+{
+  "mode": "speed",
+  "packages": {
+    "be.sportgreenmoove.app.local": "Success",
+    "be.sportgreenmoove.app.local.test": "Success"
+  },
+  "scope": "owned-test-package-ahead-of-time-compilation-not-cold-start-proof"
+}

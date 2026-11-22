@@ -1,0 +1,16 @@
+{
+  "scope": "local-session-disconnect-process-restart-not-physical-network-loss-checkpoint",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "4dd04a69259d48d1c055a3b472fdff05",
+  "processId": 4919,
+  "uidBefore": "sgm-qa-parent",
+  "initialFailureVisible": true,
+  "noImplicitDisconnect": true,
+  "explicitDisconnectReachedSignIn": true,
+  "authEmptyAfterDisconnect": true,
+  "screenshots": {
+    "local-session-disconnect-error.png": "a326e9454be84e03f53966634b18daf4abe48d6f18b1a3d417e10f2fb7c94a2e",
+    "local-session-disconnect-signed-out.png": "aa57ace903ad0ba3a2fe840cd90dcd972e0f473544599459cb86610f983bf7b0"
+  },
+  "physicalDevice": false
+}

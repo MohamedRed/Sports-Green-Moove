@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.073Z" hostname="local-test-host" time="0.005">
+  <properties></properties>
+  <testcase name="explicitRemovalRequiresAnInactiveConfirmationAndPreservesExactReplayIdentity" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.0"></testcase>
+  <testcase name="malformedForeignFractionalAndUnknownResponsesFailClosed" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.0"></testcase>
+  <testcase name="aDifferentOrEndedAccountCannotStartTheCallable" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.002"></testcase>
+  <testcase name="callablePayloadContainsOnlyTheStrictServerFieldsWithoutAClientChosenUserId" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.001"></testcase>
+  <testcase name="switchingDuringTheCallCannotAcknowledgeTheOldOwner" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.0"></testcase>
+  <testcase name="aCallFailureIsNotConvertedIntoSuccessOrAnEmptyRegistration" classname="be.sportgreenmoove.app.services.TeamPushRegistrationWireTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

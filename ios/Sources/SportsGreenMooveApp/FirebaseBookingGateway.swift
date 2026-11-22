@@ -24,25 +24,6 @@ extension FirebaseBackendGateway {
         }
     }
 
-    func approveBooking(bookingId: String) async throws -> String {
-        try await withCheckedThrowingContinuation { continuation in
-            Functions.functions().httpsCallable("approveBooking").call(["bookingId": bookingId]) { result, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let payload = result?.data as? [String: Any],
-                      let status = payload["status"] as? String
-                else {
-                    continuation.resume(throwing: ProviderConfigurationError(message: "Réponse approbation invalide."))
-                    return
-                }
-
-                continuation.resume(returning: status)
-            }
-        }
-    }
 }
 
 private func mapBookingRequest(_ data: [String: Any]) -> BookingRequestSummary? {

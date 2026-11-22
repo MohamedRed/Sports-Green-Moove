@@ -1,0 +1,56 @@
+import assert from 'node:assert/strict';
+import { execFileSync, spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { isAbsolute, resolve } from 'node:path';
+import { resetDisposableLocalApps } from './reset-disposable-local-apps.mjs';
+import { installDisposableTestApks, disposableTestRunner } from './install-disposable-test-apks.mjs';
+import { assertInstrumentationPassed } from './android-instrumentation-result.mjs';
+
+const [phase, serial, output] = process.argv.slice(2);
+assert.equal(process.env.SGM_LOCAL_DISPOSABLE_EMULATOR, 'true');
+assert(['red', 'green'].includes(phase)); assert.match(serial, /^emulator-\d+$/);
+assert(isAbsolute(output ?? '') && !existsSync(output));
+const root = resolve(import.meta.dirname, '../..'), adb = resolve(process.env.ANDROID_HOME, 'platform-tools/adb');
+const run = (cmd, args) => execFileSync(cmd, args, {encoding: 'utf8', timeout: 180_000, maxBuffer: 4 * 1024 * 1024});
+assert.equal(run(adb, ['-s', serial, 'shell', 'getprop', 'ro.kernel.qemu']).trim(), '1');
+const avd = run(adb, ['-s', serial, 'emu', 'avd', 'name']).trim().split(/\r?\n/)[0];
+assert.equal(avd, `sgm_connect_${phase}_20261024`);
+mkdirSync(output);
+const sha = bytes => createHash('sha256').update(bytes).digest('hex');
+const files = ['scripts/qa/run-connect-components.mjs',
+  'android/app/src/androidTest/java/be/sportgreenmoove/app/ui/PaymentsConnectLayoutTest.kt',
+  ...['PaymentsConnectCard.kt', 'PaymentsRoute.kt', 'PaymentsScreen.kt'].map(name => 'android/app/src/main/java/be/sportgreenmoove/app/ui/' + name)];
+const sourceFiles = Object.fromEntries(files.map(file => [file, sha(readFileSync(resolve(root, file)))]));
+for (const [file, hash] of Object.entries(sourceFiles)) writeFileSync(resolve(output, hash + '.txt'), readFileSync(resolve(root, file)), {flag: 'wx'});
+const apks = ['apk/debug/app-debug.apk', 'apk/androidTest/debug/app-debug-androidTest.apk'];
+const apkHashes = Object.fromEntries(apks.map(file => [file, sha(readFileSync(resolve(root, 'android/app/build/outputs', file)))]));
+let failure, cleanup, transcript, completed = false;
+try {
+  resetDisposableLocalApps(adb, serial);
+  installDisposableTestApks({adb, serial, android: resolve(root, 'android'), run});
+  const result = spawnSync(adb, ['-s', serial, 'shell', 'am', 'instrument', '-w', '-r', '-e', 'timeout_msec', '120000',
+    '-e', 'class', 'be.sportgreenmoove.app.ui.PaymentsConnectLayoutTest', `be.sportgreenmoove.app.local.test/${disposableTestRunner}`],
+  {encoding: 'utf8', timeout: 180_000, maxBuffer: 4 * 1024 * 1024});
+  transcript = result.stdout ?? '';
+  writeFileSync(resolve(output, 'instrumentation.txt'), transcript, {flag: 'wx'});
+  for (const name of ['connect-narrow.png', 'connect-opening.png']) {
+    const path = '/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/' + name;
+    const listed = spawnSync(adb, ['-s', serial, 'shell', 'ls', path], {encoding: 'utf8', timeout: 30_000});
+    const present = listed.status === 0 && listed.stdout.trim() === path;
+    if (phase === 'green') assert(present, name);
+    if (present) run(adb, ['-s', serial, 'pull', path, resolve(output, name)]);
+  }
+  assert.equal(result.status, 0); assert.equal(result.signal, null);
+  assertInstrumentationPassed(transcript, 3); completed = true;
+} catch (error) {failure = error.name;}
+finally {
+  try {resetDisposableLocalApps(adb, serial); cleanup = true;} catch {cleanup = false;}
+}
+writeFileSync(resolve(output, 'results.json'), JSON.stringify({scope: 'android-compose-connect-components-no-backend-or-provider',
+  testedAt: new Date().toISOString(), phase, avd, completed, expectedCases: 3, sourceFiles, apkHashes,
+  transcriptSha256: sha(transcript ?? ''), packagesRemoved: cleanup, providerRequests: 0, backendRequests: 0,
+  physicalDevice: false, realOnboarding: false, productionWrites: false, administrationUsed: false,
+  ...(failure ? {failure} : {})}, null, 2) + '\n', {flag: 'wx'});
+if (!completed || !cleanup) throw new Error('Connect component trial failed; retain this exact attempt.');
+console.log('Three connected Compose cases passed without backend or provider calls; packages removed.');

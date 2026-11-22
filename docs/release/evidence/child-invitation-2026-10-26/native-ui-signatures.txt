@@ -1,0 +1,9 @@
+Compiled from "ChildInvitationFlowTest.kt"
+public final class be.sportgreenmoove.app.ui.ChildInvitationFlowTest {
+  public static final int $stable;
+  public be.sportgreenmoove.app.ui.ChildInvitationFlowTest();
+  public final androidx.compose.ui.test.junit4.ComposeContentTestRule getCompose();
+  public final void aParentCreatesThenSharesOnlyTheReturnedLinkWithoutShowingItsSecret();
+  public final void anExplicitRevocationDisablesTheShareAction();
+  public final void aConsumedInvitationIsNotDisplayedAsReusableOnALargeTextSmallScreen();
+}

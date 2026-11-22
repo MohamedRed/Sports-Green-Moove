@@ -1,0 +1,114 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "1e1858f01d145f601b79dc501ad709de",
+  "scope": "isolated-chat-network-ui-not-physical-network-loss",
+  "testedAt": "2026-10-30T11:48:58.404Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "nativeUiExecuted": true,
+  "steps": [
+    {
+      "id": "chat-network-recovery-ui",
+      "status": "passed"
+    }
+  ],
+  "history": {
+    "method": "isolated-callable-fixture-not-ui-verification",
+    "bookings": [
+      {
+        "tripId": "yNOv2tnBoMyJrjo0ICcs",
+        "bookingId": "jn3AJGsV0MR3HaK0QJ2U",
+        "status": "declined"
+      },
+      {
+        "tripId": "8fgYb5ZQoS60aqcMxn9N",
+        "bookingId": "4R59RXSQTh0ksLGNKWxT",
+        "status": "cancelled"
+      }
+    ]
+  },
+  "network": {
+    "method": "native-ui-with-disposable-os-network-control",
+    "sourceId": "5lXYzVEXptE8OSBz3T9X",
+    "messageCount": 2,
+    "notificationCount": 2,
+    "duplicateMessages": 0,
+    "bookingStatuses": [
+      "approved",
+      "cancelled",
+      "declined",
+      "requested"
+    ],
+    "offlineDraftRetained": true,
+    "accountDraftCleared": true,
+    "networkRestored": true,
+    "limits": [
+      "Network disabled before the first attempt, not after a server commit.",
+      "No process restart, token expiry, physical device or push delivery tested."
+    ]
+  },
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "chat-network-recovery",
+    "receiptSha256": "fe10b77ec9136c3f75c583df22c11fff1ae3507a8d6325d41c38a91c981713ac",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "319400a6b50ca5a8ebbb7c449d96a4f2fd0dad7bd48e027f663b82857a78038a",
+      "be.sportgreenmoove.app.local.test": "93ad131b6146d60927e377035be8c2cef7b827085e081c177f83c6ecffe78219"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "primaryEvidencePhase": "network-recovery",
+  "transcriptSha256": "72c6e9893f76e6c523eb0971e9352cd5cf92f98848c5461c3e3cc25094812421",
+  "cleanupMode": "destroy-owned-local-environment",
+  "localPackagesRemoved": true,
+  "productionWrites": false,
+  "physicalDevice": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "b7afd091155134cb3af2ebedcf2cc96d3bdefc83caf364b0d78f64805359a351",
+    "scripts/qa/android-case-apks.mjs": "ce5fd0144d472f41a4656c62a52316c97fb671213cd19955f2179832d05931fd",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "c5c3b5d94e3edaf456041595e00f492a138074283e3c44beec4d71a75a7d527d",
+    "scripts/qa/continuous-disposable-device.mjs": "90a7a74f1714d3d35bd2201dae47c2ab7666fca791fe5551c3d57fe75aac3876",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "5bdff5e8e0a710de1451e8644f8101a2e9fb3674a48f870e7b135a87ad07fda6",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "e4ad586c48c32ea77d63c5c6c9c9c397692e58fe81bdd115d988eed7ffaa3d1e",
+    ".github/workflows/native-focused-ui.yml": "22138ca8cb1e07d7d3128ae078949990519523afa00ab1d66d1f9eef3c128fa3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-chat-network-recovery-ui.mjs": "671d577056c92fddfba65886bf291361c26e0ebc4948538bcd078578e0019233",
+    "scripts/qa/run-local-chat-network-recovery-ui.mjs": "06deb0f0369bf93f65e9fdae71873b167a7995cb1da038356290d3a61991fec3",
+    "scripts/qa/chat-network-history-fixture.mjs": "30997e504e52fc5abdbc71b0ecc2fad439bb2139ade229a56550069cd008b2b5",
+    "scripts/qa/local-chat-network-ui.mjs": "38d32595e207f27a1e45016b986b90382aaf4bd1b3bbd5787f7c0e6100e11ee4",
+    "scripts/qa/local-network-replay.mjs": "1a9f080a48d4a6f6f2eaeccf995adeabb709936e0324dd71767f204a77b93176",
+    "scripts/qa/chat-network-evidence.mjs": "58b49fffb5b2ff6f9a97708972c928516aeed875777264a406a572edd1702183",
+    "scripts/qa/network-start-evidence.mjs": "dc894c563e0bbea3b460c99eddd171342c93f6238038620257fb1b82463ee83f",
+    "scripts/qa/local-carrier-diagnostics.mjs": "4ba0b3f02a3b6ec5f15bf8f1194812c5eb8ecb8f74cd635b44ad30d4ae045213",
+    "scripts/qa/local-subscription-diagnostics.mjs": "9848aa23aef98e2129c0a2d046f030d2a0b87f07d2965a8e16994752a1d1a969",
+    "scripts/qa/local-default-selection-diagnostics.mjs": "d3466e37509e88f398d7d5ffafa0ea6dc541792c791934c896c1b8b819ad37b6",
+    "scripts/qa/run-isolated-ride-ui.mjs": "5a374021261cc64c6843e68d6f1c747670af29a221b519e4d7a59d816bd8b6f8",
+    "scripts/qa/local-ui-fixtures.mjs": "4fbe0a1055130f743d09d2676c333f5b76e0c6a81d20f5b7408f91197db175d6",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalChatNetworkFlowTest.kt": "5c114208797d93b0ab4da18ba0f9a97667d3769530bc040c27075854fe241ad5",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmulatorNetwork.kt": "5c875ea6ddbef45021441f20bbef78d3ebf27d97657ff97057209406c115a965",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRequestedTransport.kt": "2f499935a0d1f04253c5f5be9b5a38d0b65533b4fba1c3338d03431edb0008e4",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalInitialNetworkObservation.kt": "b194dccdb7bde0acbb61ee0c4dc86166f863c55ddad4253cb19ed652a1e9eb1d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNetworkStartObservation.kt": "ee9fe2babce1021164a2750fe6a60e4a9075a2a1cd2ad111f9c8482bb99eb77d",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNetworkCapabilitySnapshot.kt": "a8d4a5c164b83fa13ac2a18740404a07968be1b3e115c94913f076202ea3c318"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorCliExitedSuccessfully": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

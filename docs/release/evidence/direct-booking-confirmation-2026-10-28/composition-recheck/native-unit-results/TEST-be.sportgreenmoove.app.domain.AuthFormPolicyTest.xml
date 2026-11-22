@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.domain.AuthFormPolicyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-28T17:20:07.469Z" hostname="MRRs-MacBook-Air.local" time="0.009">
+  <properties/>
+  <testcase name="loginValidationNormalizesEmailAndPassword" classname="be.sportgreenmoove.app.domain.AuthFormPolicyTest" time="0.005"/>
+  <testcase name="signupRequiresNameValidEmailAndStrongPassword" classname="be.sportgreenmoove.app.domain.AuthFormPolicyTest" time="0.001"/>
+  <testcase name="unknownAuthErrorsUseGenericRetryMessage" classname="be.sportgreenmoove.app.domain.AuthFormPolicyTest" time="0.003"/>
+  <testcase name="firebaseCredentialErrorsDoNotLeakRawMessages" classname="be.sportgreenmoove.app.domain.AuthFormPolicyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

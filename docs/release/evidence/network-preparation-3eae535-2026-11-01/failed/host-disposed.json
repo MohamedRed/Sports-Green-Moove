@@ -1,0 +1,13 @@
+{
+  "scope": "ci-read-only-emulator-host-observation-not-flow-or-root-cause-proof",
+  "phase": "chat-network-recovery",
+  "completedAt": "2026-11-01T22:34:37.155Z",
+  "finalState": "gone",
+  "observations": 2,
+  "elapsedMs": 1084.8867460000001,
+  "targetExitObserved": true,
+  "processSignalsRequested": false,
+  "deviceCommandsRequested": false,
+  "flowAccepted": false,
+  "rootCauseConfirmed": false
+}

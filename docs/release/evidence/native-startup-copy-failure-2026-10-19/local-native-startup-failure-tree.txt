@@ -1,0 +1,183 @@
+Printing with useUnmergedTree = 'true'
+Node #1 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px
+ |-Node #52 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px
+   IsContainer = 'true'
+   Shape = 'RectangleShape'
+    |-Node #94 at (l=0.0, t=128.0, r=1080.0, b=2169.0)px
+    | Shape = 'RectangleShape'
+    |  |-Node #412 at (l=0.0, t=128.0, r=1080.0, b=2169.0)px, Tag: 'active-ride.screen'
+    |    IsTraversalGroup = 'true'
+    |    Shape = 'RectangleShape'
+    |    VerticalScrollAxisRange = 'ScrollAxisRange(value=0.0, maxValue=411.0, reverseScrolling=false)'
+    |    Actions = [ScrollBy, ScrollByOffset]
+    |     |-Node #414 at (l=53.0, t=217.0, r=148.0, b=312.0)px, Tag: 'navigation.back.action'
+    |     | ContentDescription = '[Retour]'
+    |     | Focused = 'false'
+    |     | Selected = 'false'
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+    |     | Actions = [OnClick, RequestFocus]
+    |     | MergeDescendants = 'true'
+    |     |-Node #416 at (l=174.0, t=230.0, r=906.0, b=299.0)px
+    |     | Text = '[COURSE ACTIVE]'
+    |     | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #417 at (l=932.0, t=217.0, r=1027.0, b=312.0)px, Tag: 'appearance.toggle'
+    |     | Focused = 'false'
+    |     | Selected = 'false'
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+    |     | Actions = [OnClick, RequestFocus]
+    |     | MergeDescendants = 'true'
+    |     |-Node #419 at (l=53.0, t=328.0, r=1027.0, b=984.0)px, Tag: 'active-ride.google-maps-route-preview'
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 22.0.dp), topEnd = CornerSize(size = 22.0.dp), bottomEnd = CornerSize(size = 22.0.dp), bottomStart = CornerSize(size = 22.0.dp))'
+    |     |  |-Node #420 at (l=116.0, t=328.0, r=964.0, b=984.0)px
+    |     |  | Shape = 'RectangleShape'
+    |     |  |  |-Node #421 at (l=313.0, t=596.0, r=767.0, b=672.0)px
+    |     |  |  | Text = '[CARTE INDISPONIBLE]'
+    |     |  |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |  |-Node #422 at (l=137.0, t=672.0, r=943.0, b=717.0)px
+    |     |  |    Text = '[La carte ne peut pas être affichée pour le moment.]'
+    |     |  |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #423 at (l=127.0, t=830.0, r=350.0, b=921.0)px
+    |     |    Shape = 'RoundedCornerShape(topStart = CornerSize(size = 16.0.dp), topEnd = CornerSize(size = 16.0.dp), bottomEnd = CornerSize(size = 16.0.dp), bottomStart = CornerSize(size = 16.0.dp))'
+    |     |     |-Node #424 at (l=127.0, t=830.0, r=313.0, b=865.0)px
+    |     |     | Text = '[SUIVI EN DIRECT]'
+    |     |     | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |     |-Node #425 at (l=127.0, t=876.0, r=350.0, b=921.0)px
+    |     |       Text = '[ETA à calculer]'
+    |     |       Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #426 at (l=95.0, t=1068.0, r=985.0, b=1308.0)px
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 20.0.dp), topEnd = CornerSize(size = 20.0.dp), bottomEnd = CornerSize(size = 20.0.dp), bottomStart = CornerSize(size = 20.0.dp))'
+    |     |  |-Node #429 at (l=95.0, t=1068.0, r=286.0, b=1103.0)px
+    |     |  | Text = '[SESSION QJA2PW]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #430 at (l=95.0, t=1111.0, r=193.0, b=1174.0)px
+    |     |  | Text = '[ACTIF]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #431 at (l=901.0, t=1104.0, r=959.0, b=1138.0)px
+    |     |  | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 999.0.dp), topEnd = CornerSize(size = 999.0.dp), bottomEnd = CornerSize(size = 999.0.dp), bottomStart = CornerSize(size = 999.0.dp))'
+    |     |  |  |-Node #432 at (l=901.0, t=1104.0, r=959.0, b=1138.0)px
+    |     |  |    Text = '[LIVE]'
+    |     |  |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #435 at (l=153.0, t=1200.0, r=423.0, b=1241.0)px
+    |     |  | Text = '[Véhicule]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #436 at (l=444.0, t=1200.0, r=985.0, b=1241.0)px, Tag: 'active-ride.vehicle-update'
+    |     |  | Text = '[Secours GPS · il y a 16 s]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #439 at (l=153.0, t=1267.0, r=423.0, b=1308.0)px
+    |     |  | Text = '[Enfant]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #440 at (l=444.0, t=1267.0, r=985.0, b=1308.0)px
+    |     |    Text = '[Non disponible]'
+    |     |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #442 at (l=53.0, t=1403.0, r=1027.0, b=1463.0)px
+    |     | Text = '[STATUTS]'
+    |     | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #443 at (l=90.0, t=1521.0, r=990.0, b=1888.0)px
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 16.0.dp), topEnd = CornerSize(size = 16.0.dp), bottomEnd = CornerSize(size = 16.0.dp), bottomStart = CornerSize(size = 16.0.dp))'
+    |     |  |-Node #445 at (l=90.0, t=1521.0, r=623.0, b=1568.0)px
+    |     |  | Text = '[Véhicule]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #446 at (l=655.0, t=1524.0, r=990.0, b=1565.0)px
+    |     |  | Text = '[Secours GPS · il y a 16 s]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #448 at (l=90.0, t=1600.0, r=742.0, b=1647.0)px
+    |     |  | Text = '[Enfant]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #449 at (l=774.0, t=1603.0, r=990.0, b=1644.0)px
+    |     |  | Text = '[Non disponible]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #452 at (l=90.0, t=1681.0, r=179.0, b=1770.0)px
+    |     |  | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+    |     |  |  |-Node #453 at (l=125.0, t=1708.0, r=145.0, b=1743.0)px
+    |     |  |    Text = '[LI]'
+    |     |  |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #455 at (l=205.0, t=1679.0, r=335.0, b=1726.0)px
+    |     |  | Text = '[Lina QA]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #456 at (l=205.0, t=1731.0, r=910.0, b=1772.0)px
+    |     |  | Text = '[Prise en charge à confirmer · Dépose à confirmer]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #458 at (l=90.0, t=1793.0, r=529.0, b=1888.0)px, Tag: 'active-ride.pickup.action'
+    |     |  | Focused = 'false'
+    |     |  | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    |     |  | Actions = [OnClick, RequestFocus]
+    |     |  | MergeDescendants = 'true'
+    |     |  |  |-Node #459 at (l=148.0, t=1817.0, r=472.0, b=1864.0)px
+    |     |  |    Text = '[PRISE EN CHARGE]'
+    |     |  |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #460 at (l=550.0, t=1793.0, r=990.0, b=1888.0)px, Tag: 'active-ride.dropoff.action'
+    |     |    Shape = 'RectangleShape'
+    |     |    [Disabled]
+    |     |    Actions = [OnClick]
+    |     |    MergeDescendants = 'true'
+    |     |     |-Node #461 at (l=699.0, t=1817.0, r=841.0, b=1864.0)px
+    |     |       Text = '[DÉPOSE]'
+    |     |       Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #462 at (l=95.0, t=2009.0, r=985.0, b=2317.0)px
+    |     | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 18.0.dp), topEnd = CornerSize(size = 18.0.dp), bottomEnd = CornerSize(size = 18.0.dp), bottomStart = CornerSize(size = 18.0.dp))'
+    |     |  |-Node #463 at (l=95.0, t=2009.0, r=257.0, b=2044.0)px
+    |     |  | Text = '[FIN DE COURSE]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #464 at (l=95.0, t=2076.0, r=985.0, b=2159.0)px
+    |     |  | Text = '[Tous les passagers doivent être déposés avant de terminer le trajet.]'
+    |     |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |  |-Node #465 at (l=95.0, t=2191.0, r=985.0, b=2317.0)px, Tag: 'active-ride.end.action'
+    |     |    Shape = 'RectangleShape'
+    |     |    [Disabled]
+    |     |    Actions = [OnClick]
+    |     |    MergeDescendants = 'true'
+    |     |     |-Node #466 at (l=342.0, t=2231.0, r=739.0, b=2278.0)px
+    |     |       Text = '[TERMINER LA COURSE]'
+    |     |       Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |     |-Node #468 at (l=53.0, t=2401.0, r=1027.0, b=2527.0)px, Tag: 'active-ride.emergency-contact'
+    |       Focused = 'false'
+    |       Role = 'Button'
+    |       Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+    |       Actions = [OnClick, RequestFocus]
+    |       MergeDescendants = 'true'
+    |        |-Node #472 at (l=414.0, t=2431.0, r=735.0, b=2497.0)px
+    |          Text = '[Contact d’urgence]'
+    |          Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #62 at (l=0.0, t=2169.0, r=1080.0, b=2400.0)px
+      Shape = 'RectangleShape'
+       |-Node #64 at (l=26.0, t=2169.0, r=231.0, b=2337.0)px, Tag: 'bottom-nav.home.action'
+       | Focused = 'false'
+       | Actions = [OnClick, RequestFocus]
+       | MergeDescendants = 'true'
+       |  |-Node #67 at (l=94.0, t=2264.0, r=163.0, b=2292.0)px
+       |  | Text = '[Accueil]'
+       |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+       |  |-Node #69 at (l=123.0, t=2300.0, r=134.0, b=2311.0)px
+       |    Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+       |-Node #70 at (l=231.0, t=2169.0, r=436.0, b=2337.0)px, Tag: 'bottom-nav.trips.action'
+       | Focused = 'false'
+       | Actions = [OnClick, RequestFocus]
+       | MergeDescendants = 'true'
+       |  |-Node #73 at (l=299.0, t=2267.0, r=369.0, b=2295.0)px
+       |  | Text = '[Trajets]'
+       |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+       |  |-Node #75 at (l=328.0, t=2303.0, r=339.0, b=2314.0)px
+       |    Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+       |-Node #77 at (l=474.0, t=2167.0, r=605.0, b=2298.0)px, Tag: 'bottom-nav.publish.action'
+       | Focused = 'false'
+       | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+       | Actions = [OnClick, RequestFocus]
+       | MergeDescendants = 'true'
+       |-Node #79 at (l=642.0, t=2169.0, r=848.0, b=2337.0)px, Tag: 'bottom-nav.messages.action'
+       | Focused = 'false'
+       | Actions = [OnClick, RequestFocus]
+       | MergeDescendants = 'true'
+       |  |-Node #82 at (l=702.0, t=2264.0, r=789.0, b=2292.0)px
+       |  | Text = '[Messages]'
+       |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+       |  |-Node #84 at (l=740.0, t=2300.0, r=751.0, b=2311.0)px
+       |    Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'
+       |-Node #85 at (l=848.0, t=2169.0, r=1054.0, b=2337.0)px, Tag: 'bottom-nav.profile.action'
+         Focused = 'false'
+         Actions = [OnClick, RequestFocus]
+         MergeDescendants = 'true'
+          |-Node #88 at (l=922.0, t=2264.0, r=980.0, b=2292.0)px
+          | Text = '[Profil]'
+          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+          |-Node #90 at (l=946.0, t=2300.0, r=957.0, b=2311.0)px
+            Shape = 'RoundedCornerShape(topStart = CornerSize(size = 50.0%), topEnd = CornerSize(size = 50.0%), bottomEnd = CornerSize(size = 50.0%), bottomStart = CornerSize(size = 50.0%))'

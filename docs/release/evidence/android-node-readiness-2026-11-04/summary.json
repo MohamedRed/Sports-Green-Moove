@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-11-04",
+  "scope": "compiled-readiness-candidate-not-native-execution",
+  "baselineCommit": "3e7cd40e62798ba503c383e044e25231dc3072bd",
+  "retainedFailure": {
+    "runId": 41907489530,
+    "jobId": 126845938435,
+    "sourceCommit": "0d502700fbbcbf66682912b0f44557c6f4feeaba",
+    "conclusion": "failure",
+    "ordinaryDeadlineMs": 720000,
+    "lastCompletedCase": 335,
+    "lastStartedCase": 336,
+    "totalDiscoveredCases": 349,
+    "fullOrdinaryResult": false,
+    "firstReplayCase": "LocalGuardianVerificationFlowTest",
+    "replayFailure": "No compose hierarchies found",
+    "evidenceDirectoryExists": false,
+    "focusedLanesPassed": 11,
+    "underlyingRootAbsenceCause": "unknown",
+    "ordinarySlownessCause": "unknown"
+  },
+  "provenance": {
+    "artifactId": 13361114403,
+    "archiveSha256": "426365965d0d4ee70b10c9269eb0963d593bacf74e6ed8ec2cafad32d81461c9",
+    "records": [
+      {
+        "file": "native-suite-status.json",
+        "entry": "outputs/store-review-screenshots/native-suite-status.json",
+        "sha256": "5f34b44c527e2f1d8fcec4986576ce19525f9a48919f13456a15fc6ff49cb90f",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "ordinary-process.json",
+        "entry": "outputs/store-review-screenshots/ordinary-process.json",
+        "sha256": "219a5f8d64b2abbfdad848c6c50acad4193dc1f3612c4ee69d27be6cfb2a4538",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "guardian-instrumentation.txt",
+        "entry": "outputs/local-ui-evidence/bcd21edf83934378c9a4b128f47df358/LocalGuardianVerificationFlowTest-instrumentation.txt",
+        "sha256": "1d4f40c1092450f1bc2fda4f745b98c5807e9daa20bb6a1e6f2920c9a2f22d29",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "sync-diagnostics.json",
+        "entry": "outputs/local-ui-evidence/bcd21edf83934378c9a4b128f47df358/adb-sync-failure-cleanup-diagnostics.json",
+        "sha256": "40ac8b7bf411628719127f0e9b9fa46d5bf5b4c3b36000516764b29f237b2786",
+        "selection": "complete-unchanged-entry"
+      },
+      {
+        "file": "ordinary-tail.txt",
+        "entry": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+        "originalEntrySha256": "75ef31a525d4c37eb1b7f2e6116ee98b9dc8ef05855855d639533e73f3e30438",
+        "sha256": "d923358d92af1eb6a82ea5c0e9c80ff2bc92f7a41880c201475f49c3d94427d3",
+        "selection": "last-18-split-lines-unchanged"
+      }
+    ]
+  },
+  "candidate": {
+    "changedCallerFiles": 71,
+    "positiveWaits": 101,
+    "fullFileTransformationMatches": true,
+    "productionAppChanged": false,
+    "originalDeadlinesPreserved": true,
+    "apk": {
+      "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "e1412244e94249f4fb3862334c30131bf1bbc57b5376508ff917d552b6c88887",
+      "sizeBytes": 2046211,
+      "dexMembers": [
+        "Lbe/sportgreenmoove/app/ui/ComposeNodeReadinessKt;",
+        "Lbe/sportgreenmoove/app/ui/ComposeNodeReadinessTest;",
+        "absentCompositionStillFailsAtItsDeadline",
+        "aLaterCompositionMustContainTheRequestedNode",
+        "waitForComposeNode"
+      ]
+    },
+    "build": {
+      "exitCode": 0,
+      "log": "apk-build.txt",
+      "sha256": "37385709aac078059011ca6e523d0ede27d54a156530099bce901a24f777a640"
+    },
+    "regressionCases": 2
+  },
+  "nativeRegressionExecutionAccepted": false,
+  "fullGateAccepted": false,
+  "physicalTrackingAccepted": false,
+  "releaseComplete": false,
+  "newNativeMediaPublished": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "newPhoneSessions": 0,
+  "separateBaselineRun": {
+    "source": "baseline-native-run.json",
+    "sourceCommit": "3e7cd40e62798ba503c383e044e25231dc3072bd",
+    "runId": 41911782130,
+    "conclusion": "success",
+    "candidateReadinessPresent": false,
+    "priorRootCauseConfirmed": false
+  }
+}

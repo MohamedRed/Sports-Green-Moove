@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "failed-verification-boundaries-and-unaccepted-candidates",
+  "localExactRequestAndResponseContractPassed": true,
+  "linuxExecutionAccepted": false,
+  "androidChatFlowExecuted": false,
+  "iphoneScreenTestsExecuted": false,
+  "iphoneDisposal": "success",
+  "candidate": {
+    "runner": "macos-26",
+    "standardPublicRunner": true,
+    "timeoutMinutes": 50,
+    "fixtureCases": 11,
+    "performanceImprovementProven": false,
+    "extraWorkers": 0,
+    "captureLimitChanged": false,
+    "readinessPredicateChanged": false,
+    "readinessBudgetChanged": false,
+    "availableNetworkCapabilitiesObservedOnlyOnNextRun": true
+  },
+  "sdkBuildAccepted": false,
+  "fixtureUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "newPhoneSessions": 0,
+  "providerRequests": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "linux-job.json",
+      "sha256": "2ab9e6e59bd72c9ac3fe3a202aae373f1d2104e7189e7e93f299cf32ebff544d"
+    },
+    {
+      "file": "android-job.json",
+      "sha256": "d54f4155b44e1bdd77ad236d195ae7f5ba8ee16ae33f2ebc2e0ee2cc498f13c4"
+    },
+    {
+      "file": "android-outcome.json",
+      "sha256": "85abbb55a3e3be62cb68f561fd2da675fd47e6ceae34fbef238035c37d9c3dab"
+    },
+    {
+      "file": "android-last-sample.json",
+      "sha256": "0fa94ef7a6582adf049dd250f562def6f8e28f7f7da743870ebcca4fb7591e08"
+    },
+    {
+      "file": "iphone-job.json",
+      "sha256": "292e9aedc5a8b69c6bc718981fb0c76badba2f70195597315f16cc4f4dbef6e6"
+    },
+    {
+      "file": "iphone-annotations.json",
+      "sha256": "8a50be0bc836fd070c466d5ff778ea08297456ce78a2f397502fdb540624e24c"
+    },
+    {
+      "file": "iphone-artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "local-contract.txt",
+      "sha256": "3401afe3cd8dccdb9e74d93d0f41201917f20ff23226953fa0e67eed69acd90b"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "a2b50e083a5c740bbbe50607f2f89c4d6ce1613e0eaa6d2cc4c48aa4e57c47b0"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "317ce785da00141d04fbcad774131cae629dff65361195ef34f7ef9a63424f13"
+    }
+  ]
+}

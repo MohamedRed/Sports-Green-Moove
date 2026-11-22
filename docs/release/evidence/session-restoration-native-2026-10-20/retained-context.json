@@ -1,0 +1,21 @@
+{
+  "scope": "single-local-session-restoration-native-trial-not-complete-release",
+  "sourceCommit": "bf7e5aacea86ed872c078856d6cc2fd4bab52ee4",
+  "workflowRunId": 39415695486,
+  "caseJobId": 118604032135,
+  "artifactId": 12261907492,
+  "runId": "41d5d800dc9ced46a1b3baa1c0bd28f7",
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "productionDeployed": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "reviewedCaptures": [
+    "local-session-restoration-error.png",
+    "local-session-restoration-rotated-error.png",
+    "local-session-restoration-recovered.png",
+    "local-session-restoration-restored.png"
+  ],
+  "identityCaptureRetainedOnly": true,
+  "wholeWorkflowSuccessClaimed": false
+}

@@ -1,0 +1,67 @@
+{
+  "cases" : [
+    {
+      "id" : "callable-document-parity",
+      "status" : "passed"
+    },
+    {
+      "id" : "round-trip-and-null-arrival",
+      "status" : "passed"
+    },
+    {
+      "id" : "selected-seats-and-child",
+      "status" : "passed"
+    },
+    {
+      "id" : "adult-does-not-invent-child",
+      "status" : "passed"
+    },
+    {
+      "id" : "persisted-date-remains-bookable",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-term-priceCents-5",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-term-priceCents-6",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-term-departureAt-7",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-term-origin-8",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-context-seatsTotal",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-context-driverUserId",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-context-returnTrip",
+      "status" : "passed"
+    },
+    {
+      "id" : "invalid-context-appliedChangeId",
+      "status" : "passed"
+    },
+    {
+      "id" : "missing-snapshot-rejected",
+      "status" : "passed"
+    },
+    {
+      "id" : "a-new-document-does-not-replace-displayed-terms",
+      "status" : "passed"
+    }
+  ],
+  "passed" : true,
+  "scope" : "foundation-wire-contract-not-ios-ui",
+  "testedAt" : "2026-10-29T20:54:39Z"
+}

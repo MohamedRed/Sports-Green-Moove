@@ -1,0 +1,119 @@
+{
+  "runId": 42085479235,
+  "jobId": 127449295372,
+  "sourceCommit": "584c61b61453878e1bd2631b48ca2fef5e9de4d4",
+  "status": "completed",
+  "conclusion": "failure",
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/42085479235/job/127449295372",
+  "startedAt": "2026-11-05T18:34:10Z",
+  "completedAt": "2026-11-05T18:43:04Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:11Z",
+      "completedAt": "2026-11-05T18:34:13Z"
+    },
+    {
+      "name": "Run actions/checkout@v6",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:13Z",
+      "completedAt": "2026-11-05T18:34:19Z"
+    },
+    {
+      "name": "Run actions/setup-java@v5",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:19Z",
+      "completedAt": "2026-11-05T18:34:19Z"
+    },
+    {
+      "name": "Run actions/setup-node@v6",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:19Z",
+      "completedAt": "2026-11-05T18:34:22Z"
+    },
+    {
+      "name": "Run npm ci",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:22Z",
+      "completedAt": "2026-11-05T18:34:34Z"
+    },
+    {
+      "name": "Run android-actions/setup-android@v4",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:34Z",
+      "completedAt": "2026-11-05T18:34:39Z"
+    },
+    {
+      "name": "Compile isolated app before starting the device",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:34:39Z",
+      "completedAt": "2026-11-05T18:38:37Z"
+    },
+    {
+      "name": "Install the selected device image before reserving storage",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:38:37Z",
+      "completedAt": "2026-11-05T18:39:10Z"
+    },
+    {
+      "name": "Reserve disk space for the unchanged focused Android device",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:10Z",
+      "completedAt": "2026-11-05T18:39:10Z"
+    },
+    {
+      "name": "Enable KVM group permissions",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:39:10Z",
+      "completedAt": "2026-11-05T18:39:10Z"
+    },
+    {
+      "name": "Run one isolated safety flow on its own phone",
+      "conclusion": "failure",
+      "startedAt": "2026-11-05T18:39:10Z",
+      "completedAt": "2026-11-05T18:42:59Z"
+    },
+    {
+      "name": "Finish bounded read-only emulator host observation",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:59Z",
+      "completedAt": "2026-11-05T18:42:59Z"
+    },
+    {
+      "name": "Retain focused outcomes and independent cleanup",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:42:59Z",
+      "completedAt": "2026-11-05T18:43:01Z"
+    },
+    {
+      "name": "Post Run actions/setup-node@v6",
+      "conclusion": "skipped",
+      "startedAt": "2026-11-05T18:43:01Z",
+      "completedAt": "2026-11-05T18:43:01Z"
+    },
+    {
+      "name": "Post Run actions/setup-java@v5",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:01Z",
+      "completedAt": "2026-11-05T18:43:01Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v6",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:01Z",
+      "completedAt": "2026-11-05T18:43:01Z"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success",
+      "startedAt": "2026-11-05T18:43:01Z",
+      "completedAt": "2026-11-05T18:43:01Z"
+    }
+  ],
+  "artifactId": 13442587832,
+  "artifactSha256": "961040d37a30c1fd050b45165976c4746e8f4a5d68cdabfc813eddb16d36ae85",
+  "appFlowExecuted": false,
+  "rootCauseConfirmed": false,
+  "nondefaultWifiValidationKnown": false
+}

@@ -1,0 +1,79 @@
+{
+  "runId": 42091345380,
+  "jobId": 127469877171,
+  "sourceCommit": "aac8de64f2da97b638079103a77a02d2b367d83f",
+  "status": "completed",
+  "conclusion": "failure",
+  "startedAt": "2026-11-05T19:10:32Z",
+  "completedAt": "2026-11-05T19:21:27Z",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-java@v5",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-node@v6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run npm ci",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run android-actions/setup-android@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Compile isolated app before starting the device",
+      "conclusion": "success"
+    },
+    {
+      "name": "Install the selected device image before reserving storage",
+      "conclusion": "success"
+    },
+    {
+      "name": "Reserve disk space for the unchanged focused Android device",
+      "conclusion": "success"
+    },
+    {
+      "name": "Enable KVM group permissions",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run one isolated safety flow on its own phone",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Finish bounded read-only emulator host observation",
+      "conclusion": "success"
+    },
+    {
+      "name": "Retain focused outcomes and independent cleanup",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-node@v6",
+      "conclusion": "skipped"
+    },
+    {
+      "name": "Post Run actions/setup-java@v5",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v6",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

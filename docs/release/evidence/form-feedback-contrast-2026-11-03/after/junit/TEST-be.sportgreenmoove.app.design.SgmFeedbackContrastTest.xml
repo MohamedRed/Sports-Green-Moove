@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2026-11-03T08:44:55.900Z" hostname="MRRs-MacBook-Air.local" time="0.006">
+  <properties/>
+  <testcase name="feedbackRemainsReadable[light-runtime-info]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.001"/>
+  <testcase name="feedbackRemainsReadable[light-runtime-warning]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-live-pill]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-stale-pill]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-stale-entry-heading]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.001"/>
+  <testcase name="feedbackRemainsReadable[light-stale-entry-update]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-stale-monitor-warning]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-review-error]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-rating-action]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-on-material-error]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-material-error-app]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.001"/>
+  <testcase name="feedbackRemainsReadable[light-material-error-surface]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-material-error-card]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-material-error-elevated]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[light-material-error-input]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-runtime-info]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-runtime-warning]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-live-pill]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.001"/>
+  <testcase name="feedbackRemainsReadable[dark-stale-pill]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-stale-entry-heading]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-stale-entry-update]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-stale-monitor-warning]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-review-error]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-rating-action]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-on-material-error]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-material-error-app]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.001"/>
+  <testcase name="feedbackRemainsReadable[dark-material-error-surface]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-material-error-card]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-material-error-elevated]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <testcase name="feedbackRemainsReadable[dark-material-error-input]" classname="be.sportgreenmoove.app.design.SgmFeedbackContrastTest" time="0.0"/>
+  <system-out><![CDATA[{"case":"light-runtime-info","minimum":4.5,"contrastRatio":5.525185747428838}
+{"case":"light-runtime-warning","minimum":4.5,"contrastRatio":6.870904019318382}
+{"case":"light-live-pill","minimum":4.5,"contrastRatio":4.894175469579192}
+{"case":"light-stale-pill","minimum":4.5,"contrastRatio":5.553532077767191}
+{"case":"light-stale-entry-heading","minimum":4.5,"contrastRatio":6.396204266161205}
+{"case":"light-stale-entry-update","minimum":4.5,"contrastRatio":6.396204266161205}
+{"case":"light-stale-monitor-warning","minimum":4.5,"contrastRatio":6.396204266161205}
+{"case":"light-review-error","minimum":4.5,"contrastRatio":5.821162674372663}
+{"case":"light-rating-action","minimum":3.0,"contrastRatio":6.870904019318382}
+{"case":"light-on-material-error","minimum":4.5,"contrastRatio":6.574288218658918}
+{"case":"light-material-error-app","minimum":4.5,"contrastRatio":6.092589354752622}
+{"case":"light-material-error-surface","minimum":4.5,"contrastRatio":6.574288218658918}
+{"case":"light-material-error-card","minimum":4.5,"contrastRatio":5.821162674372663}
+{"case":"light-material-error-elevated","minimum":4.5,"contrastRatio":6.574288218658918}
+{"case":"light-material-error-input","minimum":4.5,"contrastRatio":6.039429136621258}
+{"case":"dark-runtime-info","minimum":4.5,"contrastRatio":6.921158534783436}
+{"case":"dark-runtime-warning","minimum":4.5,"contrastRatio":7.3811484881739915}
+{"case":"dark-live-pill","minimum":4.5,"contrastRatio":5.223960077357715}
+{"case":"dark-stale-pill","minimum":4.5,"contrastRatio":5.774577341354085}
+{"case":"dark-stale-entry-heading","minimum":4.5,"contrastRatio":7.432735953699185}
+{"case":"dark-stale-entry-update","minimum":4.5,"contrastRatio":7.432735953699185}
+{"case":"dark-stale-monitor-warning","minimum":4.5,"contrastRatio":7.432735953699185}
+{"case":"dark-review-error","minimum":4.5,"contrastRatio":7.31786317007263}
+{"case":"dark-rating-action","minimum":3.0,"contrastRatio":7.3811484881739915}
+{"case":"dark-on-material-error","minimum":4.5,"contrastRatio":7.804130183443631}
+{"case":"dark-material-error-app","minimum":4.5,"contrastRatio":8.470091498025255}
+{"case":"dark-material-error-surface","minimum":4.5,"contrastRatio":7.89407513420128}
+{"case":"dark-material-error-card","minimum":4.5,"contrastRatio":7.31786317007263}
+{"case":"dark-material-error-elevated","minimum":4.5,"contrastRatio":6.271288288940174}
+{"case":"dark-material-error-input","minimum":4.5,"contrastRatio":6.609132478968385}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

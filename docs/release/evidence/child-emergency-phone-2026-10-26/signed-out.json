@@ -1,0 +1,15 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c29923db8f4ef55fe5af1651c4872f75",
+  "recordedAt": "2026-10-26T21:01:52.884Z",
+  "result": {
+    "phase": "signed-out",
+    "status": "passed",
+    "recordsUnchanged": true,
+    "accountClaimsUnchanged": true,
+    "currentContactRead": true,
+    "physicalUiProvenByThisCheckpoint": false,
+    "locationPermissionProvenByThisCheckpoint": false,
+    "dialerHandoffProvenByThisCheckpoint": false
+  }
+}

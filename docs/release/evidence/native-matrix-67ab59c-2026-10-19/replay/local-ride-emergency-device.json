@@ -1,0 +1,54 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c523d9964eedfab26927ba88f9fad1",
+  "scope": "local-native-active-ride-emergency-not-physical",
+  "actors": [
+    {
+      "dialerPackage": "com.google.android.dialer",
+      "dialIntentCount": 1,
+      "directCallIntentCount": 0,
+      "dialerNumberMatched": true,
+      "role": "driver",
+      "ownerUid": "sgm-qa-driver",
+      "rideSessionId": "KfMZ77EmHn1Bw4NRvRI5",
+      "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+      "returnedToSameRide": true,
+      "passengerStatusesUnchanged": true,
+      "contactSavedRevision": 1,
+      "contactRemovedRevision": 2,
+      "contactChosenThroughUi": true,
+      "foreignContactVisible": false,
+      "driverControlsAvailable": true
+    },
+    {
+      "dialerPackage": "com.google.android.dialer",
+      "dialIntentCount": 1,
+      "directCallIntentCount": 0,
+      "dialerNumberMatched": true,
+      "role": "parent",
+      "ownerUid": "sgm-qa-parent",
+      "rideSessionId": "KfMZ77EmHn1Bw4NRvRI5",
+      "tripId": "sgm-qa-trip-u8-wavre-bruxelles",
+      "returnedToSameRide": true,
+      "passengerStatusesUnchanged": true,
+      "contactSavedRevision": 1,
+      "contactRemovedRevision": 2,
+      "contactChosenThroughUi": true,
+      "foreignContactVisible": false,
+      "driverControlsAvailable": false
+    }
+  ],
+  "screenshots": {
+    "local-ride-emergency-driver-entry.png": "2a044cc6ef44c1ccb16912f4500152e08d1cc512bf5354fe9cf5bde0c7158072",
+    "local-ride-emergency-driver-saved.png": "de9aa73efe5fe70e090a044ce1ea93c946f8496014134027fd680cba93c49cdb",
+    "local-ride-emergency-driver-dialer.png": "c81ea01b6c1672410fa3b250de8898fe30b9d3fd764f354a58acea57685f536a",
+    "local-ride-emergency-driver-returned.png": "fbd299f17a5dae8381b3392c13516d6a42fb24029d87f2706e5e879edf898f20",
+    "local-ride-emergency-parent-entry.png": "97e5a648a58c52a647a629037101fcce096108c5fd295abb79833acee9fbeb0e",
+    "local-ride-emergency-parent-saved.png": "6586acb605f39f5453bfc1489f3947f1bfccfdde551fab729c5ae1955478911e",
+    "local-ride-emergency-parent-dialer.png": "c16afdad130a036b49d91817f59f4fc76a1f10f5c56c8890440f2d5e427d9182",
+    "local-ride-emergency-parent-returned.png": "8c5b4871861ac819922d488015dd7bfa4c3591b0d99eff7140c8eb71702c4c2e"
+  },
+  "driverResumedTracking": true,
+  "physicalDevice": false,
+  "productionWrites": false
+}

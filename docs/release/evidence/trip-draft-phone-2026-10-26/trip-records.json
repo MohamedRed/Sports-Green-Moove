@@ -1,0 +1,152 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e6f16834f97c8f08095cdcdea11f3e6a",
+  "scope": "sanitized-baseline-trip-projection-not-ui-or-full-record-replay",
+  "trips": [
+    {
+      "id": "RlnhTxdNhyGyCoU4zZsB",
+      "data": {
+        "id": "RlnhTxdNhyGyCoU4zZsB",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Brouillon de trajet",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-28T09:44:20.538Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 250,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1793051061,
+          "_nanoseconds": 633000000
+        },
+        "updatedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 245000000
+        },
+        "seatsAvailable": 3
+      }
+    },
+    {
+      "id": "nWNvtLBwAiYCMDqTVcMQ",
+      "data": {
+        "id": "nWNvtLBwAiYCMDqTVcMQ",
+        "driverUserId": "sgm-qa-driver",
+        "status": "published",
+        "title": "Autre trajet sans brouillon",
+        "sport": "Football",
+        "clubName": "Green Wavre QA Club",
+        "clubId": "sgm-qa-club-green-wavre",
+        "teamId": "sgm-qa-club-green-wavre-u8",
+        "category": "U 7/8",
+        "departureAt": "2026-10-28T09:44:23.270Z",
+        "origin": {
+          "lat": 50.7167,
+          "lng": 4.6167
+        },
+        "destination": {
+          "lat": 50.8503,
+          "lng": 4.3517
+        },
+        "pickupRadiusM": 1500,
+        "seatsTotal": 4,
+        "baggage": "medium",
+        "returnTrip": false,
+        "priceCents": 250,
+        "driverRating": 0,
+        "driverVerified": true,
+        "supportsVehicleTracking": true,
+        "supportsChildTracking": true,
+        "co2SavedKgEstimate": 7.4,
+        "passengerInitials": [],
+        "blockedUserIds": [],
+        "createdAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 285000000
+        },
+        "updatedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 342000000
+        },
+        "seatsAvailable": 3
+      }
+    }
+  ],
+  "bookings": [
+    {
+      "id": "0DQJuh2Ggl5xuAJkM9Lw",
+      "data": {
+        "tripId": "nWNvtLBwAiYCMDqTVcMQ",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 1,
+        "createdAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 318000000
+        },
+        "approvedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 342000000
+        },
+        "status": "approved",
+        "updatedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 342000000
+        }
+      }
+    },
+    {
+      "id": "St8VXDF5p5IFG3wGUzXX",
+      "data": {
+        "tripId": "RlnhTxdNhyGyCoU4zZsB",
+        "parentUserId": "sgm-qa-parent",
+        "requesterUserId": "sgm-qa-parent",
+        "driverUserId": "sgm-qa-driver",
+        "seats": 1,
+        "createdAt": {
+          "_seconds": 1793051062,
+          "_nanoseconds": 420000000
+        },
+        "approvedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 245000000
+        },
+        "status": "approved",
+        "updatedAt": {
+          "_seconds": 1793051063,
+          "_nanoseconds": 245000000
+        }
+      }
+    }
+  ],
+  "claims": {
+    "uid": "sgm-qa-driver",
+    "claims": {
+      "roleKeys": [
+        "driver",
+        "parent"
+      ]
+    }
+  }
+}

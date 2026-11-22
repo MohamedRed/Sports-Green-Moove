@@ -1,0 +1,34 @@
+{
+  "scope": "native-input-fixture-width-diagnosis-not-accepted-user-flow",
+  "ordinary": {
+    "cases": 315,
+    "passed": 256,
+    "failed": 4,
+    "skipped": 55
+  },
+  "passedFeedbackCases": 8,
+  "failedFeedbackCases": 4,
+  "reviewErrorsNowFit": true,
+  "inputTextPresent": true,
+  "inputWidth": {
+    "phone": {
+      "measuredPx": 407,
+      "paragraphPx": 744
+    },
+    "wide": {
+      "measuredPx": 139,
+      "paragraphPx": 828
+    }
+  },
+  "inputGlyphClippingEstablished": false,
+  "candidate": {
+    "testFixtureOnly": true,
+    "supportingTextFillsAvailableWidth": true,
+    "assertionsAndCaseCountUnchanged": true,
+    "nativeExecuted": false
+  },
+  "acceptedScreenshots": [],
+  "physicalDeviceAccepted": false,
+  "backendFlowAccepted": false,
+  "releaseAccepted": false
+}

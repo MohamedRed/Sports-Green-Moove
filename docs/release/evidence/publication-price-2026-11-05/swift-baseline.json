@@ -1,0 +1,95 @@
+{
+  "sourceCommit": "85ec9e9274344eefaf7ce63eef36869a22da3489",
+  "sourcePath": "ios/Sources/SportsGreenMooveApp/PublishScreen.swift",
+  "sourceSha256": "dfdcae4938004666b4c678c411df03d5830316d39e61b2681307a83036c9d9d2",
+  "cases": [
+    {
+      "input": "0.29",
+      "expected": 29,
+      "actual": 28,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "4,50",
+      "expected": 450,
+      "actual": 450,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "",
+      "expected": 0,
+      "actual": 0,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "invalid",
+      "expected": null,
+      "actual": 0,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "-1",
+      "expected": null,
+      "actual": 0,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "0.001",
+      "expected": null,
+      "actual": 0,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "1e2",
+      "expected": null,
+      "actual": 10000,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "1000.01",
+      "expected": null,
+      "actual": 100001,
+      "processStatus": 0,
+      "signal": null,
+      "crashed": false
+    },
+    {
+      "input": "NaN",
+      "expected": null,
+      "actual": null,
+      "processStatus": null,
+      "signal": "SIGTRAP",
+      "crashed": true
+    },
+    {
+      "input": "Infinity",
+      "expected": null,
+      "actual": null,
+      "processStatus": null,
+      "signal": "SIGTRAP",
+      "crashed": true
+    },
+    {
+      "input": "1e300",
+      "expected": null,
+      "actual": null,
+      "processStatus": null,
+      "signal": "SIGTRAP",
+      "crashed": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "connected-same-origin-browser-signup-not-phone-share-or-parent-approval",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bd1c1770743a3ce55d7a57f649ecef35",
+  "completed": true,
+  "mismatchRefused": true,
+  "redemptionRequests": 1,
+  "wrongOriginRequests": 0,
+  "parentApprovalProven": false,
+  "physicalDevice": false,
+  "handlerInjected": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/check-invitation-same-origin-browser.mjs": "bd24a3231c8d3d69dbf42d7a8cd9487fde6b0f05458c0644e2506bcbc4cee822",
+    "scripts/qa/invitation-same-origin-proxy.mjs": "9f2fc024f2b1e7386856ff02402ddb51e905e1d84726572320c60c09fcde9a8e",
+    "admin/src/childInvitationGateway.ts": "6543a5c7da609d44b25c91d3f430489b5b854a6ac743603dd8dceb3d4f50b5ba",
+    "admin/src/childInvitationTestEndpoints.ts": "b9a2c49e7d1eaf85ca8ac6e764659b348401d2f2ecb0a518a238b06bae9df1b6"
+  },
+  "failed": false
+}

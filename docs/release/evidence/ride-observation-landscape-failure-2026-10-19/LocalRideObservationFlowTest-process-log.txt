@@ -1,0 +1,23 @@
+--------- beginning of system
+W/ActivityManager(  571): Slow operation: 291ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  571): Slow operation: 293ms so far, now at startProcess: building log message
+I/ActivityManager(  571): Start proc 4470:com.google.android.webview:sandboxed_process0:org.chromium.content.app.SandboxedProcessService0:0/u0i1 for  {com.google.android.googlequicksearchbox/org.chromium.content.app.SandboxedProcessService0:0}
+W/ActivityManager(  571): Slow operation: 293ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  571): Slow operation: 293ms so far, now at startProcess: done updating pids map
+W/ActivityManager(  571): Slow operation: 118ms so far, now at attachApplicationLocked: immediately before bindApplication
+W/ActivityManager(  571): Slow operation: 123ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager(  571): Slow operation: 124ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager(  571): Slow operation: 127ms so far, now at attachApplicationLocked: after updateOomAdjLocked
+W/ActivityManager(  571): Slow operation: 169ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  571): Slow operation: 171ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  571): Slow operation: 171ms so far, now at startProcess: building log message
+I/ActivityManager(  571): Start proc 4494:be.sportgreenmoove.app.local.test/u0a210 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  571): Slow operation: 172ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  571): Slow operation: 172ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  571): Start proc 4502:com.google.android.webview:webview_service/u0a152 for service {com.google.android.webview/org.chromium.android_webview.services.ComponentsProviderService}
+W/ActivityManager(  571): Slow operation: 129ms so far, now at finishAttachApplicationInner: after mServices.attachApplicationLocked
+W/ActivityManager(  571): Slow operation: 129ms so far, now at finishAttachApplicationInner: after dispatching broadcasts
+I/ActivityManager(  571): Force stopping be.sportgreenmoove.app.local appid=10209 user=0: finished inst
+E/ActivityManager(  571): Unable to freeze binder for 4258: -11
+I/ActivityManager(  571): Killing 4258:be.sportgreenmoove.app.local/u0a209 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  571): setHasOverlayUi called on unknown pid: 4258

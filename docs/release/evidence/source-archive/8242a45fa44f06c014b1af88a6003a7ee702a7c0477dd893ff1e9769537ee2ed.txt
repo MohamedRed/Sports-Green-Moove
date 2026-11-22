@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import { randomUUID, createHash } from 'node:crypto';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { deleteApp, getApp } from 'firebase-admin/app';
+import { seedLocalUiFixtures } from './local-ui-fixtures.mjs';
+import { call, denied, signIn } from './local-flow-client.mjs';
+import { prepareEmergencyIdentityFixture, recreateEmergencyIdentity, verifyEmergencyIdentityParent,
+  verifyEmergencyIdentityStoredState } from './emergency-identity-fixture.mjs';
+
+await seedLocalUiFixtures();
+const fixture = await prepareEmergencyIdentityFixture(), parent = await signIn('p@example.test');
+const target = { kind: 'child', childId: fixture.childId, clubId: fixture.clubId };
+const original = await call('getEmergencyContact', parent, { target });
+const write = (view, name, phone) => ({ target, expectedRevision: view.revision, expectedChildInstanceId: view.childInstanceId,
+  requestId: randomUUID(), contact: { name, phone } });
+let isolation;
+try {
+  await call('saveEmergencyContact', parent, write(original, 'Ancien contact QA', '+12025550127'));
+  const open = await call('getEmergencyContact', parent, { target });
+  await recreateEmergencyIdentity(fixture);
+  await denied('saveEmergencyContact', parent, write(open, 'Ancien formulaire QA', '+12025550128'), 'PERMISSION_DENIED');
+  await denied('getEmergencyContact', parent, { target }, 'PERMISSION_DENIED');
+  await verifyEmergencyIdentityParent(fixture);
+  const fresh = await call('getEmergencyContact', parent, { target });
+  assert.notEqual(fresh.childInstanceId, open.childInstanceId); assert.equal(fresh.contact, null); assert.equal(fresh.revision, 0);
+  await call('saveEmergencyContact', parent, write(fresh, 'Nouveau contact QA', '+12025550129'));
+  isolation = await verifyEmergencyIdentityStoredState(fixture);
+} finally { await deleteApp(getApp()); }
+const paths = ['scripts/qa/local-emergency-identity-fixture-suite.mjs', 'scripts/qa/run-emergency-identity-fixture.mjs', 'scripts/qa/emergency-identity-fixture.mjs',
+  'functions/src/services/emergencyContact.ts', 'functions/src/services/emergencyContactAuthority.ts'];
+writeFileSync(process.env.SGM_LOCAL_FLOW_OUTPUT, JSON.stringify({ projectId: 'demo-sgm-local-qa', runId: process.env.SGM_LOCAL_RUN_ID,
+  testedAt: new Date().toISOString(), scope: 'local-services-not-native-ui', nativeUiExecuted: false, physicalDevice: false,
+  productionWrites: false, providerRequests: 0, adminClientClosed: true, isolation,
+  sourceFiles: Object.fromEntries(paths.map((file) => [file, createHash('sha256').update(readFileSync(resolve(import.meta.dirname, '../..', file))).digest('hex')]))
+}, null, 2) + '\n', { flag: 'wx' });
+console.log('Recreated-child UI fixture lifecycle verified through actual local calls; no native UI outcome accepted.');

@@ -1,0 +1,19 @@
+Remote-stop gallery passed at 320, 390, 768 and 1440 pixels; one reviewed capture and actual limits visible.
+Vehicle coordinate results passed at 320, 390, 768 and 1440 pixels; local checks and remaining map scope visible.
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('dialog').getByRole('heading', { name: 'Affichage et thème sombre', exact: true }) to be visible[22m
+
+    at verifyAppearanceGallery (/Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/partner-portal-appearance.browser.mjs:16:74)
+    at async file:///Users/mrr/.codex/projects/sports-green-moove-recovery-20261025/tests/partner-portal.browser.mjs:280:3 {
+  log: [
+    "  - waiting for getByRole('dialog').getByRole('heading', { name: 'Affichage et thème sombre', exact: true }) to be visible"
+  ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.0

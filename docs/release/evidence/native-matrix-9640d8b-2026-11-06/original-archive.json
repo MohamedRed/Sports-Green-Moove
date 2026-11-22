@@ -1,0 +1,367 @@
+{
+  "artifactId": 13535290752,
+  "bytes": 33157663,
+  "sha256": "3d9b16b06689f3fe17bd757be2e2b4e2a08b7be9780504467af6f5df2fb04f4b",
+  "members": [
+    {
+      "file": "ordinary-results.json",
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "bytes": 75145,
+      "sha256": "5edc9da8c18d62ab81cc48050124334439684b5b3beaa1d456ca81e09ac27199"
+    },
+    {
+      "file": "ordinary-instrumentation.txt",
+      "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+      "bytes": 323948,
+      "sha256": "f17cabaebf59633f7893cf8ce882ecb3cb594fb7214f5a51d489238b22ec2ca6"
+    },
+    {
+      "file": "ordinary-tests.xml",
+      "member": "outputs/androidTest-results/connected/debug/TEST-guarded-components.xml",
+      "bytes": 56579,
+      "sha256": "9326888afbc9e3def1900a279e65d0752285cdb093844f0c7cbdd1aba13d79f6"
+    },
+    {
+      "file": "replay-results.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/results.json",
+      "bytes": 71312,
+      "sha256": "1b3a207f4ad9642c5975df8810cddf6dd8acafe2ea9ba66d07d9dbf06408514d"
+    },
+    {
+      "file": "suite-status.json",
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "bytes": 115,
+      "sha256": "4f0522dbdf13e10918920a0897e5c328173ef29ba7898485f5700b0e0fd8402b"
+    },
+    {
+      "file": "device-setup.json",
+      "member": "outputs/store-review-screenshots/disposable-device-setup.json",
+      "bytes": 889,
+      "sha256": "0251bc211dc5f303855c11e448a5d8e792d4b024a8e5530cf7deeb6de892ce3f"
+    },
+    {
+      "file": "device-restoration.json",
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "bytes": 368,
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    {
+      "file": "host-exit.json",
+      "member": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+      "bytes": 394,
+      "sha256": "2b5f9a66cbb713077ed33571f34b5588074909ccd91c0e2f0610c09f90a42639"
+    },
+    {
+      "file": "matrix-manifest.json",
+      "member": "outputs/matrix-apks/manifest.json",
+      "bytes": 782,
+      "sha256": "4d1b4e718d6e321fb76856a9c60ea56c9b64ceb8be04477c77f2d9a14b0baace"
+    },
+    {
+      "file": "host-dns-before-launch.json",
+      "member": "outputs/store-review-screenshots/host-dns-before-launch.json",
+      "bytes": 983,
+      "sha256": "d32ddd82fcf09a0f9ce710527ef494d5a53c714c4f74fcda339fc33d034623f3"
+    },
+    {
+      "file": "capture-collection.json",
+      "member": "outputs/store-review-screenshots/capture-timing/collection.json",
+      "bytes": 2635,
+      "sha256": "cbbdd8a8da7ac6eb3bdbd471bf6e1d479089601a9d9e312461c94831aff8cc96"
+    },
+    {
+      "file": "instrumentation/LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest-instrumentation.txt",
+      "bytes": 416,
+      "sha256": "0ed32cb3667583f5e70b7b20d4c82a65ce5773105ce8eea601cc1cabb24017b1"
+    },
+    {
+      "file": "instrumentation/LocalBookingDecisionsFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalBookingDecisionsFlowTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "521179efc755d4d9a1606c226c31f0d6f9d530535a51fe7cad781d294cb07216"
+    },
+    {
+      "file": "instrumentation/LocalBookingResponseLossTest#prepareUnconfirmedBooking-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalBookingResponseLossTest#prepareUnconfirmedBooking-instrumentation.txt",
+      "bytes": 171,
+      "sha256": "d5d415c4b5103bb257a155cf61f1798a23d5467d0793cea52614c9f2a931ce60"
+    },
+    {
+      "file": "instrumentation/LocalBookingResponseLossTest#recoverUnconfirmedBooking-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalBookingResponseLossTest#recoverUnconfirmedBooking-instrumentation.txt",
+      "bytes": 172,
+      "sha256": "a6dc5abc93e101fbdc2a9b9b5ad88ed9b3df47d456a2e825697a66142b8febb7"
+    },
+    {
+      "file": "instrumentation/LocalBookingResponseLossUiTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalBookingResponseLossUiTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "682a96501dd55f2cc86731d4a97def9828c92d2c74d7d6b9f057c771b8bda372"
+    },
+    {
+      "file": "instrumentation/LocalChatFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalChatFlowTest-instrumentation.txt",
+      "bytes": 162,
+      "sha256": "11a3d7d11190b9c8981e1b3c656a646266b2d0dc5a48a6ae3808d42c0c2807b1"
+    },
+    {
+      "file": "instrumentation/LocalChatNetworkFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalChatNetworkFlowTest-instrumentation.txt",
+      "bytes": 169,
+      "sha256": "85d889235e5cef116f90a7df7da224ca77bcba81ffbd90af205581f676e9dcef"
+    },
+    {
+      "file": "instrumentation/LocalChatProcessRestartTest#prepareConfirmedConversation-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalChatProcessRestartTest#prepareConfirmedConversation-instrumentation.txt",
+      "bytes": 171,
+      "sha256": "4a84077a503daed84052e0f9600872ea58d593a177fa0f879f8cad3304322ca9"
+    },
+    {
+      "file": "instrumentation/LocalChatProcessRestartTest#reopenConfirmedConversation-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalChatProcessRestartTest#reopenConfirmedConversation-instrumentation.txt",
+      "bytes": 172,
+      "sha256": "d24988fdbeb0663611ae82af15cc29e35a65ecba05dfabcc55ace463ad5829f5"
+    },
+    {
+      "file": "instrumentation/LocalChatResponseLossTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalChatResponseLossTest-instrumentation.txt",
+      "bytes": 169,
+      "sha256": "5e0be710406197927de1fd8856b777bf0f69ab9941ca191e59d762e0addc6db8"
+    },
+    {
+      "file": "instrumentation/LocalConversationDirectoryFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalConversationDirectoryFlowTest-instrumentation.txt",
+      "bytes": 178,
+      "sha256": "13224031d305c38a68460691749d7241aa590f123d69136a30f46533537543a5"
+    },
+    {
+      "file": "instrumentation/LocalEmergencyContactFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalEmergencyContactFlowTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "39ee9cdbb24144dcac80e06f516e01ff6fdbe2abe7f2769332c29ba0ecf64071"
+    },
+    {
+      "file": "instrumentation/LocalMembershipFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalMembershipFlowTest-instrumentation.txt",
+      "bytes": 168,
+      "sha256": "0a540c7f4c344980f823935ec0ae23eb504c2e1524326a03b390c6d918db6212"
+    },
+    {
+      "file": "instrumentation/LocalGuardianVerificationFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalGuardianVerificationFlowTest-instrumentation.txt",
+      "bytes": 178,
+      "sha256": "e022cd94e1b9f57de7fce7fa82c0efecba2047cd11eefef3366772f42ae817cd"
+    },
+    {
+      "file": "instrumentation/LocalMultiSeatSdkTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalMultiSeatSdkTest-instrumentation.txt",
+      "bytes": 165,
+      "sha256": "d3e1e6e1ab2f23895b8f7df8116f08491a15c4b76d1e3fcf737b45bf9c4d4375"
+    },
+    {
+      "file": "instrumentation/LocalNotificationReadFlowTest#readSelectedNotificationAndSwitchAccounts-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalNotificationReadFlowTest#readSelectedNotificationAndSwitchAccounts-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "2f215b11498f50fce3329510f20ccb21e04a0be8dcd306e1180020345549b11f"
+    },
+    {
+      "file": "instrumentation/LocalNotificationReadFlowTest#reopenReadNotificationAfterProcessDeath-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalNotificationReadFlowTest#reopenReadNotificationAfterProcessDeath-instrumentation.txt",
+      "bytes": 173,
+      "sha256": "149578e4f0ecfcf2e0d90a64413bc5bbb009a1ca8b866337cbfc7afac49fa0b3"
+    },
+    {
+      "file": "instrumentation/LocalRideFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalRideFlowTest-instrumentation.txt",
+      "bytes": 162,
+      "sha256": "fdfdb59c199604578035bfe79b1726df341ea97f13efc9dd87a99c874841d838"
+    },
+    {
+      "file": "instrumentation/LocalTeamEnrollmentFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTeamEnrollmentFlowTest-instrumentation.txt",
+      "bytes": 172,
+      "sha256": "21b8902b8760b71fd53b3d8a4a939c57030354ea33acb2a84ea61a5153519b45"
+    },
+    {
+      "file": "instrumentation/LocalThemeRestartTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalThemeRestartTest-instrumentation.txt",
+      "bytes": 164,
+      "sha256": "7306e98ba0e8126cba5125c46920d2a34158a3012b5b6d1bf01ee4dc117cb41e"
+    },
+    {
+      "file": "instrumentation/LocalTripCancellationFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripCancellationFlowTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "fe740266fd7fb1af5e233f254b9bd2745c523aff43d1cbf4b346fe58560060db"
+    },
+    {
+      "file": "instrumentation/LocalTripChangeFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripChangeFlowTest-instrumentation.txt",
+      "bytes": 168,
+      "sha256": "0b8a890ecc152672620606047fdcc8a4ef9d3275364de4b2d8dfc576297e6194"
+    },
+    {
+      "file": "instrumentation/LocalTripChangeScheduleFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripChangeScheduleFlowTest-instrumentation.txt",
+      "bytes": 176,
+      "sha256": "1e52fee9b7796c38a6684bea76c1aa6d9c951fbfad98fdabeaea14ef6918bc01"
+    },
+    {
+      "file": "instrumentation/LocalTripConsentRecoveryTest#prepareRecoveryStates-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripConsentRecoveryTest#prepareRecoveryStates-instrumentation.txt",
+      "bytes": 173,
+      "sha256": "7bd09f2c42605d5ccfd2bd7eeaad1f84a63963e392c58f4eef2f369c48027293"
+    },
+    {
+      "file": "instrumentation/LocalTripChangeInputsFlowTest-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripChangeInputsFlowTest-instrumentation.txt",
+      "bytes": 174,
+      "sha256": "97385c6a6e980173178952885ed335036cba01d7e2c7fd9ee71cd74f0c08263c"
+    },
+    {
+      "file": "instrumentation/LocalTripConsentRecoveryTest#reopenRecoveryStates-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripConsentRecoveryTest#reopenRecoveryStates-instrumentation.txt",
+      "bytes": 173,
+      "sha256": "93420197d843fe5c2071fe7998005a777c155eded9e4289c3daa5d11d640b030"
+    },
+    {
+      "file": "instrumentation/LocalTripConsentRestartTest#reopenConfirmedConsent-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripConsentRestartTest#reopenConfirmedConsent-instrumentation.txt",
+      "bytes": 172,
+      "sha256": "0a7b9c3679ea081cb52e0e6ebfbccecf506f6d0a884a7e760a43eab9a0a068de"
+    },
+    {
+      "file": "instrumentation/LocalTripConsentRestartTest#prepareConfirmedConsent-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripConsentRestartTest#prepareConfirmedConsent-instrumentation.txt",
+      "bytes": 172,
+      "sha256": "4394df1bca8418afd62c7cb1e44b4d332d79857f0dfbae290fb5637d778680f1"
+    },
+    {
+      "file": "instrumentation/LocalTripDraftRestartTest#prepareUnfinishedTripDraft-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripDraftRestartTest#prepareUnfinishedTripDraft-instrumentation.txt",
+      "bytes": 170,
+      "sha256": "6c4d52532150ecc19ee1947ca6831d999f28a0a168a4d55a1863a7a4658a4682"
+    },
+    {
+      "file": "instrumentation/LocalTripDraftRestartTest#recoverUnfinishedTripDraftInNewProcess-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripDraftRestartTest#recoverUnfinishedTripDraftInNewProcess-instrumentation.txt",
+      "bytes": 170,
+      "sha256": "b49c3175269bd7b8dc912979333cd4a8c1dd5f5338798cbdb541e3f37e3e367a"
+    },
+    {
+      "file": "instrumentation/LocalTripScheduleDraftRestartTest#recoverScheduleDraftInNewProcess-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripScheduleDraftRestartTest#recoverScheduleDraftInNewProcess-instrumentation.txt",
+      "bytes": 178,
+      "sha256": "c1adb0abb5753ee65b3d77a54665abacb42f33d197a1265ac13cac5674503ad1"
+    },
+    {
+      "file": "instrumentation/LocalTripScheduleDraftRestartTest#prepareScheduleDraft-instrumentation.txt",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/LocalTripScheduleDraftRestartTest#prepareScheduleDraft-instrumentation.txt",
+      "bytes": 178,
+      "sha256": "3493ca765752ef1cd47eba94eda84ee628847023c4f587ae27fa390c988f59bd"
+    },
+    {
+      "file": "copies/adb-pull-booking-response-loss.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-booking-response-loss.json",
+      "bytes": 6372,
+      "sha256": "efe8f76126edbe7c884aee3c301905e360ebaf513955371a2308555c803360d3"
+    },
+    {
+      "file": "copies/adb-pull-booking-ui-response-loss.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-booking-ui-response-loss.json",
+      "bytes": 6375,
+      "sha256": "11db78d706fcb6afcabe1e2abcb9b3baf358dcd1ecbd88a1df05ab62fc340527"
+    },
+    {
+      "file": "copies/adb-pull-confirmed-restart.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-confirmed-restart.json",
+      "bytes": 6370,
+      "sha256": "884a4fd86255414c2f9e6a61b6ff7424393af5766c0ce65fd70a46f7282b6697"
+    },
+    {
+      "file": "copies/adb-pull-emergency-contact.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-emergency-contact.json",
+      "bytes": 6367,
+      "sha256": "e9716b210b1e627b31ac942b700c961f503bb2042a4466801c541d5da429bc37"
+    },
+    {
+      "file": "copies/adb-pull-guardian-parent-verification.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-guardian-parent-verification.json",
+      "bytes": 6377,
+      "sha256": "d45e1a8814a0be0c1df6a2d3185561af82709f549b27efbdc4be3bf71ce6acf4"
+    },
+    {
+      "file": "copies/adb-pull-notification-read-restart.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-notification-read-restart.json",
+      "bytes": 6376,
+      "sha256": "fe2c702942a5909d94d2278ce8e61cb7eb1815f5c5a81501f548a140f6de7ae6"
+    },
+    {
+      "file": "copies/adb-pull-network-recovery.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-network-recovery.json",
+      "bytes": 6369,
+      "sha256": "b4deb3e648296f7923b441dd837d6379112a9ba5507f809be7684dfe75e95571"
+    },
+    {
+      "file": "copies/adb-pull-response-loss.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-response-loss.json",
+      "bytes": 6366,
+      "sha256": "0f1e99ca34502b85bed51dbda3e248a5863764c428ebd1ccef6cdf7b459f5a11"
+    },
+    {
+      "file": "copies/adb-pull-ride-emergency.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-ride-emergency.json",
+      "bytes": 6365,
+      "sha256": "1cd01680556e43f04ecf7fda174c9705d7515a32f7fceccccc852199d69c67a6"
+    },
+    {
+      "file": "copies/adb-pull-team-enrollment.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-team-enrollment.json",
+      "bytes": 6365,
+      "sha256": "9feafe1b4263f57f132f2790757e74791ddb2ac70441659eaddfd43ca4b74a83"
+    },
+    {
+      "file": "copies/adb-pull-trip-change-inputs.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-change-inputs.json",
+      "bytes": 6371,
+      "sha256": "c9087720d6d14d1ef0e0c0cdef189dc761d45004810ab4e0c8229f0687a6c220"
+    },
+    {
+      "file": "copies/adb-pull-trip-change-parent-confirmation.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-change-parent-confirmation.json",
+      "bytes": 6383,
+      "sha256": "2eb8ce65a7887f2f46e9995ebc2a0d0b0e8f3e22daba57892e2296d5a7b9a343"
+    },
+    {
+      "file": "copies/adb-pull-trip-change-schedule.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-change-schedule.json",
+      "bytes": 6373,
+      "sha256": "d42a2263af02a5affb95e15d3878029087d1d346c673460b9722d7c401684758"
+    },
+    {
+      "file": "copies/adb-pull-trip-consent-restart.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-consent-restart.json",
+      "bytes": 6373,
+      "sha256": "ab19f218d4846e868408faf24fd9c14fda09082a072a7f959adf5bbd72ea171c"
+    },
+    {
+      "file": "copies/adb-pull-trip-consent-recovery.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-consent-recovery.json",
+      "bytes": 6374,
+      "sha256": "f42c8b60798ea0fd1dc7f64071530fb1201239ef831839daca90e79f7f812f60"
+    },
+    {
+      "file": "copies/adb-pull-trip-draft-restart.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-draft-restart.json",
+      "bytes": 6371,
+      "sha256": "e99771e86becff0ffde5b63a5bc48443c2a97b445104cd548efffc965af25a95"
+    },
+    {
+      "file": "copies/adb-pull-trip-schedule-draft-restart.json",
+      "member": "outputs/local-ui-evidence/720a51b721240066395690578a7979fb/adb-pull-trip-schedule-draft-restart.json",
+      "bytes": 6380,
+      "sha256": "3494598655f2e83badd63eff1c518821677093a63620ddc17be932a1d57d3a0e"
+    }
+  ]
+}

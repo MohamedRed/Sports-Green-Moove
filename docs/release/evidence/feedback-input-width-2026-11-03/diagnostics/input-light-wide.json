@@ -1,0 +1,27 @@
+{
+  "scope": "pre-assertion-layout-diagnostic-not-accepted-evidence",
+  "case": "input-light-wide",
+  "assertionsPassed": false,
+  "textLayouts": [
+    {
+      "tag": "feedback.material-error",
+      "bounds": "Rect.fromLTRB(126.0, 978.0, 265.0, 1004.0)",
+      "layouts": [
+        {
+          "widthPx": 139,
+          "heightPx": 26,
+          "paragraphWidthPx": 828,
+          "paragraphHeightPx": 26,
+          "lineCount": 1,
+          "overflowWidth": true,
+          "overflowHeight": false,
+          "constraints": "Constraints(minWidth = 0, maxWidth = 828, minHeight = 0, maxHeight = 522)"
+        }
+      ]
+    }
+  ],
+  "semantics": "Printing with useUnmergedTree = 'true'\nNode #2019 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px\n |-Node #2020 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px\n   Shape = 'RectangleShape'\n    |-Node #2021 at (l=90.0, t=900.0, r=990.0, b=1500.0)px, Tag: 'feedback.viewport'\n      Shape = 'RectangleShape'\n       |-Node #2022 at (l=110.0, t=900.0, r=970.0, b=1004.0)px\n         ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'\n         EditableText = 'Adresse incomplète'\n         Error = 'Invalid input'\n         FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@b86b590'\n         Focused = 'false'\n         ImeAction = 'Default'\n         InputText = 'Adresse incomplète'\n         IsEditable = 'true'\n         TextSelectionRange = 'TextRange(0, 0)'\n         Actions = [GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText]\n         MergeDescendants = 'true'\n          |-Node #2026 at (l=110.0, t=911.0, r=970.0, b=974.0)px\n          | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 4.0.dp), topEnd = CornerSize(size = 4.0.dp), bottomEnd = CornerSize(size = 4.0.dp), bottomStart = CornerSize(size = 4.0.dp))'\n          |-Node #2031 at (l=126.0, t=898.0, r=193.0, b=924.0)px\n          | Text = '[Adresse]'\n          | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]\n          |-Node #2028 at (l=126.0, t=927.0, r=954.0, b=958.0)px\n          | Shape = 'RectangleShape'\n          |-Node #2033 at (l=126.0, t=978.0, r=265.0, b=1004.0)px, Tag: 'feedback.material-error'\n            Text = '[Vérifiez l'adresse.]'\n            Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]",
+  "physicalDevice": false,
+  "backendCalls": false,
+  "releaseAccepted": false
+}

@@ -1,0 +1,55 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest:
+Error in currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest):
+java.lang.IllegalStateException: FirebaseApp was deleted
+	at com.google.android.gms.common.internal.Preconditions.checkState(com.google.android.gms:play-services-basement@@18.9.0:2)
+	at com.google.firebase.FirebaseApp.checkNotDeleted(FirebaseApp.java:462)
+	at com.google.firebase.FirebaseApp.get(FirebaseApp.java:332)
+	at com.google.firebase.auth.zzad.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:165)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:83)
+	at com.google.android.gms.internal.firebase-auth-api.zzaft.zza(com.google.firebase:firebase-auth@@24.1.0:88)
+	at com.google.firebase.auth.FirebaseAuth.useEmulator(com.google.firebase:firebase-auth@@24.1.0:488)
+	at be.sportgreenmoove.app.ui.LocalTeamChatPeer$Companion.open(LocalTeamChatPeer.kt:52)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest$currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices$1$3.invokeSuspend(LocalTeamConversationFlowTest.kt:50)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest.currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(LocalTeamConversationFlowTest.kt:50)
+
+
+Time: 36.976
+There was 1 failure:
+1) currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest)
+java.lang.IllegalStateException: FirebaseApp was deleted
+	at com.google.android.gms.common.internal.Preconditions.checkState(com.google.android.gms:play-services-basement@@18.9.0:2)
+	at com.google.firebase.FirebaseApp.checkNotDeleted(FirebaseApp.java:462)
+	at com.google.firebase.FirebaseApp.get(FirebaseApp.java:332)
+	at com.google.firebase.auth.zzad.zza(com.google.firebase:firebase-auth@@24.1.0:32)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:165)
+	at com.google.android.gms.internal.firebase-auth-api.zzaen.zza(com.google.firebase:firebase-auth@@24.1.0:83)
+	at com.google.android.gms.internal.firebase-auth-api.zzaft.zza(com.google.firebase:firebase-auth@@24.1.0:88)
+	at com.google.firebase.auth.FirebaseAuth.useEmulator(com.google.firebase:firebase-auth@@24.1.0:488)
+	at be.sportgreenmoove.app.ui.LocalTeamChatPeer$Companion.open(LocalTeamChatPeer.kt:52)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest$currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices$1$3.invokeSuspend(LocalTeamConversationFlowTest.kt:50)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at be.sportgreenmoove.app.ui.LocalTeamConversationFlowTest.currentTeamExchangeDraftRecreationRevocationAndAccountSwitchUseActualServices(LocalTeamConversationFlowTest.kt:50)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

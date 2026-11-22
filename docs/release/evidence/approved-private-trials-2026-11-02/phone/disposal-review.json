@@ -1,0 +1,26 @@
+{
+  "sessionStopped": true,
+  "uninstallAcknowledged": true,
+  "independentPackageAbsenceProven": false,
+  "helperExitCode": 130,
+  "helperDirectoryAbsent": true,
+  "helperGroupExitVerified": true,
+  "privateInputsAbsent": true,
+  "endpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001,
+      4185,
+      49903,
+      51404
+    ],
+    "closed": true
+  },
+  "hostClipboardRestored": true,
+  "privatePasswordCleared": true,
+  "hostPermissionsChanged": false,
+  "devicePolicyChanged": false
+}

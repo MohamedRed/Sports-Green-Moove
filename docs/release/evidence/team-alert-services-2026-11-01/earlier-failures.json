@@ -1,0 +1,18 @@
+[
+  {
+    "original": "services.log",
+    "originalSha256": "498f806c3a1176e7c2fb62ebeb93ad590ebdce4c1c2b7358a8b201bd56ccb2fb",
+    "retainedExcerpt": "services-failure.txt",
+    "excerptSha256": "e990e65e60d6bdc14c9d9178bbc748bde82b065906ce3ae33d605fcc3ee6aa7c",
+    "sourceSnapshotRetained": false,
+    "scope": "test-harness-assertion-failure-not-an-application-regression"
+  },
+  {
+    "original": "services-third.log",
+    "originalSha256": "d9677517761dc3a0757cccd50309f0cae97e6098d2b9420bf43755d65a517c47",
+    "retainedExcerpt": "services-third-failure.txt",
+    "excerptSha256": "c98196cf2e965e84a6d82255f8cf661778efff74081b59e17836216bf16430f0",
+    "sourceSnapshotRetained": false,
+    "scope": "test-harness-assertion-failure-not-an-application-regression"
+  }
+]

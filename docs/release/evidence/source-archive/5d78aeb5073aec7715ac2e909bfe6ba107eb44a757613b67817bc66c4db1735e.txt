@@ -1,0 +1,39 @@
+import Foundation
+
+@MainActor func reproduceSearchOwnership() async {
+    var restored = 0, missingLease = 0
+    for method in ["suggest", "resolve", "matches"] {
+        for failing in [false, true] {
+            for revoke in ["role-roundtrip", "same-uid-generation", "close", "cancel"] {
+                let probe = AppDataProbe(suspended: [1])
+                let app = AppState(auth: UnconfiguredAuthGateway(),
+                    firebase: AppDataFixtureGateway(probe: AppDataProbe(), publications: probe, searches: probe),
+                    authentication: AuthenticationState(makeStore: { MemoryLogoutIntentStore() }))
+                app.session = .init(uid: "isolated-owner", email: nil, displayName: nil, roles: [.parent, .driver])
+                app.searchOrigin = isolatedPublishDraft().origin; app.searchDestination = isolatedPublishDraft().destination
+                var form = SearchFormState.initial(); form.requireChildTracking = false; form.guardianConsent = true
+                let request = method == "matches" ? app.prepareSearch(form: form) : nil
+                let task = Task {
+                    if method == "suggest" { await app.suggestPlaces(input: "Synthetic address", target: .origin) }
+                    else if method == "resolve" {
+                        await app.selectPlace(.init(placeId: "isolated-origin", label: "Synthetic address", mainText: nil, secondaryText: nil), target: .origin)
+                    } else { await app.runSearch(request!) }
+                }
+                await probe.waitForCall(1)
+                if !app.accountWork.busy { missingLease += 1 }
+                switch revoke {
+                case "role-roundtrip": app.selectedRole = .driver; app.selectedRole = .parent
+                case "same-uid-generation": app.refreshAccountScope()
+                case "close": app.invalidateSearch()
+                default: task.cancel()
+                }
+                app.originSuggestions = []; app.searchOrigin = nil; app.searchMatches = []
+                app.errorMessage = "Current feedback"
+                await probe.release(1, failing: failing); await task.value
+                if !app.originSuggestions.isEmpty || app.searchOrigin != nil || !app.searchMatches.isEmpty || app.errorMessage != "Current feedback" { restored += 1 }
+            }
+        }
+    }
+    check(restored == 22 && missingLease == 24, "Search baseline no longer reproduces the expected boundaries")
+    print("Search ownership baseline: \(restored) stale/private response restorations, \(missingLease) unfinished callbacks without an account lease; not accepted")
+}

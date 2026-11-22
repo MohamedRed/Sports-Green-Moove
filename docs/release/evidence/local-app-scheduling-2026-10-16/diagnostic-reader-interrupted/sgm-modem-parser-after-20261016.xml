@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="modem diagnostics retain only voice/data registration states, never arbitrary console data" time="0.002398" classname="test"/>
+	<testcase name="read-only modem collection is run-bound, bounded, emulator-only and fail-closed" time="0.004396" classname="test"/>
+	<testcase name="device snapshots retain terminal preparation diagnostics without new permissions or phone identifiers" time="0.001906" classname="test"/>
+	<!-- tests 3 -->
+	<!-- suites 0 -->
+	<!-- pass 3 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 68.77075 -->
+</testsuites>

@@ -1,0 +1,16 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [
+    {
+      "phase": "before",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "internetNetworkCount": 1,
+      "backendReachable": true
+    }
+  ],
+  "failedPhase": "disconnect"
+}

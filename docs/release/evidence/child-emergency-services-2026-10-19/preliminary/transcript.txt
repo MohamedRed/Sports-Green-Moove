@@ -1,0 +1,304 @@
+
+> @sports-green-moove/functions@0.1.0 build
+> tsc -p tsconfig.json
+
+i  emulators: Starting emulators: auth, functions, firestore, database
+i  emulators: Detected demo project ID "demo-sgm-local-qa", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  database: Database Emulator logging to database-debug.log
+i  functions: Watching "/var/folders/b4/qz25f4f94vx9h0tv1d4xs3k80000gn/T/sgm-local-runtime-1QFQj8/functions" for Cloud Functions...
+⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+✔  functions: Using node@22 from host.
+Serving at port 8692
+
+✔  functions: Loaded functions definitions from source: applyTripChanges, approveBooking, cancelBooking, cancelTrip, createReport, createRidePaymentIntent, createStripeAccount, createStripeAccountLink, createTrip, createTripChangePaymentIntent, declineBooking, endRide, getActiveRide, getChatConversation, getChildRideEmergencyContact, getEmergencyContact, getInbox, getMyGuardianVerification, getOwnedTeamEnrollmentView, getRidePaymentStatus, getTeamEnrollmentView, getTripCancellation, getTripChangeApplicationQuote, getTripChangeHistory, getTripChangePaymentStatus, getTripChangePreview, getTripChangeReview, initializeUserProfile, issueRewardPayout, listChatBookingOptions, listChatConversations, listClubGuardianVerifications, listClubMemberships, listDriverBookingRequests, listGuardianParentOptions, listGuardianReviewClubs, listMembershipReviewClubs, listMyGuardianVerifications, listOwnedTeamEnrollments, listReservations, listTeamEnrollmentOptions, listTeamEnrollmentReviewTeams, listTeamEnrollments, listTrips, markChatMessagesRead, markDropoff, markPickup, proposeTripChanges, radarWebhook, requestBooking, requestClubMembership, requestTeamEnrollment, resolveBookingRequest, resolvePlace, resolveTripChangeProposal, respondToTripChanges, reviewClubMembership, reviewReport, saveEmergencyContact, searchTrips, sendChatMessage, setUserRoles, startRide, stripeConnectRefresh, stripeConnectReturn, stripeWebhook, submitRating, suggestPlaces, transitionGuardianVerification, transitionTeamEnrollment, withdrawTripChanges, writeLocationBatch.
+✔  functions[us-central1-applyTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/applyTripChanges).
+✔  functions[us-central1-approveBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/approveBooking).
+✔  functions[us-central1-cancelBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelBooking).
+✔  functions[us-central1-cancelTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/cancelTrip).
+✔  functions[us-central1-createReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createReport).
+✔  functions[us-central1-createRidePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createRidePaymentIntent).
+✔  functions[us-central1-createStripeAccount]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccount).
+✔  functions[us-central1-createStripeAccountLink]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createStripeAccountLink).
+✔  functions[us-central1-createTrip]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTrip).
+✔  functions[us-central1-createTripChangePaymentIntent]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/createTripChangePaymentIntent).
+✔  functions[us-central1-declineBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/declineBooking).
+✔  functions[us-central1-endRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/endRide).
+✔  functions[us-central1-getActiveRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getActiveRide).
+✔  functions[us-central1-getChatConversation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChatConversation).
+✔  functions[us-central1-getChildRideEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getChildRideEmergencyContact).
+✔  functions[us-central1-getEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getEmergencyContact).
+✔  functions[us-central1-getInbox]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getInbox).
+✔  functions[us-central1-getMyGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getMyGuardianVerification).
+✔  functions[us-central1-getOwnedTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getOwnedTeamEnrollmentView).
+✔  functions[us-central1-getRidePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getRidePaymentStatus).
+✔  functions[us-central1-getTeamEnrollmentView]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTeamEnrollmentView).
+✔  functions[us-central1-getTripCancellation]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripCancellation).
+✔  functions[us-central1-getTripChangeApplicationQuote]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeApplicationQuote).
+✔  functions[us-central1-getTripChangeHistory]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeHistory).
+✔  functions[us-central1-getTripChangePaymentStatus]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePaymentStatus).
+✔  functions[us-central1-getTripChangePreview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangePreview).
+✔  functions[us-central1-getTripChangeReview]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/getTripChangeReview).
+✔  functions[us-central1-initializeUserProfile]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/initializeUserProfile).
+✔  functions[us-central1-issueRewardPayout]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/issueRewardPayout).
+✔  functions[us-central1-listChatBookingOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatBookingOptions).
+✔  functions[us-central1-listChatConversations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listChatConversations).
+✔  functions[us-central1-listClubGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubGuardianVerifications).
+✔  functions[us-central1-listClubMemberships]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listClubMemberships).
+✔  functions[us-central1-listDriverBookingRequests]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listDriverBookingRequests).
+✔  functions[us-central1-listGuardianParentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianParentOptions).
+✔  functions[us-central1-listGuardianReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listGuardianReviewClubs).
+✔  functions[us-central1-listMembershipReviewClubs]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMembershipReviewClubs).
+✔  functions[us-central1-listMyGuardianVerifications]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listMyGuardianVerifications).
+✔  functions[us-central1-listOwnedTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listOwnedTeamEnrollments).
+✔  functions[us-central1-listReservations]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listReservations).
+✔  functions[us-central1-listTeamEnrollmentOptions]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentOptions).
+✔  functions[us-central1-listTeamEnrollmentReviewTeams]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollmentReviewTeams).
+✔  functions[us-central1-listTeamEnrollments]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTeamEnrollments).
+✔  functions[us-central1-listTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/listTrips).
+✔  functions[us-central1-markChatMessagesRead]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markChatMessagesRead).
+✔  functions[us-central1-markDropoff]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markDropoff).
+✔  functions[us-central1-markPickup]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/markPickup).
+✔  functions[us-central1-proposeTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/proposeTripChanges).
+✔  functions[us-central1-radarWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/radarWebhook).
+✔  functions[us-central1-requestBooking]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestBooking).
+✔  functions[us-central1-requestClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestClubMembership).
+✔  functions[us-central1-requestTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/requestTeamEnrollment).
+✔  functions[us-central1-resolveBookingRequest]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveBookingRequest).
+✔  functions[us-central1-resolvePlace]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolvePlace).
+✔  functions[us-central1-resolveTripChangeProposal]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/resolveTripChangeProposal).
+✔  functions[us-central1-respondToTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/respondToTripChanges).
+✔  functions[us-central1-reviewClubMembership]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewClubMembership).
+✔  functions[us-central1-reviewReport]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/reviewReport).
+✔  functions[us-central1-saveEmergencyContact]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/saveEmergencyContact).
+✔  functions[us-central1-searchTrips]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/searchTrips).
+✔  functions[us-central1-sendChatMessage]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/sendChatMessage).
+✔  functions[us-central1-setUserRoles]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/setUserRoles).
+✔  functions[us-central1-startRide]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/startRide).
+✔  functions[us-central1-stripeConnectRefresh]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectRefresh).
+✔  functions[us-central1-stripeConnectReturn]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeConnectReturn).
+✔  functions[us-central1-stripeWebhook]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/stripeWebhook).
+✔  functions[us-central1-submitRating]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/submitRating).
+✔  functions[us-central1-suggestPlaces]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/suggestPlaces).
+✔  functions[us-central1-transitionGuardianVerification]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionGuardianVerification).
+✔  functions[us-central1-transitionTeamEnrollment]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/transitionTeamEnrollment).
+✔  functions[us-central1-withdrawTripChanges]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/withdrawTripChanges).
+✔  functions[us-central1-writeLocationBatch]: http function initialized (http://127.0.0.1:5001/demo-sgm-local-qa/us-central1/writeLocationBatch).
+i  Running script: exec '/Users/mrr/.hermes/node/bin/node' '/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/scripts/qa/local-child-emergency-suite.mjs'
+i  functions: Beginning execution of "us-central1-createTrip"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-createTrip" in 82.277792ms
+i  functions: Beginning execution of "us-central1-requestBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestBooking" in 105.261792ms
+i  functions: Beginning execution of "us-central1-approveBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-approveBooking" in 93.984834ms
+i  functions: Beginning execution of "us-central1-startRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-startRide" in 175.384208ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 77.765459ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 82.038292ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 18.674917ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 77.873958ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 82.116833ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 22.794875ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 36.761083ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"MISSING"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 1.163166ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 1.29925ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 1.21675ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 2.490083ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 10.059917ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 2.719875ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 1.573375ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 1.56875ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 3.657583ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 1.519375ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 11.602ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 6.840791ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 7.797333ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 11.521417ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 17.100041ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 14.809917ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 14.882125ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 24.398584ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 17.657875ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 15.341ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 14.916292ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 16.272ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 14.393458ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 15.31825ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 16.391625ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 9.403208ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 15.8805ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 10.152042ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 11.309333ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 9.930292ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 19.859625ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 17.287125ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 12.795958ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 16.000166ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 12.575625ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 19.038083ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 13.291791ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 16.350042ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 13.27175ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 16.530375ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 9.162625ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 12.885791ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 14.366625ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 6.874833ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 14.312625ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 10.237375ms
+i  functions: Beginning execution of "us-central1-transitionGuardianVerification"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-transitionGuardianVerification" in 14.491042ms
+i  functions: Beginning execution of "us-central1-createTrip"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-createTrip" in 22.401ms
+i  functions: Beginning execution of "us-central1-requestBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-requestBooking" in 35.212208ms
+i  functions: Beginning execution of "us-central1-approveBooking"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-approveBooking" in 32.01125ms
+i  functions: Beginning execution of "us-central1-startRide"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-startRide" in 43.429709ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 13.273667ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 15.8775ms
+i  functions: Beginning execution of "us-central1-saveEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-saveEmergencyContact" in 16.559417ms
+i  functions: Beginning execution of "us-central1-getEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getEmergencyContact" in 16.7215ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 13.366292ms
+i  functions: Beginning execution of "us-central1-getChildRideEmergencyContact"
+>  {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+i  functions: Finished "us-central1-getChildRideEmergencyContact" in 6.529167ms
+Fifteen actual child contact read groups passed; no native, dialer or physical result accepted.
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  functions: Stopping Functions Emulator
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  eventarc: Stopping Eventarc Emulator
+i  tasks: Stopping Cloud Tasks Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

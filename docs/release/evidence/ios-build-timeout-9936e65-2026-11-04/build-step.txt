@@ -1,0 +1,599 @@
+﻿2026-11-04T18:43:04.3710570Z ##[group]Run xcodebuild build-for-testing \
+2026-11-04T18:43:04.3713940Z [36;1mxcodebuild build-for-testing \[0m
+2026-11-04T18:43:04.3715460Z [36;1m  -project SportsGreenMoove.xcodeproj \[0m
+2026-11-04T18:43:04.3716830Z [36;1m  -scheme SportsGreenMoove \[0m
+2026-11-04T18:43:04.3718030Z [36;1m  -configuration Debug \[0m
+2026-11-04T18:43:04.3719380Z [36;1m  -destination "platform=iOS Simulator,id=$PHONE_ID" \[0m
+2026-11-04T18:43:04.3721190Z [36;1m  -derivedDataPath "$RUNNER_TEMP/sgm-ios-derived" \[0m
+2026-11-04T18:43:04.3722950Z [36;1m  -resultBundlePath "$RUNNER_TEMP/sgm-ios-build.xcresult" \[0m
+2026-11-04T18:43:04.3724830Z [36;1m  CODE_SIGNING_ALLOWED=NO[0m
+2026-11-04T18:43:09.7936920Z shell: /bin/bash -e {0}
+2026-11-04T18:43:09.7937790Z env:
+2026-11-04T18:43:09.7938560Z   PHONE_ID: A2169256-E066-4A17-B774-B8C1EB6E5832
+2026-11-04T18:43:09.7939630Z ##[endgroup]
+2026-11-04T18:44:32.3394570Z Command line invocation:
+2026-11-04T18:44:32.4812530Z     /Applications/Xcode_26.6.app/Contents/Developer/usr/bin/xcodebuild build-for-testing -project SportsGreenMoove.xcodeproj -scheme SportsGreenMoove -configuration Debug -destination "platform=iOS Simulator,id=A2169256-E066-4A17-B774-B8C1EB6E5832" -derivedDataPath /Users/runner/work/_temp/sgm-ios-derived -resultBundlePath /Users/runner/work/_temp/sgm-ios-build.xcresult CODE_SIGNING_ALLOWED=NO
+2026-11-04T18:44:32.5845040Z 
+2026-11-04T18:44:32.6864790Z Build settings from command line:
+2026-11-04T18:44:32.8048450Z     CODE_SIGNING_ALLOWED = NO
+2026-11-04T18:44:32.9083580Z 
+2026-11-04T18:46:42.4552450Z Resolve Package Graph
+2026-11-04T18:46:42.8571650Z 
+2026-11-04T18:46:42.9622750Z Fetching from https://github.com/radarlabs/radar-sdk-ios-spm.git
+2026-11-04T18:46:45.6615840Z 
+2026-11-04T18:46:45.7622720Z Fetching from https://github.com/googlemaps/ios-maps-sdk.git
+2026-11-04T18:47:01.9798950Z 
+2026-11-04T18:47:02.0802860Z Fetching from https://github.com/stripe/stripe-ios-spm.git
+2026-11-04T18:47:33.2878580Z 
+2026-11-04T18:47:33.3904520Z Fetching from https://github.com/google/GoogleSignIn-iOS.git
+2026-11-04T18:47:33.4919230Z 
+2026-11-04T18:47:33.5956530Z Fetching from https://github.com/firebase/firebase-ios-sdk.git
+2026-11-04T18:49:51.3592700Z 
+2026-11-04T18:49:51.4597340Z Fetching from https://github.com/facebook/facebook-ios-sdk.git
+2026-11-04T18:49:51.5599010Z 
+2026-11-04T18:51:33.8940510Z Fetching from https://github.com/google/GTMAppAuth.git
+2026-11-04T18:51:55.6897860Z 
+2026-11-04T18:51:55.7900600Z Fetching from https://github.com/openid/AppAuth-iOS.git
+2026-11-04T18:51:58.1114290Z 
+2026-11-04T18:51:58.2117870Z Fetching from https://github.com/google/app-check.git
+2026-11-04T18:51:58.3121170Z 
+2026-11-04T18:51:58.4310750Z Fetching from https://github.com/google/gtm-session-fetcher.git
+2026-11-04T18:52:02.0743600Z 
+2026-11-04T18:53:09.8502780Z Fetching from https://github.com/google/promises.git
+2026-11-04T18:53:11.8314810Z 
+2026-11-04T18:53:11.9530230Z Fetching from https://github.com/google/interop-ios-for-google-sdks.git
+2026-11-04T18:53:12.4259400Z 
+2026-11-04T18:53:12.5262810Z Fetching from https://github.com/google/GoogleUtilities.git
+2026-11-04T18:53:12.6266970Z 
+2026-11-04T18:53:32.8458250Z Fetching from https://github.com/firebase/nanopb.git
+2026-11-04T18:53:36.0797070Z 
+2026-11-04T18:53:36.1803530Z Fetching from https://github.com/firebase/leveldb.git
+2026-11-04T18:53:36.2829010Z 
+2026-11-04T18:53:36.3833690Z Fetching from https://github.com/google/grpc-binary.git
+2026-11-04T18:53:36.4837540Z 
+2026-11-04T18:53:36.5884820Z Fetching from https://github.com/google/GoogleAppMeasurement.git
+2026-11-04T18:53:36.6481710Z 
+2026-11-04T18:53:36.8613990Z Fetching from https://github.com/google/GoogleDataTransport.git
+2026-11-04T18:53:37.0667120Z 
+2026-11-04T18:53:37.1556210Z Fetching from https://github.com/google/abseil-cpp-binary.git
+2026-11-04T18:53:37.1936850Z 
+2026-11-04T18:54:10.2902660Z Fetching from https://github.com/googleads/google-ads-on-device-conversion-ios-sdk
+2026-11-04T18:54:12.3408640Z 
+2026-11-04T18:54:44.8345220Z Creating working copy of package ‘ios-maps-sdk’
+2026-11-04T18:54:45.0916620Z 
+2026-11-04T18:54:45.1970830Z Checking out 10.15.0 of package ‘ios-maps-sdk’
+2026-11-04T18:54:50.0822170Z 
+2026-11-04T18:54:50.3903050Z Creating working copy of package ‘stripe-ios-spm’
+2026-11-04T18:54:51.8545180Z 
+2026-11-04T18:54:51.9559370Z Checking out 25.17.0 of package ‘stripe-ios-spm’
+2026-11-04T18:55:59.7709370Z 
+2026-11-04T18:56:00.1753370Z Creating working copy of package ‘GoogleSignIn-iOS’
+2026-11-04T18:56:01.8248750Z 
+2026-11-04T18:56:01.9254340Z Checking out 9.2.0 of package ‘GoogleSignIn-iOS’
+2026-11-04T18:56:03.7719380Z 
+2026-11-04T18:56:03.8723800Z Creating working copy of package ‘firebase-ios-sdk’
+2026-11-04T18:56:04.5836120Z 
+2026-11-04T18:56:04.6840290Z Checking out 12.19.3 of package ‘firebase-ios-sdk’
+2026-11-04T18:56:27.7695900Z 
+2026-11-04T18:56:27.9461080Z Creating working copy of package ‘nanopb’
+2026-11-04T18:56:28.1463540Z 
+2026-11-04T18:56:28.2470920Z Checking out 2.30910.1 of package ‘nanopb’
+2026-11-04T18:56:29.0439990Z 
+2026-11-04T18:56:29.1443260Z Creating working copy of package ‘GoogleAppMeasurement’
+2026-11-04T18:56:29.3605460Z 
+2026-11-04T18:56:29.4609610Z Checking out 12.19.2 of package ‘GoogleAppMeasurement’
+2026-11-04T18:56:29.5652210Z 
+2026-11-04T18:56:29.6656040Z Creating working copy of package ‘app-check’
+2026-11-04T18:56:29.8294350Z 
+2026-11-04T18:56:29.8615050Z Checking out 11.3.2 of package ‘app-check’
+2026-11-04T18:56:30.3310360Z 
+2026-11-04T18:56:30.5346430Z Creating working copy of package ‘leveldb’
+2026-11-04T18:56:30.6812660Z 
+2026-11-04T18:56:30.7817750Z Checking out 1.22.5 of package ‘leveldb’
+2026-11-04T18:56:31.1861480Z 
+2026-11-04T18:56:31.3906160Z Creating working copy of package ‘promises’
+2026-11-04T18:56:31.5913660Z 
+2026-11-04T18:56:31.6989230Z Checking out 2.4.1 of package ‘promises’
+2026-11-04T18:56:32.0001390Z 
+2026-11-04T18:56:32.1004550Z Creating working copy of package ‘abseil-cpp-binary’
+2026-11-04T18:56:32.2011890Z 
+2026-11-04T18:56:32.3044940Z Checking out 1.2024072200.0 of package ‘abseil-cpp-binary’
+2026-11-04T18:56:32.4084190Z 
+2026-11-04T18:56:32.5276940Z Creating working copy of package ‘GTMAppAuth’
+2026-11-04T18:56:32.6111520Z 
+2026-11-04T18:56:32.7136390Z Checking out 5.0.0 of package ‘GTMAppAuth’
+2026-11-04T18:56:32.8357550Z 
+2026-11-04T18:56:32.9483300Z Creating working copy of package ‘google-ads-on-device-conversion-ios-sdk’
+2026-11-04T18:56:33.0797840Z 
+2026-11-04T18:56:33.1803540Z Checking out 3.7.0 of package ‘google-ads-on-device-conversion-ios-sdk’
+2026-11-04T18:56:33.2231200Z 
+2026-11-04T18:56:33.3917950Z Creating working copy of package ‘AppAuth-iOS’
+2026-11-04T18:56:33.5317240Z 
+2026-11-04T18:56:33.6321540Z Checking out 2.1.0 of package ‘AppAuth-iOS’
+2026-11-04T18:56:34.6031080Z 
+2026-11-04T18:56:34.7034990Z Creating working copy of package ‘GoogleDataTransport’
+2026-11-04T18:56:35.1056820Z 
+2026-11-04T18:56:35.2148110Z Checking out 10.1.1 of package ‘GoogleDataTransport’
+2026-11-04T18:56:36.1796770Z 
+2026-11-04T18:56:36.4819250Z Creating working copy of package ‘facebook-ios-sdk’
+2026-11-04T18:56:36.9963790Z 
+2026-11-04T18:56:37.0986400Z Checking out 18.1.1 of package ‘facebook-ios-sdk’
+2026-11-04T18:56:44.4499760Z 
+2026-11-04T18:56:44.7585400Z Creating working copy of package ‘GoogleUtilities’
+2026-11-04T18:56:44.9596950Z 
+2026-11-04T18:56:45.0601220Z Checking out 8.1.5 of package ‘GoogleUtilities’
+2026-11-04T18:56:45.5633400Z 
+2026-11-04T18:56:45.7250810Z Creating working copy of package ‘gtm-session-fetcher’
+2026-11-04T18:56:45.9647670Z 
+2026-11-04T18:56:46.0652700Z Checking out 3.5.0 of package ‘gtm-session-fetcher’
+2026-11-04T18:56:46.2266320Z 
+2026-11-04T18:56:46.4284970Z Creating working copy of package ‘interop-ios-for-google-sdks’
+2026-11-04T18:56:46.6297870Z 
+2026-11-04T18:56:46.7360980Z Checking out 101.0.0 of package ‘interop-ios-for-google-sdks’
+2026-11-04T18:56:46.8364570Z 
+2026-11-04T18:56:46.9382790Z Creating working copy of package ‘radar-sdk-ios-spm’
+2026-11-04T18:56:47.0796230Z 
+2026-11-04T18:56:47.1874740Z Checking out 3.45.0 of package ‘radar-sdk-ios-spm’
+2026-11-04T18:56:47.2955830Z 
+2026-11-04T18:56:47.3971860Z Creating working copy of package ‘grpc-binary’
+2026-11-04T18:56:47.4986120Z 
+2026-11-04T18:56:47.6111980Z Checking out 1.69.1 of package ‘grpc-binary’
+2026-11-04T18:56:47.7119890Z 
+2026-11-04T19:01:32.3011300Z 
+2026-11-04T19:01:32.4058820Z Resolved source packages:
+2026-11-04T19:01:32.5020710Z   GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+2026-11-04T19:01:32.6077210Z   GoogleMaps: https://github.com/googlemaps/ios-maps-sdk.git @ 10.15.0
+2026-11-04T19:01:32.7089970Z   GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+2026-11-04T19:01:32.8096780Z   GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.5
+2026-11-04T19:01:32.9117010Z   nanopb: https://github.com/firebase/nanopb.git @ 2.30910.1
+2026-11-04T19:01:33.0123840Z   Promises: https://github.com/google/promises.git @ 2.4.1
+2026-11-04T19:01:33.1125630Z   GoogleDataTransport: https://github.com/google/GoogleDataTransport.git @ 10.1.1
+2026-11-04T19:01:33.2135250Z   abseil: https://github.com/google/abseil-cpp-binary.git @ 1.2024072200.0
+2026-11-04T19:01:33.3139980Z   gRPC: https://github.com/google/grpc-binary.git @ 1.69.1
+2026-11-04T19:01:33.4143700Z   AppCheck: https://github.com/google/app-check.git @ 11.3.2
+2026-11-04T19:01:33.5143240Z   InteropForGoogle: https://github.com/google/interop-ios-for-google-sdks.git @ 101.0.0
+2026-11-04T19:01:33.6150930Z   GoogleAdsOnDeviceConversion: https://github.com/googleads/google-ads-on-device-conversion-ios-sdk @ 3.7.0
+2026-11-04T19:01:33.7153810Z   leveldb: https://github.com/firebase/leveldb.git @ 1.22.5
+2026-11-04T19:01:33.8157340Z   GoogleSignIn: https://github.com/google/GoogleSignIn-iOS.git @ 9.2.0
+2026-11-04T19:01:33.9163510Z   Stripe: https://github.com/stripe/stripe-ios-spm.git @ 25.17.0
+2026-11-04T19:01:34.0170950Z   RadarSDK: https://github.com/radarlabs/radar-sdk-ios-spm.git @ 3.45.0
+2026-11-04T19:01:34.1174730Z   GoogleAppMeasurement: https://github.com/google/GoogleAppMeasurement.git @ 12.19.2
+2026-11-04T19:01:34.2184460Z   Facebook: https://github.com/facebook/facebook-ios-sdk.git @ 18.1.1
+2026-11-04T19:01:34.3189430Z   Firebase: https://github.com/firebase/firebase-ios-sdk.git @ 12.19.3
+2026-11-04T19:01:34.4193720Z   AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.1.0
+2026-11-04T19:01:34.5195840Z 
+2026-11-04T19:01:34.6222080Z Writing result bundle at path:
+2026-11-04T19:01:34.7227850Z 	/Users/runner/work/_temp/sgm-ios-build.xcresult
+2026-11-04T19:01:34.8231460Z 
+2026-11-04T19:01:39.7460220Z ComputePackagePrebuildTargetDependencyGraph
+2026-11-04T19:03:00.4377200Z 
+2026-11-04T19:03:00.5382250Z Prepare packages
+2026-11-04T19:03:00.6386190Z 
+2026-11-04T19:03:00.7388410Z CreateBuildRequest
+2026-11-04T19:03:00.8393030Z 
+2026-11-04T19:03:00.9396910Z SendProjectDescription
+2026-11-04T19:03:04.1074120Z 
+2026-11-04T19:03:04.2078850Z CreateBuildOperation
+2026-11-04T19:03:04.3081250Z 
+2026-11-04T19:03:04.4083880Z ComputeTargetDependencyGraph
+2026-11-04T19:03:29.6602160Z note: Building targets in dependency order
+2026-11-04T19:03:30.7793950Z note: Target dependency graph (114 targets)
+2026-11-04T19:03:30.8798930Z     Target 'SportsGreenMooveUITests' in project 'SportsGreenMoove'
+2026-11-04T19:03:30.9805720Z         ➜ Explicit dependency on target 'SportsGreenMoove' in project 'SportsGreenMoove'
+2026-11-04T19:03:31.0813620Z     Target 'SportsGreenMoove' in project 'SportsGreenMoove'
+2026-11-04T19:03:31.1809540Z         ➜ Explicit dependency on target 'FirebaseAuth' in project 'Firebase'
+2026-11-04T19:03:31.2816940Z         ➜ Explicit dependency on target 'FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:31.3822410Z         ➜ Explicit dependency on target 'FirebaseFunctions' in project 'Firebase'
+2026-11-04T19:03:31.4826540Z         ➜ Explicit dependency on target 'Stripe' in project 'Stripe'
+2026-11-04T19:03:31.5829520Z         ➜ Explicit dependency on target 'StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:31.6841430Z         ➜ Explicit dependency on target 'RadarSDK' in project 'RadarSDK'
+2026-11-04T19:03:31.7850860Z         ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:31.8844820Z         ➜ Explicit dependency on target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:31.9853460Z         ➜ Explicit dependency on target 'FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:32.0860190Z         ➜ Explicit dependency on target 'GoogleMaps' in project 'GoogleMaps'
+2026-11-04T19:03:32.1866510Z     Target 'GoogleMaps' in project 'GoogleMaps'
+2026-11-04T19:03:32.2873910Z         ➜ Explicit dependency on target 'GoogleMapsTarget' in project 'GoogleMaps'
+2026-11-04T19:03:32.3882740Z         ➜ Explicit dependency on target 'GoogleMaps_GoogleMapsTarget' in project 'GoogleMaps'
+2026-11-04T19:03:32.4889200Z     Target 'GoogleMapsTarget' in project 'GoogleMaps'
+2026-11-04T19:03:32.5894740Z         ➜ Explicit dependency on target 'GoogleMaps_GoogleMapsTarget' in project 'GoogleMaps'
+2026-11-04T19:03:32.6916350Z     Target 'GoogleMaps_GoogleMapsTarget' in project 'GoogleMaps' (no dependencies)
+2026-11-04T19:03:32.7921910Z     Target 'FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:32.8931170Z         ➜ Explicit dependency on target 'FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:32.9937000Z         ➜ Explicit dependency on target 'Facebook_FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:33.0942540Z         ➜ Explicit dependency on target 'FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:33.1949470Z         ➜ Explicit dependency on target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:33.2955770Z     Target 'FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:33.3961870Z         ➜ Explicit dependency on target 'Facebook_FacebookLogin' in project 'Facebook'
+2026-11-04T19:03:33.5400380Z         ➜ Explicit dependency on target 'FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:33.6406590Z         ➜ Explicit dependency on target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:33.7408850Z     Target 'Facebook_FacebookLogin' in project 'Facebook' (no dependencies)
+2026-11-04T19:03:33.8411840Z     Target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:33.9415460Z         ➜ Explicit dependency on target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:34.0443780Z         ➜ Explicit dependency on target 'Facebook_FacebookCore' in project 'Facebook'
+2026-11-04T19:03:34.1448150Z         ➜ Explicit dependency on target 'FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:34.2717560Z     Target 'FacebookCore' in project 'Facebook'
+2026-11-04T19:03:34.3773520Z         ➜ Explicit dependency on target 'Facebook_FacebookCore' in project 'Facebook'
+2026-11-04T19:03:34.3855270Z         ➜ Explicit dependency on target 'FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:34.4869130Z     Target 'FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:34.5874360Z         ➜ Explicit dependency on target 'Facebook_FacebookAEM' in project 'Facebook'
+2026-11-04T19:03:34.6929860Z     Target 'Facebook_FacebookAEM' in project 'Facebook' (no dependencies)
+2026-11-04T19:03:34.7938890Z     Target 'Facebook_FacebookCore' in project 'Facebook' (no dependencies)
+2026-11-04T19:03:34.8948380Z     Target 'GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:34.9953490Z         ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:35.0961170Z         ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:35.1973780Z         ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+2026-11-04T19:03:35.2954060Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:35.4044170Z         ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+2026-11-04T19:03:35.5053330Z         ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:35.6058440Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:35.7065500Z     Target 'GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:35.8073950Z         ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+2026-11-04T19:03:35.9078860Z         ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+2026-11-04T19:03:36.0083510Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:36.1088160Z         ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+2026-11-04T19:03:36.2095310Z         ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:36.3098270Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:36.4101300Z     Target 'GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:36.5206490Z         ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:36.6208220Z         ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:36.7238140Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:36.8243950Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:36.9249800Z     Target 'GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:37.0256420Z         ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+2026-11-04T19:03:37.1263240Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:37.2265510Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:37.3270550Z     Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+2026-11-04T19:03:37.4272090Z     Target 'AppCheckCore' in project 'AppCheck'
+2026-11-04T19:03:37.5277660Z         ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+2026-11-04T19:03:37.6283300Z         ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+2026-11-04T19:03:37.7291540Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:37.8300680Z         ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:37.9302450Z     Target 'AppCheckCore' in project 'AppCheck'
+2026-11-04T19:03:38.0306860Z         ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+2026-11-04T19:03:38.1313720Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:38.2315630Z         ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:38.3334210Z     Target 'GULUserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:38.4339870Z         ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:38.5349900Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:38.6354430Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:03:38.7360810Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:03:38.8366820Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:03:38.9372250Z     Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:39.0377300Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+2026-11-04T19:03:39.1380580Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:03:39.2387110Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:03:39.3393630Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:03:39.4399980Z     Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:03:39.5407490Z     Target 'FBLPromises' in project 'Promises'
+2026-11-04T19:03:39.6412430Z         ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+2026-11-04T19:03:39.7418940Z         ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+2026-11-04T19:03:39.8420260Z     Target 'FBLPromises' in project 'Promises'
+2026-11-04T19:03:39.9425590Z         ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+2026-11-04T19:03:40.0426210Z     Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+2026-11-04T19:03:40.1430770Z     Target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:40.2435770Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:40.3442020Z         ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:40.4443350Z     Target 'AppAuth' in project 'AppAuth'
+2026-11-04T19:03:40.5448390Z         ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+2026-11-04T19:03:40.6451730Z         ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+2026-11-04T19:03:40.7458510Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:40.8460400Z     Target 'AppAuth' in project 'AppAuth'
+2026-11-04T19:03:40.9467660Z         ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+2026-11-04T19:03:41.0473510Z         ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:41.1477680Z     Target 'AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:41.2490160Z         ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+2026-11-04T19:03:41.3480320Z     Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+2026-11-04T19:03:41.4484700Z     Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+2026-11-04T19:03:41.5491400Z     Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+2026-11-04T19:03:41.6498110Z     Target 'RadarSDK' in project 'RadarSDK'
+2026-11-04T19:03:41.7505990Z         ➜ Explicit dependency on target '_RadarStub' in project 'RadarSDK'
+2026-11-04T19:03:41.8511140Z     Target '_RadarStub' in project 'RadarSDK' (no dependencies)
+2026-11-04T19:03:41.9514460Z     Target 'StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:42.0518110Z         ➜ Explicit dependency on target 'StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:42.1522330Z         ➜ Explicit dependency on target 'Stripe_StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:42.2525420Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:42.3531060Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:42.4536030Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:42.5541290Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:42.6542730Z         ➜ Explicit dependency on target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:42.7550990Z         ➜ Explicit dependency on target 'StripeApplePay' in project 'Stripe'
+2026-11-04T19:03:42.8564810Z     Target 'StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:42.9572410Z         ➜ Explicit dependency on target 'Stripe_StripePaymentSheet' in project 'Stripe'
+2026-11-04T19:03:43.0579500Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:43.1584950Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:43.2601580Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:43.3613280Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:43.4622860Z         ➜ Explicit dependency on target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:43.5629600Z         ➜ Explicit dependency on target 'StripeApplePay' in project 'Stripe'
+2026-11-04T19:03:43.6631910Z     Target 'Stripe_StripePaymentSheet' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:43.7644160Z     Target 'Stripe' in project 'Stripe'
+2026-11-04T19:03:43.8498790Z         ➜ Explicit dependency on target 'Stripe' in project 'Stripe'
+2026-11-04T19:03:44.0176950Z         ➜ Explicit dependency on target 'Stripe_Stripe' in project 'Stripe'
+2026-11-04T19:03:44.1208270Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:44.2212800Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:44.3218080Z         ➜ Explicit dependency on target 'StripeApplePay' in project 'Stripe'
+2026-11-04T19:03:44.4240320Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:44.5281050Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:44.6285230Z         ➜ Explicit dependency on target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:44.7290170Z         ➜ Explicit dependency on target 'StripeIssuing' in project 'Stripe'
+2026-11-04T19:03:44.8294440Z     Target 'Stripe' in project 'Stripe'
+2026-11-04T19:03:44.9296970Z         ➜ Explicit dependency on target 'Stripe_Stripe' in project 'Stripe'
+2026-11-04T19:03:45.0819180Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:45.1828850Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:45.2833960Z         ➜ Explicit dependency on target 'StripeApplePay' in project 'Stripe'
+2026-11-04T19:03:45.3837390Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:45.4839570Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:45.5851630Z         ➜ Explicit dependency on target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:45.6902620Z         ➜ Explicit dependency on target 'StripeIssuing' in project 'Stripe'
+2026-11-04T19:03:45.7923280Z     Target 'StripeIssuing' in project 'Stripe'
+2026-11-04T19:03:45.8925860Z         ➜ Explicit dependency on target 'Stripe_StripeIssuing' in project 'Stripe'
+2026-11-04T19:03:45.9930990Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:46.0952030Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:46.1938090Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:46.2942650Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:46.3947710Z         ➜ Explicit dependency on target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:46.4951890Z     Target 'Stripe_StripeIssuing' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:46.5957660Z     Target 'StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:46.6962480Z         ➜ Explicit dependency on target 'Stripe_StripePaymentsUI' in project 'Stripe'
+2026-11-04T19:03:46.7969170Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:46.8980110Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:46.9986860Z         ➜ Explicit dependency on target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:47.1174480Z         ➜ Explicit dependency on target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:47.2178900Z     Target 'Stripe_StripePaymentsUI' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:47.3182690Z     Target 'StripePayments' in project 'Stripe'
+2026-11-04T19:03:47.4187730Z         ➜ Explicit dependency on target 'Stripe_StripePayments' in project 'Stripe'
+2026-11-04T19:03:47.5190420Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:47.6190400Z         ➜ Explicit dependency on target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:47.7192350Z     Target 'Stripe_StripePayments' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:47.8195520Z     Target 'StripeUICore' in project 'Stripe'
+2026-11-04T19:03:47.9371340Z         ➜ Explicit dependency on target 'Stripe_StripeUICore' in project 'Stripe'
+2026-11-04T19:03:48.0459870Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:48.1474650Z     Target 'Stripe_StripeUICore' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:48.2480320Z     Target 'StripeApplePay' in project 'Stripe'
+2026-11-04T19:03:48.3519160Z         ➜ Explicit dependency on target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:48.4548870Z     Target 'StripeCore' in project 'Stripe'
+2026-11-04T19:03:48.5567010Z         ➜ Explicit dependency on target 'Stripe_StripeCore' in project 'Stripe'
+2026-11-04T19:03:48.6569300Z     Target 'Stripe_StripeCore' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:48.7574750Z     Target 'Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:48.8582710Z         ➜ Explicit dependency on target 'Stripe_Stripe3DS2' in project 'Stripe'
+2026-11-04T19:03:48.9584330Z     Target 'Stripe_Stripe3DS2' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:49.0585920Z     Target 'Stripe_Stripe' in project 'Stripe' (no dependencies)
+2026-11-04T19:03:49.1590860Z     Target 'FirebaseFunctions' in project 'Firebase'
+2026-11-04T19:03:49.2600640Z         ➜ Explicit dependency on target 'FirebaseFunctions' in project 'Firebase'
+2026-11-04T19:03:49.3604000Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:03:49.4624590Z         ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Firebase'
+2026-11-04T19:03:49.5693460Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:03:49.6695910Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:03:49.7697210Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:03:49.8700700Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:03:49.9704890Z         ➜ Explicit dependency on target 'FirebaseMessagingInterop' in project 'Firebase'
+2026-11-04T19:03:50.0721260Z         ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Firebase'
+2026-11-04T19:03:50.1729590Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:03:50.2731950Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:50.3733570Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:03:50.4736590Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:50.5749150Z     Target 'FirebaseFunctions' in project 'Firebase'
+2026-11-04T19:03:50.6749830Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:03:50.7750630Z         ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Firebase'
+2026-11-04T19:03:50.8757740Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:03:50.9762570Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:03:51.0775490Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:03:51.1785460Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:03:51.2787570Z         ➜ Explicit dependency on target 'FirebaseMessagingInterop' in project 'Firebase'
+2026-11-04T19:03:51.3796960Z         ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Firebase'
+2026-11-04T19:03:51.4804570Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:03:51.5806880Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:51.6808310Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:03:51.7813490Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:03:51.8814710Z     Target 'FirebaseMessagingInterop' in project 'Firebase' (no dependencies)
+2026-11-04T19:03:51.9841450Z     Target 'FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:52.0856440Z         ➜ Explicit dependency on target 'FirebaseFirestoreTarget' in project 'Firebase'
+2026-11-04T19:03:52.1856660Z         ➜ Explicit dependency on target 'FirebaseFirestoreInternalWrapper' in project 'Firebase'
+2026-11-04T19:03:52.2863200Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:03:52.3869350Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:03:52.4872100Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:03:52.5925300Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:03:52.6930580Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:03:52.7933440Z         ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Firebase'
+2026-11-04T19:03:52.8936400Z         ➜ Explicit dependency on target 'FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:52.9938450Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:03:53.0943160Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:53.1945020Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:03:53.2972900Z         ➜ Explicit dependency on target 'abseil' in project 'abseil'
+2026-11-04T19:03:53.3981560Z         ➜ Explicit dependency on target 'gRPC-C++' in project 'gRPC'
+2026-11-04T19:03:53.5504460Z         ➜ Explicit dependency on target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:53.6512120Z         ➜ Explicit dependency on target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:53.7578970Z     Target 'FirebaseFirestoreTarget' in project 'Firebase'
+2026-11-04T19:03:53.8601180Z         ➜ Explicit dependency on target 'FirebaseFirestoreInternalWrapper' in project 'Firebase'
+2026-11-04T19:03:53.9608010Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:03:54.0613070Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:03:54.1621890Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:03:54.1624700Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:03:54.2630140Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:03:54.3636440Z         ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Firebase'
+2026-11-04T19:03:54.4646040Z         ➜ Explicit dependency on target 'FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:54.5785720Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:03:54.6907110Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:54.7910540Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:03:54.8981880Z         ➜ Explicit dependency on target 'abseil' in project 'abseil'
+2026-11-04T19:03:54.9988220Z         ➜ Explicit dependency on target 'gRPC-C++' in project 'gRPC'
+2026-11-04T19:03:55.1019680Z         ➜ Explicit dependency on target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:55.2026270Z         ➜ Explicit dependency on target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:55.3374220Z     Target 'FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:55.4401640Z         ➜ Explicit dependency on target 'Firebase_FirebaseFirestore' in project 'Firebase'
+2026-11-04T19:03:55.5407700Z         ➜ Explicit dependency on target 'FirebaseFirestoreInternalWrapper' in project 'Firebase'
+2026-11-04T19:03:55.6619490Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:03:55.7650540Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:03:55.8657250Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:03:55.9663180Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:03:56.0670910Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:03:56.1679940Z         ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Firebase'
+2026-11-04T19:03:56.2723740Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:03:56.3732070Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:03:56.4771330Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:03:56.5773210Z         ➜ Explicit dependency on target 'abseil' in project 'abseil'
+2026-11-04T19:03:56.6990860Z         ➜ Explicit dependency on target 'gRPC-C++' in project 'gRPC'
+2026-11-04T19:03:56.8012380Z         ➜ Explicit dependency on target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:56.9017500Z         ➜ Explicit dependency on target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:57.0023010Z     Target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:57.1027860Z         ➜ Explicit dependency on target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:57.2033940Z         ➜ Explicit dependency on target 'leveldb_leveldb' in project 'leveldb'
+2026-11-04T19:03:57.3062010Z     Target 'leveldb' in project 'leveldb'
+2026-11-04T19:03:57.4067010Z         ➜ Explicit dependency on target 'leveldb_leveldb' in project 'leveldb'
+2026-11-04T19:03:57.5073720Z     Target 'leveldb_leveldb' in project 'leveldb' (no dependencies)
+2026-11-04T19:03:57.6075470Z     Target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:57.7082200Z         ➜ Explicit dependency on target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:57.8086440Z         ➜ Explicit dependency on target 'nanopb_nanopb' in project 'nanopb'
+2026-11-04T19:03:57.9087880Z     Target 'nanopb' in project 'nanopb'
+2026-11-04T19:03:58.0092690Z         ➜ Explicit dependency on target 'nanopb_nanopb' in project 'nanopb'
+2026-11-04T19:03:58.1098670Z     Target 'nanopb_nanopb' in project 'nanopb' (no dependencies)
+2026-11-04T19:03:58.2102760Z     Target 'gRPC-C++' in project 'gRPC'
+2026-11-04T19:03:58.3106510Z         ➜ Explicit dependency on target 'grpcppWrapper' in project 'gRPC'
+2026-11-04T19:03:58.4110060Z         ➜ Explicit dependency on target 'gRPC_grpcppWrapper' in project 'gRPC'
+2026-11-04T19:03:58.5137100Z         ➜ Explicit dependency on target 'grpcWrapper' in project 'gRPC'
+2026-11-04T19:03:58.6142410Z         ➜ Explicit dependency on target 'opensslWrapper' in project 'gRPC'
+2026-11-04T19:03:58.7150310Z         ➜ Explicit dependency on target 'abseil' in project 'abseil'
+2026-11-04T19:03:58.8152360Z     Target 'grpcppWrapper' in project 'gRPC'
+2026-11-04T19:03:58.9161790Z         ➜ Explicit dependency on target 'gRPC_grpcppWrapper' in project 'gRPC'
+2026-11-04T19:03:59.0166560Z         ➜ Explicit dependency on target 'grpcWrapper' in project 'gRPC'
+2026-11-04T19:03:59.1173400Z         ➜ Explicit dependency on target 'opensslWrapper' in project 'gRPC'
+2026-11-04T19:03:59.3125990Z         ➜ Explicit dependency on target 'abseil' in project 'abseil'
+2026-11-04T19:03:59.3194460Z     Target 'opensslWrapper' in project 'gRPC'
+2026-11-04T19:03:59.4201330Z         ➜ Explicit dependency on target 'gRPC_opensslWrapper' in project 'gRPC'
+2026-11-04T19:03:59.5202400Z     Target 'gRPC_opensslWrapper' in project 'gRPC' (no dependencies)
+2026-11-04T19:03:59.6153930Z     Target 'grpcWrapper' in project 'gRPC'
+2026-11-04T19:03:59.7184430Z         ➜ Explicit dependency on target 'gRPC_grpcWrapper' in project 'gRPC'
+2026-11-04T19:03:59.8181310Z     Target 'gRPC_grpcWrapper' in project 'gRPC' (no dependencies)
+2026-11-04T19:03:59.9187910Z     Target 'gRPC_grpcppWrapper' in project 'gRPC' (no dependencies)
+2026-11-04T19:04:00.0194930Z     Target 'abseil' in project 'abseil'
+2026-11-04T19:04:00.1198980Z         ➜ Explicit dependency on target 'abslWrapper' in project 'abseil'
+2026-11-04T19:04:00.2202450Z         ➜ Explicit dependency on target 'abseil_abslWrapper' in project 'abseil'
+2026-11-04T19:04:00.3205810Z     Target 'abslWrapper' in project 'abseil'
+2026-11-04T19:04:00.4301570Z         ➜ Explicit dependency on target 'abseil_abslWrapper' in project 'abseil'
+2026-11-04T19:04:00.5306620Z     Target 'abseil_abslWrapper' in project 'abseil' (no dependencies)
+2026-11-04T19:04:00.6425840Z     Target 'Firebase_FirebaseFirestore' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:00.7455840Z     Target 'FirebaseSharedSwift' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:00.8462830Z     Target 'FirebaseFirestoreInternalWrapper' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:00.9508430Z     Target 'FirebaseAuth' in project 'Firebase'
+2026-11-04T19:04:01.0530950Z         ➜ Explicit dependency on target 'FirebaseAuth' in project 'Firebase'
+2026-11-04T19:04:01.1757930Z         ➜ Explicit dependency on target 'Firebase_FirebaseAuth' in project 'Firebase'
+2026-11-04T19:04:01.3063840Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:04:01.4070780Z         ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Firebase'
+2026-11-04T19:04:01.5075710Z         ➜ Explicit dependency on target 'FirebaseAuthInternal' in project 'Firebase'
+2026-11-04T19:04:01.6081120Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:04:01.7164640Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:04:01.8219640Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:04:01.9226670Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:04:02.0232670Z         ➜ Explicit dependency on target 'RecaptchaInterop' in project 'InteropForGoogle'
+2026-11-04T19:04:02.1190570Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:04:02.2196740Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:04:02.3223560Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:04:02.4228920Z         ➜ Explicit dependency on target 'GULAppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:02.5240910Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:02.6241530Z     Target 'FirebaseAuth' in project 'Firebase'
+2026-11-04T19:04:02.7247490Z         ➜ Explicit dependency on target 'Firebase_FirebaseAuth' in project 'Firebase'
+2026-11-04T19:04:02.8257830Z         ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Firebase'
+2026-11-04T19:04:02.9238950Z         ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Firebase'
+2026-11-04T19:04:03.0264140Z         ➜ Explicit dependency on target 'FirebaseAuthInternal' in project 'Firebase'
+2026-11-04T19:04:03.1270520Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:04:03.2256570Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:04:03.3261550Z         ➜ Explicit dependency on target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:04:03.4271840Z         ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:04:03.5285330Z         ➜ Explicit dependency on target 'RecaptchaInterop' in project 'InteropForGoogle'
+2026-11-04T19:04:03.6272160Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:04:03.7287220Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:04:03.8290030Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:04:03.9294690Z         ➜ Explicit dependency on target 'GULAppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:04.0302950Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.1313370Z     Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.2318670Z         ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.3321930Z         ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.4322210Z     Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.5327000Z         ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+2026-11-04T19:04:04.6332790Z     Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+2026-11-04T19:04:04.7340390Z     Target 'GULAppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:04.8350510Z         ➜ Explicit dependency on target 'GoogleUtilities-AppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:04.9355950Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-AppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:05.0358230Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:05.1364910Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:05.2367200Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:05.3441220Z         ➜ Explicit dependency on target 'GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:05.4457040Z         ➜ Explicit dependency on target 'GoogleUtilities-Reachability' in project 'GoogleUtilities'
+2026-11-04T19:04:05.5487560Z         ➜ Explicit dependency on target 'GoogleUtilities-Network' in project 'GoogleUtilities'
+2026-11-04T19:04:05.6637920Z     Target 'GoogleUtilities-AppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:05.7710590Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-AppDelegateSwizzler' in project 'GoogleUtilities'
+2026-11-04T19:04:05.8755030Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:05.9773170Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:06.0781180Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:06.1807630Z         ➜ Explicit dependency on target 'GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:06.2810800Z         ➜ Explicit dependency on target 'GoogleUtilities-Reachability' in project 'GoogleUtilities'
+2026-11-04T19:04:06.3813190Z         ➜ Explicit dependency on target 'GoogleUtilities-Network' in project 'GoogleUtilities'
+2026-11-04T19:04:06.4817140Z     Target 'GoogleUtilities-Network' in project 'GoogleUtilities'
+2026-11-04T19:04:06.5828310Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Network' in project 'GoogleUtilities'
+2026-11-04T19:04:06.6826780Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:06.7837360Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:06.8844610Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:06.9837390Z         ➜ Explicit dependency on target 'GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:07.0845080Z         ➜ Explicit dependency on target 'GoogleUtilities-Reachability' in project 'GoogleUtilities'
+2026-11-04T19:04:07.1873320Z     Target 'GoogleUtilities_GoogleUtilities-Network' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:07.2878660Z     Target 'GoogleUtilities-Reachability' in project 'GoogleUtilities'
+2026-11-04T19:04:07.3859460Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Reachability' in project 'GoogleUtilities'
+2026-11-04T19:04:07.4891880Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:07.5898110Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:07.6881650Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:07.7889190Z     Target 'GoogleUtilities_GoogleUtilities-Reachability' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:07.8894870Z     Target 'GoogleUtilities_GoogleUtilities-AppDelegateSwizzler' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:07.9900600Z     Target 'FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:04:08.0916990Z         ➜ Explicit dependency on target 'Firebase_FirebaseCoreExtension' in project 'Firebase'
+2026-11-04T19:04:08.1923810Z     Target 'Firebase_FirebaseCoreExtension' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:08.2924550Z     Target 'FirebaseCore' in project 'Firebase'
+2026-11-04T19:04:08.3958220Z         ➜ Explicit dependency on target 'Firebase_FirebaseCore' in project 'Firebase'
+2026-11-04T19:04:08.4948300Z         ➜ Explicit dependency on target 'Firebase' in project 'Firebase'
+2026-11-04T19:04:08.5954700Z         ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:04:08.6969810Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:04:08.7979850Z         ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:04:08.8976140Z         ➜ Explicit dependency on target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.0027310Z     Target 'GULLogger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.1091130Z         ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.2104020Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.3117680Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:09.4129550Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:09.5101510Z     Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.6111550Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+2026-11-04T19:04:09.7117010Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:09.8138160Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:09.9148700Z     Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:10.0165240Z     Target 'GULEnvironment' in project 'GoogleUtilities'
+2026-11-04T19:04:10.1128030Z         ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:10.2148150Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:10.3204690Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:10.4252100Z     Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:10.5215450Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+2026-11-04T19:04:10.6251960Z         ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+2026-11-04T19:04:10.7258160Z     Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:10.8268820Z     Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:10.9274110Z     Target 'Firebase_FirebaseCore' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:11.0276530Z     Target 'FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:04:11.1286240Z         ➜ Explicit dependency on target 'Firebase_FirebaseCoreInternal' in project 'Firebase'
+2026-11-04T19:04:11.2304560Z         ➜ Explicit dependency on target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.3308940Z     Target 'GULNSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.4313700Z         ➜ Explicit dependency on target 'GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.6328880Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.7343960Z     Target 'GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.8352390Z         ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-NSData' in project 'GoogleUtilities'
+2026-11-04T19:04:11.9384820Z     Target 'GoogleUtilities_GoogleUtilities-NSData' in project 'GoogleUtilities' (no dependencies)
+2026-11-04T19:04:12.0409170Z     Target 'Firebase_FirebaseCoreInternal' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:12.1447500Z     Target 'Firebase' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:12.2448580Z     Target 'FirebaseAuthInternal' in project 'Firebase'
+2026-11-04T19:04:12.3453590Z         ➜ Explicit dependency on target 'RecaptchaInterop' in project 'InteropForGoogle'
+2026-11-04T19:04:12.4455010Z     Target 'RecaptchaInterop' in project 'InteropForGoogle'
+2026-11-04T19:04:12.5496050Z         ➜ Explicit dependency on target 'RecaptchaInterop' in project 'InteropForGoogle'
+2026-11-04T19:04:12.6503260Z     Target 'RecaptchaInterop' in project 'InteropForGoogle' (no dependencies)
+2026-11-04T19:04:12.6505770Z     Target 'FirebaseAuthInterop' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:12.7510060Z     Target 'FirebaseAppCheckInterop' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:12.8572110Z     Target 'Firebase_FirebaseAuth' in project 'Firebase' (no dependencies)
+2026-11-04T19:04:12.9614790Z 
+2026-11-04T19:04:13.0619890Z GatherProvisioningInputs
+2026-11-04T19:04:13.1624290Z 
+2026-11-04T19:04:13.2628720Z CreateBuildDescription
+2026-11-04T19:06:35.1305160Z ##[error]The operation was canceled.

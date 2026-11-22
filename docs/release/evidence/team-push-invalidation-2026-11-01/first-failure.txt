@@ -1,0 +1,19 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+true !== false
+
+    at file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/team-push-invalidation-checks.mjs:26:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async check (file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-push-dispatch-suite.mjs:23:41)
+    at async runTeamPushInvalidationChecks (file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/team-push-invalidation-checks.mjs:22:3)
+    at async file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-push-dispatch-suite.mjs:162:3
+    at async withLocalAdminCleanup (file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-admin-lifecycle.mjs:10:17)
+    at async file://<home>/.codex/projects/sports-green-moove-recovery-20261025/scripts/qa/local-team-push-dispatch-suite.mjs:25:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+

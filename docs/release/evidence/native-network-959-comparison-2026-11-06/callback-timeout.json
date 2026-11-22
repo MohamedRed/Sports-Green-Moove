@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "376addb0d2dcc98a0c145247afb40d80dc8bfd34",
+  "runId": 42261168620,
+  "jobId": 128041172906,
+  "check": "Validate Stripe production readiness",
+  "failureKind": "timeout",
+  "observedAt": "2026-11-06T17:25:59.1309209Z",
+  "callbackKind": "refresh",
+  "readinessAccepted": false,
+  "causeConfirmed": false
+}

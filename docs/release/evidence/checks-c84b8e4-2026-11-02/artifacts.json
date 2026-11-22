@@ -1,0 +1,42 @@
+[
+  {
+    "id": 13182974329,
+    "node_id": "MDg6QXJ0aWZhY3QxMzE4Mjk3NDMyOQ==",
+    "name": "android-connected-ui-test-results",
+    "size_in_bytes": 25346957,
+    "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13182974329",
+    "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13182974329/zip",
+    "expired": false,
+    "digest": "sha256:bcf6d2430dcd72cddfd170726a21da3deb8a0e4a0900ad98a9796c93fdde9966",
+    "created_at": "2026-11-02T22:18:31Z",
+    "updated_at": "2026-11-02T22:18:31Z",
+    "expires_at": "2027-01-31T21:48:48Z",
+    "workflow_run": {
+      "id": 41531744223,
+      "repository_id": 1265168151,
+      "head_repository_id": 1265168151,
+      "head_branch": "codex/implement-plan",
+      "head_sha": "c84b8e4a96f2f35d0b92f68b13904740b14d0dd3"
+    }
+  },
+  {
+    "id": 13182213813,
+    "node_id": "MDg6QXJ0aWZhY3QxMzE4MjIxMzgxMw==",
+    "name": "android-focused-safety-ui-chat-network-recovery",
+    "size_in_bytes": 372648,
+    "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13182213813",
+    "archive_download_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/artifacts/13182213813/zip",
+    "expired": false,
+    "digest": "sha256:c81bdb840ccc34625fe56941d799297c914ebd456de3897b26015b24cd526620",
+    "created_at": "2026-11-02T21:59:13Z",
+    "updated_at": "2026-11-02T21:59:13Z",
+    "expires_at": "2027-01-31T21:48:48Z",
+    "workflow_run": {
+      "id": 41531744223,
+      "repository_id": 1265168151,
+      "head_repository_id": 1265168151,
+      "head_branch": "codex/implement-plan",
+      "head_sha": "c84b8e4a96f2f35d0b92f68b13904740b14d0dd3"
+    }
+  }
+]

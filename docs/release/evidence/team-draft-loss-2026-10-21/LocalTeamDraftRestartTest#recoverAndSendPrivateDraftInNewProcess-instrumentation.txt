@@ -1,0 +1,21 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest:
+Error in recoverAndSendPrivateDraftInNewProcess(be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest):
+org.junit.ComparisonFailure: The private unsent team draft must survive a fully stopped process expected:<[Brouillon équipe après fermeture QA]> but was:<[]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest.recoverAndSendPrivateDraftInNewProcess(LocalTeamDraftRestartTest.kt:47)
+
+
+Time: 18.603
+There was 1 failure:
+1) recoverAndSendPrivateDraftInNewProcess(be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest)
+org.junit.ComparisonFailure: The private unsent team draft must survive a fully stopped process expected:<[Brouillon équipe après fermeture QA]> but was:<[]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at be.sportgreenmoove.app.ui.LocalTeamDraftRestartTest.recoverAndSendPrivateDraftInNewProcess(LocalTeamDraftRestartTest.kt:47)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

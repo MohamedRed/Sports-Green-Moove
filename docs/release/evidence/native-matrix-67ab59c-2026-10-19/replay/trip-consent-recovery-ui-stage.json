@@ -1,0 +1,306 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "50c523d9964eedfab26927ba88f9fad1",
+  "testedAt": "2026-10-19T20:03:17.423Z",
+  "recordType": "native-trip-consent-recovery-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 4,
+  "nativeCaseCount": 2,
+  "steps": [
+    {
+      "id": "trip-consent-pending-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-partial-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-declined-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-withdrawn-restart-ui",
+      "status": "passed"
+    }
+  ],
+  "native": {
+    "before": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "50c523d9964eedfab26927ba88f9fad1",
+      "scope": "native-ui-trip-consent-recovery-matrix",
+      "stage": "before",
+      "completed": true,
+      "actorUserId": "sgm-qa-parent",
+      "processId": 11854,
+      "records": [
+        {
+          "kind": "pending",
+          "tripId": "0le0HG8oB9IJosbFElGD",
+          "bookingId": "Z98M1mbgGWawwdCpE5s2",
+          "proposalId": "412ca2834377172861ab648f264792919ea0d2ec69e6af92fd20ab42e79770ac",
+          "prepared": true
+        },
+        {
+          "kind": "partial",
+          "tripId": "t9NDsB9XSivXZQvVaajt",
+          "bookingId": "pCbvXlX7w01r9z3CrvWI",
+          "proposalId": "e6e4d38b7b7a1e5e1f7e7c18e3d1eca833f8c65175e7889b8f77fd48e7eaab37",
+          "prepared": true
+        },
+        {
+          "kind": "declined",
+          "tripId": "tJhwIAnJ4XWzBpCbSJNs",
+          "bookingId": "tI4K1w6o7xKM4AK4YUdp",
+          "proposalId": "4820bccc9d0c1e6498d5ba9e8fdaeaa0f00872780ba37356721699938a59b9a0",
+          "prepared": true
+        },
+        {
+          "kind": "withdrawn",
+          "tripId": "tyYDdpHYmi9TwHJP2rfZ",
+          "bookingId": "roWxUTPNjDhNuPz4xHOH",
+          "proposalId": "30f3a5c1745900cc2084a2b29a6f66aea73ac80885201846304d3979fe7bfef3",
+          "prepared": true
+        }
+      ]
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "50c523d9964eedfab26927ba88f9fad1",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 11854,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "50c523d9964eedfab26927ba88f9fad1",
+      "scope": "native-ui-trip-consent-recovery-matrix",
+      "stage": "after",
+      "completed": true,
+      "actorUserId": "sgm-qa-parent",
+      "processId": 12085,
+      "sessionRestoredWithoutLogin": true,
+      "records": [
+        {
+          "kind": "pending",
+          "tripId": "0le0HG8oB9IJosbFElGD",
+          "bookingId": "Z98M1mbgGWawwdCpE5s2",
+          "proposalId": "412ca2834377172861ab648f264792919ea0d2ec69e6af92fd20ab42e79770ac",
+          "parentStateRestored": true,
+          "refreshUnchanged": true,
+          "originalProposalRestored": true,
+          "secondParentScoped": true,
+          "driverStateRestored": true
+        },
+        {
+          "kind": "partial",
+          "tripId": "t9NDsB9XSivXZQvVaajt",
+          "bookingId": "pCbvXlX7w01r9z3CrvWI",
+          "proposalId": "e6e4d38b7b7a1e5e1f7e7c18e3d1eca833f8c65175e7889b8f77fd48e7eaab37",
+          "parentStateRestored": true,
+          "refreshUnchanged": true,
+          "originalProposalRestored": true,
+          "secondParentScoped": true,
+          "driverStateRestored": true
+        },
+        {
+          "kind": "declined",
+          "tripId": "tJhwIAnJ4XWzBpCbSJNs",
+          "bookingId": "tI4K1w6o7xKM4AK4YUdp",
+          "proposalId": "4820bccc9d0c1e6498d5ba9e8fdaeaa0f00872780ba37356721699938a59b9a0",
+          "parentStateRestored": true,
+          "refreshUnchanged": true,
+          "closedActionsAbsent": true,
+          "parentHistoryRestored": true,
+          "secondParentScoped": true,
+          "secondParentHistoryScoped": true,
+          "driverHistoryRestored": true,
+          "driverStateRestored": true
+        },
+        {
+          "kind": "withdrawn",
+          "tripId": "tyYDdpHYmi9TwHJP2rfZ",
+          "bookingId": "roWxUTPNjDhNuPz4xHOH",
+          "proposalId": "30f3a5c1745900cc2084a2b29a6f66aea73ac80885201846304d3979fe7bfef3",
+          "parentStateRestored": true,
+          "refreshUnchanged": true,
+          "closedActionsAbsent": true,
+          "parentHistoryRestored": true,
+          "secondParentScoped": true,
+          "secondParentHistoryScoped": true,
+          "driverHistoryRestored": true,
+          "driverStateRestored": true
+        }
+      ],
+      "endedAsUserId": "sgm-qa-driver"
+    }
+  },
+  "checkpoint": [
+    {
+      "tripId": "0le0HG8oB9IJosbFElGD",
+      "proposalId": "412ca2834377172861ab648f264792919ea0d2ec69e6af92fd20ab42e79770ac",
+      "kind": "pending",
+      "status": "pending",
+      "bookingIds": [
+        "Z98M1mbgGWawwdCpE5s2",
+        "KhQVKMxeQ8b7Smi2ceMR"
+      ],
+      "decisionCount": 0,
+      "notificationCount": 2,
+      "hashes": {
+        "trip": "3f0a64128d1e9b9a72dfa39533b9698dde9fb1916f78805e58af11d3d7ff04ca",
+        "bookings": "70a2593359945e9fdde8c8ffd29f5307e3288f6658769aa14b0ce02442e31541",
+        "proposal": "f9ce62b719d31a866cdcd90197ad1b61562c2da2d213dae2bbe9f4b7403e1c65",
+        "notifications": "79c049791c13aad7d88dde7f4f058959506a11aaf4364cb36fbf47e361e06db5"
+      }
+    },
+    {
+      "tripId": "t9NDsB9XSivXZQvVaajt",
+      "proposalId": "e6e4d38b7b7a1e5e1f7e7c18e3d1eca833f8c65175e7889b8f77fd48e7eaab37",
+      "kind": "partial",
+      "status": "pending",
+      "bookingIds": [
+        "pCbvXlX7w01r9z3CrvWI",
+        "hom4bsJEX7UGVA13CDc0"
+      ],
+      "decisionCount": 1,
+      "notificationCount": 2,
+      "hashes": {
+        "trip": "17c99a0199b25753e177b47cf8cde24b58663e73335bb3bcf6fbc07661c69054",
+        "bookings": "e94464c84f446e45dae5ef209eaf199c592357a9e7ac246589197d0e35032b47",
+        "proposal": "78aad60da3aa1207e45481cf1b795b8f834e17642480a670610e506e60606e23",
+        "notifications": "0b5038f024cd8ea0241ccde47c7ba1604628d48a19f227f2f9b44d196d6a010a"
+      }
+    },
+    {
+      "tripId": "tJhwIAnJ4XWzBpCbSJNs",
+      "proposalId": "4820bccc9d0c1e6498d5ba9e8fdaeaa0f00872780ba37356721699938a59b9a0",
+      "kind": "declined",
+      "status": "declined",
+      "bookingIds": [
+        "tI4K1w6o7xKM4AK4YUdp",
+        "KN91lB7JhcdV7Ic2e1iV"
+      ],
+      "decisionCount": 1,
+      "notificationCount": 5,
+      "hashes": {
+        "trip": "1f9edf821724f1e93772bb6cc4a36682f81443170c2e68084272b6baa3f81c3a",
+        "bookings": "f652ea3a0f0b956fe0fa33af2e9acddb17427d37e0b74b01c1d230f9562624d2",
+        "proposal": "447337856b981a3a58bd2d7109d8fb7b377957d9684a0b1f1f43ec67127aafa6",
+        "notifications": "067b096eca4024aed52ef58e04d778eb8916370702147daf76b86b41e94b7fd5"
+      }
+    },
+    {
+      "tripId": "tyYDdpHYmi9TwHJP2rfZ",
+      "proposalId": "30f3a5c1745900cc2084a2b29a6f66aea73ac80885201846304d3979fe7bfef3",
+      "kind": "withdrawn",
+      "status": "withdrawn",
+      "bookingIds": [
+        "roWxUTPNjDhNuPz4xHOH",
+        "GaUTfBXYNbsxHFgIx1IH"
+      ],
+      "decisionCount": 0,
+      "notificationCount": 5,
+      "hashes": {
+        "trip": "61d852221d691d33cfcd35be02993c137304a12dc32b907210207a015a98bcbc",
+        "bookings": "6184314f07a362a2f22c2a33250c501968a117dae73bc1effe86e78e3f0af319",
+        "proposal": "0dde82abc35a57e4a3b17265c474254d172f5bc2aafb6ec0f6b064bf30c3b2ec",
+        "notifications": "41753635e806f0f224ed8fa8e42a3cdbbe1e8c82580917c371099cffd65567cf"
+      }
+    }
+  ],
+  "persisted": [
+    {
+      "tripId": "0le0HG8oB9IJosbFElGD",
+      "proposalId": "412ca2834377172861ab648f264792919ea0d2ec69e6af92fd20ab42e79770ac",
+      "kind": "pending",
+      "status": "pending",
+      "bookingIds": [
+        "Z98M1mbgGWawwdCpE5s2",
+        "KhQVKMxeQ8b7Smi2ceMR"
+      ],
+      "decisionCount": 0,
+      "notificationCount": 2,
+      "hashes": {
+        "trip": "3f0a64128d1e9b9a72dfa39533b9698dde9fb1916f78805e58af11d3d7ff04ca",
+        "bookings": "70a2593359945e9fdde8c8ffd29f5307e3288f6658769aa14b0ce02442e31541",
+        "proposal": "f9ce62b719d31a866cdcd90197ad1b61562c2da2d213dae2bbe9f4b7403e1c65",
+        "notifications": "79c049791c13aad7d88dde7f4f058959506a11aaf4364cb36fbf47e361e06db5"
+      }
+    },
+    {
+      "tripId": "t9NDsB9XSivXZQvVaajt",
+      "proposalId": "e6e4d38b7b7a1e5e1f7e7c18e3d1eca833f8c65175e7889b8f77fd48e7eaab37",
+      "kind": "partial",
+      "status": "pending",
+      "bookingIds": [
+        "pCbvXlX7w01r9z3CrvWI",
+        "hom4bsJEX7UGVA13CDc0"
+      ],
+      "decisionCount": 1,
+      "notificationCount": 2,
+      "hashes": {
+        "trip": "17c99a0199b25753e177b47cf8cde24b58663e73335bb3bcf6fbc07661c69054",
+        "bookings": "e94464c84f446e45dae5ef209eaf199c592357a9e7ac246589197d0e35032b47",
+        "proposal": "78aad60da3aa1207e45481cf1b795b8f834e17642480a670610e506e60606e23",
+        "notifications": "0b5038f024cd8ea0241ccde47c7ba1604628d48a19f227f2f9b44d196d6a010a"
+      }
+    },
+    {
+      "tripId": "tJhwIAnJ4XWzBpCbSJNs",
+      "proposalId": "4820bccc9d0c1e6498d5ba9e8fdaeaa0f00872780ba37356721699938a59b9a0",
+      "kind": "declined",
+      "status": "declined",
+      "bookingIds": [
+        "tI4K1w6o7xKM4AK4YUdp",
+        "KN91lB7JhcdV7Ic2e1iV"
+      ],
+      "decisionCount": 1,
+      "notificationCount": 5,
+      "hashes": {
+        "trip": "1f9edf821724f1e93772bb6cc4a36682f81443170c2e68084272b6baa3f81c3a",
+        "bookings": "f652ea3a0f0b956fe0fa33af2e9acddb17427d37e0b74b01c1d230f9562624d2",
+        "proposal": "447337856b981a3a58bd2d7109d8fb7b377957d9684a0b1f1f43ec67127aafa6",
+        "notifications": "067b096eca4024aed52ef58e04d778eb8916370702147daf76b86b41e94b7fd5"
+      }
+    },
+    {
+      "tripId": "tyYDdpHYmi9TwHJP2rfZ",
+      "proposalId": "30f3a5c1745900cc2084a2b29a6f66aea73ac80885201846304d3979fe7bfef3",
+      "kind": "withdrawn",
+      "status": "withdrawn",
+      "bookingIds": [
+        "roWxUTPNjDhNuPz4xHOH",
+        "GaUTfBXYNbsxHFgIx1IH"
+      ],
+      "decisionCount": 0,
+      "notificationCount": 5,
+      "hashes": {
+        "trip": "61d852221d691d33cfcd35be02993c137304a12dc32b907210207a015a98bcbc",
+        "bookings": "6184314f07a362a2f22c2a33250c501968a117dae73bc1effe86e78e3f0af319",
+        "proposal": "0dde82abc35a57e4a3b17265c474254d172f5bc2aafb6ec0f6b064bf30c3b2ec",
+        "notifications": "41753635e806f0f224ed8fa8e42a3cdbbe1e8c82580917c371099cffd65567cf"
+      }
+    }
+  ],
+  "captureFiles": [
+    "local-trip-consent-recovery-pending.png",
+    "local-trip-consent-recovery-partial.png",
+    "local-trip-consent-recovery-declined.png",
+    "local-trip-consent-recovery-withdrawn.png",
+    "local-trip-history-declined.png",
+    "local-trip-history-withdrawn.png"
+  ],
+  "recordsUnchanged": true,
+  "parentViewsScoped": true,
+  "outsiderDenied": true,
+  "closedHistoryExercised": true,
+  "applicationExercised": false,
+  "routeProviderExercised": false,
+  "paymentExercised": false,
+  "fullAppReplay": false,
+  "limitation": "Pending, partial, refused and withdrawn price proposals after a new process, including closed history for both parents and driver. No unsent drafts, application, real routes/payments or physical-device proof."
+}

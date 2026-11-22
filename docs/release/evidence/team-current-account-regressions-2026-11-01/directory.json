@@ -1,0 +1,62 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "49131b0c302ca8385036339fd97a9e65",
+  "testedAt": "2026-11-01T13:22:30.791Z",
+  "scope": "local-team-chat-directory-services-not-native-ui",
+  "steps": [
+    {
+      "id": "empty-scanned-page-retains-cursor-and-only-approved-team-is-discoverable",
+      "status": "passed"
+    },
+    {
+      "id": "second-verified-parent-discovers-child-team-without-own-enrollment",
+      "status": "passed"
+    },
+    {
+      "id": "unrelated-club-member-and-unenrolled-manager-cannot-discover-team-chat",
+      "status": "passed"
+    },
+    {
+      "id": "anonymous-foreign-club-and-cross-account-cursor-are-denied",
+      "status": "passed"
+    },
+    {
+      "id": "native-page-contract-exposes-author-request-identity-and-current-access-version",
+      "status": "passed"
+    },
+    {
+      "id": "revocation-removes-directory-entry-without-removing-another-verified-parent",
+      "status": "passed"
+    }
+  ],
+  "isolation": {
+    "protectedBaselinePreserved": true,
+    "originalClaimsUnchanged": true,
+    "expectedProfileTimestampUpdatesOnly": true,
+    "protectedRecordCount": 158
+  },
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "notificationsVerified": false,
+  "adminClientClosed": true,
+  "sourceFiles": {
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "scripts/qa/local-team-chat-options-suite.mjs": "e3990d1a77495910f7a2e3b62731b54f0c9be74e6b8c5e3e4748d3629bcac7b2",
+    "functions/src/services/teamConversationOptions.ts": "530c9ea695e856d69cb642b72d9cda7935472998e7134069564c85f5e1b600ad",
+    "functions/src/services/teamConversationAuthority.ts": "b2a2e4ec4cc2359814b749979ff43fa76881a56c9078d943063efe49706eedb5",
+    "functions/src/services/teamConversation.ts": "e9ee8522c7aaaa98f0b350f79fcfa129709d01ad0614ee9d830223a641793d23",
+    "functions/src/callables/teamConversation.ts": "5a86d842cb26e5cdae75b30e240501daf772d76643360f4d0ef19b9b285e8a01"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

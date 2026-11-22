@@ -1,0 +1,8 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-23T11:40:35.7868687Z Ordinary Android matrix: 147 passed, 50 skipped, 0 failed; 197 cases observed.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T11:52:44.6952843Z [32m[1m✔ [22m[39m Script exited successfully (code 0)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T11:52:46.1016576Z Ordinary tests: 0; component evidence: 0; local replay: 0
+Android native UI tests	Finish bounded read-only full-matrix host observation	2026-10-23T11:52:51.6557660Z CI host observation: gone (diagnostic only).
+Android focused safety UI tests / Isolated team-read-components	UNKNOWN STEP	2026-10-23T11:27:55.5522591Z Complete job name: Android focused safety UI tests / Isolated team-read-components
+Android focused safety UI tests / Isolated team-read-components	UNKNOWN STEP	2026-10-23T11:34:36.4401253Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: ''
+Android focused safety UI tests / Isolated team-read-components	UNKNOWN STEP	2026-10-23T11:34:36.4450134Z ##[error]The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android focused safety UI tests / Isolated team-read-components	UNKNOWN STEP	2026-10-23T11:34:36.8796243Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 shell settings put system screen_off_timeout 2147483647 ' failed: 'adb: device 'emulator-5554' not found'

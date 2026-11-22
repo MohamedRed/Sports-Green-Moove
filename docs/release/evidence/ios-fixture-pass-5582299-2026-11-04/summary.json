@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-11-04",
+  "sourceCommit": "55822999ff5d31b792c71bd78b6ae0e59a743851",
+  "runId": 41854694392,
+  "jobId": 126660020762,
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41854694392/job/126660020762",
+  "conclusion": "success",
+  "startedAt": "2026-11-04T15:14:01Z",
+  "completedAt": "2026-11-04T15:47:52Z",
+  "build": {"conclusion": "success", "startedAt": "2026-11-04T15:16:27Z", "completedAt": "2026-11-04T15:30:23Z"},
+  "fixtureExecution": {"conclusion": "success", "startedAt": "2026-11-04T15:30:23Z", "completedAt": "2026-11-04T15:47:16Z"},
+  "fixtureSuite": {
+    "executed": 7, "passed": 7, "failed": 0, "unexpectedFailures": 0,
+    "durationSeconds": 494.507,
+    "cases": [
+      {"suite": "SearchConsentFlowTests", "name": "testExplicitConsentAndChildChangeInvalidateResults", "result": "passed", "durationSeconds": 98.180},
+      {"suite": "SearchConsentFlowTests", "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection", "result": "passed", "durationSeconds": 40.220},
+      {"suite": "SportsGreenMooveUITests", "name": "testActiveRideIdentifiers", "result": "passed", "durationSeconds": 32.623},
+      {"suite": "SportsGreenMooveUITests", "name": "testAuthFlowIdentifiers", "result": "passed", "durationSeconds": 21.693},
+      {"suite": "SportsGreenMooveUITests", "name": "testMessagesChatAndRatingIdentifiers", "result": "passed", "durationSeconds": 59.322},
+      {"suite": "SportsGreenMooveUITests", "name": "testPublishSearchAndBookingIdentifiers", "result": "passed", "durationSeconds": 131.537},
+      {"suite": "SportsGreenMooveUITests", "name": "testSecondaryFlowIdentifiers", "result": "passed", "durationSeconds": 110.932}
+    ]
+  },
+  "ratingFixtureSubmissionVerified": true,
+  "simulatorDisposal": "success",
+  "testedSourceBuildAndFixtureGatePassed": true,
+  "testedSources": "source-sha256.json",
+  "privateOriginalWorkflowLogs": {
+    "format": "zip", "integrityCheck": "unzip -t passed", "bytes": 670326,
+    "sha256": "83c4b85fab94dff71046c87aac5f138be5d1523431cbc483e3e0dafca0f94063"
+  },
+  "privateJobLog": {
+    "bytes": 5329066, "sha256": "3cd20b5c050c1089254dc7832b79fb44d0f3acca827ad83b786f726e5bd27d1f"
+  },
+  "firstPartyCompilerWarnings": [
+    {"file": "NativeURLHandler.swift", "line": 14, "kind": "main-actor isolated UIApplication.shared referenced from nonisolated method"},
+    {"file": "NativeURLHandler.swift", "line": 22, "kind": "main-actor isolated UIApplication.shared referenced from nonisolated method"},
+    {"file": "FirebaseRadarTrackingGateway.swift", "line": 50, "kind": "non-Sendable completion passed to Sendable callback"},
+    {"file": "FirebaseRadarTrackingGateway.swift", "line": 62, "kind": "non-Sendable completion passed to Sendable callback"},
+    {"file": "NativeLocationFallbackProvider.swift", "line": 119, "kind": "optional authorization switch missing explicit none case"},
+    {"file": "GoogleMapsRoutePreview.swift", "line": 109, "kind": "deprecated map constructor"}
+  ],
+  "sameSourceAndroidGate": {
+    "runId": 41854694493, "jobId": 126660020246, "conclusion": "failure",
+    "ordinary": {"passed": 294, "skipped": 55, "failed": 0, "observed": 349},
+    "suiteExitStatuses": {"ordinaryTests": 0, "componentEvidence": 1, "localReplay": 0},
+    "localReplay": {
+      "scope": "local-ui-not-physical-device", "groupsPassed": 37, "nativeCaseCount": 40,
+      "privateOriginalMarkerBytes": 70812,
+      "privateOriginalMarkerSha256": "8aae0916d4778f43bd07a738353ae7cc3080416731d7023e6cc62362dc93c7ec"
+    },
+    "originalArtifact": {
+      "id": 13340115677, "bytes": 15061477,
+      "sha256": "217fd53d8db4664b81ebf45d45d2287b20d66fb1ffce2d4d5428836f68a3f95e"
+    },
+    "componentFailure": "No store-review screenshots pulled; the host observation sees the emulator offline",
+    "underlyingTransferCause": "not established",
+    "deviceRestorationVerified": true,
+    "privateJobLogSha256": "1aee1ab3c395bc3b00081319f65838d9a819b1778dc8ba79f745beb2a5d45242"
+  },
+  "laterAccountRefreshSourceCovered": false,
+  "releaseCandidateBuildAccepted": false,
+  "releaseCandidateFixtureGateAccepted": false,
+  "iosEndToEndFlowsAccepted": false,
+  "physicalDeviceEvidenceAccepted": false,
+  "productionWrites": false,
+  "realPaymentExercised": false,
+  "newMediaPublished": false,
+  "releaseComplete": false
+}

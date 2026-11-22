@@ -1,0 +1,5 @@
+--------- beginning of system
+I/ActivityManager(  538): Force stopping be.sportgreenmoove.app.local appid=10211 user=0: finished inst
+E/ActivityManager(  538): Unable to freeze binder for 10790: -11
+I/ActivityManager(  538): Killing 10790:be.sportgreenmoove.app.local/u0a211 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  538): setHasOverlayUi called on unknown pid: 10790

@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "d56cec66555cfb69a9f5ca336a637f99917376ed",
+  "jobId": 127538625233,
+  "runId": 42111120300,
+  "completed": false,
+  "failedPhase": "network-preparation",
+  "actualNetworkCutExecuted": false,
+  "recoveryAccepted": false,
+  "rootCauseConfirmed": false,
+  "localPackagesAndPolicyRestored": true,
+  "hostExitObserved": true,
+  "newMedia": 0,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "local-chat-network-ui.json",
+      "sha256": "ee660417faa281e57d2a3e48727bee6b1f6b2ad01a70b452262d6e69037a793c"
+    },
+    {
+      "file": "instrumentation.txt",
+      "sha256": "a91e017a2caba5a6a78c8576e74092e6a8a981f77a5d12557f1be1c708807159"
+    },
+    {
+      "file": "disposable-device-setup.json",
+      "sha256": "b01c4c44cc224ff6177e6ff02cba42a9b0bd02026e7df905c9c227f0eb773cb0"
+    },
+    {
+      "file": "disposable-device-restore.json",
+      "sha256": "e0cf022be30001cf0cee177b7b5771b3b3f9286a6a211581bc33bacb3b42ca37"
+    },
+    {
+      "file": "chat-network-recovery-suite-status.json",
+      "sha256": "7546255782463053b4a1ae6462a6c692fe853fc07504464678f84c43a49b7013"
+    },
+    {
+      "file": "host-shutdown.json",
+      "sha256": "b02a35849fd1a48c37da5a2e0a5cc94a52b087652af6cdac8b717e151d208773"
+    },
+    {
+      "file": "terminal-job.json",
+      "sha256": "4633acdc29407080c03ac25468358ced20801a72db8be6a70307f1645c1af6dd"
+    },
+    {
+      "file": "archive-receipt.json",
+      "sha256": "a24ee39bdd52df70dc1e829d515ffebc15a5aeed0d8ccd3ef3843c8fdbbccffc"
+    }
+  ]
+}

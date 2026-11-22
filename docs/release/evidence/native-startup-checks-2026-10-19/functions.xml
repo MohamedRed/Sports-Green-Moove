@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="352" failures="0" errors="0" time="3.632652543">
+    <testsuite name="src/__tests__/access.test.ts" timestamp="2026-10-19T17:09:13.060Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.004441333">
+        <testcase classname="src/__tests__/access.test.ts" name="access helpers &gt; derives unique booking and ride participants" time="0.002744583">
+        </testcase>
+        <testcase classname="src/__tests__/access.test.ts" name="access helpers &gt; allows ride reads for driver, participant parent, child device, and admin" time="0.0003495">
+        </testcase>
+        <testcase classname="src/__tests__/access.test.ts" name="access helpers &gt; allows only booking parties and admins to cancel" time="0.000193958">
+        </testcase>
+        <testcase classname="src/__tests__/access.test.ts" name="access helpers &gt; keeps cancellation state decisions explicit" time="0.000114792">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/auth-roles.test.ts" timestamp="2026-10-19T17:09:13.061Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.010640459">
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; normalizes partial user role maps to the complete profile shape" time="0.003257">
+        </testcase>
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; keeps only supported roles from auth tokens" time="0.000880916">
+        </testcase>
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; initializes new public accounts with the parent role only" time="0.000602792">
+        </testcase>
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; preserves existing role claims during profile initialization" time="0.000681458">
+        </testcase>
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; removes legacy role claims before writing new custom claims" time="0.000464833">
+        </testcase>
+        <testcase classname="src/__tests__/auth-roles.test.ts" name="auth role claims &gt; throws a callable permission error when a role is missing" time="0.002553292">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/booking-intent-wire.test.ts" timestamp="2026-10-19T17:09:13.062Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.156559083">
+        <testcase classname="src/__tests__/booking-intent-wire.test.ts" name="displayed booking wire normalization &gt; preserves supported persisted date representations without inventing terms" time="0.074161083">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent-wire.test.ts" name="displayed booking wire normalization &gt; preserves supported persisted date representations without inventing terms" time="0.078530292">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent-wire.test.ts" name="displayed booking wire normalization &gt; compares equivalent ISO representations at millisecond precision, not as differently formatted text" time="0.001367">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/booking-intent.test.ts" timestamp="2026-10-19T17:09:13.063Z" hostname="MRRs-MacBook-Air.local" tests="27" failures="0" errors="0" skipped="0" time="0.042417375">
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;priceCents&quot;:300}" time="0.011609292">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;departureAt&quot;:&quot;2027-01-10T11:00:00.000Z&quot;}" time="0.001286375">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;arrivalBy&quot;:&quot;2027-01-10T12:00:00.000Z&quot;}" time="0.001028208">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;origin&quot;:{&quot;lat&quot;:50.71,&quot;lng&quot;:4.6}}" time="0.00075575">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;destination&quot;:{&quot;lat&quot;:50.81,&quot;lng&quot;:4.3}}" time="0.00166225">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;appliedChangeId&quot;:&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;}" time="0.003529375">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;driverUserId&quot;:&quot;another-driver&quot;}" time="0.000986583">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;clubId&quot;:&quot;other-club&quot;}" time="0.000385458">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;teamId&quot;:&quot;other-team&quot;}" time="0.000796334">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;category&quot;:&quot;U 9/10&quot;}" time="0.000994792">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;pickupRadiusM&quot;:3000}" time="0.00123675">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;baggage&quot;:&quot;small&quot;}" time="0.000652084">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;returnTrip&quot;:true}" time="0.000558875">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;supportsVehicleTracking&quot;:false}" time="0.000827292">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;supportsChildTracking&quot;:false}" time="0.000664208">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; invalidates changed operational terms: {&quot;seatsTotal&quot;:5}" time="0.000678917">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; does not turn a title edit, update timestamp or available-seat change into consent to new terms" time="0.000566209">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;priceCents&quot;:-1}" time="0.003096667">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;priceCents&quot;:null}" time="0.002671708">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;priceCents&quot;:100001}" time="0.00138175">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;departureAt&quot;:&quot;invalid&quot;}" time="0.000760583">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;arrivalBy&quot;:&quot;2026-01-10T10:00:00.000Z&quot;}" time="0.000186875">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;origin&quot;:{&quot;lat&quot;:100,&quot;lng&quot;:4}}" time="0.000902875">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {}" time="0.000197292">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;seatsAvailable&quot;:5}" time="0.000154">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;driverUserId&quot;:&quot;drivers/other&quot;}" time="0.000558375">
+        </testcase>
+        <testcase classname="src/__tests__/booking-intent.test.ts" name="server-side booking intent revision &gt; rejects malformed terms instead of synthesizing an agreement: {&quot;appliedChangeId&quot;:&quot;invalid&quot;}" time="0.000214125">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/booking-request-identity.test.ts" timestamp="2026-10-19T17:09:13.069Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.016216167">
+        <testcase classname="src/__tests__/booking-request-identity.test.ts" name="booking operation identity &gt; requires a valid request identity and explicit account" time="0.00993525">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-identity.test.ts" name="booking operation identity &gt; normalizes UUID case without changing its owner scope" time="0.001162875">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-identity.test.ts" name="booking operation identity &gt; binds seats, child, notes, trip and displayed terms to one request" time="0.0024895">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-identity.test.ts" name="booking operation identity &gt; canonicalizes equivalent instants and absent optional context fields" time="0.000741417">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-identity.test.ts" name="booking operation identity &gt; never treats malformed, foreign or incomplete receipts as a new operation" time="0.000845209">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/booking-request-transaction.test.ts" timestamp="2026-10-19T17:09:13.069Z" hostname="MRRs-MacBook-Air.local" tests="13" failures="0" errors="0" skipped="0" time="0.257186458">
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; reads child authority in the same transaction and retains the requested seats and note" time="0.10741425">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; preserves the original intent when a simulated SDK retry observes changed price" time="0.014728083">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; rechecks guardian authority on every simulated retry" time="0.003625166">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; a simulated retry refreshes labels but retains one booking document identity" time="0.004526708">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; returns the current cosmetic title without accepting changed operational terms" time="0.002675291">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; binds a post-change booking amount to the same current applied revision" time="0.002946958">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; retains the existing adult-booking path without inventing a child" time="0.066647375">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; rejects a deleted child without committing a booking" time="0.000743041">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; invalid persisted terms fail closed without writing" time="0.001238583">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; allows a separate fresh request after changed terms are reviewed, without saving the stale request" time="0.001332791">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; uses current capacity without rejecting an unchanged intent when two seats still fit" time="0.042126833">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; refuses changed details even when they changed before the server call" time="0.002428875">
+        </testcase>
+        <testcase classname="src/__tests__/booking-request-transaction.test.ts" name="booking transaction consistency &gt; does not silently substitute server terms for a missing or malformed displayed snapshot" time="0.004338791">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/callable-validation.test.ts" timestamp="2026-10-19T17:09:13.071Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.01323175">
+        <testcase classname="src/__tests__/callable-validation.test.ts" name="callable validation &gt; returns parsed data for valid callable payloads" time="0.002535792">
+        </testcase>
+        <testcase classname="src/__tests__/callable-validation.test.ts" name="callable validation &gt; maps invalid callable payloads to invalid-argument errors" time="0.003758875">
+        </testcase>
+        <testcase classname="src/__tests__/callable-validation.test.ts" name="callable validation &gt; maps invalid JSON location batches to invalid-argument errors" time="0.003563167">
+        </testcase>
+        <testcase classname="src/__tests__/callable-validation.test.ts" name="callable validation &gt; formats validation messages with field paths" time="0.001909791">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/chat-delivery.test.ts" timestamp="2026-10-19T17:09:13.072Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.019022667">
+        <testcase classname="src/__tests__/chat-delivery.test.ts" name="chat delivery identities &gt; reuses one sender request ID without sharing another sender&apos;s identity" time="0.014749833">
+        </testcase>
+        <testcase classname="src/__tests__/chat-delivery.test.ts" name="chat delivery identities &gt; scopes notifications to both message and recipient" time="0.001153375">
+        </testcase>
+        <testcase classname="src/__tests__/chat-delivery.test.ts" name="chat delivery identities &gt; requires identical content, sender and conversation on retry" time="0.001771458">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/chat-departure-date.test.ts" timestamp="2026-10-19T17:09:13.072Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.010353042">
+        <testcase classname="src/__tests__/chat-departure-date.test.ts" name="conversation trip departure date contract &gt; uses the actual ISO date written by trip publication" time="0.004511583">
+        </testcase>
+        <testcase classname="src/__tests__/chat-departure-date.test.ts" name="conversation trip departure date contract &gt; preserves historical timestamp dates without substituting the current time" time="0.000377625">
+        </testcase>
+        <testcase classname="src/__tests__/chat-departure-date.test.ts" name="conversation trip departure date contract &gt; refuses missing, malformed, ambiguous and untyped dates instead of inventing labels" time="0.0038525">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/chat-directory-cursor.test.ts" timestamp="2026-10-19T17:09:13.073Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.014254292">
+        <testcase classname="src/__tests__/chat-directory-cursor.test.ts" name="conversation directory page cursors &gt; preserves an immutable timestamp and document tie-breaker" time="0.003406583">
+        </testcase>
+        <testcase classname="src/__tests__/chat-directory-cursor.test.ts" name="conversation directory page cursors &gt; refuses another user&apos;s cursor or a cursor for another list" time="0.001125625">
+        </testcase>
+        <testcase classname="src/__tests__/chat-directory-cursor.test.ts" name="conversation directory page cursors &gt; rejects malformed payloads, unsupported versions, unsafe paths and dates" time="0.001839875">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/chat-inbox.test.ts" timestamp="2026-10-19T17:09:13.074Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.016203833">
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; scopes identity to the owner and the exact source without delimiter collisions" time="0.001991333">
+        </testcase>
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; counts all addressed incoming messages, not just the recent message window" time="0.00212825">
+        </testcase>
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; indexes historical read markers without claiming to read unseen messages" time="0.000630792">
+        </testcase>
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; preserves stable latest ordering across timestamp ties and delayed writes" time="0.000207708">
+        </testcase>
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; acknowledges only newly read incoming messages and rejects counter corruption" time="0.00043825">
+        </testcase>
+        <testcase classname="src/__tests__/chat-inbox.test.ts" name="private conversation inbox entries &gt; fails closed on owner, source, schema and count mismatches" time="0.001029792">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/chat-index-bootstrap.test.ts" timestamp="2026-10-19T17:09:13.074Z" hostname="MRRs-MacBook-Air.local" tests="1" failures="0" errors="0" skipped="0" time="1.53597425">
+        <testcase classname="src/__tests__/chat-index-bootstrap.test.ts" name="loads Firestore-only history preparation without a Realtime Database URL or credential request" time="1.533399708">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/children.test.ts" timestamp="2026-10-19T17:09:13.074Z" hostname="MRRs-MacBook-Air.local" tests="2" failures="0" errors="0" skipped="0" time="0.004334542">
+        <testcase classname="src/__tests__/children.test.ts" name="child profile helpers &gt; uses the first available child display label" time="0.002344542">
+        </testcase>
+        <testcase classname="src/__tests__/children.test.ts" name="child profile helpers &gt; falls back to a deterministic child id label" time="0.00019575">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/client-bookings.test.ts" timestamp="2026-10-19T17:09:13.076Z" hostname="MRRs-MacBook-Air.local" tests="1" failures="0" errors="0" skipped="0" time="0.045124666">
+        <testcase classname="src/__tests__/client-bookings.test.ts" name="client booking request summaries &gt; maps requested booking documents to driver queue DTOs" time="0.04358125">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/client-trip-dates.test.ts" timestamp="2026-10-19T17:09:13.076Z" hostname="MRRs-MacBook-Air.local" tests="15" failures="0" errors="0" skipped="0" time="0.208637292">
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats reported reservation mismatch consistently without changing stored terms" time="0.066763">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats winter offset consistently without changing stored terms" time="0.003553">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats summer next day consistently without changing stored terms" time="0.004400291">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats winter next year consistently without changing stored terms" time="0.074982375">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats before spring clock change consistently without changing stored terms" time="0.003517375">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats after spring clock change consistently without changing stored terms" time="0.002200875">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats before autumn clock change consistently without changing stored terms" time="0.00495625">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats after autumn clock change consistently without changing stored terms" time="0.0184105">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats first repeated autumn time consistently without changing stored terms" time="0.011607708">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; formats second repeated autumn time consistently without changing stored terms" time="0.002438542">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; normalizes supported stored representations before Belgian display: 2026-10-19T13:50:00+02:00" time="0.002024959">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; normalizes supported stored representations before Belgian display: Mon Oct 19 2026 12:50:00 GMT+0100 (GMT+01:00)" time="0.001649417">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; normalizes supported stored representations before Belgian display: Timestamp{ _seconds: 1792410600, _nanoseconds: +0 }" time="0.001929291">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; keeps past/upcoming status based on the instant, not the displayed local date" time="0.004087041">
+        </testcase>
+        <testcase classname="src/__tests__/client-trip-dates.test.ts" name="Belgian trip and reservation dates &gt; does not confuse the repeated autumn hour with an identical instant" time="0.003145917">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/client-trips.test.ts" timestamp="2026-10-19T17:09:13.091Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.095102958">
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; maps Firestore trips to native app DTOs" time="0.092426625">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; maps live trip state to source-aware ride snapshots" time="0.001116584">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; marks active rides stale until a fresh vehicle update exists" time="0.000125792">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; keeps booking-specific status authoritative over a historical child-level override" time="0.000102708">
+        </testcase>
+        <testcase classname="src/__tests__/client-trips.test.ts" name="client trip summaries &gt; applies passenger status overrides from the ride session" time="0.000144333">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/co2-rewards.test.ts" timestamp="2026-10-19T17:09:13.096Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.004860208">
+        <testcase classname="src/__tests__/co2-rewards.test.ts" name="CO2 and rewards &gt; estimates shared ride CO2 savings" time="0.002836542">
+        </testcase>
+        <testcase classname="src/__tests__/co2-rewards.test.ts" name="CO2 and rewards &gt; computes immutable ledger balance" time="0.00038875">
+        </testcase>
+        <testcase classname="src/__tests__/co2-rewards.test.ts" name="CO2 and rewards &gt; creates a small CO2 bonus in cents" time="0.000096084">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/emergency-contact.test.ts" timestamp="2026-10-19T17:09:13.097Z" hostname="MRRs-MacBook-Air.local" tests="8" failures="0" errors="0" skipped="0" time="0.078598667">
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; requires explicit international syntax without guessing a country or number" time="0.01972575">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; rejects empty names, control characters, directional overrides and unbounded text" time="0.0039985">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; keeps self ownership server-selected and child authority explicitly scoped" time="0.033181458">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; accepts explicit removal but rejects unsafe revisions and extra fields" time="0.007508333">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; binds child identity to exact server creation nanoseconds rather than mutable timestamps or milliseconds" time="0.004508791">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; keeps adult keys stable while recreated children and legacy keys have distinct private documents" time="0.0008465">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; requires a child write marker and rejects one supplied for an adult" time="0.000775875">
+        </testcase>
+        <testcase classname="src/__tests__/emergency-contact.test.ts" name="private emergency contact inputs &gt; rejects unbound child records and markers on adult records instead of treating them as empty" time="0.000705459">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/firestore-retry-settings.test.ts" timestamp="2026-10-19T17:09:13.103Z" hostname="MRRs-MacBook-Air.local" tests="1" failures="0" errors="0" skipped="0" time="0.002348125">
+        <testcase classname="src/__tests__/firestore-retry-settings.test.ts" name="configures the primary shared client for status-aware streaming before use" time="0.001522375">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/google-places.test.ts" timestamp="2026-10-19T17:09:13.104Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.02323875">
+        <testcase classname="src/__tests__/google-places.test.ts" name="GooglePlacesProvider &gt; requires GOOGLE_MAPS_API_KEY for place search" time="0.004579">
+        </testcase>
+        <testcase classname="src/__tests__/google-places.test.ts" name="GooglePlacesProvider &gt; uses Places autocomplete with Belgian French scope" time="0.01715075">
+        </testcase>
+        <testcase classname="src/__tests__/google-places.test.ts" name="GooglePlacesProvider &gt; resolves place details to app coordinates" time="0.000508459">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/google-routes.test.ts" timestamp="2026-10-19T17:09:13.105Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.011255959">
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; quotes a future changed trip with the actual route metrics and field mask" time="0.0060305">
+        </testcase>
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; requires an API key instead of silently estimating locally" time="0.00048">
+        </testcase>
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; uses Route Matrix for detour comparison before final route details are requested" time="0.00110225">
+        </testcase>
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; accepts zero-duration matrix legs when Google omits distanceMeters" time="0.000265292">
+        </testcase>
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; uses Compute Routes only for shortlisted final route details" time="0.000365208">
+        </testcase>
+        <testcase classname="src/__tests__/google-routes.test.ts" name="GoogleRoutesProvider &gt; omits duplicate final-destination waypoints from Compute Routes requests" time="0.000257208">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/guardian-verification.test.ts" timestamp="2026-10-19T17:09:13.106Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.022593792">
+        <testcase classname="src/__tests__/guardian-verification.test.ts" name="guardian verification identity and lifecycle &gt; separates tuples without delimiter collisions, clubs, children, parents and operation owners" time="0.007846792">
+        </testcase>
+        <testcase classname="src/__tests__/guardian-verification.test.ts" name="guardian verification identity and lifecycle &gt; permits only explicit pending decisions, revocation and a fresh request after closure" time="0.002746166">
+        </testcase>
+        <testcase classname="src/__tests__/guardian-verification.test.ts" name="guardian verification identity and lifecycle &gt; binds an operation to the action and revision, rejects extra ownership fields and malformed revisions" time="0.003533084">
+        </testcase>
+        <testcase classname="src/__tests__/guardian-verification.test.ts" name="guardian verification identity and lifecycle &gt; does not infer active club membership from a role claim, absent status or a foreign record" time="0.000157417">
+        </testcase>
+        <testcase classname="src/__tests__/guardian-verification.test.ts" name="guardian verification identity and lifecycle &gt; requires an auditable versioned verification rather than accepting a legacy verified flag" time="0.00149825">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/inbox.test.ts" timestamp="2026-10-19T17:09:13.108Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.170435416">
+        <testcase classname="src/__tests__/inbox.test.ts" name="client inbox &gt; maps notifications with unread state and stable labels" time="0.114296042">
+        </testcase>
+        <testcase classname="src/__tests__/inbox.test.ts" name="client inbox &gt; groups chat messages by conversation and counts unread messages" time="0.050299084">
+        </testcase>
+        <testcase classname="src/__tests__/inbox.test.ts" name="client inbox &gt; creates review prompts only when the caller has not rated the target" time="0.003441917">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/live-location-order.test.ts" timestamp="2026-10-19T17:09:13.108Z" hostname="MRRs-MacBook-Air.local" tests="20" failures="0" errors="0" skipped="0" time="0.009580667">
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; accepts a first valid point without inventing an observation time" time="0.002591">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not use a later upload to replace a newer captured point" time="0.000263625">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; retains the first accepted observation at an equal timestamp" time="0.000282375">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; orders radar by observation time, not provider preference" time="0.000387167">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; orders nativeFallback by observation time, not provider preference" time="0.000109375">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; orders manual by observation time, not provider preference" time="0.00074175">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time 0" time="0.000126708">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time -1" time="0.000049709">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time 1.5" time="0.000243875">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time NaN" time="0.000069417">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time Infinity" time="0.000043041">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time 1792424000001" time="0.000035209">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; does not accept invalid incoming time 9007199254740992" time="0.000032792">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record null" time="0.000043291">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record {}" time="0.000025542">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record %s" time="0.000025083">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record bad-record" time="0.000022917">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record { capturedAt: 1792424000001 }" time="0.000024042">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; allows a valid point to replace an unverified record { capturedAt: 1.5 }" time="0.000023375">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-order.test.ts" name="live location observation ordering &gt; converges to the greatest capture time across different delivery orders" time="0.00015975">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/live-location-receipts.test.ts" timestamp="2026-10-19T17:09:13.110Z" hostname="MRRs-MacBook-Air.local" tests="9" failures="0" errors="0" skipped="0" time="0.014768792">
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; reports an actual commit and preserves the boolean writer contract" time="0.00461275">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; acknowledges a valid retained point at 1792423999000 without inventing a commit" time="0.001015666">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; acknowledges a valid retained point at 1792423999001 without inventing a commit" time="0.000843833">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; does not acknowledge invalid or future capture 0 as a duplicate" time="0.000396125">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; does not acknowledge invalid or future capture -1 as a duplicate" time="0.000464708">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; does not acknowledge invalid or future capture 1.5 as a duplicate" time="0.000725958">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; does not acknowledge invalid or future capture 1792424000001 as a duplicate" time="0.000291625">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; reevaluates validity inside the contended transaction before acknowledging" time="0.001623333">
+        </testcase>
+        <testcase classname="src/__tests__/live-location-receipts.test.ts" name="atomic live-location receipts &gt; does not convert a database failure into an acknowledgement" time="0.00160725">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/live-trips-write.test.ts" timestamp="2026-10-19T17:09:13.111Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.017406083">
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; rechecks time on transaction reevaluation so a later valid capture cannot appear future" time="0.007508791">
+        </testcase>
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; propagates a child register commit result" time="0.002442458">
+        </testcase>
+        <testcase classname="src/__tests__/live-trips-write.test.ts" name="atomic live location writer &gt; does not manufacture success when the transaction fails" time="0.004697334">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/location-freshness.test.ts" timestamp="2026-10-19T17:09:13.117Z" hostname="MRRs-MacBook-Air.local" tests="10" failures="0" errors="0" skipped="0" time="0.014280791">
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps a two-minute-old position stale when it arrives just now" time="0.003195583">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; cannot refresh an old position with a future client upload timestamp" time="0.001201958">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the exact existing ninety-second freshness boundary" time="0.000719292">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; never calls a missing observation time fresh just because receipt time exists" time="0.000594083">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; does not label malformed observation times as just now" time="0.00144875">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps future observations unverified rather than clamping their age to zero" time="0.000357542">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; still shows a recently observed real timestamp as recent" time="0.000206">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; orders child observations by when they were captured, not when they arrived" time="0.0003">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; keeps the missing first-point state distinct from a malformed received point" time="0.000703333">
+        </testcase>
+        <testcase classname="src/__tests__/location-freshness.test.ts" name="location observation freshness &gt; sets native receipt time on the server instead of trusting an optional client value" time="0.000496709">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/locations.test.ts" timestamp="2026-10-19T17:09:13.135Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.019517875">
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; binds fallback updates to the authenticated user" time="0.003211166">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; accepts JSON-encoded location batches for Swift callable clients" time="0.006565583">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; rejects invalid JSON-encoded location batches" time="0.00090375">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; omits undefined optional fields before writing live trip locations" time="0.0010155">
+        </testcase>
+        <testcase classname="src/__tests__/locations.test.ts" name="native location fallback &gt; allows only active ride drivers and child participants to write live locations" time="0.00094725">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/matching.test.ts" timestamp="2026-10-19T17:09:13.141Z" hostname="MRRs-MacBook-Air.local" tests="9" failures="0" errors="0" skipped="0" time="0.015259542">
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; excludes an otherwise compatible trip while a change proposal is unresolved" time="0.002817208">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; rejects trips that cannot support required child tracking" time="0.000512459">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; rejects trips outside the requested departure window" time="0.000215166">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; rejects trips outside requested region prefixes" time="0.000966542">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; rejects child searches outside the allowed membership scope" time="0.000134583">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; scores same-team, low-detour trips higher than weak matches" time="0.000215958">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; returns ranked explainable matches" time="0.001999208">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; adds final route details only for the configured shortlist" time="0.005900125">
+        </testcase>
+        <testcase classname="src/__tests__/matching.test.ts" name="carpool matching &gt; skips candidates whose route cannot be calculated" time="0.000604583">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/membership-page-cursor.test.ts" timestamp="2026-10-19T17:09:13.164Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.030517166">
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; round trips a canonical combined membership ID longer than an individual entity ID" time="0.003056083">
+        </testcase>
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; retains long multibyte IDs and escaped control characters without truncating either scope or identity" time="0.002213959">
+        </testcase>
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; refuses invalid document IDs and byte limits before emitting an unusable cursor" time="0.008191667">
+        </testcase>
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; preserves version-one cursors and current account/list authorization" time="0.0044415">
+        </testcase>
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; rejects malformed UTF-8 rather than replacing bytes in the selected identity" time="0.002753875">
+        </testcase>
+        <testcase classname="src/__tests__/membership-page-cursor.test.ts" name="opaque membership cursor document identities &gt; rejects unknown format fields, noncanonical base64 and oversized cursor envelopes" time="0.006081666">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/membership-review.test.ts" timestamp="2026-10-19T17:09:13.177Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.022961541">
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; requires an active manager membership, not a requested or ordinary membership" time="0.010300834">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; reviews only explicitly inactive ordinary member requests without promoting roles" time="0.002043334">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; rejects malformed identity and represents a document revision without precision loss" time="0.000818708">
+        </testcase>
+        <testcase classname="src/__tests__/membership-review.test.ts" name="scoped membership decisions &gt; binds pagination to the actor, club and list" time="0.008067333">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/memberships.test.ts" timestamp="2026-10-19T17:09:13.183Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.005445833">
+        <testcase classname="src/__tests__/memberships.test.ts" name="club membership requests &gt; uses a deterministic user and club membership document id" time="0.002002041">
+        </testcase>
+        <testcase classname="src/__tests__/memberships.test.ts" name="club membership requests &gt; builds a pending membership request owned by the user" time="0.001336834">
+        </testcase>
+        <testcase classname="src/__tests__/memberships.test.ts" name="club membership requests &gt; allows new or previously rejected requests but keeps active/requested memberships idempotent" time="0.0005985">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/passenger-transition.test.ts" timestamp="2026-10-19T17:09:13.194Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.007694417">
+        <testcase classname="src/__tests__/passenger-transition.test.ts" name="passenger transitions &gt; only completes exact, uniquely attached and fully delivered passenger lists" time="0.002855291">
+        </testcase>
+        <testcase classname="src/__tests__/passenger-transition.test.ts" name="passenger transitions &gt; requires an exact, unambiguous booking and child match" time="0.001048083">
+        </testcase>
+        <testcase classname="src/__tests__/passenger-transition.test.ts" name="passenger transitions &gt; updates one booking without mutating another booking for the same child" time="0.001372959">
+        </testcase>
+        <testcase classname="src/__tests__/passenger-transition.test.ts" name="passenger transitions &gt; requires pickup before dropoff and refuses repeated confirmations" time="0.000361334">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/publish-trip.test.ts" timestamp="2026-10-19T17:09:13.196Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.025663916">
+        <testcase classname="src/__tests__/publish-trip.test.ts" name="published trip construction &gt; builds a published trip from explicit client inputs and trusted driver state" time="0.006485709">
+        </testcase>
+        <testcase classname="src/__tests__/publish-trip.test.ts" name="published trip construction &gt; omits undefined optional fields from Firestore documents" time="0.001001125">
+        </testcase>
+        <testcase classname="src/__tests__/publish-trip.test.ts" name="published trip construction &gt; derives publish eligibility and clamps driver rating from profile state" time="0.007297042">
+        </testcase>
+        <testcase classname="src/__tests__/publish-trip.test.ts" name="published trip construction &gt; rejects seat availability greater than total vehicle seats" time="0.001141209">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/radar.test.ts" timestamp="2026-10-19T17:09:13.203Z" hostname="MRRs-MacBook-Air.local" tests="4" failures="0" errors="0" skipped="0" time="0.009826875">
+        <testcase classname="src/__tests__/radar.test.ts" name="Radar webhooks &gt; verifies HMAC-SHA1 signatures from the signing id header" time="0.0027425">
+        </testcase>
+        <testcase classname="src/__tests__/radar.test.ts" name="Radar webhooks &gt; normalizes single and multi-event payloads" time="0.001911083">
+        </testcase>
+        <testcase classname="src/__tests__/radar.test.ts" name="Radar webhooks &gt; maps Radar locations to live trip updates" time="0.001964375">
+        </testcase>
+        <testcase classname="src/__tests__/radar.test.ts" name="Radar webhooks &gt; maps trip arrival and metadata actions to ride audit signals" time="0.002185791">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/reports.test.ts" timestamp="2026-10-19T17:09:13.205Z" hostname="MRRs-MacBook-Air.local" tests="2" failures="0" errors="0" skipped="0" time="0.002949834">
+        <testcase classname="src/__tests__/reports.test.ts" name="report review domain helpers &gt; normalizes blank review notes to null" time="0.000848333">
+        </testcase>
+        <testcase classname="src/__tests__/reports.test.ts" name="report review domain helpers &gt; sets closedAt only for closed reports" time="0.000213">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/reservations.test.ts" timestamp="2026-10-19T17:09:13.206Z" hostname="MRRs-MacBook-Air.local" tests="5" failures="0" errors="0" skipped="0" time="0.115310292">
+        <testcase classname="src/__tests__/reservations.test.ts" name="reservation decisions &gt; allows only the owning driver to decide a pending open request" time="0.081231583">
+        </testcase>
+        <testcase classname="src/__tests__/reservations.test.ts" name="reservation decisions &gt; allows guardian cancellation but never authorizes another owner or terminal booking" time="0.000337459">
+        </testcase>
+        <testcase classname="src/__tests__/reservations.test.ts" name="reservation decisions &gt; blocks an active passenger and fails closed on missing active-ride membership" time="0.000182209">
+        </testcase>
+        <testcase classname="src/__tests__/reservations.test.ts" name="reservation decisions &gt; does not invent missing owner, seat counts or status" time="0.012609333">
+        </testcase>
+        <testcase classname="src/__tests__/reservations.test.ts" name="reservation decisions &gt; binds page cursors to the owner and selected role" time="0.01050275">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ride-audit.test.ts" timestamp="2026-10-19T17:09:13.207Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.03994525">
+        <testcase classname="src/__tests__/ride-audit.test.ts" name="ride audit events &gt; builds deterministic ids for manual pickup and dropoff events" time="0.035198916">
+        </testcase>
+        <testcase classname="src/__tests__/ride-audit.test.ts" name="ride audit events &gt; normalizes manual pickup audit payloads" time="0.00091225">
+        </testcase>
+        <testcase classname="src/__tests__/ride-audit.test.ts" name="ride audit events &gt; normalizes blank dropoff notes to null" time="0.000392417">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ride-completion-ledger.test.ts" timestamp="2026-10-19T17:09:13.207Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.015128833">
+        <testcase classname="src/__tests__/ride-completion-ledger.test.ts" name="ride completion ledger &gt; builds deterministic CO2 accounting entries for completed rides" time="0.001236875">
+        </testcase>
+        <testcase classname="src/__tests__/ride-completion-ledger.test.ts" name="ride completion ledger &gt; builds deterministic driver CO2 bonus ledger entries" time="0.000232167">
+        </testcase>
+        <testcase classname="src/__tests__/ride-completion-ledger.test.ts" name="ride completion ledger &gt; does not create zero-value reward entries" time="0.000082">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ride-observation.test.ts" timestamp="2026-10-19T17:09:13.210Z" hostname="MRRs-MacBook-Air.local" tests="2" failures="0" errors="0" skipped="0" time="0.007604667">
+        <testcase classname="src/__tests__/ride-observation.test.ts" name="structured ride observation ages &gt; exposes capture ages rather than relying on the client wall clock or receipt timestamps" time="0.005833959">
+        </testcase>
+        <testcase classname="src/__tests__/ride-observation.test.ts" name="structured ride observation ages &gt; distinguishes an absent point from an unverified timestamp" time="0.000640417">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/ride-payment-status.test.ts" timestamp="2026-10-19T17:09:13.211Z" hostname="MRRs-MacBook-Air.local" tests="25" failures="0" errors="0" skipped="0" time="0.022831667">
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; requires matching booking, immutable receipt and both ledger entries" time="0.009558917">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; keeps a delayed webhook pending and does not infer success from checkout" time="0.000218958">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not silently treat an unknown or missing server status as pending" time="0.00012525">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; reports only a server-recorded failed outcome" time="0.00016575">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; reports only a server-recorded canceled outcome" time="0.000049625">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed paymentIntentId" time="0.000426792">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed bookingId" time="0.000315583">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed tripId" time="0.0000935">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed payerUserId" time="0.000357042">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed driverUserId" time="0.00022725">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed currency" time="0.000884959">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; rejects a receipt with changed kind" time="0.000160209">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not confirm inconsistent or refunded amountCents" time="0.000702291">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not confirm inconsistent or refunded platformFeeCents" time="0.001380209">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not confirm inconsistent or refunded refundedCents" time="0.000244916">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not confirm inconsistent or refunded refundReservedCents" time="0.00014375">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not infer payment from a paid flag, missing ledger or old attempt" time="0.000536708">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; does not turn cancelled or refund-pending bookings into payment success" time="0.00057575">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger userId field" time="0.000402834">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger type field" time="0.000286834">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger amountCents field" time="0.000221709">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger currency field" time="0.000220666">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger sourceId field" time="0.00020875">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger bookingId field" time="0.000212458">
+        </testcase>
+        <testcase classname="src/__tests__/ride-payment-status.test.ts" name="read-only ride payment reconciliation status &gt; checks each ledger tripId field" time="0.000216375">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/search-access.test.ts" timestamp="2026-10-19T17:09:13.219Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.005246417">
+        <testcase classname="src/__tests__/search-access.test.ts" name="search access scope &gt; verifies guardian relationship from child documents" time="0.001919625">
+        </testcase>
+        <testcase classname="src/__tests__/search-access.test.ts" name="search access scope &gt; merges active child and membership club/team scopes" time="0.000993166">
+        </testcase>
+        <testcase classname="src/__tests__/search-access.test.ts" name="search access scope &gt; prevents client-requested club/team searches outside allowed child scope" time="0.000539209">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/stripe-onboarding-http.test.ts" timestamp="2026-10-19T17:09:13.220Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.019466125">
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; exposes read-only health without reading secrets or contacting Stripe" time="0.006039334">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; exposes read-only health without reading secrets or contacting Stripe" time="0.006560916">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; rejects mutation methods without touching provider state" time="0.002488375">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; redirects refresh only to the domain-validated server result" time="0.000845458">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; renders invalid and incomplete results without claiming completion" time="0.001021083">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding-http.test.ts" name="Stripe callback HTTP boundary &gt; redacts upstream errors and state from failure responses" time="0.000680834">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/stripe-onboarding.test.ts" timestamp="2026-10-19T17:09:13.222Z" hostname="MRRs-MacBook-Air.local" tests="20" failures="0" errors="0" skipped="0" time="0.075547792">
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; binds an opaque, expiring token to the authenticated driver&apos;s account without persisting the token" time="0.008481917">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; refreshes expired Stripe Account Links with the same trusted parameters" time="0.003104958">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; checks Stripe status on return and persists the actual capabilities" time="0.005771875">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; does not equate a Stripe return redirect with completed onboarding: {&quot;charges_enabled&quot;:false}" time="0.001066292">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; does not equate a Stripe return redirect with completed onboarding: {&quot;payouts_enabled&quot;:false}" time="0.000873792">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; does not equate a Stripe return redirect with completed onboarding: {&quot;details_submitted&quot;:false}" time="0.000369167">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; does not equate a Stripe return redirect with completed onboarding: {&quot;requirements&quot;:{&quot;currently_due&quot;:[&quot;individual.id_number&quot;]}}" time="0.000594375">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; does not equate a Stripe return redirect with completed onboarding: {&quot;requirements&quot;:{&quot;pending_verification&quot;:[&quot;individual.verification.document&quot;]}}" time="0.0002875">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects malformed state without a database read: undefined" time="0.000990583">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects malformed state without a database read: &quot;&quot;" time="0.000531">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects malformed state without a database read: &quot;bad-token&quot;" time="0.011307334">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects malformed state without a database read: &quot;token&quot;" time="0.000565792">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects malformed state without a database read: &quot;&lt;script&gt;&quot;" time="0.000381542">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects unknown, expired, and non-finite sessions before contacting Stripe" time="0.015880042">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects an unexpected redirect destination: http://connect.stripe.com/setup/x" time="0.010302959">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects an unexpected redirect destination: https://evil.example/setup/x" time="0.001251375">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects an unexpected redirect destination: https://connect.stripe.com.evil.example/setup/x" time="0.000838125">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects an unexpected redirect destination: https://connect.stripe.com/not-onboarding" time="0.000308042">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; rejects account mismatches and does not hide upstream failures" time="0.001720333">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-onboarding.test.ts" name="Stripe hosted onboarding callbacks &gt; renders only fixed French copy and a credential-free application return link" time="0.006513583">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/stripe-payments.test.ts" timestamp="2026-10-19T17:09:13.239Z" hostname="MRRs-MacBook-Air.local" tests="12" failures="0" errors="0" skipped="0" time="0.009392417">
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; builds a destination charge PaymentIntent from server-owned booking context" time="0.002807125">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; creates parent payment and driver earning ledger drafts from frozen PaymentIntent fee metadata" time="0.00138175">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; rejects ledger drafts when platform fee metadata is missing" time="0.000107125">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; validates succeeded PaymentIntent metadata against booking and trip state" time="0.000344375">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; computes ride payment amount only from valid server-priced booking state" time="0.000412375">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; rejects succeeded PaymentIntent reconciliation when server price data is malformed" time="0.000093791">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; does not downgrade paid bookings from incomplete PaymentIntent events" time="0.000794041">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; requires a Stripe publishable key before issuing native PaymentSheet config" time="0.000831">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; builds a Stripe Connect Express account request that does not require Accounts v2" time="0.000605">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; builds a Stripe Connect v1 onboarding link request" time="0.000126417">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; reuses an existing connected account document before creating another account" time="0.000103875">
+        </testcase>
+        <testcase classname="src/__tests__/stripe-payments.test.ts" name="Stripe ride payments &gt; builds an idempotent reward payout transfer" time="0.000232458">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/team-enrollment.test.ts" timestamp="2026-10-19T17:09:13.241Z" hostname="MRRs-MacBook-Air.local" tests="6" failures="0" errors="0" skipped="0" time="0.064015875">
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; binds team identity to the stored club and full server creation timestamp" time="0.035177125">
+        </testcase>
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; keeps recreated child profiles and member identities in separate enrollment namespaces" time="0.001997458">
+        </testcase>
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; requires the displayed team identity, safe revision and an operation UUID without client ownership or approval flags" time="0.01691525">
+        </testcase>
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; fingerprints semantic payloads rather than object key order or operation identities" time="0.000828459">
+        </testcase>
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; never turns a request, replay or closed enrollment into automatic approval" time="0.000506917">
+        </testcase>
+        <testcase classname="src/__tests__/team-enrollment.test.ts" name="server-owned team enrollment &gt; requires private records to carry exact typed subject provenance and a version" time="0.003766041">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/trip-change-application.test.ts" timestamp="2026-10-19T17:09:13.251Z" hostname="MRRs-MacBook-Air.local" tests="17" failures="0" errors="0" skipped="0" time="0.062554583">
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; records only the unpaid difference of an already paid booking without rewriting its invoice" time="0.032706417">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; records a refund obligation without claiming it was issued" time="0.01675375">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; retains the original payment invoice across later agreed prices" time="0.000477291">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; reprices an unpaid booking without inventing paid money or a payment adjustment" time="0.00032325">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:0}" time="0.001358084">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:9}" time="0.000261375">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;paymentStatus&quot;:&quot;paid&quot;}" time="0.000152917">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;paymentStatus&quot;:&quot;paid&quot;,&quot;amountPaidCents&quot;:100}" time="0.000204583">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;paymentIntentId&quot;:&quot;pi_processing&quot;}" time="0.001033916">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;paymentAttempt&quot;:{&quot;status&quot;:&quot;creating&quot;}}" time="0.000318833">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;tripChangeBalanceCents&quot;:1}" time="0.000350666">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; rejects inconsistent or unresolved booking money {&quot;seats&quot;:1,&quot;paymentStatus&quot;:&quot;paid&quot;,&quot;amountPaidCents&quot;:250,&quot;paymentPriceCents&quot;:null}" time="0.000443">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; allows a confirmed cancelled checkout to be retired before a new agreed price" time="0.00128525">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="trip application financial terms &gt; requires current quote/revision identities and valid route metrics" time="0.004631708">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="immutable payment attempt validation &gt; validates the original invoice even after current trip price changes" time="0.000220458">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="immutable payment attempt validation &gt; rejects another attempt&apos;s success and cancellation while the current attempt is being created" time="0.000145708">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-application.test.ts" name="immutable payment attempt validation &gt; binds provider idempotency and metadata to the claimed attempt" time="0.000145167">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/trip-change-contract.test.ts" timestamp="2026-10-19T17:09:13.261Z" hostname="MRRs-MacBook-Air.local" tests="15" failures="0" errors="0" skipped="0" time="0.016424375">
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; accepts complete price, route and schedule terms and explicit missing arrival" time="0.003490333">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;priceCents&quot;:-1}" time="0.000650208">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;priceCents&quot;:1.5}" time="0.000167709">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;priceCents&quot;:100001}" time="0.000328292">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;origin&quot;:{&quot;lat&quot;:91,&quot;lng&quot;:0}}" time="0.000723125">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;destination&quot;:{&quot;lat&quot;:0,&quot;lng&quot;:181}}" time="0.000477709">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;departureAt&quot;:&quot;tomorrow&quot;}" time="0.000733542">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;arrivalBy&quot;:&quot;2026-12-01T09:00:00Z&quot;}" time="0.00042375">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;departureAt&quot;:&quot;2026-12-01&quot;}" time="0.000892125">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;parentUserId&quot;:&quot;forged&quot;}" time="0.001035166">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; rejects malformed or client-owned extra terms {&quot;seatsAvailable&quot;:8}" time="0.000168458">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; requires an explicit full review, request identity and source revision" time="0.000489625">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; decision authority never comes from client-supplied parent or booking identifiers" time="0.001413958">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; hashes nested records canonically while preserving array order and exact numeric terms" time="0.00214025">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-contract.test.ts" name="trip change revision contract &gt; ignores only the proposal marker and its write time, not future operational fields" time="0.001384208">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/trip-change-history.test.ts" timestamp="2026-10-19T17:09:13.265Z" hostname="MRRs-MacBook-Air.local" tests="3" failures="0" errors="0" skipped="0" time="0.192266792">
+        <testcase classname="src/__tests__/trip-change-history.test.ts" name="trip change history input and pagination scope &gt; retains nanosecond ordering and binds pages to both trip and signed-in user" time="0.007767333">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-history.test.ts" name="trip change history input and pagination scope &gt; does not accept supplied owner, role, parent list or page-size authority" time="0.00286775">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-history.test.ts" name="trip change history input and pagination scope &gt; rejects malformed or differently typed cursors rather than inventing a first page" time="0.127150042">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/trip-change-payments.test.ts" timestamp="2026-10-19T17:09:13.265Z" hostname="MRRs-MacBook-Air.local" tests="17" failures="0" errors="0" skipped="0" time="0.018396583">
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; prices only the frozen difference and binds fee, destination, request purpose and idempotency" time="0.007296625">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;amount&quot;:250}" time="0.000331666">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;currency&quot;:&quot;usd&quot;}" time="0.001378416">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;application_fee_amount&quot;:0}" time="0.000186583">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;transfer_data&quot;:{&quot;destination&quot;:&quot;other&quot;}}" time="0.000055166">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;metadata&quot;:{&quot;bookingId&quot;:&quot;booking&quot;,&quot;tripId&quot;:&quot;trip&quot;,&quot;payerUserId&quot;:&quot;parent&quot;,&quot;driverUserId&quot;:&quot;driver&quot;,&quot;platformFeeCents&quot;:&quot;10&quot;,&quot;product&quot;:&quot;sports-green-moove&quot;,&quot;paymentAttemptId&quot;:&quot;11111111-1111-4111-8111-111111111111&quot;,&quot;paymentPurpose&quot;:&quot;tripChange&quot;,&quot;balanceId&quot;:&quot;other&quot;}}" time="0.000120042">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;metadata&quot;:{&quot;bookingId&quot;:&quot;booking&quot;,&quot;tripId&quot;:&quot;trip&quot;,&quot;payerUserId&quot;:&quot;other&quot;,&quot;driverUserId&quot;:&quot;driver&quot;,&quot;platformFeeCents&quot;:&quot;10&quot;,&quot;product&quot;:&quot;sports-green-moove&quot;,&quot;paymentAttemptId&quot;:&quot;11111111-1111-4111-8111-111111111111&quot;,&quot;paymentPurpose&quot;:&quot;tripChange&quot;,&quot;balanceId&quot;:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;}}" time="0.000051541">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;metadata&quot;:{&quot;bookingId&quot;:&quot;booking&quot;,&quot;tripId&quot;:&quot;trip&quot;,&quot;payerUserId&quot;:&quot;parent&quot;,&quot;driverUserId&quot;:&quot;driver&quot;,&quot;platformFeeCents&quot;:&quot;10&quot;,&quot;product&quot;:&quot;sports-green-moove&quot;,&quot;paymentAttemptId&quot;:&quot;other&quot;,&quot;paymentPurpose&quot;:&quot;tripChange&quot;,&quot;balanceId&quot;:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;}}" time="0.000067708">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;metadata&quot;:{&quot;bookingId&quot;:&quot;booking&quot;,&quot;tripId&quot;:&quot;trip&quot;,&quot;payerUserId&quot;:&quot;parent&quot;,&quot;driverUserId&quot;:&quot;driver&quot;,&quot;platformFeeCents&quot;:&quot;0&quot;,&quot;product&quot;:&quot;sports-green-moove&quot;,&quot;paymentAttemptId&quot;:&quot;11111111-1111-4111-8111-111111111111&quot;,&quot;paymentPurpose&quot;:&quot;tripChange&quot;,&quot;balanceId&quot;:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;}}" time="0.000297417">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects different provider terms {&quot;metadata&quot;:{&quot;bookingId&quot;:&quot;booking&quot;,&quot;tripId&quot;:&quot;trip&quot;,&quot;payerUserId&quot;:&quot;parent&quot;,&quot;driverUserId&quot;:&quot;driver&quot;,&quot;platformFeeCents&quot;:&quot;10&quot;,&quot;product&quot;:&quot;sports-green-moove&quot;,&quot;paymentAttemptId&quot;:&quot;11111111-1111-4111-8111-111111111111&quot;,&quot;paymentPurpose&quot;:&quot;original&quot;,&quot;balanceId&quot;:&quot;bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot;}}" time="0.000058875">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; binds known intent ids and stores no reusable payment secret" time="0.005855666">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects invalid platform fee NaN before provider use" time="0.000441375">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects invalid platform fee Infinity before provider use" time="0.000073333">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects invalid platform fee -1 before provider use" time="0.000057084">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects invalid platform fee 151 before provider use" time="0.000058042">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects invalid platform fee 0.5 before provider use" time="0.000051958">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-payments.test.ts" name="supplement invoice and immutable receipts &gt; rejects over-refunds, invalid fee metadata and ledger amounts" time="0.000815875">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/__tests__/trip-change-resolution.test.ts" timestamp="2026-10-19T17:09:13.267Z" hostname="MRRs-MacBook-Air.local" tests="2" failures="0" errors="0" skipped="0" time="0.009616459">
+        <testcase classname="src/__tests__/trip-change-resolution.test.ts" name="read-only trip proposal resolution input &gt; uses only a trip and stable request identity, never a caller-supplied owner" time="0.006720625">
+        </testcase>
+        <testcase classname="src/__tests__/trip-change-resolution.test.ts" name="read-only trip proposal resolution input &gt; rejects missing, malformed and path-like identities" time="0.001664041">
+        </testcase>
+    </testsuite>
+</testsuites>

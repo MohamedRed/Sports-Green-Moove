@@ -1,0 +1,16 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:00.3063957Z ##[group]Install Android SDK
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:00.3107991Z [command]/usr/bin/sh -c \yes | sdkmanager --licenses > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:03.5863470Z Installing latest build tools, platform tools, and platform.
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:03.5880296Z [command]/usr/bin/sh -c \sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-35'> /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:05.2165984Z Installing latest emulator.
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:05.2181499Z [command]/usr/bin/sh -c \sdkmanager --install emulator --channel=0 > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:14.9233549Z Installing system images.
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:14.9249798Z [command]/usr/bin/sh -c \sdkmanager --install 'system-images;android-35;google_apis_playstore;x86_64' --channel=0 > /dev/null
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:26.1321068Z Warning: An error occurred while preparing SDK package Google Play Intel x86_64 Atom System Image: Error on ZipFile unknown archive.
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:26.3318215Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:26.3318978Z ##[group]Terminate Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:26.3338999Z [command]/usr/local/lib/android/sdk/platform-tools/adb -s emulator-5554 emu kill
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:27.1943477Z error: could not connect to TCP port 5554: Connection refused
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:27.1949264Z The process '/usr/local/lib/android/sdk/platform-tools/adb' failed with exit code 1
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:27.1950496Z ##[endgroup]
+Android native UI tests	Run Android Compose UI tests	2026-10-24T15:52:27.1980506Z ##[error]The process '/usr/bin/sh' failed with exit code 1

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct PublishScreen: View {
     @Environment(AppState.self) private var appState
-    @State private var controller = PublishController()
+    @State private var controller: PublishController
     @State private var step = 1
     @State private var from = ""
     @State private var to = ""
@@ -14,8 +14,12 @@ struct PublishScreen: View {
     @State private var price = ""
     @State private var departureIso = ISO8601DateFormatter().string(from: Date().addingTimeInterval(TimeInterval(30 * 86_400)))
 
+    init(access: AccountAccess) {
+        _controller = State(initialValue: PublishController(access: access))
+    }
+
     var body: some View {
-        SGMScreen(spacing: 10) {
+        SGMScreen(spacing: 10, testID: UITestIdentifier.publishScreen) {
             SGMTopBar(title: "PUBLIER UN TRAJET")
             PublishStepper(step: step)
             VStack(spacing: 12) {
@@ -27,6 +31,11 @@ struct PublishScreen: View {
             }
             .padding(.horizontal, SGMSpace.padScreen)
         }
+        .task {
+            controller.activate()
+            seedInitialPlaces()
+        }
+        .onDisappear { controller.close() }
     }
 
     @ViewBuilder
@@ -37,8 +46,14 @@ struct PublishScreen: View {
                 controller: controller,
                 from: $from,
                 to: $to,
-                onSearchOrigin: { Task { await controller.suggestPlaces(input: from, target: .origin, firebase: appState.firebase, onError: setError) } },
-                onSearchDestination: { Task { await controller.suggestPlaces(input: to, target: .destination, firebase: appState.firebase, onError: setError) } },
+                onSearchOrigin: {
+                    let input = from
+                    Task { await controller.suggestPlaces(input: input, target: .origin, firebase: appState.firebase, onError: setError) }
+                },
+                onSearchDestination: {
+                    let input = to
+                    Task { await controller.suggestPlaces(input: input, target: .destination, firebase: appState.firebase, onError: setError) }
+                },
                 onSelectOrigin: { suggestion in Task { await controller.select(suggestion, target: .origin, firebase: appState.firebase, onError: setError) } },
                 onSelectDestination: { suggestion in Task { await controller.select(suggestion, target: .destination, firebase: appState.firebase, onError: setError) } },
                 onNext: nextFromPlaces
@@ -52,7 +67,7 @@ struct PublishScreen: View {
                 seats: $seats,
                 frequency: $frequency,
                 price: $price,
-                onNext: { step = 3 }
+                onNext: nextFromDetails
             )
         default:
             PublishConfirmStep(
@@ -70,6 +85,7 @@ struct PublishScreen: View {
     }
 
     private func nextFromPlaces() {
+        seedInitialPlaces()
         guard controller.origin != nil, controller.destination != nil else {
             appState.errorMessage = "Choisissez un départ et une destination dans les suggestions."
             return
@@ -78,18 +94,30 @@ struct PublishScreen: View {
     }
 
     private func publish() {
+        guard let priceCents = TripPublicationPrice.cents(price) else {
+            appState.errorMessage = TripPublicationPrice.validationMessage
+            return
+        }
         Task {
             await controller.publish(
-                draft: makeDraft(),
+                draft: makeDraft(priceCents: priceCents),
                 firebase: appState.firebase,
                 onNotice: { appState.noticeMessage = $0 },
                 onError: setError,
-                onPublished: { await appState.refreshAppData() }
+                onPublished: { await appState.refreshAppData(access: $0) }
             )
         }
     }
 
-    private func makeDraft() -> TripPublishDraft? {
+    private func nextFromDetails() {
+        guard TripPublicationPrice.cents(price) != nil else {
+            appState.errorMessage = TripPublicationPrice.validationMessage
+            return
+        }
+        step = 3
+    }
+
+    private func makeDraft(priceCents: Int) -> TripPublishDraft? {
         guard let origin = controller.origin, let destination = controller.destination else { return nil }
         return TripPublishDraft(
             title: "U8 Nationaux vs Royal Ottignies SC",
@@ -107,7 +135,7 @@ struct PublishScreen: View {
             seatsAvailable: seats,
             baggage: "medium",
             returnTrip: returnTrip,
-            priceCents: parsePriceCents(price),
+            priceCents: priceCents,
             supportsVehicleTracking: true,
             supportsChildTracking: childTracking,
             co2SavedKgEstimate: 4.2
@@ -119,9 +147,14 @@ struct PublishScreen: View {
     }
 }
 
-private func parsePriceCents(_ value: String) -> Int {
-    let normalized = value.replacingOccurrences(of: ",", with: ".")
-        .trimmingCharacters(in: .whitespacesAndNewlines)
-    let amount = Double(normalized) ?? 0
-    return max(0, Int(amount * 100))
+private extension PublishScreen {
+    func seedInitialPlaces() {
+        controller.seedPlaces(origin: appState.searchOrigin, destination: appState.searchDestination)
+        if from.isEmpty {
+            from = controller.origin?.label ?? ""
+        }
+        if to.isEmpty {
+            to = controller.destination?.label ?? ""
+        }
+    }
 }

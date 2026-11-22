@@ -1,0 +1,14 @@
+{
+  "method": "restricted-store-background",
+  "wasStopped": false,
+  "originalBackground": {
+    "RUN_IN_BACKGROUND": "allow",
+    "RUN_ANY_IN_BACKGROUND": "allow"
+  },
+  "mapsRuntime": {
+    "playStoreEnabled": true,
+    "playServicesEnabled": true,
+    "playServicesVersion": "24.23.35"
+  },
+  "locationEnabled": true
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:46.577Z" hostname="local-test-host" time="0.012">
+  <properties></properties>
+  <testcase name="staleOrRevokedReadRepliesCannotKeepAnOldAction" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.004"></testcase>
+  <testcase name="concurrentConfirmationsAndRefreshDoNotDuplicateTheWrite" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.002"></testcase>
+  <testcase name="acknowledgedWritesKeepTheirReceiptWhenTheLaterReadFails" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.0"></testcase>
+  <testcase name="onlyAnAllowedWithdrawalIsSubmittedForTheDisplayedApprovedRevision" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="aForeignOrRecreatedTeamReadDoesNotReplaceTheConfirmedRequest" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="changingClubClearsAllTeamAndChildContext" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.0"></testcase>
+  <testcase name="missingNamesNeverBecomeAnInventedRequestIdentity" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="choicesNeverSubmitBeforeAnExactCurrentReviewAndConfirmation" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.0"></testcase>
+  <testcase name="subjectChangesCannotReuseAnotherPersonsDisplayedRequest" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="backgroundingAndClosingDiscardNamesSelectionsAndLateResponses" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="aNonParentCannotChooseOrAccidentallyRequestForAChild" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.001"></testcase>
+  <testcase name="aLostReplyClearsActionsAndRequiresAnExplicitReadNotAnotherWrite" classname="be.sportgreenmoove.app.ui.TeamEnrollmentStateTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

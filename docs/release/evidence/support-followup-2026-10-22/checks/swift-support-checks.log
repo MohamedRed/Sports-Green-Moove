@@ -1,0 +1,9 @@
+
+> sports-green-moove@0.1.0 test:ios-native
+> bash scripts/check-ios-native-plan.sh
+
+TripDateLabelChecks passed: 30 date/time pairs across 3 device timezones
+RidePaymentChecks passed
+SupportChecks passed
+SupportStateChecks passed
+SportsGreenMooveNativeChecks passed

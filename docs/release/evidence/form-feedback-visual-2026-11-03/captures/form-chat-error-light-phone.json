@@ -1,0 +1,28 @@
+{
+  "scope": "form-feedback-components-not-auth-search-or-message-delivery-proof",
+  "case": "chat-error-light-phone",
+  "screen": "chat-error",
+  "dark": false,
+  "widthDp": 320,
+  "heightDp": 700,
+  "density": 3,
+  "fontScale": 1.3,
+  "text": {
+    "label": "Envoi non confirmé. Votre message est conservé.",
+    "measuredTextFits": true,
+    "contrastRatio": 6.092589354752622,
+    "measuredWidthPx": 864,
+    "measuredHeightPx": 124,
+    "measuredParagraphHeightPx": 124,
+    "lineCount": 2,
+    "lastLineEnd": 47
+  },
+  "completed": true,
+  "physicalDevice": false,
+  "backendCalls": false,
+  "mapsRendered": false,
+  "productionWrites": false,
+  "capturedAtEpochMillis": 1793697066598,
+  "viewportSha256": "e349019d440d4c3bdf53ca544cc1ca7fbaf2cf75b2a11c2fdaf8dde33117275e",
+  "windowSha256": "ddbc8b7ee799f9aa563495aead03a5da2fafc05766b57506d4bd6dc98f544513"
+}

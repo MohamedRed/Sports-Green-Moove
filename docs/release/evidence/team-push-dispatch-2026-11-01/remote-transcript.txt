@@ -1,0 +1,27 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest:
+Error in completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest):
+java.lang.NullPointerException: Current state was null unexpectedly. Last stage = STARTED
+	at androidx.test.internal.util.Checks.checkNotNull(Checks.java:50)
+	at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:657)
+	at androidx.test.core.app.ActivityScenario.close(ActivityScenario.java:421)
+	at kotlin.io.CloseableKt.closeFinally(Closeable.kt:47)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:46)
+
+
+Time: 31.637
+There was 1 failure:
+1) completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest)
+java.lang.NullPointerException: Current state was null unexpectedly. Last stage = STARTED
+	at androidx.test.internal.util.Checks.checkNotNull(Checks.java:50)
+	at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:657)
+	at androidx.test.core.app.ActivityScenario.close(ActivityScenario.java:421)
+	at kotlin.io.CloseableKt.closeFinally(Closeable.kt:47)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:46)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

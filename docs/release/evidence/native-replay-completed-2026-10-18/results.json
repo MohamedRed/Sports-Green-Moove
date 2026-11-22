@@ -1,0 +1,1247 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a3a5f34d7657adbba4973414bc4f9663",
+  "testedAt": "2026-10-18T15:44:32.747Z",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 33,
+  "nativeCaseCount": 35,
+  "steps": [
+    {
+      "id": "parent-app-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-approval-ui",
+      "status": "passed"
+    },
+    {
+      "id": "landscape-login-ui",
+      "status": "passed"
+    },
+    {
+      "id": "calendar-empty-consent-ui",
+      "status": "passed"
+    },
+    {
+      "id": "theme-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-lifecycle-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-review-ui",
+      "status": "passed"
+    },
+    {
+      "id": "ride-ledgers-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-conversation-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-directory-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-input-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-session-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-criteria-ui",
+      "status": "passed"
+    },
+    {
+      "id": "search-retention-ui",
+      "status": "passed"
+    },
+    {
+      "id": "multi-seat-sdk",
+      "status": "passed"
+    },
+    {
+      "id": "reservation-decisions-ui",
+      "status": "passed"
+    },
+    {
+      "id": "membership-refresh-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-network-recovery-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-account-switch-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-confirmed-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "chat-post-commit-response-loss-ui",
+      "status": "passed"
+    },
+    {
+      "id": "driver-trip-cancellation-ui",
+      "status": "passed"
+    },
+    {
+      "id": "booking-post-commit-response-loss-sdk",
+      "status": "passed"
+    },
+    {
+      "id": "booking-response-loss-search-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-change-parent-confirmation-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-change-inputs-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-change-schedule-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-process-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-pending-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-partial-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-declined-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-consent-withdrawn-restart-ui",
+      "status": "passed"
+    },
+    {
+      "id": "trip-draft-process-restart-ui",
+      "status": "passed"
+    }
+  ],
+  "ride": {
+    "rideSessionId": "x3HDRQevoLDsxr3rnHKq",
+    "bookingCount": 2,
+    "auditEventCount": 4,
+    "ratingCount": 1
+  },
+  "chat": {
+    "sourceType": "booking",
+    "sourceId": "sgm-qa-booking-approved",
+    "messageCount": 5,
+    "newMessageCount": 4,
+    "readNotificationCount": 4,
+    "historyMessageCount": 120,
+    "peerDelivery": "one authenticated local SDK send while the parent thread remained open"
+  },
+  "directory": {
+    "sourceType": "booking",
+    "sourceId": "nNdX4NQBiSwAfNR4R9e0",
+    "conversationCount": 28,
+    "archivedConversationCount": 25,
+    "firstPageCount": 20,
+    "secondPageCount": 8,
+    "messageCount": 2,
+    "readNotificationCount": 2,
+    "limitation": "Archived conversations are seeded history; the two new messages were sent through the app."
+  },
+  "multiSeatSdk": {
+    "method": "native-sdk-not-ui",
+    "requestedSeats": 2,
+    "seatsBefore": 4,
+    "seatsAfterApproval": 2,
+    "seatsAfterCancellation": 4,
+    "repeatedCancellationRejected": true,
+    "limitation": "The booking request used the native gateway; approval and cancellation used authenticated local service calls, not UI."
+  },
+  "reservationDecisions": {
+    "method": "app-ui-with-persisted-checks",
+    "requestedCancellation": "cancelled",
+    "approvedCancellation": "cancelled",
+    "declinedStatus": "declined",
+    "requestedSeats": 2,
+    "approvedSeatsBeforeCancellation": 2,
+    "seatsAfterEachDecision": 4,
+    "notificationCount": 3,
+    "livePayment": false
+  },
+  "tripCancellation": {
+    "method": "app-ui-with-independent-persisted-checks",
+    "tripId": "vwJaKUm9p7PcdPPTxxBh",
+    "receipt": {
+      "tripId": "vwJaKUm9p7PcdPPTxxBh",
+      "requestId": "07df6996-8dd1-4e83-a484-c284e079f818",
+      "expectedRevision": "14c9bff720d3917c8671e65c7ded542f38e060cb94e36226f7ac794e6b8734c2",
+      "reason": "Match reporté après contrôle local",
+      "actorUserId": "sgm-qa-driver",
+      "bookingIds": [
+        "TXNczgcBXmJvWiBoyVvg",
+        "yhimwH4lESU2T73YisEe"
+      ],
+      "refundPendingCount": 1,
+      "seatsAvailable": 3,
+      "cancelledAt": "2026-10-18T15:36:53.598Z",
+      "status": "cancelled",
+      "bookingCount": 2
+    },
+    "bookingCount": 2,
+    "notificationCount": 1,
+    "refundPendingCount": 1,
+    "seatsInitiallyOffered": 3,
+    "seatsAfterApproval": 1,
+    "seatsAfterCancellation": 3,
+    "parentCancelledReservationsVisible": true,
+    "parentPendingRefundVisible": true,
+    "repeatedRequestIdempotent": true,
+    "rebookApproveStartDenied": true,
+    "syntheticPaymentMetadata": true,
+    "livePayment": false,
+    "refundIssued": false,
+    "productionDeployed": false
+  },
+  "tripChanges": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:37:51.043Z",
+    "recordType": "native-trip-change-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 1,
+    "steps": [
+      {
+        "id": "trip-change-parent-confirmation-ui",
+        "status": "passed"
+      }
+    ],
+    "method": "native-app-three-account-ui-with-independent-persisted-checks",
+    "records": [
+      {
+        "tripId": "BvXM19vfsuvYtyvUyF59",
+        "proposalId": "e946605fa4bba1cfd794da7182f85c4f5bafc7c309beeb9af7553e4d6dd71a26",
+        "status": "confirmed",
+        "parentCount": 2,
+        "decisionCount": 2,
+        "bookingCount": 2,
+        "originalPriceCents": 250,
+        "proposedPriceCents": 400,
+        "notificationCount": 5
+      },
+      {
+        "tripId": "F0ZXg1CgvM5DBzQoylSZ",
+        "proposalId": "953d73619669a5e42eb32070a8a9c20393801a61564a20829d06f212c546a6bb",
+        "status": "declined",
+        "parentCount": 2,
+        "decisionCount": 1,
+        "bookingCount": 2,
+        "originalPriceCents": 250,
+        "proposedPriceCents": 400,
+        "notificationCount": 5
+      },
+      {
+        "tripId": "pjR2arpJDncKg2dZQAwo",
+        "proposalId": "d41d62c4d3d3de3236294b70e2011640fdb2f48d2131ce649772a7e4b53c13b5",
+        "status": "withdrawn",
+        "parentCount": 2,
+        "decisionCount": 0,
+        "bookingCount": 2,
+        "originalPriceCents": 250,
+        "proposedPriceCents": 400,
+        "notificationCount": 5
+      }
+    ],
+    "native": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "scope": "native-three-account-trip-consent-ui",
+      "completed": true,
+      "confirmedTripId": "BvXM19vfsuvYtyvUyF59",
+      "declinedTripId": "F0ZXg1CgvM5DBzQoylSZ",
+      "withdrawnTripId": "pjR2arpJDncKg2dZQAwo",
+      "firstParentPending": true,
+      "secondParentConfirmed": true,
+      "refusalVisible": true,
+      "withdrawalVisible": true,
+      "routeRequiredBeforeApplication": true
+    },
+    "captureFiles": [
+      "local-trip-change-first-parent.png",
+      "local-trip-change-both-parents.png",
+      "local-trip-change-parent-refused.png",
+      "local-trip-change-withdrawn.png"
+    ],
+    "tripAndBookingsUnchanged": true,
+    "parentViewsScoped": true,
+    "outsiderDenied": true,
+    "unappliedTripStartDenied": true,
+    "applicationExercised": false,
+    "routeProviderExercised": false,
+    "paymentExercised": false,
+    "fullAppReplay": false,
+    "limitation": "Price proposals, consent, refusal and withdrawal only; no route calculation, application, payment or physical-device proof."
+  },
+  "tripChangeInputs": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:38:28.379Z",
+    "recordType": "native-trip-change-inputs-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 1,
+    "steps": [
+      {
+        "id": "trip-change-inputs-ui",
+        "status": "passed"
+      }
+    ],
+    "native": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "scope": "native-trip-change-time-and-address-safety-ui",
+      "completed": true,
+      "tripId": "tHwEmCwfpJ2ypF7Okpu4",
+      "bookingId": "TlBKuyEKPQCYZZDfdI2m",
+      "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+      "proposedDepartureAt": "2026-10-19T10:00:00.000Z",
+      "nativeTimePickerUsed": true,
+      "unconfirmedOriginBlocked": true,
+      "unconfirmedDestinationBlocked": true,
+      "originalPlacesExplicitlyKept": true,
+      "parentSawBothTimes": true,
+      "parentConfirmed": true,
+      "missingRouteBlockedApplication": true
+    },
+    "captureFiles": [
+      "local-trip-change-time-confirmed.png",
+      "local-trip-change-route-unavailable.png"
+    ],
+    "tripId": "tHwEmCwfpJ2ypF7Okpu4",
+    "proposalId": "38cf8eb42137411f4a5444bb9bbb08665fcc17aa88b56c05b88ffe349ce61a31",
+    "bookingId": "TlBKuyEKPQCYZZDfdI2m",
+    "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+    "proposedDepartureAt": "2026-10-19T10:00:00.000Z",
+    "tripAndBookingUnchanged": true,
+    "parentViewScoped": true,
+    "outsiderDenied": true,
+    "notificationCount": 3,
+    "applicationExercised": false,
+    "successfulRouteChangeExercised": false,
+    "routeProviderExercised": false,
+    "paymentExercised": false,
+    "datePickerExercised": false,
+    "fullAppReplay": false,
+    "limitation": "Departure time and price consent, unresolved-address rejection and failed route request only; no successful place lookup, route change, application, payment or physical-device proof."
+  },
+  "tripSchedule": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:39:09.719Z",
+    "recordType": "native-trip-schedule-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 1,
+    "steps": [
+      {
+        "id": "trip-change-schedule-ui",
+        "status": "passed"
+      }
+    ],
+    "native": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "scope": "native-trip-change-date-and-arrival-consent-ui",
+      "completed": true,
+      "tripId": "1ekLIrM6rnFvqxE36rLY",
+      "bookingId": "j6Vhut6r25GoNlS3ZXjz",
+      "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+      "proposedDepartureAt": "2026-10-20T09:00:00.000Z",
+      "desiredArrivalBy": "2026-10-20T10:00:00.000Z",
+      "nativeDatePickerUsed": true,
+      "nativeTimePickerUsed": true,
+      "dateCancellationPreservedDraft": true,
+      "pastDepartureBlocked": true,
+      "arrivalBeforeDepartureBlocked": true,
+      "desiredArrivalAdded": true,
+      "parentSawDatesAndArrival": true,
+      "parentConfirmed": true,
+      "notApplied": true
+    },
+    "captureFiles": [
+      "local-trip-change-date-arrival-confirmed.png"
+    ],
+    "tripId": "1ekLIrM6rnFvqxE36rLY",
+    "bookingId": "j6Vhut6r25GoNlS3ZXjz",
+    "proposalId": "7f1cc57b09f0655f303d5a73e417655f7e2468cf3306c882aae673443444240e",
+    "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+    "proposedDepartureAt": "2026-10-20T09:00:00.000Z",
+    "desiredArrivalBy": "2026-10-20T10:00:00.000Z",
+    "tripAndBookingUnchanged": true,
+    "parentViewScoped": true,
+    "outsiderDenied": true,
+    "notificationCount": 3,
+    "datePickerExercised": true,
+    "desiredArrivalEditingExercised": true,
+    "applicationExercised": false,
+    "routeProviderExercised": false,
+    "paymentExercised": false,
+    "fullAppReplay": false,
+    "limitation": "Date and desired-arrival consent plus cancelled/past/invalid drafts only; no route change, application, payment, physical tracking or post-restart consent proof."
+  },
+  "tripConsentRestart": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:39:48.640Z",
+    "recordType": "native-trip-consent-restart-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 1,
+    "nativeCaseCount": 2,
+    "steps": [
+      {
+        "id": "trip-consent-process-restart-ui",
+        "status": "passed"
+      }
+    ],
+    "tripId": "BXNZsBL5ZfM5RLeTxF8v",
+    "bookingId": "k7rPiFVr1r0TyTluBIQ7",
+    "proposalId": "aae8d37ac147ffa8a402344649f829436daf6a43587c57f220e81a09fb17f135",
+    "native": {
+      "before": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-confirmed-trip-consent-restart-stage",
+        "stage": "before",
+        "tripId": "BXNZsBL5ZfM5RLeTxF8v",
+        "bookingId": "k7rPiFVr1r0TyTluBIQ7",
+        "actorUserId": "sgm-qa-parent",
+        "processId": 11255,
+        "completed": true,
+        "proposalId": "aae8d37ac147ffa8a402344649f829436daf6a43587c57f220e81a09fb17f135",
+        "parentConfirmed": true,
+        "notApplied": true
+      },
+      "stopped": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "disposable-local-app-force-stop",
+        "appId": "be.sportgreenmoove.app.local",
+        "preparedProcessId": 11255,
+        "observedBeforePid": null,
+        "forceStopIssued": true,
+        "noProcessAfterStop": true
+      },
+      "after": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-confirmed-trip-consent-restart-stage",
+        "stage": "after",
+        "tripId": "BXNZsBL5ZfM5RLeTxF8v",
+        "bookingId": "k7rPiFVr1r0TyTluBIQ7",
+        "actorUserId": "sgm-qa-parent",
+        "processId": 11401,
+        "completed": true,
+        "sessionRestoredWithoutLogin": true,
+        "originalProposalRestored": true,
+        "parentDecisionRestored": true,
+        "duplicateDecisionActionsAbsent": true,
+        "explicitRefreshRestored": true,
+        "driverSawSameConsent": true,
+        "notApplied": true,
+        "proposalId": "aae8d37ac147ffa8a402344649f829436daf6a43587c57f220e81a09fb17f135",
+        "endedAsUserId": "sgm-qa-driver"
+      }
+    },
+    "checkpoint": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "tripId": "BXNZsBL5ZfM5RLeTxF8v",
+      "bookingId": "k7rPiFVr1r0TyTluBIQ7",
+      "scope": "persisted-confirmed-trip-consent-before-process-boundary",
+      "proposalId": "aae8d37ac147ffa8a402344649f829436daf6a43587c57f220e81a09fb17f135",
+      "decisionCount": 1,
+      "notificationCount": 3,
+      "hashes": {
+        "trip": "ca6db5b8eb5e2ecb6464f40a0bb729cbbf4b307c44fb90afff303334339837df",
+        "booking": "28494be582cef9950f4c145bbdea68702a9c50aea43603d33376f3e8f924af86",
+        "proposal": "d5dfd04cdd345ab5e5234fdb9a04e8f580e8b6d6678a0c30dd7a7d6eac3bc994",
+        "notifications": "d24abf57084d12f06775ab1ee95405d84edbaad7d1fbf9a5a8fd7fa3181c295f"
+      }
+    },
+    "persisted": {
+      "proposalId": "aae8d37ac147ffa8a402344649f829436daf6a43587c57f220e81a09fb17f135",
+      "decisionCount": 1,
+      "notificationCount": 3,
+      "hashes": {
+        "trip": "ca6db5b8eb5e2ecb6464f40a0bb729cbbf4b307c44fb90afff303334339837df",
+        "booking": "28494be582cef9950f4c145bbdea68702a9c50aea43603d33376f3e8f924af86",
+        "proposal": "d5dfd04cdd345ab5e5234fdb9a04e8f580e8b6d6678a0c30dd7a7d6eac3bc994",
+        "notifications": "d24abf57084d12f06775ab1ee95405d84edbaad7d1fbf9a5a8fd7fa3181c295f"
+      }
+    },
+    "captureFiles": [
+      "local-trip-consent-restart-before.png",
+      "local-trip-consent-restart-after.png",
+      "local-trip-consent-restart-driver.png"
+    ],
+    "originalDecisionAndNoticesUnchanged": true,
+    "tripAndBookingUnchanged": true,
+    "parentViewScoped": true,
+    "outsiderDenied": true,
+    "unappliedTripStartDenied": true,
+    "applicationExercised": false,
+    "routeProviderExercised": false,
+    "paymentExercised": false,
+    "fullAppReplay": false,
+    "limitation": "Confirmed single-parent price consent after process death only; no pending/refused/withdrawn proposal recovery, unsent drafts, application, route, real payment or physical-device proof."
+  },
+  "tripConsentRecovery": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:41:45.489Z",
+    "recordType": "native-trip-consent-recovery-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 4,
+    "nativeCaseCount": 2,
+    "steps": [
+      {
+        "id": "trip-consent-pending-restart-ui",
+        "status": "passed"
+      },
+      {
+        "id": "trip-consent-partial-restart-ui",
+        "status": "passed"
+      },
+      {
+        "id": "trip-consent-declined-restart-ui",
+        "status": "passed"
+      },
+      {
+        "id": "trip-consent-withdrawn-restart-ui",
+        "status": "passed"
+      }
+    ],
+    "native": {
+      "before": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-trip-consent-recovery-matrix",
+        "stage": "before",
+        "completed": true,
+        "actorUserId": "sgm-qa-parent",
+        "processId": 11533,
+        "records": [
+          {
+            "kind": "pending",
+            "tripId": "MrzwQBjUusC1zdToH9ah",
+            "bookingId": "AOX6w7XjJWvodZJzM1Bp",
+            "proposalId": "376ca93614f95df7e09a4415ddc21018a6a0fc0a02f773968e427946cd0166a2",
+            "prepared": true
+          },
+          {
+            "kind": "partial",
+            "tripId": "dRtiNXj2xFpy4c3lYBMG",
+            "bookingId": "w9uDSElvLWFQvgnov64h",
+            "proposalId": "5644f02654dc36ddce5347ad91620e58153a5c92bec9966f8c80745d0ec853f5",
+            "prepared": true
+          },
+          {
+            "kind": "declined",
+            "tripId": "SZm6vyxdlWDLtUsG8ZWD",
+            "bookingId": "WzBqSost5s7xtnBvJrBX",
+            "proposalId": "1ffbe3b05ae0123a79dcc94e158e201a0e0635f5381ad26559a1220c615c01ea",
+            "prepared": true
+          },
+          {
+            "kind": "withdrawn",
+            "tripId": "jf7bb8M4nDfvibwqkbk9",
+            "bookingId": "DZDsTh8t852ckRICfoUQ",
+            "proposalId": "ae8eb61c5d7a1e1d8bfab45c248a05b9d4152700eee8ed8866acbba64391952c",
+            "prepared": true
+          }
+        ]
+      },
+      "stopped": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "disposable-local-app-force-stop",
+        "appId": "be.sportgreenmoove.app.local",
+        "preparedProcessId": 11533,
+        "observedBeforePid": null,
+        "forceStopIssued": true,
+        "noProcessAfterStop": true
+      },
+      "after": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-trip-consent-recovery-matrix",
+        "stage": "after",
+        "completed": true,
+        "actorUserId": "sgm-qa-parent",
+        "processId": 11737,
+        "sessionRestoredWithoutLogin": true,
+        "records": [
+          {
+            "kind": "pending",
+            "tripId": "MrzwQBjUusC1zdToH9ah",
+            "bookingId": "AOX6w7XjJWvodZJzM1Bp",
+            "proposalId": "376ca93614f95df7e09a4415ddc21018a6a0fc0a02f773968e427946cd0166a2",
+            "parentStateRestored": true,
+            "refreshUnchanged": true,
+            "originalProposalRestored": true,
+            "secondParentScoped": true,
+            "driverStateRestored": true
+          },
+          {
+            "kind": "partial",
+            "tripId": "dRtiNXj2xFpy4c3lYBMG",
+            "bookingId": "w9uDSElvLWFQvgnov64h",
+            "proposalId": "5644f02654dc36ddce5347ad91620e58153a5c92bec9966f8c80745d0ec853f5",
+            "parentStateRestored": true,
+            "refreshUnchanged": true,
+            "originalProposalRestored": true,
+            "secondParentScoped": true,
+            "driverStateRestored": true
+          },
+          {
+            "kind": "declined",
+            "tripId": "SZm6vyxdlWDLtUsG8ZWD",
+            "bookingId": "WzBqSost5s7xtnBvJrBX",
+            "proposalId": "1ffbe3b05ae0123a79dcc94e158e201a0e0635f5381ad26559a1220c615c01ea",
+            "parentStateRestored": true,
+            "refreshUnchanged": true,
+            "closedActionsAbsent": true,
+            "parentHistoryRestored": true,
+            "secondParentScoped": true,
+            "secondParentHistoryScoped": true,
+            "driverHistoryRestored": true,
+            "driverStateRestored": true
+          },
+          {
+            "kind": "withdrawn",
+            "tripId": "jf7bb8M4nDfvibwqkbk9",
+            "bookingId": "DZDsTh8t852ckRICfoUQ",
+            "proposalId": "ae8eb61c5d7a1e1d8bfab45c248a05b9d4152700eee8ed8866acbba64391952c",
+            "parentStateRestored": true,
+            "refreshUnchanged": true,
+            "closedActionsAbsent": true,
+            "parentHistoryRestored": true,
+            "secondParentScoped": true,
+            "secondParentHistoryScoped": true,
+            "driverHistoryRestored": true,
+            "driverStateRestored": true
+          }
+        ],
+        "endedAsUserId": "sgm-qa-driver"
+      }
+    },
+    "checkpoint": [
+      {
+        "tripId": "MrzwQBjUusC1zdToH9ah",
+        "proposalId": "376ca93614f95df7e09a4415ddc21018a6a0fc0a02f773968e427946cd0166a2",
+        "kind": "pending",
+        "status": "pending",
+        "bookingIds": [
+          "AOX6w7XjJWvodZJzM1Bp",
+          "TqRJ5cQ339BeGKBgLk4c"
+        ],
+        "decisionCount": 0,
+        "notificationCount": 2,
+        "hashes": {
+          "trip": "55e602c633d374e5c0239fae9500bc2562f93769503c15100af0e34be83edc01",
+          "bookings": "3b4c617b3cdc2535920fdf26d5cfe91fd8742f71c1099262c19f3bc5edaa6f38",
+          "proposal": "aeb5f38b9be82ad1942cd06fd8d7f15087d38560fb9f1438aa003591c68708cf",
+          "notifications": "10b1b69ba94a1ae5a0e55520bf1f7e894214c8e555b680f1c7e3bfe667bc560e"
+        }
+      },
+      {
+        "tripId": "dRtiNXj2xFpy4c3lYBMG",
+        "proposalId": "5644f02654dc36ddce5347ad91620e58153a5c92bec9966f8c80745d0ec853f5",
+        "kind": "partial",
+        "status": "pending",
+        "bookingIds": [
+          "w9uDSElvLWFQvgnov64h",
+          "qSRN54bs5utXZhAd0YBr"
+        ],
+        "decisionCount": 1,
+        "notificationCount": 2,
+        "hashes": {
+          "trip": "b748ca9e5cab0401d715b44dcd1603d7bda71c266570b1ddcfb062895f7b68ea",
+          "bookings": "c0b4e77eafa4e214beff6cee8dd0ccbe9e4203f5a2dbcea5e288e121a132c056",
+          "proposal": "a750595fe1e33d3e986dbb401766cc9603c100b9dd23f3cf5196472449f3f667",
+          "notifications": "53636881144ef78fa5289b907d62676d5cda3be87b9e95db5fb64c430d254249"
+        }
+      },
+      {
+        "tripId": "SZm6vyxdlWDLtUsG8ZWD",
+        "proposalId": "1ffbe3b05ae0123a79dcc94e158e201a0e0635f5381ad26559a1220c615c01ea",
+        "kind": "declined",
+        "status": "declined",
+        "bookingIds": [
+          "WzBqSost5s7xtnBvJrBX",
+          "hO8PvY1Vze1Z2MQQfkrX"
+        ],
+        "decisionCount": 1,
+        "notificationCount": 5,
+        "hashes": {
+          "trip": "81031ce0c332a5dea2d318c3d97c0ddaafef4f5d977a6becf816370c2e790048",
+          "bookings": "41fb7d4609cfd89f635a81bc5b3bac561ce5a44d891699622ae08db82f45e03f",
+          "proposal": "aeb02cac7315050db1bce7682e23abc42cc8a07d34921efb2130316ef423a3b0",
+          "notifications": "069c931c586b6d7bfc2ae0045aa0652661df266a4b70745da345c9e080681717"
+        }
+      },
+      {
+        "tripId": "jf7bb8M4nDfvibwqkbk9",
+        "proposalId": "ae8eb61c5d7a1e1d8bfab45c248a05b9d4152700eee8ed8866acbba64391952c",
+        "kind": "withdrawn",
+        "status": "withdrawn",
+        "bookingIds": [
+          "DZDsTh8t852ckRICfoUQ",
+          "BFOEV9c5tkE3miytBFRz"
+        ],
+        "decisionCount": 0,
+        "notificationCount": 5,
+        "hashes": {
+          "trip": "1b1da013c0faac2102b1e713ac052ebb87c36c2217252b8eeb578557da42a21e",
+          "bookings": "91fd79ab23e84f382c892aaace36bdc5d5b8c318aaaf706685b86ae6e85f7495",
+          "proposal": "84f50bb6fec57448ba5b12c3f7b006431d94bd6c4b84450133075c1e47662eb4",
+          "notifications": "a84f848d7488060ad639a6554cf4b6cbd1d28dc5b1a9eec5796e7002cd1cae9f"
+        }
+      }
+    ],
+    "persisted": [
+      {
+        "tripId": "MrzwQBjUusC1zdToH9ah",
+        "proposalId": "376ca93614f95df7e09a4415ddc21018a6a0fc0a02f773968e427946cd0166a2",
+        "kind": "pending",
+        "status": "pending",
+        "bookingIds": [
+          "AOX6w7XjJWvodZJzM1Bp",
+          "TqRJ5cQ339BeGKBgLk4c"
+        ],
+        "decisionCount": 0,
+        "notificationCount": 2,
+        "hashes": {
+          "trip": "55e602c633d374e5c0239fae9500bc2562f93769503c15100af0e34be83edc01",
+          "bookings": "3b4c617b3cdc2535920fdf26d5cfe91fd8742f71c1099262c19f3bc5edaa6f38",
+          "proposal": "aeb5f38b9be82ad1942cd06fd8d7f15087d38560fb9f1438aa003591c68708cf",
+          "notifications": "10b1b69ba94a1ae5a0e55520bf1f7e894214c8e555b680f1c7e3bfe667bc560e"
+        }
+      },
+      {
+        "tripId": "dRtiNXj2xFpy4c3lYBMG",
+        "proposalId": "5644f02654dc36ddce5347ad91620e58153a5c92bec9966f8c80745d0ec853f5",
+        "kind": "partial",
+        "status": "pending",
+        "bookingIds": [
+          "w9uDSElvLWFQvgnov64h",
+          "qSRN54bs5utXZhAd0YBr"
+        ],
+        "decisionCount": 1,
+        "notificationCount": 2,
+        "hashes": {
+          "trip": "b748ca9e5cab0401d715b44dcd1603d7bda71c266570b1ddcfb062895f7b68ea",
+          "bookings": "c0b4e77eafa4e214beff6cee8dd0ccbe9e4203f5a2dbcea5e288e121a132c056",
+          "proposal": "a750595fe1e33d3e986dbb401766cc9603c100b9dd23f3cf5196472449f3f667",
+          "notifications": "53636881144ef78fa5289b907d62676d5cda3be87b9e95db5fb64c430d254249"
+        }
+      },
+      {
+        "tripId": "SZm6vyxdlWDLtUsG8ZWD",
+        "proposalId": "1ffbe3b05ae0123a79dcc94e158e201a0e0635f5381ad26559a1220c615c01ea",
+        "kind": "declined",
+        "status": "declined",
+        "bookingIds": [
+          "WzBqSost5s7xtnBvJrBX",
+          "hO8PvY1Vze1Z2MQQfkrX"
+        ],
+        "decisionCount": 1,
+        "notificationCount": 5,
+        "hashes": {
+          "trip": "81031ce0c332a5dea2d318c3d97c0ddaafef4f5d977a6becf816370c2e790048",
+          "bookings": "41fb7d4609cfd89f635a81bc5b3bac561ce5a44d891699622ae08db82f45e03f",
+          "proposal": "aeb02cac7315050db1bce7682e23abc42cc8a07d34921efb2130316ef423a3b0",
+          "notifications": "069c931c586b6d7bfc2ae0045aa0652661df266a4b70745da345c9e080681717"
+        }
+      },
+      {
+        "tripId": "jf7bb8M4nDfvibwqkbk9",
+        "proposalId": "ae8eb61c5d7a1e1d8bfab45c248a05b9d4152700eee8ed8866acbba64391952c",
+        "kind": "withdrawn",
+        "status": "withdrawn",
+        "bookingIds": [
+          "DZDsTh8t852ckRICfoUQ",
+          "BFOEV9c5tkE3miytBFRz"
+        ],
+        "decisionCount": 0,
+        "notificationCount": 5,
+        "hashes": {
+          "trip": "1b1da013c0faac2102b1e713ac052ebb87c36c2217252b8eeb578557da42a21e",
+          "bookings": "91fd79ab23e84f382c892aaace36bdc5d5b8c318aaaf706685b86ae6e85f7495",
+          "proposal": "84f50bb6fec57448ba5b12c3f7b006431d94bd6c4b84450133075c1e47662eb4",
+          "notifications": "a84f848d7488060ad639a6554cf4b6cbd1d28dc5b1a9eec5796e7002cd1cae9f"
+        }
+      }
+    ],
+    "captureFiles": [
+      "local-trip-consent-recovery-pending.png",
+      "local-trip-consent-recovery-partial.png",
+      "local-trip-consent-recovery-declined.png",
+      "local-trip-consent-recovery-withdrawn.png",
+      "local-trip-history-declined.png",
+      "local-trip-history-withdrawn.png"
+    ],
+    "recordsUnchanged": true,
+    "parentViewsScoped": true,
+    "outsiderDenied": true,
+    "closedHistoryExercised": true,
+    "applicationExercised": false,
+    "routeProviderExercised": false,
+    "paymentExercised": false,
+    "fullAppReplay": false,
+    "limitation": "Pending, partial, refused and withdrawn price proposals after a new process, including closed history for both parents and driver. No unsent drafts, application, real routes/payments or physical-device proof."
+  },
+  "tripDraftRestart": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:42:20.222Z",
+    "recordType": "native-private-trip-draft-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "testCount": 1,
+    "nativeCaseCount": 2,
+    "steps": [
+      {
+        "id": "trip-draft-process-restart-ui",
+        "status": "passed"
+      }
+    ],
+    "tripId": "fc7H3denDoMkvwVc53SR",
+    "otherTripId": "82GUkOlREIWtHZLlPlD1",
+    "bookingIds": [
+      "VD0102JHW4NJqYN6JvWQ",
+      "lBc7LB5QkTNGG8ujkUv8"
+    ],
+    "native": {
+      "before": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-private-trip-draft-restart",
+        "stage": "before",
+        "completed": true,
+        "actorUserId": "sgm-qa-driver",
+        "tripId": "fc7H3denDoMkvwVc53SR",
+        "otherTripId": "82GUkOlREIWtHZLlPlD1",
+        "processId": 11968,
+        "draftHash": "b14532a27012aeddf3947ba3f1192eb73a7e01ead0f9786772df4ececd8b81bc",
+        "unfinishedFieldsSaved": true,
+        "otherTripIsolated": true
+      },
+      "stopped": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "disposable-local-app-force-stop",
+        "appId": "be.sportgreenmoove.app.local",
+        "preparedProcessId": 11968,
+        "observedBeforePid": null,
+        "forceStopIssued": true,
+        "noProcessAfterStop": true
+      },
+      "after": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-private-trip-draft-restart",
+        "stage": "after",
+        "completed": true,
+        "actorUserId": "sgm-qa-driver",
+        "tripId": "fc7H3denDoMkvwVc53SR",
+        "otherTripId": "82GUkOlREIWtHZLlPlD1",
+        "processId": 12098,
+        "draftHash": "b14532a27012aeddf3947ba3f1192eb73a7e01ead0f9786772df4ececd8b81bc",
+        "sessionRestoredWithoutLogin": true,
+        "unfinishedFieldsRestored": true,
+        "otherTripIsolated": true,
+        "submissionDisabled": true
+      }
+    },
+    "baseline": {
+      "hashes": {
+        "trips": "a6d6413eb876b0e026f4e8e24735f648feab9d9e81a926462ed44a387f5e0c8e",
+        "bookings": "36dcaa26717f25c138b40e767ef8bd7777aabb5935c6a8e06f2845284f01e4cf",
+        "notifications": "193bf731d49980f0e6c3766b0c60f522474ea01d1c2e863a51a3e1d0c69189f4"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "checkpoint": {
+      "hashes": {
+        "trips": "a6d6413eb876b0e026f4e8e24735f648feab9d9e81a926462ed44a387f5e0c8e",
+        "bookings": "36dcaa26717f25c138b40e767ef8bd7777aabb5935c6a8e06f2845284f01e4cf",
+        "notifications": "193bf731d49980f0e6c3766b0c60f522474ea01d1c2e863a51a3e1d0c69189f4"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "persisted": {
+      "hashes": {
+        "trips": "a6d6413eb876b0e026f4e8e24735f648feab9d9e81a926462ed44a387f5e0c8e",
+        "bookings": "36dcaa26717f25c138b40e767ef8bd7777aabb5935c6a8e06f2845284f01e4cf",
+        "notifications": "193bf731d49980f0e6c3766b0c60f522474ea01d1c2e863a51a3e1d0c69189f4"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "captureFiles": [
+      "local-trip-draft-before.png",
+      "local-trip-draft-restored.png"
+    ],
+    "recordsUnchanged": true,
+    "automaticProposalCreated": false,
+    "unresolvedAddressesRestoredAsConfirmed": false,
+    "fullAppReplay": false,
+    "paymentExercised": false,
+    "routeProviderExercised": false,
+    "limitation": "Driver raw price and unresolved addresses across a guarded new local app process; second trip stays empty. No physical-device, iOS, cross-device sync, route/application or payment proof."
+  },
+  "tripScheduleDraftRestart": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "testedAt": "2026-10-18T15:43:04.816Z",
+    "recordType": "native-private-schedule-draft-stage-not-full-run-result",
+    "scope": "local-ui-not-physical-device",
+    "nativeCaseCount": 2,
+    "tripId": "H4yH2z21w75Uejp4mttU",
+    "otherTripId": "7KghP94dyX3EBFPPFvjO",
+    "bookingIds": [
+      "LEHjxw8paSSyGgaOILT2",
+      "n255Fu3UwkYTcwmwQBsE"
+    ],
+    "originalDepartureAt": "2026-10-19T09:00:00.000Z",
+    "draftDepartureAt": "2026-10-20T11:00:00.000Z",
+    "draftArrivalBy": "2026-10-20T12:00:00.000Z",
+    "native": {
+      "before": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-private-schedule-draft-restart",
+        "stage": "before",
+        "completed": true,
+        "actorUserId": "sgm-qa-driver",
+        "tripId": "H4yH2z21w75Uejp4mttU",
+        "otherTripId": "7KghP94dyX3EBFPPFvjO",
+        "processId": 12210,
+        "draftHash": "17e12de48e76d5d434906fb02c82914f506ea16085539d5f873b01243e882d87",
+        "departureDate": "2026-10-20",
+        "departureTime": "13:00",
+        "arrivalDate": "2026-10-20",
+        "arrivalTime": "14:00",
+        "hasArrival": true,
+        "originalPlacesRetained": true,
+        "otherTripIsolated": true,
+        "proposeEnabled": true,
+        "scheduleSaved": true
+      },
+      "stopped": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "disposable-local-app-force-stop",
+        "appId": "be.sportgreenmoove.app.local",
+        "preparedProcessId": 12210,
+        "observedBeforePid": null,
+        "forceStopIssued": true,
+        "noProcessAfterStop": true
+      },
+      "after": {
+        "projectId": "demo-sgm-local-qa",
+        "runId": "a3a5f34d7657adbba4973414bc4f9663",
+        "scope": "native-ui-private-schedule-draft-restart",
+        "stage": "after",
+        "completed": true,
+        "actorUserId": "sgm-qa-driver",
+        "tripId": "H4yH2z21w75Uejp4mttU",
+        "otherTripId": "7KghP94dyX3EBFPPFvjO",
+        "processId": 12351,
+        "draftHash": "17e12de48e76d5d434906fb02c82914f506ea16085539d5f873b01243e882d87",
+        "departureDate": "2026-10-20",
+        "departureTime": "13:00",
+        "arrivalDate": "2026-10-20",
+        "arrivalTime": "14:00",
+        "hasArrival": true,
+        "originalPlacesRetained": true,
+        "otherTripIsolated": true,
+        "proposeEnabled": true,
+        "scheduleRestored": true,
+        "sessionRestoredWithoutLogin": true
+      }
+    },
+    "baseline": {
+      "hashes": {
+        "trips": "9579c0ca30c1ff0d36ed3cbccc61cc78bf2574fa9d3bdd833f3322d7a6fdbd34",
+        "bookings": "e2a05070ec2f9eb045097197c7a55c9e7006f4d43c22f3e80530abdcdf60acfe",
+        "notifications": "86db44ca9521dec9aa3047d3380fce443070a73af6daafc5a2239eed9a003563"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "checkpoint": {
+      "hashes": {
+        "trips": "9579c0ca30c1ff0d36ed3cbccc61cc78bf2574fa9d3bdd833f3322d7a6fdbd34",
+        "bookings": "e2a05070ec2f9eb045097197c7a55c9e7006f4d43c22f3e80530abdcdf60acfe",
+        "notifications": "86db44ca9521dec9aa3047d3380fce443070a73af6daafc5a2239eed9a003563"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "persisted": {
+      "hashes": {
+        "trips": "9579c0ca30c1ff0d36ed3cbccc61cc78bf2574fa9d3bdd833f3322d7a6fdbd34",
+        "bookings": "e2a05070ec2f9eb045097197c7a55c9e7006f4d43c22f3e80530abdcdf60acfe",
+        "notifications": "86db44ca9521dec9aa3047d3380fce443070a73af6daafc5a2239eed9a003563"
+      },
+      "emptyCollections": {
+        "tripChanges": true,
+        "tripChangeQuotes": true,
+        "tripChangeBalances": true,
+        "rideSessions": true
+      }
+    },
+    "captureFiles": [
+      "local-trip-schedule-draft-before.png",
+      "local-trip-schedule-draft-restored.png"
+    ],
+    "recordsUnchanged": true,
+    "automaticProposalCreated": false,
+    "originalPlacesRetained": true,
+    "fullAppReplay": false,
+    "paymentExercised": false,
+    "routeProviderExercised": false,
+    "limitation": "Valid unsubmitted date, departure time and desired arrival across a new local app process. No physical-device, iOS, route/application or payment proof."
+  },
+  "membershipRefresh": {
+    "method": "app-request-refresh-ui-with-local-sdk-manager-decisions-and-persisted-checks",
+    "records": [
+      {
+        "clubId": "sgm-qa-native-approve",
+        "status": "active",
+        "active": true,
+        "memberCount": 2,
+        "reviewCount": 1
+      },
+      {
+        "clubId": "sgm-qa-native-reject",
+        "status": "active",
+        "active": true,
+        "memberCount": 2,
+        "reviewCount": 2
+      }
+    ],
+    "reviewCount": 3,
+    "notificationCount": 3,
+    "roleEscalation": false,
+    "livePush": false,
+    "limitation": "Manager decisions use authenticated local SDK calls, not a mobile management UI."
+  },
+  "chatNetwork": {
+    "method": "native-ui-with-disposable-os-network-control",
+    "sourceId": "vwZMT2KvXQWYYby5XadQ",
+    "messageCount": 2,
+    "notificationCount": 2,
+    "duplicateMessages": 0,
+    "bookingStatuses": [
+      "approved",
+      "cancelled",
+      "declined"
+    ],
+    "offlineDraftRetained": true,
+    "accountDraftCleared": true,
+    "networkRestored": true,
+    "limits": [
+      "Network disabled before the first attempt, not after a server commit.",
+      "No process restart, token expiry, physical device or push delivery tested."
+    ]
+  },
+  "chatRestart": {
+    "method": "native-ui-confirmed-conversation-force-stop",
+    "sourceId": "AQRHs7tAPZ8ibt99biAX",
+    "preparedProcessId": 12603,
+    "resumedProcessId": 12729,
+    "messageCount": 3,
+    "notificationCount": 3,
+    "duplicateMessages": 0,
+    "originalMessageUnchanged": true,
+    "sessionRestoredWithoutLogin": true,
+    "limits": [
+      "Confirmed messages only; pending or unsent draft recovery is not tested.",
+      "No physical device, token expiry, post-commit acknowledgement loss or push delivery tested."
+    ]
+  },
+  "chatResponseLoss": {
+    "method": "native-sdk-controlled-post-commit-reply-loss",
+    "sourceId": "iIIsV5SQaselnOaJmf08",
+    "messageId": "a62d30d7d9f0b7b6d4d01921f6d3365e4a695612884a5683f57ecf549898ca1e",
+    "clientMessageId": "fec2ad88-16e6-4ce5-832c-0fc266b65e3c",
+    "notificationId": "chat_a8368ac87a16b5dbb9491c9494c867d3a0ae6342592c938db0ff15391578f9ca",
+    "messageCount": 1,
+    "notificationCount": 1,
+    "duplicateMessages": 0,
+    "attempts": 3,
+    "rejectedRetryRetained": true,
+    "networkRestored": true,
+    "limits": [
+      "Production conversation route and SDK, hosted in a test activity; not full app navigation.",
+      "Controlled local HTTP reply loss and 429 rejection, with Firestore network paused to defer its acknowledgement.",
+      "No operating-system network loss, physical phone, process restart, expired token or push delivery tested."
+    ]
+  },
+  "bookingResponseLoss": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "scope": "native-sdk-booking-response-loss-not-ui",
+    "tripId": "jcDCJM6jkM9YXEZ3FH5q",
+    "attempts": [
+      {
+        "number": 1,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": true,
+        "commit": {
+          "bookingId": "4micI4UMipLD73lLaNMb",
+          "clientRequestId": "e34471f3-4165-4ec5-bf31-d919f42892fb",
+          "bookingCount": 1,
+          "receiptCount": 1,
+          "createdAtMillis": 1792337669218
+        }
+      },
+      {
+        "number": 2,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      }
+    ],
+    "before": {
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "projectId": "demo-sgm-local-qa",
+      "scope": "native-sdk-booking-response-loss-not-ui",
+      "tripId": "jcDCJM6jkM9YXEZ3FH5q",
+      "processId": 9693,
+      "clientRequestId": "e34471f3-4165-4ec5-bf31-d919f42892fb",
+      "replyUnconfirmed": true,
+      "pendingIdentityPersisted": true
+    },
+    "stopped": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "scope": "disposable-local-app-force-stop",
+      "appId": "be.sportgreenmoove.app.local",
+      "preparedProcessId": 9693,
+      "observedBeforePid": null,
+      "forceStopIssued": true,
+      "noProcessAfterStop": true
+    },
+    "after": {
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "projectId": "demo-sgm-local-qa",
+      "scope": "native-sdk-booking-response-loss-not-ui",
+      "tripId": "jcDCJM6jkM9YXEZ3FH5q",
+      "processId": 9792,
+      "previousProcessId": 9693,
+      "clientRequestId": "e34471f3-4165-4ec5-bf31-d919f42892fb",
+      "bookingId": "4micI4UMipLD73lLaNMb",
+      "pendingClearedAfterAcknowledgement": true,
+      "completed": true
+    },
+    "bookingCount": 1,
+    "receiptCount": 1,
+    "completed": true,
+    "livePayment": false,
+    "productionDeployed": false
+  },
+  "bookingUiResponseLoss": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "a3a5f34d7657adbba4973414bc4f9663",
+    "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+    "ui": {
+      "projectId": "demo-sgm-local-qa",
+      "runId": "a3a5f34d7657adbba4973414bc4f9663",
+      "scope": "native-search-ui-with-real-booking-sdk-and-stubbed-matching",
+      "tripId": "HRZRbIZYnHnv3tqqwZHz",
+      "completed": true,
+      "sendingObservedBeforeDispatch": true,
+      "clientRequestId": "46cb4d06-822d-4012-ab7e-cc9cf5eeae2b",
+      "unconfirmedReplyVisible": true,
+      "retryActionVisible": true,
+      "pendingIdentityPersisted": true,
+      "confirmedVisible": true,
+      "secondSubmissionActionAbsent": true,
+      "staleCallbackIgnored": true,
+      "sdkCalls": 2,
+      "bookingId": "wTP3cFEMqoVJzgTeQMGO",
+      "pendingClearedAfterAcknowledgement": true
+    },
+    "attempts": [
+      {
+        "number": 1,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": true,
+        "commit": {
+          "bookingId": "wTP3cFEMqoVJzgTeQMGO",
+          "clientRequestId": "46cb4d06-822d-4012-ab7e-cc9cf5eeae2b",
+          "bookingCount": 1,
+          "receiptCount": 1,
+          "createdAtMillis": 1792337679151
+        }
+      },
+      {
+        "number": 2,
+        "upstreamStatus": 200,
+        "acknowledgementDropped": false
+      }
+    ],
+    "bookingCount": 1,
+    "receiptCount": 1,
+    "completed": true,
+    "livePayment": false,
+    "productionDeployed": false
+  },
+  "search": {
+    "method": "component-ui-with-explicit-fake-gateway",
+    "caseCount": 4,
+    "limitation": "The four search UI cases use explicit fake gateways and host identity/navigation changes, not real provider matching."
+  },
+  "limits": [
+    "Synthetic mock positions and pre-granted emulator permissions only.",
+    "No physical GPS tracking, provider payments, push delivery or live data tested."
+  ]
+}

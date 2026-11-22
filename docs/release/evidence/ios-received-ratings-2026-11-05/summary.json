@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "controlled-ios-client-and-separate-local-received-rating-services",
+  "baselineCommit": "91e08cbf73c339b231537e3e61199a287e48a9a4",
+  "baselineProfileSha256": "890a7b0809acac00b430b241daf7a1085189209bb1debef354a1e45c12c365d6",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "uiSyntaxExitCode": 0,
+    "validAggregates": 3,
+    "malformedAggregateGroups": 20,
+    "invalidEnvelopes": 3,
+    "delayedBoundaries": 16
+  },
+  "records": [
+    {
+      "file": "native-result.txt",
+      "sha256": "9c79bf40c338750ccb86a3915e5d672b1d937f2b5a2c1de6e0fdca6beb314100"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    },
+    {
+      "file": "services.json",
+      "sha256": "19366caa0340dcc9cabe5be2b405929027aa2b7878b0f1df0a96d9f2c4bde7a4"
+    }
+  ],
+  "fixtureCaseCount": 11,
+  "fixtureProfileAssertionsPrepared": true,
+  "sdkLinkedBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "nativeServiceIntegrationAccepted": false,
+  "fullRatingFlowAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "remaining": [
+    "actual SDK build and complete fixture UI gate",
+    "native profile layout/localisation/accessibility and interaction",
+    "native-to-service integration",
+    "full physical and release evidence"
+  ]
+}

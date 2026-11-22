@@ -1,0 +1,10 @@
+Release evidence gaps remain
+Missing provider env/secret names: none
+Postponed social-auth env/secret names: SGM_GOOGLE_REVERSED_CLIENT_ID, SGM_FACEBOOK_APP_ID, SGM_FACEBOOK_CLIENT_TOKEN
+Missing provider readiness entries: none
+Missing automated evidence: none
+Missing ios real-device scenarios: foreground_tracking, background_tracking, locked_screen_tracking, gps_loss, network_loss, app_restart, battery_saver, radar_webhook_delay, firebase_native_fallback
+Missing android real-device scenarios: foreground_tracking, background_tracking, locked_screen_tracking, gps_loss, network_loss, app_restart, battery_saver, radar_webhook_delay, firebase_native_fallback
+Missing store-review evidence: emergency_contact_action_screenshot
+Missing safety-audit evidence: guardian_consent_event, pickup_event, dropoff_event, radar_webhook_event, native_fallback_location_event, payment_reconciliation_event
+Missing operational user-flow evidence: urgent_support_space_alert, urgent_support_email_receipt

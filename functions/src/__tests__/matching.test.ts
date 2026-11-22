@@ -51,6 +51,11 @@ const goodRoute: RouteComparison = {
 };
 
 describe("carpool matching", () => {
+  it("excludes an otherwise compatible trip while a change proposal is unresolved", () => {
+    expect(passesHardFilters(request, baseTrip)).toBe(true);
+    expect(passesHardFilters(request, { ...baseTrip, pendingChangeId: "a".repeat(64) })).toBe(false);
+  });
+
   it("rejects trips that cannot support required child tracking", () => {
     expect(passesHardFilters(request, { ...baseTrip, supportsChildTracking: false })).toBe(false);
   });

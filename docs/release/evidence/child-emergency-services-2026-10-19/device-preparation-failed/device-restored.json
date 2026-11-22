@@ -1,0 +1,25 @@
+{
+  "method": "restricted-store-background",
+  "restored": true,
+  "verified": true,
+  "observed": {
+    "storeStopped": false,
+    "background": {
+      "RUN_IN_BACKGROUND": "ignore",
+      "RUN_ANY_IN_BACKGROUND": "deny"
+    },
+    "mapsRuntime": {
+      "playStoreEnabled": true,
+      "playServicesEnabled": true,
+      "playServicesVersion": "24.23.35"
+    },
+    "locationEnabled": true,
+    "noActiveStoreInstall": true,
+    "installationsBlocked": true
+  },
+  "installAdmin": {
+    "authorizationRemoved": true,
+    "componentRemoved": true,
+    "originalPolicyRestored": true
+  }
+}

@@ -1,0 +1,2636 @@
+# Partner Progress Portal
+
+## Current Publication Policy
+
+The dd09 iPhone gate builds and executes all eleven cases: nine pass; the parent
+cancellation query and older Connect-label query fail. The actual snapshot shows
+the cancellation button with its row's identifier. Add explicit row containment,
+preserving action, owner guards, display and every original test assertion.
+Retain the complete failure and pending records; corrected SDK/UI remains open.
+Publish one short nine-of-eleven simulation note, preserving all historical
+results, flow statuses/dates, media, tours, blockers and public access. See
+`ios-parent-row-2026-11-07`.
+
+The later 05 Android main job fails the Wi-Fi prerequisite before installation;
+its separate ride case fails the Home-screen wait after the login form, before
+tracking. Preserve both distinct outcomes and do not infer an authentication,
+network or product root cause from post-instrumentation shutdown. The bounded
+failure-only pre-close observer adds typed window state and one synthetic-parent
+authentication Boolean, not text, captures, probes or retries. It compiles
+locally; actual diagnostic execution and a successful ride remain pending.
+Publish one concise failed-attempt note while preserving all previous flows,
+dates, media, tours, blockers and public access. See
+`native-login-recheck-05cd3f7-2026-11-07`.
+
+The complete 05 iPhone gate compiles and executes ten passing cases plus one
+failed mixed-case Connect label query. Preserve all original outcomes and record
+only the two pending iPhone entries. Attach a stable identifier to the actual
+button without changing its action/text/driver branch, then query that command
+and its enabled state. The casing mismatch is source-derived, not a corrected UI
+comparison. Keep the public parent/rewards notes unchanged and add only a
+non-rendered reference, preserving all flows, dates, media, tours, blockers and
+public access. See `ios-connect-selector-2026-11-07`.
+
+The iPhone parent trip tab previously rendered public trips, not the owned
+reservation directory. Add the existing parent-scoped list/cancel callables,
+strict paging/decoding, explicit cancellation confirmation and read-only recovery
+after unknown replies. Actual Foundation, strict-signature and scripted-adapter
+checks pass; native screen execution and live mutations remain unaccepted. Extend
+one original screen case, preserving all eleven cases, 50 minutes and capture
+bounds. Preserve previous pending entries and every old source/result. Publish
+one short local-only booking note without changing flows, dates, media, tours,
+blockers or public access. See `ios-parent-reservations-2026-11-06`.
+
+The iPhone rewards command was an empty closure. Wire it to the existing driver
+payment-settings destination with captured account-generation and screen guards,
+using the same granted-driver role behavior as Android, without initiating an
+account, onboarding link, payment or transfer. The label now describes the
+destination, not a completed withdrawal. Actual native checks cover two granted
+routes, four denials, invalid mixed roles and seven stale boundaries. Extend only
+the existing secondary-screen case; retain eleven cases, 50 minutes and zero
+default captures. Reopen only the two automated iPhone entries, retaining d3 and
+every negative reference. Publish a short local-only note, preserving old notes,
+flows, dates, media, tours, blockers and public access. SDK/UI and all broader
+requirements remain open. See `ios-reward-navigation-2026-11-06`.
+
+The corrected d3 iPhone gate builds and passes all eleven original cases,
+including parent invitation and child code, with successful disposal and no
+artifacts. Accept only the two current-input-bound automated entries, retaining
+all earlier failures and unrelated requirements. Publish one concise simulation
+result and move the pending-parent note into history unchanged. Preserve every
+flow, date, media item, tour, blocker and public access setting. This is not a
+controlled root-cause comparison, repeatability, physical or release acceptance.
+See `ios-fixture-gate-d3c0f7a-2026-11-06` and its scoped acceptance receipt.
+
+The presentation model initially introduces an account-scope dependency into the
+shared gateway DTO file; the original strict callable check reproduces that
+failure. Move its exact guard bytes to a separate presentation module, include it
+in the actual native plan, and keep the strict signature harness unchanged. Both
+checks pass locally; corrected SDK/UI remains pending. Retain before/after logs
+and source identities in `ios-presentation-modules-2026-11-06`. No extra public
+headline, media, flow, deadline or release acceptance accompanies this modular move.
+
+The cc1 iPhone recheck compiles and executes all eleven original cases: ten pass,
+including child code creation; the parent invitation sheet exposes only its back
+button, with three failures. Retain exact original cases, accessibility excerpt
+and successful disposal/no artifacts. The candidate replaces independent target/
+boolean state with one immutable, role-bound sheet item, denying empty parent or
+foreign/obsolete targets. Actual local native checks pass; corrected SDK/UI and
+root-cause confirmation remain pending. Record only the two pending iPhone items
+against this latest failure, retaining every old proof and unrelated requirement.
+Publish a short simulation/pending-parent note, preserving old notes, flows,
+dates, media, tours, blockers and public access. See `ios-child-presentation-2026-11-06`.
+
+The full source-115 Android workflow and all eleven focused jobs pass: 354
+ordinary cases, 37 local groups, 40 replay cases, seventeen primary copies and
+verified cleanup. The later cc1 main job fails its pre-install Wi-Fi prerequisite;
+its focused startup case passes before primary-copy failure, then cleanup copies
+five files. Retain both outcomes without inheriting success as current-head or
+root-cause acceptance. Publish one short paired simulation note, preserving all
+old notes, flows, dates, media, tours, blockers and public access. No new media,
+physical tracking, closed-app delivery, provider or release proof. See
+`native-matrix-115fee1-2026-11-06` and `native-recheck-cc1e6d7-2026-11-06`.
+
+The new child-account SDK build terminates in compiler IR generation before any
+screen case, not at its fifty-minute deadline. Retain source-bound original crash
+lines and terminal metadata. The candidate changes only the guarded field's
+method-reference conversion to the established explicit closure pattern. Cause
+and correction still need a same-toolchain build and all eleven unchanged cases.
+Publish a short pending-correction note, retaining the previous local child note
+in history, Android interruption, all flows/dates/media/tours/blockers and public
+access. No SDK, connected journey, physical or release acceptance. See
+`ios-child-binding-2026-11-06`.
+
+The distinct 6fb Wi-Fi prerequisite failure and 142 ordinary host timeout remain
+unaccepted. Retain exact original archives/members, 350 starts/349 ends, network
+preparation failure, verified device policy and passive zombie observation.
+The hashed case-clock candidate compiles locally but has no device-emission proof.
+Publish one concise incomplete-simulation note; preserve all previous records,
+flows, dates, media, tours, blockers and public access. Do not invent a root cause
+or promote the candidate, restoration or isolated passes to whole-gate acceptance.
+No deadline, retry, assertion, phone, capture or release-scope change. See
+`native-cutoff-142-2026-11-06`.
+
+The iPhone child-account candidate wires verified-parent invitation create/status/
+revoke/share and explicit pairing approval, plus pure-child code creation from the
+location-independent contact path. Thirty-four malformed replies and seventy
+delayed operation boundaries pass, as do the full native plan and strict owned
+callable signatures. Two original screen cases are extended additively; the
+eleven-case inventory, workflow jobs, deadline and capture policy are unchanged.
+Reopen only the two automated iPhone entries for these new inputs. Keep every
+6fb success/964 failure reference and immutable index. Publish a short local-only
+note; move the previous current-source headline into history without changing
+flows, dates, media, tours, blockers or public access. Actual screen rendering,
+system sharing, the connected signup/approval journey, physical/operational/safety
+and release acceptance remain open. No paid resource or production write. See
+`ios-child-account-2026-11-06`.
+
+The later 6fb gate builds all bundles and passes all eleven original cases with
+successful disposal, no captures and no artifacts. Its exact current iOS inputs
+and workflow match. Accept only the two automated iPhone entries, retaining the
+964 failure and every other requirement. New cumulative indices use the terminal
+job timestamp and identity for both outcomes; never overwrite a same-day index.
+Publish one concise current-version simulation result, moving the 0fb headline
+into history without changing any prior text, media, flows, dates or public access.
+The membership failure cause remains unknown. Physical tracking, notifications,
+emergency phone handoff, operational and safety evidence remain open. See
+`ios-fixture-gate-6fb6487-2026-11-06` and its exact acceptance receipt.
+
+The later 0fb iPhone job builds and passes all eleven original cases, including
+membership review, with disposal and no artifacts. Its iOS input tree/workflow
+matches the source-964 failure exactly; cause and repeatability stay unconfirmed.
+Retain both outcomes and keep the current diagnostic candidate separate. Publish
+one short later-success simulation note and move the ten-of-eleven headline into
+history, preserving its exact text and every previous record/media/flow/date.
+Do not inherit this pass as current source acceptance or change physical,
+operational, safety, emergency or release requirements. See `ios-fixture-gate-0fb9968-2026-11-06`.
+
+The 964 completed native job verifies all 37 isolated groups, 40 native replay
+cases, 299 ordinary passes/55 skips/zero failures, 17 primary copies, four pinned
+APKs, restored device policy and passive emulator exit. Its workflow is cancelled;
+neither whole-workflow nor current-head acceptance follows. The initial local
+archive download failed for disk space; the later download matches the original
+33,157,663-byte artifact and digest. It is not a device-copy failure or native
+rerun. Publish one concise local-only result beside the open iPhone membership
+note. Preserve all old flows/statuses/dates, notes, media, tours, blockers and
+public access. No new media, physical/provider/safety acceptance or root-cause
+claim is added. This predates the ordinary-stop candidate. See `native-matrix-9640d8b-2026-11-06`.
+
+The later 964 iPhone recheck builds and executes all eleven cases: ten pass;
+membership approval is absent after selecting the review club. Cause remains
+unconfirmed. Disposal succeeds with no artifacts. Reopen only the two automated
+iPhone entries and preserve earlier successes and every other release requirement.
+Publish one short simulation-only membership note, moving the earlier iPhone
+success headline into history without changing old text, media, flows, dates,
+tours, blockers or public access. Additive failure-only accessibility diagnosis
+preserves the original assertions, eleven cases, deadline and capture limits.
+The separate operational gate now requires distinct physical iPhone and Android
+records for all six push scenarios and conversation revocation; both remain
+pending, not accepted by local validation. See `ios-fixture-recheck-9640d8b-2026-11-06`.
+
+The subsequent 04 iPhone gate again builds and passes all eleven original cases,
+with disposal successful, optional captures skipped and zero artifacts. Its full
+build-input inventory matches the successful 376 tree and strict current-source
+validation. Retain this second observation without a duplicate headline, index
+overwrite, physical/reliability claim or other manifest change. Existing dated
+failures remain. See `ios-fixture-gate-04c9fba-2026-11-06`.
+
+The 376 full native job verifies one three-account price-consent stage with its
+successful primary copy and persisted checks. The following time/address device
+case passes, but its primary copy exits during an actual PNG transfer; host/guest
+disconnect observations and three offline commands do not identify the underlying
+cause. Cleanup later copies 100 files; the input-stage and full-run reports remain
+absent. Retain exact archive size/digest/member receipts, stage/device distinction,
+restoration and passive host exit. Do not call this the older file-list failure,
+invent a restart or accept cleanup as primary success. Publish one concise consent
+simulation note, retaining all flows, historical notes/media/blockers and public
+access. No app, collector, retry, protocol, timeout or fallback change is made.
+See `native-copy-376addb-2026-11-06`.
+
+The current source 376 iPhone gate compiles and passes all eleven original screen
+cases, including the new selection state; disposal succeeds and artifacts remain
+empty. Exact build inputs and workflow jobs match the current tree. Accept only
+the two automated iPhone entries and a new cumulative index, retaining the 385
+negative recheck and every historical reference. Publish one short simulation
+note; move the earlier local-search/pending-version headlines into history without
+changing their original text, flows, media, dates, blockers or public access.
+This closes no physical, operational, emergency-handoff, safety or release gate.
+See `ios-fixture-gate-376addb-2026-11-06` and its scoped acceptance receipt.
+
+Source 376's web check fails because its extra native selection compile imports
+CryptoKit on Linux. Keep that exact mandatory compile in the existing macos-26
+iPhone job, before the unchanged eleven screen cases; run both source-evidence
+and runner-routing contracts in the web job instead. No Apple compatibility shim,
+compiler skip, fallback, deadline or native-workload change is introduced.
+
+The same 959 source passes isolated native chat radio recovery, private draft
+restoration, explicit retry and reply with two messages/two records/no duplicates,
+an exact original archive and independent teardown. Its full matrix stops before
+the radio cut: both requests and the data subscription exist, but the default is
+cellular and available Wi-Fi is unvalidated; bounded history records Wi-Fi DNS
+failures. Do not substitute the older missing-subscription failure or infer the
+underlying DNS cause. Add the existing passive pre-installation Wi-Fi prerequisite
+to the full matrix without changing any old command, test, predicate or deadline.
+Publish one concise paired-result note and retain all older notes/media/flows/
+blockers. A separate provider callback check times out remotely; two later public
+health GETs return 204, not full readiness, onboarding or payment acceptance.
+See `native-network-959-comparison-2026-11-06`. No new phone/media or DNS repair.
+
+The subsequent 959 iPhone gate passes all eleven original cases with SDK success,
+successful disposal and zero artifacts. Its complete Swift input inventory is
+identical to the earlier 385 ten-of-eleven failure: it predates the new selection
+state and does not prove that correction fixed the screen failure. Preserve both
+observations. Publish a short previous-version simulation note, retaining the
+failed note in history and keeping current acceptance pending. The separate full
+native workflow fails its main job; no whole-gate or release success is claimed.
+See `ios-fixture-gate-959e70b-2026-11-06`.
+
+The retained old selection callbacks erase newer searches in ten controlled
+orders. The synchronous selection state preserves ten new searches, revokes ten
+genuine edits and drains five obsolete responses. Same-value, reverted-edit,
+consent, reset and account-generation guards pass, as do full local native checks.
+The actual screen failure's cause remains unconfirmed. Publish a short local-only
+search note, preserving all flows, media, dated notes, blockers and public access.
+Keep current iPhone acceptance pending, eleven cases and 50 minutes unchanged;
+bounded synthetic accessibility diagnosis is added only on the original failing
+assertion. No phone, capture, provider request or release acceptance is added.
+See `ios-search-selection-2026-11-06`.
+
+The compatible parser patches reproduce six failures in twelve unchanged probes,
+then pass all twelve after a clean install. Backend units pass 623 cases, all
+workspaces build, and the fresh isolated service replay passes 24 groups with
+verified disposal. Retain the earlier interrupted attempt and rejected package
+plan separately. Whole-workspace findings drop 30 to 28, production moderate
+findings 10 to 8; five high findings remain. Publish a short local-only security
+note, preserving prior flows, dates, media, notes, blockers and public access.
+No exploit, production deployment, real payment, native fix or release is claimed.
+See `protocol-query-security-2026-11-06`.
+
+The later 385 recheck builds and executes all eleven iPhone cases: ten pass,
+the first search-result assertion fails. Disposal succeeds and artifacts are
+empty. Reopen only the two combined iPhone automated entries; preserve f61's
+historical success and all other manifest requirements and references. A later
+failed recheck must prevent simply relabelling the older proof as current pass.
+Publish a short ten-of-eleven simulation note, retaining the previous success
+in history. Cause is unconfirmed; no timeout, assertion, case, capture, audience,
+phone or release-scope change. See `ios-fixture-recheck-385a6a4-2026-11-05`.
+
+The f61 SDK build, all eleven original iPhone screen cases and disposal now pass,
+with captures skipped and zero artifacts. Its complete source/config/resource
+inventory and workflow jobs match the current tree. Strict proof validation
+accepts only the two automated iPhone entries and a new cumulative index; every
+other manifest section/entry and all historical reports/references are preserved.
+Historical negative tests no longer require the current manifest to remain
+pending forever. They still validate their exact original failed observations.
+The gap report and final validator reject stale or merely labelled successes.
+Publish one short current-version simulation note, moving d56 into history while
+preserving all flow/status/date records, media, tours, blockers and public access.
+Nine physical scenarios per platform, the actual emergency phone handoff, six
+safety-audit and nine operational items remain. Native CI is not accepted from
+the iPhone pass: its separate remote-stop prerequisite fails at boot-time unlock.
+No new phone, media, provider call, deadline, policy or audience change is added.
+See `ios-fixture-gate-f61e0f7` and `ios-automated-acceptance-f61e0f7` evidence.
+
+The d56 SDK build and all eleven original iPhone simulator cases now pass with
+successful disposal and no artifacts. Publish the exact source-bound result,
+not physical or live-service acceptance. The separate 38b input observation
+retains eight passes/three failures: the immediate editor value is partial but
+the later exact sent/reopened message succeeds. Complete-value/enabled waits
+preserve every original assertion and production/fixture behavior; they postdate
+d56 and require their own run. The separate 38b controlled radio recovery passes
+with an intact private draft, explicit retry, reply, two messages/two notification
+records/no duplicates, exact original archive and independent full cleanup. This
+is local-network proof, not physical tracking, push or whole-CI acceptance.
+The subsequent d56 replay fails its original network-preparation predicate:
+Wi-Fi is validated but the default data subscription/cellular callback is
+absent. No radio cut or retry executes; independent policy/host cleanup passes.
+Keep this later failure beside the successful run, without inventing its cause
+or claiming repeatability. See `chat-network-d56-preparation-2026-11-05`.
+Add two short nontechnical notes; move previous partial headlines into history
+without deleting any dated evidence, flows, media, tours or blockers. No new
+media, phone, provider call, audience/policy change or release acceptance.
+See the dated `ios-fixture-pass-d56`, `ios-input-commit-38b` and `chat-network-38b`
+evidence folders.
+
+The 35f gate builds and executes all eleven cases: nine pass, including publication;
+search-booking confirmation and one team-send enabled assertion fail. Disposal
+succeeds and artifacts remain empty. Its bounded accessibility dump shows Messages
+after the booking tap, not Search or an alert; exact tap coordinates are unknown.
+The layout candidate allocates separate content/navigation regions, includes the
+raised publish action in measured navigation height and removes obsolete 96-point
+scroll padding. Native frame/non-navigation assertions are added to the existing
+booking case; team sends retain their production guard and original assertions,
+with the established six-second readiness observation. Local source/native checks
+pass; current native layout/UI acceptance remains pending. Publish one concise
+simulation/local-only note. Move old nine/eleven and eleven/eleven headlines into
+history, preserving their exact text, evidence and all prior flows/statuses/dates,
+media, tours, blockers and public access. Separate Android preparation evidence
+retains validated Wi-Fi with no data subscription, and a later image-download
+failure before any app flow. Neither is a chat or ride-stop pass. No new media,
+phone, provider call, network/notification policy or release acceptance is added.
+See `docs/release/evidence/ios-viewport-35f-2026-11-05/`.
+
+Publication price validation now retains actual negative reproductions: 0.29
+becomes 28 cents and nonfinite input traps on iPhone; Android accepts invalid text
+as a zero-price draft. Exact bounded decimal parsing replaces both floating-point
+paths, with explicit errors before confirmation/publication and matching summaries.
+Both languages pass all 100001 supported cent values; full local native checks
+and 846 Android JVM cases pass. Blank publication input remains free; blank trip
+editing remains invalid. Publish a short local-only price note, no new media,
+changed prior flows/statuses/dates/tours/blockers or release acceptance. No
+commission, membership, team authority, network or notification policy changes.
+Native screen checks for this source and complete publication remain pending.
+See `docs/release/evidence/publication-price-2026-11-05/`.
+
+The later 6e89 ARM gate finishes normally in under 25 minutes, with SDK success,
+nine passing and two failing iPhone cases (four assertion failures). Disposal
+succeeds and artifacts remain empty. The personal emergency-contact case passes
+in this run without the later navigation candidate; do not infer that candidate
+fixed it or claim reliability from one result. Booking confirmation and publication
+still fail. Publish one concise simulation-only nine-of-eleven note, preserving
+all earlier evidence, flow statuses/dates, media, tours, blockers and public access.
+The 35f seed/navigation/diagnostic changes are absent from this result and await
+their own gate. No test, deadline, capture limit, network or notification policy
+changes. See `docs/release/evidence/ios-fixture-failure-6e89-2026-11-05/`.
+
+The 584 SDK build passes and all eleven iPhone cases execute: eight pass and three
+fail with five assertions, before a subsequent whole-job deadline cancellation.
+Disposal succeeds and no artifacts exist. Publish one concise eight-of-eleven
+note, no new media. The local DEBUG factory check reproduces the publication
+seed-order defect and now passes thirteen route owners plus actual fixture
+second-child/two-seat booking confirmation. Emergency navigation is a candidate;
+the missing native booking alert remains unexplained. Preserve all assertions,
+cases, 50 minutes, capture bounds, historical records/media/statuses/dates/tours/
+blockers and public access. No notification or DNS policy is changed. See
+`docs/release/evidence/ios-fixture-failure-584-2026-11-05/`.
+
+The actual aac Linux search contract step now passes. Publish one short automated-
+check note, not complete phone-flow acceptance. The failed Android prerequisite
+retains five unvalidated-Wi-Fi defaults, then fifty-five validated-cellular
+defaults, with Wi-Fi unvalidated throughout and historical DNS failures. Its final
+command cause is unknown. The candidate corrects a locally reproduced deadline
+classification race, not the network. Current iPhone closed-app notification
+wiring and its display policy remain open. Keep all prior flows/statuses/dates,
+media, tours, blockers, capture/runtime limits and public access unchanged. See
+`docs/release/evidence/verification-followup-aac-2026-11-05/`.
+
+The latest 9ae iPhone gate reaches its approved 50-minute limit during compilation;
+screen/capture steps are skipped, disposal succeeds and no artifacts remain. The
+584 Android chat trial stops before app installation on its passive Wi-Fi
+prerequisite; its nondefault Wi-Fi validation state and root cause are unknown.
+The 584 Linux search check compiles but fails request-object comparison before
+response cases. Preserve each actual failure separately. The candidate uses
+strict sorted-key JSON byte comparison, anonymous available-network capability
+metadata and the standard public ARM runner, without changing readiness, eleven
+cases, 50 minutes, capture limits or public audience. Local wire checks pass;
+Linux/native gates and performance improvement are not accepted. Publish one
+short incomplete-test note, no new media or changed historical flows/statuses/
+dates/tours/blockers. See `docs/release/evidence/verification-boundaries-2026-11-05/`.
+
+Fourteen current isolated booking-transaction groups now pass after selecting the
+explicitly configured Java runtime in child-process lookup. Eleven environment/
+disposal checks pass; no global settings, installation or alternative-runtime
+fallback is added. All local endpoints close. Keep the earlier unexecuted attempt
+immutable and publish one short local reservation note. At that observation the
+native source identity is exactly `9ae6ea7`. The later portable-check correction
+moves unchanged text normalization out of chat's crypto-dependent module; this is
+not Linux or native SDK/UI acceptance. Do not restart or accept the live iPhone
+job from handler/database proof. Preserve all prior media, flow statuses/dates, tours,
+blockers, eleven cases, 50 minutes, capture bounds and public audience. No phone,
+native SDK/HTTP authentication, real map, payment or full booking acceptance is
+added. See `docs/release/evidence/booking-server-recheck-2026-11-05/README.md`.
+
+The iPhone search contract now rejects eight reproduced guessed-price/capacity/
+snapshot failures and sixty malformed response groups. Three actual server
+serializer outputs retain exact labels, endpoint data and a second-child/two-seat
+booking snapshot through the actual Swift gateway with scripted SDK callbacks.
+Four delayed boundaries, one pre-call denial and three direct nonfinite scores
+pass; full native logic/signature checks pass too. The optional service recheck
+does not execute because its configured Java prerequisite is unavailable. Publish
+one concise local-only search note, replacing no historical record/media/status/
+date/tour/blocker. The existing eleven cases, 50 minutes, capture bounds, public
+audience and current iPhone pending entries remain unchanged. Linux execution,
+native UI, real service/map and full booking/release acceptance remain open.
+See `docs/release/evidence/ios-search-contract-2026-11-05/README.md`.
+
+The a37 SDK build and all eleven synthetic iPhone screen cases pass, with
+successful disposal and zero artifacts. Publish a short simulation-only result,
+not real-service, physical or release acceptance. The later owned-search fix
+retains a 22-restoration/24-unleased-callback negative reproduction and passes
+90 controlled boundaries, strict address parsing, fifteen scripted adapter
+callbacks and four pre-call denials. Its new second-child/two-seat screen assertion
+is only prepared inside the existing case. Publish one short local-only note;
+keep the current iPhone manifest pending and all eleven cases, 50 minutes and
+capture bounds unchanged. The Linux provider validation passes separately after
+the signed-lock repair, with no cloud operation or partner-facing technical note.
+Preserve all previous flows/statuses/dates, media, tours, blockers and public access.
+See the dated `ios-search-ownership` and `ios-fixture-pass-a37` evidence folders.
+
+The iPhone booking/ride conversation source is now wired end to end. Controlled
+state/storage/protocol checks, 84 delayed boundaries, eleven scripted thread
+adapter invalidations and nine separate disposable service groups pass. The
+existing eleven-case gate adds booking/active-ride journeys without removing any
+original assertion or changing 50 minutes/capture bounds. The prior 62f run builds
+but is cancelled during screens; 31a fails dependency download before app build.
+Neither accepts this candidate. Publish one concise local-only note, no new media
+or changed historical records, flow statuses/dates, tours, blockers or public
+audience. See `docs/release/evidence/ios-ride-chat-2026-11-05/README.md`.
+
+The actual team draft setter reproduces twelve truncation boundaries under the
+old read/busy gate; the candidate retains exact text while keeping sends blocked.
+Full controlled native checks and both original fixture-model decisions pass.
+City button accessibility and the club label hit area are adjusted candidates,
+not native-screen acceptance or a proven membership failure cause. Publish one
+short local-only note, preserving all prior records/media/dates/tours/blockers and
+public access. Keep eleven cases, 50 minutes and capture bounds unchanged. See
+`docs/release/evidence/ios-input-controls-2026-11-05/README.md`.
+
+The EEF SDK build passes but only one fixture case completes before the approved
+50-minute deadline. D51 compiles and executes all eleven: eight pass and three
+fail (five assertions: city entry, complete chat draft/send text, membership
+approval). Disposal succeeds and artifact inventories are empty for both. Publish
+one concise incomplete-iPhone note, no new media or changed historical records,
+statuses, dates, tours, blockers or public access. Do not claim a diagnosed cause,
+full gate or release. See
+`docs/release/evidence/ios-fixture-failure-d51-2026-11-05/README.md`.
+
+The booking/ride chat correction passes nine isolated service groups, all 219
+rule cases and 840 Android JVM cases. Preserve the original message-only listener
+failure; Android now independently observes source authority and clears stale
+state, but phone UI, deployed rules and iPhone booking/ride chat remain pending.
+Publish one short local-only note without changing prior flows, dates, statuses,
+media, tours, blockers, history or public access. No production apply or new
+phone/capture authorization is implied. See
+`docs/release/evidence/chat-source-access-2026-11-05/README.md`.
+
+The iPhone profile city is now source-wired to the existing owned read/save
+callables, independent of trip search. Controlled validation/state checks,
+32 delayed account/lifecycle boundaries and ten separate isolated service
+groups pass. Save/removal/reopen assertions are prepared inside the existing
+profile case, not an extra case or capture. SDK/UI and native service integration
+remain unverified. Publish one short local-only note without changing previous
+flows, dates, statuses, media, tours, blockers or public access. Preserve the
+eleven-case, 50-minute gate and approved capture bounds. See
+`docs/release/evidence/ios-profile-city-2026-11-05/README.md`.
+
+The iPhone club request/detail and versioned manager approval/refusal are now
+source-wired. Controlled native checks, 128 delayed boundaries and seven separate
+local service/client-rule checks pass. The earlier 9f7f0ee SDK build passes, but
+two of eleven UI cases fail; retain every outcome and do not accept the candidate
+alert/identifier corrections before rechecking iPhone. Publish a short local-only
+membership note and the actual nine-of-eleven result, no new media or changed historical flow status/date, gallery,
+tour, blocker or public access. All eleven cases, the 50-minute gate and capture
+bounds remain unchanged. See
+`docs/release/evidence/ios-membership-2026-11-05/README.md`.
+
+The 3954ff7 iPhone SDK build is cancelled at the approved 50-minute job limit,
+before any fixture UI. Disposal succeeds and no artifacts are retained. Do not
+infer a cause or accept the later team-chat/received-rating candidate. A source
+audit of 6073b2c confirms the club-request button only changes local UI state,
+booking chats are informational and profile city editing is absent. Publish one
+concise incomplete-club note, no new media or changed historical flow status/date,
+tour, blocker, gallery or public access. Keep the independent generated-file
+diagnostic failure internal; its seventeen successful transfers and verified
+cleanup do not repair the eighteenth failure. See
+`docs/release/evidence/ios-build-audit-2026-11-05/README.md`.
+
+The iPhone profile now source-wires the authenticated received-rating average and
+count, without raw reviews, guessed scores or another account's data. Controlled
+wire/state checks, sixteen delayed success/error boundaries and eight isolated
+service checks pass. The existing profile case includes prepared assertions; all
+eleven cases, the deadline and capture policy remain unchanged. Publish one short
+local-only note with no new media. SDK/UI, physical-device and full rating-flow
+acceptance remain unverified. Preserve all prior flows, statuses, dates, tours,
+blockers, galleries, history and public access. See
+`docs/release/evidence/ios-received-ratings-2026-11-05/README.md`.
+
+The iPhone team directory, conversation, persisted draft, explicit stable-ID send
+and visible-message read handling are now source-wired. Controlled native logic,
+96 delayed boundaries and isolated service rechecks pass; the eleven-case fixture
+inventory now includes the prepared team journey inside the existing messages
+case. Neither SDK compilation nor those screens have executed for this candidate.
+Publish one concise local-only note, no new media. Preserve all previous flows,
+statuses, dates, tours, blockers, history and public access. Notifications, full
+conversation acceptance and release remain unverified. The previous statement
+that group conversation work is not implemented describes that earlier source.
+See `docs/release/evidence/ios-team-chat-2026-11-05/README.md`.
+
+The 84c9b62 iPhone SDK-linked build fails before every fixture UI test: the SDK's
+sending boundary rejects the task-isolated contact payload dictionary. Disposal
+succeeds, both capture steps are skipped and the artifact inventory is empty.
+The candidate replaces the dictionary parameter with a Sendable request and
+constructs a fresh payload at dispatch; ten exact payload variants and ten invalid
+inputs pass locally. Publish one short incomplete-iPhone note, not a successful
+SDK/UI or complete conversation claim. Preserve all prior flows, media, dates,
+tours, statuses, blockers, history and public access. The group conversation work
+remains incomplete and is not published as implemented. See
+`docs/release/evidence/ios-contact-request-2026-11-05/README.md`.
+
+The iPhone messages/reviews screen now uses immutable account-generation leases
+for inbox, pagination and rating requests. The baseline methods restore old
+private inbox content and rating feedback in the controlled reproduction; the
+candidate denies forty-two delayed success/error boundaries. Unknown rating
+writes require an explicit fresh inbox read before another submission. Publish
+one concise local-only note with no new media or changed flow statuses/dates,
+tours, blockers, history or public access. The eleven-case SDK/UI gate, full
+conversation UI, native sign-out and release remain unverified. See
+`docs/release/evidence/ios-message-ownership-2026-11-05/README.md`.
+
+The verified-parent child-contact picker is now source-wired on iPhone. Its local
+protocol/pagination/privacy checks and twenty-four delayed boundaries pass; a new
+UI case is only prepared, bringing the complete fixture inventory to eleven.
+Publish one short local-only note, no new media or changed flow status/date/tour,
+blocker, history or public access. The manager approval journey, new SDK/UI gate,
+real Phone handoff and release still need proof. Keep the earlier contact/shutdown
+records immutable. The separate 84c9b62 chat job's preparation timeout and verified
+cleanup stay internal metadata, not another diagnostic update. See
+`docs/release/evidence/ios-parent-contact-2026-11-05/README.md`.
+
+The 4582c3a iPhone SDK build, eight synthetic screen cases including sign-out, and
+simulator disposal pass. Publish one brief simulation result, without new media.
+The later emergency-contact candidate replaces the sample number/static action;
+its controlled protocol, ownership and opener checks pass, but its new ten-case
+SDK/UI gate and real handoff remain unverified. Publish one local-only contact
+note. Parent selection/editing of a child's contact still needs an iPhone UI.
+Keep both current iPhone manifest items pending and preserve all prior flows,
+statuses, dates, galleries, tours, blockers and public access. The 75440a2 Android
+gate fails dependency preparation with HTTP 429 before native tests; retain that
+internal result without another visible diagnostic update. See the dated
+`ios-emergency-contact` and `ios-fixture-pass-4582` evidence folders.
+
+The 4582c3a Android gate now succeeds: 296 ordinary passes, 55 explicit skips,
+zero failures, both readiness cases, the eight-check parent replay and all twelve
+focused lanes pass. Publish one short simulation result without new media or
+changing historical records, dates, statuses, tours, blockers or public access.
+The newer pre-close observer is absent and remains unexecuted. This does not
+establish the earlier failure's cause or physical/release acceptance. See
+`docs/release/evidence/android-readiness-pass-4582-2026-11-04/README.md`.
+
+The a226b3e iPhone run is cancelled at the approved 50-minute preparation deadline,
+before UI tests; capture steps are skipped, the artifact inventory is empty and
+disposal succeeds. Publish one concise incomplete-iPhone note, no new media. The
+parent window observer is compiled in both modes but has not executed: retain its
+internal-only metadata without another visible diagnostic update. Do not accept a
+root cause, repaired parent flow, iPhone gate or release. Preserve all historical
+records, flow statuses, galleries, dates, tours and blockers. See the dated
+`ios-preparation-timeout-a226` and `guardian-window-observation` evidence folders.
+
+The a226b3e Android recheck is terminal failure: both readiness regressions pass,
+but the ordinary command times out at case 319 of 351 and parent replay loses its
+interface at the later guardian-opening scroll. Keep this separate from the
+historical pass and earlier login-wait failure; do not infer a root cause or accept
+the full gate. Publish one concise incomplete-parent note, no new media. See
+`docs/release/evidence/android-node-readiness-2026-11-04/a226b3e/README.md`.
+
+The a226b3e authentication-file substitution reproduces a login during unsettled
+native work. Controlled local checks pass for retained native-location shutdown;
+the profile button is connected, but its new UI case has not executed. Publish one
+short local-only sign-out note, with no new media. The changed iPhone source makes
+both automated entries pending again; the prior 3e7cd40 pass and all earlier
+flows, dates, tours, media, statuses, blockers and updates stay intact. Do not
+accept full logout, all SDK drainage or physical behavior. See
+`docs/release/evidence/ios-location-shutdown-2026-11-04/README.md`.
+
+The 3e7cd40 iPhone run now succeeds: the actual SDK build, all seven synthetic
+fixture cases and simulator disposal pass within the approved 50 minutes. Publish
+one short simulation-only note, without new media. Accept only the two matching
+automated manifest entries; retain every physical, operational and complete-flow
+requirement. All prior content and failed-run records remain intact. See
+`docs/release/evidence/ios-fixture-pass-3e7cd40-2026-11-04/README.md`.
+
+The retained 0d50270 Android main gate fails twice independently: ordinary command
+deadline before all 349 cases finish, then missing composition in parent-login
+replay. The failed cleanup copy observes a directory not produced by that flow.
+The new bounded readiness query and 101 mechanical caller migrations preserve
+all predicates/timeouts and compile, but their two new native regressions have
+not executed. The separate unchanged 3e7cd40 baseline subsequently passes its
+ordinary and connected replay, including the parent case, plus all focused lanes.
+This does not execute the readiness candidate or establish either earlier cause.
+Publish one short simulation-pass note and retain every flow, image, date, tour, status,
+blocker and earlier update. iPhone source and its live run remain unchanged. See
+`docs/release/evidence/android-node-readiness-2026-11-04/README.md`.
+
+The actual 0d50270 booking request/approval methods restore feedback after same-UID
+reauthentication; approval also starts seven reads. The candidate denies 24 local
+delayed boundaries, preserves displayed trip terms and binds action dispatch to
+the original access. The approved a23 capture run separately fails at the real
+permission bridge's missing Void continuation type, before every UI/capture step;
+the artifact inventory is empty and disposal succeeds. Retain this terminal
+failure, not a deadline or new visual success. The typed bridge passes its new
+controlled check but still requires an SDK build. Publish two concise local/failure
+notes, preserving all earlier flow/media/date/tour/status/blocker/history records.
+The iPhone evidence index is grouped to keep the content file below 300 lines.
+See the dated `ios-booking-ownership` and `ios-permission-build-a23` records.
+
+The payment screen now binds checkout, verification and onboarding actions to its
+immutable account access. Twenty-eight delayed account/link cases deny stale
+requests, handoffs and feedback; current explicit retry and secure-link checks
+pass. The actual payment gateway passes typed callable signature checks, not live
+provider execution. Publish one concise local note, preserving all flows, dates,
+statuses, media, tours, blockers and prior updates. No full logout, native browser,
+SDK build, real onboarding or release acceptance is added. See
+`docs/release/evidence/ios-payment-screen-2026-11-04/README.md`.
+
+The original a23cb9d payment-status response changes a same-UID reauthenticated
+account and starts seven fresh reads in the controlled reproduction. The
+candidate retains account-generation leases, denies 24 delayed preparation/status
+boundaries and preserves five current status paths plus explicit retry. Publish
+one short local note, not real payment, full sign-out or SDK cleanup acceptance.
+Preserve all earlier flows, images, dates, tours, statuses, blockers and updates.
+See `docs/release/evidence/ios-payment-ownership-2026-11-04/README.md`.
+
+The original 20ca145 publication callback changes signed-out UI in the controlled
+regression; the account-bound candidate passes 42 delayed boundaries and current
+success/retry checks. Publish one short local note, not completed logout. Preserve
+all 34 flows, 532 media files, dates, tours, statuses, blockers and older updates.
+Also retain the terminal 9936e65 35-minute build cancellation: no UI case executes.
+Future public runs are now approved up to 50 minutes, with only three synthetic
+captures, at most 2 MB, one-day retention. No new native media is yet accepted.
+Site service-token rotation is recorded technically, not as visible product news;
+public audience remains unchanged. See the dated `ios-account-work`,
+`ios-build-timeout-9936e65`, `ios-approved-captures` and `site-service-token` records.
+
+The original 9936e65 ride start restores a ride and starts tracking after sign-out
+in the controlled regression. The candidate passes 72 startup and ten additional
+permission/passenger/end revocation cases, with synchronous local-stop calls and
+an owned location upload. This is not a completed native sign-out or real service
+teardown. Publish one short local result, preserving all media, flows, dates,
+tours, statuses, blockers and public access. See
+`docs/release/evidence/ios-ride-ownership-2026-11-04/README.md`.
+
+The terminal 84aa134 iPhone SDK-linked build succeeds, and the extended account
+profile fixture passes. The full gate fails: six cases pass, but the first launch
+times out before consent assertions. Its cause remains unknown. Publish one short
+simulation note while preserving all previous results and partial statuses. The
+later location/boot candidates need their own run; no new native media or real
+authentication/physical/release acceptance is added. See
+`docs/release/evidence/ios-profile-fixture-84aa134-2026-11-04/README.md`.
+
+The location provider now rejects a delayed start after an exact-ride stop during
+its first upload. The original provider reproduces the fault; the candidate passes
+controlled wrapper and ownership checks, not real GPS or full sign-out. Publish
+one short local result without changing any flow/media/date/tour/status/blocker
+or public access. Profile logout, provider identity and full orchestration remain
+open. See `docs/release/evidence/ios-location-stop-2026-11-04/README.md`.
+
+The initialized-profile work separates raw identity from verified session roles,
+forwards the signup name and replaces sample identity with account data. Its local
+strict parsing, delayed preparation, child authority and retry checks pass; the
+extended fixture was subsequently SDK-built and rendered at 84aa134, while that
+full gate fails on a different case (see the terminal result above).
+Publish one short local note, without new media or changed flows/statuses/dates,
+tours, blockers or audience. Profile logout/tracking teardown remain open. See
+`docs/release/evidence/ios-profile-initialization-2026-11-04/README.md`.
+
+The new authentication comparison reproduces visible and simulated provider
+identity restoration after logout at 91f9677. The candidate denies both locally,
+serializes callbacks through cleanup and retains credential-free logout intent
+across store/controller recreation. Missing policy requires explicit sign-in once.
+Publish one short local note, without media or flow/date/status/audience changes.
+This is not real SDK authentication, rendered logout, native process-death or
+tracking teardown acceptance. See
+`docs/release/evidence/ios-authentication-ownership-2026-11-04/README.md`.
+
+The actual AppState race comparison reproduces late data restoration after
+sign-out at 5582299. The candidate passes local snapshot/ownership checks, not a
+completed iPhone sign-out UI. Add one short local result and retain all 34 flows,
+532 media files, previous updates, phone dates, tours and partial statuses.
+The profile action, authentication completion and tracking teardown remain open.
+See `docs/release/evidence/ios-account-refresh-2026-11-04/README.md`.
+
+The SDK-linked build and all seven fixture cases now pass at 5582299, including
+rating submission and both consent cases. Add one concise simulated-iPhone note;
+retain all historical failures, media, tours, dates and partial statuses. The later
+account-refresh code needs its own full run. Android's same-source full gate fails
+in component image transfer despite successful ordinary tests and connected replay.
+No new native media, provider transaction, physical or release acceptance is added.
+See `docs/release/evidence/ios-fixture-pass-5582299-2026-11-04/README.md`.
+
+### Earlier Checkpoints
+
+The ef9f0e6 iPhone build still fails before UI tests; its previous support errors
+do not recur, but booking/inbox/ledger errors remain. Publish one short local
+consent-reset note. The candidate protects request scope and shares typed callable
+reads, but the SDK build and two added UI cases remain unverified. Preserve all
+flows, statuses, dates, media, tours and old updates. See
+`docs/release/evidence/ios-search-safety-2026-11-04/README.md`.
+
+The owner confirmed Android and iPhone for MVP on 4 November. Add one concise
+scope note and an iPhone conversation/emergency blocker. Local Foundation checks
+pass; the first SDK-linked build fails before UI tests. The typed support candidate
+is not yet SDK-verified. Preserve every flow, date, media item, tour, prior update and public
+access. See `docs/release/evidence/ios-mvp-baseline-2026-11-04/README.md`.
+
+The d77a049 web jobs and all eleven focused Android lanes pass. The main ordinary
+command completes all 349 cases, but a later connected-replay evidence copy fails
+after a private trip-draft restart. A subsequent cleanup copy cannot accept the
+failed main gate. Add one short simulated-message recovery note, retaining all
+flows, media, phone dates and prior updates. This is not a physical release pass
+or proof of the interrupted-command collection branch. See
+`docs/release/evidence/native-copy-recheck-2026-11-04/README.md`.
+
+The 9fd5bf3 web jobs pass and ten focused Android lanes pass. The focused network
+lane fails before a cut, while the main ordinary command reaches its host
+deadline without a complete result; its connected replay fails separately.
+Add one brief dated note, preserving all flows, media, tours and partial statuses.
+The diagnostic copy correction is not a repaired or accepted phone flow. See
+`docs/release/evidence/native-cutoff-2026-11-04/README.md`.
+
+The compatible security update changes twelve lock entries within existing
+ranges, builds all workspaces and passes 623 backend units plus 18 isolated
+invitation service cases. The audit falls from nine high findings to five, not
+zero. Add one short security note and evidence reference; preserve every flow,
+media item, phone date, status, tour and earlier update. The baseline main Android
+pass remains separate from its failed focused preparation jobs. No phone, real
+payment, complete security or release acceptance is added. See
+`docs/release/evidence/compatible-security-patches-2026-11-03/README.md`.
+
+The 9450ad0 web gate passes, but production callback readiness and the main native
+gate fail. Keep the callback timeout separate from later local health success,
+the temporally associated unavailable-instance server error and the denied
+incident-time metrics. The native ordinary transcript is incomplete, not a new
+network replay. Update only the outdated payment-return blocker and add one short
+progress entry; retain all flow dates, statuses, media, tours and earlier evidence.
+No retry, scaling, deadline, billing or app change is made. See
+`docs/release/evidence/callback-capacity-2026-11-03/README.md`.
+
+The aab9ac0 ordinary matrix passes 349 cases (294 passed, 55 skipped), all four
+form sessions and twenty required views, with complete primary copies. Visual
+review accepts only the feedback labels and six original viewport inputs. The
+main native job still fails in independent network preparation before any cut or
+offline send; retain its result, Wi-Fi DNS observations and verified restoration,
+without a cause/repair or whole-gate claim. Add concise progress copy and preserve
+all earlier media, dates, tours and partial statuses. See
+`docs/release/evidence/form-feedback-visual-2026-11-03/README.md`.
+
+The edcd1e9 native gate and all executed checks pass. All 24 booking-date views
+and four measured-frame regressions execute and pass; review finds complete
+dates and exact original viewport/window pixel matches. Add six original date
+viewports and one concise simulated-date note. Retain the first twenty reported-
+paragraph failures, every earlier image, flow status, phone date and tour. Remove
+only the date-label item from the appearance remainder; other coloured texts,
+system insets, physical/iOS accessibility and release evidence stay open. See
+`docs/release/evidence/booking-date-visual-2026-11-03/README.md`.
+
+The first 549c547 booking-date run executes 24 cases and rejects twenty at the
+reported-paragraph check. Keep those failures and the four partial payment
+capture triples private to the evidence bundle, not in the gallery. Publish one
+short incomplete-date note without changing any flow status, images, dates or
+tours. The measured-frame candidate and four rejection probes still need their
+own native run. See `docs/release/evidence/booking-date-attempt-2026-11-03/README.md`.
+
+The c6c3eb4 source passes the full native gate and all executed checks. All twelve
+feedback layouts and two sampling cases pass. The initial visual classification
+of three incomplete exports was incorrect: re-review sees the expected text, and
+all twelve original viewports match their full-window regions pixel for pixel.
+Retain that original review and its explicit correction, not a claimed capture
+repair or new execution. Keep the same five public viewports, all earlier media,
+dates/tours and partial status; remove the incorrect three-capture blocker. See
+`docs/release/evidence/feedback-text-visual-2026-11-03/README.md`.
+
+The feedback-text correction passes its thirty contrast measurements, but the
+6e4ef97 visual recheck still fails six layouts. Publish one short incomplete-check
+note, no new media or changes to the 34 flows, dates, tours, status or audience.
+The pre-assertion diagnostic candidate is compiled, not executed or accepted.
+See `docs/release/evidence/feedback-layout-recheck-2026-11-03/README.md`.
+
+The separately approved c84b8e4 web-only diagnostic completes successfully on its
+second attempt. Preserve the first cancellation and its unknown cause. The later
+8bd9f50 head passes the web gate but fails its main native primary copy and one
+focused build before phone startup. Add one concise web note and make the capture
+blocker describe intermittency rather than whichever run happened last. Retain
+the source-bound earlier pass and every flow/media/date/tour/status unchanged.
+Do not publish raw debug logs or attribute the earlier stop to a recovered socket
+error in the successful run. See `docs/release/evidence/web-finalization-2026-11-03/README.md`.
+
+The c84b8e4 main native matrix, full connected replay and all primary copies pass.
+The separate chat-network case fails before any disconnection/send, and the web
+job is cancelled at its deadline despite successful step records. Its last log
+line is orphan cleanup; the finalization cause remains unknown. Preserve both
+verified original ZIPs' selected members and all terminal first-attempt checks.
+Publish one concise simulation note and correct the capture blocker's latest
+description, with no new media, changed flow dates/status/tours or release claim.
+The separately approved web-only diagnostic retry is not a replacement for the
+initial cancelled result. See `docs/release/evidence/checks-c84b8e4-2026-11-02/README.md`.
+
+The compatible URI dependency correction retains its incomplete first assertions
+and missing-output launch, then proves the corrected same-source comparison and
+six local compatibility groups. Publish one concise security note with the still-
+open audit limitation. Keep every flow, media item, phone date, tour and public
+access unchanged. Existing Web Integration Smoke commands run both extended test
+files; only source path triggers are added. No Terraform change is needed. See
+`docs/release/evidence/uri-security-2026-11-02/README.md`.
+
+The terminal 1030dac run passes 248 ordinary cases and nine focused jobs, but fails
+the main primary capture copy, native-startup login preparation and image install.
+Replace the existing failed-copy note and blocker text, retaining their earlier
+source evidence, without adding another visible update or changing media, phone
+dates, tours, statuses or audience. The selected members are individually hashed;
+do not claim independent complete-archive verification. See
+`docs/release/evidence/native-checks-1030dac-2026-11-02/README.md`.
+
+The 5d34c0f main native job passes, but its focused team-read job and required safety
+aggregator fail after 3 + 3 + 8 + 4 framework cases, at the primary alert capture
+copy. Retain the terminal rollup, original failed copy, guest/host disconnect
+observations and independent device/host restoration. Publish one short failed-copy
+note without media or physical/delivery/release promotion. The separate local
+clock-substring assertion correction is not a runtime or disconnect repair. See
+`docs/release/evidence/focused-copy-5d34c0f-2026-11-02/README.md`.
+
+The separately approved parent-approval retry at 5d34c0f stops before signup after
+temporary input reaches the phone browser address bar. Its local fixture is
+destroyed and all owned resources are disposed. Retain only sanitized negative
+records and one reviewed, masked form frame; never the sensitive frame/value.
+Publish one concise interrupted-preparation note, no new media or changed dates,
+tours, statuses, audience or earlier successful signup proof. The corrected manual
+input procedure is not a passing phone replay. See
+`docs/release/evidence/parent-approval-input-stop-2026-11-02/README.md`.
+
+The approved private child-signup trial creates exactly one child-only account on
+a real test phone and signs into the native app. Publish its three reviewed exact
+session crops and one concise note; keep all historical captures, tours and partial
+status. Parent approval stops at the observer's outdated invitation-bound schema;
+its original incomplete report is retained, not promoted by the checker fix.
+The separately approved simulated network observation collects all samples but
+fails property restoration. Keep its failed receipt and source unchanged and
+publish one short incomplete diagnostic note, no raw logs or cause/repair claim.
+Both isolated datasets, phone and helper are disposed. See
+`docs/release/evidence/approved-private-trials-2026-11-02/README.md`.
+
+The 30272e0 focused network trial fails before disconnection or sending because
+no default mobile data subscription is available. Retain its original failed
+instrumentation, before-app and later state, artifact provenance and verified
+device/host disposal. Publish one concise preparation blocker without new media,
+changed flow status/phone dates or invalidating the separate complete 638066c
+success. The missing default's underlying cause remains unproven. See
+`docs/release/evidence/chat-preparation-30272e0-2026-11-02/README.md`.
+
+The complete 638066c automated run passes 248 ordinary cases, all 37 connected
+replay groups / 40 native cases, 17 primary copies, eleven focused jobs and all
+three web/service groups. Retain its immutable source boundary, original reports
+and device/environment restoration alongside the original d55a112 capture failure.
+Publish one concise simulation update and correct the two outdated latest-failure
+descriptions, without new media, changed phone dates/tours/status/audience or a
+claim that intermittency or release readiness is resolved. At that earlier boundary
+the physical child signup remained incomplete. See `docs/release/evidence/complete-checks-638066c-2026-11-02/README.md`.
+
+The original three chat session images have JPEG bytes despite their `.png`
+filenames. Preserve them and the old FFmpeg-dependent recrops unchanged. The
+separate RGB normalization bundle retains the Linux pixel mismatch, locks full
+JPEG decoding before lossless integer RGBA cropping, and checks every output
+pixel without tolerances. Publish only its three visually reviewed derivatives;
+keep all 34 gallery entries, 15 tour steps, phone dates, partial status and other
+flows unchanged. This is a capture correction, not a new phone trial or release
+acceptance. See `docs/release/evidence/chat-proof-rgb-normalization-2026-11-01/README.md`.
+
+The current focused chat network case passes at 3eae535 with its original
+instrumentation, primary copy, record checks and independent disposal. Retain the
+earlier 8369af5 preparation failure: no default mobile selection was available
+before app installation. All 31 critical sources are identical; no repair or cause
+is established. Add one short simulation progress note and source metadata, without
+changing any phone gallery, dates, tours, videos, partial status or public access.
+See `docs/release/evidence/network-preparation-3eae535-2026-11-01/README.md`.
+
+The 1 November physical chat confirmation-loss trial passes eight independent
+checkpoints on one phone with two isolated accounts. The live listener resolves
+one committed message without an explicit resend; reopening, driver receipt and
+read acknowledgement pass. Add three reviewed session crops and concise progress
+copy. Retain the earlier incomplete facade-preparation trial, all historical media,
+phone dates and tours; keep the flow partial and public access unchanged. No video,
+peer-phone/radio, production, tracking, safety-audit or release claim is added. See
+`docs/release/evidence/chat-receipt-loss-phone-2026-11-01/README.md`.
+
+The a55ed57 account-free default and explicit pinned comparison both pass 32
+primary transfers. This does not establish a version cause or repair application
+copies; the product toolchain stays unchanged. Separately, 84cb6b2 passes all eight
+native alert-opening routes but fails the immediate removal assertion in one of
+four platform cases. Retain its original failure and verified permission/device
+restoration. The bounded, coherent-snapshot observation candidate compiles but has
+not executed. Publish one concise incomplete alert-removal note, without new media,
+changed phone dates/tours/partial status/audience or delivery/release promotion.
+See `docs/release/evidence/toolchain-notification-recheck-2026-11-01/README.md`.
+
+The isolated invalid-registration defect is reproduced and corrected, with 22
+frozen-source service passes and 12 focused/623 backend unit passes. Retain the
+intermediate source-inventory rejection; it is not accepted as a passing run.
+The 93d9138 remote-return lane independently passes two framework cases and its
+connected ride case, primary copy and device/environment disposal. Publish two
+short local/simulation notes without changing any historical media, phone dates,
+tours, partial statuses or public access. Neither result accepts real messaging,
+physical tracking, safety audits, production deployment or the full native gate.
+See `docs/release/evidence/team-push-invalidation-2026-11-01/README.md` and
+`docs/release/evidence/foreground-return-pass-93d9138-2026-11-01/README.md`.
+
+The b9a9000 manual-finish candidate fails in scenario disposal again. Installed
+library/source inspection supports an intent-filter mismatch on foreground return.
+The replacement preserves the launch filters and uses only REORDER_TO_FRONT;
+the unused manual-finish candidate is removed. Two framework regression cases
+compile and are added before the existing connected ride case on the same focused
+device. Publish a short incomplete recheck note, no new media or changed phone
+dates/tours/status/audience. Execution and the whole gate remain unverified. See
+`docs/release/evidence/foreground-return-intent-b9a9000-2026-11-01/README.md`.
+
+The durable team push dispatcher passes fourteen isolated service cases with an
+injected transport and twenty-two focused/611 backend units, without deployment or
+provider calls. At 11c423b, eight native routes and four platform/worker cases pass
+with independent permission/device restoration. A separate ride-stop trial still
+fails in scenario disposal after its final capture; its explicit activity-finish
+candidate compiles but is not executed. Publish concise simulation/preparation
+notes without new media, phone dates, tours, status or audience changes. All real
+delivery/tap and release requirements stay pending. See
+`docs/release/evidence/team-push-dispatch-2026-11-01/README.md`.
+
+The b85076e first alert trial passes five of seven route cases, then fails both
+layout hosts before capture; platform/worker tests are never reached. The theme
+host correction and root Messages-selection case compile in a source-bound
+790-case JVM recheck. A separate ride-stop trial fails the scenario getter during
+foreground return; its candidate reads real lifecycle stages without a fallback.
+Keep both primary failures and independently verified permission/device cleanup.
+The main run also times out before its first login control; its cause is unknown.
+The subsequent copy finds no evidence directory, not a proven connection outage.
+Publish a short incomplete simulation note, without new media, phone dates, tours,
+status or audience changes. No notification or physical/release proof is added.
+See `docs/release/evidence/native-alert-first-run-b85076e-2026-11-01/README.md`.
+
+The Android alert consumer has twenty focused/790 total JVM passes and eleven
+compiled native cases at the source-bound isolated build. Publish a short local
+preparation note, without media or changed phone dates/tours/status/audience.
+No native case, worker, SDK token, notification or tap is executed by that build;
+the focused existing phone will test them separately with injected resolution and
+independent permission restoration. The dispatcher and all six operational push
+proofs remain pending. See
+`docs/release/evidence/native-team-push-alert-consumer-2026-11-01/README.md`.
+
+The 1 November current-device alert resolver passes sixteen isolated callable
+cases with synthetic tokens and no provider sends. Publish one concise local
+preparation note, no media or changed phone dates/tours/status/audience. The
+dispatcher and native display/tap consumers remain unfinished; all six operational
+push proofs, physical tracking and safety audits stay pending. See
+`docs/release/evidence/team-push-alert-authorization-2026-11-01/README.md`.
+
+The f8a3990 independent lane passes the original three read cases and all three
+exit component cases. Both original narrow/light and actual landscape/dark PNGs
+are reviewed and retained. Publish a short simulation note without new Site media,
+phone dates, tours, audience or status changes. The shared capture guard is
+unchanged; only the test's expected orientation was corrected. Keep the older
+full-gate/copy failure and all real-token, phone and release requirements open.
+See `docs/release/evidence/session-exit-components-f8a3990-2026-11-01/README.md`.
+
+The later completed a2e3e19 full gate fails its wide-exit capture orientation
+contract and a network evidence transfer, despite all eleven independent lanes
+passing. The source has a known test-call mismatch (landscape versus the capture
+helper's default portrait); its explicit-orientation correction has compiled but
+needs execution. Preserve the raw failure and the still-unexplained copy failure.
+Publish one concise incomplete-result note, no new media or changed phone dates,
+tours, partial status, public audience or release acceptance. See
+`docs/release/evidence/native-team-push-exit-gate-a2e3e19-2026-11-01/README.md`.
+
+The completed a2e3e19 team-conversation lane now proves the actual app's exit,
+authenticated acknowledgement and independently read inactive local record, using
+an explicit synthetic messaging token. Publish one concise simulation note, no
+new media or changed phone dates/tours/partial status. Preserve the earlier model
+proof and public audience. This is not real SDK token deletion, phone delivery,
+tap, process death or whole-workflow/release acceptance. See
+`docs/release/evidence/native-team-push-signout-connected-a2e3e19-2026-11-01/README.md`.
+
+The later e2bb5d2 source passes the main Native UI job (232 passes/54 skips),
+but fails the focused chat-network lane before radio loss/message retry, during
+requested-network preparation. Publish this latest result without overriding the
+older capture failures or d476cce complete pass. No new public media or physical,
+root-cause, closed-app delivery or release acceptance is added. See
+`docs/release/evidence/native-network-preparation-e2bb5d2-2026-11-01/README.md`.
+
+The later local sign-out proof passes 79 focused/770 total JVM cases, compiling
+three exit-screen cases and a synthetic-token connected contract. Only models
+and compilation pass here: actual native UI execution, real messaging token
+removal/delivery/tap remain unverified. Publish a brief local-result note without
+changing phone dates, galleries/tours, partial status or public access. See
+`docs/release/evidence/native-team-push-signout-2026-11-01/README.md`.
+
+The d476cce source passes the complete Native workflow and every non-skipped
+source check: 231 ordinary passes/54 intentional skips, all notification cases,
+37 replay groups/40 native cases, seventeen primary copies and eleven focused
+lanes. Publish a short simulation-result note, without new media or phone-date
+and partial-status changes. This verifies the sparse-capture correction at that
+source, not later current-account work or an intermittency/physical/release fix.
+Preserve prior failures and the public audience. See
+`docs/release/evidence/notification-gate-d476cce-2026-11-01/README.md`.
+
+The later 1 November server registration recheck passes nineteen isolated callable
+cases, 571 unit cases and twenty rules/acknowledgement cases. It rejects an old
+adult login after current child/disabled status, through the shared team guard.
+Publish one concise local
+preparation note without new media, changed phone dates, tours or status. Native
+lifecycle calls, dispatch and closed-app receipt remain unfinished; no real token,
+provider send, production deployment or release proof is added. Retain the first
+expanded fixture's overly broad failed assertion beside its scoped correction.
+The owner now explicitly preserves screenshots/recording on Android 12 and older;
+do not add FLAG_SECURE or claim task-preview protection on those versions. Keep
+the Site public. See
+`docs/release/evidence/team-push-registration-recheck-2026-11-01/README.md`.
+
+The 59dbd3c full gate fails only its notification-withdrawal capture. The original
+bitmap is retained and decoded: 260 actual colors but only ten on the 16-pixel
+lattice. This proves that capture's sparse-sampling false rejection, not the cause
+of other historical failures. The candidate now checks all pixels of one primary
+image with the same >16 threshold; no recapture, fallback or replacement. The
+connected replay's 37 groups/40 cases and seventeen copies pass, not the whole
+gate. Publish a short note without diagnostic media or readiness promotion.
+Preserve prior negative records and public access. See
+`docs/release/evidence/notification-sampling-59dbd3c-2026-11-01/README.md`.
+
+The 1 November notification-only retry trial passes seven checkpoints on a
+physical phone: failed retry remains an error, successful retry preserves the
+confirmed read state, and a later alert arrives automatically. Publish only its
+three reviewed session crops before all existing media/tours, preserving every
+historical date and partial status. The authority-read error is simulated, not a
+radio outage. Review pagination is covered by JVM tests, not exercised on phone.
+The 14 focused/695 total JVM cases pass; the actual-route test only compiles
+locally. No push, peer phone, installed APK/whole-head or release proof is added.
+Keep public access and the separate full-gate failure. See
+`docs/release/evidence/notification-retry-phone-2026-11-01/README.md`.
+
+The later 1 November full gate at 406e414 fails: one notification withdrawal
+component capture is rejected, and the connected replay's confirmed-restart
+primary copy loses transport. Eleven isolated lanes pass but do not repair the
+gate. Retain the original negative records; the rejected bitmap was not retained
+by that source's narrower allowlist. Publish one short failure note, no new media,
+no repaired-capture/root-cause claim, no phone-date change and no promotion of
+closed-app push or release. Preserve public access and all historical passes.
+See `docs/release/evidence/alert-capture-failure-406e414-2026-11-01/README.md`.
+
+The 1 November in-app alert trial retains two nine-checkpoint physical sessions:
+arrival without refresh, explicit confirmed read, replay, guardian withdrawal,
+renewal, fresh arrival and foreground return. The first trial exposes stale
+Recents content; the Android 13+ task-preview correction is rechecked on Android
+15. Publish only the four reviewed recheck session crops, not credential-entry
+views or the failed preview. Advance only the latest team phone date to 1 November;
+preserve each historical record/image date, all old tours and partial status.
+Closed-app push, tap navigation, older-device preview policy, manager UI, peer
+phone, installed-APK hash, whole-head and release acceptance remain unproven.
+Public access is unchanged. See
+`docs/release/evidence/notification-inbox-phone-2026-11-01/README.md`.
+
+The 1 November team-alert service trial passes eleven callable cases for generic
+eligible-recipient alerts, deduplication and current-admission privacy. Publish
+only a short local-data result. This earlier trial preserves the 21 October phone date,
+all galleries/tours and partial status. No new screen, immediate in-app arrival,
+closed-app push, token registration, dispatcher, production or release acceptance
+is added. A pending delivery envelope is not sent push. Public access is unchanged.
+See `docs/release/evidence/team-alert-services-2026-11-01/README.md`.
+
+The 1 November physical pending-send account-switch trial keeps the parent's
+text invisible in the driver's same-booking composer. The parent signs in again,
+recovers the pending text, and explicitly sends exactly one message/notification.
+All nine pre-retry checkpoints remain empty. Publish only its three reviewed
+session crops before the older images/tour, keep Messages partial, preserve all
+historical dates and the public audience. No original UUID, post-commit loss,
+process restart, peer-phone, real radio loss, iOS, push or release is accepted.
+The separate focused virtual trial fails cellular preparation; retain it without
+overriding it with this phone result. Uninstall reports no apps, not proven package
+absence; the second explicit stop closes the session. Owned services/private
+inputs are removed. See `docs/release/evidence/chat-account-switch-phone-2026-11-01/README.md`.
+
+The later 31 October physical pending-send trial cuts the connection before the
+server commit, observes Android App info force-stop and restores the same pending
+text after one session retry without signing in again. All seven pre-send-retry
+checkpoints stay empty; one explicit phone retry creates exactly one message and
+one notification. Publish only its three reviewed original session crops, prepend
+their tour, and preserve every old image, tour step and date. Messages remains
+partial. Post-commit reply loss, original pending UUID, account-switch and peer
+phone proof remain excluded. The video fails to start; no permission or browser
+restart is used. Uninstall reports no user apps; package absence is not verified.
+The session and owned four-service runtime/helper close. The clipboard is cleared,
+not independently proven restored. Preserve public access. See
+`docs/release/evidence/chat-pending-restart-phone-2026-10-31/README.md`.
+
+The later 31 October source 5091ec5 passes the complete Native workflow, all eleven
+focused lanes and every non-skipped check at that source. Its 37 replay groups,
+40 instrumented cases and 17 primary copies pass with independently verified
+archive provenance. Publish one concise simulation-result note; keep all partial
+flows, historical failures, galleries, dates, tours and public audience. Record
+the complete pass separately from the still-unexplained intermittent copy failures.
+The e7a1e34 account-free probe executes the new guest observer and passes 32 exact
+transfers, with matching sampled guest identities; it does not reproduce failure
+or prove continuous execution, root cause, repair, physical or release readiness.
+See `docs/release/evidence/full-native-5091ec5-2026-10-31/README.md`.
+
+The 31 October ecd9b67 main trial starts, passes 222 ordinary cases/54 skips and
+component captures, then fails its primary trip-change copy. All eleven separate
+jobs and their post-image capacity steps pass. Remove only the obsolete hosted
+boot-capacity blocker; keep the copy blocker and all historical failures, media,
+dates/tours and public access. Publish one short local-result note. Guest logs
+show the same PID across connection retirement/recreation, not measured boot or
+process-birth continuity. The new account-free guest observer is not executed by
+this old artifact and is not a repair. See
+`docs/release/evidence/copy-reconnect-ecd9b67-2026-10-31/README.md`.
+
+The fresh 31 October invitation browser trial still fails on both approved
+loopback names before the form, despite later live host/helper observations.
+All original accounts/roles and the pending invitation remain unchanged. The
+helper now stops on request, the session ends, and the five-port runtime scope
+is removed. Publish one short incomplete-result note, without public diagnostic
+images, new account/approval acceptance, alias, audience or gallery/date changes.
+See `docs/release/evidence/invitation-connection-recheck-2026-10-31/README.md`.
+
+The later 31 October 89fda8c rechecks pass session restoration and the corrected
+owner-private chat-draft contract on virtual devices. The original session timeout
+remains unexplained; five critical sources match, not the whole APK. Publish short
+local-result notes, preserve every dated gallery/tour and partial status, and keep
+the public audience. The full native gate fails a primary capture copy; team-read
+fails before boot due to disk. The new focused capacity guard and pre-close screen
+observer are candidates, not current CI repair or physical proof. Three actual
+diagnostic lifecycle cases pass; a fresh full local replay cannot start for lack
+of disk. See `docs/release/evidence/session-recovery-89fda8c-2026-10-31/README.md`.
+
+The corrected 31 October unsent-draft replay accepts preservation after a directly
+observed Android App info force-stop confirmation and reopening the installed
+app on one physical Pixel. Publish only its two reviewed session crops first;
+retain the original negative trial, all earlier images/tours/dates and partial
+status. Provider kill completion and independent process IDs are not accepted.
+Seven stored-state checkpoints prove no chat writes, not UI or process death.
+Account switching, pending-send restart, peer phones, radio loss, iOS, production
+and release remain unverified. Preserve the public audience. The current-head
+chat-network failure is an outdated owner-draft assertion; its updated contract
+has local checks but no completed UI replay yet. A separate session-restoration
+timeout after a successful proxy response remains unexplained and unrepaired.
+See `docs/release/evidence/chat-draft-replay-phone-2026-10-31/README.md` and
+`docs/release/evidence/chat-draft-ci-contract-2026-10-31/README.md`.
+
+The later 31 October physical unsent-chat trial confirms loss after an independently
+observed process restart, while same-conversation reopening restores the text.
+Publish three reviewed original session crops after the four controlled-network
+phone images, preserving every older gallery/tour/date and the partial status.
+The new account/source-scoped local-storage candidate passes nine state cases,
+seven existing composer cases and ten team cases; five instrumentation cases
+compile but have not run. Do not present this as physical repair, message sending,
+group/peer-phone/radio proof, production deployment or release acceptance. Keep
+the public audience and original failing phone evidence unchanged. See
+`docs/release/evidence/chat-draft-phone-2026-10-31/README.md`.
+
+The 31 October child-invitation service recheck passes all eighteen groups at
+9b058d6 with explicit parent approval and child-only roles. Publish one short
+dated local-result note. Preserve the phone connection failure, partial status,
+all original galleries/tours/dates and public audience. This is not browser or
+phone execution, production signup or release acceptance. Both service lanes
+already run this trial and validate the new retained report through its contract.
+
+The later 31 October generated-file trial fails its 29th primary transfer after
+28 exact passes. Unlike the earlier failure, it observes the same bound host
+emulator process and host connection server/listener after losing their peer
+socket. Guest boot/daemon state and the cause remain unknown; remote cleanup is
+not verified. Preserve the original ZIP/JSON failure and every earlier passing
+or failed report. Publish one short note, update only the copy blocker's latest
+source, keep chat/phone dates and galleries unchanged, and accept no product,
+physical or full-gate repair. The next diagnostic adds stat parent/state fields
+without arguments, environment, new device commands, retries or deadline changes.
+See `docs/release/evidence/transfer-peer-loss-2026-10-31/README.md`.
+
+The 31 October compression follow-up reproduces three leaked local response
+streams, applies the compatible development-only package patch and passes the
+same seven real-response regressions. Builds, Functions, rules and payment checks
+pass. Preserve the first notification timeout alongside the unchanged later
+19-case pass; it is not repaired or hidden. The audit still has ten high and
+28 moderate findings. Add one concise security note with no technology names,
+new media, changed flow statuses or audience. The main native failure, provider,
+physical and release gaps remain separate. See
+`docs/release/evidence/compression-security-2026-10-31/README.md`.
+
+The 31 October disconnect recheck retains one failed initial-auth attempt and a
+later successful two-process app replay, with byte-identical bound source files
+at their two commits. It accepts only that local replay, not an instability
+repair, physical outage, new observer execution or full Native gate. Add a short
+dated note without replacing the original 20 October gallery, tour or dates.
+Keep the Site public. Both original ZIP digests were verified; whole archives
+remain private and only selected, checksummed members enter the evidence bundle.
+See `docs/release/evidence/session-disconnect-recheck-2026-10-31/README.md`.
+
+The later 31 October sequence follow-up accepts the 5fa6fc4 main replay's 37
+groups/40 cases and seventeen primary copies, but not its whole Native workflow:
+one separate chat device fails to boot and its aggregate fails. The same-source
+account-free probe passes 24 pulls before failing the 25th. The new 51c183e probe
+passes 32 pulls with actual bound process/socket observations. No root cause or
+repair is established; the observation was not exercised during a real failure.
+Publish one concise simulated-sequence note, update the open control blockers,
+and retain every older failed copy, gallery, physical scope and tour. Add no new
+media or release acceptance; keep public access unchanged. See
+`docs/release/evidence/transfer-lifecycle-2026-10-31/README.md`.
+
+The later 31 October controlled offline chat trial passes on one physical Android
+phone, with eight independent stored-state checkpoints. One explicit parent retry
+stores one message and notification; one service-driven driver reply is received
+and read on the phone. Publish four reviewed original session crops and their
+short tour before the older two simulated steps. Keep all old images/dates and
+the partial status. This does not accept peer phone UI, real-world radio loss,
+tracking, process restart, push, iOS, actual payment or release. The prior CI copy
+failure remains separate. Network defaults and clipboard are restored; provider
+uninstall acknowledgment and session closure are observed, while independent
+package absence is not measured. The owned private runtime/helper are disposed.
+Public access stays unchanged. See `docs/release/evidence/chat-network-phone-2026-10-31/README.md`.
+
+The 5d69928 follow-up passes the strict chat instrumentation and then fails its
+primary network-recovery file copy. Retain that named failure, the later successful
+cleanup copy, complete device restoration and all previous preparation failures
+separately. Publish one concise incomplete-result note; update the latest-copy
+and chat blockers without accepting full replay, stored chat records, physical
+network recovery or release. No new media comes from this failed CI attempt.
+
+The later 31 October physical calendar retry passes all twelve stored-state
+checkpoints and actual date/time selection, cancellation, return-to-search and
+dark Search observations. Publish five reviewed original session crops first,
+preserve the October 24 whole-search tour/date/status, and remove only the now
+completed calendar-phone blocker. Keep the earlier failed authentication and
+unrequested helper exit unchanged and unexplained. No search request, maps,
+booking, payment, production, iOS, full-process restart or release is accepted.
+The phone is signed out and its session ends. The uninstall command reports no
+user apps found; do not claim package removal. Observer/backend/helper stop and
+their private files/directories are independently absent. Public access stays
+unchanged. See `docs/release/evidence/search-departure-phone-2026-10-31/README.md`.
+
+The 31 October search-date follow-up retains ten passing time-conversion cases,
+nine new simulated native picker/layout cases and both migrated option cases.
+Publish short calendar and incomplete-sequence results, preserving the October 24 physical-search
+gallery, date and status. The October 30 phone attempt is interrupted before
+login; the fresh October 31 phone attempt displays a credentials-rejected message
+before Home/calendar. Its original timeout capture label is not a diagnosis. Neither
+accepts physical date choice, search/child-booking recovery or release readiness.
+Post-failure fixture records/claims remain unchanged, the app is uninstalled with
+provider acknowledgment, and the session, services and private inputs are closed.
+Keep the public audience unchanged; publish no new diagnostic capture. Retain
+the preparation failures separately from actual product and native-case results.
+The hosted ordinary matrix passes 214 cases with 54 explicit skips and all
+eleven independent safety jobs pass. The main replay later fails during chat
+network preparation before disconnect/offline sending. Keep that sequence
+blocked, preserve the older passing repeat as historical proof, and do not claim
+a primary-copy failure, chat product regression or established root cause.
+
+The later 30 October local CLI transport check reproduces two failures where a
+custom TLS verifier is lost, then passes three real loopback TLS cases with the
+compatible maintenance update. All other lock entries remain unchanged. Publish
+one short security note, preserving previous critical fixes and every phone
+gallery/date/status. The audit still has eleven high and eighteen moderate
+findings. No production vulnerability, deployment, phone or release acceptance
+is implied. The base-source team-read lane independently fails during emulator
+unlock before tests; that preparation failure is not repaired by this update.
+Keep public access unchanged.
+
+The later 30 October accent-control correction retains eleven measured failures,
+twenty passing role measurements and a physical Android visual trial. Publish
+five reviewed session crops for Search, Trips and Rewards, before the eight older
+component views and two October 15 images. Appearance remains partial. No reward
+withdrawal, payment, map search, production write, full accessibility, iOS or
+release acceptance is implied. Preserve the earlier captures, scopes and dates.
+The phone was signed out, uninstallation acknowledged, session ended and private
+runtime/helper independently disposed. Installed bytes and package absence were
+not independently measured. Public access stays unchanged.
+
+The 30 October neutral-text visual review accepts eight original Search/Trips
+component viewports with enlarged text in both themes and two fixed formats.
+Keep Appearance partial, retain the two older images with their October 15 dates,
+and publish one concise simulated-review note. The separate thirty token ratios
+do not accept brand-colored controls, full-app accessibility, physical phones or
+system insets. Original window frames remain evidence, not additional public
+gallery images. The source-specific successful dcd7a5e run is not a current-head
+CI acceptance. Public access remains unchanged.
+
+The later 30 October invitation attempt fails before the form on the physical
+Android browser, for both approved loopback addresses. No child account,
+redemption or parent approval occurs. The helper later exits without a requested
+stop; its unknown close time does not establish the browser errors' cause.
+Publish one brief incomplete-result note without new diagnostic images, status
+promotion or changed gallery dates. Separately, the e64555e complete native gate
+fails before emulator boot because its userdata allocation lacks hosted disk.
+Publish this new pre-screen failure separately from earlier capture-copy failures
+and passing gates. The capacity guard still requires actual CI verification.
+Keep public access and the previously accepted cancellation phone proof unchanged.
+
+The 30 October physical Android stale-cancellation preview passes eight isolated
+record checkpoints. A separate authenticated service session approves a booking
+after the phone opens its review. The phone refuses the old confirmation,
+refreshes, then cancels against the new revision without duplicate receipts or
+notices. Publish five dated session-window crops first, retain the older five
+tour steps and all galleries with their original dates, and keep Publication
+partial. This is not simultaneous transaction overlap, a second phone, peer UI,
+push, payment or physical tracking proof. The `dcd7a5e` baseline CI is terminal
+success/skipped after one unchanged failed provider-job rerun; the original
+callback timeout and earlier native transfer failures remain retained. Publish
+the passing baseline as the newest simulated result, without promoting physical
+readiness; it does not establish the earlier failures' root cause. Preserve public access. See
+`docs/release/evidence/cancellation-stale-phone-2026-10-30/README.md`.
+
+The new-budget `91c4a09` execution is terminal failure after 20m37s, not a
+50-minute timeout. All 205 ordinary cases and 29 replay cases pass before the
+eleventh primary copy fails during consent restart. Ten earlier primary copies
+and all eleven independent jobs pass. The later failure-cleanup copy succeeds,
+but never replaces the failed primary receipt; the full replay has no result.
+Device policy, apps and launcher restoration are independently verified. The
+same host bridge PID survives while its emulator transport disconnects. That
+observation does not identify the cause. Publish one concise incomplete-result
+note and update the existing blocker; retain every previous failure and passing
+run, media, flow status and date. No product change or new phone evidence is
+claimed. See `docs/release/evidence/native-transfer-91c4a09-2026-10-30/README.md`.
+
+The 30 October `9abc639` complete native job times out at its outer 35-minute
+limit after 205 ordinary passes/54 skips and ten completed primary copies. Final
+replay, suite outcome and independent restoration receipts are absent. The later
+`13767b4` full gate passes with all eleven independent jobs, 37 groups/40 cases,
+seventeen primary copies and verified device restoration. Publish one concise
+complete local result, without media or flow promotion. Retain the
+successful independent chat repeat, all older failures and gallery dates. Only
+the outer job budget changes to 50 minutes; no inner deadline, case, quality
+guard or evidence requirement changes, and no APK transfer artifact is added.
+That success precedes the budget change; its later failed execution is retained separately above. See
+`docs/release/evidence/native-timeout-9abc639-2026-10-30/README.md`.
+
+The later 30 October `9abc639` independent chat-network repeat passes its strict
+handover/offline/retry/reply UI case, primary copy, two-message/two-notification
+stored-state checks and full independent disposal. Publish one concise simulated
+chat result, retain older failed attempts and all original gallery dates, and
+keep Messages partial. This precedes the later passive prerequisite, so no
+network repair is claimed. No new media, physical proof, audience change or
+whole-gate promotion is accepted by this update. See
+`docs/release/evidence/chat-network-repeat-9abc639-2026-10-30/README.md`.
+
+The final b8886ec automated recheck passes its full native gate, all eleven
+independent jobs, backend and web checks. Retain the 205 ordinary passes/54 skips,
+forty integrated cases/seventeen primary copies, complete restoration and 41
+additional isolated support checks separately from physical/release proof. Publish
+one short result note and remove only the completed `native-current-gate` blocker.
+Do not promote flow statuses or replace old media; preserve public access and
+all remaining limitations. No renderer/transport root cause is accepted.
+See `docs/release/evidence/release-recheck-b8886ec-2026-10-30/README.md`.
+
+The later 30 October observer-window calibration retains two expected baseline
+calibration failures, then eight passing native cases on another disposable
+emulator. The actual parent-consent component passes in both trials. Only the
+middle diagnostic sample moves; the real CI failure, capture API/deadline and
+quality guard are unchanged. Publish one concise local component note without
+new media or flow promotion. Preserve the full native blocker, public audience,
+all historical galleries and the separate physical/release requirements. See
+`docs/release/evidence/capture-window-calibration-2026-10-30/README.md`.
+
+The later 30 October test-runner security change removes the deprecated pool and
+its three reproduced inherited-option paths. The full workspace audit has zero
+critical findings but retains twelve high/eighteen moderate findings. Rule,
+payment and notification checks pass with the maintained runner; no production
+or phone result is implied. Publish one brief security-progress note without new
+media or changed flow statuses. Preserve the public audience, dated history and
+the independently scoped full native gate. See the retained before/after evidence
+in `docs/release/evidence/test-runner-security-2026-10-30/README.md`.
+
+The later 30 October rejected-capture investigation preserves the original
+three-case local baseline, the failed candidate startup and the fresh seven-case
+calibration. The rejected-bitmap observer is opt-in, named and diagnostic-only;
+the same primary API, deadline, threshold and failure remain. Publish one short
+local-result update without new media. No actual rejected CI bitmap, root cause
+or renderer repair is accepted. The pre-diagnostic 1cc8f12 ordinary matrix passes
+199 cases/54 skips, but component copying sees an offline bridge and the replay
+cannot prepare cellular service. Update that full-gate blocker without deleting
+earlier failures. Keep all phone/gallery dates and the public audience unchanged.
+
+The 30 October 9bb6346 independent team and chat-network cases pass with primary
+transfers, source archives, saved-state checks and separate verified disposal.
+The new validation-history observer executes in this network case; it does not
+establish the preceding intermittent connection failures' root cause. Publish
+one concise local-recheck update without new media; keep the 21 October team
+phone gallery and every older date. Physical multi-phone/push work and the
+separate full native gate are not accepted by this follow-up. Public access stays
+unchanged. See `docs/release/evidence/native-followup-9bb6346-2026-10-30/README.md`.
+
+The separate terminal 9bb6346 main gate fails one of 253 ordinary cases: 198
+passed, 54 skipped, one team-chat confirmed capture rejected by the blank-image
+guard after its send/retry assertions. All forty integrated replay cases,
+seventeen primary copies, restoration and the six observed trip-change captures
+pass. Retain these scopes separately, keep the whole-gate blocker, and publish
+one concise failed-capture update without new media. The rejected bitmap itself
+is unavailable; neither a blank product screen nor a renderer repair is proven.
+
+The 30 October independent chat replay on 2ffa582 passes its strict radio
+sequence, one retry and reply, primary copy, two-message/two-notification/no-
+duplicate verification and independent disposal. The earlier 4714198 network
+preparation failure remains historical negative evidence. Keep Messages partial,
+retain its 27 October images and 28 October proof, and distinguish this emulator
+case from physical radio loss and the still-running full native matrix.
+
+The second 30 October booking trial retains nine checkpoints for restart before
+acknowledgement. One real isolated callable commit is followed by a withheld
+reply, Android Force stop and relaunch without login. Home, Mes trajets and the
+reservation list recover one adult pending request without resubmission. Four
+reviewed 200x444 session crops are added without replacing earlier galleries or
+the four-step tour. Android system UI documents force stop; this trial has no
+independent PID measurement. All sources are hash-bound and disposal is checked.
+Child/search recovery, multiple phones and release/provider scope remain open.
+
+The later 30 October adult booking reply-loss trial completes nine independent
+record checkpoints on one physical Android phone. The actual callable commits
+one request, receipt and driver notice before its success reply is withheld.
+Explicit retry uses the exact request identity and retains all stored fields and
+timestamps. PID/no-process/new-PID observations confirm a restart after the reply
+has been acknowledged; the pending request returns from Home and Mes trajets.
+Publish five reviewed 200x444 phone crops, retaining full original 1200x596 session
+captures and all older galleries/tour. Keep restart before acknowledgement,
+search-screen recovery, multiple devices, payments and release requirements open.
+Only the parent's phone UI was inspected; the driver notice is stored-state proof.
+No installed-byte, package-removal, iOS or real-world radio-loss proof is implied.
+The uncommitted trial controllers are bound by exact retained source hashes on
+base 2467e06. Public audience and concise technology-free French copy stay unchanged.
+
+The later 30 October capture investigation retains the failed 60814d7 trace:
+all three stack samples precede the final callback wait. Version three moves
+two samples into the later interval; one primary call, its deadline, quality and
+failure rules stay unchanged. The new APK builds but its schedule has not yet
+executed. Publish one concise partial-progress line only, with no raw diagnostics
+or new images. Keep the full-gate blocker, public audience and existing galleries.
+
+The later 30 October post-commit reply-loss trial completes seven independent
+record checkpoints on one physical Android phone. The real callable stores the
+five-star review before its exact success reply is withheld; explicit retry
+retains one immutable record. PID/no-process/new-PID observations corroborate
+Force stop/reopen. The driver sees 5/5 for one review and two separate requests.
+Publish five reviewed phone crops with their full original session images retained.
+Preserve the initial five-checkpoint failed setup and its full driver error image;
+its read allowlist omitted driver requests. The fresh trial includes that read and
+passes without the banner. Original timestamps were compared in the observer,
+not exported as raw rating data. No real-world radio loss, iOS, installed-byte
+verification, package-removal proof or release completion is claimed. Preserve
+all earlier media/tour, public access and concise technology-free French copy.
+The 60814d7 full gate terminates with 197 ordinary passes, 54 skips and one
+PixelCopy failure; its separate integrated replay passes. Do not call it green
+or attribute a renderer repair to this evidence-only change.
+
+The 30 October controlled offline review replay uses one physical Android phone
+and two isolated accounts. Publish five reviewed original session-window JPEGs:
+inline failure retains both dated trips, explicit retry stores one exact review,
+the older request survives manual Force stop/reopen, and the driver sees 5/5 for
+one rating with separate pending requests. All eight stored-state checkpoints
+pass; the transient sending spinner was not captured and no PID sequence was
+collected. Preserve initial preparation errors and failed package-cleanup proof;
+the device session ended and all local services/session material were disposed.
+Keep physical post-commit reply loss, iOS, metadata-refresh failure, full current
+CI and broader release gaps open. Preserve all older images, dates, tour and
+public access, with concise technology-free French copy.
+
+The next 29 October review-submission recovery check reproduces the global-error
+screen hiding the selected trip, then passes eleven isolated native component
+cases and eight authenticated loopback fault groups. Preserve exact rating
+identity, immutable score/comment and original timestamp on identical retries;
+changed retries remain refused. Publish only the three reviewed original component
+captures as simulation evidence, retaining all 35 earlier images and the older
+four-step phone tour. The average/count phone proof is historical, not a new
+network-loss run. Keep physical network/iOS and all release gaps open. The da317d9
+full native gate fails in chat-network recovery; its separate remote-stop lane
+fails before Home. This change does not repair either CI failure. Public access
+and technology-free, concise French copy remain unchanged.
+
+The later 29 October contextual review replay completes all eight independent
+phone checkpoints. The driver reconnects; the parent distinguishes the two trip
+dates, loads 20 then 32 requests, sends the exact later review and retains 31.
+Native Force stop is corroborated by PID/no-process/new-PID observations; the same
+parent, older trip, legacy request, 31-request continuation and mean/count return.
+Publish seven reviewed original session captures with concise test-account copy;
+keep all earlier galleries and the older four-step tour. All enabled native/PR
+checks pass at matching app source 2264018, including 196 ordinary passes/54 skips,
+forty replays and seventeen primary copies. Remove only the completed full-gate
+blocker. Keep real network loss, iOS, actual legacy-data audit, tracking, operational
+and release requirements open. Preserve earlier failed/partial attempts and the
+unchanged public audience; no production, payments or maps were exercised.
+
+The later 29 October physical contextual-review attempt passes two of eight
+independent checkpoints: the driver sees the exact trip name/date and submits
+five stars. Publish its two reviewed original session-window captures and one
+concise partial-result update. Remote reconnection input failed; do not promote
+parent context, legacy UI, interruption or full replay. Preserve prior galleries,
+the four-step pagination tour, unchanged public audience and all original failed
+attempts. All 2,721 broad local cases pass after owned runtime disposal; the first
+run has five occupied-port failures. The web inventory buffer defect is reproduced
+and scoped, with the same evidence assertions and a large-index regression. The
+separate current-head team-conversation connection failure is not fixed by that
+change. Full current CI and broader release proof remain open.
+
+The terminal 7e0e22e baseline now passes the full enabled gate: 193 ordinary
+passes/54 skips, forty replay cases in 37 groups, all seventeen primary copies,
+verified device restoration and eleven focused lanes. All 29 PR entries are
+terminal success/skipped. Retain these originals separately; the new trip-context
+implementation is not covered. Publish one concise baseline-only progress item,
+preserve failed history and keep the new-context/full-release requirements open.
+
+The later 29 October contextual-review check adds trip name/date without changing
+review identity or pagination. Seven authenticated service groups, nine local
+Android component cases, 538 backend units and 636 Android units pass. Publish
+three reviewed original native component captures and concise French local-only
+news. Preserve the older phone galleries and tour. The model/wire checks do not
+prove iOS UI; component and service checks do not prove integrated phone execution.
+Keep contextual phone/legacy/interruption work, full native gate and broader
+release gaps open. Explicitly unavailable details invent no date or alternative
+source. Preserve the two failed Java preparations, initial test compile failure,
+final source-bound pass, closed processes/ports and unchanged public audience.
+
+The later 29 October local review-display/recovery replay retains the original
+failed CI and local baseline, the unsuccessful count-only attempt and the actual
+line geometry. The average overflow flag was a false positive, not a proven
+clipping defect. Six component cases and 633 units pass with full-character,
+non-ellipsized line bounds. Publish the original large-text component with its
+synthetic count explicitly identified. A strictly scoped profile-read proxy fix
+also passes all thirteen contracts and one full native session recovery replay;
+publish only its two reviewed error/recovered images. Preserve older galleries,
+real-network-loss and full-gate gaps, dates and public audience. No physical-phone,
+production, maps, payments or release acceptance is implied.
+
+The latest 29 October pending-review replay fixes the retained 31st-ride gap.
+Two accounts on one physical Android phone each submit that trip's own review;
+the parent loads 20 then 31 requests and keeps 30 after a later-page submission.
+Six independent record checkpoints pass. Publish six selected original session
+captures and the new four-step tour, preserving older average/history galleries.
+The separate 320-ride service suite passes eight groups, including empty
+continuations and scoped cursors. Preserve the failed first preparation. Do not
+promote iOS model checks, built component tests or either phone replay to overall
+release proof. Generic review-card trip context and interruption replay remain
+open. Keep the existing public audience and technology-free public copy.
+
+The later 29 October received-rating summary is verified on one physical phone
+with three accounts and six independent checkpoints: zero, 104, 105 and separate
+26-review profiles, plus a third empty account and sign-out. All reviews were
+fixture-submitted; no phone submission or process restart is implied. Publish five
+selected original session-window captures, including landscape, and a concise
+four-step tour. Preserve the older galleries and dates. Eight authenticated service
+groups, 517 backend units and 622 Android units pass; three component cases build
+but have not executed locally. Mean/count only was explicitly chosen by the owner.
+Keep the reproduced 31-ride missing-request defect and original failed native gate
+visible. The prior run fails PixelCopy and a separate device download; do not imply
+a root-cause repair or complete CI success. No production/rules/index deployment,
+payments, maps, iOS implementation or public-audience change is accepted.
+
+The later 29 October physical review-history replay passes seven independent
+record checkpoints on one Android phone. After 104 fixture-prepared ratings,
+one new request appears and the driver submits five stars through the phone;
+returning to the inbox keeps it hidden. The parent retains separate requests and
+submits a distinct five-star review. The observer submits neither new rating.
+Publish seven original reviewed JPEG session-window captures, not native exports
+or video. Earlier October 23 captures retain their date. Completed rides were
+fixture-prepared; navigation is not process-restart proof. Keep received ratings,
+longer ride discovery and release requirements open. Both accounts signed out;
+clipboard replacement/restoration, the idle dashboard and owned runtime/helper
+disposal were observed. The selected older isolated APK has unchanged adult
+review presentation files, not independently verified installed bytes. Preserve
+the failed old-handler comparison separately. No map requests, real payments,
+production changes or audience changes occurred.
+
+The published 29 October version 247 now passes all twenty short-clip playback and
+seek cases, including sixteen actual visible-gallery/tour cases and four explicit
+unlisted-asset harness cases. Retain the new checksummed result, earlier failed
+HTML preflight and original seek failure separately. Remove only the portal video
+blocker and publish one concise French update. Other application, CI, physical
+and release requirements remain open. No new native captures are implied.
+
+The owner subsequently approved full loading of the existing short excerpts.
+The 29 October player accepts only approved clips at most 240,000 bytes, verifies
+their exact size and SHA-256, and uses a temporary Blob source. The CSP permits
+Blob media only. Leaving a view cancels loading and revokes the source. Originals,
+long recordings, download URLs and public access are unchanged. No alternative
+network source or automatic retry is added. Local playback/seek checks pass for
+all five assets at four widths; the unlisted parent-guard asset uses a separate
+production-module harness, not a newly invented visible flow. Keep the original
+published failure and its blocker until a matching live recheck succeeds. See
+`docs/release/short-video-playback.md` for the bounded protocol.
+
+The later 28 October full native gate at 94e8e78 passes 187 ordinary cases
+(54 skips), forty replay cases in 37 groups, seventeen primary copies and the
+independent restoration. All enabled checks pass. Preserve the previous copy and
+emulator-start failures, the five explicit unrun scopes and open physical/release
+requirements. Publish a short simulation-only update without new captures or a
+claimed root-cause repair. Public audience and older media dates stay unchanged.
+The public support excerpt plays but its seek check fails, despite fully buffered
+bytes; retain the live probe separately from passing range-capable local preview
+checks. Keep that portal-only blocker visible. No alternate player, buffering
+workaround or access change is approved or implemented by this evidence update.
+
+The later 28 October isolated network rerun at 7417e22 passes its unchanged
+Wi-Fi/cellular/offline/retry/reply scenario, independent records, primary copy
+and device/runtime disposal. Publish a short text update only; preserve earlier
+capture dates and failed attempts. This result predates the 9da2228 capability
+observer, so do not attribute it to that diagnostic or claim a selection repair.
+Physical-phone, tracking, full native matrix and release requirements stay open.
+
+The subsequent 28 October dependency checks reproduce twelve failures among
+eighteen installed-library cases; the unchanged cases pass after eight same-minor
+lock updates. All 501 backend units, three builds, 24 service groups, twelve
+controlled conflicts and seven streaming contracts pass. Preserve audit contexts:
+full root 38 to 33, with two critical tooling findings still present; Functions
+production-only sixteen to ten moderate findings. Publish concise text only and
+keep the overall security/release scope open. The baseline chat-network job fails
+before disconnect with cellular default and both networks present. Retain that
+separate failed marker/restoration; do not claim the dependency patch repairs it.
+Earlier phone captures and public audience stay unchanged.
+
+The later 28 October whole-trip cancellation trial completes twelve independent
+stored-state checkpoints on one physical phone. Three accounts inspect the
+driver's cancellation, the accepted child's two seats and a second parent's
+pending request, plus their separate in-app notices. One receipt, two notices and
+capacity restored only once remain after measured PID/no-process/new-PID restart.
+Publish seven reviewed session-window captures with their date, not native exports
+or video. The existing earlier galleries stay dated. The fixture prepared booking
+creation/approval through services; no payment or map requests were used. Keep
+simultaneous cancellation/approval race, refunds, push, tracking, other devices
+and release gaps open. Runtime/helper/package disposal is independently checked.
+Use concise French without technology names and preserve the public audience.
+
+The 28 October parser check reproduces two isolated worker crashes and an invalid
+limit failure, then passes the same nine cases with the maintainer patch. Preserve
+the first 21/24 service failure and its manual orphan-process disposal separately
+from the bounded 24/24 replay. A new cleanup guard retains launched-runtime files
+while any checked endpoint is live. This does not prove the earlier CLI exit cause
+or automatically stop detached processes. Publish concise text only, without
+dependency/provider names or new media. Keep the remaining audit findings, physical
+application/maps and release gaps open; public access stays unchanged.
+
+The later 28 October direct-booking trial verifies zero writes on opening or
+dismissal, one explicit adult one-seat request and the same request after actual
+Force stop/new process, reopening from Home and Trips, and sign-out. All eight
+read-only checkpoints and independent package/runtime disposal pass. The original
+controlled three-call regression remains failed; eleven corrected controller cases
+and 613 local native unit tests pass. Two native component cases subsequently pass
+in c898253 Native CI; the original phone summary retains its narrower scope. That
+PR's web check fails on an ignored original log; retain its bytes as text and
+require evidence-file membership in the source commit before publishing. Publish
+four reviewed session-window crops, clearly
+dated as session captures. Keep the older child two-seat search gallery/date and
+the unchanged public audience. The short current tour has four direct-booking
+steps. Search restart, physical lost replies, other accounts/devices, payments,
+push and production release remain open. Do not turn a source APK hash into an
+independently verified installed-byte claim or claim the two focused baseline CI
+failures are repaired by this scoped product change.
+
+The later 28 October team enrollment trial completes seven independent stored
+checkpoints and seven actual Android Force stop/reopen sequences. Every sequence
+has fresh package-scoped process-before, no-process and new-process observations,
+plus unchanged original document pairs and manually reviewed restored UI.
+The user approved session-window captures, not native exports: publish only the
+five reviewed device crops, identified as session captures of 28 October. The
+current guided tour has five steps; all fifteen earlier 19 October gallery images
+retain their own dates under all evidence. Preserve the earlier incomplete trial.
+Keep notifications, other devices, production, tracking and full-release gaps.
+The guardian relationship was fixture-prepared, not reviewed through this run's
+UI. Both accounts signed out, provider uninstall and independent package absence
+were observed, and all owned resources were disposed. No technology or device
+names appear in public copy. Public access stays unchanged.
+
+The later 28 October physical consent trial completes ten independent record
+checkpoints and five manually observed Android Force stop/reopen sequences:
+pending, first approval, both approvals, refusal and withdrawal. The separate
+manual review is not independent PID proof. Preserve the zero-checkpoint wrong
+runtime preparation failure and its verified disposal; the corrected observer
+now rejects incompatible actor files before any setup. Publish concise text only,
+keep earlier dated galleries and public access, and retain application, payments,
+simultaneous devices, iOS, GPS and full native-gate gaps.
+
+The 28 October physical Android schedule trial verifies date, departure and
+desired-arrival draft recovery after manual Android Force stop/reopen. Nine
+independent stored-state checkpoints pass; they are not independent UI/PID proof.
+Keep the earlier three-checkpoint ENOSPC attempt incomplete. Publish text only:
+native screenshot exports and recording were unavailable, and alternate session
+capture publication awaits approval. Preserve the dated 26 October media, public
+audience, partial application/maps/payments and unresolved full CI/release scope.
+
+The 27 October independent network case passes the unchanged native dual-radio,
+offline draft/retry, cross-account and stored-message checks. Its primary copy,
+fixture disposal and independent device restoration pass. Publish only the two
+reviewed original draft/reply windows; the intermediate recovered window has an
+incomplete redraw and is excluded. Keep earlier full-gate failures and real-phone
+requirements open. This scoped pass neither repairs nor replaces the full matrix.
+
+The 27 October review of terminal 48ea950 finds 176 ordinary passes, 54 skips and
+one capture callback failure before parent acceptance. The local replay then
+fails its dual-network preparation before any disconnect; seventeen primary
+copies and independent device restoration succeed. All ten focused safety jobs
+pass, but the full gate does not. Preserve exact failure/source records, public
+audience and earlier phone media. Add no timeout, retry, capture alternative or
+claimed product repair from the sampled renderer/carrier observations alone.
+
+The subsequent 8b53925 isolated session-disconnect job fails while installing its
+system image, before emulator launch or app assertions. Compilation passed, but
+the package installer rejects the archive; the archive bytes are unavailable and
+its precise cause is unproven. Retain original job metadata and a strictly selected
+timestamped excerpt. This is not a product regression or a cleanup pass. Preserve
+the successful raw-draft phone captures and public audience; publish no new media
+or completed schedule-phone result. Other running jobs keep their own outcomes.
+
+The latest 26 October physical draft trial preserves the exact unfinished price
+and both unconfirmed address fields across Android Force stop and a new process,
+while a second booked trip stays clean. Nine independent record checkpoints pass.
+Publish its three reviewed originals, not a video or schedule-picker proof; keep
+application, real maps/payments, other accounts/devices and release scope partial.
+Runtime/helper disposal and uninstall acknowledgement/session stop are verified;
+package absence is not independently queried. Public audience stays unchanged.
+
+The subsequent 398d207 automated gate passes all enabled checks and all three
+native suite exits. Its original primary-copy report contains the new allowlisted
+daemon events: one identical historical read-termination event before and after
+the successful copy, not a new failure or a proven cause. Preserve earlier failed
+runs. This pass does not establish a root-cause repair or release readiness.
+
+The later 4dbffa4 native run retains 177 ordinary passes/54 skips and eleven
+successful focused lanes but fails the primary trip-consent-recovery copy. Its
+actual socket records show one stable server/listener, loss of the old emulator
+connection, then a different cleanup connection. Retain those originals separately
+from ed851b7 and do not accept cleanup as the gate or infer a cause. The new
+allowlisted default-daemon event parser is fixture-tested, not observed in that
+run; it adds no logging category, restart, retry or alternative capture path.
+Keep the latest child phone captures and public audience. Publish no diagnostics
+or new media from the failed automated run.
+
+The later 26 October child emergency phone trial verifies a fixture-provisioned
+child account retrieving its current parent-chosen contact with Android location
+permission set to Don't allow. Five independent read-only checkpoints preserve
+records/claims, including return from an attempted handoff and sign-out. The
+parent-approved link, free active ride and contact were service-prepared, not
+created through phone UI in this trial. The app button and the independent Phone
+icon both show Home, not a dialer; no call was placed and no cause is confirmed.
+Publish only the two reviewed original contact/permission captures. Retain the
+Home capture internally and preserve partial signup, dialer, tracking and release
+scope. Owned runtime/helper disposal and uninstall acknowledgement/session stop
+are verified; independent package absence is not. Public audience is unchanged.
+
+The terminal ed851b7 native recheck has 177 ordinary passes, 54 skips and eleven
+successful focused lanes, but its primary trip-consent-restart copy fails during
+an observed guest transport disconnect. Successful later cleanup is not a gate
+pass. Retain original JSON/XML and update the current news without deleting the
+earlier green baseline or phone media. The new same-user socket observer is local
+fixture-tested only; do not claim a live CI observation or root-cause repair yet.
+
+Media URLs now include each generated file's SHA-256 in a shared resolver for
+previews, galleries, tours, video sources/posters and downloads. A live unversioned
+new-image URL returned cached HTML while its versioned URL returned JPEG. The
+build emits the exact media manifest and publication rejects changed output.
+There is no unversioned retry or alternate-host fallback. Keep the original phone
+evidence and partial signup/delivery scope unchanged by this hosting correction.
+
+The later 26 October physical invitation trial completes six independent record
+checkpoints. Manual system inspection verifies Android's real share sheet and the
+visible link token hash against the app-created invitation. Two reviewed original
+device exports show creation and revocation, never the secret-bearing share sheet.
+This does not prove recipient delivery, signup, parent approval or release. The
+public tokenless invitation URL still renders the older admin login. Preserve
+that deployment gap, earlier pairing/browser evidence and public access.
+
+The subsequent 26 October physical pairing run completes all six independent
+checkpoints plus manual sign-in, code creation, verified-parent approval, child
+return and sign-out. One reviewed original 960 x 2142 result export leads the
+child gallery. The login was fixture-provisioned: invitation sharing/signup,
+child ride/contact/dialer, tracking and release scope remain open. Preserve the
+earlier incomplete trials and public audience. The exact 1518a8b baseline also
+passes all 20 enabled checks, five intentional skips and all three native suite
+exits. This later success neither repairs nor erases the earlier copy failures.
+
+The later 26 October connected-browser trial uses the real public component and
+its default client gateway against isolated services. Original observations show
+three users before and after mismatched confirmation, then four users and one
+redemption after successful signup, with no parent-approved link. The manual
+browser review is separate from those service receipts. This is not a phone share,
+phone signup/approval, new gallery image, production deployment or release pass.
+The existing invitation contract runs this evidence validator in Backend CI and
+Web Integration Smoke; no duplicate workflow lane is needed.
+
+The 26 October child-invitation candidate passes eighteen isolated service groups,
+eleven focused backend units, ten Android state cases and 207 rules cases. Its
+three new connected components are compiled only. The web component review uses
+a fake submit handler, not real account creation. Keep the existing phone media,
+public access and partial status. No app/backend/landing-page deployment or new
+gallery evidence is accepted. The prior 4454cc1 people/safety job was cancelled
+while downloading packages before user flows; preserve that incomplete gate.
+The subsequent binding/role fault trials expose two failures in that unshipped
+candidate. Keep both negative reports. The repaired replay passes eighteen groups,
+sixteen focused backend units, six additional Android Auth wire cases and 208
+rules cases. It does not accept real sharing, signup on a phone or new media.
+
+The f06c61d instrumented run passes all enabled checks, all three native suite
+exit statuses, 174 ordinary cases and four observer contract cases, with 54
+intentional skips. Six primary calls return once each in 126-432 ms. This does
+not reproduce or repair the intermittent failure. Retain its raw metadata only
+internally, preserve preparation and negative records, and accept no new media,
+phone journey, child invitation or release scope from this run.
+
+The subsequent 95d0081 baseline passes all enabled checks and all three full
+native suite exit statuses, with 170 ordinary passes and 54 intentional skips.
+This is a successful dated baseline, not a repair of the intermittent screen-copy
+failure. Keep the earlier failures and partial real-phone scope. The new opt-in
+primary-call observer is compiled, not yet executed in its preparation record;
+publish no diagnostic content or new media, and do not claim a root cause.
+
+The subsequent 3b386a0 run passes all nine child components, including corrected
+no-ride discovery and actual denied-location checks with mocked contacts/dialer.
+Its main gate remains failed: a trip-refusal case stops while PixelCopy waits.
+Retain that distinct failure, all 224 outcomes and source hashes. Do not infer
+a graphics root cause, accept the trip flow, claim signup/phone completion or
+publish new screenshots from those child component passes. The public page uses
+plain French and remains partial; source details stay in the retained history.
+
+The original 61d1294 main native recheck has 169 ordinary passes, 54 intentional
+skips and one obsolete no-ride expectation failure. Retain the original report,
+XML and source; both denied-location child component cases passed with mocked
+data/dialer only. The corrected no-ride candidate is not a completed gate until
+re-executed. The parent's invitation-first signup decision is recorded, not
+implemented by the existing pairing flow. No new media or release scope is accepted.
+
+The separate 26 October child-contact discovery replay fixes the profile-ID versus
+login-ID lookup without returning an adult ride payload. Ten authenticated local
+approval groups include twelve current-authority patches against discovery and
+known-ride reads. Fifteen focused JVM cases and a test-APK build pass. Preserve
+partial status: this adds no phone, screenshot, dialer, child signup, live tracking,
+iOS or production evidence. Keep both earlier phone captures and public access.
+
+The later 26 October phone startup attempt has zero completed checkpoints: the
+app installation stayed pending and its package query was rejected. Session stop,
+observer client closure and owned fixture/helper disposal are verified; package
+absence is not. Keep the previous two phone captures and partial approval status.
+The separately retained main Android job passed, a focused preparation failed,
+and the sequential web job hit its original deadline. Workload partitioning keeps
+every original command/upload and a fail-closed required check. A new CI execution
+is required; neither partitioning nor an unused phone accepts a user flow.
+
+The 26 October child-account phone trial retains two incomplete disposable
+attempts, each with three independent checkpoints: child sign-in, app-created
+code and parent review. Neither proves final approval, child return, sign-out,
+signup, denied-location contact or GPS. Two reviewed code-free viewport device
+rectangles lead the gallery; the three older simulated captures keep their dates.
+Remote text-entry/navigation problems are not a confirmed application defect.
+Both observers and owned environments/helpers closed. Phone session stop is
+verified, but independent package absence is not. Preserve partial status and
+the public audience. Do not publish real pairing codes or inspector output.
+
+The separate 25 October disposable socket probe verifies its owned HTTP marker
+while the direct native loopback connection returns ECONNREFUSED. It uses no
+accounts, Firebase fixtures, maps or payments. Exact SDK bytecode establishes
+that its plain WebSocket path uses a native Socket constructor. This identifies
+the current isolated test-route mismatch, not a universal provider limitation
+or production bug. Retain both earlier failed phone runs and their three public
+captures. Publish no diagnostic-app screenshots. The preflight now requires a
+live event connection before another tracking trial. No alternative route or
+polling fallback is installed; access/cost changes still require approval.
+
+The latest 25 October diagnostic replay retains two incomplete disposable phone
+attempts. Complete overlapping event sequences show two disconnected live
+database listeners and four fast completed refreshes, with no position
+invalidations. This narrows the isolated connection problem, not its root cause
+or a production UI defect. The second offline-stability boundary fails; a later
+50-second sign-out stability sample cannot replace it. Keep the previous three
+reviewed network screenshots and dates; publish no diagnostic logs or new media.
+The 566a994 native run has ten successful focused jobs, but an ordinary PixelCopy
+capture and later primary trip-consent-recovery collection fail. Both failures,
+policy restoration and host exit are retained without accepting the gate.
+Public audience remains unchanged. Do not add polling or a transport fallback.
+
+The later 25 October network trial completes seven independent record-only
+checkpoints, including a measured offline window and sign-out stability. Uploads
+resume, but automatic/continuous display recovery fails. Lifecycle return refreshes
+once, then the screen again ages while the backend keeps receiving points. Three
+reviewed viewport JPEGs form a separate network tour. Do not accept the UI flow,
+infer a root cause, add a polling fallback or promote release/child/outdoor scope.
+The 30e1ebe CI has ten successful focused jobs, including clock protocol v2, but
+the main job fails primary trip-change-inputs collection. Restoration/host exit
+do not replace collection. Preserve negative records, previous media and public access.
+
+The later 25 October capture-clock candidate receives driver GPS A, B and C on
+a physical phone, including system-Home background movement and app return.
+Sign-out UI and a supplemental measured 50-second read-only stability check pass.
+The original six-phase observer remains incomplete because its final command was
+early; retain it and the first timestamp-wire comparison failure unchanged.
+Three reviewed unscaled viewport JPEGs lead the new tour, not video/native exports.
+Keep tracking partial: no map rendering, parent phone, child GPS, outdoor travel,
+locked screen, losses, restart, battery, iOS, release acceptance or production
+deployment. Four negative local trials and verified owned disposal remain retained.
+Recording permission is unavailable; do not restart the browser or change system
+permissions. Session stop is verified; package absence is not. Preserve public access.
+
+The 25 October GPS attempt is incomplete. One native point is accepted; the
+second mock coordinate is observed in Android diagnostics but not received in
+45 backend samples over 90 seconds. The app and parent read correctly report
+staleness. A timestamp-only edit in the disposable compiled backend identifies
+future-clock rejection; original production handlers and safety rules are not
+changed. Three reviewed unscaled viewport JPEGs show the failed attempt, not
+native-resolution exports, video or completed tracking. Keep tracking blocked,
+all release scenarios open, and older data-only sources dated separately.
+Uninstall acknowledgement, supported package-absence query, sign-out, session
+stop, Admin/Firestore closure and owned local disposal are verified.
+
+The 25 October physical consent trial binds ten independent read-only checkpoints
+to three booked trips and two parents. Six reviewed unscaled browser-viewport
+device rectangles form the new publication tour; they are not native-resolution
+exports or video. The single original native draft export remains retained only.
+Editor close/reopen is not whole-process restart. Confirmation, refusal and
+withdrawal preserve all six bookings and original terms. Application, route/time
+changes, payment and GPS remain open. Uninstall acknowledgement and session stop
+are verified; the provider rejects the package query, so absence is not claimed.
+Owned runtime/helper/session disposal and observer client closure are verified.
+Preserve older local application/restart evidence and the public audience.
+
+The 25 October recovery verifies the exact nine archived sources from the
+24 October four-case Compose trial. Its two final original captures replace
+neither the earlier payment evidence nor its dates. The original three-case
+pass is visually rejected for a clipped label and retained internally. Eleven
+coordinator unit cases and eight payment regressions are rerun from the restored
+sources. These are isolated component/unit checks, not real onboarding, a
+physical phone, a cold process start, iOS, real money or deployment of the app.
+Keep the payment flow partial and the agreed public Site audience unchanged.
+
+The later 24 October physical search trial completes real address selection,
+two seats for Lina, driver approval, parent account return, cancellation and
+four-seat restoration on one Pixel. Four independent checkpoints and full final
+isolation pass. Six approved map requests include nine matrix elements; no retry,
+payment or production write occurs. Seven original exports lead the search and
+booking tours. A stale two-notice verifier is reproduced against the real local
+backend and corrected to three notices; six service groups pass with the exact
+same replay source. Historical v1 validation is explicit and pinned to its old
+source commit, not inferred from missing notices. Sign-out, uninstall
+acknowledgement, session stop and owned local cleanup are verified. Package
+absence, two simultaneous phones, tracking, push, restart and iOS remain open.
+
+The later 24 October physical Pixel 9 Pro trial uses the a55503a4 isolated APK.
+City save/clear, sequential account switch/return, complete ledger balances and
+the driver payment-settings destination are observed manually. Nine independent
+read-only checkpoints preserve all other records and claims. Seven original
+portrait exports lead the two tours; eight originals are retained. No payment,
+onboarding, GPS, whole-process restart, iPhone or production deployment is proven.
+Sign-out, uninstall acknowledgement, session stop, observer exit and owned local
+cleanup are verified; independent package absence is not. Older local evidence
+and dates remain intact. The a55503a4 Native CI and all focused lanes passed.
+
+The 24 October long-history update binds eight authenticated service groups and
+one connected Android case to 257 owned entries. Four reviewed originals are
+published; the duplicate first balance view is retained only. Preserve the older
+15 October captures and dates. Activity recreation/account return are not full
+process restart, a physical phone, iOS-provider integration, real money or a
+production deployment. The preceding 89db53e6 full CI passed separately.
+
+The 24 October commission decision is still open. Both native Options sources
+remove the fixed zero-fee business placeholder without changing payment policy.
+Report source/unit checks separately from the pending connected replay. No new
+payment media, production result or agreed customer commission is accepted.
+
+The 24 October profile-city trial is profile-only. Ten authenticated isolated
+service groups and three native components are separate from one connected
+Android case. The case covers cancel, save, activity recreation, account switch
+and clear, not a full process restart, physical phone or iPhone. Keep this flow
+partial and undeployed. Publish only visually reviewed app-window captures;
+exclude obstructed system-window originals, retaining their reason internally.
+
+The later 13a5b1e2 replay succeeds: 37 groups / 40 native cases, all 32 transcripts,
+17 primary copies, client-close acknowledgements, device restoration and host
+exit. Ten focused lanes and their aggregate pass. Remove the shutdown blocker,
+retain earlier failures, and do not accept physical/release scope or new gallery
+media. This run predates the separately verified validation-dependency update.
+
+The bounded-validation update reproduces three failed expectations with the
+unchanged four-case file; all four then pass, alongside 440 backend units and
+24 isolated service groups. Its targeted advisory disappears, not the other
+security findings. The Samsung dialer prerequisite still fails before app use;
+package diagnostics narrow the observation, without a confirmed cause. Separate
+uninstall acknowledgement/package absence/session stop verify its cleanup.
+
+The 24 October replay closure regression reproduces an unclosed real local
+Admin client. Awaited Firestore termination and app deletion permit natural
+success and error exits. The earlier aba016d8 replay reports all 37 local steps
+but exceeds its 35-minute job limit. Full native completion is still pending;
+the then-current blocker followed this shutdown issue rather than the older copy stage.
+No new app media or physical/release acceptance is added.
+
+The later 3413b579 native replay passes all ten focused jobs, including startup,
+and 159 ordinary cases. Its main job fails the schedule primary copy; three
+diagnostics observe the device offline and a transport reconnect. The 102-file
+cleanup copy stays separate. Restoration/host exit pass, without establishing
+the transport or earlier startup cause. Current blocker follows this new run.
+
+The booking-request notice check adds an in-app driver event in the same booking/
+receipt transaction. Eight request checks plus twelve decision checks pass with
+158 protected fixtures. The exact new unit file is reproduced against 3413b579
+for the red result; the current handler passes the backend suite. The broader
+service replay distinguishes chat messages from booking alerts and checks that
+chat reads leave the request unread. This is not connected app UI, push, a phone
+trial or a production deployment. Existing 22 October booking media stays dated.
+
+The a2f273fb replay executes the identity-scoped driver approval and its new
+component successfully (159 ordinary passes, 52 skips, no ordinary failure).
+The full job later fails its primary trip-change-inputs copy; the cleanup copy
+pulls 100 files but does not replace primary success. One focused startup case
+times out with a suppressed fused-service disconnection and a GPS-unavailable
+screen; nine other focused lanes pass. Both failed devices restore policy/packages
+and their hosts exit. No root cause, full replay or new public media is accepted.
+The current full-replay blocker follows this record, not the old approval wait.
+
+The 23 October system-Phone preflight remains blocked on a fresh physical device.
+Home and labelled drawer Phone actions both return Home; the drawer gesture works.
+Four device-only originals are retained internally, not added to the app gallery.
+Provider uninstall acknowledgement and explicit session stop are observed; package
+absence is not independently verified. Support reply status could not be checked
+because its connection needs reauthentication. Historical app captures and dates
+remain unchanged; no dialer handoff, call, root cause or release item is accepted.
+
+The later `412f22f7` trial completes both connected notification stages, primary
+collection and independent checks across 176 records and a measured process stop.
+Its ordinary cases pass 158/52 skipped/zero failed and all focused lanes pass.
+The later nine-case driver batch times out on a global approval-count predicate;
+its exact post-failure stored state is not retained. The identity-scoped correction
+and a component with unrelated approved bookings compile but still need replay.
+Current news/blocker follow that result; older collection failures stay historical.
+No additional gallery media or physical-device acceptance is added.
+
+The later payment-fee check passes eighteen isolated preparation cases, all 78
+financial cases and 434 backend units. Fees are frozen before the first provider
+request and checked on response/webhook; known legacy identities reconcile using
+verified historical fees. Invalid rates and unknown fee-less attempts fail closed.
+The initial red file had nine failed new expectations among ten; that exact test
+file was not frozen. Transactions run locally with a synthetic auth context and
+provider/secret test doubles. No actual money, phone, sign-in transport, deployment
+or new payment media is accepted, and existing gallery dates remain unchanged.
+
+The 23 October notification-read physical trial adds four reviewed originals:
+parent unread/read, driver isolation and parent return. Four independent snapshots
+protect 167 records/claims; only the selected notification's read fields change.
+The provider kill request does not establish a completed process stop, so the
+`reopened` checkpoint means account return only. Final sign-out/uninstall remain
+unverified; explicit session stop, observer closure and owned local cleanup pass.
+Four additional authenticated service checks remain separately scoped. The
+permission trial's six original images and dates stay unchanged. Push delivery,
+physical restart, iOS, production activation and release acceptance remain open.
+
+The later ce282274 replay passes the guardian login/account-switch case and all
+ten focused cases, including the connected team exchange. The full job still
+fails at the primary trip-consent evidence copy; its 90-file cleanup copy is not
+accepted as primary success. Policy/package/launcher restoration and host exit
+are verified. The current blocker follows this copy failure; old login failures
+remain historical with no diagnosed cause. A separate c1d2a2ff record proves all
+seven notification cases executed within 154 passed/50 skipped ordinary cases.
+That older full workflow still failed and its host ended as zombie, not gone.
+No new public media, push, physical tracking or release acceptance is added.
+
+Evidence fingerprint discovery now covers every nested source/checksum/manifest.
+The original build omitted 16 of 164 references. The retained before report proves
+that coverage gap, not actual stale publication. New record names no longer need
+manual build-list additions, and invalid references fail closed.
+
+The later 23 October accounting run reproduces and fixes concurrent reward
+withdrawal and cumulative partial-reversal errors. Sixty emulator/journal cases,
+394 backend unit cases and five isolated browser component checks pass, without
+provider credentials, real money or an integrated browser/provider flow. No new
+payment media is published; prior capture dates stay unchanged. The preceding
+c1d2a2ff native run fails in two login waits; nine other focused cases pass. A new
+login-replay blocker reports that terminal run without invalidating older successes
+or claiming a cause, current native completion, deployment or release readiness.
+
+The 23 October notification-permission trial fixes a hard-coded enabled label
+and unrelated profile navigation. Actual app-specific OS allow/block changes
+and both app-screen returns pass on one physical Android phone; four read-only
+checks preserve 158 baseline records/claims. Six reviewed stream rectangles lead
+the new notification-settings tour. Seven JVM cases and all 504 JVM cases pass;
+seven new native cases only compile in this retained bundle. Permission is not
+push delivery, process-survival, iOS or production proof. The original off value,
+sign-out, acknowledged uninstall/launcher absence, session stop and owned runtime
+cleanup are verified. No video or browser-permission change is accepted.
+
+The later 23 October fa0cc1ff full replay and all ten focused lanes pass. The
+full replay retains 36 groups, 38 native cases, 16 primary copies and verified
+restoration/host exit. Its old blocker is removed, without explaining historical
+transport failures. A separate physical ride UI trial passes pickup, stable
+dropoff, completion, parent history and rating with seven independent checkpoints
+and 158 unchanged baseline records/claims. Eight reviewed stream rectangles lead
+the ride/rating tours. Accounts are sequential; no GPS, maps, distance, payments,
+push or release readiness is accepted. Sign-out/session stop and owned local
+cleanup are verified; app uninstall remains unverified. Earlier records below
+remain historical and retain their original dates and outcomes.
+
+On 23 October 2026 the owner explicitly answered "Non, garder le site public".
+The existing public audience must be preserved; no access change or invitation is
+needed for the next update. Publish the reviewed synthetic media and concise flow
+results through `save_site_version` then `deploy_site_version`. Raw diagnostics,
+credentials and private contact details are not website assets. The obsolete
+private-space label/sign-out control is removed; no client authentication is added.
+Keep `noindex,nofollow,noarchive`. Historical publication-hold statements below and
+inside dated evidence describe their original state, not a current publication ban.
+
+The 23 October passenger-command regression reproduces a status rollback on the
+live observer's age tick, with two original failing unit cases. Removing the
+competing one-shot read passes both cases, 17 targeted cases and the complete
+497-case Android unit suite, and compiles the native test APK. This is not native
+execution or proof of the exact earlier CI timing. Current news states that the
+full ride still needs replay; its historical capture date stays unchanged.
+
+The terminal 7c7bb699 run, started before that correction, passes the original
+ride/review native case but fails the schedule evidence copy. The later cleanup
+copy succeeds with 95 files, without replacing the failed phase. The first
+pre-installation network observer completes; its bounded carrier-readiness log
+is not a provisioning diagnosis. Policy/package/launcher restoration and host
+exit are verified. The current blocker follows this failed replay, not the older
+65c3f0fc ride assertion. No new gallery media or release acceptance is added.
+
+The later 23 October urgent-support physical trial passes with actual native
+submission and actual management-browser Review, Reply and Close. Eight read-only
+checkpoints preserve all 158 baseline records/claims. Five reviewed unscaled
+browser-stream rectangles lead its tour; the older local proof stays separate.
+Both accounts are observed sequentially, not two simultaneous phones. No email,
+native screenshot export, video, whole-process restart or real network loss is
+accepted. Sign-out, uninstall acknowledgement/launcher absence, explicit session
+stop and owned runtime/credential/port cleanup are verified. Its earlier publication
+hold is lifted by the owner's public-audience decision above.
+
+The later terminal 65c3f0fc run passes all ten focused lanes, but its full replay
+fails on the disabled end-ride button at LocalRideFlowTest line 75. Current news
+and blocker follow that limited observation, without claiming a root cause or
+new native media. The earlier 80c88d0c network-preparation failure remains separate;
+the later run stopped before that case. Earlier successes keep their own dates.
+
+The 23 October urgent-support record is a separate local tour: eleven isolated
+service checks, six actual management-browser checks, seven reviewed originals
+and unchanged 158 baseline UI fixtures. A genuine empty-note review bug is fixed
+and replayed through the browser SDK. Only two mobile originals are allowlisted.
+Actual email sending, inbox receipt, native replay and production activation remain
+open. The private destination is not source or portal content. Publication is held.
+
+The later terminal `fb628d5b` matrix job passes. Nine focused jobs pass, while one
+fails during device-action preparation before its app suite starts. Latest news
+and blocker follow that result without accepting the overall CI or publishing any
+new native media. Older failed matrix records remain unchanged.
+
+The 23 October connected physical support trial observes native Android Force
+stop before and after confirmation. Explicit Retry reuses one request; the
+post-confirmation reopen has no pending draft or third handler attempt. All ten
+independent checkpoints verify the 158 baseline records and claims. Four reviewed
+stream rectangles lead the tour; earlier dates and local clips remain separate.
+The later dashboard observation cannot establish uninstall or its session-end
+cause. No PID/SDK trace, real network-loss, urgent escalation or release acceptance
+is promoted. Backend/helper/credential cleanup is verified. Publication stays held.
+
+The latest `6441dca5` native job passes the ordinary 147 cases (50 explicit skips)
+and ten focused cases, but the full replay fails during evidence transfer after
+the consent native case passes. The current blocker/news follow that terminal
+failure; the older completed matrix retains its original evidence and date.
+
+The subsequent preinstalled `0af0155c` matrix passes 197 ordinary cases (147 pass,
+50 skip), all 36 isolated groups / 38 native cases and 16 copies. Four pinned APKs,
+the continuous installation guard and independent package/launcher/policy
+restoration validate from originals. A separate focused job fails while the SDK
+image is unpacked, before its phone or app starts; the overall workflow stays
+failed. The full host observer does not start because its parent folder is missing.
+Its output fix is prepared separately, not accepted as executed here. Latest news
+and blocker follow this matrix, without changing historical gallery dates or
+publishing new media. Publication remains held while the Site is public.
+
+The later 23:03 UTC health observation and successful current-source provider job
+restore callback/configuration readiness. No production change caused by this work
+or actual onboarding/payment is claimed. Current payment copy follows the recovery;
+the older outage stays in the history. Private publication remains on hold.
+
+The later `bea9e0ee` full job compiles but fails in the device action's boot command
+before our suite script starts. Ten focused cases and their independent policy,
+app and launcher restoration pass. The read-only host observer records nine gone
+processes and one zombie; it does not establish that every host process exited or
+explain the earlier cancellation. Current news/blocker follow that terminal boot
+record. New full-matrix preparation is pushed separately, with its trial pending.
+No new media or private-site publication is accepted.
+
+The subsequent `3904dd80` full matrix does not start its app tests: the store
+restarts during stopped-state verification. The original receipt verifies store
+settings restoration only; launcher restoration is unverified. Ten focused cases and their aggregate pass separately. A dated
+news entry reports this preparation failure while preserving the earlier
+completed matrix. The host-process observer is only prepared, not executed in
+that source. No new media or publication is accepted.
+
+The later terminal `a6d8a630` matrix passes all 36 local flow groups, 38 native
+cases and 16 primary copies, with policy restoration verified. The separate
+ride-observation case and cleanup also complete, but its action hangs after the
+emulator-kill acknowledgement and the job is cancelled. The latest device blocker
+follows that terminal record without turning the overall workflow green or
+explaining old transport failures. No new captures are published from this recheck.
+
+The 22 October public callback health recheck fails for both driver-onboarding
+return pages. The portal adds a dated payment blocker, without changing the
+older local payment proof or its date. The release manifest now requires Stripe
+reverification. The unrelated suspended billing account is not attributed to
+production. The Site bypass token was rotated with the access policy unchanged;
+publication remains held while the audience is public.
+
+The later 22 October physical submission run proves a full native process stop
+and explicit Retry of the same unconfirmed request. Six reviewed stream rectangles
+open the tour; earlier failed attempts and local clips remain separate. The phone
+stays connected: a held real handler response is not real network loss. The original
+controller stops after committed; three independent read-only observations cover
+request integrity/privacy only, not all 158 baseline fixtures. PID/no-process/new-PID
+observations prove process death separately. SDK counting remains unavailable from
+two identical stale log exports. The phone session and owned backend/helper are
+stopped; app uninstall is not verified. No release acceptance or publication occurs.
+
+The second 22 October submission phone attempt retains one recorded operator send
+and three same-identity handler attempts, with one unchanged report/operation.
+The controller fails after committed and the gate expires; the attempt stays
+incomplete. The operator journal is not a device-event source. A local-only debug
+SDK-call observer compiles and passes five JVM cases but has not run on a physical
+phone. Readiness selection now waits for the same known emulator; its remote result
+is still pending. No new gallery image or flow/release acceptance is added. Cleanup
+includes confirmed uninstall, native drawer absence and session stop. The new copy
+is local only, pending private audience and exposed-token renewal.
+
+The later 22 October physical support-submission attempt is incomplete. Four
+reviewed stream rectangles show the urgent form, unconfirmed state, history and
+saved details. Independent records preserve one report/operation, but a second
+handler attempt has an unproven origin. The no-replay interpretation was rejected;
+neither explicit retry nor pending process restart is accepted. Four checkpoints
+preserve 158 baseline records/claims; the later verifier covers request integrity
+and foreign reads only. Network settings and owned backend/helper are restored;
+the physical session is stopped. App uninstall was requested but is not independently
+verified. No new video or release acceptance is added. This update is local only.
+
+The 22 October submission-recovery record adds twelve isolated service checks,
+two native component cases, four native screenshots and a ten-second real-time
+screen-recording excerpt. It is separate from the physical support follow-up:
+the component uses simulated transport and the service is tested independently.
+The new endpoint and apps are not deployed. The new source's physical-network
+recovery, urgent escalation and app-process restart remain unverified.
+The `f819e9b0` full native run also fails during evidence transfer; its original
+metadata and failed-step log are retained. Publication remains on hold until
+the requested owner-private audience is restored.
+
+The latest 22 October support trial passes on one physical phone, with sequential
+parent/driver/parent accounts. One UI-created request and two service-prepared
+staff responses retain their status and history after provider app stop/relaunch
+and reconnection. Eight independent checkpoints preserve 158 records and claims;
+nine reviewed images (eight stream rectangles and one full browser context) open the tour. Internal notes are absent from the
+requester projection. The original local/submission proofs remain separate.
+No video/native PNG export or process-identity proof is invented. Phone app
+uninstall, session stop, owned backend/helper teardown, credential removal and
+closed ports are verified. Urgent mode and submission connection loss remain open.
+This snapshot is local only; publishing is still held while Site access is public.
+
+The earlier native gate is retained separately at source e23809a: 145 ordinary
+cases pass, 50 are skipped, and all eleven focused lanes pass. Two executed
+support component cases pass, but the full replay and its cleanup collection
+both fail during file transfer. Before/after host observations show the same
+observed adb process; this is not a server-identity or root-cause conclusion.
+The portal's current blocker now points to that terminal result. Older capture
+and replay snapshots keep their own original status and source.
+
+The earlier 22 October local support follow-up snapshot retains thirteen isolated
+service checks and five actual administrator-browser checks at four widths.
+Public written replies and status are owner-readable; internal notes remain
+private. A lost acknowledgement is explicitly retried without a duplicate.
+Android/iOS wire/state checks pass; the new requester screens still need observed
+native and physical replay. The prior submission phone captures keep their scope.
+No new phone media or release acceptance is added. Publication remains on hold
+while Site access is public; the new copy is local only.
+
+The 22 October support snapshot adds four reviewed physical-phone stream
+rectangles: invalid form, filled synthetic text, one submission and screen
+reopening. Five independent checkpoints verify one report and 158 protected
+records. Admin review remains service-only; requester status/response is absent,
+so the flow stays partial. The interrupted first phone attempt remains retained.
+This snapshot is prepared locally, not published while Site access is public.
+
+The new 22 October booking snapshot is prepared locally, not yet published.
+The hosted Site's access changed to public (policy revision 2); anonymous requests
+to the root and data JSON returned 200. Restoring owner-only access has been
+requested from the user. Do not publish this new snapshot to that public audience.
+
+The later 22 October phone trial completes six independent two-seat booking
+checkpoints with sequential driver/parent/driver accounts. Eight reviewed stream
+rectangles open its tour: approve, decline, recipient notices, parent cancellation
+and capacity restored from two to four. Requests are prepared by isolated
+services, not parent search UI. The first controller's incorrect pending-list
+assumption remains an incomplete attempt. Its corrected source, disposal and
+successful new trial are retained separately. No push, payment, simultaneous
+phones or release claim is added. The new record leaves older phone dates intact.
+The latest local replay finishes all 36 groups, while one ordinary PixelCopy
+capture still fails; the portal keeps that global verification open.
+
+The earlier 22 October review retains terminal service and native CI metadata separately.
+All 24 service groups pass in the actual remote log. The full native replay fails
+during evidence transfer with an observed offline transport; eleven focused lanes
+pass. The new booking phone attempt reaches no UI checkpoint because its private
+helper exits 126 before connecting. No new media, phone success, push or release
+acceptance is claimed. The helper retains only fixed error classifications, never
+raw vendor output by default. An approved startup-only diagnostic also exits 126
+without identifying the cause. The normal verbosity remains unchanged.
+
+The 21 October booking notice work retains twelve isolated service checks for
+transactional decisions/notices, write conflicts, replay, read-state preservation,
+concurrent approval and recipient-only inbox delivery. `noticeChecks` is separate
+from the older phone/local UI records, whose dates and captures are unchanged.
+The progress entry explicitly leaves the phone replay pending; it adds no media,
+push, payment or production-deployment claim.
+
+The later 21 October physical authority trial adds five reviewed phone stages:
+removal hides the open conversation, renewal opens empty history, and a later
+message plus one parent UI reply appear without restoring earlier messages.
+Five independent checkpoints verify exact revisions/messages and 158 protected
+records. Renewal decisions use authenticated services, not manager screens.
+The five streamed device rectangles open the tour; all earlier images remain.
+Owned phone/helper/backend cleanup is verified. Multi-child physical authority,
+simultaneous phones, notifications and full CI remain incomplete.
+
+The later 21 October physical unread trial passes eight observed stages with
+eight independent record checks. It uses sequential parent/driver/parent accounts
+on one phone and isolated services. Eight reviewed browser-stream device rectangles
+open the tour; unchanged full browser contexts are retained. Native PNG export
+was unavailable, and the streamed captures are not described as native exports.
+The initial shutdown left a CLI config directory; verified follow-up disposal
+and closed ports are retained. Notifications, two-phone exchange and full CI
+remain incomplete. Earlier local and draft records keep their original scope.
+
+The 21 October unread work now has twelve isolated service scenarios, nineteen
+local JVM cases, one connected native exchange trial and three executed simulated
+native components. Five reviewed originals open the updated tour and gallery.
+The dedicated lane passes; earlier failed selector/layout attempts stay retained.
+One partial root capture is excluded in favour of its complete original window
+export. Connected receipts and simulated visuals keep separate provenance.
+Physical unread state, notifications and release status remain open.
+
+The later 21 October system-dialer preflight is blocked on a distinct physical
+phone before app sign-in or backend setup. Its Home export is retained only,
+not a new app capture. A no-app-access support request has form confirmation,
+not a ticket ID or email-delivery proof. The prior eight contact captures and
+their incomplete primary sequence remain unchanged; no release item is accepted.
+
+The 21 October physical team-draft trial now supplies eight reviewed native
+exports and six independent record checkpoints: recovery after provider app
+kill, one send, cleared state after another stop, and a different unsent draft
+hidden from the driver but restored for the original parent. Accounts use one
+phone sequentially; separate service reads verify exactly one parent message
+and 158 protected records. Process IDs were not read, no video was recorded,
+and notifications, unread state, simultaneous phones and tracking stay open.
+The five new simulated read steps precede the physical eight-step sequence and
+the six local access-change steps. Earlier originals remain in the full gallery.
+
+The corrected team-draft flow passes in three distinct native processes with
+two independently verified host stops. The private text is recovered without
+retyping, one explicit UI send is read by the driver SDK, a second restart
+does not restore the sent draft, and another account has an empty composer.
+Five reviewed originals are published; the reopened root image is used because
+the corresponding system-window capture is partial. The earlier loss and
+pre-UI failures remain separate failed records. This does not accept physical,
+push, unread-state or release-audit requirements.
+
+Private, evidence-based project updates for Sports Green-Moove. Canonical source
+lives here; publishing uses the separate Sites repository. Never deploy this
+directory to the public Firebase application host.
+
+The 21 October parent-observation recheck retains the original terminal CI
+artifact, exact source bytes, transcript, eight reviewed PNGs and independent
+device-policy restoration. Seven captures are published; the partial landscape
+capture is retained only. Its local status sequence is not physical GPS,
+provider tracking or map-motion proof. Existing 19 October map and service
+records keep their own dates. The nine-step tour distinguishes both dates.
+
+## Access
+
+- Site: https://sports-green-moove-progress.mohamed-redha.chatgpt.site
+- Project ID: `.openai/hosting.json` is authoritative.
+- Sites authenticates visitors and restricts every request, including static media
+  and `data.json`. This is not a JavaScript password screen or an unlisted URL.
+- Owner-only for now. The user does not know the partner's email yet.
+- Before a future invitation, read Sites access and confirm external invitations
+  are enabled. Add only the explicitly supplied email; preserve other access.
+- No Firebase accounts, roles, billing, Terraform resources or production data are
+  created by this site. Hosting identity/configuration is codified in the manifest.
+
+## Content And Evidence
+
+The latest 94a3ffb full native gate fails two trip-change PixelCopy waits while
+the eleven focused lanes and one private-storage case pass. Publish the concise
+failure note and update current blocker sources. Keep d476cce as the retained
+last complete passing source, not the latest result. No new screenshots or root
+cause are accepted. See `docs/release/evidence/team-push-native-gate-94a3ffb-2026-11-01/README.md`.
+
+The later 1 November lifecycle update adds 24 model/task-queue cases, bringing the
+complete Android JVM suite to 746. Production callbacks compile, but no real SDK
+registration or closed-app delivery is accepted. Online sign-out acknowledgement
+is still missing. The six corresponding operational release proofs remain pending.
+Publish only the concise local-result note, with no new media or date promotion.
+See `docs/release/evidence/native-team-push-lifecycle-2026-11-01/README.md`.
+
+The 1 November native registration journal adds 27 local JVM checks and a
+compiled, unexecuted private-storage device test. Its brief progress note does
+not promote actual phone registration or closed-app delivery. Preserve the
+62-image team gallery, 39-step tour, all historical dates and partial status.
+See `docs/release/evidence/native-team-push-journal-2026-11-01/README.md`.
+
+`tours.mjs` defines guided steps using only each flow’s reviewed images or clips.
+The overview contains progress totals and the newest update for up to six distinct
+flows. A completed cross-flow trial may list the flows it supersedes, so older
+interrupted-trial headlines do not look current beside its pass. All other news
+stays in an expandable history, in its original order.
+Parcours is the single searchable visual catalogue:
+each flow opens its guided tour when available, or its evidence gallery. Guided steps have shareable `#parcours/<id>/visite/<step>` links and
+preserve original capture captions, dates and remaining scope. These are recorded
+walkthroughs, not an interactive connection to the running native app. The hosted
+native preview must be refreshed and its private test access verified separately
+before it can represent current flows. Galleries show media before service results.
+
+`content.mjs` is the curated, French-language source; `recent-progress.mjs` holds
+the newest progress entries and `progress-blockers.mjs` the remaining work. Its `captures` allowlist adds
+reviewed device-only screenshots from dated evidence directories without another
+crop to app content. Each flow distinguishes status, dated verification, evidence
+source and remaining scope. An empty screen
+does not establish completion. Existing release manifests remain authoritative for
+final release approval; this portal does not accept new release evidence itself.
+
+`searchBookingUi` binds the 20 October local search/two-seat booking chain to
+real-provider receipts, three independent saved-state checkpoints and device
+restoration. Only four reviewed originals are published. Older physical-phone
+evidence keeps an explicit `phone.checkedAt`; a newer local trial must not appear
+as a refreshed physical-phone result in the gallery heading.
+
+The builder copies only allowlisted media. Historical screenshots are cropped to
+the device. The 21 October emergency-contact tour contains eight reviewed
+physical-phone originals backed by an explicitly incomplete primary sequence
+and separate recovery observations. It does not accept the unresolved dialer,
+child-own-login, active-ride or tracking requirements. Earlier local images stay
+in the evidence gallery with their original date. App content is not altered.
+Four 13-16 second excerpts are trimmed at
+real speed from the October 13 replay exports; no transition or outcome is
+fabricated. Those exports remain available as long recordings. The sign-out long
+export already omits troubleshooting, as documented in its original report.
+
+Keep the partner-facing copy brief and conversational: videos, short updates,
+and concrete next steps. Do not repeat report disclaimers across the page. Keep
+test status and actual limitations clear; put recording context in optional details.
+Do not name technologies, providers, device models or testing tools in the portal
+copy. Describe user actions and outcomes; keep technical provenance in repository
+reports. Preserve the original app captures rather than editing their contents.
+
+Local service checks use a `local` record with a sanitized JSON evidence path,
+successful scenario IDs and short result statements. Validation checks that the
+referenced groups passed on the displayed date. These flows stay `partial`, show
+an explicit local-test date and a results list, not a fabricated app capture.
+Retained older captures carry their original test date in their caption.
+
+Local app/management screen checks use a separate `ui` record backed by scoped
+result JSON. These remain partial and dated as local trials, with reviewed captures
+shown before older service-check lists. A screen test does not accept GPS,
+background tracking, push delivery, live-provider or physical-device requirements.
+Never publish black/blank captures from rendering-disabled test device images.
+
+The team conversation's 21 October `ui` evidence is explicitly component-only:
+three simulated cases, four reviewed originals, separate six-directory/eighteen-
+message service checks and ten native units. It does not accept connected native
+exchange or notification delivery. Its visual allowlist excludes a partial root
+redraw and uses the complete original window for that checkpoint.
+Its later `attempt` retains a failed connected native case with SDK peers: two
+reviewed exchange windows are published, but the nine-case marker and independent
+stored-state verifier were not reached. Its historical two-step tour showed only that partial
+exchange; the older simulated captures remain in the full gallery. No revocation,
+account-isolation, physical-device or push result is promoted from that attempt.
+The separate `connected` record retains a later completed native case, nine
+checkpoints and independent saved-state verification. Its four reviewed windows
+formed the previous tour: parent opening, exchange, revoked access and driver account.
+The draft window is retained but excluded because its header redraw is incomplete.
+Previous component and failed-attempt images remain in the full gallery. The flow
+stays partial: physical phones, push, unread state and full process restart remain.
+Its `accessChanges` record adds eleven service-only scenarios for multiple children
+and cross-team access. These add no new media and do not accept native multi-child
+or cross-team discovery; the latest update and remaining work state that boundary.
+The subsequent `accessAttempt` binds four reviewed original windows to a failed
+native case that reaches renewal and a separate-team opening, then times out on
+the parent reply. Its completed marker and independent state verifier were not
+reached. Its four partial captures remain in the full gallery. No reply delivery
+or completed cross-team return is accepted from that failed attempt.
+The separate completed `nativeAccess` record now binds eleven actual native
+checkpoints, seven independently verified messages and verified cleanup. Its six
+reviewed windows form the current tour, including the other-team reply and return
+to the original team. The guardian renewal itself uses SDK peers, not management
+screens. Physical devices, push, unread state and full process restart stay open.
+The separate `draftAttempt` retains two pre-UI failures of the new three-process
+draft lane. The local instrumentation did not attach; the independent CI runner
+rejected two non-void test declarations. Explicit Unit declarations now produce
+three JVM void methods, bound to a separate corrected source snapshot and build.
+This compiled-signature check adds no accepted screenshots, draft recovery, send
+or restart result. The prior six-step access tour and all dated images stay intact.
+The later `draftRegression` is an actual app failure after a verified full process
+stop: the first stage and unsent-message checkpoint pass, then the reopened draft
+is empty. Two reviewed full-window originals are published only as failure evidence.
+The new private durable storage and stable pending-send identity pass focused state
+tests, but require a later successful unchanged three-process run before native
+recovery, send or restart acceptance. The access tour remains unchanged.
+
+The session restoration flow preserves its four reviewed 20 October captures.
+Its separate `restorationRecheck` records the 21 October authentication transport
+failure before application UI. No new screenshot, restoration completion or
+production defect is accepted from that failure; disposable cleanup is verified.
+Its later `restorationRecovery` binds the completed 21 October case, exact SDK
+requests, stored-state verification and independent disposal to the original ZIP.
+Four new reviewed originals form the current tour; the older four stay dated in
+the gallery. This does not establish either prior failure's root cause, whole-CI
+success or physical network-loss recovery.
+
+The parent ride's separate `mapUi` record binds two reviewed map captures to the
+actual native movement report, retained source, unchanged-camera assertions and
+verified disposal. Its synthetic driver coordinates do not accept physical GPS,
+child positions or ETA requirements; the flow remains partial.
+
+Browser assets use a content-derived directory so HTML, styles and JavaScript
+modules cannot accidentally reuse an older bundle after deployment. Publishing
+also checks that the generated bundle matches the current source.
+
+Dates in the page are explicit snapshots, not an automatically refreshed live
+status. Update `updatedAt` when content changes and `lastVerifiedAt` only when a
+new verification actually occurred. Evidence source hashes are included in the
+generated JSON for traceability. Never add credentials or unreviewed media.
+
+`native-verification.mjs` retains an earlier full local replay and independent
+safety trials to their scoped retained evidence. Validation checks CI source,
+required jobs, native markers, transfers, APK preparation and cleanup separately.
+The separate `nativeCaptureRecheck` follows the latest global capture failure;
+historical reports keep their
+original dates and failures. The separate recreated-profile gallery and tour
+never imply child-own-account access or physical-device readiness.
+
+## Validate And Preview
+
+From the repository root (Node 22 and FFmpeg required):
+
+```sh
+npm ci --prefix partner-portal
+node --test tests/partner-portal.test.mjs
+node scripts/build-partner-portal.mjs
+./node_modules/.bin/vite preview --host 127.0.0.1 --port 4177 --strictPort --outDir partner-portal/dist
+```
+
+Open http://127.0.0.1:4177. The loopback-only preview is not an authenticated
+deployment; never expose it as a public tunnel. Browser QA lives in
+`tests/partner-portal.browser.mjs` and accepts `PLAYWRIGHT_MODULE_PATH`,
+`PLAYWRIGHT_EXECUTABLE_PATH`, `PORTAL_URL` and `PORTAL_QA_DIR` for a supplied
+Playwright runtime. It tests playback, deep links, filters, dialogs and overflow
+at 320, 390, 768 and 1440 pixels. Use a separate headless browser, not the user's
+existing browser profile. Web Integration Smoke validates content contracts.
+Use the range-capable preview for unchanged direct recordings. Approved short
+excerpts now use the fully loaded, verified player and do not rely on remote
+byte-range support. Do not infer published behavior from local playback alone.
+
+## Publish Or Update
+
+Use the installed Sites skill and tools. Do not call `create_site` again.
+
+1. Validate, build and review media/layouts. Commit and push canonical source.
+2. Read the Site and acquire its short-lived source write credential. Keep it in
+   session memory; pass it to the Sites workflow helper only through hidden stdin.
+   `get_site` can also return a bypass bearer token. Never print the complete
+   result, even for a public Site; emit only allowlisted IDs, audience and status.
+3. For updates, open the existing separate Sites checkout with the helper first,
+   so remote changes are reconciled before replacing the generated snapshot.
+4. Export to a separate checkout, for example:
+
+   ```sh
+   node scripts/prepare-partner-portal-publish.mjs /private/tmp/sgm-partner-site
+   ```
+
+5. From that checkout, run the Sites `site-workflow.mjs` helper with the exact
+   project ID. Supply `credential`, the prior opening `source` result when present,
+   `commands: []`, and an absolute `archivePath` via hidden stdin. The helper commits,
+   pushes and packages the matching static snapshot. Never run it at the app root.
+6. For confirmed owner-private access use `save_version_and_deploy_private` with
+   the helper's exact project ID, commit SHA and archive. After an invitation,
+   inspect the audience and use the appropriate shared-site deploy operation.
+7. Wait for deployment success. For the currently authorized public audience,
+   verify anonymous page, JSON and allowlisted media access. For a future explicitly
+   requested private audience, verify those requests are denied or redirected.
+   Do not rotate credentials or widen access to perform a check.
+
+Publication is part of meaningful completed work, not an unattended schedule or an
+automatic CI deployment. If publication is blocked, report the last published
+snapshot and the unpublished changes rather than claiming the website is current.
+
+## Earlier Team Connection Recovery, 28 October
+
+The earlier update records one parent request restored after the private test
+connection was interrupted, followed by the club refusal observed on the phone.
+The complete seven-phase enrollment restart trial remains incomplete: two
+provider kill commands never reached observed completion. See
+`docs/release/evidence/team-connection-recovery-phone-2026-10-28/README.md`.
+
+That incomplete trial remains partial. Its original UI/phone/history results and
+all 15 earlier gallery images retain their 19 October dates. It added no public media.
+The obsolete instruction to add team chat is removed; existing chat evidence
+remains a separate partial flow. Public copy names no test technology or device.
+
+The new evidence validator is included in Web Integration Smoke. The full local
+Node suite passes (2,392 tests), as do the final portal build and browser checks
+at 320, 390, 768 and 1440 pixels. The public access policy is unchanged.
+
+## Support Recovery Recheck, 30 October
+
+The physical Android retry trial now retains all eight independent record
+checkpoints, three process probes (running / absent / new PID), account isolation,
+package removal and separate host disposal. One genuine response was held while
+the supported session Offline Mode was applied. One explicit Retry after full
+process restart returned the original request without duplication. This is not
+physical-radio, tracking, production, urgent-email, iOS or release acceptance.
+See `docs/release/evidence/support-recovery-recheck-2026-10-30/README.md`.
+
+One original session crop of the parent's history is added. It shows one new
+request beside one protected preexisting fixture request. The earlier galleries
+and simulated-confirmation video remain unchanged. No new video was recorded.
+
+The same-source native run a1d0d96 failed in primary image transfer, after passing
+ordinary instrumentation and all eleven focused jobs. The incomplete replay is
+not promoted by its passing observed transcripts or failure-cleanup copy. The
+existing copy blocker points to this latest evidence while retaining its original
+historical source. The b8886ec complete success remains source-specific.
+
+Existing support evidence tests and portal validation in Web Integration Smoke
+cover the new proof and negative scope-promotion assertions. No workflow command,
+infrastructure, audience, real account or production configuration is changed.
+
+## Child Booking Receipt Services, 30 October
+
+Seven new local-service checks retain a two-seat child request across a genuine
+lost response, fresh authentication and explicit retry, without duplication.
+They protect the complete captured top-level baseline, account claims and live
+trips. They do not prove search UI or whole-process restart on a phone. The
+booking flow remains partial, with all previous images, dates and tours retained.
+See `docs/release/evidence/child-booking-receipt-recheck-2026-10-30/README.md`.
+
+The same evidence folder retains a separate failed focused chat preparation
+and generated-file transfer diagnostic at ef8b998. Wi-Fi validation history has
+DNS failures; no actual chat handover or resend occurs in that failed trial.
+The unrelated transfer test stops after 28 verified copies, with remote test-file
+cleanup unverified. Neither failure is promoted or attributed to an unproven cause.
+
+Web Integration Smoke runs the new service trial and retains its cleanup record
+in the existing people/safety group. Every original workload command stays intact.
+Public copy mentions no stack. No new media, production, billing, infrastructure
+or audience change accompanies this result.

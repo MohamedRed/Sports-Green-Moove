@@ -1,0 +1,88 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+  "runId": 42100296847,
+  "jobId": 127503931215,
+  "sdkBuild": "success",
+  "conclusion": "failure",
+  "casesExecuted": 11,
+  "passed": 9,
+  "failed": 2,
+  "assertionFailures": 4,
+  "publicationCasePassed": true,
+  "bookingTapMessagesScreenObserved": true,
+  "exactBookingHitCoordinateKnown": false,
+  "sourceOverlayReplaced": true,
+  "currentNativeLayoutAccepted": false,
+  "currentNativeUiAccepted": false,
+  "settledReadBoundaries": 4,
+  "teamSendPolicyChanged": false,
+  "fullNativeChecksPassed": true,
+  "deadlineMinutes": 50,
+  "artifactCount": 0,
+  "disposal": "success",
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "fcfd38971099bb8f93a62080b842f1a8db139cdecfdd66cc982e5549d0ef0faf"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "07a46f29de01c124fb77caa82665a51a6c6b534c60a6771f4910bd0221ff8610"
+    },
+    {
+      "file": "selected-failures.txt",
+      "sha256": "5e4a1c2af7f956c98c8a092cb302ad0055bd1c381eba8a46cf223ec977fc4c2e"
+    },
+    {
+      "file": "booking-accessibility.txt",
+      "sha256": "9d842b5ecd17b2758fae3465de9a812e712175df9aeff14aca0a0c3e0c1c928a"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "686e6b38768193fc0ba4bff037dd0162b1a8573692de3b0a7046da911bec4a58"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "native-recheck.txt",
+      "sha256": "e6c06ca08782a21869fa84547e0286615b799dccd32891f0907192b4b349d795"
+    },
+    {
+      "file": "source-contract-baseline.txt",
+      "sha256": "aa6e4c1c25d65f94dca0bcb89e813a0e9bf476a069404904598e8ed721406b40"
+    },
+    {
+      "file": "source-contract-recheck.txt",
+      "sha256": "4310273132e59ee91c702150f7ac31e301d8b6d18a6278c73614a610a459540b"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "9d6813e97054ff26448cddc7523f75f743f497fa05f40fe106a101a633047274"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "0fb5d8c5926278a82c6e537686048ff93acc9e3110b69d28f414669b7111761c"
+    },
+    {
+      "file": "android85e-network-preparation.json",
+      "sha256": "171a189f983172579cc965b2b633bb1dfdcb4fa9154daab958449c5ceab30445"
+    },
+    {
+      "file": "android85e-artifact.json",
+      "sha256": "f100d38a985340bf9764006224208f87f338b56df61314b6862eb34950f9b034"
+    },
+    {
+      "file": "android38b-image-download.json",
+      "sha256": "35be15cc8568896294b5ab3b06b8c64649c5be7919a32012a50b30137d76f27f"
+    }
+  ]
+}

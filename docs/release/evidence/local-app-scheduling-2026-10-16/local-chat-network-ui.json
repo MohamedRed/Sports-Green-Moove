@@ -1,0 +1,56 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "62d83d64a7752b4a9df39e6b6bdb5a55",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": true,
+  "network": [
+    {
+      "phase": "before",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "internetNetworkCount": 2,
+      "backendReachable": true,
+      "internetTransports": [
+        "wifi",
+        "cellular"
+      ]
+    },
+    {
+      "phase": "cellular-ready",
+      "wifiEnabled": false,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "internetNetworkCount": 1,
+      "backendReachable": true,
+      "internetTransports": [
+        "cellular"
+      ]
+    },
+    {
+      "phase": "offline",
+      "wifiEnabled": false,
+      "mobileDataEnabled": false,
+      "activeNetwork": false,
+      "internetNetworkCount": 0,
+      "backendReachable": false,
+      "internetTransports": []
+    },
+    {
+      "phase": "restored",
+      "wifiEnabled": true,
+      "mobileDataEnabled": true,
+      "activeNetwork": true,
+      "internetNetworkCount": 1,
+      "backendReachable": true,
+      "internetTransports": [
+        "cellular"
+      ]
+    }
+  ],
+  "offlineSendUnconfirmed": true,
+  "offlineDraftRetained": true,
+  "recoveredSendConfirmed": true,
+  "accountDraftCleared": true,
+  "replyReceived": true
+}

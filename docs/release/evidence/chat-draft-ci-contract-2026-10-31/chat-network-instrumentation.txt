@@ -1,0 +1,25 @@
+INSTRUMENTATION_STATUS: sgm_installations_blocked=true
+INSTRUMENTATION_STATUS_CODE: 0
+
+be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest:
+Error in networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest):
+org.junit.ComparisonFailure: expected:<[]> but was:<[Brouillon privé du parent QA.]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.assertDraft(LocalChatNetworkFlowTest.kt:243)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:162)
+
+
+Time: 34.855
+There was 1 failure:
+1) networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest)
+org.junit.ComparisonFailure: expected:<[]> but was:<[Brouillon privé du parent QA.]>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.assertDraft(LocalChatNetworkFlowTest.kt:243)
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:162)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

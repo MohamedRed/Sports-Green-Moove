@@ -1,0 +1,23 @@
+{
+  "scope": "one-local-search-two-seat-booking-trial-not-complete-release",
+  "sourceCommit": "7d93569ce30c77ac0c8035dd25aea86cdcad14c4",
+  "workflowRunId": 39513673003,
+  "caseJobId": 118940563992,
+  "artifactId": 12306877088,
+  "runId": "b44e417a2b9f4e7dca4958f6a226b77a",
+  "reviewedCaptures": [
+    "local-parent-search-booking-choices.png",
+    "local-parent-search-booking-requested.png",
+    "local-parent-search-booking-driver-approved.png",
+    "local-parent-search-booking-cancelled.png"
+  ],
+  "excludedFromPortal": {
+    "local-parent-search-booking-match.png": "result card partly below viewport",
+    "local-parent-search-booking-parent-approved.png": "loading text still visible despite approved reservation"
+  },
+  "physicalDevice": false,
+  "productionDeployed": false,
+  "paymentExercised": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false
+}

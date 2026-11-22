@@ -1,0 +1,81 @@
+{
+  "sourceCommit": "9f7f0ee87d8a20a9d840b6beecf6f2abc1a96a68",
+  "runId": 41957958991,
+  "jobId": 127029087554,
+  "scope": "sdk-linked-synthetic-fixture-ui-not-provider-or-physical-evidence",
+  "sdkBuild": "passed",
+  "complete": true,
+  "caseCount": 11,
+  "passed": 9,
+  "failed": 2,
+  "assertionFailures": 3,
+  "cases": [
+    {
+      "className": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+      "name": "testChildContactOpensFromHomeWithoutTrackingOrEditing",
+      "status": "passed",
+      "seconds": 29.372
+    },
+    {
+      "className": "SportsGreenMooveUITests.EmergencyContactFlowTests",
+      "name": "testPersonalContactRequiresReviewAndPersistsItsRemoval",
+      "status": "passed",
+      "seconds": 50.281
+    },
+    {
+      "className": "SportsGreenMooveUITests.ParentEmergencyContactFlowTests",
+      "name": "testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact",
+      "status": "failed",
+      "seconds": 31.271
+    },
+    {
+      "className": "SportsGreenMooveUITests.SearchConsentFlowTests",
+      "name": "testExplicitConsentAndChildChangeInvalidateResults",
+      "status": "passed",
+      "seconds": 19.844
+    },
+    {
+      "className": "SportsGreenMooveUITests.SearchConsentFlowTests",
+      "name": "testTrackingAndSeatChangesInvalidateTheAcceptedSelection",
+      "status": "passed",
+      "seconds": 45.844
+    },
+    {
+      "className": "SportsGreenMooveUITests.SignOutFlowTests",
+      "name": "testProfileSignsOutToEmptyAuthentication",
+      "status": "passed",
+      "seconds": 47.887
+    },
+    {
+      "className": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+      "name": "testActiveRideIdentifiers",
+      "status": "passed",
+      "seconds": 19.836
+    },
+    {
+      "className": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+      "name": "testAuthFlowIdentifiers",
+      "status": "passed",
+      "seconds": 47.211
+    },
+    {
+      "className": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+      "name": "testMessagesChatAndRatingIdentifiers",
+      "status": "failed",
+      "seconds": 47.369
+    },
+    {
+      "className": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+      "name": "testPublishSearchAndBookingIdentifiers",
+      "status": "passed",
+      "seconds": 53.544
+    },
+    {
+      "className": "SportsGreenMooveUITests.SportsGreenMooveUITests",
+      "name": "testSecondaryFlowIdentifiers",
+      "status": "passed",
+      "seconds": 101.248
+    }
+  ],
+  "fullGateAccepted": false
+}

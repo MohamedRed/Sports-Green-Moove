@@ -1,0 +1,2386 @@
+{
+  "total_count": 20,
+  "jobs": [
+    {
+      "id": 124523837540,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL4ZA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837540",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837540",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:17Z",
+      "completed_at": "2026-10-31T11:25:39Z",
+      "name": "Android native unit tests",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:19Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:19Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Set up JDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Set up Android SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:36Z"
+        },
+        {
+          "name": "Install Android SDK packages",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:36Z",
+          "completed_at": "2026-10-31T11:22:38Z"
+        },
+        {
+          "name": "Run Android native unit tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:38Z",
+          "completed_at": "2026-10-31T11:25:36Z"
+        },
+        {
+          "name": "Post Set up JDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:25:36Z",
+          "completed_at": "2026-10-31T11:25:36Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-31T11:25:36Z",
+          "completed_at": "2026-10-31T11:25:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-31T11:25:37Z",
+          "completed_at": "2026-10-31T11:25:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837540",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010394,
+      "runner_name": "GitHub Actions 1000010394",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837653,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL41Q",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837653",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837653",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:17Z",
+      "completed_at": "2026-10-31T11:51:12Z",
+      "name": "Android native UI tests",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:20Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:20Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Set up JDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Set up Node for isolated app flows",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:31Z"
+        },
+        {
+          "name": "Install isolated test dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:31Z",
+          "completed_at": "2026-10-31T11:22:46Z"
+        },
+        {
+          "name": "Set up Android SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:46Z",
+          "completed_at": "2026-10-31T11:22:55Z"
+        },
+        {
+          "name": "Compile app and tests before starting the disposable device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:55Z",
+          "completed_at": "2026-10-31T11:27:41Z"
+        },
+        {
+          "name": "Reserve disk space for the unchanged disposable Android device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:41Z",
+          "completed_at": "2026-10-31T11:27:41Z"
+        },
+        {
+          "name": "Select one validated full-matrix renderer",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:41Z",
+          "completed_at": "2026-10-31T11:27:41Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:27:41Z",
+          "completed_at": "2026-10-31T11:27:41Z"
+        },
+        {
+          "name": "Run Android Compose UI tests",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 11,
+          "started_at": "2026-10-31T11:27:41Z",
+          "completed_at": "2026-10-31T11:51:06Z"
+        },
+        {
+          "name": "Finish bounded read-only full-matrix host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-31T11:51:06Z",
+          "completed_at": "2026-10-31T11:51:06Z"
+        },
+        {
+          "name": "Upload Android instrumentation reports",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-31T11:51:06Z",
+          "completed_at": "2026-10-31T11:51:09Z"
+        },
+        {
+          "name": "Post Set up Node for isolated app flows",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24,
+          "started_at": "2026-10-31T11:51:09Z",
+          "completed_at": "2026-10-31T11:51:09Z"
+        },
+        {
+          "name": "Post Set up JDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-31T11:51:09Z",
+          "completed_at": "2026-10-31T11:51:09Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-31T11:51:09Z",
+          "completed_at": "2026-10-31T11:51:10Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-31T11:51:10Z",
+          "completed_at": "2026-10-31T11:51:10Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837653",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010407,
+      "runner_name": "GitHub Actions 1000010407",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837693,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL4_Q",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837693",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837693",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:31:19Z",
+      "name": "Android focused safety UI tests / Isolated session-restoration",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:19Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:29Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:29Z",
+          "completed_at": "2026-10-31T11:22:44Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:44Z",
+          "completed_at": "2026-10-31T11:22:55Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:55Z",
+          "completed_at": "2026-10-31T11:27:42Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:42Z",
+          "completed_at": "2026-10-31T11:27:42Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:42Z",
+          "completed_at": "2026-10-31T11:31:14Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:31:14Z",
+          "completed_at": "2026-10-31T11:31:15Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:31:15Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837693",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010399,
+      "runner_name": "GitHub Actions 1000010399",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837698,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5Ag",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837698",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837698",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:32:03Z",
+      "name": "Android focused safety UI tests / Isolated chat-network-recovery",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:18Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:28Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:28Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:57Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:57Z",
+          "completed_at": "2026-10-31T11:27:52Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:52Z",
+          "completed_at": "2026-10-31T11:27:52Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:52Z",
+          "completed_at": "2026-10-31T11:32:00Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:32:00Z",
+          "completed_at": "2026-10-31T11:32:00Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:32:00Z",
+          "completed_at": "2026-10-31T11:32:01Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:32:01Z",
+          "completed_at": "2026-10-31T11:32:01Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:32:01Z",
+          "completed_at": "2026-10-31T11:32:01Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:32:01Z",
+          "completed_at": "2026-10-31T11:32:02Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:32:02Z",
+          "completed_at": "2026-10-31T11:32:02Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837698",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010404,
+      "runner_name": "GitHub Actions 1000010404",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837718,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5Fg",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837718",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837718",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:23:05Z",
+      "name": "Native UI flow coverage",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:17Z"
+        },
+        {
+          "name": "Reject conflicting manual map selections",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:17Z"
+        },
+        {
+          "name": "Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Set up native configuration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:42Z"
+        },
+        {
+          "name": "Validate team enrollment unit and compiled-screen scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:42Z",
+          "completed_at": "2026-10-31T11:22:42Z"
+        },
+        {
+          "name": "Validate recreated child contact UI proof contract",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:42Z",
+          "completed_at": "2026-10-31T11:22:42Z"
+        },
+        {
+          "name": "Validate owned enrollment history source and dated evidence boundaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:42Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Test owned local service process supervision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Validate immutable child emergency contact contracts and evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:44Z"
+        },
+        {
+          "name": "Validate selected ride observation and independent disposable trials",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:22:44Z",
+          "completed_at": "2026-10-31T11:22:46Z"
+        },
+        {
+          "name": "Validate vehicle coordinate projection and independent component layout scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:22:46Z",
+          "completed_at": "2026-10-31T11:22:47Z"
+        },
+        {
+          "name": "Validate SDK-connected team replay evidence requirements",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-31T11:22:47Z",
+          "completed_at": "2026-10-31T11:22:47Z"
+        },
+        {
+          "name": "Validate sanitized host transport observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-31T11:22:47Z",
+          "completed_at": "2026-10-31T11:22:49Z"
+        },
+        {
+          "name": "Test hosted Android disk capacity guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-31T11:22:49Z",
+          "completed_at": "2026-10-31T11:22:49Z"
+        },
+        {
+          "name": "Validate preinstalled full-matrix APKs and complete raw JUnit inventory",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-31T11:22:49Z",
+          "completed_at": "2026-10-31T11:22:50Z"
+        },
+        {
+          "name": "Validate membership cursor regression and client decoder evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-10-31T11:22:50Z",
+          "completed_at": "2026-10-31T11:22:50Z"
+        },
+        {
+          "name": "Validate independently retained Android execution and device observations",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-10-31T11:22:50Z",
+          "completed_at": "2026-10-31T11:22:51Z"
+        },
+        {
+          "name": "Test bounded restoration faults and unchanged fixture records",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-10-31T11:22:51Z",
+          "completed_at": "2026-10-31T11:22:52Z"
+        },
+        {
+          "name": "Validate guarded full-search preparation and accessible trip controls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-10-31T11:22:52Z",
+          "completed_at": "2026-10-31T11:22:53Z"
+        },
+        {
+          "name": "Validate retained physical search without provider access",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:22:53Z",
+          "completed_at": "2026-10-31T11:22:53Z"
+        },
+        {
+          "name": "Validate driver account preparation evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:22:53Z",
+          "completed_at": "2026-10-31T11:22:53Z"
+        },
+        {
+          "name": "Validate dated full native replay recheck",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:22:53Z",
+          "completed_at": "2026-10-31T11:22:55Z"
+        },
+        {
+          "name": "Validate neutral text contrast and native capture scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:22:55Z",
+          "completed_at": "2026-10-31T11:22:55Z"
+        },
+        {
+          "name": "Validate role-specific accent controls and phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-10-31T11:22:55Z",
+          "completed_at": "2026-10-31T11:22:55Z"
+        },
+        {
+          "name": "Test custom TLS certificate verification and retained scope",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-31T11:22:55Z",
+          "completed_at": "2026-10-31T11:22:57Z"
+        },
+        {
+          "name": "Validate native search departure controls and blocked phone evidence",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-31T11:22:57Z",
+          "completed_at": "2026-10-31T11:22:57Z"
+        },
+        {
+          "name": "Validate disposable Android isolation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-31T11:22:57Z",
+          "completed_at": "2026-10-31T11:22:58Z"
+        },
+        {
+          "name": "Validate disposable Android policies and native configuration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28,
+          "started_at": "2026-10-31T11:22:58Z",
+          "completed_at": "2026-10-31T11:22:59Z"
+        },
+        {
+          "name": "Validate dual-transport network prerequisites",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29,
+          "started_at": "2026-10-31T11:22:59Z",
+          "completed_at": "2026-10-31T11:23:02Z"
+        },
+        {
+          "name": "Validate real-map UI isolation without provider calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-10-31T11:23:02Z",
+          "completed_at": "2026-10-31T11:23:02Z"
+        },
+        {
+          "name": "Test private Android network validation history",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-10-31T11:23:02Z",
+          "completed_at": "2026-10-31T11:23:03Z"
+        },
+        {
+          "name": "Validate initial network observation before test-only transport requests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-10-31T11:23:03Z",
+          "completed_at": "2026-10-31T11:23:04Z"
+        },
+        {
+          "name": "Post Set up native configuration tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 63,
+          "started_at": "2026-10-31T11:23:04Z",
+          "completed_at": "2026-10-31T11:23:04Z"
+        },
+        {
+          "name": "Post Checkout",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 64,
+          "started_at": "2026-10-31T11:23:04Z",
+          "completed_at": "2026-10-31T11:23:04Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 65,
+          "started_at": "2026-10-31T11:23:04Z",
+          "completed_at": "2026-10-31T11:23:04Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837718",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010408,
+      "runner_name": "GitHub Actions 1000010408",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837735,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5Jw",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837735",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837735",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:17Z",
+      "completed_at": "2026-10-31T11:33:04Z",
+      "name": "Android focused safety UI tests / Isolated team-draft",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:20Z",
+          "completed_at": "2026-10-31T11:22:33Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:33Z",
+          "completed_at": "2026-10-31T11:22:34Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:34Z",
+          "completed_at": "2026-10-31T11:22:40Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:40Z",
+          "completed_at": "2026-10-31T11:22:58Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:58Z",
+          "completed_at": "2026-10-31T11:23:19Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:23:19Z",
+          "completed_at": "2026-10-31T11:28:30Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:28:30Z",
+          "completed_at": "2026-10-31T11:28:30Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:28:30Z",
+          "completed_at": "2026-10-31T11:32:58Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:32:58Z",
+          "completed_at": "2026-10-31T11:32:59Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:32:59Z",
+          "completed_at": "2026-10-31T11:33:01Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:33:01Z",
+          "completed_at": "2026-10-31T11:33:01Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:33:01Z",
+          "completed_at": "2026-10-31T11:33:01Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:33:01Z",
+          "completed_at": "2026-10-31T11:33:01Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:33:01Z",
+          "completed_at": "2026-10-31T11:33:01Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837735",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010398,
+      "runner_name": "GitHub Actions 1000010398",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837748,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5NA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837748",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837748",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:31:20Z",
+      "name": "Android focused safety UI tests / Isolated session-disconnect",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:18Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:30Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:30Z",
+          "completed_at": "2026-10-31T11:22:47Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:47Z",
+          "completed_at": "2026-10-31T11:22:57Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:57Z",
+          "completed_at": "2026-10-31T11:27:57Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:57Z",
+          "completed_at": "2026-10-31T11:27:57Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:57Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:17Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:31:17Z",
+          "completed_at": "2026-10-31T11:31:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:31:18Z",
+          "completed_at": "2026-10-31T11:31:18Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:31:18Z",
+          "completed_at": "2026-10-31T11:31:18Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:31:18Z",
+          "completed_at": "2026-10-31T11:31:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:31:19Z",
+          "completed_at": "2026-10-31T11:31:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837748",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010400,
+      "runner_name": "GitHub Actions 1000010400",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837776,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5UA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837776",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837776",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:14Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:29:55Z",
+      "name": "Android focused safety UI tests / Isolated team-conversation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:19Z",
+          "completed_at": "2026-10-31T11:22:25Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:25Z",
+          "completed_at": "2026-10-31T11:22:25Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:25Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:37Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:37Z",
+          "completed_at": "2026-10-31T11:22:45Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:45Z",
+          "completed_at": "2026-10-31T11:26:39Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:26:39Z",
+          "completed_at": "2026-10-31T11:26:39Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:26:39Z",
+          "completed_at": "2026-10-31T11:29:50Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:29:50Z",
+          "completed_at": "2026-10-31T11:29:51Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:29:51Z",
+          "completed_at": "2026-10-31T11:29:53Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:29:53Z",
+          "completed_at": "2026-10-31T11:29:53Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:29:53Z",
+          "completed_at": "2026-10-31T11:29:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:29:53Z",
+          "completed_at": "2026-10-31T11:29:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:29:53Z",
+          "completed_at": "2026-10-31T11:29:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837776",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010402,
+      "runner_name": "GitHub Actions 1000010402",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837781,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5VQ",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837781",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837781",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:17Z",
+      "completed_at": "2026-10-31T11:33:10Z",
+      "name": "Android focused safety UI tests / Isolated ride-observation",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:20Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:30Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:30Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:52Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:52Z",
+          "completed_at": "2026-10-31T11:27:48Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:48Z",
+          "completed_at": "2026-10-31T11:27:48Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:48Z",
+          "completed_at": "2026-10-31T11:33:03Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:33:03Z",
+          "completed_at": "2026-10-31T11:33:05Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:33:05Z",
+          "completed_at": "2026-10-31T11:33:06Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:33:06Z",
+          "completed_at": "2026-10-31T11:33:07Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:33:07Z",
+          "completed_at": "2026-10-31T11:33:07Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:33:07Z",
+          "completed_at": "2026-10-31T11:33:07Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:33:07Z",
+          "completed_at": "2026-10-31T11:33:07Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837781",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010401,
+      "runner_name": "GitHub Actions 1000010401",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837799,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5Zw",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837799",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837799",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:31:38Z",
+      "name": "Android focused safety UI tests / Isolated native-startup",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:18Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:18Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:28Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:28Z",
+          "completed_at": "2026-10-31T11:22:44Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:44Z",
+          "completed_at": "2026-10-31T11:22:51Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:51Z",
+          "completed_at": "2026-10-31T11:27:46Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:46Z",
+          "completed_at": "2026-10-31T11:27:46Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:46Z",
+          "completed_at": "2026-10-31T11:31:35Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:31:35Z",
+          "completed_at": "2026-10-31T11:31:35Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:31:35Z",
+          "completed_at": "2026-10-31T11:31:36Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:31:36Z",
+          "completed_at": "2026-10-31T11:31:36Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:31:36Z",
+          "completed_at": "2026-10-31T11:31:37Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:31:37Z",
+          "completed_at": "2026-10-31T11:31:37Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:31:37Z",
+          "completed_at": "2026-10-31T11:31:37Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837799",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010410,
+      "runner_name": "GitHub Actions 1000010410",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837817,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5eQ",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837817",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837817",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:32:08Z",
+      "name": "Android focused safety UI tests / Isolated remote-ride-stop",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:20Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:30Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:30Z",
+          "completed_at": "2026-10-31T11:22:46Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:46Z",
+          "completed_at": "2026-10-31T11:22:58Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:58Z",
+          "completed_at": "2026-10-31T11:28:21Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:28:21Z",
+          "completed_at": "2026-10-31T11:28:21Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:28:21Z",
+          "completed_at": "2026-10-31T11:32:03Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:32:03Z",
+          "completed_at": "2026-10-31T11:32:04Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:32:04Z",
+          "completed_at": "2026-10-31T11:32:05Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:32:05Z",
+          "completed_at": "2026-10-31T11:32:06Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:32:06Z",
+          "completed_at": "2026-10-31T11:32:06Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:32:06Z",
+          "completed_at": "2026-10-31T11:32:06Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:32:06Z",
+          "completed_at": "2026-10-31T11:32:06Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837817",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010405,
+      "runner_name": "GitHub Actions 1000010405",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837820,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5fA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837820",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837820",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:30:54Z",
+      "name": "Android focused safety UI tests / Isolated team-read-components",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:19Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:26Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:26Z",
+          "completed_at": "2026-10-31T11:22:31Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:31Z",
+          "completed_at": "2026-10-31T11:22:48Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:48Z",
+          "completed_at": "2026-10-31T11:22:59Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:59Z",
+          "completed_at": "2026-10-31T11:28:08Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:28:08Z",
+          "completed_at": "2026-10-31T11:28:08Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:28:08Z",
+          "completed_at": "2026-10-31T11:30:51Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:30:51Z",
+          "completed_at": "2026-10-31T11:30:51Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:30:51Z",
+          "completed_at": "2026-10-31T11:30:52Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:30:52Z",
+          "completed_at": "2026-10-31T11:30:53Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:30:53Z",
+          "completed_at": "2026-10-31T11:30:53Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:30:53Z",
+          "completed_at": "2026-10-31T11:30:53Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:30:53Z",
+          "completed_at": "2026-10-31T11:30:53Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837820",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010409,
+      "runner_name": "GitHub Actions 1000010409",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837824,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5gA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837824",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837824",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:30:47Z",
+      "name": "Android focused safety UI tests / Isolated team-access",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:20Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:20Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:27Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:27Z",
+          "completed_at": "2026-10-31T11:22:30Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:30Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:52Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:52Z",
+          "completed_at": "2026-10-31T11:27:00Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:00Z",
+          "completed_at": "2026-10-31T11:27:01Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:01Z",
+          "completed_at": "2026-10-31T11:30:42Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:30:42Z",
+          "completed_at": "2026-10-31T11:30:43Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:30:43Z",
+          "completed_at": "2026-10-31T11:30:45Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:30:45Z",
+          "completed_at": "2026-10-31T11:30:45Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:30:45Z",
+          "completed_at": "2026-10-31T11:30:45Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:30:45Z",
+          "completed_at": "2026-10-31T11:30:45Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:30:45Z",
+          "completed_at": "2026-10-31T11:30:45Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837824",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010403,
+      "runner_name": "GitHub Actions 1000010403",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523837892,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL5xA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523837892",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523837892",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:16Z",
+      "completed_at": "2026-10-31T11:31:29Z",
+      "name": "Android focused safety UI tests / Isolated emergency-identity",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:22:17Z",
+          "completed_at": "2026-10-31T11:22:19Z"
+        },
+        {
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:22:19Z",
+          "completed_at": "2026-10-31T11:22:25Z"
+        },
+        {
+          "name": "Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:22:25Z",
+          "completed_at": "2026-10-31T11:22:25Z"
+        },
+        {
+          "name": "Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-31T11:22:25Z",
+          "completed_at": "2026-10-31T11:22:28Z"
+        },
+        {
+          "name": "Run npm ci",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-31T11:22:28Z",
+          "completed_at": "2026-10-31T11:22:43Z"
+        },
+        {
+          "name": "Run android-actions/setup-android@v4",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-31T11:22:43Z",
+          "completed_at": "2026-10-31T11:22:56Z"
+        },
+        {
+          "name": "Compile isolated app before starting the device",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-31T11:22:56Z",
+          "completed_at": "2026-10-31T11:27:45Z"
+        },
+        {
+          "name": "Enable KVM group permissions",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-31T11:27:45Z",
+          "completed_at": "2026-10-31T11:27:45Z"
+        },
+        {
+          "name": "Run one isolated safety flow on its own phone",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-31T11:27:45Z",
+          "completed_at": "2026-10-31T11:31:26Z"
+        },
+        {
+          "name": "Finish bounded read-only emulator host observation",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-31T11:31:26Z",
+          "completed_at": "2026-10-31T11:31:26Z"
+        },
+        {
+          "name": "Retain focused outcomes and independent cleanup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-31T11:31:26Z",
+          "completed_at": "2026-10-31T11:31:27Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20,
+          "started_at": "2026-10-31T11:31:27Z",
+          "completed_at": "2026-10-31T11:31:27Z"
+        },
+        {
+          "name": "Post Run actions/setup-java@v5",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21,
+          "started_at": "2026-10-31T11:31:27Z",
+          "completed_at": "2026-10-31T11:31:28Z"
+        },
+        {
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22,
+          "started_at": "2026-10-31T11:31:28Z",
+          "completed_at": "2026-10-31T11:31:28Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23,
+          "started_at": "2026-10-31T11:31:28Z",
+          "completed_at": "2026-10-31T11:31:28Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523837892",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010411,
+      "runner_name": "GitHub Actions 1000010411",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 124523838452,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL79A",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523838452",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523838452",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:15Z",
+      "completed_at": "2026-10-31T11:22:14Z",
+      "name": "iOS native UI tests",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523838452",
+      "labels": [
+        "macos-26-intel"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 124523838544,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL8UA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523838544",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523838544",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:15Z",
+      "completed_at": "2026-10-31T11:22:14Z",
+      "name": "Android approved real-map UI integration",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523838544",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 124523838557,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL8XQ",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523838557",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523838557",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:15Z",
+      "completed_at": "2026-10-31T11:22:14Z",
+      "name": "iOS native checks",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523838557",
+      "labels": [
+        "macos-26-intel"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 124523838628,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL8pA",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523838628",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523838628",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:15Z",
+      "completed_at": "2026-10-31T11:22:14Z",
+      "name": "Android approved vehicle-map UI",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523838628",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 124523838666,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_jL8yg",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124523838666",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124523838666",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-31T11:22:15Z",
+      "started_at": "2026-10-31T11:22:15Z",
+      "completed_at": "2026-10-31T11:22:14Z",
+      "name": "Android approved parent search and booking",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124523838666",
+      "labels": [],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    },
+    {
+      "id": 124526010662,
+      "run_id": 41196576936,
+      "workflow_name": "Native CI",
+      "head_branch": "codex/implement-plan",
+      "run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/runs/41196576936",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOS2jvF88AAAAc_lQhJg",
+      "head_sha": "5d699283747c79f92483c994b3deccc7d32163f1",
+      "url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/actions/jobs/124526010662",
+      "html_url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41196576936/job/124526010662",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-31T11:33:10Z",
+      "started_at": "2026-10-31T11:33:12Z",
+      "completed_at": "2026-10-31T11:33:14Z",
+      "name": "Android focused safety UI tests / Isolated safety flows",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-31T11:33:12Z",
+          "completed_at": "2026-10-31T11:33:13Z"
+        },
+        {
+          "name": "Require every independent case and its cleanup to pass",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-31T11:33:13Z",
+          "completed_at": "2026-10-31T11:33:13Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-31T11:33:13Z",
+          "completed_at": "2026-10-31T11:33:13Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/MohamedRed/Sports-Green-Moove/check-runs/124526010662",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000010413,
+      "runner_name": "GitHub Actions 1000010413",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

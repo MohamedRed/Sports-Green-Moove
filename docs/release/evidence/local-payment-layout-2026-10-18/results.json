@@ -1,0 +1,25 @@
+{
+  "projectId": null,
+  "testedAt": "2026-10-18T14:59:02Z",
+  "scope": "local-native-component-ui-not-physical-device",
+  "selection": "PaymentConfirmationLayoutTest only",
+  "applicationBackendConnected": false,
+  "gateway": "in-memory-fixture",
+  "fullAppReplay": false,
+  "physicalDevice": false,
+  "realProviderOutcomesVerified": false,
+  "componentSuiteCompleted": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "testCount": 3,
+  "sourceCommit": "2ab678688d8362d1653a2457e49d8d924c7cdc5b",
+  "sourceRun": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/39137615346",
+  "sourceSuitePassed": false,
+  "sourceSuite": { "tests": 124, "failures": 1, "errors": 0, "skipped": 31 },
+  "steps": [
+    { "id": "pendingPaymentOffersOnlyReadOnlyVerificationOnANarrowScreen", "status": "passed" },
+    { "id": "anInconsistentRecordRemainsExplicitlyUnconfirmed", "status": "passed" },
+    { "id": "aStatusReadDisablesRepeatedChecks", "status": "passed" }
+  ]
+}

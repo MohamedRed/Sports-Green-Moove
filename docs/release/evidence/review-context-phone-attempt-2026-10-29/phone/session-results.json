@@ -1,0 +1,57 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "19d20253ae9743ecb5e420c2198e13a3",
+  "testedAt": "2026-10-29T21:39:31.496Z",
+  "scope": "independent-contextual-review-record-checkpoints-not-ui-or-release-proof",
+  "completed": false,
+  "checks": [
+    {
+      "phase": "driver-context",
+      "status": "passed",
+      "driverRequests": 1,
+      "parentRequests": 32,
+      "unavailableParentRequests": 1,
+      "ratingCount": 31,
+      "exactReviewTargetsPreserved": true,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "runId": "19d20253ae9743ecb5e420c2198e13a3",
+      "observedAt": "2026-10-29T21:30:40.254Z",
+      "parentFirstPageSize": 20,
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158
+    },
+    {
+      "phase": "driver-rated",
+      "status": "passed",
+      "driverRequests": 0,
+      "parentRequests": 32,
+      "unavailableParentRequests": 1,
+      "ratingCount": 32,
+      "exactReviewTargetsPreserved": true,
+      "phoneUiProvenByThisObserver": false,
+      "processRestartProven": false,
+      "runId": "19d20253ae9743ecb5e420c2198e13a3",
+      "observedAt": "2026-10-29T21:31:24.734Z",
+      "parentFirstPageSize": 20,
+      "originalRecordsAndClaimsPreserved": true,
+      "protectedRecordCount": 158
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "phoneUiProvenByThisObserver": false,
+  "fixtureSubmittedInitialRatings": 31,
+  "subsequentRatingsFixtureSubmitted": false,
+  "sourceApkSha256": "87572997804d63c9a633d8d5d670c288e7a6fa14c8187bca3018b41c63b8834c",
+  "installedBytesIndependentlyVerified": false,
+  "sourceFiles": {
+    "scripts/qa/manual-review-context-phone.mjs": "d62cf44d7e7205b1cedfc77d23da56a41e179e40e5121c877a8b969e8ed174da",
+    "scripts/qa/review-context-phone-fixture.mjs": "d0770b051ff2fe023c8bc89a4c89cd6e61dcff706a888e0d8d16bd24deccb390",
+    "scripts/qa/review-context-phone-checkpoints.mjs": "c2b18989e2fd13b50d4125106cd55b08aa5a0cd6daa3689dac8aa37309b122e1",
+    "functions/src/services/pendingReviews.ts": "94b8af0612b3b15718880376572d9678de1b163bf4dca828863616a2bdf0a42e",
+    "functions/src/domain/reviewTripContext.ts": "9a0a014f9c30da3b5b04b9710f979c4f32b5e846e67a4cd1b750ee350a7aede8"
+  }
+}

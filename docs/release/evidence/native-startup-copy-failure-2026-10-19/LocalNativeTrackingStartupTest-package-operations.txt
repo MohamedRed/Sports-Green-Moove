@@ -1,0 +1,66 @@
+--------- beginning of main
+10-19 18:55:54.357  1315  1671 W PackageManager: Failure retrieving text 0x7f130786 in package com.android.systemui
+10-19 18:55:54.357  1315  1671 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at android.content.res.Resources.getText(Resources.java:466)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2405)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at android.appwidget.AppWidgetProviderInfo.loadDescription(AppWidgetProviderInfo.java:484)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at kml.a(PG:341)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at kmg.b(PG:82)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at aaer.g(PG:13)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at kotlinx.coroutines.DispatchedTask.run(PG:114)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at wqm.a(PG:3)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at wpo.run(PG:21)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at wqn.run(PG:5)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:307)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at hqv.run(PG:221)
+10-19 18:55:54.357  1315  1671 W PackageManager: 	at java.lang.Thread.run(Thread.java:1012)
+--------- beginning of system
+10-19 18:59:33.980   564   623 I PackageManager: Integrity check passed for file:///data/app/vmdl1154241787.tmp
+10-19 18:59:38.309   564   623 I PackageManager: Integrity check passed for file:///data/app/vmdl1680674381.tmp
+10-19 18:59:40.713   564   599 W PackageManager: Failed registering loading progress callback. Package is fully loaded.
+10-19 18:59:45.174  1315  1671 W PackageManager: Failure retrieving text 0x7f130786 in package com.android.systemui
+10-19 18:59:45.174  1315  1671 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at android.content.res.Resources.getText(Resources.java:466)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2405)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at android.appwidget.AppWidgetProviderInfo.loadDescription(AppWidgetProviderInfo.java:484)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at kml.a(PG:341)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at kmg.b(PG:39)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at aaer.g(PG:13)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at kotlinx.coroutines.DispatchedTask.run(PG:114)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at wqm.a(PG:3)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at wpo.run(PG:21)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at wqn.run(PG:5)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:307)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at hqv.run(PG:221)
+10-19 18:59:45.174  1315  1671 W PackageManager: 	at java.lang.Thread.run(Thread.java:1012)
+10-19 19:00:03.721   564   599 W PackageManager: Failed registering loading progress callback. Package is fully loaded.
+10-19 19:00:06.070  1315  1671 W PackageManager: Failure retrieving text 0x7f130786 in package com.android.systemui
+10-19 19:00:06.070  1315  1671 W PackageManager: android.content.res.Resources$NotFoundException: String resource ID #0x7f130786
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at android.content.res.Resources.getText(Resources.java:466)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at android.app.ApplicationPackageManager.getText(ApplicationPackageManager.java:2405)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at android.appwidget.AppWidgetProviderInfo.loadDescription(AppWidgetProviderInfo.java:484)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at kml.a(PG:341)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at kmg.b(PG:39)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at aaer.g(PG:13)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at kotlinx.coroutines.DispatchedTask.run(PG:114)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at wqm.a(PG:3)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at wpo.run(PG:21)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at wqn.run(PG:5)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:487)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:307)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:644)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at hqv.run(PG:221)
+10-19 19:00:06.070  1315  1671 W PackageManager: 	at java.lang.Thread.run(Thread.java:1012)

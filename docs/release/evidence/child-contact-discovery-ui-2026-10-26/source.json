@@ -1,0 +1,24 @@
+{
+  "scope": "nine-child-components-with-failed-main-gate-not-phone-or-release-proof",
+  "head": "3b386a023bd92ce66958e6a3d28c8fa64b97d370",
+  "runId": 40319003618,
+  "jobId": 121558809939,
+  "conclusion": "failure",
+  "mockedGateway": true,
+  "mockedDialer": true,
+  "mainNativeCiPassed": false,
+  "physicalDevice": false,
+  "actualChildSignIn": false,
+  "invitationExecuted": false,
+  "connectedBackend": false,
+  "dialerOpened": false,
+  "screenshotsAccepted": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildAccountLinkFlowTest.kt": "b015c992807bd55b37d54ac58842bcd48d5a8c97c88dbbb995408c942299ebe5",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildEmergencyPermissionFlowTest.kt": "ae406c1f4a9f276845f1dc2816c2a5cfa6e11293df9d289b2df4698ff8531de8",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ChildRideEmergencyFlowTest.kt": "c637dfad00d169c66eac7d5cf5d5799156f20364058c31b0cdee24a2891b7fb7",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/TripChangeFlowTest.kt": "1f1e5be3363b7331ca3b7b4a413c3eb4644307e5c0a4b2fc67a7d4e67bc36463",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalUiCapture.kt": "9c789e8029065b213b4003cbf0e6dcfaf9230f9be5f6bf5628a150e0aa60bc26"
+  }
+}

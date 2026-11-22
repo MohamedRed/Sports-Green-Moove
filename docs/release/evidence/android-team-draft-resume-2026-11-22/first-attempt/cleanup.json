@@ -1,0 +1,20 @@
+{
+  "verifiedAt": "2026-11-22T14:08:32.926Z",
+  "phoneSessionClosed": true,
+  "uploadedAppsDashboardObserved": true,
+  "providerAppKillActions": 1,
+  "homeScreenObservedAfterKill": true,
+  "privateSessionRemoved": true,
+  "ownedBackendRuntimeRemoved": true,
+  "ownedTunnelRuntimeRemoved": true,
+  "loopbackPortsClosed": [
+    5001,
+    8080,
+    9000,
+    9099,
+    60078,
+    60234
+  ],
+  "clipboardRestored": true,
+  "productionWrites": false
+}

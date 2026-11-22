@@ -1,0 +1,25 @@
+{
+  "reviewedOriginals": ["initial.png", "unsent.png", "reopened.png", "sent.png", "cleared.png", "private-parent.png", "other-account.png", "returned-parent.png"],
+  "published": {
+    "team-draft-phone-initial": "initial.png",
+    "team-draft-phone-unsent": "unsent.png",
+    "team-draft-phone-reopened": "reopened.png",
+    "team-draft-phone-sent": "sent.png",
+    "team-draft-phone-cleared": "cleared.png",
+    "team-draft-phone-private-parent": "private-parent.png",
+    "team-draft-phone-other-account": "other-account.png",
+    "team-draft-phone-returned-parent": "returned-parent.png"
+  },
+  "timeScope": "host-save-completion-times-not-device-generated-capture-timestamps",
+  "originalHostSaveTimes": {
+    "initial.png": "2026-10-21T18:09:55.049Z",
+    "unsent.png": "2026-10-21T18:16:07.209Z",
+    "reopened.png": "2026-10-21T18:21:30.784Z",
+    "sent.png": "2026-10-21T18:22:32.200Z",
+    "cleared.png": "2026-10-21T18:25:37.398Z",
+    "private-parent.png": "2026-10-21T18:28:10.068Z",
+    "other-account.png": "2026-10-21T18:33:31.529Z",
+    "returned-parent.png": "2026-10-21T18:39:03.508Z"
+  },
+  "review": "All eight unchanged native exports are readable and show the observed app states. The parent sees only the post-admission message, restores the accented first draft after the provider kill action, sends once and stays cleared after another stop. A second unsent private draft is absent in the separate driver account and returns only for the original parent. The driver sees the single sent parent message and its own earlier history. No password input, real customer data, push badge or tracking result is shown. Context JPEGs are retained separately and are not native exports or published gallery items."
+}

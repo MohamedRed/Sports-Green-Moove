@@ -1,0 +1,13 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "201438ab42cb5ccd80e0269f1964ae42",
+  "scope": "native-ui-with-disposable-os-network-control",
+  "completed": false,
+  "network": [],
+  "setupMethod": "requested-wifi-and-cellular-networks",
+  "transportSetupVersion": 2,
+  "handoverObservationVersion": 1,
+  "failedPhase": "booking-picker",
+  "cellularRequestReleased": null,
+  "wifiRequestReleased": null
+}

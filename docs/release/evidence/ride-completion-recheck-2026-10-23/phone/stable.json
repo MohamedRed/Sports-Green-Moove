@@ -1,0 +1,208 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "2d41b84f7df5eef5e32add4fe7b82027",
+  "recordedAt": "2026-10-23T15:23:02.668Z",
+  "fixture": {
+    "tripId": "9zATNRIK1GIvMBbJthNn",
+    "bookingId": "hS8tcftfRbx3D3Fp09PR",
+    "childId": "sgm-qa-child-lina",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver"
+  },
+  "state": {
+    "trip": {
+      "id": "9zATNRIK1GIvMBbJthNn",
+      "driverUserId": "sgm-qa-driver",
+      "status": "published",
+      "title": "Fin de trajet QA",
+      "sport": "Football",
+      "clubName": "Green Wavre QA Club",
+      "clubId": "sgm-qa-club-green-wavre",
+      "teamId": "sgm-qa-club-green-wavre-u8",
+      "category": "U 7/8",
+      "departureAt": "2026-10-25T03:09:29.593Z",
+      "origin": {
+        "lat": 50.7167,
+        "lng": 4.6167
+      },
+      "destination": {
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "pickupRadiusM": 1500,
+      "seatsTotal": 4,
+      "baggage": "medium",
+      "returnTrip": false,
+      "priceCents": 0,
+      "driverRating": 0,
+      "driverVerified": true,
+      "supportsVehicleTracking": true,
+      "supportsChildTracking": true,
+      "co2SavedKgEstimate": 7.4,
+      "passengerInitials": [],
+      "blockedUserIds": [],
+      "createdAt": {
+        "_seconds": 1792768169,
+        "_nanoseconds": 615000000
+      },
+      "seatsAvailable": 2,
+      "activeRideSessionId": "0Kk2i4Uto1PE2Zbjqzje",
+      "updatedAt": {
+        "_seconds": 1792768868,
+        "_nanoseconds": 971000000
+      }
+    },
+    "booking": {
+      "id": "hS8tcftfRbx3D3Fp09PR",
+      "tripId": "9zATNRIK1GIvMBbJthNn",
+      "parentUserId": "sgm-qa-parent",
+      "requesterUserId": "sgm-qa-parent",
+      "driverUserId": "sgm-qa-driver",
+      "seats": 2,
+      "createdAt": {
+        "_seconds": 1792768170,
+        "_nanoseconds": 449000000
+      },
+      "childId": "sgm-qa-child-lina",
+      "childLabel": "Lina QA",
+      "approvedAt": {
+        "_seconds": 1792768171,
+        "_nanoseconds": 266000000
+      },
+      "status": "approved",
+      "pickupStatus": "pickedUp",
+      "pickupNote": null,
+      "pickedUpAt": {
+        "_seconds": 1792768898,
+        "_nanoseconds": 491000000
+      },
+      "dropoffStatus": "droppedOff",
+      "droppedOffAt": {
+        "_seconds": 1792768933,
+        "_nanoseconds": 487000000
+      },
+      "dropoffNote": null,
+      "updatedAt": {
+        "_seconds": 1792768933,
+        "_nanoseconds": 487000000
+      }
+    },
+    "rides": [
+      {
+        "id": "0Kk2i4Uto1PE2Zbjqzje",
+        "tripId": "9zATNRIK1GIvMBbJthNn",
+        "bookingIds": [
+          "hS8tcftfRbx3D3Fp09PR"
+        ],
+        "driverUserId": "sgm-qa-driver",
+        "participantUserIds": [
+          "sgm-qa-parent"
+        ],
+        "childUserIds": [
+          "sgm-qa-child-lina"
+        ],
+        "status": "active",
+        "startedAt": {
+          "_seconds": 1792768868,
+          "_nanoseconds": 971000000
+        },
+        "createdAt": {
+          "_seconds": 1792768868,
+          "_nanoseconds": 971000000
+        },
+        "passengerStatuses": {
+          "hS8tcftfRbx3D3Fp09PR": {
+            "pickupStatus": "pickedUp",
+            "pickupNote": null,
+            "pickedUpAt": {
+              "_seconds": 1792768898,
+              "_nanoseconds": 491000000
+            },
+            "updatedByUserId": "sgm-qa-driver",
+            "bookingId": "hS8tcftfRbx3D3Fp09PR",
+            "dropoffStatus": "droppedOff",
+            "droppedOffAt": {
+              "_seconds": 1792768933,
+              "_nanoseconds": 487000000
+            },
+            "dropoffNote": null,
+            "updatedAt": {
+              "_seconds": 1792768933,
+              "_nanoseconds": 487000000
+            }
+          }
+        },
+        "passengers": [
+          {
+            "bookingId": "hS8tcftfRbx3D3Fp09PR",
+            "childId": "sgm-qa-child-lina",
+            "label": "Lina QA",
+            "parentUserId": "sgm-qa-parent",
+            "pickupStatus": "pickedUp",
+            "dropoffStatus": "droppedOff"
+          }
+        ],
+        "updatedAt": {
+          "_seconds": 1792768933,
+          "_nanoseconds": 487000000
+        }
+      }
+    ],
+    "audit": [
+      {
+        "id": "manual_dropoff_hS8tcftfRbx3D3Fp09PR_sgm-qa-child-lina",
+        "source": "manual",
+        "eventType": "passengerDropoff",
+        "action": "dropoff",
+        "bookingId": "hS8tcftfRbx3D3Fp09PR",
+        "childId": "sgm-qa-child-lina",
+        "userId": "sgm-qa-driver",
+        "note": null,
+        "capturedAt": {
+          "_seconds": 1792768933,
+          "_nanoseconds": 487000000
+        },
+        "recordedAt": {
+          "_seconds": 1792768933,
+          "_nanoseconds": 487000000
+        }
+      },
+      {
+        "id": "manual_pickup_hS8tcftfRbx3D3Fp09PR_sgm-qa-child-lina",
+        "source": "manual",
+        "eventType": "passengerPickup",
+        "action": "pickup",
+        "bookingId": "hS8tcftfRbx3D3Fp09PR",
+        "childId": "sgm-qa-child-lina",
+        "userId": "sgm-qa-driver",
+        "note": null,
+        "capturedAt": {
+          "_seconds": 1792768898,
+          "_nanoseconds": 491000000
+        },
+        "recordedAt": {
+          "_seconds": 1792768898,
+          "_nanoseconds": 491000000
+        }
+      }
+    ],
+    "co2": [],
+    "rewards": [],
+    "ratings": []
+  },
+  "result": {
+    "phase": "stable",
+    "rideCount": 1,
+    "pickupCount": 1,
+    "dropoffCount": 1,
+    "auditCount": 2,
+    "co2Entries": 0,
+    "rewardEntries": 0,
+    "ratingCount": 0,
+    "phoneUiVerifiedByController": false,
+    "physicalTrackingAccepted": false,
+    "productionWrites": false
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true
+}

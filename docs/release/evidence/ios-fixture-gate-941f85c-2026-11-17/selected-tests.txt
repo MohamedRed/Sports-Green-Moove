@@ -1,0 +1,29 @@
+2026-11-17T00:06:03.6347170Z ** TEST BUILD SUCCEEDED **
+2026-11-17T00:06:53.0921910Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' started.
+2026-11-17T00:07:31.6142910Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testChildContactOpensFromHomeWithoutTrackingOrEditing]' passed (38.634 seconds).
+2026-11-17T00:07:31.6223190Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' started.
+2026-11-17T00:08:27.0088750Z Test Case '-[SportsGreenMooveUITests.EmergencyContactFlowTests testPersonalContactRequiresReviewAndPersistsItsRemoval]' passed (55.386 seconds).
+2026-11-17T00:08:27.0125130Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 94.021 (94.023) seconds
+2026-11-17T00:08:27.0129280Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' started.
+2026-11-17T00:09:47.2585890Z Test Case '-[SportsGreenMooveUITests.ParentEmergencyContactFlowTests testParentChoosesVerifiedChildBeyondFirstPageAndSavesTheirContact]' passed (80.250 seconds).
+2026-11-17T00:09:47.3364590Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' started.
+2026-11-17T00:10:03.3007420Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testExplicitConsentAndChildChangeInvalidateResults]' passed (15.942 seconds).
+2026-11-17T00:10:03.3049900Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' started.
+2026-11-17T00:10:30.7533220Z Test Case '-[SportsGreenMooveUITests.SearchConsentFlowTests testTrackingAndSeatChangesInvalidateTheAcceptedSelection]' passed (27.538 seconds).
+2026-11-17T00:10:30.7570550Z 	 Executed 2 tests, with 0 failures (0 unexpected) in 43.480 (43.484) seconds
+2026-11-17T00:10:30.7572580Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' started.
+2026-11-17T00:10:59.5517100Z Test Case '-[SportsGreenMooveUITests.SignOutFlowTests testProfileSignsOutToEmptyAuthentication]' passed (28.808 seconds).
+2026-11-17T00:10:59.5549810Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' started.
+2026-11-17T00:11:33.1638480Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' passed (33.615 seconds).
+2026-11-17T00:11:33.1744540Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' started.
+2026-11-17T00:12:16.4226700Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testAuthFlowIdentifiers]' passed (43.257 seconds).
+2026-11-17T00:12:16.4333370Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' started.
+2026-11-17T00:13:39.5983920Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testMessagesChatAndRatingIdentifiers]' passed (83.152 seconds).
+2026-11-17T00:13:39.6245200Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' started.
+2026-11-17T00:14:53.9432190Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testPublishSearchAndBookingIdentifiers]' passed (74.365 seconds).
+2026-11-17T00:14:53.9575070Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' started.
+2026-11-17T00:16:20.1902350Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testSecondaryFlowIdentifiers]' passed (86.207 seconds).
+2026-11-17T00:16:20.1906570Z 	 Executed 5 tests, with 0 failures (0 unexpected) in 320.596 (320.601) seconds
+2026-11-17T00:16:20.1909110Z 	 Executed 11 tests, with 0 failures (0 unexpected) in 567.154 (567.172) seconds
+2026-11-17T00:16:20.1911760Z 	 Executed 11 tests, with 0 failures (0 unexpected) in 567.154 (567.176) seconds
+2026-11-17T00:16:22.5274130Z ** TEST EXECUTE SUCCEEDED **

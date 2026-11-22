@@ -1,0 +1,86 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a2e0a14e5b4d2e85dcfb638d7f061b93",
+  "observedAt": "2026-10-31T20:45:23.166Z",
+  "fixture": {
+    "tripId": "fy8F4jtqk0AgsX4F8tSF",
+    "bookingId": "eBB2GNUgew0jzZzR4sbV",
+    "parentUid": "sgm-qa-parent",
+    "driverUid": "sgm-qa-driver"
+  },
+  "scope": "independent-unsent-chat-records-not-keyboard-or-draft-restoration-proof",
+  "completed": true,
+  "failed": false,
+  "checkpoints": [
+    {
+      "phase": "ready",
+      "observedAt": "2026-10-31T20:37:54.239Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "conversation-open",
+      "observedAt": "2026-10-31T20:39:03.911Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "draft-visible",
+      "observedAt": "2026-10-31T20:39:19.818Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "conversation-reopened",
+      "observedAt": "2026-10-31T20:40:17.213Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "process-stopped",
+      "observedAt": "2026-10-31T20:42:30.731Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "process-reopened",
+      "observedAt": "2026-10-31T20:44:54.668Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    },
+    {
+      "phase": "signed-out",
+      "observedAt": "2026-10-31T20:45:23.136Z",
+      "zeroMessages": true,
+      "zeroNotifications": true,
+      "protectedRecordsUnchanged": true,
+      "phoneUiProvenByObserver": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "phoneUiProvenByObserver": false,
+  "processRestartProvenByObserver": false,
+  "sourceFiles": {
+    "scripts/qa/manual-chat-draft-phone.mjs": "29833d498bbf15823419069f7650d7e03e30dcda8c5faccf93b37522984a0d83",
+    "scripts/qa/chat-network-phone-checkpoints.mjs": "940acf8dd787d8cf45aa206c1fcae97000fff30302c1bf08f15fc9b878269592",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationRoute.kt": "b37b6453e422205cbb6dc0b104a8dca3e372e8b83ce708a7e86c09e34f200322",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/ConversationComposerState.kt": "2947bd301a45b28e0c982719385771d4b0b7eea4566302b23dd1ded50068333e"
+  }
+}

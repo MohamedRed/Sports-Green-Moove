@@ -1,0 +1,21 @@
+
+be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest:
+Error in completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest):
+java.lang.AssertionError: Activity never becomes requested state "[RESUMED]" (last lifecycle transition = "STOPPED")
+	at androidx.test.core.app.ActivityScenario.waitForActivityToBecomeAnyOf(ActivityScenario.java:454)
+	at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:689)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:68)
+
+
+Time: 145.033
+There was 1 failure:
+1) completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest)
+java.lang.AssertionError: Activity never becomes requested state "[RESUMED]" (last lifecycle transition = "STOPPED")
+	at androidx.test.core.app.ActivityScenario.waitForActivityToBecomeAnyOf(ActivityScenario.java:454)
+	at androidx.test.core.app.ActivityScenario.moveToState(ActivityScenario.java:689)
+	at be.sportgreenmoove.app.ui.LocalRemoteRideStopFlowTest.completionFromASecondSessionStopsTheBackgroundServiceBeforeTheAppReturns(LocalRemoteRideStopFlowTest.kt:68)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

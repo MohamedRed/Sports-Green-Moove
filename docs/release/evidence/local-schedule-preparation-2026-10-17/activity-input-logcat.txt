@@ -1,0 +1,148 @@
+10-17 16:43:34.291  6618  6668 I TestRunner: started: activityInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)
+10-17 16:43:34.297  6618  6668 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@1033c81]
+10-17 16:43:34.297  6762  6762 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 16:43:34.305  6618  6668 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-17 16:43:34.347   548  1533 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@ec97e2a1 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 16:43:34.429  6762  6762 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@8ce5899
+10-17 16:43:34.434   548  1448 W InputManager-JNI: Input channel object 'c8fd098 be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity (client)' was disposed without first being removed with the input manager!
+10-17 16:43:34.440   422   422 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 16:43:34.472  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: PRE_ON_CREATE
+10-17 16:43:34.472  6618  6618 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-17 16:43:34.537  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: CREATED
+10-17 16:43:34.542  6618  6618 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=androidx.activity.ComponentActivity@c568975
+10-17 16:43:34.564  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: STARTED
+10-17 16:43:34.565  6618  6618 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=androidx.activity.ComponentActivity@c568975
+10-17 16:43:34.573  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: RESUMED
+10-17 16:43:34.574  6618  6618 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=androidx.activity.ComponentActivity@c568975
+10-17 16:43:34.595  1057  1057 D VRI[FallbackHome]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 16:43:34.711   548   567 W ziparchive: Unable to open '/data/app/~~kVIgORKqpDmgpNB4DujCgg==/be.sportgreenmoove.app-IuvkNIJqbDitNsKuXj4spA==/base.dm': No such file or directory
+10-17 16:43:34.712   548   567 I ActivityTaskManager: Displayed be.sportgreenmoove.app/androidx.activity.ComponentActivity for user 0: +372ms
+10-17 16:43:34.765  6618  6668 W SurfaceComposerClient: Sync transaction timed out waiting for commit callback.
+10-17 16:43:34.766  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:34.769   890   989 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@a7eed70
+10-17 16:43:34.770   548  1448 W InputManager-JNI: Input channel object '629c51a Splash Screen be.sportgreenmoove.app (client)' was disposed without first being removed with the input manager!
+10-17 16:43:34.858  6618  6618 I SgmInputReadiness: phase=before-window-focus attached=true windowTokenPresent=true resumed=true windowFocused=false viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 16:43:34.902  4589  6186 I IPCThreadState: oneway function results for code 2 on binder at 0x759e03f274f0 will be dropped but finished with status UNKNOWN_TRANSACTION
+10-17 16:43:34.951  6618  6667 D SharedPreferencesImpl: Time required to fsync /data/user/0/be.sportgreenmoove.app/shared_prefs/RadarSDK.xml: [<1: 0, <2: 0, <4: 2, <8: 1, <16: 2, <32: 3, <64: 4, <128: 2, <256: 5, <512: 2, <1024: 0, <2048: 0, <4096: 0, <8192: 0, <16384: 0, >=16384: 0]
+10-17 16:43:35.266  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:35.768  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:36.269  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:36.770  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:37.271  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:37.582  5162  5162 W JobService: onNetworkChanged() not implemented in androidx.work.impl.background.systemjob.SystemJobService. Must override in a subclass.
+10-17 16:43:37.584   548   807 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 16:43:37.584   548   807 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 16:43:37.584   548   807 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 16:43:37.584   548   807 W IPCThreadState: Sending oneway calls to frozen process.
+10-17 16:43:37.585  3776  3816 I BugleRcsEngine: Connected state: [1], networkType: [WIFI] [CONTEXT thread_id=64 ]
+10-17 16:43:37.585  3776  4062 I BugleRcsEngine: handleMessage processing message:[NOTIFY_UPTIME_IGNORE_STATE_CHANGED] with [non-null]:RcsEngineImpl reference [CONTEXT log_prefix="RcsEngineImpl[DUAL_REG]:[5116e0f4-8890]>Handler" thread_id=79 ]
+10-17 16:43:37.587   548   807 D ConnectivityService: NetReassign [no changes] [c 0] [a 0] [i 1]
+10-17 16:43:37.588  6710  6750 I NearbyMediums: Wifi changed new SSID: "AndroidWifi"
+10-17 16:43:37.588  6710  6750 I NearbyMediums: WifiLanConnectivityInfo is not changed, skip notify.
+10-17 16:43:37.590  6710  6718 I NullBinder: NullBinder for android.net.action.RECOMMEND_NETWORKS triggering remote TransactionTooLargeException due to Service without Chimera impl, calling uid: 1000, calling pid: 0
+10-17 16:43:37.590  6710  6718 W gle.android.gms: Large reply transaction of 1056768 bytes, interface descriptor , code 1
+10-17 16:43:37.773  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:38.089  6710  6803 I NearbySharing: Network state changed: NetworkState(isRestricted=false, isOnline=true, isCongested=false, isMetered=false, isWifiConnected=true)
+10-17 16:43:38.274  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:38.775  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:39.277  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:39.778  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:39.869  6618  6618 I SgmInputReadiness: phase=window-focus-failed attached=true windowTokenPresent=true resumed=true windowFocused=false viewFocused=false servedView=null acceptingText=null keyboardVisible=false
+10-17 16:43:39.871   548  1549 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@ee4cbb40 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-17 16:43:39.887  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: PAUSED
+10-17 16:43:39.887  6618  6618 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=androidx.activity.ComponentActivity@c568975
+10-17 16:43:39.893   422   422 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 16:43:39.917  6762  6787 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-17 16:43:39.917  6762  6787 I EGL_emulation: Opening libGLESv2_emulation.so
+10-17 16:43:39.924  6762  6787 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-17 16:43:39.995   386   386 I RanchuHwc: logCompositionFallbackIfChanged: layer 130 CompositionType fallback from 3 to 1
+10-17 16:43:40.084  6618  6618 D VRI[ComponentActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 16:43:40.120   548   567 W ziparchive: Unable to open '/data/app/~~tv7YJpTIrKMbJKqZ-kepQA==/be.sportgreenmoove.app.test-Q_VPGu8sT9K49Y_Ox75sJw==/base.dm': No such file or directory
+10-17 16:43:40.126   548   567 I ActivityTaskManager: Displayed be.sportgreenmoove.app.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +248ms
+10-17 16:43:40.144   422   422 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-17 16:43:40.168   890   989 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@272f9ef
+10-17 16:43:40.177   548  1533 W InputManager-JNI: Input channel object '6a92059 Splash Screen be.sportgreenmoove.app.test (client)' was disposed without first being removed with the input manager!
+10-17 16:43:40.220  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: STOPPED
+10-17 16:43:40.220  6618  6618 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=androidx.activity.ComponentActivity@c568975
+10-17 16:43:40.227  6618  6618 D LifecycleMonitor: Lifecycle status change: androidx.activity.ComponentActivity@c568975 in: DESTROYED
+10-17 16:43:40.227  6618  6618 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-17 16:43:40.233  6618  6618 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@a520429
+10-17 16:43:40.235  6618  6668 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@1033c81]
+10-17 16:43:40.261   548  1549 W InputManager-JNI: Input channel object 'dbb3e6c be.sportgreenmoove.app/androidx.activity.ComponentActivity (client)' was disposed without first being removed with the input manager!
+10-17 16:43:40.283  1057  1057 D FallbackHome: User unlocked but no home; let's hope someone enables one soon?
+10-17 16:43:40.317  6762  6762 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-17 16:43:40.321  6618  6668 E TestRunner: failed: activityInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)
+10-17 16:43:40.322  6618  6668 E TestRunner: ----- begin exception -----
+10-17 16:43:40.322  6618  6668 E TestRunner: androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 5000 ms
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at be.sportgreenmoove.app.ui.InputWindowReadiness.awaitFocus(InputWindowReadiness.kt:24)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at be.sportgreenmoove.app.ui.InputWindowReadinessTest.checkInput(InputWindowReadinessTest.kt:29)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at be.sportgreenmoove.app.ui.InputWindowReadinessTest.activityInputUsesItsOwnFocusedWindowAndRealKeyboard(InputWindowReadinessTest.kt:16)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$testWithDisposal$1.evaluate(AndroidComposeTestRule.android.kt:322)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invokeSuspend(AndroidComposeTestRule.android.kt:334)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:8)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:4)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invokeSuspend(ComposeUiTest.android.kt:605)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:8)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:2)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.EspressoLink.withStrategy(EspressoLink.android.kt:69)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invokeSuspend(ComposeUiTest.android.kt:602)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:8)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:4)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+10-17 16:43:40.322  6618  6668 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:585)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:334)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:463)
+10-17 16:43:40.323  6618  6668 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+10-17 16:43:40.323  6618  6668 E TestRunner: ----- end exception -----
+10-17 16:43:40.325  6618  6668 I TestRunner: finished: activityInputUsesItsOwnFocusedWindowAndRealKeyboard(be.sportgreenmoove.app.ui.InputWindowReadinessTest)

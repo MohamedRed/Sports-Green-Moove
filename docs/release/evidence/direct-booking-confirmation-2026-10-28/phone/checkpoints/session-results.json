@@ -1,0 +1,64 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8c76ce1cfab93430f004dda079b16425",
+  "testedAt": "2026-10-28T16:58:24.215Z",
+  "completed": true,
+  "scope": "independent-direct-booking-records-not-phone-ui-or-release-proof",
+  "checkpoints": [
+    {
+      "phase": "parent-signed-in",
+      "addedBookings": 0,
+      "bookingId": null
+    },
+    {
+      "phase": "opened-no-write",
+      "addedBookings": 0,
+      "bookingId": null
+    },
+    {
+      "phase": "dismissed-no-write",
+      "addedBookings": 0,
+      "bookingId": null
+    },
+    {
+      "phase": "confirmed",
+      "addedBookings": 1,
+      "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+    },
+    {
+      "phase": "reopened",
+      "addedBookings": 1,
+      "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+    },
+    {
+      "phase": "process-restarted",
+      "addedBookings": 1,
+      "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+    },
+    {
+      "phase": "other-card",
+      "addedBookings": 1,
+      "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+    },
+    {
+      "phase": "signed-out",
+      "addedBookings": 1,
+      "bookingId": "I39zBsWOoMuqBB1cP1Qs"
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "physicalUiProven": false,
+  "wholeProcessRestartProven": false,
+  "productionWrites": false,
+  "paymentExercised": false,
+  "sourceFiles": {
+    "scripts/qa/manual-direct-booking-phone-session.mjs": "7efdb4148a9f9006f3a6f71de15e09aeeb81dda3a39a4ba49917ca7b82e584d1",
+    "scripts/qa/direct-booking-phone-checkpoints.mjs": "0a29fa6d6af67a5f095b6b95bed3f0a602ca0c5584b263e8fd36e0090cc0d3c3",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBookingState.kt": "c0556071f62c339bdfc94418d9bb922ead504465b7d3e29463b10eab68195d5c",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/DirectBookingDialog.kt": "f55b037c9d3b424a22975fe3f0753f8f94c41ddaaad697e6c2f0cc50ea57a16f",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveRideActions.kt": "f0f1948b4a475b029727db5a4eae724dd0e69bd0fc7857eb6bfae6c91f528c98",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/SportsGreenMooveApp.kt": "206f6db95a1a62528379c94d19416852c44fb297c3dceaee7c8e9704c01b5d75"
+  }
+}

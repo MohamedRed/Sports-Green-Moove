@@ -1,0 +1,16 @@
+{
+  "scope": "ci-read-only-emulator-host-observation-not-flow-or-root-cause-proof",
+  "phase": "native-startup",
+  "startedAt": "2026-10-25T12:37:47.452Z",
+  "identity": {
+    "pid": 3134,
+    "startedTicks": "36213",
+    "executable": "qemu-system-x86_64-headless",
+    "port": 5554,
+    "avd": "test"
+  },
+  "maximumObservationMs": 90000,
+  "rawArgumentsRetained": false,
+  "environmentRetained": false,
+  "deviceCommandsRequested": false
+}

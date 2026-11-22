@@ -1,0 +1,42 @@
+2026-11-05T21:12:18.5544520Z /Users/runner/work/Sports-Green-Moove/Sports-Green-Moove/ios/UITests/SportsGreenMooveUITests/RideChatFlowChecks.swift:9: error: -[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers] : XCTAssertEqual failed: ("Optional("Premier message de course ")") is not equal to ("Optional("Premier message de course isolé")")
+2026-11-05T21:12:18.5547030Z     t =    20.37s Find the "ride-chat.send" Button
+2026-11-05T21:12:18.6723420Z     t =    20.49s Tap "ride-chat.send" Button
+2026-11-05T21:12:18.6726520Z     t =    20.49s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:18.6796880Z     t =    20.50s     Find the "ride-chat.send" Button
+2026-11-05T21:12:18.7684750Z     t =    20.59s     Check for interrupting elements affecting "ride-chat.send" Button
+2026-11-05T21:12:18.8635320Z     t =    20.68s     Synthesize event
+2026-11-05T21:12:19.5629220Z     t =    21.01s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:19.7055030Z     t =    21.48s Waiting 6.0s for "Premier message de course isolé" StaticText to exist
+2026-11-05T21:12:20.7128770Z     t =    22.51s     Checking `Expect predicate `existsNoRetry == 1` for object "Premier message de course isolé" StaticText`
+2026-11-05T21:12:20.7137900Z     t =    22.52s         Checking existence of `"Premier message de course isolé" StaticText`
+2026-11-05T21:12:20.8871710Z     t =    22.71s Find the "ride-chat.composer" TextView
+2026-11-05T21:12:21.0370030Z     t =    22.86s Tap "ride-chat.back" Button
+2026-11-05T21:12:21.0427200Z     t =    22.86s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:21.0433350Z     t =    22.86s     Find the "ride-chat.back" Button
+2026-11-05T21:12:21.1753420Z     t =    23.00s     Check for interrupting elements affecting "ride-chat.back" Button
+2026-11-05T21:12:21.2915440Z     t =    23.11s     Synthesize event
+2026-11-05T21:12:21.6210930Z     t =    23.43s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:21.9233280Z     t =    23.68s Waiting 6.0s for "ride-chat.active-entry" Button to exist
+2026-11-05T21:12:22.8987480Z     t =    24.71s     Checking `Expect predicate `existsNoRetry == 1` for object "ride-chat.active-entry" Button`
+2026-11-05T21:12:22.9127560Z     t =    24.71s         Checking existence of `"ride-chat.active-entry" Button`
+2026-11-05T21:12:22.9594430Z     t =    24.77s Tap "ride-chat.active-entry" Button
+2026-11-05T21:12:22.9664790Z     t =    24.77s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:22.9666060Z     t =    24.78s     Find the "ride-chat.active-entry" Button
+2026-11-05T21:12:23.0324640Z     t =    24.84s     Check for interrupting elements affecting "ride-chat.active-entry" Button
+2026-11-05T21:12:23.0914340Z     t =    24.91s     Synthesize event
+2026-11-05T21:12:23.4391320Z     t =    25.23s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:23.8525430Z     t =    25.66s Waiting 6.0s for "Premier message de course isolé" StaticText to exist
+2026-11-05T21:12:24.8935180Z     t =    26.70s     Checking `Expect predicate `existsNoRetry == 1` for object "Premier message de course isolé" StaticText`
+2026-11-05T21:12:24.8943570Z     t =    26.70s         Checking existence of `"Premier message de course isolé" StaticText`
+2026-11-05T21:12:25.0192090Z     t =    26.84s Waiting 6.0s for "ride-chat.composer" TextView to exist
+2026-11-05T21:12:26.0652410Z     t =    27.88s     Checking `Expect predicate `existsNoRetry == 1` for object "ride-chat.composer" TextView`
+2026-11-05T21:12:26.0689210Z     t =    27.89s         Checking existence of `"ride-chat.composer" TextView`
+2026-11-05T21:12:26.2516640Z     t =    28.05s Find the "ride-chat.composer" TextView
+2026-11-05T21:12:26.3622830Z     t =    28.15s Tap "ride-chat.back" Button
+2026-11-05T21:12:26.3739900Z     t =    28.16s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:26.3747740Z     t =    28.17s     Find the "ride-chat.back" Button
+2026-11-05T21:12:26.4540890Z     t =    28.27s     Check for interrupting elements affecting "ride-chat.back" Button
+2026-11-05T21:12:26.6434810Z     t =    28.39s     Synthesize event
+2026-11-05T21:12:26.9822040Z     t =    28.78s     Wait for be.sportgreenmoove.app to idle
+2026-11-05T21:12:27.4395870Z     t =    29.22s Tear Down
+2026-11-05T21:12:28.0033920Z Test Case '-[SportsGreenMooveUITests.SportsGreenMooveUITests testActiveRideIdentifiers]' failed (29.810 seconds).

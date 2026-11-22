@@ -1,0 +1,1194 @@
+[
+  {
+    "path": "outputs/androidTest-results/connected/debug/TEST-guarded-components.xml",
+    "sha256": "2f93d5ffe8eff0f9fb0a8b569ac72eec102818c2e60179d731babbe558907b2c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalAppFlowTest-LocalDriverFlowTest-LocalLandscapeLoginTest-LocalUiRegressionTest-SearchSessionFlowTest-SearchCriteriaFlowTest-instrumentation.txt",
+    "sha256": "eb626a847924b03972e57470292524f4cca070744cbc8b66e9a87e04692eec25"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalBookingDecisionsFlowTest-instrumentation.txt",
+    "sha256": "e4e4219c34c08603ab3f039e27983f13602709a3f6b9d7c55f3eb71b01c66800"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalBookingResponseLossTest#prepareUnconfirmedBooking-instrumentation.txt",
+    "sha256": "e67cbb3b64f9ba36b522afd37ab0ecba9230f915184a71f606a99b76663bbbda"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalBookingResponseLossTest#recoverUnconfirmedBooking-instrumentation.txt",
+    "sha256": "518e674c7a8de63b0bb4b343f738bfa8b20333cc32faa06d1e934f8871da98f6"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalBookingResponseLossUiTest-instrumentation.txt",
+    "sha256": "01d1d648aaaafcb63a2bf44f43041ced5bbdeb6ac34236e07235d10f0ee49f85"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalChatFlowTest-instrumentation.txt",
+    "sha256": "f87b29c8115f68898a5a1cd47f652b8c0f02e1a879de3a2cb42732ab97e4c0ef"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalConversationDirectoryFlowTest-instrumentation.txt",
+    "sha256": "e033d18585dc75d55ecb5befebda698b265bfb083f0605ce2c2f599c2a59b348"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalEmergencyContactFlowTest-instrumentation.txt",
+    "sha256": "2cb6ef7758846e5eb326b6df10e6265af56d4fd2059f38fbc8e81c3456e5f2b2"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalGuardianVerificationFlowTest-instrumentation.txt",
+    "sha256": "5c47ef3f79a926ce5f11d98819ac1a1a298868bdd92d81aacad5038a314c62a3"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalMultiSeatSdkTest-instrumentation.txt",
+    "sha256": "647e2a9f2ee25f6178197d95f719466f9b931c859304f66ce182cd53865af762"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalNotificationReadFlowTest#readSelectedNotificationAndSwitchAccounts-instrumentation.txt",
+    "sha256": "b3e81db3952399a6e36cc616e530002f9207ce5163918705b7de1d93b30786b2"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalNotificationReadFlowTest#reopenReadNotificationAfterProcessDeath-instrumentation.txt",
+    "sha256": "225accd2aaa43ffffb172bfbe1a2cf57a94b176f93052d727c56e750e2941ad4"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalRideFlowTest-instrumentation.txt",
+    "sha256": "2d98d54465a72f6a569090e38f72a9162e524f044f9184f426daac4a733a33bd"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalTeamEnrollmentFlowTest-instrumentation.txt",
+    "sha256": "f0efd316cdf5a8d454d356fde3761ad62cff1af836b20c35b39e41538ed63bff"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalThemeRestartTest-instrumentation.txt",
+    "sha256": "17165d4949a269d1faeb355881587bb0426b6e6a67e4127e02eebb9a7dbaaf58"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalTripCancellationFlowTest-instrumentation.txt",
+    "sha256": "9a89ae4e07045744f2d852065a1282545b5fd8109a471a96f856cdcec5416a5d"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalTripChangeFlowTest-instrumentation.txt",
+    "sha256": "7c0cf8205b3bad5c3403a5277a582c2197fcc9dd228ebd73bd2290ed0e02f2ce"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalTripChangeInputsFlowTest-instrumentation.txt",
+    "sha256": "637e4dffdd80366a5b12c51e1cd9403020f988f302a50b5a18bb88d8b722cef4"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/LocalTripChangeScheduleFlowTest-instrumentation.txt",
+    "sha256": "2dfd25a9d380f38788bd78bfb7ce9837b885d633e2e48ea3752e2edc55eb01c1"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-booking-response-loss.json",
+    "sha256": "da29882765b188b2b667ebd82ce0453fb6d7eab8d691b4dd90cdc377a7ee169f"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-booking-ui-response-loss.json",
+    "sha256": "ec2e8acaa2f876a7b141c5effc0e915485a86bdb3ece7cb0596b58535ed31cb9"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-emergency-contact.json",
+    "sha256": "0a706d9ece9b78b509e047ea3337019d2105e69535273401ed4e52d8e49ff986"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-guardian-parent-verification.json",
+    "sha256": "15abdebc2033e16a53d3b9e9df5f900628718a6bdc8ebd2b0ddddb7398b0e214"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-notification-read-restart.json",
+    "sha256": "93ca1d231c9e5cdcfd2dc3e22f41851152f6a3bbfc0438fd7ac186cd3b0ca15e"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-ride-emergency.json",
+    "sha256": "231ac1eceb707f15d6b0530a423d31838438f4344b3b69e4f9dadb0b41542942"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-team-enrollment.json",
+    "sha256": "2cfdb9c3d429af1703785afde1c69b21a02eb79f6d0a09aa8cd3035ed86237ac"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-trip-change-inputs.json",
+    "sha256": "79139e0d9439d61308707ba0ddb56b118fba39ccc8af3e344d8a1ee25c2aa540"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-trip-change-parent-confirmation.json",
+    "sha256": "f1279f6152ab756055072818b24db2c76fe039eda84944b9c79074c54d287d96"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/adb-pull-trip-change-schedule.json",
+    "sha256": "7bd3b1908fd3bbdaab2c00209b5aa384a16bbb47bf0ed4ff957e53a90569ddd6"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/booking-ui-loss.json",
+    "sha256": "30f28dbd13a606bf505b76d40ffbceb7e113e1fbf34e9335804db38b7fe5217b"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-child-revoked.png",
+    "sha256": "33209d1b7ef1f313ee7399fa10da7a1cc961fbb22d049268e33b88a9b17f38ab"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-child-saved.png",
+    "sha256": "e4c66b424979026d4e8c8941c9fc7c0942344a33ecaefdfe63e2b2832ec64db8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-contact-device.json",
+    "sha256": "3bbeef3067be6a23b06a75f8c4778099349d9b4f558b4064e4f8f32ce0331d6c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-contact-results.json",
+    "sha256": "a71c1bbb30223b2096e6417120fb932c29b0d013a411cc2458a8f3412682f8bc"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-dialer-attempt.json",
+    "sha256": "e004b6466a6b9811a3fa4fbd6e720cd970b506980d5fa1b0c5b160501829a9ac"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-dialer-attempt.png",
+    "sha256": "26a2a246df0482975c377ea4a972ec599b934f311ec664ebd5f8463ee1a79b4b"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-dialer-opened.png",
+    "sha256": "26a2a246df0482975c377ea4a972ec599b934f311ec664ebd5f8463ee1a79b4b"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-other-account.png",
+    "sha256": "499a17f5b78833153ace8cea49c916e028c61955ecfb55c0f28b6f261d242b99"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-self-removed.png",
+    "sha256": "ba2fe83bbb6a48558f6cfd21f3beaf0f8e068b616a0faf88df42085c2b941ab9"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-self-restored.png",
+    "sha256": "ff77dbac2657ce619c0d6e81836cee95a44243a7dba2fb71acecd64ca442b8b9"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/emergency-self-saved.png",
+    "sha256": "bbe37d5123e8af2b459c9dc989f0b09c3b8e02d1ef751ddc87204a229e928333"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-device.json",
+    "sha256": "9693de5ba87bc2ee4f4c7ba73bd33fb915a94cc0ceba6f1885ce6c0aae16c546"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-other-account.png",
+    "sha256": "d2a31d2a2abd5676713c46bfaae12b8c067a726152348ae2cb3a2e5a6689a6e0"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-requested.png",
+    "sha256": "ec249c8d3535ae036124b0ea085ae266b03488589f25305be11f2b9e956016d8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-restored.png",
+    "sha256": "416a886b2a8b78807e9268ac6bfc6afce5f909410730e724fea8b5099daf3ab3"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-results.json",
+    "sha256": "c4cf74758dd5fff25abc8a5bfb9670f5486c3f7a9f2b636eff4ef14717e378ae"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-revoked.png",
+    "sha256": "507b459396ec67a5acd34397338195e1ee4ac812fb9bc75bcfa0b4b62d3fce95"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/guardian-parent-verified.png",
+    "sha256": "ad00489d636e37d46c020d4b5cfee4b4932a0896b4a33d83ab9413e620c06cd0"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/keyboard-driver-dismissed.png",
+    "sha256": "8e9237cd68b37440bf24cab46f62853a8e14e1e1cf36092b00a227a2c26700c8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/keyboard-driver-layout.json",
+    "sha256": "998d98fc782bd31a836354c611b4c89f5d60b6686a2661c3f594c4f80ea6093e"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/keyboard-parent-dismissed.png",
+    "sha256": "16e9f1b8f1701425b63aa8d4c012ec720e186901fda3a228edbd008a9c66d0be"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/keyboard-parent-layout.json",
+    "sha256": "b270e468d00f036091cda6938aab42e6d4179c2b4198ac8dacd110e87180a6d8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-loss-after.json",
+    "sha256": "15bc2806054e8c188ef5252ba07f31cf2d16dd498010e80b799da745da891110"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-loss-before.json",
+    "sha256": "c11ec3ac8b002c71f577b79344b72277f8dc70769db2f486e9a1d2462a5c5042"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-loss-stop.json",
+    "sha256": "84fecc6ee512453368f8b8291271c3744ab840448e766b1545e1e44a4796beac"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-ui-confirmed.png",
+    "sha256": "770fa23f2fd8d9d502bb7477ed4eefa1a99a5e39333b7cce82adc778d581adca"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-ui-loss.json",
+    "sha256": "be2bd4069ad5f9df4f63e116ed46f9dd2098c4392dd0c15e2585755bdd8c5267"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-ui-sending.png",
+    "sha256": "a8d87b2330d51779a429ba89a92d8675f1f5bdcb597cb995107efb52a0786c30"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-booking-ui-unconfirmed.png",
+    "sha256": "e8e3c59d116ba9ec5dc8057f37dd7877d4dcc72793eca67f76212d06b8edbb2f"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-empty.png",
+    "sha256": "3a2b269dc614958048fb661ffe76fcfb6be3fddf029725ba929985f18dd6e90f"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-first-message.png",
+    "sha256": "16e9f1b8f1701425b63aa8d4c012ec720e186901fda3a228edbd008a9c66d0be"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-history.png",
+    "sha256": "b0ef8fd5e6eecd347fe289bf9bf33dfeaee5ae04666eb14b0e172a42335e0e93"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-received.png",
+    "sha256": "989fc6db9c505a488177e4a372b064b724c4f36aebbd59ee70790585dcb2c283"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-reply.png",
+    "sha256": "8e9237cd68b37440bf24cab46f62853a8e14e1e1cf36092b00a227a2c26700c8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-directory-reservation.png",
+    "sha256": "d007982e1198171b784cc8a8cfd1ff33c2fe716d28f04e2d12c8ee8b5140d981"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-driver-reply.png",
+    "sha256": "9de22cf96e071f3cc72964ffa0b89f804be7e9988b794bc84558155d70c7ece4"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-landscape-draft.png",
+    "sha256": "2fd82420a4684cb7291d96c57fa3a6cf0959e158daa26cc052bf70cbba342629"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-live-reply.png",
+    "sha256": "fdf0c0f8334e94afb59f19fa8d50b1e85ae2499b579f08198e54d7916183b765"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-chat-parent-sent.png",
+    "sha256": "a643d17cec06bd84da08a4ac82c99e824d3dc7481ea9322e4cb02a63e9406ae1"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-driver-booking-approved.png",
+    "sha256": "6729d6b45d05ee9918c5f719b4cbb118f5f6f56ab0b6a73420343a000aa36df8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-driver-reservation-declined.png",
+    "sha256": "81f8893d4add2028cce05d182fbb5d302586a4f247113960857d81f6194c97f6"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-driver-signed-out.png",
+    "sha256": "1104b28ebb1a43fde03af261d41a12d54766c5f105998d05267a20732d621dd5"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-login-landscape.png",
+    "sha256": "494312dcd554ba2371c410950c50f1f96eaaf8028902a8a9acf11e82357eb7d2"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-after.json",
+    "sha256": "ae67276a93b8639962930ff8a53ad5e8356a789eb17f49d0a87cf1587dda836e"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-before.json",
+    "sha256": "5c4bd29d10a1f519bb0711c13f5704110e0ecc2ce7cdb3f5ede2affa4321a086"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-confirmed.png",
+    "sha256": "7be46363b727df70386f6474810f0fc250c73bb86bd7f18d17831403a835bada"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-driver.png",
+    "sha256": "0ddbfda07cdcf925937d1511471491dd11cd9551e3cf461ece9245ffcb83b722"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-parent-return.png",
+    "sha256": "7be46363b727df70386f6474810f0fc250c73bb86bd7f18d17831403a835bada"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-restarted.png",
+    "sha256": "7be46363b727df70386f6474810f0fc250c73bb86bd7f18d17831403a835bada"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-stop.json",
+    "sha256": "b2321f29b3baf3410bce47b31ed72f1052620ca20bf195728cbbab76a335d621"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-notification-read-unread.png",
+    "sha256": "7c2b0b6c26b6d2157a902cea05b31fe040637045d721c1456233f4a56434019d"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-parent-home.png",
+    "sha256": "6774c82b08dde0ebd3d0f72153405216e9ccf7a5fdde25868978a75d3b3f53f5"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-parent-messages.png",
+    "sha256": "b8dcf1745607306f8a3e850c4676103628353fd4eb42f4fbdc90de0672b24ce1"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-parent-reservations-cancelled.png",
+    "sha256": "2a39b37caaa7c425d66978adc4f12e835051b6e9e903c3a814da69e23f02de17"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-device.json",
+    "sha256": "790851717c7cbaeabd5bdfe7be01677b8b8e474f0914f26fcf24d0f30ab88f53"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-attempt.json",
+    "sha256": "30cddda299b81de81f7b71537a65510a96ca66be591c152a1df07ec1ae626a8c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-dialer.png",
+    "sha256": "e99cdec2d146f3bc686a9003a1ca73a0d9fe0e1834bb031b1ec7b41edc837054"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-entry-tracking.json",
+    "sha256": "07fb62e493376f9c206e82a6391cb759362fd1a6117960e27db2e3afe821c7f5"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-entry.png",
+    "sha256": "ad3a1fed79c663c032e00353a783af25b7c718b71ba4ace84e7d37b496349bb7"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-resumed-tracking.json",
+    "sha256": "22f0cae24f353bbc95b34111a80476f1728c0ffd684ad6b1037b5866607ae299"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-returned-tracking.json",
+    "sha256": "3b4a2a162c69ef2d65e0c2f87840f153ad4432c8f86ad66ddcfa14e5b496231d"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-returned.png",
+    "sha256": "fbbad1940928569a7056411bd7117b8b8807836bf5f40977fabd0a721cfb2477"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-driver-saved.png",
+    "sha256": "0a2ace1a3c69c3972eb4fde87702b72c15bb7ee93fce33db7d040d9ff40847b5"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-attempt.json",
+    "sha256": "adf8503d28f79689655079c121d8d065b00366d66ebf5fede9e63be05b79d28e"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-dialer.png",
+    "sha256": "a42c8cb48fb0988188d7c67e57c8b11502b02cf846f804439d17b7dd6f502bc6"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-entry-tracking.json",
+    "sha256": "65f96fca8796384fde0b9a3d9387fb49e968bb55203c6b7722d91eb0c6548043"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-entry.png",
+    "sha256": "1b60dbcfb003aa148fa76585807ecd6f443abe799777fec576bf38bc4359eee1"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-returned-tracking.json",
+    "sha256": "ec8dce67c75d499036ef5600cd2afaf0cb3bb6af99a2a238862e0554fa222d05"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-returned.png",
+    "sha256": "db523b243606e82419499dcfd7e9e72c6ada7ecab85fac8ed668148bf0a3a355"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-emergency-parent-saved.png",
+    "sha256": "276acb044d08e99e7b032af89247b83eb85a20083b32407a944fd251e9c56be8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-impact.png",
+    "sha256": "d359bbfb3382df429ab7d2a170c5dff98599d2fe7bef1c147f0e8f8690cfc273"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-parent-history.png",
+    "sha256": "d4f94d34f078b903d96925ae6f5a031b2aa4c34137779bf7059e235502964ac2"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-passengers-delivered.png",
+    "sha256": "821202afca00785377f90b99d2f1acfe194cc1916527a17732c314a24860beb0"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-review-prompt.png",
+    "sha256": "e270f88c6af5dae03e9e2ef908b1df851ec29c00bdac67fa7f6010cba8fd05f5"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-review-sent.png",
+    "sha256": "8a415c12d057536920cf6560797aa4ec33eed7cb7c82a73ecb46b8b76d316a0c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-ride-rewards.png",
+    "sha256": "bf82f807960f0ed2ebeb97ae441cdc901e1faee9987a217035c5ca3c8a9b066a"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-search-account-cleared.png",
+    "sha256": "8d3effc47fde64c020a3be196293a405d5c16048d5130c55a48fb898993cdad3"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-search-edited-place.png",
+    "sha256": "1a68a97609880ac4da7e91d868368e6cde40dddb8accf60620070a2d5ce6634f"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-search-empty.png",
+    "sha256": "54eb1dd097e17b022cba5fd08dd0aa37f9441ec3b3180ef9dcbefa9ba5d604bd"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-search-options-invalidated.png",
+    "sha256": "06de656d02dd07ac796b9bd96e0515680e239214d5368030de89577205fc1644"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-search-retained-options.png",
+    "sha256": "d53eee98b9f40e6ccde447ac2773aea65f2980487a765b0be165d6619cb64d31"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-support-sent.png",
+    "sha256": "1d428f02c88d4dc4ef6a9f5c651f4880c171de1b7ef5739800d902d17e5848bd"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-theme-after-process-restart.png",
+    "sha256": "18f514919a47daf0c4f8bef9549fd061ab27225c09f53e8e116751f4e43e2093"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-theme-after-restart.png",
+    "sha256": "d07e785ceb1d30323b1590399f67a961b9e264c4058605295e16aae2b07e9789"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-cancel-confirmed-landscape.png",
+    "sha256": "d0fc798882dcbc0ea8f56901518023fb823cff43b6af543f0194dbd8d3eea4f3"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-cancel-review-landscape.png",
+    "sha256": "b1b8fde6dc1df42a1416f2d85c2cf634e62b0d1573cfb53bbb0c1ed313bc7b56"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-cancel-review-portrait.png",
+    "sha256": "df9516aa8b731cfa2352c432208edd4a8c4be2549c3d99c8329e2cc640648614"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-cancelled-history.png",
+    "sha256": "6dfe5431c1df5f9a6cf6bb0ef9b394d052fde8009185c949b8674269e2fafd98"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-cancelled-parent.png",
+    "sha256": "0864d64ce42193299057fda404b3e6b73f8ad24bde5df3b383bc9cdbbf16cfce"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-both-parents.png",
+    "sha256": "25d4c8f8eaf65e455dc48bd817eb4efb0bd801e5c0b787ec9a2df5896910a71a"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-date-arrival-confirmed.png",
+    "sha256": "ab9eca4390d670b56611d404e1c3b7a1d51fdae4daa88b78d6d7173cf65b7269"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-first-parent.png",
+    "sha256": "ec4e39dc2698a2cdd3e8170d4282e16613918943fa337c3dd1c4ee3d0b8e9978"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-inputs-ui.json",
+    "sha256": "e2d2e137363fca8d1afff526ef03b46b4052ae2b2299f82604289a102a5193ea"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-parent-refused.png",
+    "sha256": "c011bd5597bfe6ce3ab7fa11b83b1e7a551f17805f458301cbf803b5c9d8b985"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-route-unavailable.png",
+    "sha256": "e9a0af3bb1422ed4df7310d1d70fffaa7b5ecd5a5dffe6172bf81b56ccc9b522"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-schedule-ui.json",
+    "sha256": "c822ce4c2e76da8d24484a515944a48e83ed5f98200ae3f0cbab91254e4bda42"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-time-confirmed.png",
+    "sha256": "cfbb1bfea91969e5889ffc45a2e62b6f3664cba5e0e09d2207fbe461613ad309"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-ui.json",
+    "sha256": "42175c6a4cdf653661239ef33dec854bf67b4618a8943516fda7a2b7068f08bf"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trip-change-withdrawn.png",
+    "sha256": "894dbf2f4e4f6d1248eba18d1e731f297f9abc957a2a3a87fbddaa095492c53b"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/local-trips-calendar.png",
+    "sha256": "f1db6990701ef35e5d1501802ea39b39b9e41008f97b9962e84d917f1ec928ef"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/native-booking-loss.json",
+    "sha256": "03cc4753eb8b67c254e469603c679dcf035c4869c274d0011208b6e792798bdc"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/notification-read-checkpoint.json",
+    "sha256": "6db3680365fd025b436b189f0f59ecf1703264df3490a90f8bddbe5deea6ac9a"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/notification-read-records.json",
+    "sha256": "97650ea8bc41232e8d457e82b69340544122da363fa32145fdf602d2efb6bca0"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/notification-read-ui-stage.json",
+    "sha256": "04263f653a4728875d6f71e9bed14d0fb0118d6e65455ac8c41a524d888da61c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/ride-emergency-results.json",
+    "sha256": "53e6da5fc659115bcc079ecde3db9b86db5f841e36558057eb18646454285974"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-enrollment-device.json",
+    "sha256": "73a8da9c26d408229648f15e35c93284aed1a25b0910288662a2ecefef0b2858"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-enrollment-results.json",
+    "sha256": "37ba432da8c77c7a2f4d5061d0218613cf34a402dd3150bfb33b08d05c2ecfad"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-native-approved.png",
+    "sha256": "473accb15d78db0897df4b22bdc8c7b4f26b0c47a3b94d727eed0cfcea80ed8e"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-native-child-approved.png",
+    "sha256": "50329c7a2787d773a8e3101028b7abc6a00e43d9e1d84dc56a25844b9bd20b3c"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-native-child-ineligible.png",
+    "sha256": "a23d3f8bd705c90637af7622a44f4d1df21487ce3fcac28916be56da65d9438b"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-native-other-account.png",
+    "sha256": "6841fbd735d68f81704ab6b7802765e63907680d52d7fd3c043a82cfc04322d8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/team-native-requested.png",
+    "sha256": "c3016e0042b477c186798c8f68e974990b5ef50135c1e77faba1e748bf62b0c3"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/trip-change-inputs-ui-stage.json",
+    "sha256": "ee90a6d7b86a0001e7410e2bee3d04b749a3f074d612b74b1dae8dfe34aa37e8"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/trip-change-schedule-ui-stage.json",
+    "sha256": "2304e61366a5461fcd92cf51457973709ce663743faad7f51e040a24b7db9a09"
+  },
+  {
+    "path": "outputs/local-ui-evidence/9671056f86ad062f23be0a328e74c05c/trip-change-ui-stage.json",
+    "sha256": "304370b8761e610a36b2b706f2fd429e5f92625e2b4275ad490ec15213e08313"
+  },
+  {
+    "path": "outputs/matrix-apks/local/output-metadata.json",
+    "sha256": "0822e85d2f6d649e641734d670903e741117381f8c6fa450b49934d5119af7b1"
+  },
+  {
+    "path": "outputs/matrix-apks/local-test/output-metadata.json",
+    "sha256": "d190c9debfdecf1f100506886700c4273d50957781f423a94e65f67dde028684"
+  },
+  {
+    "path": "outputs/matrix-apks/manifest.json",
+    "sha256": "43c90902fdc23b55c62fc23840af11ed44941a4183c1769549ae0667eef5ee4c"
+  },
+  {
+    "path": "outputs/matrix-apks/ordinary/output-metadata.json",
+    "sha256": "4bcc571ed02a1bfcb089bed88a9267e008bafa426654b281335bb36cf36d482f"
+  },
+  {
+    "path": "outputs/matrix-apks/ordinary-test/output-metadata.json",
+    "sha256": "c0cb19d1300686009fd71715b168a379666d237e4b95e5e69e87ad5bd54384e3"
+  },
+  {
+    "path": "outputs/matrix-renderer.json",
+    "sha256": "bf3ab8454566657d32b85a8a9ac25397462202ed95295c24332f8ff497c410b8"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/collection.json",
+    "sha256": "4a5b7a1c28ded0dc7fa7ee3f35e3c30eb4f30f2af89def8cf3d3405877179aef"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-applied-balance-due-578934980328.json",
+    "sha256": "59d0fa4f54ca06e7408876587c2f8a202e9f66b362a61ff03d28b49afe5207ae"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-close-pinned-large-text-606090820354.json",
+    "sha256": "f628ed369eb0b3da073d38ce35da6478a104e408e7f5944d5925c60c51d39065"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-driver-proposed-625208328860.json",
+    "sha256": "809d6de9f827ac0b14ce6b506a42c99b676dd3c8ec240c3aa59134bd8e245cfa"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-parent-accepted-596468099200.json",
+    "sha256": "3364d0bef06fae882ea6941065c6f05bb2b048393453a92e429f527afdbbcd8c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-parent-declined-584520464103.json",
+    "sha256": "70e8f94478ea95146e55b70bacb750071c88b12a688627acecd10b47d52ce020"
+  },
+  {
+    "path": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-parent-review-large-text-594351910415.json",
+    "sha256": "69203095076098b032a6dd611c93fb16a9d87e0694792ce628e3aaccd7a15a0c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/connect-narrow.png",
+    "sha256": "3fff36593f304ee9a60d0b3fad53a4177b30eb3afdcc93fcf97306f7e77fa082"
+  },
+  {
+    "path": "outputs/store-review-screenshots/connect-opening.png",
+    "sha256": "66a0591bb67ece3a3cb27cc4efb06909a7b7f2e63fb3fd1593ed3c6534a577f8"
+  },
+  {
+    "path": "outputs/store-review-screenshots/disposable-device-setup.json",
+    "sha256": "0a3493105b45e3394b4807646328fc1022ce7cb6bbcfa30e5d5cb75d7ea406ac"
+  },
+  {
+    "path": "outputs/store-review-screenshots/disposable-device-setup.json.claimed",
+    "sha256": "76345fb1bd8105e65a9a187dd2dcc6d4010a535b3fd63d33adafc0a675c8c224"
+  },
+  {
+    "path": "outputs/store-review-screenshots/disposable-device-setup.json.replay.claimed",
+    "sha256": "76345fb1bd8105e65a9a187dd2dcc6d4010a535b3fd63d33adafc0a675c8c224"
+  },
+  {
+    "path": "outputs/store-review-screenshots/disposable-installations-verified.json",
+    "sha256": "ccfbb6688cebe15feb5b5ec94f69c1b9a73b81e1cd7d078eea83343f7d10b8a7"
+  },
+  {
+    "path": "outputs/store-review-screenshots/native-build-status.json",
+    "sha256": "fa4e5f5f79a6868b748f9daa939dc13b6767271ad43d3e2ad240c04dbb284591"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/chat-carrier-before.json",
+    "sha256": "42a0475da902b0a73b55d6a1b6f6fa189958bb80c1e79c89426c57f1ab5d942b"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/chat-default-selection-before.json",
+    "sha256": "d0e63821faa0902eaab57e156123cb23b7a5a50a30df46906c9c256e1ef73eae"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/chat-modem-before.json",
+    "sha256": "7b9c257cc19ba3c1a9486297e83381dfee870591e9b0eedc25114791154a62fc"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/chat-subscriptions-before.json",
+    "sha256": "26914815d49f0c841fe825c6053c0ffc6c9292f9a9ce641d1c6d409a573be0b3"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/complete.json",
+    "sha256": "4e30be8b2a4becd6f307578adf3d366e947fad08c585e5dcd10173f1dd6c3056"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/log-emission-properties.json",
+    "sha256": "adc5486a24cbe691b5ae2de4fcb6caba00a03d3c08dd9a190672f1b0a42a5b15"
+  },
+  {
+    "path": "outputs/store-review-screenshots/network-bootstrap/started.json",
+    "sha256": "b1a91fbe42bdb215b7e4d8836ecd2e73d70ed6b8a40b42dc7da5df0a8c753742"
+  },
+  {
+    "path": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+    "sha256": "2aab92fe3fcea77eb7dc419be5ccf0736f2a49294d3dedb9d0b9e501150d94f1"
+  },
+  {
+    "path": "outputs/store-review-screenshots/ordinary-process.json",
+    "sha256": "ac3d7e821006f5af6700d3739442c906898e81e1d15a7a8cad1b68ff01dc3bba"
+  },
+  {
+    "path": "outputs/store-review-screenshots/ordinary-results.json",
+    "sha256": "92bf74f9d4a994754b30499dff57c48f3fadfbf651ef9e037ea12b5f46478aeb"
+  },
+  {
+    "path": "outputs/store-review-screenshots/received-ratings-large-text.png",
+    "sha256": "0d25497bbc2195cdcd29e689077fd8ed748a3b0effa22067112ca76768a26583"
+  },
+  {
+    "path": "outputs/store-review-screenshots/review-trip-context-choices.png",
+    "sha256": "0ef182362c3c5846ebd06b239d65eabc81854c80916c3ad803faf6cedc0a360c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/review-trip-context-large-text.png",
+    "sha256": "3f178f28d172bd202fa12415a532d8ff3c5eab84e979c2d92b0871c396119b53"
+  },
+  {
+    "path": "outputs/store-review-screenshots/review-trip-context-unavailable.png",
+    "sha256": "b40a9098267b0aebca8f6be6535b27815ad01ea08b641858d5c1a27dfe55d754"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-booking-feedback/booking-feedback-confirmed-narrow.png",
+    "sha256": "78d7c3ebceb3592e896f38181a5f2ad2b5d6e8541640fb606c8682f73446d5d6"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-booking-feedback/booking-feedback-sending-narrow.png",
+    "sha256": "0375dae82a672ad1832b9c6846c84b445e365e66a6a737c18706f8290d784e00"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-booking-feedback/booking-feedback-width-probe.json",
+    "sha256": "4965093ea1b4dc6a14904c59c66eb621ec38c36d652192432584b9e258dc3a07"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-booking-review/booking-review-narrow.png",
+    "sha256": "2f4b43f0c4bdeb76d001634440df87bb96a518a434171c525a466c542b4cf217"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-booking-review/booking-review-required.png",
+    "sha256": "01bef1a241218d253e48feb2e2ad99c5d6f1457b7974b241a84358edbabcfd79"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-account-code-window.png",
+    "sha256": "5f6a59c8157d50beea95f35bd491d536d2e3c66ba4c0a2fe34719db6adc8f878"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-account-parent-window.png",
+    "sha256": "eb1c3b843e09d141d0c4156e508d5707255772aa1f920ce8d9c689eff501af98"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-access-denied-window.png",
+    "sha256": "b2c6d01d22e45d8a1481a0bbf122351e6c6c0a173fb9a55b644314c6d60eb133"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-access-denied.png",
+    "sha256": "fbd92f247152c0e118cf4863c2fbdf1d27c298bd898a1f0a3a66eece89074f22"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-landscape-changed-window.png",
+    "sha256": "d99eb387ec37d90c6a25fb176df34d4c5c946f4c0114b63662cebfc510394994"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-landscape-changed.png",
+    "sha256": "2f3e636dc9bf09766cb4ff85e731118372e21f8b44f5cfa59e07b97ddb1e74fd"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-location-denied-settings.png",
+    "sha256": "f631485b1f0d946b5c2b9c04b4d4789ce74b3eb7da5f641f70606bd6e1ddb39f"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-location-denied-trips.png",
+    "sha256": "4a2fd93d237eb6b5e276001cf06eee2a6a55c91a50c6abc596dc5b92cc60f119"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-readonly-narrow-window.png",
+    "sha256": "76cbbe2813cbc4f1a2fb38d218e14315b8feb5782571166f650f18c3a4bdae1f"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-child-emergency-components/child-emergency-readonly-narrow.png",
+    "sha256": "45880bbfd7896e6092df49a4ca5b909af39da7305ead93cad5c84101382de7d5"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-emergency-contact/emergency-editor-changed-window.png",
+    "sha256": "0734013c6b06a772a3c7c4c8fa7f7e3d56f5a7a8046bf22b45c4191feeb9cb8d"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-emergency-contact/emergency-editor-changed.png",
+    "sha256": "16e221c96a9515cefefb733a58b7b34fa528fac9fbc60571b905b82de1f55815"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-emergency-contact/emergency-editor-narrow-window.png",
+    "sha256": "1958a19942900061d937167b50b78ceddc89e9cb8ae808b474c59f6a33323947"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-emergency-contact/emergency-editor-narrow.png",
+    "sha256": "4a6ebd6b01ecf2048305889b373601546ea0c17726bfada60fd66c45f0e29935"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-phone-window.png",
+    "sha256": "3cdbdf15870f0b3c9917ecb83473c92c0b4a9fe1b82788484543a21c11bbadd5"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-phone.json",
+    "sha256": "0ed9e4c8d9babf7774e0dadced242e5d22fa4915c2c129b319b70986b7278c6a"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-phone.png",
+    "sha256": "cb0bbd375c9918a7b6c3791e5bf8484946b9f08117b8261f57796b018b5a3f7e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-wide-window.png",
+    "sha256": "ac69fc07f26cfcf58fb3fe19d2dca042f479c7617002dfdaa8e5f89b36075abd"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-wide.json",
+    "sha256": "3ceb7471421b204265a418394e8f1b1bdfe3b7c373893b067d1508b0c1ab5c02"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-dark-wide.png",
+    "sha256": "ce18093522605ffaaf1174971f7e00b9b6e8c11c6a339e7f130a036ddf5e4083"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-phone-window.png",
+    "sha256": "4c675f0729b7bbf91b13ea213b4b4a468620e532ce6af78ebd8173bdde5188e0"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-phone.json",
+    "sha256": "f24ca00b7e14c1643f20f8246af8fe727d3a3f42b73167a8b8f067644b41838c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-phone.png",
+    "sha256": "05226f1d398fefea49ba8f5cfea0cf809b056bb4573d3160beff7976207b1c5d"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-wide-window.png",
+    "sha256": "442ca4e092795c6cf66b5f9418096e2b8114844bdefb6aed54b2a5f42370d53b"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-wide.json",
+    "sha256": "6f6e24837094b196fe788b8dc6a627bd4e41b23d05f9e3e521080f298a3c3dd6"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/search-light-wide.png",
+    "sha256": "b3f354259012167ba4ccd4d74eae8c6243fd0915ab31e4d4765e508ccf699644"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-phone-window.png",
+    "sha256": "4d5f2be2ea2f4eafaebabdd068d04281729f15609e9bc8c970641e05f748d5f3"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-phone.json",
+    "sha256": "1e8c309aef63f11c3c559a7d645529e61178125289236edee1642bd6630babd0"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-phone.png",
+    "sha256": "11a5ce2ecc4a672689655cfe3d70f7c8dfe4fa835e1cae62a7155a240b7de76c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-wide-window.png",
+    "sha256": "e986ed0cc649a157c8e272f3534be599ebaf437e6e9b7c0e431b742d76972b1a"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-wide.json",
+    "sha256": "5cbe1d33ed2212613d8ea06150f6c574170e04384e20574fd038f0d8be23ecab"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-dark-wide.png",
+    "sha256": "5a2df8199b343bd5ef15f9f1e9eb3200f6b6de45d9a9413f9abf7cd2d32e9354"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-phone-window.png",
+    "sha256": "212ce108fcb74d9fc67315d1147fc4046294ca48aa3a464df31480f5de841778"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-phone.json",
+    "sha256": "8fab837cfdcf113e21bc748d654996a61dd088faaf0efdd2246289e9f0bf9c1c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-phone.png",
+    "sha256": "a908fc82efee11da204124bade604dcfce3e9fe5598b307551a8ddd9dd2e5cd3"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-wide-window.png",
+    "sha256": "c1c8aebbaffaa79bff948d76eca29a07a39dd91d8c8d04d02f57388ccfb6e90a"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-wide.json",
+    "sha256": "6be2983c0ad9d4b931628eaf7b3c04ec48a74278e571fde5d6bdb53ea2b89d86"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-neutral-text/trips-light-wide.png",
+    "sha256": "6190ac95ea5835e46c0f0a34a3d3dc43abbcb20f140ad049853d3922c805449d"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-confirmed-window.png",
+    "sha256": "b777642e474797fc917042f195c7a5f2174477c55a5034c3f48207bba6eb080c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-confirmed.png",
+    "sha256": "ad393fc7a9cc1c1364d25a0243be97cceb31dba6b77aa8773cdb25bcd0154fae"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-narrow-error-window.png",
+    "sha256": "c6ec0745f26e79689cf168607d663f60d572f8d1a2a5eca6babc35e427bb47e2"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-narrow-error.png",
+    "sha256": "6ed485da794153892c54b1a1f805c79f31a09f554d80bd2e6b1f0d37acbb180c"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-unconfirmed-window.png",
+    "sha256": "4e956ceab7a485bc10ab357a9c43daac6ceb8e6de6532d445d414bfe707416c7"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-unconfirmed.png",
+    "sha256": "dbd577d600381c42ecbed243b172b7b4d9ec9dbe3a1741010ffb4d97592dcce1"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-unread-window.png",
+    "sha256": "802fc16e1988a495970b9b99b7dbde3878825e04034599a0e59f91ea42c2be3e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-notification-read/notification-read-unread.png",
+    "sha256": "4b64bf0266210aaa0307a119a8964e2728b7ece82686691c61c98523f4b5e034"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-payment-confirmation/payment-pending-narrow-window.png",
+    "sha256": "e05ffa748620d8226b20e9805b7acce4c6e9cf6964e660a5b1524f8a4b53273f"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-payment-confirmation/payment-pending-narrow.png",
+    "sha256": "82b10239c266f3dd280cf80e7078db06f23400b131f9c717abf4984f565036d4"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-payment-confirmation/payment-review-window.png",
+    "sha256": "0b0e875fefcc1d2130643898107635c13359e9c666c245e78a1cbd1356aaa509"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-payment-confirmation/payment-review.png",
+    "sha256": "09b1647064ba415ae6872d613ecebc80ac6f09e6f22700241bb6db103b3afc3d"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-session-restoration/session-restoration-error.png",
+    "sha256": "cb4335c4a4ab99d2ed8294ec10fa7de04032e1557d993616f57d8ee1d892e828"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-session-restoration/session-restoration-narrow.png",
+    "sha256": "47fc04ef95c40e4279f96178fcdd2097671c72bdc08540e85c4d0d16e15a3fa6"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-active-ride-tracking.png",
+    "sha256": "6c8a58f11e232fe9c68358670bc022648561a1faaa38b21af468f33db46479a2"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-child-safety-disclosure.png",
+    "sha256": "a8329b05a994f066468c95598d429d18f065ed2edacfaf7a808b873812afd81b"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-emergency-contact-action.png",
+    "sha256": "b5429affba35e4dd45b0382babb5652af3b3eecd2f0c0bc4450bed98ce24c8d1"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-google-maps-route-preview.png",
+    "sha256": "c9cd400aeca1b8f74eb2bfe61b0dccbfe638d6db437b3b75ac4ecd453e650c95"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-guardian-consent-copy.png",
+    "sha256": "a8329b05a994f066468c95598d429d18f065ed2edacfaf7a808b873812afd81b"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-permission-education.png",
+    "sha256": "a7cfa7e8652e928b866f53a6006cb390fb373701ab7b8e8aac34faa612964b11"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-privacy-summary.png",
+    "sha256": "e510d96c5b9ce8c1977a5b74a13fe014b0e49c9ad5774de17b74932c6b1b1fde"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-store-review/store-stale-location-warning.png",
+    "sha256": "462751a0060850ecfdb3140429eadc875dc2c3347be0d209e5bdeefc7951eacb"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-confirmed-window.png",
+    "sha256": "57f91980092b65fa038b923b7cb1c23228452d37e1fd5ddaf59282448b1f3197"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-confirmed.json",
+    "sha256": "a84d1b3b6b75c4e1a8fb0f0a484b62cec524a4a6d6e3af2ce50e8371ad20a900"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-confirmed.png",
+    "sha256": "ba96daad74a517478a34d59075885c780a8fd0551d34e1782941a9cdeea9f2c7"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-denied-window.png",
+    "sha256": "4ce2b50c473baa5caebabf65a624832eca76ecb5031302d591a27b5bd26ad503"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-denied.json",
+    "sha256": "041f2bf3d6041873d1ad5fa7cf4033db69ee90491680b236b75f64e74ff99345"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-denied.png",
+    "sha256": "d23306b68cf5e873d62775ebfde51338ea17d9a5cdb9e388472c8bf3f59241da"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-narrow-window.png",
+    "sha256": "9125f04712b0f93486317079bf414e89f23ae16c61b7d879685cbc78e15787ab"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-narrow.json",
+    "sha256": "826b31cb9f4420bbbfafdc72366e1c2fa8f2a4dc2f2d9266d566aec39d006800"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-narrow.png",
+    "sha256": "be8e8d9c9c874140c9a4c273e2dbecea93c1d419419074382517865361742665"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-unconfirmed-window.png",
+    "sha256": "60c7c4385e13521d4831544a8d6e10a838a02a87baa145168e0535e815803922"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-unconfirmed.json",
+    "sha256": "afbe662da1f96626c1c87aec3dcef7b98d307fad3250996cf239073742a20081"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-chat-unconfirmed.png",
+    "sha256": "57346baa6a3e45c157c5ce383a50b7507db805f25444f03e900667d196a4b15e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-draft-read-error-window.png",
+    "sha256": "3de05a3f9f24bd6a87429ef107a86abf0f3e48f6a30efab7a9345ccff515e255"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-draft-read-error.png",
+    "sha256": "5f63e69cf28a2e9977bf5474e44c957f2f5ed29adc6c79398f53f0ca5ae0d279"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-draft-write-error-window.png",
+    "sha256": "5475f2ae44609d3bfa616e5a34ec706ea55d907adf20b98e1cddcffe1813b0b4"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-draft-write-error.png",
+    "sha256": "b272dd17f979c479e68de7af5cc693d187465be84cbb60828952aee746fc03e4"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-count-narrow-window.png",
+    "sha256": "2df36a7995c81d45d113b6d083225ed26eeaf9d990c3743b674a1a20b697daca"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-count-narrow.json",
+    "sha256": "0d4acd6bcc9eb7c1f4277fc16afc0f21b28599441c81b8c087206c8b098cbea1"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-count-narrow.png",
+    "sha256": "59af3f7d530a6ebfa7164c8f524479f6e78d6ea2d0ca64c645bb2901ad12aec2"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-error-window.png",
+    "sha256": "9a329179625e3041dd0c937a9c3f315002b6d06cb1cea06fd01d6ab588e3df93"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-error.json",
+    "sha256": "45a1d12dee7e7f1505d384d4ea9927715d0f61053eefd9299525a6eabe0e60d5"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-error.png",
+    "sha256": "f1824d4f0b61323dfac9c918a770ef966255bf20084f01ea14384e2280bfca32"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-retry-window.png",
+    "sha256": "6ec5f3a2f4558da7e8ebba15fd1854a9666930fee1c858a262674fad89f90ce2"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-retry.json",
+    "sha256": "0c880a802de883af8a125e985c1b7e37de1b02a634d47a1ba5194351b74ee723"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-retry.png",
+    "sha256": "e1d9d3edccc5307934c62b3935d17f2c9062e987cb569fbdfa3424722c394f75"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-revoked-window.png",
+    "sha256": "4ce2b50c473baa5caebabf65a624832eca76ecb5031302d591a27b5bd26ad503"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-revoked.json",
+    "sha256": "d59d9359e41035d9dda1483954acc31d38a4600afa86eb060584cf9f1e06b6d4"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-revoked.png",
+    "sha256": "d23306b68cf5e873d62775ebfde51338ea17d9a5cdb9e388472c8bf3f59241da"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-visible-window.png",
+    "sha256": "fe42f1b694ccfe07a573663c6a867652fc9afedcf32642d5ac04e2da6a15b4c4"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-visible.json",
+    "sha256": "8ec8ea426215fce90ad8d17835bc8ca7a4478ba8a5bd5f343a995bd461cd3078"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-chat-components/team-read-visible.png",
+    "sha256": "6b648ea58957ed528e9bfe5b241fa6485e113a84a10cb8d6ee0c67e214d982da"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-enrollment/team-approved-narrow-window.png",
+    "sha256": "71071af1408eceee6ff3b4d20fb1bb087a790b56450b689faaec09057ca6b218"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-enrollment/team-approved-narrow.png",
+    "sha256": "edb5b47a3cbd5e002fe2fad1cb8fb2384eb3490b89064f2b08ab3fd12985164b"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-enrollment/team-requested-window.png",
+    "sha256": "57e5fe90b5c512bccd20df3a18e891f3edaf35ee8175238455d56512a0fb7d9e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-enrollment/team-requested.png",
+    "sha256": "eaf31c3139cd1084bc09ba373b8e4366463db9c87cf7e16fd1a0c4b73d2cd5d8"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-history/team-history-paging-window.png",
+    "sha256": "d381e612af7139aec54d87452b36c36e5b7cf6fc472ac9b201ced04f5a9ce576"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-history/team-history-paging.png",
+    "sha256": "715faa21081831047957808e193123f861e03746ad33be820a81e8d34768f4a9"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-history/team-history-redacted-child-window.png",
+    "sha256": "036b75afdc3565eb3ec78a8d4a79a6ad620bfe68cddf24b2c8f62710eedf15b7"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-team-history/team-history-redacted-child.png",
+    "sha256": "4ecefd8f738462e415f02f05539f4025f225322d4b235e72dafb0a87cbf8987e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-applied-balance-due-window.png",
+    "sha256": "fa36a2129e4348d6e649568e95216bda1d799188b65a75710dcbdb8641d7644e"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-applied-balance-due.png",
+    "sha256": "8b03d2648f5fbc3c00c8408ec89db24f5130eb106550d6a3916cc9d68f3fd6ad"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-close-pinned-large-text-window.png",
+    "sha256": "f4647917ec43582c044fe2de9d5ef56f5a8752d08bcc6aa8f7897ee9871722ab"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-close-pinned-large-text.png",
+    "sha256": "536bee2e957f6e1af69583e3e3b486ec2163084a125af485a8f9491fad16a959"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-driver-proposed-window.png",
+    "sha256": "0005d5a4c446728f2accaf30f2f31148151e6745e359a103fe71a9a59b3d14ef"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-driver-proposed.png",
+    "sha256": "7cb9d2711e9fd0e97f88fd8243981c72703ec21fb8daeefbcaf95687e4e43c3f"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-accepted-window.png",
+    "sha256": "c665219d2b7aa7715312287f495458f61e15aa9f0df8f7892aabfefb7b0580f6"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-accepted.png",
+    "sha256": "5e70c2b4a261d7128e3bdc29c2fb2c0cbc64e79f054370a613437374a52e06e3"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-declined-window.png",
+    "sha256": "1685312c4c8cb773057edbdb67b51196d892b7a78ba3360ef19f132299e8f0ff"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-declined.png",
+    "sha256": "e0ad542704d0fed5a79004996276bc18f8485407634c69237b0a9941fd31baa5"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-review-large-text-window.png",
+    "sha256": "f276b8928a58a08d93768af093ace0a0f285443900f0a65a1522dcc2393d006d"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-change-parent-review-large-text.png",
+    "sha256": "664b50f8716be5af245e1d659e92b27f866b0b0d9e6076007606e3051e05e6ba"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-draft-restored-large-text-window.png",
+    "sha256": "51140d3da43a2f4385b338bc1285333f88cc6e026bd2e283151a4d21c67536cf"
+  },
+  {
+    "path": "outputs/store-review-screenshots/sgm-trip-changes/trip-draft-restored-large-text.png",
+    "sha256": "539aa6039e02b01782f76fb7d061d8c8a3bab35a263de95a51b516bacdb5ef60"
+  }
+]

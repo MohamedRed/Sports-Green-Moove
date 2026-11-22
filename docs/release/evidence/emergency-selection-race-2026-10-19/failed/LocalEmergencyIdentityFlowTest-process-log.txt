@@ -1,0 +1,13 @@
+--------- beginning of system
+W/ActivityManager(  540): stopServiceToken startId 1481 is last, but have 1 remaining args
+W/ActivityManager(  540): stopServiceToken startId 1253 is last, but have 3 remaining args
+W/ActivityManager(  540): Slow operation: 114ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  540): Slow operation: 114ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  540): Slow operation: 120ms so far, now at startProcess: building log message
+I/ActivityManager(  540): Start proc 6524:be.sportgreenmoove.app.local.test/u0a211 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+W/ActivityManager(  540): Slow operation: 120ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  540): Slow operation: 126ms so far, now at startProcess: done updating pids map
+I/ActivityManager(  540): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  540): Unable to freeze binder for 4930: -11
+I/ActivityManager(  540): Killing 4930:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  540): setHasOverlayUi called on unknown pid: 4930

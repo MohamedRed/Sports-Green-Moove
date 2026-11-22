@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ConversationComposerStateTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.287Z" hostname="local-test-host" time="0.006">
+  <properties></properties>
+  <testcase name="blankOrOversizedDraftsNeverAllocateAnIntentOrReachTheGateway" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="aFirstDefinitiveRejectionStillAllowsEditingANewIntent" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="cancellationAndSavedHolderRecreationDoNotMakeAPendingIntentFreshAgain" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="anObservedConfirmationCannotBeUndoneByALateSendFailure" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="anUncertainAttemptKeepsItsIdentityEvenWhenTheRetryIsDefinitelyRejected" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="overlappingSendsAndEditsCannotReplaceTheInFlightIntent" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.001"></testcase>
+  <testcase name="aVisibleOwnAcknowledgementConfirmsEvenAnExceptionAndStaleAcknowledgementsAreIgnored" classname="be.sportgreenmoove.app.ui.ConversationComposerStateTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

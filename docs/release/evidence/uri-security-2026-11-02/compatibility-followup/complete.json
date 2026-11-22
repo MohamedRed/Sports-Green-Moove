@@ -1,0 +1,50 @@
+{
+  "scope": "local-build-and-business-compatibility-not-provider-or-physical-release",
+  "completed": true,
+  "outcomes": [
+    {
+      "name": "child-approval",
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "groupExitVerified": true,
+      "endpoints": {
+        "host": "127.0.0.1",
+        "ports": [
+          4400,
+          4500,
+          5001,
+          8080,
+          9000,
+          9099,
+          9150,
+          9199
+        ],
+        "closed": true
+      }
+    },
+    {
+      "name": "child-invitation",
+      "status": 0,
+      "signal": null,
+      "errorCode": null,
+      "groupExitVerified": true,
+      "endpoints": {
+        "host": "127.0.0.1",
+        "ports": [
+          4400,
+          4500,
+          5001,
+          8080,
+          9000,
+          9099,
+          9150,
+          9199
+        ],
+        "closed": true
+      }
+    }
+  ],
+  "productionDeployed": false,
+  "releaseAccepted": false
+}

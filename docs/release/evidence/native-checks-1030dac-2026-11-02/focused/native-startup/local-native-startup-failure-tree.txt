@@ -1,0 +1,121 @@
+Printing with useUnmergedTree = 'true'
+Node #1 at (l=0.0, t=0.0, r=1080.0, b=2400.0)px
+ |-Node #9 at (l=0.0, t=128.0, r=1080.0, b=1517.0)px, Tag: 'auth.screen'
+   IsTraversalGroup = 'true'
+   Shape = 'RectangleShape'
+   VerticalScrollAxisRange = 'ScrollAxisRange(value=0.0, maxValue=454.0, reverseScrolling=false)'
+   Actions = [ScrollBy, ScrollByOffset]
+    |-Node #10 at (l=63.0, t=233.0, r=1017.0, b=700.0)px
+    | Shape = 'RectangleShape'
+    |  |-Node #14 at (l=346.0, t=281.0, r=471.0, b=334.0)px
+    |  | Text = '[SPORTS ]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #15 at (l=471.0, t=281.0, r=584.0, b=334.0)px
+    |  | Text = '[GREEN-]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #16 at (l=584.0, t=267.0, r=615.0, b=334.0)px
+    |  | Text = '[m]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #17 at (l=615.0, t=233.0, r=688.0, b=334.0)px
+    |  | Text = '[OO]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #18 at (l=688.0, t=267.0, r=734.0, b=334.0)px
+    |  | Text = '[Ve]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #19 at (l=289.0, t=371.0, r=791.0, b=408.0)px
+    |  | Text = '[COVOITURAGE SPORTIF & CULTUREL]'
+    |  | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |  |-Node #20 at (l=293.0, t=445.0, r=788.0, b=700.0)px
+    |    Text = '[REJOIGNEZ LA
+GREEN RÉVOLUTION
+DU SPORT]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #23 at (l=53.0, t=826.0, r=532.0, b=921.0)px
+    | Focused = 'false'
+    | Selected = 'true'
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 999.0.dp), topEnd = CornerSize(size = 999.0.dp), bottomEnd = CornerSize(size = 999.0.dp), bottomStart = CornerSize(size = 999.0.dp))'
+    | Actions = [OnClick, RequestFocus]
+    | MergeDescendants = 'true'
+    |  |-Node #24 at (l=184.0, t=855.0, r=401.0, b=893.0)px
+    |    Text = '[SE CONNECTER]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #25 at (l=548.0, t=826.0, r=1027.0, b=921.0)px
+    | Focused = 'false'
+    | Selected = 'false'
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 999.0.dp), topEnd = CornerSize(size = 999.0.dp), bottomEnd = CornerSize(size = 999.0.dp), bottomStart = CornerSize(size = 999.0.dp))'
+    | Actions = [OnClick, RequestFocus]
+    | MergeDescendants = 'true'
+    |  |-Node #26 at (l=712.0, t=855.0, r=864.0, b=893.0)px
+    |    Text = '[S'INSCRIRE]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #27 at (l=95.0, t=987.0, r=985.0, b=1034.0)px
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    |  |-Node #29 at (l=95.0, t=987.0, r=985.0, b=1034.0)px, Tag: 'auth.email.input'
+    |    ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'
+    |    ContentType = 'androidx.compose.ui.autofill.AndroidContentType@7258b51'
+    |    EditableText = 'd@example.test'
+    |    FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@c696ce3'
+    |    Focused = 'false'
+    |    ImeAction = 'Default'
+    |    InputText = 'd@example.test'
+    |    IsEditable = 'true'
+    |    TextSelectionRange = 'TextRange(14, 14)'
+    |    Actions = [GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText]
+    |    MergeDescendants = 'true'
+    |     |-Node #31 at (l=95.0, t=987.0, r=985.0, b=1034.0)px
+    |       Shape = 'RectangleShape'
+    |-Node #33 at (l=95.0, t=1134.0, r=985.0, b=1181.0)px
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    |  |-Node #35 at (l=95.0, t=1134.0, r=985.0, b=1181.0)px, Tag: 'auth.password.input'
+    |    ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'
+    |    ContentType = 'androidx.compose.ui.autofill.AndroidContentType@a6cdcee'
+    |    EditableText = '••••••••••••••••••••••••••••••••••••••••••••••••'
+    |    FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@2a2b6e0'
+    |    Focused = 'true'
+    |    ImeAction = 'Default'
+    |    InputText = '[REDACTED]'
+    |    IsEditable = 'true'
+    |    TextSelectionRange = 'TextRange(48, 48)'
+    |    [Password]
+    |    Actions = [GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText]
+    |    MergeDescendants = 'true'
+    |     |-Node #37 at (l=95.0, t=1134.0, r=985.0, b=1181.0)px
+    |       Shape = 'RectangleShape'
+    |       Actions = [MagnifierPositionInRoot]
+    |-Node #52 at (l=53.0, t=1247.0, r=1027.0, b=1330.0)px, Tag: 'auth.error'
+    | Text = '[Connexion impossible pour le moment. Réessayez dans quelques instants.]'
+    | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #39 at (l=53.0, t=1362.0, r=1027.0, b=1509.0)px, Tag: 'auth.email.action'
+    | Focused = 'false'
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    | Actions = [OnClick, RequestFocus]
+    | MergeDescendants = 'true'
+    |  |-Node #40 at (l=378.0, t=1408.0, r=703.0, b=1463.0)px
+    |    Text = '[SE CONNECTER]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #42 at (l=53.0, t=1559.0, r=374.0, b=1562.0)px
+    | Shape = 'RectangleShape'
+    |-Node #43 at (l=400.0, t=1541.0, r=680.0, b=1579.0)px
+    | Text = '[OU CONTINUER AVEC]'
+    | Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #44 at (l=706.0, t=1559.0, r=1027.0, b=1562.0)px
+    | Shape = 'RectangleShape'
+    |-Node #46 at (l=53.0, t=1611.0, r=527.0, b=1732.0)px, Tag: 'auth.facebook.action'
+    | Focused = 'false'
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    | Actions = [OnClick, RequestFocus]
+    | MergeDescendants = 'true'
+    |  |-Node #47 at (l=214.0, t=1649.0, r=367.0, b=1694.0)px
+    |    Text = '[Facebook]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #48 at (l=553.0, t=1611.0, r=1027.0, b=1732.0)px, Tag: 'auth.google.action'
+    | Focused = 'false'
+    | Shape = 'RoundedCornerShape(topStart = CornerSize(size = 12.0.dp), topEnd = CornerSize(size = 12.0.dp), bottomEnd = CornerSize(size = 12.0.dp), bottomStart = CornerSize(size = 12.0.dp))'
+    | Actions = [OnClick, RequestFocus]
+    | MergeDescendants = 'true'
+    |  |-Node #49 at (l=734.0, t=1649.0, r=847.0, b=1694.0)px
+    |    Text = '[Google]'
+    |    Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+    |-Node #51 at (l=53.0, t=1859.0, r=1027.0, b=1897.0)px
+      Text = '[112 000+ greens-moovers en Belgique · Wallonie · Flandre · Bruxelles]'
+      Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]

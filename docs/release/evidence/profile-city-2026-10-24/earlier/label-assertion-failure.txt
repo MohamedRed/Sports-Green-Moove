@@ -1,0 +1,92 @@
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.LocalProfileCityFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+be.sportgreenmoove.app.ui.LocalProfileCityFlowTest:
+INSTRUMENTATION_STATUS: test=actualProfileSaveRecreationAccountSwitchAndRemoval
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=be.sportgreenmoove.app.ui.LocalProfileCityFlowTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to assert the following: (Text + EditableText = [Liège])
+Semantics of the node:
+Node #270 at (l=63.0, t=169.0, r=777.0, b=341.0)px, Tag: 'city.input'
+ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'
+EditableText = 'Liège'
+FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@4a2c2a1'
+Focused = 'true'
+ImeAction = 'Default'
+InputText = 'Liège'
+IsEditable = 'true'
+Text = '[Ville]'
+TextSelectionRange = 'TextRange(5, 5)'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Selector used: (TestTag = 'city.input')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals(Assertions.kt:185)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals$default(Assertions.kt:181)
+	at be.sportgreenmoove.app.ui.LocalProfileCityFlowTest.actualProfileSaveRecreationAccountSwitchAndRemoval(LocalProfileCityFlowTest.kt:37)
+
+INSTRUMENTATION_STATUS: stream=
+Error in actualProfileSaveRecreationAccountSwitchAndRemoval(be.sportgreenmoove.app.ui.LocalProfileCityFlowTest):
+java.lang.AssertionError: Failed to assert the following: (Text + EditableText = [Liège])
+Semantics of the node:
+Node #270 at (l=63.0, t=169.0, r=777.0, b=341.0)px, Tag: 'city.input'
+ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'
+EditableText = 'Liège'
+FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@4a2c2a1'
+Focused = 'true'
+ImeAction = 'Default'
+InputText = 'Liège'
+IsEditable = 'true'
+Text = '[Ville]'
+TextSelectionRange = 'TextRange(5, 5)'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Selector used: (TestTag = 'city.input')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals(Assertions.kt:185)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals$default(Assertions.kt:181)
+	at be.sportgreenmoove.app.ui.LocalProfileCityFlowTest.actualProfileSaveRecreationAccountSwitchAndRemoval(LocalProfileCityFlowTest.kt:37)
+
+INSTRUMENTATION_STATUS: test=actualProfileSaveRecreationAccountSwitchAndRemoval
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 19.232
+There was 1 failure:
+1) actualProfileSaveRecreationAccountSwitchAndRemoval(be.sportgreenmoove.app.ui.LocalProfileCityFlowTest)
+java.lang.AssertionError: Failed to assert the following: (Text + EditableText = [Liège])
+Semantics of the node:
+Node #270 at (l=63.0, t=169.0, r=777.0, b=341.0)px, Tag: 'city.input'
+ContentDataType = 'AndroidContentDataType(androidAutofillType=1)'
+EditableText = 'Liège'
+FillableData = 'androidx.compose.ui.autofill.AndroidFillableData@4a2c2a1'
+Focused = 'true'
+ImeAction = 'Default'
+InputText = 'Liège'
+IsEditable = 'true'
+Text = '[Ville]'
+TextSelectionRange = 'TextRange(5, 5)'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, InsertTextAtCursor, OnClick, OnFillData, OnLongClick, PasteText, PerformImeAction, RequestFocus, SetSelection, SetText, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Selector used: (TestTag = 'city.input')
+
+	at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+	at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals(Assertions.kt:185)
+	at androidx.compose.ui.test.AssertionsKt.assertTextEquals$default(Assertions.kt:181)
+	at be.sportgreenmoove.app.ui.LocalProfileCityFlowTest.actualProfileSaveRecreationAccountSwitchAndRemoval(LocalProfileCityFlowTest.kt:37)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

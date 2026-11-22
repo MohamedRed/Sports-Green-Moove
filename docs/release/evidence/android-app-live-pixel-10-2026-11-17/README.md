@@ -1,0 +1,7 @@
+# Android App Live startup, 17 November 2026
+
+The approved isolated APK installed and started in BrowserStack App Live on a Google Pixel 10 running Android 16. The file uploaded as `app-debug.apk` had SHA-256 `29ae56b521ee11e6e3d47af7a58b4a15ce46d2580c4c954db8f76358c7c9f186`. The local test project was `demo-sgm-local-qa`.
+
+BrowserStack showed Local Testing enabled with “Resolve all URLs through my network” off. The verified launcher restricted access to the four loopback test services on ports 5001, 8080, 9000, and 9099. Using the Android keyboard’s paste suggestion, the synthetic parent signed in. The app displayed the authenticated home navigation and opened Messages. Browser control became unavailable while Messages was loading, before any conversation, message, or independent checkpoint was verified. No production data was used. A subsequent host check found the temporary fixture file, tunnel handoff directory, and listening services absent. The end of the connected remote phone session could not be verified.
+
+A prior session on the same model used the older `sgm-invitation-local-b9a9000-20261101.apk`. It opened registration in portrait. Rotation returned to sign-in, and scrolling in landscape exposed the sign-in controls. Those observations apply to the earlier upload. The system Phone icon did not open the dialer from either the launcher or the app drawer, and no call was attempted. The emergency handoff and production-device scenarios remain pending.

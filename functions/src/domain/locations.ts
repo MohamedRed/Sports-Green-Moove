@@ -14,7 +14,7 @@ export function nativeFallbackUpdateForAuth(
   return {
     ...update,
     userId: uid,
-    uploadedAt: update.uploadedAt ?? uploadedAt,
+    uploadedAt,
     source: "nativeFallback",
   };
 }

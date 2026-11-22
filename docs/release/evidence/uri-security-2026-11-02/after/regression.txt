@@ -1,0 +1,230 @@
+TAP version 13
+# Subtest: installed root multipart encoder escapes hostile field metadata
+ok 1 - installed root multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 92.809291
+  type: 'test'
+  ...
+# Subtest: installed root multipart encoder escapes hostile filename metadata
+ok 2 - installed root multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 79.37775
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile field metadata
+ok 3 - installed cli multipart encoder escapes hostile field metadata
+  ---
+  duration_ms: 80.948583
+  type: 'test'
+  ...
+# Subtest: installed cli multipart encoder escapes hostile filename metadata
+ok 4 - installed cli multipart encoder escapes hostile filename metadata
+  ---
+  duration_ms: 79.888791
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 0
+ok 5 - build-resolved secure ID generator terminates with size 0
+  ---
+  duration_ms: 66.469958
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size -1
+ok 6 - build-resolved secure ID generator terminates with size -1
+  ---
+  duration_ms: 64.474583
+  type: 'test'
+  ...
+# Subtest: build-resolved secure ID generator terminates with size 8
+ok 7 - build-resolved secure ID generator terminates with size 8
+  ---
+  duration_ms: 64.67975
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 0
+ok 8 - build-resolved nonsecure ID generator terminates with size 0
+  ---
+  duration_ms: 62.40725
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size -1
+ok 9 - build-resolved nonsecure ID generator terminates with size -1
+  ---
+  duration_ms: 61.692833
+  type: 'test'
+  ...
+# Subtest: build-resolved nonsecure ID generator terminates with size 8
+ok 10 - build-resolved nonsecure ID generator terminates with size 8
+  ---
+  duration_ms: 61.838542
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 0
+ok 11 - build-resolved customRandom ID generator terminates with size 0
+  ---
+  duration_ms: 67.91075
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size -1
+ok 12 - build-resolved customRandom ID generator terminates with size -1
+  ---
+  duration_ms: 70.57375
+  type: 'test'
+  ...
+# Subtest: build-resolved customRandom ID generator terminates with size 8
+ok 13 - build-resolved customRandom ID generator terminates with size 8
+  ---
+  duration_ms: 64.768333
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects large offsets before expanding lines
+ok 14 - build-resolved source map rejects large offsets before expanding lines
+  ---
+  duration_ms: 67.138875
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects fractional offsets before expanding lines
+ok 15 - build-resolved source map rejects fractional offsets before expanding lines
+  ---
+  duration_ms: 64.175667
+  type: 'test'
+  ...
+# Subtest: build-resolved source map rejects nested offsets before expanding lines
+ok 16 - build-resolved source map rejects nested offsets before expanding lines
+  ---
+  duration_ms: 64.618875
+  type: 'test'
+  ...
+# Subtest: ordinary source-map sections are still accepted
+ok 17 - ordinary source-map sections are still accepted
+  ---
+  duration_ms: 63.680084
+  type: 'test'
+  ...
+# Subtest: untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+ok 18 - untrusted CSS cannot read an arbitrary synthetic map when from is omitted
+  ---
+  duration_ms: 75.402333
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: serialize-rejects-port-authority-injection
+ok 19 - the actual schema URI resolver: serialize-rejects-port-authority-injection
+  ---
+  duration_ms: 0.058458
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: normalize-rejects-port-authority-injection
+ok 20 - the actual schema URI resolver: normalize-rejects-port-authority-injection
+  ---
+  duration_ms: 0.026042
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: equal-rejects-port-authority-injection
+not ok 21 - the actual schema URI resolver: equal-rejects-port-authority-injection
+  ---
+  duration_ms: 0.682708
+  type: 'test'
+  location: '<repo>/tests/dependency-security-contract.test.mjs:36:36'
+  failureType: 'testCodeFailure'
+  error: |-
+    equal-rejects-port-authority-injection
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/dependency-security-contract.test.mjs:38:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the actual schema URI resolver: normalize-keeps-percent-encoded-scheme-inert
+ok 22 - the actual schema URI resolver: normalize-keeps-percent-encoded-scheme-inert
+  ---
+  duration_ms: 0.030334
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: resolve-keeps-percent-encoded-scheme-inert
+not ok 23 - the actual schema URI resolver: resolve-keeps-percent-encoded-scheme-inert
+  ---
+  duration_ms: 0.070209
+  type: 'test'
+  location: '<repo>/tests/dependency-security-contract.test.mjs:36:36'
+  failureType: 'testCodeFailure'
+  error: |-
+    resolve-keeps-percent-encoded-scheme-inert
+    
+    true !== false
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: false
+  actual: true
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<repo>/tests/dependency-security-contract.test.mjs:37:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: the actual schema URI resolver: normalize-keeps-unicode-escaped-scheme-inert
+ok 24 - the actual schema URI resolver: normalize-keeps-unicode-escaped-scheme-inert
+  ---
+  duration_ms: 0.023166
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: parse-does-not-promote-an-encoded-scheme
+ok 25 - the actual schema URI resolver: parse-does-not-promote-an-encoded-scheme
+  ---
+  duration_ms: 0.020792
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: equal-distinguishes-encoded-and-live-schemes
+ok 26 - the actual schema URI resolver: equal-distinguishes-encoded-and-live-schemes
+  ---
+  duration_ms: 0.027375
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: valid-numeric-port-is-preserved
+ok 27 - the actual schema URI resolver: valid-numeric-port-is-preserved
+  ---
+  duration_ms: 0.02
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: ordinary-relative-reference-is-preserved
+ok 28 - the actual schema URI resolver: ordinary-relative-reference-is-preserved
+  ---
+  duration_ms: 0.020125
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: ordinary-host-and-unreserved-normalization-is-preserved
+ok 29 - the actual schema URI resolver: ordinary-host-and-unreserved-normalization-is-preserved
+  ---
+  duration_ms: 0.020125
+  type: 'test'
+  ...
+# Subtest: the actual schema URI resolver: real-schema-validator-resolves-relative-references
+ok 30 - the actual schema URI resolver: real-schema-validator-resolves-relative-references
+  ---
+  duration_ms: 0.02075
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 28
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1429.897541

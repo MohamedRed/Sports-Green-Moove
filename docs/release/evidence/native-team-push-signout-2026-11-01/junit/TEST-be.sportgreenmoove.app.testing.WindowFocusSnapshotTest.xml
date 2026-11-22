@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:55.183Z" hostname="local-test-host" time="0.004">
+  <properties></properties>
+  <testcase name="boundsTheNumberOfSanitizedObservationsAndDoesNotAcceptPackagePrefixes" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.003"></testcase>
+  <testcase name="retainsOnlyKnownWindowOwnersAndNoTitlesOrEditorText" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.0"></testcase>
+  <testcase name="unknownApplicationsAndArbitraryTitlesAreRedactedRatherThanEchoed" classname="be.sportgreenmoove.app.testing.WindowFocusSnapshotTest" time="0.0"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

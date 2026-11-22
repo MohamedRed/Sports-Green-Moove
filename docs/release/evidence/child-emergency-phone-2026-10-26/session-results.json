@@ -1,0 +1,100 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c29923db8f4ef55fe5af1651c4872f75",
+  "testedAt": "2026-10-26T21:01:52.904Z",
+  "scope": "independent-child-contact-records-not-permission-or-dialer-proof",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "childUid": "sgm-qa-child-link-phone",
+    "childId": "sgm-qa-child-lina",
+    "clubId": "sgm-qa-club-green-wavre",
+    "childInstanceId": "206627b2b6631dfbd156161748c2eed42790bf12c8a6f247881a94ad4e907140",
+    "childName": "Lina QA",
+    "parentEmail": "p@example.test",
+    "childEmail": "child-link@example.test",
+    "tripId": "uwcJShZhQxb9gXZjkeqE",
+    "bookingId": "6xdknwhKAOSblYwSHXoS",
+    "rideSessionId": "Bu8EIkzfxWgiOlXxq6Co",
+    "contact": {
+      "name": "Contact enfant fictif QA",
+      "phone": "+12025550121"
+    },
+    "accountProvisionedByFixture": true,
+    "accountApprovalMethod": "authenticated-local-service",
+    "ridePreparationMethod": "authenticated-local-service",
+    "contactPreparationMethod": "authenticated-local-service",
+    "signupProven": false,
+    "parentUiProven": false,
+    "productionWrites": false,
+    "providerRequests": 0
+  },
+  "completed": true,
+  "checkpoints": [
+    {
+      "phase": "child-signed-in",
+      "status": "passed",
+      "recordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "currentContactRead": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "locationPermissionProvenByThisCheckpoint": false,
+      "dialerHandoffProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "contact-shown",
+      "status": "passed",
+      "recordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "currentContactRead": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "locationPermissionProvenByThisCheckpoint": false,
+      "dialerHandoffProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "location-denied-contact",
+      "status": "passed",
+      "recordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "currentContactRead": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "locationPermissionProvenByThisCheckpoint": false,
+      "dialerHandoffProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "dialer-return",
+      "status": "passed",
+      "recordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "currentContactRead": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "locationPermissionProvenByThisCheckpoint": false,
+      "dialerHandoffProvenByThisCheckpoint": false
+    },
+    {
+      "phase": "signed-out",
+      "status": "passed",
+      "recordsUnchanged": true,
+      "accountClaimsUnchanged": true,
+      "currentContactRead": true,
+      "physicalUiProvenByThisCheckpoint": false,
+      "locationPermissionProvenByThisCheckpoint": false,
+      "dialerHandoffProvenByThisCheckpoint": false
+    }
+  ],
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "locationPermissionProvenByThisReport": false,
+  "dialerHandoffProvenByThisReport": false,
+  "signupProven": false,
+  "parentUiProven": false,
+  "sourceFiles": {
+    "scripts/qa/manual-child-emergency-phone-session.mjs": "4ee1cb97c7ef8799f14d8b6d3f8120c20f291ee8bcdb622b6b6622fbe9f436b7",
+    "scripts/qa/child-emergency-phone-checkpoints.mjs": "0dd676704c56b928238955daca04ee089bf9fd83edc66bd102c8b458dc01c2eb",
+    "scripts/qa/child-emergency-phone-fixture.mjs": "b343f6810a9eafa20a491780151cc52cca22d996abb80364aa74de69d555aae2",
+    "scripts/qa/local-ride-observation-fixture.mjs": "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b",
+    "scripts/qa/child-account-phone-fixture.mjs": "367c5916d399a5eb19e785c03f17b16e756e5f6d3c3a59e55b0fab3db2d7cfb2",
+    "scripts/qa/start-child-account-phone.mjs": "a78e97e9d99747a948c825788a1ef660474fccfbc88ac2416488718ad4c6a44d"
+  }
+}

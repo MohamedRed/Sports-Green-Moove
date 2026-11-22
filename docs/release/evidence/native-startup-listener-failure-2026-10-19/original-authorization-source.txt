@@ -1,0 +1,21 @@
+package be.sportgreenmoove.app.services
+
+import android.content.Context
+import android.content.Intent
+import io.radar.sdk.Radar
+import java.util.concurrent.atomic.AtomicLong
+
+internal object NativeTrackingAuthorization {
+    private val revision = AtomicLong()
+    fun currentRevision(): Long = revision.get()
+    fun revoke() { revision.incrementAndGet() }
+}
+
+internal fun stopDeviceLocationForSignOut(context: Context) {
+    NativeTrackingAuthorization.revoke()
+    try { rideObservationSubscriptions.revoke() }
+    finally {
+        try { context.stopService(Intent(context, ActiveRideLocationService::class.java)) }
+        finally { if (Radar.isInitialized()) Radar.stopTracking() }
+    }
+}

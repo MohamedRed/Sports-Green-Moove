@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "6e898a90b23fc0c2ea8c951af02a7246c760ad84",
+  "runId": 42096199969,
+  "jobId": 127490262040,
+  "conclusion": "failure",
+  "sdkBuild": "success",
+  "fixtureStep": "failure",
+  "casesExecuted": 11,
+  "passed": 9,
+  "failed": 2,
+  "assertionFailures": 4,
+  "disposal": "success",
+  "artifactCount": 0,
+  "deadlineMinutes": 50,
+  "timedOut": false,
+  "emergencyCasePassedInThisRun": true,
+  "emergencyReliabilityAccepted": false,
+  "bookingUiCauseConfirmed": false,
+  "subsequentCandidateCommit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+  "subsequentCandidateUiAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "efd13b8b3dfcfe240bea76d8812c5a8106ca2937ab30eee536b7b6d617f1a90d"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "10233ade73e9cc451728c52f0228f63c464350492034d1d38b6c5f4f63c58208"
+    },
+    {
+      "file": "selected-failures.txt",
+      "sha256": "dfa94bdfffa8f7de28d68ba2a96ce5eb05626a84bb20ce68b2e63b7ac0b7db69"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "686e6b38768193fc0ba4bff037dd0162b1a8573692de3b0a7046da911bec4a58"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "14dd8201394002ba719ba8554dad1a602f52d269538a8a745cdcc5393c2f1673"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "45b42ccfcc072c78feadb41328cc7bc276f01f959ccbaaa69bfdf8ae2fbb6913"
+    }
+  ]
+}

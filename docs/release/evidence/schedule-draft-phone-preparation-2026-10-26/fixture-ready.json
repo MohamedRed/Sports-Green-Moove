@@ -1,0 +1,25 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "f47325c981675dc1303f3832eee50c40",
+  "fixture": {
+    "tripId": "1pbcHsKPfDW4z7b6vCRC",
+    "otherTripId": "RyJywzfGTJ6Y1mmVOcJf",
+    "bookingIds": [
+      "asD2W4JxUVQznGXeyHxu",
+      "v8hzhSlbnAFN1tQDDs1F"
+    ],
+    "draftKind": "schedule",
+    "schedule": {
+      "originalDepartureAt": "2026-10-27T09:00:00.000Z",
+      "draftDepartureAt": "2026-10-28T11:00:00.000Z",
+      "draftArrivalBy": "2026-10-28T12:00:00.000Z"
+    },
+    "driverUid": "sgm-qa-driver",
+    "driverEmail": "d@example.test",
+    "preparationMethod": "authenticated-local-service",
+    "providerRequests": 0,
+    "productionWrites": false
+  },
+  "preparedAt": "2026-10-26T22:13:51.847Z",
+  "scope": "service-prepared-booked-trips-not-phone-proof"
+}

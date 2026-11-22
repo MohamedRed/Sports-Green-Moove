@@ -4,13 +4,15 @@ const locationUpdateSchema = z.object({
   rideSessionId: z.string(),
   userId: z.string().optional(),
   role: z.enum(["driver", "child"]),
-  lat: z.number(),
-  lng: z.number(),
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
   accuracyM: z.number().nonnegative(),
   speedMps: z.number().optional(),
   headingDeg: z.number().optional(),
   batteryPct: z.number().optional(),
   capturedAt: z.number(),
+  deviceCapturedAt: z.number().int().min(-Number.MAX_SAFE_INTEGER).max(Number.MAX_SAFE_INTEGER).optional(),
+  captureClock: z.literal("serverElapsedRealtime").optional(),
   uploadedAt: z.number().optional(),
   source: z.enum(["radar", "nativeFallback", "manual"]).optional(),
 });
@@ -30,10 +32,18 @@ const locationBatchJsonSchema = z.object({
       return z.NEVER;
     }
   }),
-}).strict().transform(({ updatesJson }) => ({
-  updates: locationUpdatesSchema.parse(updatesJson),
-}));
-const locationBatchRequestSchema = z.union([locationBatchSchema, locationBatchJsonSchema]);
+}).strict().transform(({ updatesJson }, ctx) => {
+  const parsed = locationUpdatesSchema.safeParse(updatesJson);
+  if (!parsed.success) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: parsed.error.issues[0]?.message ?? "updatesJson must contain valid location updates",
+    });
+    return z.NEVER;
+  }
+  return { updates: parsed.data };
+});
+export const locationBatchRequestSchema = z.union([locationBatchSchema, locationBatchJsonSchema]);
 
 export type LocationBatchRequest = z.infer<typeof locationBatchSchema>;
 

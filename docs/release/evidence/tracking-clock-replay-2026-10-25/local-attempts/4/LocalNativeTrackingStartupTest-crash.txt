@@ -1,0 +1,24 @@
+--------- beginning of crash
+E/AndroidRuntime(  542): *** FATAL EXCEPTION IN SYSTEM PROCESS: android.fg
+E/AndroidRuntime(  542): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1350): FATAL EXCEPTION: aiai-echo-search-0
+E/AndroidRuntime( 1350): Process: com.google.android.as, PID: 1350
+E/AndroidRuntime( 1350): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1151): FATAL EXCEPTION: launcher-loader
+E/AndroidRuntime( 1151): Process: com.google.android.apps.nexuslauncher, PID: 1151
+E/AndroidRuntime( 1151): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1284): FATAL EXCEPTION: main
+E/AndroidRuntime( 1284): Process: com.google.android.apps.wellbeing, PID: 1284
+E/AndroidRuntime( 1284): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1971): FATAL EXCEPTION: main
+E/AndroidRuntime( 1971): Process: com.google.android.gms, PID: 1971
+E/AndroidRuntime( 1971): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1990): FATAL EXCEPTION: main
+E/AndroidRuntime( 1990): Process: com.android.phone, PID: 1990
+E/AndroidRuntime( 1990): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime( 1952): FATAL EXCEPTION: main
+E/AndroidRuntime( 1952): Process: com.google.android.gms.persistent, PID: 1952
+E/AndroidRuntime( 1952): DeadSystemException: The system died; earlier logs will point to the root cause
+E/AndroidRuntime(  877): FATAL EXCEPTION: SysUiBg
+E/AndroidRuntime(  877): Process: com.android.systemui, PID: 877
+E/AndroidRuntime(  877): DeadSystemException: The system died; earlier logs will point to the root cause

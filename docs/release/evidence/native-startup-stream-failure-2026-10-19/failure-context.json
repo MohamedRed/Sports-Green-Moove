@@ -1,0 +1,11 @@
+{
+  "scope": "original-native-case-passed-but-stream-cleanup-failed-not-accepted",
+  "runId": "1c49a232ef6f6ddcea38e2ef02535b42",
+  "accepted": false,
+  "originalNativeCasePassed": true,
+  "fixtureCleanupVerified": false,
+  "staleErrorAbsenceAsserted": true,
+  "emulatorClosedWatchStreamException": true,
+  "physicalDevice": false,
+  "productionWrites": false
+}

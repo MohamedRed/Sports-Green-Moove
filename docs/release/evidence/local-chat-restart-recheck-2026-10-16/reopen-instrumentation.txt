@@ -1,0 +1,31 @@
+
+be.sportgreenmoove.app.ui.LocalChatProcessRestartTest:
+Error in reopenConfirmedConversation(be.sportgreenmoove.app.ui.LocalChatProcessRestartTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.send(LocalChatProcessRestartTest.kt:149)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.reopenConfirmedConversation$lambda$0(LocalChatProcessRestartTest.kt:79)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.$r8$lambda$Y0AoxTTh1OAnKDAMRwaN8C_It2s(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.stage(LocalChatProcessRestartTest.kt:108)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.reopenConfirmedConversation(LocalChatProcessRestartTest.kt:55)
+
+
+Time: 75.228
+There was 1 failure:
+1) reopenConfirmedConversation(be.sportgreenmoove.app.ui.LocalChatProcessRestartTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 60000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.send(LocalChatProcessRestartTest.kt:149)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.reopenConfirmedConversation$lambda$0(LocalChatProcessRestartTest.kt:79)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.$r8$lambda$Y0AoxTTh1OAnKDAMRwaN8C_It2s(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest$$ExternalSyntheticLambda10.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.stage(LocalChatProcessRestartTest.kt:108)
+	at be.sportgreenmoove.app.ui.LocalChatProcessRestartTest.reopenConfirmedConversation(LocalChatProcessRestartTest.kt:55)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

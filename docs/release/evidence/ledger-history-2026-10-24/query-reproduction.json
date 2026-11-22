@@ -1,0 +1,41 @@
+{
+  "scope": "isolated-ledger-query-reproduction-not-native-ui-or-production",
+  "testedAt": "2026-10-24T13:30:03.499Z",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "bbd82a661dce55bb5b4c4c47c298adc0",
+  "checks": [
+    {
+      "id": "reproduced-truncated-reward-query",
+      "status": "passed"
+    },
+    {
+      "id": "reproduced-truncated-impact-query",
+      "status": "passed"
+    }
+  ],
+  "legacy": {
+    "rewards": {
+      "limitedCount": 100,
+      "completeCount": 257,
+      "limitedBalanceCents": 10000,
+      "completeBalanceCents": -22000
+    },
+    "impact": {
+      "limitedCount": 100,
+      "completeCount": 257,
+      "limitedCo2Kg": 125,
+      "completeCo2Kg": 321.25
+    }
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "sourceFiles": {
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidLedgerGateway.kt": "c8630d7b3283f3ef391aad12c36e9816af1ebed165f449aaa9ec7312ab160a65",
+    "ios/Sources/SportsGreenMooveApp/FirebaseImpactRewards.swift": "f6026c6ba26d15a415ab1140e361ffc363444e9d113d7451311ec0e150f836de",
+    "scripts/qa/ledger-history-services-suite.mjs": "0a4c760cbccfbe6f964398bd1b865ebfec368d6c80f44a37d8cfc405aa9e13e3"
+  },
+  "productionWrites": false,
+  "realPayments": false,
+  "nativeUiExecuted": false,
+  "releaseComplete": false
+}

@@ -1,0 +1,22 @@
+{
+  "observerClosed": true,
+  "phoneSignedOut": true,
+  "providerUninstallAcknowledged": true,
+  "testAppAbsentFromLauncher": true,
+  "phoneStopSessionObserved": true,
+  "supportWorkspaceSignedOut": true,
+  "ownedSupportTabClosed": true,
+  "deviceAdministrationChanged": false,
+  "networkSettingsChanged": false,
+  "storeSettingsChanged": false,
+  "helperProcessGroupExitVerified": true,
+  "helperPrivateDirectoryRemoved": true,
+  "privateSessionFileRemoved": true,
+  "helperExitCode": 130,
+  "backendExitCode": 130,
+  "supportPreviewExitCode": 130,
+  "checkedPorts": [5001, 8080, 9000, 9099, 5191],
+  "listeningPortsAfterCleanup": [],
+  "clipboardCredentialReplacedWithSyntheticText": true,
+  "physicalSettingsRestorationRequired": false
+}

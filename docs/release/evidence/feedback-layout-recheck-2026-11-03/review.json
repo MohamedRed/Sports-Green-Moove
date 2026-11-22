@@ -1,0 +1,40 @@
+{
+  "scope": "failed-layout-recheck-and-preparation-stops-not-accepted-user-flow",
+  "ordinary": {
+    "cases": 315,
+    "passed": 254,
+    "failed": 6,
+    "skipped": 55
+  },
+  "failedLayouts": [
+    "notices-light-wide",
+    "notices-dark-wide",
+    "input-light-phone",
+    "input-light-wide",
+    "input-dark-phone",
+    "input-dark-wide"
+  ],
+  "passedLayouts": [
+    "notices-light-phone",
+    "notices-dark-phone",
+    "ride-light-phone",
+    "ride-light-wide",
+    "ride-dark-phone",
+    "ride-dark-wide"
+  ],
+  "inputSplitResolvedAllFailures": false,
+  "wideFailureNode": "review.submission.error",
+  "wideFailureDetails": "text-overflow-or-missing-layout-unresolved",
+  "inputFailure": "not-displayed",
+  "replayFailure": "primary-copy-trip-change-parent-confirmation",
+  "webFailureStage": "firestore-emulator-download-before-trip-history-services",
+  "teamDraftFailureStage": "sdk-image-preparation-before-device-start",
+  "newDiagnosticCompiled": true,
+  "newDiagnosticExecuted": false,
+  "productSourceChanged": false,
+  "measurementsOrThresholdsChanged": false,
+  "acceptedScreenshots": [],
+  "nativeLayoutsAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseAccepted": false
+}

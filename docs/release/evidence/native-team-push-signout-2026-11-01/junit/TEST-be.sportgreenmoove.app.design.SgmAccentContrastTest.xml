@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.design.SgmAccentContrastTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2026-11-01T16:09:54.718Z" hostname="local-test-host" time="0.013">
+  <properties></properties>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-app]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.009"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-surface]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-card]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-elevated]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[light-accent-text-input]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-app]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-surface]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-card]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-elevated]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[dark-accent-text-input]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-light-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-light-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-green-icon]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[on-orange-icon]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[hero-start-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.001"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[hero-end-text]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[material-light-primary]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <testcase name="roleMeetsItsContrastThreshold[material-dark-primary]" classname="be.sportgreenmoove.app.design.SgmAccentContrastTest" time="0.0"></testcase>
+  <system-out>{&quot;case&quot;:&quot;light-accent-text-app&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:5.7828117424056735}
+{&quot;case&quot;:&quot;light-accent-text-surface&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.240018634960785}
+{&quot;case&quot;:&quot;light-accent-text-card&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:5.525185747428838}
+{&quot;case&quot;:&quot;light-accent-text-elevated&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.240018634960785}
+{&quot;case&quot;:&quot;light-accent-text-input&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:5.732354454750286}
+{&quot;case&quot;:&quot;dark-accent-text-app&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:8.010924049755399}
+{&quot;case&quot;:&quot;dark-accent-text-surface&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:7.466133790631757}
+{&quot;case&quot;:&quot;dark-accent-text-card&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.921158534783436}
+{&quot;case&quot;:&quot;dark-accent-text-elevated&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:5.931318946027096}
+{&quot;case&quot;:&quot;dark-accent-text-input&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.250848451416514}
+{&quot;case&quot;:&quot;on-green-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:7.38106479588164}
+{&quot;case&quot;:&quot;on-orange-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.35575453417362}
+{&quot;case&quot;:&quot;on-green-light-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:11.436217869271827}
+{&quot;case&quot;:&quot;on-orange-light-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:7.871620767741993}
+{&quot;case&quot;:&quot;on-green-icon&quot;,&quot;minimum&quot;:3.0,&quot;contrastRatio&quot;:7.38106479588164}
+{&quot;case&quot;:&quot;on-orange-icon&quot;,&quot;minimum&quot;:3.0,&quot;contrastRatio&quot;:6.35575453417362}
+{&quot;case&quot;:&quot;hero-start-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:15.42429524297931}
+{&quot;case&quot;:&quot;hero-end-text&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:12.159201919186646}
+{&quot;case&quot;:&quot;material-light-primary&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:6.240018634960785}
+{&quot;case&quot;:&quot;material-dark-primary&quot;,&quot;minimum&quot;:4.5,&quot;contrastRatio&quot;:7.38106479588164}
+</system-out>
+  <system-err></system-err>
+</testsuite>

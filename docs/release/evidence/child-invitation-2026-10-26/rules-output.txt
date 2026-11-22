@@ -1,0 +1,1162 @@
+
+> sports-green-moove@0.1.0 test:rules
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore,database,storage "vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts tests/team-ownership-rules.test.ts tests/trip-cancellation-rules.test.ts tests/trip-details-rules.test.ts tests/trip-change-rules.test.ts tests/booking-request-rules.test.ts tests/child-account-link-rules.test.ts"
+
+i  emulators: Starting emulators: firestore, database, storage
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  database: Database Emulator logging to database-debug.log
+i  Running script: vitest run tests/security-rules.test.ts tests/chat-inbox-rules.test.ts tests/membership-rules.test.ts tests/trip-capacity-rules.test.ts tests/team-ownership-rules.test.ts tests/trip-cancellation-rules.test.ts tests/trip-details-rules.test.ts tests/trip-change-rules.test.ts tests/booking-request-rules.test.ts tests/child-account-link-rules.test.ts
+
+ RUN  v3.2.6 /Users/mrr/.codex/projects/sports-green-moove-recovery-20261025
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a foreign manager takeover through update and preserves the complete team
+[2026-10-26T17:14:18.112Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b658 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > denies direct driver cancellation fields {"status":"cancelled"}
+[2026-10-26T17:14:18.126Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3cb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"priceCents":9000}
+[2026-10-26T17:14:18.130Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53a7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsAvailable":4}
+[2026-10-26T17:14:18.132Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ac2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps user role and verification fields admin-owned
+[2026-10-26T17:14:18.140Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965635f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L80:24 for 'update' @ L80, false for 'update' @ L219, false for 'update' @ L80, false for 'update' @ L219
+
+stderr | tests/membership-rules.test.ts > club membership boundaries > does not turn a requested ordinary membership into club-management access
+[2026-10-26T17:14:18.201Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x716dafd0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L100:32 for 'update' @ L100, false for 'update' @ L219, false for 'update' @ L100, false for 'update' @ L219
+
+stderr | tests/membership-rules.test.ts > club membership boundaries > does not turn a requested ordinary membership into club-management access
+[2026-10-26T17:14:18.286Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x716dafd1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L116, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsTotal":8}
+[2026-10-26T17:14:18.303Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ac5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"origin":{"lat":0,"lng":0}}
+[2026-10-26T17:14:18.441Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53aa error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > denies direct driver cancellation fields {"cancelledAt":"2026-10-26T17:14:16.152Z"}
+[2026-10-26T17:14:18.465Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3ce error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a foreign manager takeover through replace and preserves the complete team
+[2026-10-26T17:14:18.523Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b65b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsAvailable":8,"seatsTotal":8}
+[2026-10-26T17:14:18.614Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ac8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/chat-inbox-rules.test.ts > private conversation index rules > allows only the owner to read or query an entry and no client to modify it
+[2026-10-26T17:14:18.618Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x6a0dc760 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L175, false for 'create' @ L219, false for 'update' @ L175, false for 'update' @ L219
+
+stderr | tests/chat-inbox-rules.test.ts > private conversation index rules > allows only the owner to read or query an entry and no client to modify it
+[2026-10-26T17:14:18.638Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x6a0dc761 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L175, false for 'update' @ L219
+
+stderr | tests/chat-inbox-rules.test.ts > private conversation index rules > allows only the owner to read or query an entry and no client to modify it
+[2026-10-26T17:14:18.646Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x6a0dc762 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L175, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > denies direct driver cancellation fields {"cancelledByUserId":"driver"}
+[2026-10-26T17:14:18.657Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3d1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/chat-inbox-rules.test.ts > private conversation index rules > allows only the owner to read or query an entry and no client to modify it
+[2026-10-26T17:14:18.658Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x6a0dc763 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L175, false for 'delete' @ L219
+
+ ✓ tests/chat-inbox-rules.test.ts (1 test) 2520ms
+   ✓ private conversation index rules > allows only the owner to read or query an entry and no client to modify it  1169ms
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"destination":{"lat":0,"lng":0}}
+[2026-10-26T17:14:18.694Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53ad error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a foreign manager takeover through merge and preserves the complete team
+[2026-10-26T17:14:18.776Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b65e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/membership-rules.test.ts > club membership boundaries > allows scoped active manager reads, but decisions cannot bypass the server audit
+[2026-10-26T17:14:18.783Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x716dafd7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L116, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsAvailable":-1}
+[2026-10-26T17:14:18.789Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36acb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > lets only existing guardians update child profiles
+[2026-10-26T17:14:18.875Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656364 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L90:24 for 'update' @ L90, false for 'update' @ L219, false for 'update' @ L90, false for 'update' @ L219
+
+stderr | tests/membership-rules.test.ts > club membership boundaries > allows scoped active manager reads, but decisions cannot bypass the server audit
+[2026-10-26T17:14:18.876Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x716dafd8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L116, false for 'create' @ L219, false for 'update' @ L116, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > denies direct driver cancellation fields {"cancelReason":"Forged reason"}
+[2026-10-26T17:14:18.894Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3d4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/membership-rules.test.ts > club membership boundaries > allows scoped active manager reads, but decisions cannot bypass the server audit
+[2026-10-26T17:14:18.913Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x716dafd9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L116, false for 'delete' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > lets only existing guardians update child profiles
+[2026-10-26T17:14:18.916Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656365 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L90:24 for 'update' @ L90, false for 'update' @ L219, false for 'update' @ L90, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"departureAt":"2099-01-01T10:00:00Z"}
+[2026-10-26T17:14:18.954Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53b0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsTotal":0}
+[2026-10-26T17:14:18.958Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ace error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > does not let even a manager of both clubs reassign an existing team
+[2026-10-26T17:14:19.017Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b661 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.076Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656367 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'create' @ L139, false for 'create' @ L219
+
+ ✓ tests/membership-rules.test.ts (3 tests) 2930ms
+   ✓ club membership boundaries > does not turn a requested ordinary membership into club-management access  812ms
+   ✓ club membership boundaries > allows scoped active manager reads, but decisions cannot bypass the server audit  607ms
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > denies direct driver cancellation fields {"title":"Atomic forgery","status":"cancelled"}
+[2026-10-26T17:14:19.089Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3d7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"arrivalBy":"2099-01-01T11:00:00Z"}
+[2026-10-26T17:14:19.103Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53b3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsAvailable":"4"}
+[2026-10-26T17:14:19.111Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ad1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.131Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656369 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.143Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965636a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.159Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965636b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit driver to read, replace or delete server receipts
+[2026-10-26T17:14:19.171Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3db error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.173Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965636c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit driver to read, replace or delete server receipts
+[2026-10-26T17:14:19.180Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3dc error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit driver to read, replace or delete server receipts
+[2026-10-26T17:14:19.192Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3dd error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"clubId":"other-club"}
+[2026-10-26T17:14:19.209Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53b6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > keeps trips controlled by admins and protects driver-owned fields
+[2026-10-26T17:14:19.213Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965636d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies a direct driver capacity mutation: {"title":"Atomic change must fail","seatsAvailable":4}
+[2026-10-26T17:14:19.221Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ad4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit parent to read, replace or delete server receipts
+[2026-10-26T17:14:19.299Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit parent to read, replace or delete server receipts
+[2026-10-26T17:14:19.308Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit parent to read, replace or delete server receipts
+[2026-10-26T17:14:19.321Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies removing seatsAvailable through a replacement document
+[2026-10-26T17:14:19.392Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ad7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"teamId":"other-team"}
+[2026-10-26T17:14:19.408Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53b9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit outsider to read, replace or delete server receipts
+[2026-10-26T17:14:19.412Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies foreign edits, foreign creations and foreign deletes without relying on a renamed club
+[2026-10-26T17:14:19.414Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b667 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit outsider to read, replace or delete server receipts
+[2026-10-26T17:14:19.422Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies foreign edits, foreign creations and foreign deletes without relying on a renamed club
+[2026-10-26T17:14:19.429Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b668 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/trip-cancellation-rules.test.ts > server-owned trip cancellation > does not permit outsider to read, replace or delete server receipts
+[2026-10-26T17:14:19.433Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8f84e3e7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies foreign edits, foreign creations and foreign deletes without relying on a renamed club
+[2026-10-26T17:14:19.446Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b669 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"category":"U16"}
+[2026-10-26T17:14:19.528Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53bc error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > denies removing seatsTotal through a replacement document
+[2026-10-26T17:14:19.528Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ada error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+ ✓ tests/trip-cancellation-rules.test.ts (9 tests) 3434ms
+   ✓ server-owned trip cancellation > denies direct driver cancellation fields {"status":"cancelled"}  725ms
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a requested manager even with an existing role claim
+[2026-10-26T17:14:19.638Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b66d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"sport":"Tennis"}
+[2026-10-26T17:14:19.663Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53bf error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > requires messages to be written through Cloud Functions
+[2026-10-26T17:14:19.664Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656374 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L170, false for 'create' @ L219, false for 'update' @ L170, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a requested manager even with an existing role claim
+[2026-10-26T17:14:19.673Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b66e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > requires messages to be written through Cloud Functions
+[2026-10-26T17:14:19.699Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656375 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L170, false for 'create' @ L219, false for 'update' @ L170, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a requested manager even with an existing role claim
+[2026-10-26T17:14:19.700Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b66f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > keeps the working driver title edit without permitting parent or outsider mutations
+[2026-10-26T17:14:19.773Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36adf error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > keeps the working driver title edit without permitting parent or outsider mutations
+[2026-10-26T17:14:19.786Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ae0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"clubName":"Forged club"}
+[2026-10-26T17:14:19.806Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53c2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > keeps the working driver title edit without permitting parent or outsider mutations
+[2026-10-26T17:14:19.808Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ae1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > keeps the working driver title edit without permitting parent or outsider mutations
+[2026-10-26T17:14:19.820Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ae2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-capacity-rules.test.ts > booking-owned trip capacity > keeps the working driver title edit without permitting parent or outsider mutations
+[2026-10-26T17:14:19.846Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49e36ae3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a refused manager even with an existing role claim
+[2026-10-26T17:14:19.860Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b673 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+ ✓ tests/trip-capacity-rules.test.ts (10 tests) 3698ms
+   ✓ booking-owned trip capacity > denies a direct driver capacity mutation: {"seatsAvailable":4}  809ms
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a refused manager even with an existing role claim
+[2026-10-26T17:14:19.899Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b674 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: null > denies forged receipts and abandonment tombstones
+[2026-10-26T17:14:19.905Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a0b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > restricts message history queries and prevents forged read acknowledgements
+[2026-10-26T17:14:19.911Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965637a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L170, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a refused manager even with an existing role claim
+[2026-10-26T17:14:19.915Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b675 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > restricts message history queries and prevents forged read acknowledgements
+[2026-10-26T17:14:19.918Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965637b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L170, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"teamName":"Forged team"}
+[2026-10-26T17:14:19.919Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53c5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > restricts message history queries and prevents forged read acknowledgements
+[2026-10-26T17:14:19.926Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965637c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L170, false for 'delete' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > requires ratings and reports to be written through Cloud Functions
+[2026-10-26T17:14:19.988Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965637d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L185, false for 'create' @ L219, false for 'update' @ L185, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > requires ratings and reports to be written through Cloud Functions
+[2026-10-26T17:14:19.997Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x4965637e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L205, false for 'create' @ L219, false for 'update' @ L205, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"pickupRadiusM":10000}
+[2026-10-26T17:14:20.018Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53c8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.023Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637854 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L219, false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: null > denies rewriting the acknowledgement
+[2026-10-26T17:14:20.038Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a0d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.038Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637855 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.047Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637856 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a inactive manager even with an existing role claim
+[2026-10-26T17:14:20.060Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b679 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a inactive manager even with an existing role claim
+[2026-10-26T17:14:20.120Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b67a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.120Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637857 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L62, false for 'create' @ L219, false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Firestore rules > requires ratings and reports to be written through Cloud Functions
+[2026-10-26T17:14:20.131Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x49656381 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L205, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.131Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637858 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a inactive manager even with an existing role claim
+[2026-10-26T17:14:20.135Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b67b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.145Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637859 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L62, false for 'delete' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: null > denies deleting the replay fence
+[2026-10-26T17:14:20.152Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a0f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.187Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L65, false for 'create' @ L219, false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"baggage":"large"}
+[2026-10-26T17:14:20.190Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53cb error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.198Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.218Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L65, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.253Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L68, false for 'create' @ L219, false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.271Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a revoked manager even with an existing role claim
+[2026-10-26T17:14:20.288Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b67f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.289Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63785f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L68, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"returnTrip":true}
+[2026-10-26T17:14:20.303Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53ce error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a revoked manager even with an existing role claim
+[2026-10-26T17:14:20.306Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b680 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.328Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637860 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L71, false for 'create' @ L219, false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a revoked manager even with an existing role claim
+[2026-10-26T17:14:20.333Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b681 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.349Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637861 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.365Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637862 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L71, false for 'delete' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: parent > denies forged receipts and abandonment tombstones
+[2026-10-26T17:14:20.371Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a15 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.392Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637863 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L74, false for 'create' @ L219, false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.400Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637864 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for anonymous
+[2026-10-26T17:14:20.410Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637865 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L74, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"supportsVehicleTracking":false}
+[2026-10-26T17:14:20.414Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53d1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.461Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637867 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L219, false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: parent > denies rewriting the acknowledgement
+[2026-10-26T17:14:20.463Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a17 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.472Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637868 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a blocked manager even with an existing role claim
+[2026-10-26T17:14:20.478Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b685 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.480Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637869 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a blocked manager even with an existing role claim
+[2026-10-26T17:14:20.496Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b686 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L111:24 for 'delete' @ L111, false for 'delete' @ L219, false for 'delete' @ L111, false for 'delete' @ L219
+
+stderr | tests/security-rules.test.ts > Realtime Database rules > limits live trip reads to admins, drivers, and participants
+[2026-10-26T17:14:20.500Z]  @firebase/database: FIREBASE WARNING: set at /liveTrips/ride-1/vehicle failed: permission_denied 
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: parent > denies deleting the replay fence
+[2026-10-26T17:14:20.515Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a19 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies a blocked manager even with an existing role claim
+[2026-10-26T17:14:20.524Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b687 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L106:24 for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'create' @ L106, false for 'create' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.530Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L62, false for 'create' @ L219, false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.553Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"supportsChildTracking":false}
+[2026-10-26T17:14:20.555Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53d4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/security-rules.test.ts > Realtime Database rules > allows users to write only their own presence
+[2026-10-26T17:14:20.558Z]  @firebase/database: FIREBASE WARNING: set at /presence/bob failed: permission_denied 
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.561Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L62, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.580Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L65, false for 'create' @ L219, false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.599Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.608Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63786f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L65, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.630Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637870 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L68, false for 'create' @ L219, false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"co2SavedKgEstimate":500}
+[2026-10-26T17:14:20.631Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53d7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.631Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b68b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.640Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637871 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.648Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637872 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L68, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.663Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637873 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L71, false for 'create' @ L219, false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.672Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b68d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.673Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637874 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.680Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637875 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L71, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.701Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637876 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L74, false for 'create' @ L219, false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.708Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637877 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: driver > denies forged receipts and abandonment tombstones
+[2026-10-26T17:14:20.709Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a1f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"distanceKm":0}
+[2026-10-26T17:14:20.709Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53da error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for child
+[2026-10-26T17:14:20.715Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637878 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L74, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.787Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L219, false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.792Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b68f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.797Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.806Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: driver > denies rewriting the acknowledgement
+[2026-10-26T17:14:20.809Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a21 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.819Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L62, false for 'create' @ L219, false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"regionGeohash":"elsewhere"}
+[2026-10-26T17:14:20.824Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53dd error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.826Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.835Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63787f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L62, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.852Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637880 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L65, false for 'create' @ L219, false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.860Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637881 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.872Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637882 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L65, false for 'delete' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.872Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b691 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: driver > denies deleting the replay fence
+[2026-10-26T17:14:20.876Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a23 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.893Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637883 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L68, false for 'create' @ L219, false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.897Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b692 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L106, false for 'create' @ L219, false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.899Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637884 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.905Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637885 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L68, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"blockedUserIds":["parent"]}
+[2026-10-26T17:14:20.912Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53e0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes
+[2026-10-26T17:14:20.916Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b693 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.925Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637886 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L71, false for 'create' @ L219, false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.934Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637887 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.943Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637888 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L71, false for 'delete' @ L219
+
+ ✓ tests/security-rules.test.ts (12 tests) 4786ms
+   ✓ Firestore rules > keeps user role and verification fields admin-owned  1075ms
+   ✓ Firestore rules > keeps trips controlled by admins and protects driver-owned fields  359ms
+   ✓ Firestore rules > limits ride session reads to admins, drivers, and participants  306ms
+   ✓ Realtime Database rules > limits live trip reads to admins, drivers, and participants  345ms
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.966Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637889 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L74, false for 'create' @ L219, false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.974Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63788a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for parent
+[2026-10-26T17:14:20.981Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63788b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L74, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"passengerInitials":["FORGED"]}
+[2026-10-26T17:14:20.990Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53e3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/team-ownership-rules.test.ts > team club ownership > rejects deleting the club ownership field while preserving public team discovery
+[2026-10-26T17:14:21.016Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x2a57b696 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+Property clubId is undefined on object. for 'create' @ L106, false for 'create' @ L219, evaluation error at L107:24 for 'update' @ L107, false for 'update' @ L219, Property clubId is undefined on object. for 'update' @ L107, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.018Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63788d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L219, false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.029Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63788e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.036Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63788f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.053Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637890 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L62, false for 'create' @ L219, false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: admin > denies forged receipts and abandonment tombstones
+[2026-10-26T17:14:21.056Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a29 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.059Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637891 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.066Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637892 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L62, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"updatedAt":"2000-01-01T00:00:00Z"}
+[2026-10-26T17:14:21.082Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53e6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.087Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637893 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L65, false for 'create' @ L219, false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.098Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637894 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.106Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637895 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L65, false for 'delete' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: admin > denies rewriting the acknowledgement
+[2026-10-26T17:14:21.124Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a2b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.130Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637896 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L68, false for 'create' @ L219, false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.139Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637897 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.147Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637898 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L68, false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies a direct driver operational mutation: {"pendingTripChanges":{"approvedByParent":true}}
+[2026-10-26T17:14:21.155Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53e9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.163Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e637899 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L71, false for 'create' @ L219, false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies forged proposal creation by null
+[2026-10-26T17:14:21.169Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1103 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.170Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63789a error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.178Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63789b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L71, false for 'delete' @ L219
+
+ ✓ tests/team-ownership-rules.test.ts (14 tests) 5009ms
+   ✓ team club ownership > denies a foreign manager takeover through update and preserves the complete team  744ms
+   ✓ team club ownership > denies a foreign manager takeover through replace and preserves the complete team  376ms
+   ✓ team club ownership > denies disabled, forged and ordinary memberships, missing manager claims and signed-out writes  393ms
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.197Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63789c error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L74, false for 'create' @ L219, false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/booking-request-rules.test.ts > server-only booking request receipt: admin > denies deleting the replay fence
+[2026-10-26T17:14:21.200Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x817e9a2d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.205Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63789d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for clubManager
+[2026-10-26T17:14:21.211Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e63789e error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L74, false for 'delete' @ L219
+
+ ✓ tests/booking-request-rules.test.ts (20 tests) 2013ms
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies removing priceCents in a replacement document
+[2026-10-26T17:14:21.228Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53ec error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies forged proposal creation by parent
+[2026-10-26T17:14:21.247Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1105 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.249Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L59, false for 'create' @ L219, false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.258Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L59, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.266Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L59, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.283Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L62, false for 'create' @ L219, false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.291Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a4 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L62, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies removing origin in a replacement document
+[2026-10-26T17:14:21.295Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53ef error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.298Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L62, false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies forged proposal creation by driver
+[2026-10-26T17:14:21.304Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1107 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.319Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a6 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L65, false for 'create' @ L219, false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.327Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L65, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.333Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L65, false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies forged proposal creation by admin
+[2026-10-26T17:14:21.347Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1109 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.348Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378a9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L68, false for 'create' @ L219, false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies removing departureAt in a replacement document
+[2026-10-26T17:14:21.353Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53f2 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.355Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378aa error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L68, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.361Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378ab error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L68, false for 'delete' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.372Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378ac error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L71, false for 'create' @ L219, false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.377Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378ad error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L71, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.383Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378ae error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L71, false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies direct acceptance by null
+[2026-10-26T17:14:21.386Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d110b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.394Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378af error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L74, false for 'create' @ L219, false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.401Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378b0 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L74, false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > denies removing supportsChildTracking in a replacement document
+[2026-10-26T17:14:21.405Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53f5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L139, false for 'create' @ L219, evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/child-account-link-rules.test.ts > server-owned child account links > denies direct read, query, create, update and delete for admin
+[2026-10-26T17:14:21.407Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x8e6378b1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L74, false for 'delete' @ L219
+
+ ✓ tests/child-account-link-rules.test.ts (5 tests) 1814ms
+   ✓ server-owned child account links > denies direct read, query, create, update and delete for anonymous  515ms
+   ✓ server-owned child account links > denies direct read, query, create, update and delete for child  305ms
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies direct acceptance by parent
+[2026-10-26T17:14:21.422Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d110d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > rejects a title bundled with an operational change atomically
+[2026-10-26T17:14:21.452Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53f8 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies direct acceptance by driver
+[2026-10-26T17:14:21.460Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d110f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies direct acceptance by admin
+[2026-10-26T17:14:21.506Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1111 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies deleting parent decision history by null
+[2026-10-26T17:14:21.542Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1113 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > does not grant cosmetic edit authority to null
+[2026-10-26T17:14:21.571Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d53ff error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies deleting parent decision history by parent
+[2026-10-26T17:14:21.574Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1115 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > does not grant cosmetic edit authority to parent
+[2026-10-26T17:14:21.607Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d5401 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies deleting parent decision history by driver
+[2026-10-26T17:14:21.607Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1117 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChanges > denies deleting parent decision history by admin
+[2026-10-26T17:14:21.634Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1119 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-details-rules.test.ts > server-owned trip details > does not grant cosmetic edit authority to outsider
+[2026-10-26T17:14:21.634Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x152d5403 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+evaluation error at L140:24 for 'update' @ L140, false for 'update' @ L219, false for 'update' @ L140, false for 'update' @ L219
+
+ ✓ tests/trip-details-rules.test.ts (33 tests) 5517ms
+   ✓ server-owned trip details > denies a direct driver operational mutation: {"priceCents":9000}  742ms
+   ✓ server-owned trip details > denies a direct driver operational mutation: {"origin":{"lat":0,"lng":0}}  317ms
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies forged proposal creation by null
+[2026-10-26T17:14:21.903Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d112b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies forged proposal creation by parent
+[2026-10-26T17:14:21.929Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d112d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies forged proposal creation by driver
+[2026-10-26T17:14:21.955Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d112f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies forged proposal creation by admin
+[2026-10-26T17:14:21.981Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1131 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies direct acceptance by null
+[2026-10-26T17:14:22.008Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1133 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies direct acceptance by parent
+[2026-10-26T17:14:22.033Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1135 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies direct acceptance by driver
+[2026-10-26T17:14:22.059Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1137 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies direct acceptance by admin
+[2026-10-26T17:14:22.088Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1139 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies deleting parent decision history by null
+[2026-10-26T17:14:22.115Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d113b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies deleting parent decision history by parent
+[2026-10-26T17:14:22.139Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d113d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies deleting parent decision history by driver
+[2026-10-26T17:14:22.164Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d113f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeQuotes > denies deleting parent decision history by admin
+[2026-10-26T17:14:22.187Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1141 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies forged proposal creation by null
+[2026-10-26T17:14:22.408Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1153 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies forged proposal creation by parent
+[2026-10-26T17:14:22.434Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1155 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies forged proposal creation by driver
+[2026-10-26T17:14:22.458Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1157 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies forged proposal creation by admin
+[2026-10-26T17:14:22.485Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1159 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies direct acceptance by null
+[2026-10-26T17:14:22.511Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d115b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies direct acceptance by parent
+[2026-10-26T17:14:22.537Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d115d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies direct acceptance by driver
+[2026-10-26T17:14:22.562Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d115f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies direct acceptance by admin
+[2026-10-26T17:14:22.589Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1161 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies deleting parent decision history by null
+[2026-10-26T17:14:22.614Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1163 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies deleting parent decision history by parent
+[2026-10-26T17:14:22.638Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1165 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies deleting parent decision history by driver
+[2026-10-26T17:14:22.660Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1167 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned tripChangeBalances > denies deleting parent decision history by admin
+[2026-10-26T17:14:22.682Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1169 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies forged proposal creation by null
+[2026-10-26T17:14:22.955Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d117b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies forged proposal creation by parent
+[2026-10-26T17:14:22.987Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d117d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies forged proposal creation by driver
+[2026-10-26T17:14:23.017Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d117f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies forged proposal creation by admin
+[2026-10-26T17:14:23.048Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1181 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies direct acceptance by null
+[2026-10-26T17:14:23.081Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1183 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies direct acceptance by parent
+[2026-10-26T17:14:23.108Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1185 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies direct acceptance by driver
+[2026-10-26T17:14:23.132Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1187 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies direct acceptance by admin
+[2026-10-26T17:14:23.158Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1189 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies deleting parent decision history by null
+[2026-10-26T17:14:23.181Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d118b error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies deleting parent decision history by parent
+[2026-10-26T17:14:23.204Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d118d error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies deleting parent decision history by driver
+[2026-10-26T17:14:23.226Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d118f error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentAttempts > denies deleting parent decision history by admin
+[2026-10-26T17:14:23.248Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d1191 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies forged proposal creation by null
+[2026-10-26T17:14:23.513Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11a3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies forged proposal creation by parent
+[2026-10-26T17:14:23.540Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11a5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies forged proposal creation by driver
+[2026-10-26T17:14:23.566Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11a7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies forged proposal creation by admin
+[2026-10-26T17:14:23.590Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11a9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'create' @ L219, false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies direct acceptance by null
+[2026-10-26T17:14:23.617Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11ab error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies direct acceptance by parent
+[2026-10-26T17:14:23.648Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11ad error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies direct acceptance by driver
+[2026-10-26T17:14:23.673Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11af error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies direct acceptance by admin
+[2026-10-26T17:14:23.698Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11b1 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'update' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies deleting parent decision history by null
+[2026-10-26T17:14:23.723Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11b3 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies deleting parent decision history by parent
+[2026-10-26T17:14:23.745Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11b5 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies deleting parent decision history by driver
+[2026-10-26T17:14:23.766Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11b7 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+stderr | tests/trip-change-rules.test.ts > server-owned ridePaymentReceipts > denies deleting parent decision history by admin
+[2026-10-26T17:14:23.789Z]  @firebase/firestore: Firestore (12.14.0): GrpcConnection RPC 'Write' stream 0x308d11b9 error. Code: 7 Message: 7 PERMISSION_DENIED: 
+false for 'delete' @ L219
+
+ ✓ tests/trip-change-rules.test.ts (100 tests) 3766ms
+
+ Test Files  10 passed (10)
+      Tests  207 passed (207)
+   Start at  18:14:15
+   Duration  8.26s (transform 219ms, setup 0ms, collect 2.38s, tests 35.49s, environment 1ms, prepare 983ms)
+
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  database: Stopping Database Emulator
+i  firestore: Stopping Firestore Emulator
+i  storage: Stopping Storage Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

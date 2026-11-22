@@ -1,0 +1,35 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9105224Z INSTRUMENTATION_STATUS_CODE: 0
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9119897Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9121262Z be.sportgreenmoove.app.ui.LocalRideFlowTest:.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9121714Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9121992Z Time: 43.433
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9122272Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9122485Z OK (1 test)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9122758Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9122893Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:29.9123032Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:35.4767278Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-initializeUserProfile"
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:35.4886757Z [90m> [39m {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:35.5146034Z [36m[1mi  functions:[22m[39m Finished "us-central1-initializeUserProfile" in 39.123012ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:36.5386716Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-listChatConversations"
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:36.5413676Z [90m> [39m {"verifications":{"app":"MISSING","auth":"VALID"},"logging.googleapis.com/labels":{"firebase-log-type":"callable-request-verification"},"severity":"DEBUG","message":"Callable request verification passed"}
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:36.5818022Z [36m[1mi  functions:[22m[39m Finished "us-central1-listChatConversations" in 41.988948ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:18:36.5986575Z [36m[1mi  functions:[22m[39m Beginning execution of "us-central1-getInbox"
+--
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0245175Z           ^
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0245322Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0247707Z EvidenceCollectionError: Local evidence collection failed during trip-change-schedule; status=1, signal=null. See /home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/local-ui-evidence/5e76f69f0767309cd85c696949b0fc43/adb-pull-trip-change-schedule.json
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0249867Z     at collectLocalUiEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/collect-local-ui-evidence.mjs:69:11)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0251276Z     at collectEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:75:36)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0252512Z     at file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:143:3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0253728Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0254396Z   status: 1,
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0254659Z   signal: null,
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0255956Z   receiptPath: '/home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/local-ui-evidence/5e76f69f0767309cd85c696949b0fc43/adb-pull-trip-change-schedule.json'
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0256918Z }
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0257044Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0257170Z Node.js v22.23.3
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.0347177Z [33m[1m⚠ [22m[39m Script exited unsuccessfully (code 1)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.5352412Z [36m[1mi  emulators:[22m[39m Shutting down emulators.
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.5353629Z [36m[1mi  functions:[22m[39m Stopping Functions Emulator
+Android native UI tests	Run Android Compose UI tests	2026-10-23T14:22:09.5828002Z [36m[1mi  database:[22m[39m Stopping Database Emulator

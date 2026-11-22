@@ -1,0 +1,51 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+  "testedAt": "2026-10-19T11:16:39.841Z",
+  "recordType": "native-trip-change-inputs-stage-not-full-run-result",
+  "scope": "local-ui-not-physical-device",
+  "testCount": 1,
+  "steps": [
+    {
+      "id": "trip-change-inputs-ui",
+      "status": "passed"
+    }
+  ],
+  "native": {
+    "projectId": "demo-sgm-local-qa",
+    "runId": "8018603fedd3eb33dd4f5f7a3f15a8b2",
+    "scope": "native-trip-change-time-and-address-safety-ui",
+    "completed": true,
+    "tripId": "u4tfURkXJlTB3XWh2r1s",
+    "bookingId": "xMjoPvJUhXnFxJ19wVvH",
+    "originalDepartureAt": "2026-10-20T09:00:00.000Z",
+    "proposedDepartureAt": "2026-10-20T10:00:00.000Z",
+    "nativeTimePickerUsed": true,
+    "unconfirmedOriginBlocked": true,
+    "unconfirmedDestinationBlocked": true,
+    "originalPlacesExplicitlyKept": true,
+    "parentSawBothTimes": true,
+    "parentConfirmed": true,
+    "missingRouteBlockedApplication": true
+  },
+  "captureFiles": [
+    "local-trip-change-time-confirmed.png",
+    "local-trip-change-route-unavailable.png"
+  ],
+  "tripId": "u4tfURkXJlTB3XWh2r1s",
+  "proposalId": "b4555defcb6ff2e5791040e68bb05be1663c08f6f3a6cce5f081f90596dc22a3",
+  "bookingId": "xMjoPvJUhXnFxJ19wVvH",
+  "originalDepartureAt": "2026-10-20T09:00:00.000Z",
+  "proposedDepartureAt": "2026-10-20T10:00:00.000Z",
+  "tripAndBookingUnchanged": true,
+  "parentViewScoped": true,
+  "outsiderDenied": true,
+  "notificationCount": 3,
+  "applicationExercised": false,
+  "successfulRouteChangeExercised": false,
+  "routeProviderExercised": false,
+  "paymentExercised": false,
+  "datePickerExercised": false,
+  "fullAppReplay": false,
+  "limitation": "Departure time and price consent, unresolved-address rejection and failed route request only; no successful place lookup, route change, application, payment or physical-device proof."
+}

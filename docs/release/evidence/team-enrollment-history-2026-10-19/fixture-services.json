@@ -1,0 +1,77 @@
+{
+  "runId": "2db5bce936f72f2f795c674824e9e216",
+  "projectId": "demo-sgm-local-qa",
+  "testedAt": "2026-10-19T12:09:27.681Z",
+  "scope": "phone-fixture-service-smoke-not-ui-proof",
+  "checkpoints": [
+    {
+      "phase": "history-list",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 2,
+      "selfStatus": "approved",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-page-2",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 2,
+      "selfStatus": "approved",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-withdrawn",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-child-read-only",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    },
+    {
+      "phase": "history-refreshed",
+      "ownedCount": 26,
+      "pageCounts": [
+        20,
+        6
+      ],
+      "selfRevision": 3,
+      "selfStatus": "withdrawn",
+      "childStatus": "approved",
+      "childNameRedacted": true,
+      "childActions": []
+    }
+  ],
+  "fixtureCleanupVerified": true,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false
+}

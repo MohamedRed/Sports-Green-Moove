@@ -1,0 +1,10 @@
+{
+  "scripts/qa/collect-local-ui-evidence.mjs": "cbd89acd570620e6e68890e1b0910016916d9965b9a91297ec098fb070742de3",
+  "scripts/qa/adb-host-health.mjs": "028d850c5fdddcd8db72a34de7fe5d580bbb322b8258406f613007500a5e71e6",
+  "scripts/qa/adb-host-sockets.mjs": "0eb35c1277ec4545012d0cc08f7a683569cddfc2010805ebc0ae735c69967ba8",
+  "scripts/qa/adb-sync-failure-diagnostics.mjs": "853e553224f0346e9771cf9db780818f57ed3a711ef1cf2b86ed46f1aa47a1ee",
+  "scripts/qa/local-android-session.mjs": "531fdc8968ec5802e0481748cf726e2d116e37a550532e10d6e06900c7061aeb",
+  "scripts/qa/local-trip-change-inputs-ui.mjs": "24b3aa3ae827fe98cee5c8e226a317852afb26c7a5a497cb8354409495604c63",
+  "scripts/qa/local-trip-change-ui.mjs": "fda071250791b73088cfb6ccd41cf3c075c71f69791b3b830240cc1c994c748e",
+  "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalTripChangeInputsFlowTest.kt": "cf09743f13a3c7064e03f376840b31b079a54d25a3ebd2410715b6b139915733"
+}

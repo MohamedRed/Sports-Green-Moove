@@ -1,0 +1,78 @@
+package be.sportgreenmoove.app.ui
+
+import be.sportgreenmoove.app.data.LiveRideSnapshot
+import be.sportgreenmoove.app.data.RideObservation
+import be.sportgreenmoove.app.data.RideObservationUpdate
+import be.sportgreenmoove.app.data.RidePassengerStatus
+import be.sportgreenmoove.app.services.AndroidProviderSet
+import be.sportgreenmoove.app.services.FirebaseGateway
+import be.sportgreenmoove.app.services.RideObservationGateway
+import be.sportgreenmoove.app.services.UnconfiguredAuthGateway
+import be.sportgreenmoove.app.services.UnconfiguredFirebaseGateway
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
+import org.junit.Assert.*
+import org.junit.Test
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class PassengerStatusObservationOwnershipTest {
+    @Test fun pickupDoesNotCreateASecondSnapshotWriter() = verifyOwnership(pickup = true)
+    @Test fun dropoffDoesNotCreateASecondSnapshotWriter() = verifyOwnership(pickup = false)
+
+    private fun verifyOwnership(pickup: Boolean) = runTest {
+        val before = ride(pickup)
+        val passenger = before.passengers.single()
+        val confirmed = before.copy(passengers = listOf(if (pickup) passenger.copy(pickupStatus = "pickedUp")
+            else passenger.copy(dropoffStatus = "droppedOff")))
+        var rideReads = 0
+        val calls = mutableListOf<List<String>>()
+        val firebase = object : FirebaseGateway by UnconfiguredFirebaseGateway() {
+            override suspend fun getActiveRide(): LiveRideSnapshot { rideReads++; return confirmed }
+            override suspend fun markPickup(rideSessionId: String, bookingId: String, childId: String): String {
+                calls.add(listOf("pickup", rideSessionId, bookingId, childId)); return "pickup"
+            }
+            override suspend fun markDropoff(rideSessionId: String, bookingId: String, childId: String): String {
+                calls.add(listOf("dropoff", rideSessionId, bookingId, childId)); return "dropoff"
+            }
+        }
+        val updates = MutableSharedFlow<RideObservationUpdate>()
+        val gateway = object : RideObservationGateway {
+            override fun observeRide(rideSessionId: String) = updates
+        }
+        val data = AppDataState().also { it.activeRide.value = before }
+        val observer = ActiveRideObservationState(before, gateway, data.rideObserverSink(before.rideSessionId),
+            { testScheduler.currentTime })
+        val observation = backgroundScope.launch(start = CoroutineStart.UNDISPATCHED) { observer.observe() }
+        updates.emit(RideObservationUpdate(before, 0)); runCurrent()
+        val displayedBefore = data.activeRide.value
+        val loading = mutableListOf<Boolean>()
+        var failure: String? = null
+        val notices = mutableListOf<String>()
+        launchPassengerStatusUpdate(backgroundScope, AndroidProviderSet(UnconfiguredAuthGateway(), firebase),
+            before, passenger, pickup, loading::add, { failure = it }, notices::add)
+        runCurrent()
+        assertEquals(listOf(listOf(if (pickup) "pickup" else "dropoff", "qa-ride", "qa-booking", "qa-child")), calls)
+        assertEquals(listOf(true, false), loading); assertNull(failure); assertEquals(1, notices.size)
+        val afterCommand = data.activeRide.value!!.passengers
+        advanceTimeBy(1_000); runCurrent()
+        assertEquals("The age ticker must not undo a passenger command", afterCommand, data.activeRide.value!!.passengers)
+        assertEquals("Only the observed stream may publish passenger snapshots", displayedBefore!!.passengers, data.activeRide.value!!.passengers)
+        assertEquals("No competing getActiveRide response", 0, rideReads)
+        updates.emit(RideObservationUpdate(confirmed, 0)); runCurrent()
+        assertEquals(confirmed.passengers, data.activeRide.value!!.passengers)
+        advanceTimeBy(1_000); runCurrent()
+        assertEquals("The age ticker must keep confirmed statuses", confirmed.passengers, data.activeRide.value!!.passengers)
+        observation.cancelAndJoin()
+    }
+
+    private fun ride(pickup: Boolean) = LiveRideSnapshot("qa-ride", "qa-trip", "qa-driver", "Actif", "old label", null,
+        "ETA a calculer", false, passengers = listOf(RidePassengerStatus("qa-booking", "qa-child", "Enfant QA",
+            if (pickup) "pending" else "pickedUp", "pending")),
+        observation = RideObservation(0, null, true, false, "nativeFallback", null))
+}

@@ -1,0 +1,46 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c2ad9ba592702863e81fe32d343bcbce",
+  "scope": "local-native-parent-ui-with-local-sdk-manager-not-physical",
+  "checks": [
+    {
+      "id": "parent-request-ui",
+      "status": "passed"
+    },
+    {
+      "id": "cancel-without-write",
+      "status": "passed"
+    },
+    {
+      "id": "stale-withdrawal-refused",
+      "status": "passed"
+    },
+    {
+      "id": "manager-refusal-reopen",
+      "status": "passed"
+    },
+    {
+      "id": "manager-verified-visible",
+      "status": "passed"
+    },
+    {
+      "id": "activity-recreation-fresh-read",
+      "status": "passed"
+    },
+    {
+      "id": "parent-withdraw-reopen-manager-revoke",
+      "status": "passed"
+    },
+    {
+      "id": "account-isolation",
+      "status": "passed"
+    }
+  ],
+  "screenshots": {
+    "guardian-parent-requested.png": "228eb79c79f7fd82c42b20398e9cebb7804b31a7a9f45a151d43d33afa54af50",
+    "guardian-parent-verified.png": "a80fe0a0950ce8a2cbd832dd34b9b84bf65fdf87862b8c92a81a8e998337a8c4",
+    "guardian-parent-restored.png": "1913b3ee497f1948d169a232cea9cfde9c7a79822fcff46dabab4aefda305c4a",
+    "guardian-parent-revoked.png": "b5d30727b515f5f9490adbdee7932b2b2d8cea6f457f2ecbc4b8716fccb50729",
+    "guardian-parent-other-account.png": "abbb796ba5be681a933065b9bb65214dd6517a49b58424601dbc64837ab5bdde"
+  }
+}

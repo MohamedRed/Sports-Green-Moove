@@ -1,0 +1,80 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "250b7dbb7405511733204eed61ef086d",
+  "testedAt": "2026-10-30T14:50:40.522Z",
+  "scope": "local-emulated-support-submission-services-not-phone-ui",
+  "completed": true,
+  "checks": [
+    {
+      "id": "identity-is-required-and-input-is-bounded-before-write",
+      "status": "passed"
+    },
+    {
+      "id": "original-acknowledgement-binds-request-and-account",
+      "status": "passed"
+    },
+    {
+      "id": "concurrent-identical-retries-create-one-report",
+      "status": "passed"
+    },
+    {
+      "id": "changed-reuse-never-overwrites-any-submission-field",
+      "status": "passed"
+    },
+    {
+      "id": "retry-after-review-preserves-status-private-notes-and-timestamps",
+      "status": "passed"
+    },
+    {
+      "id": "same-identity-is-account-scoped-and-foreign-account-input-is-denied",
+      "status": "passed"
+    },
+    {
+      "id": "urgent-flag-survives-create-read-and-retry-without-claiming-a-call",
+      "status": "passed"
+    },
+    {
+      "id": "post-commit-disconnect-then-explicit-retry-retains-one-report",
+      "status": "passed"
+    },
+    {
+      "id": "submission-operation-and-raw-report-reads-stay-private",
+      "status": "passed"
+    },
+    {
+      "id": "missing-committed-record-is-refused-without-recreation",
+      "status": "passed"
+    },
+    {
+      "id": "new-explicit-identity-can-create-a-new-request-after-confirmation",
+      "status": "passed"
+    },
+    {
+      "id": "protected-fixtures-and-account-claims-stay-unchanged",
+      "status": "passed"
+    }
+  ],
+  "lostAcknowledgement": [
+    {
+      "number": 1,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": true,
+      "commit": {
+        "reportId": "b56c906f7cd6eb5c8af77f68dc15396922b2d81205459fe18ff57ff88a8744a3",
+        "matchingOperation": true
+      }
+    },
+    {
+      "number": 2,
+      "upstreamStatus": 200,
+      "acknowledgementDropped": false
+    }
+  ],
+  "protectedRecordCount": 19,
+  "adminClientClosed": true,
+  "nativeUi": false,
+  "physicalDevice": false,
+  "emergencyCallVerified": false,
+  "urgentEscalationVerified": false,
+  "productionWrites": false
+}

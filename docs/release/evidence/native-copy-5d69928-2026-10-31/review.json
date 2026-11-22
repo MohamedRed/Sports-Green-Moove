@@ -1,0 +1,29 @@
+{
+  "scope": "passing-instrumentation-followed-by-failed-primary-copy-not-complete-replay",
+  "reviewedAt": "2026-10-31",
+  "sourceCommit": "5d699283747c79f92483c994b3deccc7d32163f1",
+  "runId": 41196576936,
+  "jobId": 124523837653,
+  "archiveDownloadedViaCli": true,
+  "archiveDigestIndependentlyVerified": false,
+  "retainedMemberChecksums": {
+    "outputs/store-review-screenshots/ordinary-results.json": "570b55e419d24ff55df052575dec28e1c9844f20dceb5a21d8ebfebb2bdabac3",
+    "outputs/store-review-screenshots/disposable-store-restore.json": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f",
+    "outputs/local-ui-evidence/0e9c8fd83120582833d7513ae2d0516b/LocalChatNetworkFlowTest-instrumentation.txt": "05355f16a3aa1483fa31709d034126526a5090adb9f5111375057a2abc64a75c",
+    "outputs/local-ui-evidence/0e9c8fd83120582833d7513ae2d0516b/local-chat-network-ui.json": "bca8d530fb43ab7d06b35da94dc60cdec8b2c6aaf1916bdcbd44354e2fe754ba",
+    "outputs/local-ui-evidence/0e9c8fd83120582833d7513ae2d0516b/adb-pull-network-recovery.json": "d02c505a00348f3d1bc116ec62ed6138d9e1e34678dc473662345d817afa36fc",
+    "outputs/local-ui-evidence/0e9c8fd83120582833d7513ae2d0516b/adb-sync-network-recovery-diagnostics.json": "68fd66c25f936198677bdd4b5c1b301003037d63045660c821e80db10e4a924c",
+    "outputs/local-ui-evidence/0e9c8fd83120582833d7513ae2d0516b/adb-pull-failure-cleanup.json": "aaa9767eb84bef9edf09684f219b2a720d21fc25fb4db1d59f31c0b386ef816c"
+  },
+  "fullReplayResultPresent": false,
+  "primaryCopyAccepted": false,
+  "failureCleanupReplacesPrimary": false,
+  "fullNativeGateAccepted": false,
+  "storedChatRecordsVerified": false,
+  "offlineChatSequenceAccepted": false,
+  "priorPreparationFailureCauseEstablished": false,
+  "copyFailureRootCauseEstablished": false,
+  "physicalPhoneAccepted": false,
+  "productionWrites": false,
+  "releaseAccepted": false
+}

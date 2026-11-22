@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-11-04",
+  "baselineCommit": "75440a26eae0348517fc23bebc720c41f3cf46b2",
+  "scope": "controlled-emergency-contact-protocol-and-state-not-sdk-ui-or-phone-handoff",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "controlledPhoneExitCode": 0,
+    "malformedWireCasesRejected": 22,
+    "delayedStateBoundaries": 36,
+    "lateOpenerBoundaries": 6,
+    "invalidPhoneInputsDenied": 4,
+    "requiredFixtureCases": 10,
+    "newUiCasesPrepared": 2
+  },
+  "logs": [
+    {
+      "file": "native-result.txt",
+      "sha256": "7254ba028d615a86e7accfa9b5c0f981e1b17d60cb61f454c39485ab34327ee0",
+      "exitCode": 0
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83",
+      "exitCode": 0
+    },
+    {
+      "file": "phone-result.txt",
+      "sha256": "9182330f32205618bc0e3080716c4746f7014cc1129b11a35e60a60bece105eb",
+      "exitCode": 0
+    }
+  ],
+  "previousShutdownSources": {
+    "sourceCommit": "4582c3a45a107e59cc94185b1509fcc12b449935",
+    "archivedFiles": 154,
+    "originalManifest": "docs/release/evidence/ios-location-shutdown-2026-11-04/source-sha256.json",
+    "originalManifestSha256": "8ae1c73855577edc9d959eeec867e0d305449d0675a45b2a54047a7fe592a460"
+  },
+  "androidRecheck": {
+    "runId": 41931479276,
+    "jobId": 126929187228,
+    "sourceCommit": "75440a26eae0348517fc23bebc720c41f3cf46b2",
+    "conclusion": "failure",
+    "failedStep": "Compile app and tests before starting the disposable device",
+    "responseStatus": 429,
+    "dependencyPreparationPassed": false,
+    "nativeObserverExecutionAccepted": false,
+    "earlierPassingRunInvalidated": false,
+    "underlyingThrottleCause": "unknown",
+    "privateOriginalLogSha256": "21f34f41c35db2ff5352d2fea805806325724d724a17ed076eabf0fa8a6c26d6",
+    "excerpt": "android-preparation-429.txt",
+    "excerptSha256": "827bc3c74b9b25223153e08b3ff30e80be3fe7339427ce0f2d49d2a5f9f48ef3"
+  },
+  "sdkLinkedBuildAccepted": false,
+  "newFixtureUiExecuted": false,
+  "realPhoneHandoffAccepted": false,
+  "parentChildContactEditorImplemented": false,
+  "physicalDeviceAccepted": false,
+  "storeActionAccepted": false,
+  "newNativeMediaPublished": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0,
+  "releaseComplete": false
+}

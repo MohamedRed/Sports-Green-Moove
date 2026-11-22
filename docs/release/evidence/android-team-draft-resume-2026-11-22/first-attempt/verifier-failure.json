@@ -1,0 +1,13 @@
+{
+  "scope": "manual-checker-failure-not-product-or-release-failure",
+  "runId": "7351eb4c764cc68239fce6efbbfa214e",
+  "phase": "sent",
+  "phoneSendObserved": true,
+  "phoneComposerCleared": true,
+  "recordCheckpointAccepted": false,
+  "sourceFile": "scripts/qa/manual-team-draft-views.mjs",
+  "rejectedField": "needsRead",
+  "parentOwnMessageNeedsRead": false,
+  "driverIncomingMessageNeedsRead": true,
+  "allPostSendProtectedRecordsVerified": false
+}

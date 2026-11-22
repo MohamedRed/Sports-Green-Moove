@@ -1,0 +1,114 @@
+{
+  "baselineCommit": "75440a26eae0348517fc23bebc720c41f3cf46b2",
+  "scope": "changed-local-candidate-inputs-not-sdk-compiled-ui",
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactModels.swift",
+      "sha256": "790307b2f97d225dc5838098135de25f763e1348c0877475921867a0385058b2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactScreen.swift",
+      "sha256": "fd4cea23acc87d97c3f215a5c38ed0f58453b775fe8266ce7084e635861fedad"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactState.swift",
+      "sha256": "b3e8105cb7bf97fedc3164db5c58094800d56ea7cd5f22b4b4b1a8d95e511061"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EmergencyContactWire.swift",
+      "sha256": "f99f9b233439f5044ec22c36a0482e0e2ef014d2ed7db2600d13127dda2c5afb"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseEmergencyContactGateway.swift",
+      "sha256": "180aa1638c77718148fbd188609a12168115b165261c40b6aad9538e18f98243"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GatewayContracts.swift",
+      "sha256": "bf301951be9f6b4bd199ea46126c167cc74822b6de032346f35865bfe6b48d5e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/HomeScreen.swift",
+      "sha256": "eb6fc0707a0ea121a47cb7622ad682c3dcca1b6f6af6b96b13caa75042d2a5d8"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/OptionsScreen.swift",
+      "sha256": "10dfce36371ebab013302de1630f1d225a7722f905df21ac563748fc05a1ea88"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SecondaryScreens.swift",
+      "sha256": "8b41a91552117049bbbbb5d97d6e668cd07139819bdc0f18475ec391b70d022a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SystemEmergencyPhone.swift",
+      "sha256": "5f7441c7af9b61ed5fdd112da7d36dead8ca9cf2daacab9bd21e54588ce6d991"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestAppStateFactory.swift",
+      "sha256": "ac1f3eb8204ba7f8d33985a1ffb1f4c3cac44f2246d0ae38818f92e045dbd141"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestEmergencyContacts.swift",
+      "sha256": "60001d1f00f44678a59ed9a20ed8b1ae4e6f108a2b02b537ca59b2661ee658a3"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UnconfiguredGateways.swift",
+      "sha256": "b97cb7ac1b77bf38f7df704f1bdc040d9039fcdb13ed0a1c347153b9a4f5583e"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/AppDataProbe.swift",
+      "sha256": "b272b41369682227e647da3a43cb9a596abb45efa321904eb92f45819789bbfa"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactBoundaryChecks.swift",
+      "sha256": "716289c58a5bb4f95853509e17a6319e554c3e19934ef1ec3b7b26319eb40f89"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactChecks.swift",
+      "sha256": "18d2c6a6eb579bcea66740cb8b6ea199f363456c958b20b1206689a6e9291b3d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactProbe.swift",
+      "sha256": "eda826c481eca7b859b97732592ef981c29710ae9d94cb1d9e76f586bca72077"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/EmergencyContactWireChecks.swift",
+      "sha256": "3a9f44bf001208eedad328b46f214ab4aa40d4298d5dac5d4b6684a3ecf6df85"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/main.swift",
+      "sha256": "444fdeb262c21a437461b00f9733fb9256107dbd64afb97691135fcc43b57e9e"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/EmergencyContactFlowTests.swift",
+      "sha256": "dd9ae3ca8bb12b0d4839dd6f5b6ec2f2e1e214892ba89f66f6d0e127a4060a8a"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "c0b1e3ef5eb759eafaa1eec6fe8527dcb1e3df5b786ab5d0090bff928737749c"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "6ca5b85ffd99ec863397323555e0a5ef25210d4b88a56495eaf8f7e31ce8424a"
+    },
+    {
+      "path": "scripts/qa/check-ios-emergency-phone.mjs",
+      "sha256": "b669222ecdf17b6a2e329fda36943fdd6ae400c2741b7f0c544e1da7c16aa38b"
+    },
+    {
+      "path": "tests/fixtures/ios-emergency-phone/Checks.swift",
+      "sha256": "51a678947da2bcec7c4664cac277933426f2a1b08120902a48fd58eb182e95c8"
+    },
+    {
+      "path": "tests/fixtures/ios-emergency-phone/UIKit.swift",
+      "sha256": "47d757d99956150cf4aff0d8fb40b346ca71bb83573f50b26613f100689f0d62"
+    },
+    {
+      "path": "tests/ios-emergency-contact.test.mjs",
+      "sha256": "9e58e800eca84f3d939603a4c57df472a6344ae4eb03cf2772ca33f07d58ecae"
+    },
+    {
+      "path": "tests/ios-location-shutdown.test.mjs",
+      "sha256": "374dbca642a4e64e1e62f577c4a0526b45e3da4fd6e4eff4b35cd17f007aac76"
+    }
+  ]
+}

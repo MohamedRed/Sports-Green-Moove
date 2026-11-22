@@ -1,0 +1,13 @@
+{
+  "reviewedAt": "2026-10-21",
+  "published": {
+    "team-chat-connected-parent": "team-chat-native-parent-window.png",
+    "team-chat-connected-exchange": "team-chat-native-exchange-window.png",
+    "team-chat-connected-revoked": "team-chat-native-revoked-window.png",
+    "team-chat-connected-driver": "team-chat-native-driver-window.png"
+  },
+  "draftWindowPublished": false,
+  "reason": "Draft text is visible but the recreated window header is incompletely rendered. Retained unchanged, not published.",
+  "rootCapturesPublished": false,
+  "mediaEdits": false
+}

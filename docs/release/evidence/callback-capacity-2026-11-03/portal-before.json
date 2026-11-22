@@ -1,0 +1,18 @@
+{
+  "scope": "previous-v330-portal-fingerprints-not-new-acceptance",
+  "previousCanonicalCommit": "9450ad0b449f081b55591c2833d90709843ac1af",
+  "flowCount": 34,
+  "flowsSha256": "fa13e5a72362156468ec6047f44810653f2e364f448c62fc6a3bc0d42b56b4d1",
+  "updatesCount": 396,
+  "updatesSha256": "f422c050194ab9e03ca0c855957fea370ee871c7c65df84f17af7660c5ea00b0",
+  "mediaCount": 532,
+  "mediaRevisionsSha256": "4f9e74b9cc6e48d6c12aee7362e497355c56f17925c6836b43108acbc4dd07b3",
+  "blockersWithoutPaymentSha256": "c318b33a96b5df72c9857c546fc109b7be5ac1634262e5380683ed2510f93b62",
+  "previousPaymentBlocker": {
+    "id": "payment-return",
+    "title": "Rejouer l’inscription conducteur",
+    "text": "Les deux pages de retour s’ouvrent à nouveau lors du contrôle du 22 octobre.",
+    "next": "Tester l’inscription conducteur, puis les paiements réels et remboursements sur téléphone.",
+    "source": "docs/release/evidence/stripe-callback-recovery-2026-10-22/README.md"
+  }
+}

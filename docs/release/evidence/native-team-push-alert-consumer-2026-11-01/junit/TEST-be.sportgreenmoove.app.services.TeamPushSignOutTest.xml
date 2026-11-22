@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.TeamPushSignOutTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:57:45.820Z" hostname="local-test-host" time="0.028">
+  <properties></properties>
+  <testcase name="anotherAccountsReceiptCannotClearThePendingRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.004"></testcase>
+  <testcase name="callerCancellationKeepsTheRemovalAndDoesNotLookLikeConfirmation" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.004"></testcase>
+  <testcase name="anUnavailableServerRetainsPendingRemovalWithoutManufacturingConfirmation" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"></testcase>
+  <testcase name="anInstallationWithoutAnyRegistrationHasNothingToConfirm" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"></testcase>
+  <testcase name="aSignedOutClientNeverReplaysAnUnauthenticatedPreviousOwnersRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"></testcase>
+  <testcase name="accountChangeDuringRemovalCannotAcknowledgeAsTheNextUser" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.003"></testcase>
+  <testcase name="forcedLocalSignoutAfterConfirmationDoesNotCreateAnExtraRemoval" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.001"></testcase>
+  <testcase name="aSilentServerWaitIsBoundedToTwoAndAHalfSeconds" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.004"></testcase>
+  <testcase name="aLateRegistrationReplyCannotReactivateTheInstallationDuringSignout" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.004"></testcase>
+  <testcase name="authenticatedRemovalIsAcknowledgedBeforeAuthClearsTheAccount" classname="be.sportgreenmoove.app.services.TeamPushSignOutTest" time="0.002"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

@@ -1,0 +1,26 @@
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0039767Z INSTRUMENTATION_STATUS_CODE: 0
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0089214Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0118012Z be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0149042Z Error in networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest):
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0188342Z androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0241000Z 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0242897Z 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0252576Z 	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:82)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0357469Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0361896Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0364446Z Time: 39.178
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0365145Z There was 1 failure:
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0369149Z 1) networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0371326Z androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0373383Z 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:809)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0375478Z 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:378)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0378297Z 	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:82)
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0380276Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0380584Z FAILURES!!!
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0381306Z Tests run: 1,  Failures: 1
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0381894Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0382054Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:32.0382197Z 
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:33.3824367Z node:internal/modules/run_main:123
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:33.3826479Z     triggerUncaughtException(
+Android native UI tests	Run Android Compose UI tests	2026-10-23T12:49:33.3827416Z     ^

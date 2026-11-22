@@ -1,0 +1,24 @@
+{
+  "scope": "local-logic-and-evidence-integrity-not-native-visual-acceptance",
+  "summary": [
+    "# tests 4001",
+    "# suites 0",
+    "# pass 4001",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0",
+    "# duration_ms 53792.922167"
+  ],
+  "privateTapSha256": "03cdc0ae5d28fe1428d4b96453026df91975643393307d6033ff2558f4d0f78c",
+  "firstComparatorFailure": {
+    "file": "diagnostics/notices-light-wide.png",
+    "expectedRawDigest": "0545e0f1af6d4bdbdcce325e848e5f921eadaef33679a74cb41ffbed734fd504",
+    "incorrectUtf8Digest": "4e33d531816d99eb751481b7b70ad4c7305012daad53ab22176f5f110c1ed3a2",
+    "replacement": "raw-buffer-hashing",
+    "alteredImages": false,
+    "alteredExpectedDigests": false
+  },
+  "nativeLayoutsAccepted": false,
+  "releaseAccepted": false
+}

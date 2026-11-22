@@ -1,0 +1,15 @@
+{
+  "scope": "isolated-native-ui-signout-with-synthetic-phone-token",
+  "installationHash": "a81bc342841b5e0505ab7802e9a14d95b52b4f6ad2156a56aad1dca703f5c8bc",
+  "activationRevision": 2,
+  "removalRevision": 3,
+  "confirmedWhileAuthenticated": true,
+  "authAbsentAfter": true,
+  "uiLoginReturned": true,
+  "durableSignOutIntent": true,
+  "syntheticTokenCalls": 1,
+  "realMessagingSdkCalls": 0,
+  "pushDeliveryVerified": false,
+  "runId": "283998597b0527cf617bc4b82b346659",
+  "projectId": "demo-sgm-local-qa"
+}

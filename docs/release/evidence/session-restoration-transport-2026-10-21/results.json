@@ -1,0 +1,16 @@
+{
+  "scope": "local-session-restoration-auth-transport-failure-before-app-ui",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "8b015cafdf27f4e70709ed860b1a85b2",
+  "sourceCommit": "c48026ee99f162ef58d14cdd17c33a5819e18d59",
+  "workflowRunId": 39619641915,
+  "jobId": 119289342028,
+  "testedAt": "2026-10-21T14:54:24Z",
+  "caseCompleted": false,
+  "appUiReached": false,
+  "restorationVerified": false,
+  "physicalDevice": false,
+  "realNetworkLossVerified": false,
+  "newScreenshotsAccepted": [],
+  "providerOrApplicationRootCauseVerified": false
+}

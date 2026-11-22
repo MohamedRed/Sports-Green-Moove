@@ -1,0 +1,98 @@
+{
+  "scope": "local-remote-completion-service-stop-not-physical-background-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "d5f1c1041e399a3af1ac1c3fa35c2819",
+  "rideSessionId": "G3wrsc3PTUHjjwNcJyBo",
+  "bookingId": "9aeUZDUestVM9krCyY12",
+  "childId": "sgm-qa-child-lina",
+  "backgroundStopBeforeResume": true,
+  "driverStillSignedInAtStop": true,
+  "peerCompletionAcknowledged": true,
+  "mockModeRestored": true,
+  "firestoreClientTerminated": true,
+  "screenshots": {
+    "local-native-startup-remote-started.png": "73e5e68c3d09bf0cba96e81fe7288709c2688eb1584a4c51aa18983c377d31b8",
+    "local-native-startup-remote-ended.png": "18f5134ddea919207c04fd5ae51dd35729d8abe5376a7420b94e4b7530c0082f"
+  },
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "physicalBackgroundGpsVerified": false,
+  "testedAt": "2026-10-20T00:11:16.663Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "steps": [
+    {
+      "id": "remote-ride-stop",
+      "status": "passed"
+    }
+  ],
+  "nativeUiExecuted": true,
+  "primaryEvidencePhase": "remote-ride-stop",
+  "transcriptSha256": "3be8ba95fa295f9db5c767d75aba02d2d5ab561f6e50b7f5e29210df0bda3e36",
+  "cleanupMode": "destroy-owned-local-environment",
+  "mockPermissionRestored": true,
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "apkPreparation": {
+    "method": "single-case-continuous-installation-guard-not-flow-proof",
+    "case": "remote-ride-stop",
+    "receiptSha256": "a2ca1fbecc30b9ea08f46488146997dfcc701565f2be53473c1398c073d33671",
+    "apkHashes": {
+      "be.sportgreenmoove.app.local": "e285a51f79473ab567249a19f1da4c475683683dfc80dfb41b4a2c8594819304",
+      "be.sportgreenmoove.app.local.test": "c93cd5fc50b83d03f06345d297262c597e7771f8f9c54f8aa65d4fa3112114eb"
+    },
+    "installationsRemainedBlocked": true
+  },
+  "completion": {
+    "auditEventCount": 2,
+    "bookingCount": 1,
+    "co2LedgerCount": 1,
+    "completionVerified": true,
+    "claimsUnchanged": true
+  },
+  "isolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 3,
+      "co2Ledger": 1,
+      "rewardLedger": 0
+    },
+    "zeroDistanceImpactVerified": true,
+    "otherLiveRidesPreserved": true
+  },
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "scripts/qa/install-disposable-test-apks.mjs": "73a8c6404584e9b07d3ef9f36b6558e8993cec19222819feb1f80f1496d141ad",
+    "scripts/qa/preinstalled-disposable-apks.mjs": "3d5c10f995a51bdfc49b8668128419ebf760e746af6ac96efe1c538f71c050ca",
+    "scripts/qa/continuous-disposable-device.mjs": "cb056fd80afa1047df3d252bdfb29f4219d10215cd963f658ff86d0cad4234cf",
+    "scripts/qa/configure-continuous-disposable.mjs": "e9b2481a6a423aee1f1e1c4c8cac84c62f0d407f0d5de1b7ed5d1c81c28e27c8",
+    "scripts/qa/restore-continuous-disposable.mjs": "2ababe4bce84097651e4c08c27b8194e3d3e159031c14c91da4cf17045550c53",
+    "scripts/qa/reset-disposable-local-apps.mjs": "4699ff1c33472c67cbc494fafa599f8c1098b2b38126be8e9df5c900e5c38072",
+    "scripts/qa/disposable-installations.mjs": "a035333bc0d3e96b718e14405957c5d1c41d92c8513749ee4120d6dd685f8dfc",
+    "scripts/qa/disposable-install-admin.mjs": "8ce818e2ede793f0ef8282e56769dad84067fe944c5df04cb9b83197122c9c94",
+    "scripts/run-focused-android-ui.sh": "16b2619d17f77698d2f431e91e9286402cc7c122ceae6c4272bf9de505fb36c8",
+    ".github/workflows/native-focused-ui.yml": "a33a7ae406c4c38909fb13acacd2427d9a9ad7fce021dc9669725d5bdc6dbaf2",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/DisposableAndroidJUnitRunner.kt": "a39059103b7b43d45809e115c24823b57f4aa57414d720f9be26dc8c5fef184b",
+    "scripts/qa/local-remote-ride-stop-ui.mjs": "b8f9c7362c211c8f37065ca651f4d7fb3f78afc9e562cdcdeef56a874fa97a4b",
+    "scripts/qa/run-local-remote-ride-stop-ui.mjs": "46031a273ddae7c277dbc41765715207730e47b2e798d100cbf518bfa3b24766",
+    "scripts/qa/run-isolated-ride-ui.mjs": "82c29d7c468e582184fb4f0e6b66101a43c6f525a59acca4fc0aade1099d7dbb",
+    "scripts/qa/local-ride-observation-fixture.mjs": "391c1af064759144d819e41bbcb162cd0d82c0c6e9723597a36726347597d57b",
+    "scripts/qa/isolated-ride-records.mjs": "7207af93cc20ab3bc96bc072065e59281da0156d2e8840917e47d35c4d3710cf",
+    "scripts/qa/local-mock-location-permission.mjs": "fcfe624d6285ece51395015b05643083f11827a54733dbe741258529a4ebe6f3",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationService.kt": "d27bca807230858abe4a71b4c3dd4a9ab40751aba3d598894d3df00270ae2d5f",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLocationLease.kt": "24cfffe087de539f953a88988ca20432361fc216fe1af08457e4dd5c1a4b99d0",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycle.kt": "af661945f9567333ee2671c69bb837a72122dd68856eba4d2f36679e9db7363b",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/ActiveRideLifecycleWatch.kt": "d1b6b0e7851ee11f54ce72e738d70ebb9529cb51f1d61f87abe504538d12a3d5",
+    "android/app/src/main/java/be/sportgreenmoove/app/services/FirebaseAndroidNativeLocationStartup.kt": "c969343bed48178342abcc1c32f0a5b6e6fb07819bd74a3d021ddbea70cd6bcf",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRemoteRideStopFlowTest.kt": "f707294479c37bd33d5c44f3f7e8ff0b0b5ad2031bfa879c3734175585e8030e",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideCompletionPeer.kt": "e82f57d696970482f98503d76d57a4ded041f9c4b9d1dc552d5ec9a4ef9bee79",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocation.kt": "6126c59e05da1b716da41dfa9b2fa2a911137f47fb543d75464276a673867fdf",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalMockLocationFeed.kt": "a7c880bd8b1994130d989c896a8b3e0f8004e00d5f4fd286f048f1f74820b33c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalNativeStartupCapture.kt": "ae2e8d73b470edb4543cf8dfb0f14ad011cde3a2d93363dcb06469506ace7967"
+  }
+}

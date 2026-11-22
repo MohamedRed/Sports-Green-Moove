@@ -1,0 +1,84 @@
+{
+  "checkedAt": "2026-11-05",
+  "scope": "provider-lock-portability-not-cloud-deployment",
+  "originalRunId": 42064566618,
+  "originalJobId": 127375010440,
+  "originalCommit": "a37cdbf263642d2a9a26a0af3cf2b0363886bb97",
+  "originalConclusion": "failure",
+  "failedStep": "Validate rules configuration without cloud changes",
+  "provider": "registry.terraform.io/hashicorp/google",
+  "version": "7.46.2",
+  "beforeHashes": [
+    "h1:CKdi/NPMEsF3ERBLs9lLe9vp3Ow4H//SNdYxC08nYDc=",
+    "zh:05a2eb0a5cfac5aaca6b6f1b28e7355c6d6b4bea192e592ba0c4f14b8ed5567e",
+    "zh:24757e1ac46854fb4e139c6fc21da35d2b1371885dff4d0bfc856dc90be8aa73",
+    "zh:41420ae7ea2f317f8cb7a52802943da0136b504269b864ae81c32e08bedb561e",
+    "zh:56f673ea97968a6bdc3186af1d6db4e473037dd9543bc985525c7aa7737d3ced",
+    "zh:63c17dde1812745e21af8c7ca9aa439e3949b263478a7ef63d325ab9939aa3df",
+    "zh:6b958217c44fda9805dfa7503b61625a88ebe8eaa69e3391294526a69a33395c",
+    "zh:aec87d1e10af849a95efc374a202814a2039bdc756b36d4fe76a44840ac616c3",
+    "zh:b9ca5dd22ad41e30f842d3f742e7b8b65437a11c590ef7a0e31f94ddcd5ef9ca",
+    "zh:c17a1a4155520e1a38ef12108421068caa72ee5353e1154c571e4d3c125c6654",
+    "zh:dbccf5baaf7c81483fe78342b31af29450ab0abbb54588e2add6002d2fd4026a",
+    "zh:ed4ecc96f562cb1f9a995490b7311dd28ed9f7521fc67f9edecfaa4bf3ed65dd",
+    "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c"
+  ],
+  "afterHashes": [
+    "h1:CKdi/NPMEsF3ERBLs9lLe9vp3Ow4H//SNdYxC08nYDc=",
+    "h1:wSW/wc+C48Eiuv8UXQhczRs6QXX6622m+QMlpi0pHVw=",
+    "zh:05a2eb0a5cfac5aaca6b6f1b28e7355c6d6b4bea192e592ba0c4f14b8ed5567e",
+    "zh:24757e1ac46854fb4e139c6fc21da35d2b1371885dff4d0bfc856dc90be8aa73",
+    "zh:41420ae7ea2f317f8cb7a52802943da0136b504269b864ae81c32e08bedb561e",
+    "zh:56f673ea97968a6bdc3186af1d6db4e473037dd9543bc985525c7aa7737d3ced",
+    "zh:63c17dde1812745e21af8c7ca9aa439e3949b263478a7ef63d325ab9939aa3df",
+    "zh:6b958217c44fda9805dfa7503b61625a88ebe8eaa69e3391294526a69a33395c",
+    "zh:aec87d1e10af849a95efc374a202814a2039bdc756b36d4fe76a44840ac616c3",
+    "zh:b9ca5dd22ad41e30f842d3f742e7b8b65437a11c590ef7a0e31f94ddcd5ef9ca",
+    "zh:c17a1a4155520e1a38ef12108421068caa72ee5353e1154c571e4d3c125c6654",
+    "zh:dbccf5baaf7c81483fe78342b31af29450ab0abbb54588e2add6002d2fd4026a",
+    "zh:ed4ecc96f562cb1f9a995490b7311dd28ed9f7521fc67f9edecfaa4bf3ed65dd",
+    "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c"
+  ],
+  "addedLinuxHash": "h1:wSW/wc+C48Eiuv8UXQhczRs6QXX6622m+QMlpi0pHVw=",
+  "priorWorkstationHashPreserved": true,
+  "officialSignedPackageRetrieved": true,
+  "localPlatform": "darwin_arm64",
+  "terraformVersion": "1.14.0",
+  "readonlyInitExitCode": 0,
+  "validateExitCode": 0,
+  "fmtExitCode": 0,
+  "linuxCiValidationAccepted": false,
+  "cloudPlans": 0,
+  "cloudApplies": 0,
+  "providerUpgrade": false,
+  "checksumVerificationWeakened": false,
+  "applicationSourceChanged": false,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "linux-ci-failure.txt",
+      "sha256": "5c3b606e0124090540033a4fc12d68605a4ebb6583795e6d68c86033d549897e"
+    },
+    {
+      "file": "before.lock.hcl",
+      "sha256": "39c4ac84c59c71a515a081184f2a52258855b4d5d562295c4581edfb1a242299"
+    },
+    {
+      "file": "candidate.lock.hcl",
+      "sha256": "43e37a9313cfcbad5f71d90d73769be3d1a4c4d38c9144a583e529587eb31dfd"
+    },
+    {
+      "file": "signed-platform-lock.txt",
+      "sha256": "52291049042c3e2e9715e65384d271e58051d60246662eecd1dabb93e641c035"
+    },
+    {
+      "file": "readonly-init.txt",
+      "sha256": "37f1e48388aaf97c10b00d57a5264c34ccaefad6d0400f9c9092b5aabdafc4ca"
+    },
+    {
+      "file": "local-validation.json",
+      "sha256": "4cd9eddc4d07c5aff74dadb6b3544f98186f6705ac60e0d94d545fc42b45b9b6"
+    }
+  ]
+}

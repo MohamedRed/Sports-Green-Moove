@@ -1,0 +1,9 @@
+- Fetching hashicorp/google 7.46.2 for linux_amd64...
+- Retrieved hashicorp/google 7.46.2 for linux_amd64 (signed by HashiCorp)
+- Obtained hashicorp/google checksums for linux_amd64; Additional checksums for this platform are now tracked in the lock file
+
+[1m[32mSuccess![0m [1mTerraform has updated the lock file.[0m[0m
+
+Review the changes in .terraform.lock.hcl and then commit to your
+version control system to retain the new checksums.
+

@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: endpoint disposal proof rejects a live listener and succeeds only after its closure
+ok 1 - endpoint disposal proof rejects a live listener and succeeds only after its closure
+  ---
+  duration_ms: 7.267041
+  type: 'test'
+  ...
+# Subtest: endpoint disposal proof refuses ambiguous or invalid port inventories
+ok 2 - endpoint disposal proof refuses ambiguous or invalid port inventories
+  ---
+  duration_ms: 4.525833
+  type: 'test'
+  ...
+# Subtest: preparation cleanup removes only its own unlaunched temporary directory
+ok 3 - preparation cleanup removes only its own unlaunched temporary directory
+  ---
+  duration_ms: 4.457333
+  type: 'test'
+  ...
+# Subtest: a live endpoint preserves the runtime and diagnostics until closure is independently verified
+ok 4 - a live endpoint preserves the runtime and diagnostics until closure is independently verified
+  ---
+  duration_ms: 76.202458
+  type: 'test'
+  ...
+# Subtest: an invalid endpoint check cannot delete retained diagnostics
+ok 5 - an invalid endpoint check cannot delete retained diagnostics
+  ---
+  duration_ms: 32.102584
+  type: 'test'
+  ...
+# Subtest: runtime cleanup never follows a substituted directory symlink
+ok 6 - runtime cleanup never follows a substituted directory symlink
+  ---
+  duration_ms: 1.708708
+  type: 'test'
+  ...
+# Subtest: preparing a callable entry arms disposal checks and fixes per-JVM memory only inside the test runtime
+ok 7 - preparing a callable entry arms disposal checks and fixes per-JVM memory only inside the test runtime
+  ---
+  duration_ms: 0.26175
+  type: 'test'
+  ...
+# Subtest: an explicitly configured Java home owns the child executable even when PATH selects another Java
+ok 8 - an explicitly configured Java home owns the child executable even when PATH selects another Java
+  ---
+  duration_ms: 168.403625
+  type: 'test'
+  ...
+# Subtest: configured Java selection is idempotent and preserves every unrelated child environment value
+ok 9 - configured Java selection is idempotent and preserves every unrelated child environment value
+  ---
+  duration_ms: 1.216167
+  type: 'test'
+  ...
+# Subtest: an invalid explicit Java home fails rather than adopting a different executable from PATH
+ok 10 - an invalid explicit Java home fails rather than adopting a different executable from PATH
+  ---
+  duration_ms: 1.403541
+  type: 'test'
+  ...
+# Subtest: an unconfigured Java home retains the existing explicit PATH without installing or guessing a runtime
+ok 11 - an unconfigured Java home retains the existing explicit PATH without installing or guessing a runtime
+  ---
+  duration_ms: 0.457625
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 339.193542

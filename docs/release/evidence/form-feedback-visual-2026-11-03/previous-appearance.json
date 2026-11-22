@@ -1,0 +1,195 @@
+{
+  "id": "appearance",
+  "title": "Affichage et thème sombre",
+  "status": "partial",
+  "checkedAt": "2026-11-03",
+  "latestEvidence": "local",
+  "summary": "Les dates, alertes et erreurs sont revues en clair et en sombre, avec le texte agrandi.",
+  "verified": "Dates des demandes, trajets et paiements, alertes, avis, saisie et suivi revus avec le texte agrandi, sur des vues simulées.",
+  "remaining": "Restent les autres textes colorés, les marges système et les essais d’accessibilité, dont l’iPhone.",
+  "accentControlReview": {
+    "source": "docs/release/evidence/accent-controls-phone-2026-10-30/review.json",
+    "checksums": "docs/release/evidence/accent-controls-phone-2026-10-30/artifact-sha256.json",
+    "checkedAt": "2026-10-30"
+  },
+  "feedbackVisualReview": {
+    "source": "docs/release/evidence/feedback-text-visual-2026-11-03/pixel-review.json",
+    "checksums": "docs/release/evidence/feedback-text-visual-2026-11-03/artifact-sha256.json",
+    "checkedAt": "2026-11-03"
+  },
+  "bookingDateVisualReview": {
+    "source": "docs/release/evidence/booking-date-visual-2026-11-03/review.json",
+    "checksums": "docs/release/evidence/booking-date-visual-2026-11-03/artifact-sha256.json",
+    "checkedAt": "2026-11-03"
+  },
+  "ui": {
+    "source": "docs/release/evidence/local-ui-2026-10-15/results.json",
+    "groups": [
+      "landscape-login-ui",
+      "theme-process-restart-ui"
+    ],
+    "checkedAt": "2026-10-15"
+  },
+  "neutralTextReview": {
+    "source": "docs/release/evidence/neutral-text-visual-2026-10-30/review.json",
+    "checksums": "docs/release/evidence/neutral-text-visual-2026-10-30/artifact-sha256.json",
+    "checkedAt": "2026-10-30"
+  },
+  "images": [
+    {
+      "file": "booking-date-requests-scheduled-light-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Demandes de réservation, date fixée, thème clair, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "booking-date-requests-unknown-dark-wide",
+      "landscape": true,
+      "checkedAt": "2026-11-03",
+      "alt": "Demandes de réservation, date à confirmer, thème sombre, format large, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "booking-date-trips-unknown-light-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Mes trajets, date à confirmer, thème clair, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "booking-date-trips-scheduled-dark-wide",
+      "landscape": true,
+      "checkedAt": "2026-11-03",
+      "alt": "Mes trajets, date fixée, thème sombre, format large, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "booking-date-payments-unknown-dark-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Paiements, date à confirmer, thème sombre, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "booking-date-payments-scheduled-light-wide",
+      "landscape": true,
+      "checkedAt": "2026-11-03",
+      "alt": "Paiements, date fixée, thème clair, format large, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "feedback-text-notices-light-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Alertes et avis, thème clair, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "feedback-text-notices-dark-wide",
+      "landscape": true,
+      "checkedAt": "2026-11-03",
+      "alt": "Alertes et avis, thème sombre, format large, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "feedback-text-ride-light-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Suivi du trajet, thème clair, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "feedback-text-input-light-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Erreur de saisie, thème clair, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "feedback-text-input-dark-phone",
+      "landscape": false,
+      "checkedAt": "2026-11-03",
+      "alt": "Erreur de saisie, thème sombre, format étroit, texte agrandi, essai simulé du 3 novembre"
+    },
+    {
+      "file": "accent-control-search-light",
+      "alt": "Recherche en clair, capture de session du 30 octobre, données de test",
+      "checkedAt": "2026-10-30",
+      "landscape": false
+    },
+    {
+      "file": "accent-control-search-dark",
+      "alt": "Recherche en sombre, capture de session du 30 octobre, données de test",
+      "checkedAt": "2026-10-30",
+      "landscape": false
+    },
+    {
+      "file": "accent-control-trips-dark",
+      "alt": "Sélections dans Mes trajets, capture de session du 30 octobre, données de test",
+      "checkedAt": "2026-10-30",
+      "landscape": false
+    },
+    {
+      "file": "accent-control-rewards-dark",
+      "alt": "Bouton orange en sombre, capture de session du 30 octobre, données de test",
+      "checkedAt": "2026-10-30",
+      "landscape": false
+    },
+    {
+      "file": "accent-control-rewards-light",
+      "alt": "Bouton orange en clair, capture de session du 30 octobre, données de test",
+      "checkedAt": "2026-10-30",
+      "landscape": false
+    },
+    {
+      "file": "neutral-text-search-light-phone",
+      "landscape": false,
+      "alt": "Recherche, thème clair, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-search-light-wide",
+      "landscape": true,
+      "alt": "Recherche, thème clair, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-search-dark-phone",
+      "landscape": false,
+      "alt": "Recherche, thème sombre, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-search-dark-wide",
+      "landscape": true,
+      "alt": "Recherche, thème sombre, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-trips-light-phone",
+      "landscape": false,
+      "alt": "Mes trajets, thème clair, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-trips-light-wide",
+      "landscape": true,
+      "alt": "Mes trajets, thème clair, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-trips-dark-phone",
+      "landscape": false,
+      "alt": "Mes trajets, thème sombre, format étroit, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "neutral-text-trips-dark-wide",
+      "landscape": true,
+      "alt": "Mes trajets, thème sombre, format large, texte agrandi, essai simulé du 30 octobre avant correction des boutons",
+      "checkedAt": "2026-10-30"
+    },
+    {
+      "file": "local-landscape",
+      "alt": "Formulaire de connexion en paysage, après défilement",
+      "checkedAt": "2026-10-15"
+    },
+    {
+      "file": "local-theme",
+      "alt": "Thème sombre conservé après relancement complet",
+      "checkedAt": "2026-10-15"
+    }
+  ],
+  "source": "docs/release/evidence/booking-date-visual-2026-11-03/README.md"
+}

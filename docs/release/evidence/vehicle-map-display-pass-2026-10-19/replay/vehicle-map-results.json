@@ -1,0 +1,147 @@
+{
+  "scope": "local-authenticated-vehicle-marker-real-map-not-physical-gps",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "5b893d897b61e12aa6a53b2c4b29ac19",
+  "rideSessionId": "1CVBx8I8rbc9i7skw6hW",
+  "parentUid": "sgm-qa-parent",
+  "driverUid": "sgm-qa-driver",
+  "points": [
+    {
+      "lat": 50.75,
+      "lng": 4.55,
+      "capturedAt": 1792444503153
+    },
+    {
+      "lat": 50.815,
+      "lng": 4.42,
+      "capturedAt": 1792444526236
+    }
+  ],
+  "displays": [
+    {
+      "capture": "native-display",
+      "screenFile": "local-vehicle-map-first.png",
+      "sha256": "765a8aefae551bee3fc88924e5db54fc70804683bd9aa0de549a12c7dfbfd561",
+      "mapBounds": {
+        "left": 53,
+        "top": 328,
+        "right": 1027,
+        "bottom": 984
+      },
+      "markerBounds": {
+        "left": 628,
+        "top": 652,
+        "right": 704,
+        "bottom": 757
+      },
+      "departureBounds": {
+        "left": 755,
+        "top": 753,
+        "right": 831,
+        "bottom": 858
+      },
+      "arrivalBounds": {
+        "left": 249,
+        "top": 349,
+        "right": 325,
+        "bottom": 454
+      },
+      "samples": 14553,
+      "colorBins": 213,
+      "dominantFraction": 0.3685150828007971,
+      "greenPixels": 5710
+    },
+    {
+      "capture": "native-display",
+      "screenFile": "local-vehicle-map-moved.png",
+      "sha256": "16238ad147df37c2d04bfd47648ccdeea2a79d3faf779794ab203555d8a7348c",
+      "mapBounds": {
+        "left": 53,
+        "top": 328,
+        "right": 1027,
+        "bottom": 984
+      },
+      "markerBounds": {
+        "left": 379,
+        "top": 456,
+        "right": 455,
+        "bottom": 561
+      },
+      "departureBounds": {
+        "left": 755,
+        "top": 753,
+        "right": 831,
+        "bottom": 858
+      },
+      "arrivalBounds": {
+        "left": 249,
+        "top": 349,
+        "right": 325,
+        "bottom": 454
+      },
+      "samples": 14553,
+      "colorBins": 225,
+      "dominantFraction": 0.36796536796536794,
+      "greenPixels": 5332
+    }
+  ],
+  "markerMovementPixels": 316.8864149817723,
+  "sdkLoaded": true,
+  "parentSignedOut": true,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "providerTrackingVerified": false,
+  "childPositionsVerified": false,
+  "etaVerified": false,
+  "testedAt": "2026-10-19T21:15:29.288Z",
+  "testCount": 1,
+  "nativeCaseCount": 1,
+  "nativeUiExecuted": true,
+  "primaryEvidencePhase": "vehicle-map",
+  "transcriptSha256": "e8d1f631bf1793ace8044f0de181093c566c25e7871822fbf295e34efa5e768d",
+  "fixtureIsolation": {
+    "baselineRecordsPreserved": true,
+    "createdRecordCounts": {
+      "trips": 1,
+      "bookings": 1,
+      "rideSessions": 1,
+      "notifications": 1,
+      "co2Ledger": 0,
+      "rewardLedger": 0
+    },
+    "otherLiveRidesPreserved": true
+  },
+  "cleanupMode": "destroy-owned-local-environment",
+  "adminClientClosed": true,
+  "localPackagesRemoved": true,
+  "productionWrites": false,
+  "safetyAuditAccepted": false,
+  "storeReviewAccepted": false,
+  "sourceFiles": {
+    "scripts/qa/local-vehicle-map-ui.mjs": "7e62cb5c12a27db4454b0507a67c3a3365743c068399e1477c9f1afb0d95678e",
+    "scripts/qa/run-local-vehicle-map-ui.mjs": "14482c77230ab6e2bcfa99c487a067380a08668eeafff12634e88215baf3f725",
+    "scripts/qa/run-isolated-ride-ui.mjs": "2ca5d8eccf58f9caa6cef0feda3e9a0b22ebe8828f027a3626cee198960b9ef3",
+    "scripts/qa/vehicle-map-display-evidence.mjs": "4aa7c9631baaf232f9aca56fe36b9d67a47d810ef25ad22fc01f8e4d5510c7f1",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalVehicleMapFlowTest.kt": "73de7e0f90e63ba8f75c8b7f42c2337bdc6ba1540baf92f4a5b9d87a04cabe43",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMarkerDisplayEvidence.kt": "f6dd2ed51ddbc642c94e50b0037a7004bef1dee74e9d7aff053a805176dc7d35",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/VehicleMapFailureEvidence.kt": "a311415e19d7e7f6f7c077f8767fc0a6aa02941f8d4dd979cc0097a44d66fcd0",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalRideObservationPeer.kt": "1ecc4df2678ba8cf2b76e4ba10eb68db1800b54a3aa438b93a3c543130bae519",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/GoogleMapsRoutePreview.kt": "873c16daa4d21d6b6cb459747e5d67ca9ebc78feb1414af397ba0d6e23e79c9b",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/VehicleMapMarker.kt": "0703f181758f3e37c9dfdce7adc8a36ce34874a1ab6beec2813f255dd3720df7",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/FitRouteMapCamera.kt": "83b5de172df16a12197ee204e9a85c6ff4aa93cac9c02bbc557ce31b73f44ae2",
+    "functions/src/domain/vehicleMapPoint.ts": "3978d10b21b8956a5fb7d104b3771d8b83a45448f8651861b69c89ea64bbaff5",
+    "functions/src/lib/clientTrips.ts": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorCliExitedSuccessfully": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

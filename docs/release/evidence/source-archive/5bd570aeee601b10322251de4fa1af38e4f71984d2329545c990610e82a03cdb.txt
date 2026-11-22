@@ -1,0 +1,296 @@
+package be.sportgreenmoove.app.ui
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import be.sportgreenmoove.app.data.AppRole
+import be.sportgreenmoove.app.data.AuthSession
+import be.sportgreenmoove.app.data.RidePassengerStatus
+import be.sportgreenmoove.app.data.TripSummary
+import be.sportgreenmoove.app.design.Sgm
+import be.sportgreenmoove.app.design.SgmTheme
+import be.sportgreenmoove.app.domain.UserFacingErrorPolicy
+import be.sportgreenmoove.app.domain.canManageRide
+import be.sportgreenmoove.app.services.AndroidRuntime
+import kotlinx.coroutines.launch
+@Composable
+fun SportsGreenMooveApp() {
+    val context = LocalContext.current
+    val providers = remember { AndroidRuntime.create(context.applicationContext) }
+    val scope = rememberCoroutineScope()
+    var screen by rememberSaveable { mutableStateOf(AppScreen.Home) }
+    var contactReturn by rememberSaveable { mutableStateOf(AppScreen.Options) }
+    val messagesState = rememberSaveableStateHolder()
+    var role by remember { mutableStateOf(AppRole.Parent) }
+    var session by remember { mutableStateOf<AuthSession?>(null) }
+    val directBooking = rememberDirectBookingState(providers, scope, session?.uid)
+    val appData = remember { AppDataState() }
+    var trips by appData.trips
+    var children by appData.children
+    val clubs by appData.clubs
+    var activeRide by appData.activeRide
+    var activeRideTrip by appData.activeRideTrip
+    var payableBookings by appData.payableBookings
+    var driverBookingRequests by appData.driverBookingRequests
+    var ledgerSummaries by appData.ledgerSummaries
+    var darkTheme by rememberAppDarkTheme()
+    var loading by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+    var noticeMessage by remember { mutableStateOf<String?>(null) }
+    val activeRidePermissionGate = rememberActiveRidePermissionGate { message ->
+        errorMessage = message
+    }
+    val searchController = rememberSearchController(
+        providers = providers,
+        scope = scope,
+        sessionUid = session?.uid,
+        onError = { errorMessage = it },
+        onNotice = { noticeMessage = it },
+        onAppLoading = { loading = it },
+    )
+    suspend fun refreshAppData() {
+        if (AppRole.Child in session?.roles.orEmpty()) appData.clear()
+        else appData.refresh(providers, role)
+    }
+    val paymentSheet = rememberSportsGreenMoovePaymentSheetController(
+        scope = scope,
+        sessionUid = session?.uid,
+        gateway = providers.stripe,
+        refreshAppData = { refreshAppData() },
+        setError = { errorMessage = it },
+        setNotice = { noticeMessage = it },
+    )
+    fun updatePassengerStatus(passenger: RidePassengerStatus, pickup: Boolean) {
+        launchPassengerStatusUpdate(
+            scope = scope,
+            providers = providers,
+            ride = activeRide,
+            passenger = passenger,
+            pickup = pickup,
+            setLoading = { loading = it },
+            setError = { errorMessage = it },
+            setNotice = { noticeMessage = it },
+        )
+    }
+    fun endActiveRide() {
+        launchEndActiveRide(
+            scope = scope,
+            providers = providers,
+            ride = activeRide,
+            activeRideTrip = activeRideTrip,
+            setLoading = { loading = it },
+            setError = { errorMessage = it },
+            setNotice = { noticeMessage = it },
+            setActiveRide = { activeRide = it },
+            setActiveRideTrip = { activeRideTrip = it },
+            setScreen = { screen = it },
+            refreshAppData = { refreshAppData() },
+        )
+    }
+    fun runTripAction(trip: TripSummary) {
+        launchTripAction(
+            scope = scope,
+            providers = providers,
+            trip = trip,
+            role = role,
+            driverBookingRequests = driverBookingRequests,
+            activeRidePermissionGate = activeRidePermissionGate,
+            setActiveRide = { activeRide = it },
+            setActiveRideTrip = { activeRideTrip = it },
+            setNotice = { noticeMessage = it },
+            setScreen = { screen = it },
+            setError = { errorMessage = it },
+            onParentBooking = directBooking::open,
+        )
+    }
+    fun logout() {
+        directBooking.close()
+        searchController.close()
+        session?.uid?.let { messagesState.removeState(it) }
+        signOutProviders(providers)
+        session = null
+        role = AppRole.Parent
+        appData.clear()
+        loading = false
+        noticeMessage = null
+        errorMessage = null
+        screen = AppScreen.Home
+        contactReturn = AppScreen.Options
+    }
+    val restoration = rememberSessionRestoration(providers.auth, providers.isConfigured) { restored ->
+        session = restored
+        if (restored != null) {
+            runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+        }
+    }
+    ObserveMobileRoleSelection(session, role) { selected ->
+        role = selected
+        runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) }
+    }
+    val rideObservation = rememberActiveRideObservation(providers.rides, session?.uid, activeRide, appData) { uid ->
+        scope.launch { if (session?.uid == uid) runCatching { appData.refresh(providers, role, includeActiveRide = false) }
+            .onFailure { if (session?.uid == uid) errorMessage = UserFacingErrorPolicy.messageFor(it) } }
+    }
+    SgmTheme(darkTheme = darkTheme) {
+        AppSystemBars(darkBackground = darkTheme)
+        V2ThemeToggleProvider(darkTheme = darkTheme, onToggle = { darkTheme = !darkTheme }) {
+            DirectBookingDialog(directBooking)
+            if (!providers.isConfigured) {
+                ConfigurationRequiredScreen()
+                return@V2ThemeToggleProvider
+            }
+            if (restoration.phase != SessionRestorationPhase.Ready) {
+                SessionRestorationScreen(restoration, ::logout) { session = it }
+                return@V2ThemeToggleProvider
+            }
+            if (session == null) {
+                OnboardingRoute(
+                    loading = loading,
+                    error = errorMessage,
+                    providers = providers,
+                    scope = scope,
+                    setLoading = { loading = it },
+                    setError = { errorMessage = it },
+                    setSession = { session = it },
+                    refreshAppData = { refreshAppData() },
+                )
+                return@V2ThemeToggleProvider
+            }
+            SportsGreenMooveScaffold(
+                currentScreen = screen,
+                onNavigate = { destination -> screen = destination },
+                notice = noticeMessage,
+                error = errorMessage,
+                onDismissMessage = {
+                    noticeMessage = null
+                    errorMessage = null
+                },
+            ) { padding ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Sgm.colors.bgApp)
+                        .padding(padding),
+                ) {
+                    when (screen) {
+                        AppScreen.Home -> HomeRoute(
+                            displayName = session?.displayName, data = appData,
+                            onNavigate = { screen = it }, onTripAction = ::runTripAction,
+                        )
+                        AppScreen.Trips -> TripsRoute(
+                            uid = requireNotNull(session).uid, role = role, gateway = providers.firebase,
+                            onChanged = { refreshAppData() },
+                            trips = trips,
+                            activeRide = activeRide,
+                            pendingCount = driverBookingRequests.count { it.status == "requested" },
+                            onTripAction = ::runTripAction,
+                            onOpenSearch = { screen = AppScreen.Search },
+                            onEmergencyContact = if (AppRole.Child in requireNotNull(session).roles)
+                                ({ contactReturn = AppScreen.Trips; screen = AppScreen.EmergencyContacts }) else null,
+                            onOpenRide = { launchActiveRideResume(scope, providers, role, activeRide, activeRidePermissionGate,
+                                { session?.uid }, { activeRide = it }, { screen = it }, { errorMessage = it }) },
+                            reservationContent = {
+                                ReservationManagementRoute(requireNotNull(session).uid, role, providers.reservations, providers.firebase) { refreshAppData() }
+                            },
+                        )
+                        AppScreen.Publish -> PublishScreen(
+                            role = role,
+                            firebase = providers.firebase,
+                            memberClubs = clubs.filter { it.isMember },
+                            initialOrigin = searchController.origin,
+                            initialDestination = searchController.destination,
+                            onError = { errorMessage = it },
+                            onNotice = { noticeMessage = it },
+                            onPublished = { scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } } },
+                        )
+                        AppScreen.Messages -> session?.uid?.let { uid ->
+                            messagesState.SaveableStateProvider(uid) {
+                                MessagesScreen(firebase = providers.firebase, conversations = providers.conversations,
+                                    userId = uid,
+                                    teamConversations = providers.teamConversations,
+                                    teamUserId = uid.takeIf { canManageTeamEnrollment(requireNotNull(session).roles) })
+                            }
+                        }
+                        AppScreen.Profile -> ProfileRoute(
+                            cityGateway = providers.profileCity,
+                            ratingsGateway = providers.receivedRatings,
+                            role = role,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                            session = session,
+                            clubs = clubs,
+                            ledgerSummaries = ledgerSummaries,
+                            onRoleChange = {
+                                role = it
+                                scope.launch { runCatching { refreshAppData() }.onFailure { errorMessage = UserFacingErrorPolicy.messageFor(it) } }
+                            },
+                            onGroups = { screen = AppScreen.Groups },
+                            onImpact = { screen = AppScreen.Impact },
+                            onRewards = { screen = AppScreen.Rewards },
+                            onPayments = { screen = AppScreen.Payments },
+                            onOptions = { screen = AppScreen.Options },
+                            onLogout = ::logout,
+                        )
+                        AppScreen.Search -> SearchRoute(
+                            searchController = searchController,
+                            children = children,
+                            error = errorMessage,
+                            onBack = { screen = AppScreen.Home },
+                        )
+                        AppScreen.Groups -> GroupsRoute(
+                            sessionUid = requireNotNull(session).uid,
+                            providers = providers,
+                            onBack = { screen = AppScreen.Profile },
+                            onClubsLoaded = appData::replaceClubs,
+                            onGuardianVerification = if (AppRole.Parent in requireNotNull(session).roles) ({ screen = AppScreen.Guardians }) else null,
+                            onTeamEnrollment = if (canManageTeamEnrollment(requireNotNull(session).roles)) ({ screen = AppScreen.TeamEnrollments }) else null,
+                        )
+                        AppScreen.Guardians -> GuardianVerificationRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Groups }
+                        AppScreen.TeamEnrollments -> TeamEnrollmentRoute(requireNotNull(session).uid, providers.firebase, AppRole.Parent in requireNotNull(session).roles) { screen = AppScreen.Groups }
+                        AppScreen.Impact -> ImpactScreen(summary = ledgerSummaries.impact, onBack = { screen = AppScreen.Profile })
+                        AppScreen.Rewards -> RewardsRoute(
+                            summary = ledgerSummaries.rewards,
+                            availableRoles = session?.roles ?: setOf(AppRole.Parent),
+                            onBack = { screen = AppScreen.Profile },
+                            onOpenPayments = { payoutRole ->
+                                role = payoutRole
+                                screen = AppScreen.Payments
+                            },
+                            setError = { errorMessage = it },
+                        )
+                        AppScreen.Options -> OptionsScreen(uid = requireNotNull(session).uid, firebase = providers.firebase, onBack = { screen = AppScreen.Profile },
+                            onSupport = { screen = AppScreen.Support },
+                            onEmergencyContact = { contactReturn = AppScreen.Options; screen = AppScreen.EmergencyContacts })
+                        AppScreen.Support -> SupportInboxRoute(requireNotNull(session).uid, providers.firebase) { screen = AppScreen.Options }
+                        AppScreen.EmergencyContacts -> EmergencyContactRoute(requireNotNull(session).uid, requireNotNull(session).roles,
+                            providers.emergencyContacts, providers.firebase, { screen = contactReturn },
+                            accountLinks = providers.childAccountLinks, invitations = providers.childInvitations,
+                            rideSessionId = emergencyRideSessionId(requireNotNull(session).roles, activeRide, contactReturn == AppScreen.Ride))
+                        AppScreen.Payments -> PaymentsRoute(role = role, sessionUid = session?.uid, sessionEmail = session?.email, bookings = payableBookings, loading = loading, providers = providers, paymentSheet = paymentSheet, onBack = { screen = AppScreen.Profile }, setError = { errorMessage = it }, setNotice = { noticeMessage = it })
+                        AppScreen.Ride -> RideMonitorScreen(
+                            activeRide = activeRide,
+                            canManageRide = canManageRide(role, session, activeRide) && rideObservation.phase == RideObservationPhase.Live,
+                            observation = rideObservation,
+                            routePreview = activeRideTrip?.mapPreview,
+                            onBack = { screen = AppScreen.Trips },
+                            onPickup = { updatePassengerStatus(it, pickup = true) },
+                            onDropoff = { updatePassengerStatus(it, pickup = false) },
+                            onEndRide = ::endActiveRide,
+                            onEmergencyContact = { contactReturn = AppScreen.Ride; screen = AppScreen.EmergencyContacts },
+                        )
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "phase": "opened-no-write",
+    "original": "opened-context.png",
+    "file": "captures/opened-no-write.png",
+    "originalSha256": "344716b7b30451ff3c2fb78c309b4a1ff39a3ba2eac2a4721ff86b06af768296",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "confirmed",
+    "original": "confirmed-context.png",
+    "file": "captures/confirmed.png",
+    "originalSha256": "5721819fcd8394e622af1c26dd0663db114a98270d2bae8933c389a477d11689",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "process-restarted",
+    "original": "restarted-context.png",
+    "file": "captures/process-restarted.png",
+    "originalSha256": "2599188cd463635aee08bd87b2f55cf4db4515b5ebf22d3cc49006015dd62fdf",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  },
+  {
+    "phase": "other-card",
+    "original": "other-card-context.png",
+    "file": "captures/other-card.png",
+    "originalSha256": "62b105bc9e596d987d947eab269f1bf3c105a93f05ee2f3fc0f125644173d9dc",
+    "crop": {
+      "x": 630,
+      "y": 110,
+      "width": 242,
+      "height": 530
+    },
+    "method": "browser-session-window-not-native-export",
+    "reviewedSyntheticContentOnly": true
+  }
+]

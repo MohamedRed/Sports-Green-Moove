@@ -2,18 +2,21 @@ import SwiftUI
 
 struct HomeScreen: View {
     @Environment(AppState.self) private var appState
+    let access: AccountAccess
 
     var body: some View {
-        SGMScreen(spacing: 0) {
+        SGMScreen(spacing: 0, testID: UITestIdentifier.homeScreen) {
             HomeHeader()
-            HomeHeroCard(trip: appState.trips.first) {
-                Task {
-                    if let tripId = appState.trips.first?.id {
-                        await appState.handleTripAction(tripId: tripId)
-                    }
-                }
+            if access.context.grantedRoles.contains(.child) {
+                EmergencyContactEntry(access: access).padding(.horizontal, SGMSpace.padScreen)
             }
-            HomeStatsRow()
+            let nextTrip = appState.trips.first
+            HomeHeroCard(trip: nextTrip) {
+                guard let nextTrip else { return }
+                Task { await appState.handleTripAction(trip: nextTrip, access: access) }
+            }
+            .disabled(nextTrip == nil || appState.tripActionBusy)
+            HomeStatsRow(summary: appState.impactSummary)
             SGMSectionLabel("SEMAINE À VENIR", action: "Tout voir") {
                 appState.selectTab(.trips)
             }
@@ -28,8 +31,9 @@ struct HomeScreen: View {
                         seats: trip.seatsLabel,
                         passengers: trip.passengerInitials
                     ) {
-                        Task { await appState.handleTripAction(tripId: trip.id) }
+                        Task { await appState.handleTripAction(trip: trip, access: access) }
                     }
+                    .disabled(appState.tripActionBusy)
                 }
                 if appState.trips.isEmpty {
                     HomeEmptyTrips()
@@ -38,30 +42,33 @@ struct HomeScreen: View {
             .padding(.horizontal, SGMSpace.padScreen)
 
             SGMSectionLabel("IMPACT ÉCOLOGIQUE")
-            HomeImpactPreview()
+            HomeImpactPreview(summary: appState.impactSummary)
                 .padding(.horizontal, SGMSpace.padScreen)
         }
     }
 }
 
 private struct HomeHeader: View {
+    @Environment(AppState.self) private var appState
+
     var body: some View {
         VStack(spacing: 14) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 1) {
-                    HStack(spacing: 0) {
-                        Text("Bonjour, ")
-                            .font(.sgmBody(15, weight: .bold))
-                            .foregroundStyle(SGM.textPrimary)
-                        Text("Olivier")
+                    Text("Bonjour")
+                        .font(.sgmBody(15, weight: .bold))
+                        .foregroundStyle(SGM.textPrimary)
+                    if let name = appState.session?.displayName, !name.isEmpty {
+                        Text(name)
                             .font(.sgmBody(15, weight: .bold))
                             .foregroundStyle(SGM.green)
-                        Text(" 👋")
-                            .font(.sgmBody(15, weight: .bold))
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                    Text("Mardi 07 Novembre 2022")
-                        .font(.sgmBody(11, weight: .medium))
-                        .foregroundStyle(SGM.textMuted)
+                    TimelineView(.periodic(from: .now, by: 60)) { context in
+                        Text(context.date, format: .dateTime.weekday(.wide).day().month(.wide).year().locale(Locale(identifier: "fr_BE")))
+                            .font(.sgmBody(11, weight: .medium))
+                            .foregroundStyle(SGM.textMuted)
+                    }
                 }
                 Spacer()
                 SGMThemeButton()
@@ -137,11 +144,13 @@ private struct HomeEmptyTrips: View {
 }
 
 private struct HomeStatsRow: View {
+    let summary: ImpactSummary
+
     var body: some View {
         HStack(spacing: 8) {
-            SGMStatTile(value: "12.4", unit: "kg", label: "CO₂ économisé")
-            SGMStatTile(value: "24", unit: "trajets", label: "Partagés", accent: SGM.orange)
-            SGMStatTile(value: "847", unit: "km", label: "Parcourus")
+            SGMStatTile(value: homeKgValue(summary.totalCo2Kg), unit: "kg", label: "CO₂ économisé")
+            SGMStatTile(value: "\(summary.rideCount)", unit: "trajets", label: "Partagés", accent: SGM.orange)
+            SGMStatTile(value: "\(summary.sharedDistanceKm)", unit: "km", label: "Parcourus")
         }
         .padding(.horizontal, SGMSpace.padScreen)
         .padding(.bottom, 16)
@@ -149,6 +158,8 @@ private struct HomeStatsRow: View {
 }
 
 private struct HomeImpactPreview: View {
+    let summary: ImpactSummary
+
     var body: some View {
         HStack(spacing: 14) {
             SGMIconView(icon: .leaf, size: 22, color: SGM.green)
@@ -159,7 +170,7 @@ private struct HomeImpactPreview: View {
                     .font(.sgmDisplay(20))
                     .tracking(.sgmWide(for: 20))
                     .foregroundStyle(SGM.textOnGreen)
-                Text("Wallonie · Flandre · Bruxelles")
+                Text("\(homeKgValue(summary.totalCo2Kg)) kg économisés · \(summary.sharedDistanceKm) km partagés")
                     .font(.sgmBody(12, weight: .medium))
                     .foregroundStyle(SGM.textOnGreen.opacity(0.68))
             }
@@ -169,4 +180,12 @@ private struct HomeImpactPreview: View {
         .background(SGM.heroGradient, in: RoundedRectangle(cornerRadius: SGMRadius.lg, style: .continuous))
         .overlay(SGMGridTexture())
     }
+}
+
+private func homeKgValue(_ value: Double) -> String {
+    let formatter = NumberFormatter()
+    formatter.locale = Locale(identifier: "fr_FR")
+    formatter.minimumFractionDigits = 1
+    formatter.maximumFractionDigits = 1
+    return formatter.string(from: NSNumber(value: value)) ?? String(format: "%.1f", value)
 }

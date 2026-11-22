@@ -1,0 +1,28 @@
+{
+  "testedAt": "2026-11-06T17:37:17.976Z",
+  "scope": "read-only-public-callback-health-not-payment-or-onboarding",
+  "observations": [
+    {
+      "kind": "return",
+      "url": "https://sports-green-moove-prod.web.app/payments/return?health=1",
+      "httpStatus": 204,
+      "callbackMarker": "return",
+      "cacheControl": "no-store",
+      "elapsedMs": 415,
+      "passed": true
+    },
+    {
+      "kind": "refresh",
+      "url": "https://sports-green-moove-prod.web.app/payments/refresh?health=1",
+      "httpStatus": 204,
+      "callbackMarker": "refresh",
+      "cacheControl": "no-store",
+      "elapsedMs": 514,
+      "passed": true
+    }
+  ],
+  "productionWrites": false,
+  "paymentsCreated": false,
+  "providerConfigurationChanged": false,
+  "rootCauseConfirmed": false
+}

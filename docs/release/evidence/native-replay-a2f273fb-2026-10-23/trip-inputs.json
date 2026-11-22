@@ -1,0 +1,17 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a2239c70ef0093e37721be72f9ef1c24",
+  "scope": "native-trip-change-time-and-address-safety-ui",
+  "completed": true,
+  "tripId": "2AyPUX3RYL2wSBE8a79B",
+  "bookingId": "VO43Pg2Dn5CkGOySJ7qz",
+  "originalDepartureAt": "2026-10-24T09:00:00.000Z",
+  "proposedDepartureAt": "2026-10-24T10:00:00.000Z",
+  "nativeTimePickerUsed": true,
+  "unconfirmedOriginBlocked": true,
+  "unconfirmedDestinationBlocked": true,
+  "originalPlacesExplicitlyKept": true,
+  "parentSawBothTimes": true,
+  "parentConfirmed": true,
+  "missingRouteBlockedApplication": true
+}

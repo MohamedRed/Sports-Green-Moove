@@ -1,0 +1,1587 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run src/__tests__/bounded-collection-validation.test.ts
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+
+ ❯ src/__tests__/bounded-collection-validation.test.ts (4 tests | 3 failed) 32ms
+   × bounded request collections reject size before walking their elements > rejects oversized location batches with a size issue, not one error per update 15ms
+     → expected [ Array(102) ] to deeply equal [ ObjectContaining{…} ]
+   × bounded request collections reject size before walking their elements > rejects oversized team read acknowledgements before validating individual IDs 6ms
+     → expected [ { origin: 'string', …(5) }, …(52) ] to deeply equal [ ObjectContaining{…} ]
+   × bounded request collections reject size before walking their elements > does not invoke element validation or allocate per-element issues for an oversized bounded array 6ms
+     → expected 10000 to be +0 // Object.is equality
+   ✓ bounded request collections reject size before walking their elements > still validates every element at the supported batch boundary 4ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/bounded-collection-validation.test.ts > bounded request collections reject size before walking their elements > rejects oversized location batches with a size issue, not one error per update
+AssertionError: expected [ Array(102) ] to deeply equal [ ObjectContaining{…} ]
+
+- Expected
++ Received
+
+  [
+-   ObjectContaining {
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       0,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       1,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       2,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       3,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       4,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       5,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       6,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       7,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       8,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       9,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       10,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       11,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       12,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       13,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       14,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       15,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       16,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       17,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       18,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       19,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       20,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       21,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       22,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       23,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       24,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       25,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       26,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       27,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       28,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       29,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       30,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       31,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       32,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       33,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       34,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       35,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       36,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       37,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       38,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       39,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       40,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       41,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       42,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       43,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       44,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       45,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       46,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       47,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       48,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       49,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       50,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       51,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       52,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       53,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       54,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       55,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       56,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       57,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       58,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       59,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       60,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       61,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       62,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       63,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       64,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       65,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       66,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       67,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       68,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       69,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       70,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       71,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       72,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       73,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       74,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       75,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       76,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       77,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       78,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       79,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       80,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       81,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       82,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       83,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       84,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       85,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       86,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       87,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       88,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       89,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       90,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       91,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       92,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       93,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       94,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       95,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       96,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       97,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       98,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       99,
++     ],
++   },
++   {
++     "code": "invalid_type",
++     "expected": "object",
++     "message": "Invalid input: expected object, received null",
++     "path": [
++       "updates",
++       100,
++     ],
++   },
++   {
+      "code": "too_big",
++     "inclusive": true,
+      "maximum": 100,
++     "message": "Too big: expected array to have <=100 items",
++     "origin": "array",
+      "path": [
+        "updates",
+      ],
+    },
+  ]
+
+ ❯ src/__tests__/bounded-collection-validation.test.ts:14:29
+     12|     expect(union.code).toBe("invalid_union");
+     13|     if (union.code !== "invalid_union") throw new Error("Expected the …
+     14|     expect(union.errors[0]).toEqual([expect.objectContaining({ code: "…
+       |                             ^
+     15|   });
+     16|   it("rejects oversized team read acknowledgements before validating i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/__tests__/bounded-collection-validation.test.ts > bounded request collections reject size before walking their elements > rejects oversized team read acknowledgements before validating individual IDs
+AssertionError: expected [ { origin: 'string', …(5) }, …(52) ] to deeply equal [ ObjectContaining{…} ]
+
+- Expected
++ Received
+
+  [
+-   ObjectContaining {
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       0,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       1,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       2,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       3,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       4,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       5,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       6,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       7,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       8,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       9,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       10,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       11,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       12,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       13,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       14,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       15,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       16,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       17,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       18,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       19,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       20,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       21,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       22,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       23,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       24,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       25,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       26,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       27,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       28,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       29,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       30,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       31,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       32,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       33,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       34,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       35,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       36,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       37,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       38,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       39,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       40,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       41,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       42,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       43,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       44,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       45,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       46,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       47,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       48,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       49,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
++     "code": "invalid_format",
++     "format": "regex",
++     "message": "Invalid string: must match pattern /^[a-f0-9]{64}$/",
++     "origin": "string",
++     "path": [
++       "messageIds",
++       50,
++     ],
++     "pattern": "/^[a-f0-9]{64}$/",
++   },
++   {
+      "code": "too_big",
++     "inclusive": true,
+      "maximum": 50,
++     "message": "Too big: expected array to have <=50 items",
++     "origin": "array",
++     "path": [
++       "messageIds",
++     ],
++   },
++   {
++     "code": "custom",
++     "message": "Message IDs must be unique.",
+      "path": [
+        "messageIds",
+      ],
+    },
+  ]
+
+ ❯ src/__tests__/bounded-collection-validation.test.ts:21:33
+     19|     expect(result.success).toBe(false);
+     20|     if (result.success) throw new Error("Oversized acknowledgement bat…
+     21|     expect(result.error.issues).toEqual([expect.objectContaining({ cod…
+       |                                 ^
+     22|   });
+     23|   it("does not invoke element validation or allocate per-element issue…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/__tests__/bounded-collection-validation.test.ts > bounded request collections reject size before walking their elements > does not invoke element validation or allocate per-element issues for an oversized bounded array
+AssertionError: expected 10000 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 10000
+
+ ❯ src/__tests__/bounded-collection-validation.test.ts:27:57
+     25|     const element = z.string().superRefine(() => { visited += 1; });
+     26|     const result = z.array(element).max(50).safeParse(Array(10_000).fi…
+     27|     expect(result.success).toBe(false); expect(visited).toBe(0);
+       |                                                         ^
+     28|     if (result.success) throw new Error("Oversized array was accepted"…
+     29|     expect(result.error.issues).toHaveLength(1); expect(result.error.i…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 1 passed (4)
+   Start at  01:53:24
+   Duration  814ms (transform 125ms, setup 0ms, collect 516ms, tests 32ms, environment 0ms, prepare 71ms)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error workspace @sports-green-moove/functions@0.1.0
+npm error location /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error command failed
+npm error command sh -c vitest run src/__tests__/bounded-collection-validation.test.ts

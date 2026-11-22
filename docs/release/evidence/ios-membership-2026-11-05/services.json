@@ -1,0 +1,77 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "52cfc1382e8699ab2f0e1917064afa53",
+  "testedAt": "2026-11-05T12:06:39.417Z",
+  "scope": "isolated-membership-services-and-client-rules-not-native-ui",
+  "completed": true,
+  "checks": [
+    {
+      "id": "versioned-review-races-approval-rejection-and-authority",
+      "status": "passed"
+    },
+    {
+      "id": "absent-document-is-denied-but-own-empty-query-is-readable",
+      "status": "passed"
+    },
+    {
+      "id": "own-query-returns-exact-persisted-pending-record",
+      "status": "passed"
+    },
+    {
+      "id": "foreign-and-anonymous-queries-stay-denied",
+      "status": "passed"
+    },
+    {
+      "id": "membership-direct-delete-stays-denied",
+      "status": "passed"
+    },
+    {
+      "id": "catalog-uses-document-order-with-a-bounded-next-page",
+      "status": "passed"
+    },
+    {
+      "id": "reads-and-denied-actions-preserve-all-records-and-claims",
+      "status": "passed"
+    }
+  ],
+  "review": {
+    "concurrentDecisionWinners": 1,
+    "approvedCount": 2,
+    "rejectedCount": 1,
+    "auditCount": 3,
+    "notificationCount": 3,
+    "memberCountBefore": 3,
+    "memberCountAfter": 5,
+    "paginatedHistory": 25,
+    "paginatedManagedClubs": 26,
+    "foreignManagerRejected": true,
+    "revokedManagerRejected": true,
+    "staleRerequestRejected": true,
+    "roleEscalation": false,
+    "livePush": false
+  },
+  "protectedRecordCount": 110,
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "productionWrites": false,
+  "failureCode": null,
+  "providerRequests": 0,
+  "phoneUiExecuted": false,
+  "sourceFiles": {
+    "scripts/qa/local-membership-client.mjs": "a35bedacb9856b10abb5b7813ca268e57dd33f732a06f4591dc06bc27ed7311b",
+    "scripts/qa/local-membership-review.mjs": "1eafe9840784bc6817c050585d2ed9bb4c5edf509967d2acb79a86d355dbb15d",
+    "firestore.rules": "cc4829a2f1474ef4b52c4cfb98c14bd50128c7b1f882dd4623e104aeb8240240",
+    "firestore.indexes.json": "855d492b0df4ff433f0e06b1a8be406c2b95420d46a87e4ba25c2ff1cde945ee"
+  },
+  "isolatedEnvironmentDestroyed": true,
+  "emulatorEndpoints": {
+    "host": "127.0.0.1",
+    "ports": [
+      9099,
+      8080,
+      9000,
+      5001
+    ],
+    "closed": true
+  }
+}

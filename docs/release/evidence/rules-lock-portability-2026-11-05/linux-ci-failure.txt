@@ -1,0 +1,4 @@
+2026-11-05T16:34:55.6694490Z - Installing hashicorp/google v7.46.2...
+2026-11-05T16:34:57.3692260Z - Installed hashicorp/google v7.46.2 (signed by HashiCorp)
+2026-11-05T16:34:57.3694047Z [33m│[0m [0m[1m[33mWarning: [0m[0m[1mProvider lock file not updated[0m
+2026-11-05T16:34:57.4899134Z [31m│[0m [0m[1m[31mError: [0m[0m[1mregistry.terraform.io/hashicorp/google: the cached package for registry.terraform.io/hashicorp/google 7.46.2 (in .terraform/providers) does not match any of the checksums recorded in the dependency lock file[0m

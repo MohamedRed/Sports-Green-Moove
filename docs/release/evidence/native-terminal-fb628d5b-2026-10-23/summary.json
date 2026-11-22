@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "fb628d5bb881c661a3dc174c7ed84c7843eb6b24",
+  "runId": 39946240705,
+  "scope": "terminal-native-matrix-success-with-one-focused-preparation-failure-not-release-acceptance",
+  "matrixJobId": 120389494908,
+  "matrixJobPassed": true,
+  "focusedCasesPassed": 9,
+  "focusedCasesFailed": 1,
+  "failedFocusedJobId": 120389494845,
+  "fullCiPassed": false,
+  "physicalDeviceAccepted": false,
+  "allRestorationIndependentlyReviewed": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "newCapturesPublished": []
+}

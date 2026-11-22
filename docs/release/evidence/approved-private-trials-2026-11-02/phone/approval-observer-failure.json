@@ -1,0 +1,12 @@
+{
+  "scope": "original-invited-child-observer-schema-rejection-not-parent-approval",
+  "sourceCommit": "fccd8ef",
+  "failedPhase": "code-created",
+  "completed": false,
+  "passedPhases": [
+    "child-signed-in"
+  ],
+  "rejectedUnexpectedField": "invitationHash",
+  "parentApproved": false,
+  "originalReportUnmodified": true
+}

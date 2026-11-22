@@ -1,0 +1,55 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "fa5f53fdea2cedae09d2f441ce1e7bf5",
+  "testedAt": "2026-10-19T16:15:50.240Z",
+  "scope": "local-ride-observation-callables-not-native-or-physical",
+  "checks": [
+    {
+      "id": "explicit-observer-id-cannot-be-replaced-by-another-active-ride",
+      "status": "passed"
+    },
+    {
+      "id": "missing-point-remains-explicitly-unverified",
+      "status": "passed"
+    },
+    {
+      "id": "server-returns-capture-age-for-monotonic-client-aging",
+      "status": "passed"
+    },
+    {
+      "id": "explicit-ride-id-does-not-bypass-current-authentication-or-participation",
+      "status": "passed"
+    },
+    {
+      "id": "observer-references-and-payload-shape-are-validated",
+      "status": "passed"
+    },
+    {
+      "id": "parent-observer-response-includes-remote-pickup-state",
+      "status": "passed"
+    },
+    {
+      "id": "completion-clears-the-observed-ride-without-switching-to-a-different-one",
+      "status": "passed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "ride-observation-services",
+      "status": "passed"
+    }
+  ],
+  "testCount": 1,
+  "nativeUiExecuted": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "sourceFiles": {
+    "scripts/qa/local-ride-observation-services.mjs": "ed1d33e9fc903e63beee3340f15cb55d585e5303b5df7f8f0b563644b9d33310",
+    "functions/src/callables/rides.ts": "5bebb623bc9d0896f5df29e4ef7bb810d38e40ffad61772eef47302fc00fcec6",
+    "functions/src/lib/activeRideLookup.ts": "95d00e584373f011bebf1641871ed143de76ed056716e80eb6a64d08de5ea075",
+    "functions/src/lib/clientTrips.ts": "c98096c6def0c490d904ba272e2aeead8ff37a39e0f173f64cd27d8fdaeec96e",
+    "functions/src/domain/types.ts": "51a62fae40786a073b455d80c844ceef9001ac1459e9c2f826f5682562a14a54"
+  },
+  "adminClientClosed": true
+}

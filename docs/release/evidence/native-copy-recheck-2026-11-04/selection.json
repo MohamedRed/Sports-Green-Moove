@@ -1,0 +1,88 @@
+{
+  "sourceCommit": "d77a04958baa8f5042694740a361263919973f8f",
+  "reviewedAt": "2026-11-04",
+  "archives": {
+    "main": {
+      "bytes": 31852349,
+      "sha256": "1f1d85cfb9306fe07d13cefa784c69aff3c5a9de1731f408013741d9fce425b9",
+      "artifactId": 13310540730
+    },
+    "network": {
+      "bytes": 617942,
+      "sha256": "8cb26c364adb7753d865ab24920733272524e3204d9f7480bee19a0fbba44dc0",
+      "artifactId": 13309256299
+    }
+  },
+  "members": {
+    "ordinary-results.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "sha256": "2e8f616843eab5d4d5643a00e2ad7571e7dc18d7a5bfbcdbe20721c0dc68079a"
+    },
+    "ordinary-process.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/ordinary-process.json",
+      "sha256": "53fbb07ee77b43c73a438a441bd16086d51391bd394490efaca339fe900612bf"
+    },
+    "capture-collection.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/capture-timing/collection.json",
+      "sha256": "6bc852817a5e342c333ca4c8673bc5a6e03671da4dd2b7cf28db0b54509ce7e9"
+    },
+    "native-suite-status.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b"
+    },
+    "device-restoration.json": {
+      "archive": "main",
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    "primary-copy.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/adb-pull-trip-draft-restart.json",
+      "sha256": "a86f34ae69dc64a2584a1e7eb91aadf49f5956d2117239ee921c681821c249dd"
+    },
+    "cleanup-copy.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/adb-pull-failure-cleanup.json",
+      "sha256": "a0c4960210b077a3f777cfe16521e448f09807cc4b7e757ce831f26ab281abf4"
+    },
+    "sync-diagnostics.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/adb-sync-trip-draft-restart-diagnostics.json",
+      "sha256": "ba0e95d49568c39ec2ebf67bf19ebe9636d574be404efdf74e451654cd7b348c"
+    },
+    "draft-before.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/local-trip-draft-before.json",
+      "sha256": "170396d5678766915c94ccff9c412eaafd692de330264c16f26307b9070f12e7"
+    },
+    "draft-stop.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/local-trip-draft-stop.json",
+      "sha256": "aa7da0f51eb7185a8c1f9421fc1c2a39b2ad44d66eaecee9afc2f83bee5a72c2"
+    },
+    "draft-after.json": {
+      "archive": "main",
+      "member": "outputs/local-ui-evidence/4d3aa3131bf017c2d5c26a81a557a320/local-trip-draft-after.json",
+      "sha256": "cc8ca155b9c3bb059ccd7c6f15b77eafed5e4e9302dbb279d00579ab1de6bac8"
+    },
+    "network-results.json": {
+      "archive": "network",
+      "member": "local-ui-evidence/61380d325c5fca9ea4d173e8ad35b3f9/chat-network-recovery-app-results.json",
+      "sha256": "c98031d2c094436b303195337c877afa93a18c15f2423fc76c1112ce7fe3414b"
+    },
+    "network-ui.json": {
+      "archive": "network",
+      "member": "local-ui-evidence/61380d325c5fca9ea4d173e8ad35b3f9/local-chat-network-ui.json",
+      "sha256": "56d1e1d6c11f12eafe0f1275ac09c2a449ba1aee5c99c9d68aa25e73af27d2d9"
+    }
+  },
+  "selectedMembersComparedByteForByte": true,
+  "wholeNativeGateAccepted": false,
+  "physicalDeviceAccepted": false,
+  "disconnectCauseProven": false,
+  "failedCaptureTimingBranchExecuted": false
+}

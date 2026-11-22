@@ -10,7 +10,7 @@ fun RuntimeNoticeHost(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val message = notice ?: error ?: return
+    val message = error ?: notice ?: return
     RuntimeNotice(
         message = message,
         warning = error != null,

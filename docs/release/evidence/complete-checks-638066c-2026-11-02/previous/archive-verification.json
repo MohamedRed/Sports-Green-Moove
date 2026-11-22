@@ -1,0 +1,14 @@
+{
+  "sha256": "a42c4b79120846edc82c4ac5a5026da1c4bf5b0aa073e166fade54e838261094",
+  "bytes": 23570775,
+  "members": {
+    "previous/ordinary-instrumentation.txt": {
+      "member": "outputs/store-review-screenshots/ordinary-instrumentation.txt",
+      "sha256": "095203edb8c5da0a12ebb9ef0fd596bb4ad49db35ecfb63266275f3a6739f95c"
+    },
+    "previous/parent-accepted-capture.json": {
+      "member": "outputs/store-review-screenshots/capture-timing/primary-capture-diagnostics/trip-change-parent-accepted-609220273044.json",
+      "sha256": "edeeed38da0bda1a6d81516d9e1788ae6a0e8c6c310e6172d14f55dce6d706be"
+    }
+  }
+}

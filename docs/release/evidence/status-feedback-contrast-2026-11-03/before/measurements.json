@@ -1,0 +1,142 @@
+[
+  {
+    "case": "light-runtime-info",
+    "minimum": 4.5,
+    "contrastRatio": 2.1371780081822522
+  },
+  {
+    "case": "light-runtime-warning",
+    "minimum": 4.5,
+    "contrastRatio": 2.481947544372479
+  },
+  {
+    "case": "light-live-pill",
+    "minimum": 4.5,
+    "contrastRatio": 1.8930991028920903
+  },
+  {
+    "case": "light-stale-pill",
+    "minimum": 4.5,
+    "contrastRatio": 2.0060788601112565
+  },
+  {
+    "case": "light-stale-entry-heading",
+    "minimum": 4.5,
+    "contrastRatio": 2.310473764015472
+  },
+  {
+    "case": "light-stale-entry-update",
+    "minimum": 4.5,
+    "contrastRatio": 2.310473764015472
+  },
+  {
+    "case": "light-stale-monitor-warning",
+    "minimum": 4.5,
+    "contrastRatio": 2.310473764015472
+  },
+  {
+    "case": "light-review-error",
+    "minimum": 4.5,
+    "contrastRatio": 3.3320378698086826
+  },
+  {
+    "case": "light-rating-action",
+    "minimum": 3,
+    "contrastRatio": 2.481947544372479
+  },
+  {
+    "case": "light-material-error-app",
+    "minimum": 4.5,
+    "contrastRatio": 3.487402704721142
+  },
+  {
+    "case": "light-material-error-surface",
+    "minimum": 4.5,
+    "contrastRatio": 3.763127494795415
+  },
+  {
+    "case": "light-material-error-card",
+    "minimum": 4.5,
+    "contrastRatio": 3.3320378698086826
+  },
+  {
+    "case": "light-material-error-elevated",
+    "minimum": 4.5,
+    "contrastRatio": 3.763127494795415
+  },
+  {
+    "case": "light-material-error-input",
+    "minimum": 4.5,
+    "contrastRatio": 3.4569737560918914
+  },
+  {
+    "case": "dark-runtime-info",
+    "minimum": 4.5,
+    "contrastRatio": 6.921158534783436
+  },
+  {
+    "case": "dark-runtime-warning",
+    "minimum": 4.5,
+    "contrastRatio": 5.959734259984901
+  },
+  {
+    "case": "dark-live-pill",
+    "minimum": 4.5,
+    "contrastRatio": 5.223960077357715
+  },
+  {
+    "case": "dark-stale-pill",
+    "minimum": 4.5,
+    "contrastRatio": 4.662546278988938
+  },
+  {
+    "case": "dark-stale-entry-heading",
+    "minimum": 4.5,
+    "contrastRatio": 6.0013873423160415
+  },
+  {
+    "case": "dark-stale-entry-update",
+    "minimum": 4.5,
+    "contrastRatio": 6.0013873423160415
+  },
+  {
+    "case": "dark-stale-monitor-warning",
+    "minimum": 4.5,
+    "contrastRatio": 6.0013873423160415
+  },
+  {
+    "case": "dark-review-error",
+    "minimum": 4.5,
+    "contrastRatio": 4.439249609288313
+  },
+  {
+    "case": "dark-rating-action",
+    "minimum": 3,
+    "contrastRatio": 5.959734259984901
+  },
+  {
+    "case": "dark-material-error-app",
+    "minimum": 4.5,
+    "contrastRatio": 5.138228127442795
+  },
+  {
+    "case": "dark-material-error-surface",
+    "minimum": 4.5,
+    "contrastRatio": 4.7887981970627385
+  },
+  {
+    "case": "dark-material-error-card",
+    "minimum": 4.5,
+    "contrastRatio": 4.439249609288313
+  },
+  {
+    "case": "dark-material-error-elevated",
+    "minimum": 4.5,
+    "contrastRatio": 3.8043638476689
+  },
+  {
+    "case": "dark-material-error-input",
+    "minimum": 4.5,
+    "contrastRatio": 4.009310927673974
+  }
+]

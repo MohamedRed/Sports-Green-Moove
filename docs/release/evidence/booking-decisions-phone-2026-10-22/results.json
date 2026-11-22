@@ -1,0 +1,54 @@
+{
+  "scope": "physical-android-booking-decisions-with-isolated-services",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "9a9c1b943b9415cf245f3fb79aa8d37f",
+  "testedAt": "2026-10-22T11:47:57.444Z",
+  "baseSourceCommit": "24218efd46fa35c5d64e7d33dd07f28657fc4fa3",
+  "controllerSourcesArchived": true,
+  "appSourceCommit": "458318c3d7e64252d39c9458dd94cf04a06df79a",
+  "appSha256": "41bef01f1ce2073ccf16ff82acab6af1b94e35f96e8381668ad23ba4c5e8be44",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "os": "Android 15"
+  },
+  "accountsInOrder": [
+    "sgm-qa-driver",
+    "sgm-qa-parent",
+    "sgm-qa-driver"
+  ],
+  "physicalDevice": true,
+  "manualNativeUiObserved": true,
+  "completed": true,
+  "driverDecisionsInUi": true,
+  "parentCancellationInUi": true,
+  "recipientInboxesInUi": true,
+  "requestsPreparedThroughAuthenticatedServices": true,
+  "parentSearchOrRequestUiVerified": false,
+  "twoPhoneFlowVerified": false,
+  "pushDeliveryVerified": false,
+  "paymentExercised": false,
+  "physicalTrackingVerified": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "videoCaptured": false,
+  "nativePngExportObtained": false,
+  "captureMethod": "reviewed-browser-stream-with-declared-device-rectangle",
+  "captureRectangle": {
+    "left": 636,
+    "top": 107,
+    "width": 278,
+    "height": 620
+  },
+  "publishedCaptures": {
+    "booking-decision-phone-prepared": "prepared-device.jpg",
+    "booking-decision-phone-approved": "approved-device.jpg",
+    "booking-decision-phone-declined": "declined-device.jpg",
+    "booking-decision-phone-parent-inbox": "parent-inbox-device.jpg",
+    "booking-decision-phone-parent-capacity": "parent-capacity-device.jpg",
+    "booking-decision-phone-cancelled": "cancelled-device.jpg",
+    "booking-decision-phone-restored-capacity": "restored-capacity-device.jpg",
+    "booking-decision-phone-driver-inbox": "driver-inbox-device.jpg"
+  },
+  "independentCheckpoints": 6,
+  "protectedRecordCount": 158
+}

@@ -1,0 +1,28 @@
+{
+  "scope": "form-feedback-components-not-auth-search-or-message-delivery-proof",
+  "case": "auth-light-wide",
+  "screen": "auth",
+  "dark": false,
+  "widthDp": 900,
+  "heightDp": 600,
+  "density": 1,
+  "fontScale": 1.3,
+  "text": {
+    "label": "Connexion refusée. Vérifiez votre e-mail et votre mot de passe.",
+    "measuredTextFits": true,
+    "contrastRatio": 6.092589354752622,
+    "measuredWidthPx": 434,
+    "measuredHeightPx": 20,
+    "measuredParagraphHeightPx": 20,
+    "lineCount": 1,
+    "lastLineEnd": 63
+  },
+  "completed": true,
+  "physicalDevice": false,
+  "backendCalls": false,
+  "mapsRendered": false,
+  "productionWrites": false,
+  "capturedAtEpochMillis": 1793697068917,
+  "viewportSha256": "3dcc09d2910817f1da16d8736b93289aa1594be057a4f4ecda3c5571e8d78dab",
+  "windowSha256": "f387ae3fa9ff6d5a3f2fde1a2c597a36f243feeffac64142b7bd22b1175b973e"
+}

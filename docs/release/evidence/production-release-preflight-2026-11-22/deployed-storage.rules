@@ -1,0 +1,42 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return signedIn() &&
+        request.auth.token.roleKeys != null &&
+        request.auth.token.roleKeys.hasAny(['admin']);
+    }
+
+    function isClubManager() {
+      return signedIn() &&
+        request.auth.token.roleKeys != null &&
+        request.auth.token.roleKeys.hasAny(['clubManager']);
+    }
+
+    match /avatars/{userId}/{fileName} {
+      allow read: if true;
+      allow write: if isOwner(userId) && request.resource.size < 5 * 1024 * 1024;
+    }
+
+    match /clubs/{clubId}/{fileName} {
+      allow read: if true;
+      allow write: if (isAdmin() || isClubManager()) && request.resource.size < 10 * 1024 * 1024;
+    }
+
+    match /reports/{userId}/{reportId}/{fileName} {
+      allow read, write: if isOwner(userId) && request.resource.size < 10 * 1024 * 1024;
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

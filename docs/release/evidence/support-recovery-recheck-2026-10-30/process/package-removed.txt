@@ -1,0 +1,102 @@
+dumpsys package be.sportgreenmoove.app.local
+  - generic: "Unable to find package: be.sportgreenmoove.app.local"
+  - textbox "adb-shell-editor" [active]:
+    - /placeholder: ""
+    - text: pixel9Pro:/ $
+  - text: To know more about supported commands, refer to
+  - link "this documentation":
+    - /url: https://www.browserstack.com/docs/app-live/adb-commands
+  - link "Resize Component": "||"
+  - tablist:
+    - tab "Logs":
+    - tab "ADB Shell" [selected]:
+    - tab "Inspect":
+    - tab "Network":
+    - tab "Performance":
+      - generic: PRO
+  - list:
+    - button "Switch Device":
+      - paragraph:
+      - generic: Switch Device
+    - button "Local testing":
+      - paragraph:
+        - img "open content menu"
+      - generic: Local testing
+    - menu:
+      - menuitem "zoom out":
+      - menuitem "zoom in":
+      - generic: Zoom
+    - button "Record Session":
+      - paragraph:
+      - generic: Record Session
+    - button "DevTools":
+      - paragraph:
+      - generic: DevTools
+    - button "Report a bug" [disabled]:
+      - paragraph:
+      - generic: Report a bug
+    - button "Settings":
+      - paragraph:
+        - img "open content menu"
+      - generic: Settings
+    - button "Stop Session":
+      - paragraph:
+      - generic: Stop Session
+  - button "toolbar drag icon":
+  - button "collapse toolbar":
+  - toolbar:
+    - list:
+      - button "Add Device":
+        - paragraph:
+        - text: Add Device
+        - generic: PRO
+      - button "Show Home Screen":
+        - paragraph:
+        - generic: Show Home Screen
+      - button "Volume":
+        - paragraph:
+        - generic: Volume
+      - button "View Open Apps":
+        - paragraph:
+        - generic: View Open Apps
+      - button "Install New App":
+        - paragraph:
+        - generic: Install New App
+      - button "performance-toolbar-icon":
+        - generic: PRO
+      - button "Capture Screenshot":
+        - paragraph:
+        - generic: Capture Screenshot
+      - button "Kill/Uninstall":
+        - paragraph:
+        - generic: Kill/Uninstall
+      - button "Android Settings":
+        - paragraph:
+        - text: Android Settings
+        - generic: PRO
+      - button "Rotate Device":
+        - paragraph:
+        - generic: Rotate Device
+      - button "Scroll speed":
+        - paragraph:
+        - generic: Scroll speed
+      - button "Change Location":
+        - paragraph:
+        - generic: Change Location
+      - button "Throttle Network":
+        - paragraph:
+        - generic: Throttle Network
+      - button "Files & Media":
+        - paragraph:
+        - generic: Files & Media
+      - button "Change Language":
+        - paragraph:
+        - generic: Change Language
+      - button "Screen Reader":
+        - paragraph:
+        - generic: Screen Reader
+      - 'button "Device info: Google Pixel 9 Pro, v15.0"':
+        - paragraph:
+        - generic: Google Pixel 9 Pro
+        - generic: v15.0
+- status: Succesfully uninstalled your app(s)!

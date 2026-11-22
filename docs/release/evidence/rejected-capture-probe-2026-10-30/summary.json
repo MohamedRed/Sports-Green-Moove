@@ -1,0 +1,19 @@
+{
+  "scope": "local-rejected-capture-probe-not-root-cause-or-release-acceptance",
+  "checkedAt": "2026-10-30",
+  "sourceBase": "1cc8f12e19db286491f1ec6dfff76be0ba836946",
+  "baselineComponentCases": 3,
+  "candidateComponentCases": 3,
+  "diagnosticCalibrationCases": 4,
+  "startupFailureBeforeCases": true,
+  "primaryApiModified": false,
+  "primaryDeadlineModified": false,
+  "outerRetryAdded": false,
+  "alternateImageAccepted": false,
+  "rootCauseProven": false,
+  "realCiRejectionReproduced": false,
+  "releaseAccepted": false,
+  "newMediaAccepted": false,
+  "physicalDevice": false,
+  "productionWrites": false
+}

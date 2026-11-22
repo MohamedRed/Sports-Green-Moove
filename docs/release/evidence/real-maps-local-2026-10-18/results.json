@@ -1,0 +1,127 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "802c47b1718c45f7fa7eebe6f2306636",
+  "testedAt": "2026-10-18T08:16:13.360Z",
+  "status": "passed",
+  "scope": "local-callables-and-service-quote-with-real-maps-not-native-ui",
+  "tripId": "4UkL97xyVhq7UKWGQNM6",
+  "bookingIds": [
+    "Ts6gtpnr4G6gFRI5tGMj",
+    "0Qd954K9vzRUPBbqWgNz"
+  ],
+  "proposalId": "68a6a3c878d27c1b4a68e94d28b8b4f04f1325b19387bc6b9e6d88ff5573f1e6",
+  "endpoints": [
+    {
+      "query": "Gare de Wavre",
+      "placeId": "ChIJ6-fuiHZ9wUcRpFNMSdpAfTM",
+      "label": "Gare De Wavre",
+      "location": {
+        "lat": 50.71606070000001,
+        "lng": 4.6055674
+      }
+    },
+    {
+      "query": "Gare de Louvain-la-Neuve",
+      "placeId": "ChIJA76xCep_wUcRIgzsJATgLZ4",
+      "label": "Gare de Louvain-la-Neuve SNCB",
+      "location": {
+        "lat": 50.669494099999994,
+        "lng": 4.6157188
+      }
+    }
+  ],
+  "route": {
+    "distanceMeters": 7512,
+    "durationSeconds": 560,
+    "encodedPolyline": "gnptH_pb[M_@CSD_@Zu@xAZb@Fn@PZP|DdDb@Rx@Fr@E\\SZ_@zCsGHANSf@I~@vBJh@E`@D`@R`@XLTEBCZVz@dBpAvCxA|CfArBvCdGTlA@p@Ij@O`@[Vg@Fg@U{CcDw@gA]aAKw@DkAFm@`@{A?]pI_RpB}DfBaD~CaFjAaBdE_FnDsDdCcC~KkJlIqGtJ{GlBiAtK{GhNmHpKcFnGsCVO~T}I|\\oMXHxRuFl@ARJV\\DLn@jEj@dCPj@nAdCx@tCVbAh@nAFl@Cb@D^P\\VLT^j@vBZlALr@jBhDhBdBhBhAp@n@~@nAvCnExAtB~CzEdB`ClA~BJl@N~F@PFPXP`ACfAIj@EpCUJMFOVoBM{@iH{GOU"
+  },
+  "providerRequests": [
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "autocomplete",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "place-details",
+      "status": 200,
+      "completed": true
+    },
+    {
+      "operation": "compute-route",
+      "status": 200,
+      "completed": true
+    }
+  ],
+  "parentCount": 2,
+  "acceptedParentCount": 2,
+  "application": {
+    "tripId": "4UkL97xyVhq7UKWGQNM6",
+    "proposalId": "68a6a3c878d27c1b4a68e94d28b8b4f04f1325b19387bc6b9e6d88ff5573f1e6",
+    "requestId": "a4148599-b1e5-45ca-81ba-ce5deafdf461",
+    "proposalRevision": "a1afbec139320166c970cd6f0b03560eca88d6913dad07ef1e370f6bdc5a0207",
+    "quoteId": "7b850b6bb1722c504351c816af61b268d314086350fc9ad9e1d5fa993650fff0",
+    "actorUserId": "sgm-qa-driver",
+    "appliedAt": "2026-10-18T08:16:13.252Z",
+    "bookingIds": [
+      "0Qd954K9vzRUPBbqWgNz",
+      "Ts6gtpnr4G6gFRI5tGMj"
+    ],
+    "settlementRequiredCount": 0,
+    "status": "applied"
+  },
+  "steps": [
+    {
+      "id": "real-address-selection",
+      "status": "passed"
+    },
+    {
+      "id": "two-parent-confirmation",
+      "status": "passed"
+    },
+    {
+      "id": "unconfirmed-route-quote-denied",
+      "status": "passed"
+    },
+    {
+      "id": "real-route-calculation",
+      "status": "passed"
+    },
+    {
+      "id": "quote-idempotency",
+      "status": "passed"
+    },
+    {
+      "id": "parent-application-denied",
+      "status": "passed"
+    },
+    {
+      "id": "driver-application",
+      "status": "passed"
+    },
+    {
+      "id": "persisted-route-and-booking-verification",
+      "status": "passed"
+    },
+    {
+      "id": "zero-payment-required",
+      "status": "passed"
+    }
+  ],
+  "quoteThroughCallable": false,
+  "nativeUi": false,
+  "physicalDevice": false,
+  "productionDataWritten": false,
+  "paymentExercised": false,
+  "refundIssued": false,
+  "syntheticRoute": false
+}

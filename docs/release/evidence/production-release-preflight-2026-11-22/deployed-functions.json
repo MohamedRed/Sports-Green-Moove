@@ -1,0 +1,281 @@
+[
+  {
+    "name": "approveBooking",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "approveBooking",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "cancelBooking",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "cancelBooking",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "createReport",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "createReport",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "createRidePaymentIntent",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "createRidePaymentIntent",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "createStripeAccount",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "createStripeAccount",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "createStripeAccountLink",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "createStripeAccountLink",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "createTrip",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "createTrip",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "endRide",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "endRide",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "getActiveRide",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "getActiveRide",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "getInbox",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "getInbox",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "initializeUserProfile",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "initializeUserProfile",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "issueRewardPayout",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "issueRewardPayout",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "listDriverBookingRequests",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "listDriverBookingRequests",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "listTrips",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "listTrips",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "markDropoff",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "markDropoff",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "markPickup",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "markPickup",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "radarWebhook",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "radarWebhook",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "requestBooking",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "requestBooking",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "requestClubMembership",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "requestClubMembership",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "resolvePlace",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "resolvePlace",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "reviewReport",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "reviewReport",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "searchTrips",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "searchTrips",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "sendChatMessage",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "sendChatMessage",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "setUserRoles",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "setUserRoles",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "startRide",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "startRide",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "stripeConnectRefresh",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "stripeConnectRefresh",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "stripeConnectReturn",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "stripeConnectReturn",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "stripeWebhook",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "stripeWebhook",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "submitRating",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "submitRating",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "suggestPlaces",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "suggestPlaces",
+    "eventType": null,
+    "https": true
+  },
+  {
+    "name": "writeLocationBatch",
+    "region": "us-central1",
+    "runtime": "nodejs22",
+    "state": "ACTIVE",
+    "entryPoint": "writeLocationBatch",
+    "eventType": null,
+    "https": true
+  }
+]

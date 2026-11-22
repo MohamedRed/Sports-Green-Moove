@@ -1,0 +1,92 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TripSearchWire.swift",
+      "sha256": "8f2a2bd623f109046feb3c2f3c983728271dd53a6d9e64f5c7d23cb699a28eb4"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/EncodedRouteValidation.swift",
+      "sha256": "d73ccef969cf0c44b8c6e4ecaef246fa81d444b4ba3808ec55149f67b06d0aad"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseSearchGateway.swift",
+      "sha256": "37ddc4417d09e530da97544be2c16a71d61f91ec06ba2bd0d1f65f9a06cedfb1"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/FirebaseMapMappers.swift",
+      "sha256": "84c17acd1a3fb40ac717df72dee3d6c74f151be9f7aee35e489dbc58e0e7365c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/Models.swift",
+      "sha256": "4f086ca7c875c9d08226df7c87ea5c3b0622b015062d63ec69a5f94a8f6f1510"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/BookingIntentSnapshot.swift",
+      "sha256": "0e7a2ae4c355278a897ae2d905729336ef41682b7e9d5303a88db083c03e6c21"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatModels.swift",
+      "sha256": "f02528090ca01dd026a4dce4948ae41f9aa098378352d98253ae43572ba39016"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatWire.swift",
+      "sha256": "633c75c22b076f4c15463b0e97f1b15951677f28638036587b7536e683134c69"
+    },
+    {
+      "path": "functions/src/lib/clientTrips.ts",
+      "sha256": "d31a5a78220bcc7aecac4e667341d3755ba334418cd1232a0b8885f5d1a08ccd"
+    },
+    {
+      "path": "functions/src/domain/bookingIntent.ts",
+      "sha256": "44e3955b2ee8679f6e44ec5fce03778dd8c81f0889e813de5906005f0e700cea"
+    },
+    {
+      "path": "functions/src/callables/trips.ts",
+      "sha256": "adc2444b4790f3d89e68f9ec58bdc9d7c919e0fdf4ad24ca5703be38453d168d"
+    },
+    {
+      "path": "scripts/qa/check-ios-search-contract.mjs",
+      "sha256": "7802c27bd34456c8ba26c5171384121089412fd6d0042c26e85a7165d75369de"
+    },
+    {
+      "path": "scripts/qa/local-trip-input.mjs",
+      "sha256": "3277c597a1fdfc14e44d4de771d678720a72ca5a1b564967efdeaf86a84e7499"
+    },
+    {
+      "path": "scripts/qa/local-egress-guard.mjs",
+      "sha256": "2782ab3e05ae42b875666a7047574ecf536695f0f315d2aec1d1a625f1cbc081"
+    },
+    {
+      "path": "tests/fixtures/ios-search-contract/main.swift",
+      "sha256": "16d1444d933419c8ecfe9a9cc901ec8db7f7c8f78645ae705460fe8beebbbb2f"
+    },
+    {
+      "path": "tests/fixtures/ios-search-contract/Mutations.swift",
+      "sha256": "e503e0fbc25b37888fd5c5b177dfd5b40019ac6eaa5811653d87b563a6f491af"
+    },
+    {
+      "path": "tests/fixtures/ios-search-callable/FirebaseFunctions.swift",
+      "sha256": "6fce619d47fa9f66b871a31deb9e75eb6fe9a1cdee3ca441516c42f7a9ac9308"
+    },
+    {
+      "path": "tests/fixtures/ios-ride-chat-runtime/FirebaseAuth.swift",
+      "sha256": "e8bfd801b8a365afa0aacab179ffc486e58cd4b0ae7f11dbc5082a87be54fc2e"
+    },
+    {
+      "path": "scripts/check-ios-native-plan.sh",
+      "sha256": "b98d0f44cf4f49b0e3f1d7ddbc617977287166a923703d87047975536f6b93d8"
+    },
+    {
+      "path": "scripts/check-ios-support-concurrency.sh",
+      "sha256": "45c58c18e3451d5a7522cf75d83d597fe34a77106217e7bbb168445031aeb11c"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "sha256": "725960294dbc9d5617b0ac5efb728091e42a8b93babdf18dd360db0d31049e5a"
+    },
+    {
+      "path": ".github/workflows/web-integration-smoke.yml",
+      "sha256": "a7044b8f8dae734915c8949a85b1b75e22c6aa13ce9f71d675a34292512e9b79"
+    }
+  ]
+}

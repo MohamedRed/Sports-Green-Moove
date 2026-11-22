@@ -1,0 +1,49 @@
+{
+  "scope": "physical-android-team-guardian-revocation-and-new-admission",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "a14a89072818f1eaa17900a95a6f96ec",
+  "testedAt": "2026-10-21T22:27:29.762Z",
+  "appSourceCommit": "458318c3d7e64252d39c9458dd94cf04a06df79a",
+  "appSha256": "41bef01f1ce2073ccf16ff82acab6af1b94e35f96e8381668ad23ba4c5e8be44",
+  "appMainTree": "018a739464e9621c44bde193c72acdf7dd01fe87",
+  "controllerSourceState": "exact-executed-working-tree-bytes-retained-by-sha256",
+  "device": {
+    "model": "Google Pixel 9",
+    "os": "Android 15"
+  },
+  "captureMethod": "reviewed-browser-stream-context-with-declared-device-rectangle",
+  "captureRectangle": {
+    "left": 626,
+    "top": 110,
+    "width": 250,
+    "height": 558
+  },
+  "captureSaveTimes": {
+    "initial": "2026-10-21T22:24:53.295Z",
+    "revoked": "2026-10-21T22:25:22.194Z",
+    "renewed": "2026-10-21T22:25:38.044Z",
+    "new-message": "2026-10-21T22:26:01.473Z",
+    "replied": "2026-10-21T22:26:59.173Z"
+  },
+  "publishedCaptures": {
+    "team-authority-phone-initial": "initial-device.jpg",
+    "team-authority-phone-revoked": "revoked-device.jpg",
+    "team-authority-phone-renewed": "renewed-device.jpg",
+    "team-authority-phone-new-message": "new-message-device.jpg",
+    "team-authority-phone-replied": "replied-device.jpg"
+  },
+  "physicalDevice": true,
+  "manualNativeUiObserved": true,
+  "guardianAccessChangesVerified": true,
+  "singleExplicitParentSend": true,
+  "managerUiProven": false,
+  "twoPhoneFlowVerified": false,
+  "notificationsVerified": false,
+  "trackingVerified": false,
+  "paymentExercised": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false,
+  "fullCiVerified": false,
+  "nativePngExportObtained": false,
+  "videoCaptured": false
+}

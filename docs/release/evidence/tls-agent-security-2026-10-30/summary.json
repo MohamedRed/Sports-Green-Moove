@@ -1,0 +1,18 @@
+{
+  "scope": "isolated-cli-transport-security-not-provider-or-release",
+  "baseHead": "199307ab6128a3bada97a2471d154c550bec71ae",
+  "beforeVersion": "6.26.0",
+  "afterVersion": "6.29.1",
+  "reproducedFailures": 2,
+  "correctedPassingCases": 3,
+  "externalRequestsInReproduction": 0,
+  "productionRuntimeChanged": false,
+  "productionDeployed": false,
+  "physicalDeviceAccepted": false,
+  "providerDeliveryAccepted": false,
+  "releaseAccepted": false,
+  "cleanAudit": false,
+  "baseNativeFailureRepaired": false,
+  "baseNativeRunId": 41133722663,
+  "baseNativeFailedJobId": 124330865782
+}

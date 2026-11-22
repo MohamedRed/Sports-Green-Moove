@@ -1,0 +1,27 @@
+{
+  "scope": "local-android-unit-and-test-apk-build-not-native-execution",
+  "testedAt": "2026-10-18T19:15:46.793Z",
+  "unitCaseCount": 3,
+  "unitCases": [
+    "advancingQueuedWorkNeverBypassesTheFreshReadRevocationDenial",
+    "callbackCompletionDoesNotRunTheQueuedDialContinuationWithoutSchedulerProgress",
+    "advancingQueuedWorkNeverDialsAChangedDestinationWithoutAnotherTap"
+  ],
+  "nativeRegressionCasesCompiled": 3,
+  "nativeUiExecuted": false,
+  "dialerOpened": false,
+  "physicalDevice": false,
+  "productionWrites": false,
+  "sourceFiles": {
+    "android/app/build.gradle.kts": "0e1d15aacce5c0df07d26ede7695d8ba33ad92a77245d14ca488da8e20bbe44c",
+    "android/app/src/test/java/be/sportgreenmoove/app/ui/EmergencyContactSchedulerTest.kt": "02de553d7855e6df3772c99db41b0ab3e74d567620a662c830aeacc5ef4d8ea3",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/ExternalUiSynchronizationTest.kt": "672cb09ce9f38e0b96c0f9e9d63917fa8ccf857a0209a936663f6679323cf007",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalExternalUiWait.kt": "5cbb386efc1dcf47240f4e2d9a1e3a0da7d730bb199c9468699b99ea766fda74",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalEmergencyContactFlowTest.kt": "772610752b6c8437053a884a4cd5b4cf01e14ee5ff5f526e62eb3196a4fe0e8c",
+    "android/app/src/androidTest/java/be/sportgreenmoove/app/ui/LocalComposeRule.kt": "c0c3716209d799ceb3ce0d1648d522be73fd85a512d5ab4caa5e4fccb96030ae",
+    "android/app/src/main/java/be/sportgreenmoove/app/ui/EmergencyContactState.kt": "9daad857a59c6c5918d22032eba009aee235e2e46b18e8368f3b091dce93a473"
+  },
+  "artifacts": {
+    "scheduler-unit-tests.xml": "856a6c8ca41af9928b45ce198fe4cf3f2870ee274514b851fc45c3bf0bb9f9fc"
+  }
+}

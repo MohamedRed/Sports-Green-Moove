@@ -1,0 +1,63 @@
+
+be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest:
+Error in aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest):
+java.lang.AssertionError: Failed waiting for PixelCopy!
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmapFromPixelCopy(WindowCapture.android.kt:157)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmap(WindowCapture.android.kt:135)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0$0(WindowCapture.android.kt:51)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.withDrawingEnabled(WindowCapture.android.kt:89)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0(WindowCapture.android.kt:47)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.runWithRetryWhenNoData(WindowCapture.android.kt:64)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage(WindowCapture.android.kt:45)
+	at androidx.compose.ui.test.AndroidImageHelpers_androidKt.captureToImage(AndroidImageHelpers.android.kt:101)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi(LocalUiCapture.kt:20)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$default(LocalUiCapture.kt:12)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$capture(LocalNativeTrackingStartupTest.kt:49)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$1$2(LocalNativeTrackingStartupTest.kt:100)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$CR63edML_18g-QdarBBvuUPBmZs(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step$0(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$hKgqHCKalaTypKgSnJq3pO-PW9E(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:55)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:95)
+
+
+Time: 59.326
+There was 1 failure:
+1) aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest)
+java.lang.AssertionError: Failed waiting for PixelCopy!
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmapFromPixelCopy(WindowCapture.android.kt:157)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.generateBitmap(WindowCapture.android.kt:135)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0$0(WindowCapture.android.kt:51)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$iHid2j_FY4377TREZHs4ymdKCqs(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.withDrawingEnabled(WindowCapture.android.kt:89)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage$lambda$0(WindowCapture.android.kt:47)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.$r8$lambda$6o3qqV0K92AGppTKGudRnf5v27A(Unknown Source:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.runWithRetryWhenNoData(WindowCapture.android.kt:64)
+	at androidx.compose.ui.test.android.WindowCapture_androidKt.captureRegionToImage(WindowCapture.android.kt:45)
+	at androidx.compose.ui.test.AndroidImageHelpers_androidKt.captureToImage(AndroidImageHelpers.android.kt:101)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi(LocalUiCapture.kt:20)
+	at be.sportgreenmoove.app.ui.LocalUiCaptureKt.captureLocalUi$default(LocalUiCapture.kt:12)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$capture(LocalNativeTrackingStartupTest.kt:49)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$1$2(LocalNativeTrackingStartupTest.kt:100)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$CR63edML_18g-QdarBBvuUPBmZs(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda4.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step$0(LocalNativeTrackingStartupTest.kt:56)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.$r8$lambda$hKgqHCKalaTypKgSnJq3pO-PW9E(Unknown Source:0)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest$$ExternalSyntheticLambda5.invoke(D8$$SyntheticClass:0)
+	at be.sportgreenmoove.app.ui.LocalMockLocationFeedKt.withCaptureFeed(LocalMockLocationFeed.kt:18)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot$lambda$1$step(LocalNativeTrackingStartupTest.kt:55)
+	at be.sportgreenmoove.app.ui.LocalNativeTrackingStartupTest.aRetainedPointStartsAndResumesTrackingButAnInvalidPointDoesNot(LocalNativeTrackingStartupTest.kt:95)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+

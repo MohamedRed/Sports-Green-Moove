@@ -1,0 +1,11 @@
+Ledger summary wire checks passed; no iOS UI or provider integration implied.
+TripDateLabelChecks passed: 30 date/time pairs across 3 device timezones
+Search consent checks passed: explicit consent, selection reset, response ordering and booking context
+Search app-state checks passed: pre-call consent, revoked work, gateway failure and account isolation; no provider configured
+App-data refresh checks passed: seven logout boundaries, atomic snapshots, account/role ABA, latest request, cancellation and retry; isolated gateways only
+RidePaymentChecks passed
+SupportChecks passed
+SupportStateChecks passed
+SupportSubmissionChecks passed: persistence, explicit retry, immutability, account isolation, bound receipts and fail-closed storage
+PendingReviewChecks passed
+SportsGreenMooveNativeChecks passed

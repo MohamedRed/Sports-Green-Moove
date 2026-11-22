@@ -1,0 +1,33 @@
+
+> sports-green-moove@0.1.0 test:stripe-webhook-flow
+> firebase emulators:exec --project sports-green-moove-rules-test --only firestore "vitest run tests/stripe-webhook-flow.test.ts tests/reward-payout-flow.test.ts tests/admin-payout-request.test.ts tests/ride-payment-preparation-flow.test.ts --no-file-parallelism"
+
+⚠  emulators: You are not currently authenticated so some features may not work correctly. Please run firebase login to authenticate the CLI.
+i  emulators: Starting emulators: firestore
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: vitest run tests/stripe-webhook-flow.test.ts tests/reward-payout-flow.test.ts tests/admin-payout-request.test.ts tests/ride-payment-preparation-flow.test.ts --no-file-parallelism
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.12 [39m[90m<repo>[39m
+
+ [32m✓[39m tests/reward-payout-flow.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 12776[2mms[22m[39m
+     [33m[2m✓[22m[39m does not send the same balance twice while the first transfer is still unresolved [33m 852[2mms[22m[39m
+     [33m[2m✓[22m[39m serializes two same-source calls with the same provider identity and a single debit [33m 6662[2mms[22m[39m
+     [33m[2m✓[22m[39m serializes concurrent cumulative reversals and retains full credit after stale events [33m 3015[2mms[22m[39m
+ [32m✓[39m tests/stripe-webhook-flow.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 6557[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves a closed booking and pending refund across concurrent [33m 3602[2mms[22m[39m
+ [32m✓[39m tests/ride-payment-preparation-flow.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1434[2mms[22m[39m
+ [32m✓[39m tests/admin-payout-request.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m78 passed[39m[22m[90m (78)[39m
+[2m   Start at [22m 22:32:28
+[2m   Duration [22m 21.69s[2m (transform 217ms, setup 0ms, import 457ms, tests 20.77s, environment 0ms)[22m
+
+✔  Script exited successfully (code 0)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+{"uriCompatibilityStep":"payments","groupExitVerified":true}

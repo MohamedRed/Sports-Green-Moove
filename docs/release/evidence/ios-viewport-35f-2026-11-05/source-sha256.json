@@ -1,0 +1,89 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppShell.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "d6c859476e5d913ac286460b94072bd590cc3938fad866751a5fc6f0962a318a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMNavigation.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "5196d7613f2f0b526ed5a34a88c84e915147a32743e3797ff633feae01a71481"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMComponents.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "adcbcabb38418e12c18cf58ce21f25e3de5b6086822535a848a2c670874c400c"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatState.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "953a0da7970006a2e8b3157c5f1136726597bd3e94ba4315b2f088dd72523413"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/OwnedSearchFlowChecks.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "251682ee0db99aa0b561aa16243923737db76e0fb7afc608bf1bab999e89f253"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "231a4d3c4f9f8cfe7a357e0da065e303790a10a6e67c1585ce0d057b71344544"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatEditingChecks.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "6751bdc382ecf234a1243475520f009654b832b9e8ba9abd5e78148393568e3d"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/UITestRouteChecks.swift",
+      "commit": "35f23fc6ae4f5fba8bc93ded64050df4d38b6d46",
+      "sha256": "1ed0ef453f002ea51266f23ee42df254cf8d782cedb4381b915efb088f2282e7"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/AppShell.swift",
+      "commit": "candidate",
+      "sha256": "58b87ff291e22b39683e81f7f9ca4e3f1ed591796cf0fc4363c53ffedbaf23f6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMNavigation.swift",
+      "commit": "candidate",
+      "sha256": "e3b37a213b2081c4b64d78516af2ce3c77360cf760d0e2fae3c0632192ded844"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/SGMComponents.swift",
+      "commit": "candidate",
+      "sha256": "42f9388f9d70a001045d5888112b9818830e5752c124a645c751eb06fec6cbb2"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/TeamChatState.swift",
+      "commit": "candidate",
+      "sha256": "953a0da7970006a2e8b3157c5f1136726597bd3e94ba4315b2f088dd72523413"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/OwnedSearchFlowChecks.swift",
+      "commit": "candidate-before-contained-reveal",
+      "sha256": "747fab9cf6c5a785ebee10fdd22f995bdc88d6f21db1ec228f74215fd62a3168"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/TeamChatFlowChecks.swift",
+      "commit": "candidate",
+      "sha256": "08ba6d0d8e0078df63e184505980df4942dbce8a671e82d125f78d507839b0e1"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/TeamChatEditingChecks.swift",
+      "commit": "candidate",
+      "sha256": "ce3ff573d589a63431c554dea4f69e455540051c617e04d337071d7229137463"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/UITestRouteChecks.swift",
+      "commit": "candidate",
+      "sha256": "f77a9ffa6ebb089d6ae9fc305f05e582b57900399812bbe6462dbd287ef4b50f"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/OwnedSearchFlowChecks.swift",
+      "commit": "candidate",
+      "sha256": "178a4facd3fcd76986b7cc6a46925b47e8ead96c8831dc4b2ec6354069358082"
+    }
+  ]
+}

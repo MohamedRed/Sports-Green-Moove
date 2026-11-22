@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-23",
+  "sourceCommit": "87082b10b44db59943089a21f82606f5a153be2b",
+  "scope": "authenticated-notification-service-checks-and-previous-device-preparation-failure-not-connected-ui",
+  "serviceChecksPassed": 4,
+  "protectedRecordCount": 167,
+  "rootTestsPassed": 1821,
+  "nativeRestartStagesCompiled": 2,
+  "connectedNativeUiAccepted": false,
+  "previousFullNativeJobPassed": true,
+  "previousNativeWorkflowPassed": false,
+  "previousFailedJobBeforeAppLaunch": true,
+  "downloadFailureRootCauseConfirmed": false,
+  "physicalPhoneAccepted": false,
+  "pushDeliveryAccepted": false,
+  "productionWrites": false,
+  "releaseComplete": false,
+  "firstFixtureAttempt": "The fixture incorrectly expected a driver notice on booking request. That event is not implemented. The corrected fixture uses the existing real cancellation notice, without changing application behavior.",
+  "initialRootTestFailures": "Sixteen source-contract assertions still pinned the old 36/38 matrix. Only current-run expectations were updated to 37/40; retained historical evidence remains unchanged."
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.SearchControllerRequestsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-25T18:26:34.966Z" hostname="MRRs-MacBook-Air.local" time="0.007">
+  <properties/>
+  <testcase name="cancelledBookingCannotPublishAnErrorOrLoadingCallback" classname="be.sportgreenmoove.app.ui.SearchControllerRequestsTest" time="0.002"/>
+  <testcase name="olderSuggestionsCannotReplaceTheLatestRequest" classname="be.sportgreenmoove.app.ui.SearchControllerRequestsTest" time="0.002"/>
+  <testcase name="olderResolvedPlaceCannotReplaceANewerSelection" classname="be.sportgreenmoove.app.ui.SearchControllerRequestsTest" time="0.002"/>
+  <testcase name="olderSearchCannotReplaceNewerMatches" classname="be.sportgreenmoove.app.ui.SearchControllerRequestsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

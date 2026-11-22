@@ -1,0 +1,36 @@
+--------- beginning of system
+I/ActivityManager(  544): Process com.google.android.gms.persistent (pid 1142) has died: fg  BTOP
+W/ActivityManager(  544): pid 4892 be.sportgreenmoove.app.local sent binder code 85 with flags 2 to frozen apps and got error -32
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.nearby.sharing.ReceiveSurfaceService in 1000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.gcm.PushMessagingRegistrarProxy in 11000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.network.NetworkLocationService in 21000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.GoogleLocationManagerService in 31000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 41000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.thunderbird.EmergencyPersistentService in 51000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.lockbox.service.LockboxBrokerService in 61000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.nearby.sharing.SendSurfaceService in 71000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.auth.setup.devicesignals.LockScreenService in 81000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentDirectBootAwareApiService in 91000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.reporting.service.ReportingAndroidService in 101000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.server.HardwareArProviderService in 111000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.contextmanager.service.ContextManagerService in 121000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.geotimezone.GeoTimeZoneService in 131000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.fused.FusedLocationService in 141000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentApiService in 151000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.instantapps.service.InstantAppsService in 161000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentIntentOperationService in 171000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.location.persistent.LocationPersistentService in 181000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.gcm.nts.SchedulerService in 191000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.location.geocode.GeocodeService in 201000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.fido.authenticator.service.AuthenticatorService in 211000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.common.stats.GmsCoreStatsService in 221000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.chimera.PersistentBoundBrokerService in 231000ms for connection
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/com.google.android.location.internal.server.GoogleLocationService in 241000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.fido.fido2.pollux.CableAuthenticatorService in 251000ms for start-requested
+W/ActivityManager(  544): Scheduling restart of crashed service com.google.android.gms/.gcm.GcmService in 261000ms for start-requested
+I/ActivityManager(  544): Start proc 5326:com.google.android.gms.persistent/u0a145 for service {com.google.android.gms/com.google.android.gms.chimera.PersistentBoundBrokerService}
+I/ActivityManager(  544): Start proc 5327:be.sportgreenmoove.app.local.test/u0a211 for next-top-activity {be.sportgreenmoove.app.local.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity}
+I/ActivityManager(  544): Force stopping be.sportgreenmoove.app.local appid=10210 user=0: finished inst
+E/ActivityManager(  544): Unable to freeze binder for 4892: -11
+I/ActivityManager(  544): Killing 4892:be.sportgreenmoove.app.local/u0a210 (adj 0): stop be.sportgreenmoove.app.local due to finished inst
+W/ActivityManager(  544): setHasOverlayUi called on unknown pid: 4892

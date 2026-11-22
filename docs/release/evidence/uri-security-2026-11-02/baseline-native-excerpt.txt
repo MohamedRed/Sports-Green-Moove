@@ -1,0 +1,8 @@
+2026-11-02T21:33:02.1773879Z EvidenceCollectionError: Local evidence collection failed during trip-consent-recovery; status=1, signal=null. See /home/runner/work/Sports-Green-Moove/Sports-Green-Moove/android/app/build/outputs/local-ui-evidence/a52bd91e62a02103067d47e3b8151389/adb-pull-trip-consent-recovery.json
+2026-11-02T21:33:02.1802998Z     at collectLocalUiEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/collect-local-ui-evidence.mjs:70:11)
+2026-11-02T21:33:02.1832850Z     at collectEvidence (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:79:38)
+2026-11-02T21:33:02.1834295Z     at collect (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:154:22)
+2026-11-02T21:33:02.1862995Z     at replayTripConsentRecovery (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-trip-consent-recovery.mjs:63:3)
+2026-11-02T21:33:02.1868534Z     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+2026-11-02T21:33:02.1870088Z     at async withLocalAdminCleanup.firestore (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-android-session.mjs:153:33)
+2026-11-02T21:33:02.1871415Z     at async withLocalAdminCleanup (file:///home/runner/work/Sports-Green-Moove/Sports-Green-Moove/scripts/qa/local-admin-lifecycle.mjs:10:17)

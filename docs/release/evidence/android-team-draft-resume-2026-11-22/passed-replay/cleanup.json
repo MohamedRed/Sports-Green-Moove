@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-11-22T14:32:03.251Z",
+  "phoneSessionClosed": true,
+  "uploadedAppsDashboardObserved": true,
+  "providerUninstallStatus": "Succesfully uninstalled your app(s)!",
+  "packageInventoryVerified": false,
+  "ownedBackendAndHelperGroupsStopped": true,
+  "privateSessionRemoved": true,
+  "ownedBackendRuntimeRemoved": true,
+  "ownedTunnelRuntimeRemoved": true,
+  "loopbackPortsClosed": [
+    5001,
+    8080,
+    9000,
+    9099,
+    62121,
+    62127
+  ],
+  "clipboardRestored": true,
+  "productionWrites": false
+}

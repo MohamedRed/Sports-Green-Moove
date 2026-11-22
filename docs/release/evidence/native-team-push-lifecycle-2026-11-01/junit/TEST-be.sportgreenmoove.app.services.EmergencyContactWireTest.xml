@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.services.EmergencyContactWireTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:43:53.477Z" hostname="local-test-host" time="0.005">
+  <properties></properties>
+  <testcase name="childViewsRequireTheExactClubImmutableIdentityAndTransactionBoundNames" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.002"></testcase>
+  <testcase name="payloadsNeverAcceptAnotherOwnerAndRemovalIsNotOmitted" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.0"></testcase>
+  <testcase name="malformedNamesNumbersAndControlCharactersNeverBecomeADialDestination" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.001"></testcase>
+  <testcase name="missingNullAndRemovedContactsHaveExplicitSafeVersions" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.0"></testcase>
+  <testcase name="adultViewsAndWritesCannotCarryUnrelatedChildPrivateMetadata" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.0"></testcase>
+  <testcase name="unsafeMissingFractionalAndOutOfRangeVersionsAreNotCoerced" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.001"></testcase>
+  <testcase name="childReceiptsCannotAcknowledgeAnotherProfileOrClub" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.0"></testcase>
+  <testcase name="anotherOwnerKindOrSubjectIsRejected" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.0"></testcase>
+  <testcase name="aReceiptRequiresTheExactScopeANewerVersionAndExplicitReplayFlag" classname="be.sportgreenmoove.app.services.EmergencyContactWireTest" time="0.001"></testcase>
+  <system-out></system-out>
+  <system-err></system-err>
+</testsuite>

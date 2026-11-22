@@ -1,0 +1,139 @@
+{
+  "runId": "fb33af35570c693317c12550b064d957",
+  "projectId": "demo-sgm-local-qa",
+  "completed": false,
+  "checks": [
+    {
+      "phase": "parent-ready",
+      "status": "passed",
+      "messageCount": 0,
+      "notificationCount": 0,
+      "originalCommittedIdentityPreserved": false,
+      "foreignRecordsAndClaimsPreserved": true,
+      "phoneUiProvenByObserver": false,
+      "physicalRadioLossProvenByObserver": false
+    }
+  ],
+  "failedCheckpoint": null,
+  "failureKind": null,
+  "proxy": {
+    "runId": "fb33af35570c693317c12550b064d957",
+    "scope": "isolated-post-commit-callable-reply-loss-not-radio-loss-or-phone-ui-proof",
+    "phase": "armed",
+    "attempts": [],
+    "requests": [
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "createTrip",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "requestBooking",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "approveBooking",
+        "phase": "preparation",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "initializeUserProfile",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getActiveRide",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getImpactSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "getRewardSummary",
+        "phase": "armed",
+        "upstreamStatus": 200,
+        "failed": false
+      },
+      {
+        "method": "unrecognised",
+        "phase": "armed",
+        "upstreamStatus": null,
+        "failed": true
+      },
+      {
+        "method": "unrecognised",
+        "phase": "armed",
+        "upstreamStatus": null,
+        "failed": true
+      },
+      {
+        "method": "unrecognised",
+        "phase": "armed",
+        "upstreamStatus": null,
+        "failed": true
+      },
+      {
+        "method": "unrecognised",
+        "phase": "armed",
+        "upstreamStatus": null,
+        "failed": true
+      },
+      {
+        "method": "unrecognised",
+        "phase": "armed",
+        "upstreamStatus": null,
+        "failed": true
+      }
+    ],
+    "failed": true
+  },
+  "adminClientClosed": true,
+  "firestoreClientTerminated": true,
+  "fixtureSubmittedChatMessages": 0,
+  "controllerSubmittedChatMessages": false,
+  "phoneUiProvenByObserver": false,
+  "physicalRadioLossProvenByObserver": false,
+  "installedBytesIndependentlyVerified": false,
+  "productionWrites": false,
+  "mapRequests": 0,
+  "realPayments": false,
+  "sourceApkSha256": "507c3fa6bb2e9bdc6139162b2cd4d6dd2de1770f876b0dfce7395a8c9c9b8c17",
+  "sourceFiles": {
+    "scripts/qa/manual-chat-receipt-loss-session.mjs": "f95095708dac3e0eeffeabd0f6665d365d19a2365f001a2d4d6cd210dca36764",
+    "scripts/qa/chat-receipt-loss-proxy.mjs": "f3ef17b042cbe0df5e82d9d2c02abc307c3d8c4b0d0e4fb08706fcfd9201b08e",
+    "scripts/qa/chat-receipt-loss-checkpoints.mjs": "ec8c3ef13632aab1cb0c117797ea2e5f304e51099dd7d2c31042c1da74f8a716",
+    "scripts/qa/chat-network-phone-checkpoints.mjs": "940acf8dd787d8cf45aa206c1fcae97000fff30302c1bf08f15fc9b878269592",
+    "scripts/qa/session-restoration-records.mjs": "d69bb76e99838f0f3c59e2beda3a9fe14a311951085a997577f05f08fa6a1802",
+    "functions/src/callables/messages.ts": "3645dd70ed542200705775ff6029542620002aaa7f894f470a19e782e56f46d6",
+    "functions/src/callables/chatRead.ts": "4835439dba8fc8a8be5ccab5046727e3109edec504c331d92858dc9fe0caf7e5"
+  },
+  "sourceFilesUnchanged": true
+}

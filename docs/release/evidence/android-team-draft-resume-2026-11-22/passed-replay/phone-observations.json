@@ -1,0 +1,32 @@
+{
+  "scope": "manual-physical-android-ui-observations-with-separate-service-checkpoints",
+  "observedAt": "2026-11-22T14:29:01.896Z",
+  "device": {
+    "model": "Google Pixel 10",
+    "os": "Android 16"
+  },
+  "sourceCommit": "b8f7db6d0bf645a0eca5747ddd07b081568a0149",
+  "physicalDevice": true,
+  "providerAppKillActions": 2,
+  "launcherAfterFirstKill": "home",
+  "launcherAfterSecondKill": "app-drawer",
+  "draftRestoredAfterProviderClosure": true,
+  "exactSingleParentSendObserved": true,
+  "composerEmptyAfterPostSendReopen": true,
+  "driverIdentityObserved": true,
+  "parentIdentityObserved": true,
+  "driverSawParentMessage": true,
+  "privateParentDraftHiddenFromDriver": true,
+  "privateParentDraftRestoredForParent": true,
+  "uninstallStatus": "Succesfully uninstalled your app(s)!",
+  "packageInventoryVerified": false,
+  "clipboardRestored": true,
+  "processIdsIndependentlyVerified": false,
+  "fullProcessRestartProven": false,
+  "twoPhoneFlowVerified": false,
+  "unreadStateVerified": false,
+  "notificationsVerified": false,
+  "trackingVerified": false,
+  "productionWrites": false,
+  "releaseEvidenceAccepted": false
+}

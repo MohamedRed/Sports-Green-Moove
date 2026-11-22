@@ -1,0 +1,106 @@
+
+> @sports-green-moove/functions@0.1.0 test
+> vitest run
+
+
+ RUN  v3.2.6 /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+
+ ✓ src/__tests__/bounded-collection-validation.test.ts (4 tests) 36ms
+ ✓ src/__tests__/chat-index-bootstrap.test.ts (1 test) 3168ms
+   ✓ loads Firestore-only history preparation without a Realtime Database URL or credential request  3165ms
+ ✓ src/__tests__/booking-intent-wire.test.ts (3 tests) 100ms
+ ✓ src/__tests__/client-bookings.test.ts (1 test) 104ms
+ ✓ src/__tests__/client-trips.test.ts (5 tests) 169ms
+ ✓ src/__tests__/client-trip-dates.test.ts (15 tests) 186ms
+ ✓ src/__tests__/trip-change-contract.test.ts (15 tests) 71ms
+ ✓ src/__tests__/booking-intent.test.ts (27 tests) 152ms
+ ✓ src/__tests__/trip-change-history.test.ts (3 tests) 28ms
+ ✓ src/__tests__/location-freshness.test.ts (10 tests) 53ms
+ ✓ src/__tests__/emergency-contact.test.ts (10 tests) 62ms
+ ✓ src/__tests__/support-submission.test.ts (2 tests) 21ms
+ ✓ src/__tests__/live-trips-write.test.ts (3 tests) 43ms
+ ✓ src/__tests__/payment-fees.test.ts (40 tests) 15ms
+ ✓ src/__tests__/trip-change-application.test.ts (17 tests) 35ms
+ ✓ src/__tests__/team-conversation-read.test.ts (4 tests) 8ms
+ ✓ src/__tests__/co2-rewards.test.ts (3 tests) 13ms
+ ✓ src/__tests__/stripe-onboarding-http.test.ts (6 tests) 75ms
+ ✓ src/__tests__/stripe-onboarding.test.ts (20 tests) 49ms
+ ✓ src/__tests__/support-reports.test.ts (5 tests) 83ms
+ ✓ src/__tests__/callable-validation.test.ts (4 tests) 21ms
+ ✓ src/__tests__/trip-change-resolution.test.ts (2 tests) 12ms
+ ✓ src/__tests__/stripe-payments.test.ts (12 tests) 8ms
+ ✓ src/__tests__/google-places.test.ts (3 tests) 13ms
+ ✓ src/__tests__/matching.test.ts (9 tests) 121ms
+ ✓ src/__tests__/chat-inbox.test.ts (6 tests) 16ms
+ ✓ src/__tests__/booking-request-identity.test.ts (5 tests) 82ms
+ ✓ src/__tests__/chat-departure-date.test.ts (3 tests) 15ms
+ ✓ src/__tests__/chat-directory-cursor.test.ts (3 tests) 28ms
+ ✓ src/__tests__/membership-page-cursor.test.ts (6 tests) 31ms
+ ✓ src/__tests__/trip-change-payments.test.ts (17 tests) 15ms
+ ✓ src/__tests__/live-location-order.test.ts (22 tests) 6ms
+ ✓ src/__tests__/publish-trip.test.ts (4 tests) 39ms
+ ✓ src/__tests__/live-location-receipts.test.ts (11 tests) 189ms
+ ✓ src/__tests__/auth-roles.test.ts (6 tests) 36ms
+ ✓ src/__tests__/google-routes.test.ts (6 tests) 64ms
+ ✓ src/__tests__/reservations.test.ts (5 tests) 70ms
+ ✓ src/__tests__/profile-city.test.ts (6 tests) 37ms
+ ✓ src/__tests__/ride-completion-ledger.test.ts (3 tests) 8ms
+ ✓ src/__tests__/search-access.test.ts (3 tests) 21ms
+ ✓ src/__tests__/vehicle-map-point.test.ts (6 tests) 18ms
+ ✓ src/__tests__/radar.test.ts (4 tests) 67ms
+ ✓ src/__tests__/team-conversation.test.ts (3 tests) 134ms
+ ✓ src/__tests__/firestore-retry-settings.test.ts (1 test) 139ms
+ ✓ src/__tests__/membership-review.test.ts (4 tests) 35ms
+ ✓ src/__tests__/children.test.ts (2 tests) 5ms
+ ✓ src/__tests__/passenger-transition.test.ts (4 tests) 8ms
+ ✓ src/__tests__/ride-audit.test.ts (3 tests) 6ms
+ ✓ src/__tests__/booking-notifications.test.ts (3 tests) 7ms
+ ✓ src/__tests__/access.test.ts (4 tests) 8ms
+ ✓ src/__tests__/memberships.test.ts (3 tests) 28ms
+ ✓ src/__tests__/chat-delivery.test.ts (3 tests) 193ms
+ ✓ src/__tests__/reports.test.ts (2 tests) 17ms
+ ✓ src/__tests__/ride-observation.test.ts (2 tests) 16ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/booking-request-transaction.test.ts [ src/__tests__/booking-request-transaction.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/src/domain/bookingRequestIdentity.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/__tests__/guardian-verification.test.ts [ src/__tests__/guardian-verification.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions/src/__tests__/guardian-verification.test.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/__tests__/inbox.test.ts [ src/__tests__/inbox.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/src/domain/inbox.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/__tests__/locations.test.ts [ src/__tests__/locations.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/src/domain/locationAccess.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/__tests__/ride-payment-status.test.ts [ src/__tests__/ride-payment-status.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions/src/__tests__/ride-payment-status.test.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/__tests__/support-urgent-email.test.ts [ src/__tests__/support-urgent-email.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/src/domain/supportUrgentEmail.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/__tests__/team-enrollment.test.ts [ src/__tests__/team-enrollment.test.ts ]
+Error: [vitest-worker]: Timeout calling "fetch" with "["/Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions/src/__tests__/team-enrollment.test.ts","ssr"]"
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  7 failed | 54 passed (61)
+      Tests  374 passed (374)
+   Start at  13:04:26
+   Duration  172.16s (transform 405.57s, setup 0ms, collect 583.80s, tests 5.98s, environment 24ms, prepare 15.20s)
+
+npm error Lifecycle script `test` failed with error:
+npm error code 1
+npm error path /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error workspace @sports-green-moove/functions@0.1.0
+npm error location /Users/mrr/.codex/worktrees/cb61/Sports Green-Moove/functions
+npm error command failed
+npm error command sh -c vitest run

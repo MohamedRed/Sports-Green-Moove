@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactPicker.swift",
+      "commit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+      "sha256": "128ce837a2f9618e6d1700dc35aa02e8efc9d35316c12ebaeb4b041157f47a4e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift",
+      "commit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+      "sha256": "cac1b043259b8f16f6ada0800a3954f26af81365b8f7dd307b13875136986831"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ChildAccountScreen.swift",
+      "commit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+      "sha256": "b341b0823071c4c76b024d3f1d9c96221b38de39dc3e4ebc66b8ec55bb010216"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/ChildAccountFlowChecks.swift",
+      "commit": "cc1e6d7a494c8aa534d94ee9c9b8d2815092b461",
+      "sha256": "51b3416e2c9f55ebca11fc4b6d18f422a60ab1bf1d1d9e126587ba4a15f9a32e"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/GuardianContactPicker.swift",
+      "commit": "candidate",
+      "sha256": "c63e730cbd64435e5d0491d9aed857cbf9b44b5c9ac086ada51076b484c1522b"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/ChildAccountModels.swift",
+      "commit": "candidate",
+      "sha256": "7af3ad5686da2aca5416f6e62b81ac56362aa2da6ec13367d34f0c2ace6f0622"
+    },
+    {
+      "path": "ios/Tests/SportsGreenMooveNativeChecks/ChildAccountStateChecks.swift",
+      "commit": "candidate",
+      "sha256": "16b1a48f2d084130e44ecf3d153ba7fd6a6a29b42a7763a55b2839354cfb453f"
+    }
+  ]
+}

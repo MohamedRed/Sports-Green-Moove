@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-05",
+  "failedSourceCommit": "84c9b627acfcebbddaad147bdd282af8483ce943",
+  "runId": 41935572872,
+  "jobId": 126960411175,
+  "url": "https://github.com/MohamedRed/Sports-Green-Moove/actions/runs/41935572872/job/126960411175",
+  "failedGatewaySha256": "180aa1638c77718148fbd188609a12168115b165261c40b6aad9538e18f98243",
+  "originalJobLogSha256": "b2f1f2ff4658a2b20d84ae88f4ec9a787faae01be7c9519cefdaa5e78885a51c",
+  "compilerDiagnosticOccurrences": 23,
+  "failedStep": "Compile app and all fixture test bundles",
+  "deadlineFailure": false,
+  "artifactCount": 0,
+  "disposalSucceeded": true,
+  "resolvedFirebaseVersion": "12.19.3",
+  "sdkDeclarationSource": "https://github.com/firebase/firebase-ios-sdk/blob/12.19.3/FirebaseFunctions/Sources/HTTPSCallable.swift",
+  "localChecks": {
+    "nativePlanExitCode": 0,
+    "signatureExitCode": 0,
+    "exactRequestVariants": 10,
+    "invalidInputsRejected": 10
+  },
+  "records": [
+    {
+      "file": "terminal-run.json",
+      "sha256": "43be18fe4d5d432ad6524dc11f7456698b25e6afc29eb0a0762c70c04863d322"
+    },
+    {
+      "file": "artifact-inventory.json",
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "file": "compiler-diagnostic.txt",
+      "sha256": "e9660d1d701bfddbb96eba9d40d340cd9feb52436b95b1495a6060a49e399546"
+    },
+    {
+      "file": "native-result.txt",
+      "sha256": "75907491022f1651718f30e7c7c3acd34fe7c05b436ee1504c2594682375f9a4"
+    },
+    {
+      "file": "signature-result.txt",
+      "sha256": "59205065f2027bf4e2faca9ba5da083ec640fda461498bc5a4c7cd638d5f9e83"
+    }
+  ],
+  "candidateSdkBuildAccepted": false,
+  "fixtureUiExecuted": false,
+  "fullConversationAccepted": false,
+  "physicalDeviceAccepted": false,
+  "newNativeMediaPublished": false,
+  "releaseComplete": false,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "realPayments": 0,
+  "newPhoneSessions": 0
+}

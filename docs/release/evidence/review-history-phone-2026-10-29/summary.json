@@ -1,0 +1,33 @@
+{
+  "scope": "physical-android-review-history-not-release-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c281d6268102a59c92bf5501ae0a4a9c",
+  "testedAt": "2026-10-29T17:51:00.876Z",
+  "sourceBaselineCommit": "0c5fa32c1bad24d4073d34d89dc2c4f676a46113",
+  "apkSourceBaselineCommit": "ce93e568b7f636c0d6ce39f91daec4c4b80d72e7",
+  "sourceApkSha256": "2b881a93effb05578b748fcc50f3f5299552f985b83fc953dd729cfdd1e67fc0",
+  "installedBytesIndependentlyVerified": false,
+  "device": "Google Pixel 9 Pro / Android 15",
+  "physicalDeviceCount": 1,
+  "publicCaptureMethod": "browser-session-window-not-native-export",
+  "publicCaptures": [
+    "history-hidden",
+    "new-prompt",
+    "driver-rated",
+    "driver-returned",
+    "parent-prompt",
+    "parent-rated",
+    "signed-out"
+  ],
+  "completedCheckpoints": 7,
+  "processRestartProven": false,
+  "rideCompletionUiProven": false,
+  "receivedRatingsProven": false,
+  "longerRideDiscoveryProven": false,
+  "productionWrites": false,
+  "productionDeployed": false,
+  "releaseComplete": false,
+  "videoAccepted": false,
+  "providerMapRequests": 0,
+  "realPaymentExercised": false
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="be.sportgreenmoove.app.ui.ConversationDraftStateTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-31T20:51:25.654Z" hostname="MRRs-MacBook-Air.local" time="0.039">
+  <properties/>
+  <testcase name="failedAcknowledgementStorageRetainsTheOriginalIdentityUntilItCanBeCleared" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.007"/>
+  <testcase name="aRejectedRetryCannotEraseAnEarlierUncertainIntent" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.009"/>
+  <testcase name="writeFailurePreservesVisibleTextAndPreventsANetworkSend" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.009"/>
+  <testcase name="aFirstDefinitiveRejectionRestoresEditableTextButNoPendingIdentity" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.002"/>
+  <testcase name="readFailureNeverReplacesAnExistingDraftWithAnEmptyComposer" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.0"/>
+  <testcase name="interruptionRestoresTheSameDurablePendingIdentityBeforeAnyExplicitRetry" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.011"/>
+  <testcase name="invalidStoredBodiesAndRequestIdentitiesAreRejected" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.0"/>
+  <testcase name="draftsAreIsolatedByAccountConversationAndSourceKind" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.0"/>
+  <testcase name="aNewStateRestoresAnUnsentDraftWithoutSubmittingAnything" classname="be.sportgreenmoove.app.ui.ConversationDraftStateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

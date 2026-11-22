@@ -1,0 +1,32 @@
+{
+  "scope": "physical-android-stale-cancellation-preview-with-isolated-peer-service-not-concurrent-two-phone-proof",
+  "testedAt": "2026-10-30",
+  "sourceCommit": "dcd7a5e68ce860488db046bc86ea5dc0cda05593",
+  "sourceApkCommit": "a1d0d96",
+  "sourceApkSha256": "3837331ce85b2cddadc39145f6ae2713f504ac590114a7c97d89763a3adc6642",
+  "phoneUiReviewed": true,
+  "recordResultsVerified": true,
+  "checkpoints": 8,
+  "publicImages": [
+    "preview-before-peer",
+    "stale-confirmation",
+    "preview-refreshed",
+    "cancellation-confirmed",
+    "driver-history"
+  ],
+  "firstSignOutCaptureAccepted": false,
+  "finalSignOutCapture": "signed-out-confirmed",
+  "concurrentTransactionOverlapProven": false,
+  "twoPhoneExchangeProven": false,
+  "peerPhoneUiProven": false,
+  "phoneWireAbortedCodeProven": false,
+  "pushDeliveryProven": false,
+  "installedBytesIndependentlyVerified": false,
+  "independentPackageAbsenceProven": false,
+  "realPayments": false,
+  "productionWrites": false,
+  "providerRequests": 0,
+  "videoRecorded": false,
+  "iosUiExecuted": false,
+  "releaseComplete": false
+}

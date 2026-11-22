@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/RideChatFlowChecks.swift",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "4b4f3015ca70d832cf2384e567003bbcb58ad7abb855cc87e99a05241300b3ad"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "f6f1e25f39adf16aae489473b582d60739dc4a53c983f1cfe6baf03c46a26631"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatThreadState.swift",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "db8e64e6547252480103f567275bc12a1b6c73e40e6b0f2c6f92a1000d2848c6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatComposer.swift",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "a78db99d59fa2c75b7c3a0541baaa0992fbe03649c7f62c8ac00b5bfe16ac956"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatMessageViews.swift",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "59d05e00ad05305850dc63c03dc11515de029d43b14ac210a628768d9fca4f1a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestRideChat.swift",
+      "commit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+      "sha256": "f13f2830becf62b90ad0ccfd33a2aeee0c3117b22bdee5a8d293fba535a89c84"
+    },
+    {
+      "path": "ios/UITests/SportsGreenMooveUITests/RideChatFlowChecks.swift",
+      "commit": "candidate",
+      "sha256": "dbab82b022b98821b8206c08ede728e8e97000b90306ed16947adaa2220c0883"
+    },
+    {
+      "path": ".github/workflows/ios-mvp-verification.yml",
+      "commit": "candidate",
+      "sha256": "4acc799def03677ef52990ad654e27a52ea224e5c85c5698eb18a613ac8cea38"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatThreadState.swift",
+      "commit": "candidate",
+      "sha256": "db8e64e6547252480103f567275bc12a1b6c73e40e6b0f2c6f92a1000d2848c6"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatComposer.swift",
+      "commit": "candidate",
+      "sha256": "a78db99d59fa2c75b7c3a0541baaa0992fbe03649c7f62c8ac00b5bfe16ac956"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/RideChatMessageViews.swift",
+      "commit": "candidate",
+      "sha256": "59d05e00ad05305850dc63c03dc11515de029d43b14ac210a628768d9fca4f1a"
+    },
+    {
+      "path": "ios/Sources/SportsGreenMooveApp/UITestRideChat.swift",
+      "commit": "candidate",
+      "sha256": "f13f2830becf62b90ad0ccfd33a2aeee0c3117b22bdee5a8d293fba535a89c84"
+    }
+  ]
+}

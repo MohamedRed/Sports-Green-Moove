@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-11-05",
+  "sourceCommit": "38b558b932b12bc6d3a052815f539f5a01bd185f",
+  "runId": 42107112300,
+  "jobId": 127525202735,
+  "sdkBuild": "success",
+  "conclusion": "failure",
+  "casesExecuted": 11,
+  "passed": 8,
+  "failed": 3,
+  "assertionFailures": 5,
+  "activeRideInputAssertionFailures": 1,
+  "fullMessageObservedAfterSendAndReopen": true,
+  "persistentDraftLossProven": false,
+  "exactNativeInputDelayCauseConfirmed": false,
+  "productionComposerChanged": false,
+  "fixtureEchoChanged": false,
+  "candidateUiAccepted": false,
+  "fullNativeChecksPassed": true,
+  "deadlineMinutes": 50,
+  "waitSeconds": 6,
+  "artifactCount": 0,
+  "disposal": "success",
+  "physicalDeviceAccepted": false,
+  "productionWrites": 0,
+  "providerRequests": 0,
+  "newPhoneSessions": 0,
+  "newMedia": 0,
+  "releaseComplete": false,
+  "records": [
+    {
+      "file": "terminal-job.json",
+      "sha256": "d9adb9f9fb83b133524cbac2abfd80c39808bf18dc0a9f81bedacc2a9f932846"
+    },
+    {
+      "file": "cases.json",
+      "sha256": "014081f5a6ea85480ba2b3ce3cdfea0092c19c5a6a87b39884281690d65269cb"
+    },
+    {
+      "file": "selected-failures.txt",
+      "sha256": "91d6533d1a2ebed566f9e36fdf0f83bc4a2abc155d1228ace7b11e4c1a0c93a4"
+    },
+    {
+      "file": "active-ride-input-observation.txt",
+      "sha256": "60fc9e2f89571aca707cf510d95bad0192595dd29770a613aa037209e95909d0"
+    },
+    {
+      "file": "native-recheck.txt",
+      "sha256": "e6c06ca08782a21869fa84547e0286615b799dccd32891f0907192b4b349d795"
+    },
+    {
+      "file": "annotations.json",
+      "sha256": "686e6b38768193fc0ba4bff037dd0162b1a8573692de3b0a7046da911bec4a58"
+    },
+    {
+      "file": "artifacts.json",
+      "sha256": "7a7cdeca2dbf2839a56f1d206cef74df40eb38973fe1536821291613f06c5197"
+    },
+    {
+      "file": "source-sha256.json",
+      "sha256": "7554319200b93d16ee96a7a2e38e97d04c64da691f86f38330171bf60416999a"
+    },
+    {
+      "file": "portal-before.json",
+      "sha256": "62f7bd81d60456077332dd652e63d40da962c8e8da4b10d4ffc6e646c8ba33e0"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "c29923db8f4ef55fe5af1651c4872f75",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "childUid": "sgm-qa-child-link-phone",
+    "childId": "sgm-qa-child-lina",
+    "clubId": "sgm-qa-club-green-wavre",
+    "childInstanceId": "206627b2b6631dfbd156161748c2eed42790bf12c8a6f247881a94ad4e907140",
+    "childName": "Lina QA",
+    "parentEmail": "p@example.test",
+    "childEmail": "child-link@example.test",
+    "tripId": "uwcJShZhQxb9gXZjkeqE",
+    "bookingId": "6xdknwhKAOSblYwSHXoS",
+    "rideSessionId": "Bu8EIkzfxWgiOlXxq6Co",
+    "contact": {
+      "name": "Contact enfant fictif QA",
+      "phone": "+12025550121"
+    },
+    "accountProvisionedByFixture": true,
+    "accountApprovalMethod": "authenticated-local-service",
+    "ridePreparationMethod": "authenticated-local-service",
+    "contactPreparationMethod": "authenticated-local-service",
+    "signupProven": false,
+    "parentUiProven": false,
+    "productionWrites": false,
+    "providerRequests": 0
+  },
+  "scope": "service-prepared-child-contact-not-phone-proof",
+  "preparedAt": "2026-10-26T20:51:11.557Z"
+}

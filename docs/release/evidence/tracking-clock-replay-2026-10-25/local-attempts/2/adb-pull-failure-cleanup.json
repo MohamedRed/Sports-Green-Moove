@@ -1,0 +1,67 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "da444bf07d7c41f6fb3124593fb5ecbb",
+  "phase": "failure-cleanup",
+  "recordedAt": "2026-10-25T15:52:29.817Z",
+  "hostBefore": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-25T15:52:29.586Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 69954,
+        "startedAtLocal": "Sat Oct 24 12:01:33 2026"
+      }
+    ]
+  },
+  "hostAfter": {
+    "scope": "host-adb-process-and-log-counts-not-server-identity-or-root-cause",
+    "observedAt": "2026-10-25T15:52:29.759Z",
+    "rawLogsRetained": false,
+    "deviceCommandRequested": false,
+    "daemonLog": {
+      "available": true,
+      "tailLimitBytes": 65536,
+      "signals": {
+        "killServer": 0,
+        "serverRestart": 0,
+        "transportOffline": 0,
+        "writeFailure": 0
+      }
+    },
+    "completed": true,
+    "status": 0,
+    "signal": null,
+    "errorCode": null,
+    "adbProcesses": [
+      {
+        "pid": 69954,
+        "startedAtLocal": "Sat Oct 24 12:01:33 2026"
+      }
+    ]
+  },
+  "scope": "local-adb-file-sync-command-not-flow-verification",
+  "serial": "emulator-5554",
+  "version": "Android Debug Bridge version 1.0.41\nVersion 37.0.0-14910828\nInstalled as /Users/mrr/Library/Android/sdk/platform-tools/adb\nRunning on Darwin 24.5.0 (arm64)\n",
+  "status": 0,
+  "signal": null,
+  "errorCode": null,
+  "stdout": "",
+  "stderr": "10-25 15:52:29.706 36988 1690603 D adb     : adb_client.cpp:358 adb_connect: service: host-serial:emulator-5554:features\n10-25 15:52:29.708 36988 1690603 D adb     : adb_client.cpp:160 _adb_connect: host:version\n10-25 15:52:29.708 36988 1690603 D adb     : adb_client.cpp:160 _adb_connect: host-serial:emulator-5554:features\n10-25 15:52:29.708 36988 1690603 D adb     : adb_client.cpp:358 adb_connect: service: sync:\n10-25 15:52:29.708 36988 1690603 D adb     : adb_client.cpp:160 _adb_connect: sync:\n10-25 15:52:29.709 36988 1690603 D adb     : adb_client.cpp:119 Switch transport in progress: host:tport:serial:emulator-5554\n/sdcard/Android/data/be.sportgreenmoove.app.local/files/local-ui-evidence/./: 2 files pulled, 0 skipped. 14.4 MB/s (283803 bytes in 0.019s)\n",
+  "completed": true
+}

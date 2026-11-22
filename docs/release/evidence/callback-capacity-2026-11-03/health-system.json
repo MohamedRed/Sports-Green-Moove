@@ -1,0 +1,79 @@
+{
+  "scope": "read-only-health-and-instance-system-log-observation",
+  "observedAt": "2026-11-03T10:22:37.462Z",
+  "complete": true,
+  "entries": [
+    {
+      "timestamp": "2026-11-03T10:02:31.043870Z",
+      "service": "stripeconnectrefresh",
+      "severity": "INFO",
+      "kind": "health-request",
+      "status": 204,
+      "latency": "3.074608245s",
+      "classifications": [],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:31.046725Z",
+      "service": "stripeconnectreturn",
+      "severity": "ERROR",
+      "kind": "health-request",
+      "status": 500,
+      "latency": "0s",
+      "classifications": [],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:31.075207Z",
+      "service": "stripeconnectrefresh",
+      "severity": "INFO",
+      "kind": "system",
+      "classifications": [
+        "instance_start"
+      ],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:34.355482Z",
+      "service": "stripeconnectrefresh",
+      "severity": "INFO",
+      "kind": "system",
+      "classifications": [
+        "startup_probe_success"
+      ],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:43.380061Z",
+      "service": "stripeconnectreturn",
+      "severity": "INFO",
+      "kind": "health-request",
+      "status": 204,
+      "latency": "2.339068347s",
+      "classifications": [],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:43.417533Z",
+      "service": "stripeconnectreturn",
+      "severity": "INFO",
+      "kind": "system",
+      "classifications": [
+        "instance_start"
+      ],
+      "messageWithheld": true
+    },
+    {
+      "timestamp": "2026-11-03T10:02:46.019333Z",
+      "service": "stripeconnectreturn",
+      "severity": "INFO",
+      "kind": "system",
+      "classifications": [
+        "startup_probe_success"
+      ],
+      "messageWithheld": true
+    }
+  ],
+  "rawMessagesRetained": false,
+  "requestUrlsRetained": false
+}

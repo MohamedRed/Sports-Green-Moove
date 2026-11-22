@@ -1,0 +1,56 @@
+{
+  "reviewedAt": "2026-10-31",
+  "scope": "physical-unsent-draft-restored-after-android-settings-force-stop",
+  "device": {
+    "model": "Google Pixel 9 Pro",
+    "android": "15.0",
+    "physical": true
+  },
+  "sameConversationReopenRestoresDraft": true,
+  "keyboardAndComposerVisible": true,
+  "sameVisibleDraftRestored": true,
+  "androidForceStopEnabledBefore": true,
+  "androidForceStopConfirmationObserved": true,
+  "androidForceStopDisabledAfter": true,
+  "openedInstalledAppWithoutReinstall": true,
+  "authenticatedHomeReturned": true,
+  "stopMechanism": "android-app-info-force-stop-confirmation",
+  "independentProcessIdsObserved": false,
+  "providerKillCompletionAccepted": false,
+  "providerDevToolsUnavailable": true,
+  "captureKind": "original-session-window-crops-not-native-exports",
+  "captureClip": {
+    "x": 484,
+    "y": 110,
+    "width": 200,
+    "height": 435
+  },
+  "publishedCaptures": [
+    "01-draft-keyboard",
+    "08-os-reopened"
+  ],
+  "independentZeroMessageCheckpoints": 7,
+  "privateHelper": {
+    "ports": [
+      5001,
+      8080,
+      9000,
+      9099
+    ],
+    "aliasEnabled": false,
+    "forceLocal": false,
+    "requestLoggingEnabled": false
+  },
+  "actualMessageSendAccepted": false,
+  "accountSwitchOnPhoneAccepted": false,
+  "pendingSendRestartAccepted": false,
+  "realRadioLossAccepted": false,
+  "trackingAccepted": false,
+  "peerPhoneAccepted": false,
+  "iOSAccepted": false,
+  "productionWrites": false,
+  "realPayments": false,
+  "applicationDeployed": false,
+  "releaseAccepted": false,
+  "mapsRequests": 0
+}

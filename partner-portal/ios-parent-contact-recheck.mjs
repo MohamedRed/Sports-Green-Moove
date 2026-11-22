@@ -1,0 +1,47 @@
+const evidenceFolder = 'docs/release/evidence/ios-fixture-recheck-4d9924b-2026-11-16/';
+
+export const iosParentContactRecheck = {
+  checkedAt: '2026-11-16',
+  source: evidenceFolder + 'summary.json',
+  checksums: evidenceFolder + 'source-sha256.json',
+};
+
+export const iosParentContactRecheckProgress = {
+  date: iosParentContactRecheck.checkedAt,
+  flow: 'child-emergency',
+  title: 'Le contrôle du contact enfant doit être rejoué',
+  text: 'Dix tests d’écran sur onze passent. Le contact est enregistré, puis le contrôle s’interrompt avant de rouvrir le choix du contact. La correction du geste de test reste à vérifier.',
+  source: iosParentContactRecheck.source,
+};
+
+const passingEvidenceFolder = 'docs/release/evidence/ios-fixture-gate-941f85c-2026-11-17/';
+
+export const iosParentContactFixturePass = {
+  checkedAt: '2026-11-17',
+  source: passingEvidenceFolder + 'summary.json',
+  checksums: passingEvidenceFolder + 'build-input-sha256.json',
+};
+
+export const iosParentContactFixturePassProgress = {
+  date: iosParentContactFixturePass.checkedAt,
+  flow: 'child-emergency',
+  title: 'Le contact enfant passe le contrôle en simulation',
+  text: 'Les onze tests d’écran réussissent. Après l’enregistrement, le test rouvre le choix du contact et retrouve le contact enfant. Le suivi, l’appel et les notifications restent à vérifier sur téléphone.',
+  source: iosParentContactFixturePass.source,
+};
+
+export const iosParentAccountGestureRecheckProgress = {
+  date: '2026-11-17',
+  flow: 'child-emergency',
+  title: 'Le contrôle du compte enfant doit être rejoué',
+  text: 'Le test retrouve et supprime le contact enregistré. Un geste referme ensuite l’écran avant l’ouverture du compte enfant. Le contrôle doit être relancé après correction du geste.',
+  source: 'docs/release/evidence/ios-fixture-recheck-14f1fa2-2026-11-17/summary.json',
+};
+
+export const iosParentAccountFixturePassProgress = {
+  date: '2026-11-17',
+  flow: 'child-emergency',
+  title: 'Le compte enfant passe le contrôle en simulation',
+  text: 'Les onze tests d’écran réussissent. Le parent retrouve le contact, le supprime et termine le contrôle du compte enfant. Les essais sur téléphone restent à faire.',
+  source: 'docs/release/evidence/ios-fixture-gate-b1429e0-2026-11-17/summary.json',
+};

@@ -1,0 +1,41 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e435b1a96459d97b367618814e83e966",
+  "phase": "trip-change-inputs",
+  "recordedAt": "2026-10-20T13:20:19.083Z",
+  "scope": "read-only-sync-failure-diagnostics-not-copy-or-flow-verification",
+  "observations": [
+    {
+      "id": "directory-stat",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "shell-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "sync-listing",
+      "collected": false,
+      "status": 1,
+      "errorCode": "DIAGNOSTIC_ERROR",
+      "failureKind": "command-exit",
+      "stderr": "adb: error: failed to get feature set: device offline\n",
+      "stderrTruncated": false
+    },
+    {
+      "id": "storage-service-log",
+      "collected": true,
+      "value": "--------- beginning of main\n10-20 13:20:17.982  1696  1771 I adbd    : host-20: connection terminated: write failed\n10-20 13:20:17.982  1696  1696 I adbd    : host-20: offline\n10-20 13:20:17.984  1696  1696 I adbd    : destroying transport host-20\n10-20 13:20:17.984  1696  1696 I adbd    : BlockingConnectionAdapter(host-20): stopping\n10-20 13:20:17.984  1696  1770 I adbd    : host-20: read failed: Success\n10-20 13:20:17.984  1696  1696 I adbd    : BlockingConnectionAdapter(host-20): stopped\n10-20 13:20:17.984  1696  1696 I adbd    : BlockingConnectionAdapter(host-20): destructing\n10-20 13:20:17.984  1696  1696 I adbd    : BlockingConnectionAdapter(host-20): already stopped\n10-20 13:20:18.042  1696  1696 I adbd    : Remote process closed the socket (on MSG_PEEK)\n10-20 13:20:18.720  1696 10870 I adbd    : host-21: write thread spawning\n10-20 13:20:18.720  1696 10869 I adbd    : host-21: read thread spawning\n10-20 13:20:18.720  1696  1696 I adbd    : host-21: already offline\n10-20 13:20:18.721  1696  1696 I adbd    : Calling send_auth_request...\n10-20 13:20:18.725  1696  1696 I adbd    : adbd_auth: loading keys from /data/misc/adb/adb_keys\n10-20 13:20:18.735  1696  1696 I adbd    : adb client authorized\n"
+    }
+  ]
+}

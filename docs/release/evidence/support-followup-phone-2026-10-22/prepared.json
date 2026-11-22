@@ -1,0 +1,34 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "e7019cb20312a44c95c79fb7954b60ad",
+  "recordedAt": "2026-10-22T14:47:21.413Z",
+  "fixture": {
+    "parentUid": "sgm-qa-parent",
+    "adminUid": "sgm-qa-admin",
+    "foreignUid": "sgm-qa-driver",
+    "replyIds": [],
+    "foreignReadDenied": false
+  },
+  "input": {
+    "subjectType": "other",
+    "reason": "Support suivi QA",
+    "description": "Je souhaite suivre cette demande de test.",
+    "emergency": false
+  },
+  "state": {
+    "reports": [],
+    "replies": [],
+    "notifications": [],
+    "requesterView": null,
+    "foreignList": null
+  },
+  "result": {
+    "phase": "prepared",
+    "reportCount": 0,
+    "replyCount": 0,
+    "status": null
+  },
+  "protectedRecordCount": 158,
+  "originalClaimsUnchanged": true,
+  "adminResponsesViaService": 0
+}

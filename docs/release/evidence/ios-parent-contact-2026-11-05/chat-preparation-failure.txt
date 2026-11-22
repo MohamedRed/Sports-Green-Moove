@@ -1,0 +1,4 @@
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:83)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 30000 ms
+	at be.sportgreenmoove.app.ui.LocalChatNetworkFlowTest.networkLossRetainsTheDraftAndExplicitRetryDoesNotDuplicateTheMessage(LocalChatNetworkFlowTest.kt:83)

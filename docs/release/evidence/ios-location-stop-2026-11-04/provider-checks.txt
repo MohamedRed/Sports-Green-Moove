@@ -1,0 +1,6 @@
+candidate
+startResult=cancelled
+continuousStartsAfterStop=0
+localStopCalls=1
+initialUploads=1
+Controlled provider lifecycle passed: permission stop, capture stop, cancellation, serialized starts, exact-ride stop, old-manager isolation and upload failure; no device or network used

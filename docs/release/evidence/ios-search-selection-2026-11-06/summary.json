@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-06",
+  "baselineCommit": "959e70b41abb039037f94e6eeec8402b597b5bff",
+  "scope": "controlled-search-selection-order-and-local-native-logic-not-screen-diagnosis",
+  "baselineReorderedCallbacks": 10,
+  "newSearchesPreserved": 10,
+  "genuineEditsRevoked": 10,
+  "delayedResponsesDrained": 5,
+  "fullLocalNativeChecksPassed": true,
+  "newMedia": 0,
+  "nativeScreenRootCauseConfirmed": false,
+  "nativeScreenAccepted": false,
+  "nativeSdkAccepted": false,
+  "physicalDeviceAccepted": false,
+  "releaseComplete": false
+}

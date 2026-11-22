@@ -1,0 +1,100 @@
+{
+  "projectId": "demo-sgm-local-qa",
+  "runId": "614b78d6896cf1e31a2323ff23ce1b2f",
+  "scope": "read-only-original-isolated-enrollment-snapshot-not-ui-proof",
+  "recordedAt": "2026-10-28T15:58:58.718Z",
+  "documents": [
+    {
+      "name": "projects/demo-sgm-local-qa/databases/(default)/documents/teamEnrollments/5684aac3c51e10c93d09886e8bcd2f97c0e0c5d4257590641e55524cacc72ec3",
+      "fields": {
+        "teamId": {
+          "stringValue": "sgm-qa-team-ui-team"
+        },
+        "teamInstanceId": {
+          "stringValue": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90"
+        },
+        "teamCreatedAt": {
+          "timestampValue": "2026-10-28T15:06:55.146802Z"
+        },
+        "clubId": {
+          "stringValue": "sgm-qa-team-ui-club"
+        },
+        "subjectKind": {
+          "stringValue": "child"
+        },
+        "subjectId": {
+          "stringValue": "sgm-qa-team-ui-child"
+        },
+        "childCreatedAt": {
+          "timestampValue": "2026-10-28T15:06:55.146802Z"
+        },
+        "requesterUserId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "status": {
+          "stringValue": "approved"
+        },
+        "revision": {
+          "integerValue": "2"
+        },
+        "lastActorUserId": {
+          "stringValue": "sgm-qa-club-manager"
+        },
+        "createdAt": {
+          "timestampValue": "2026-10-28T15:50:54.338Z"
+        },
+        "updatedAt": {
+          "timestampValue": "2026-10-28T15:55:47.402Z"
+        }
+      },
+      "createTime": "2026-10-28T15:50:54.369153Z",
+      "updateTime": "2026-10-28T15:55:47.437274Z"
+    },
+    {
+      "name": "projects/demo-sgm-local-qa/databases/(default)/documents/teamEnrollments/608840b3a7a84ab4cfd29fbb9363dc7fcc316260a3385920763c6ac9d63f6732",
+      "fields": {
+        "teamId": {
+          "stringValue": "sgm-qa-team-ui-team"
+        },
+        "teamInstanceId": {
+          "stringValue": "1e1b42cd7706a63d7f30c7d85e2fca80b0378ed8ed284cabfac07c2b8c3b2f90"
+        },
+        "teamCreatedAt": {
+          "timestampValue": "2026-10-28T15:06:55.146802Z"
+        },
+        "clubId": {
+          "stringValue": "sgm-qa-team-ui-club"
+        },
+        "subjectKind": {
+          "stringValue": "member"
+        },
+        "subjectId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "childCreatedAt": {
+          "nullValue": null
+        },
+        "requesterUserId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "status": {
+          "stringValue": "withdrawn"
+        },
+        "revision": {
+          "integerValue": "5"
+        },
+        "lastActorUserId": {
+          "stringValue": "sgm-qa-parent"
+        },
+        "createdAt": {
+          "timestampValue": "2026-10-28T15:19:52.614Z"
+        },
+        "updatedAt": {
+          "timestampValue": "2026-10-28T15:44:44.198Z"
+        }
+      },
+      "createTime": "2026-10-28T15:19:52.621031Z",
+      "updateTime": "2026-10-28T15:44:44.217532Z"
+    }
+  ]
+}

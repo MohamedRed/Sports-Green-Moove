@@ -1,0 +1,85 @@
+{
+  "id": 13522187520,
+  "bytes": 33156371,
+  "sha256": "690f364b01b825e32d4b7defec886cde199d971c6df8455f81ecd2a6e60f17be",
+  "artifactId": 13522187520,
+  "members": [
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/local-chat-network-ui.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-ui.json",
+      "bytes": 6199,
+      "sha256": "5d535f42468f5275c68cb3a3f268d5d71fcf2b7afea8ff779b7c3041887226ee"
+    },
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/LocalChatNetworkFlowTest-instrumentation.txt",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-instrumentation.txt",
+      "bytes": 1442,
+      "sha256": "20f56e7f1ec7bbf249dd23344cb77d01490c56f3f5ee875f2460eb43cf0f858e"
+    },
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/chat-network-validation-before.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-validation-before.json",
+      "bytes": 4279,
+      "sha256": "b94271a9d449a341589698e5cd64d5cec866bc90e1f94611f07d7007dee66ac3"
+    },
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/chat-network-validation-after.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-validation-after.json",
+      "bytes": 4278,
+      "sha256": "a7d6e782342aa2bd0683b6576029e5a0a62945a54b59d20507b1ced308ee217a"
+    },
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/chat-subscriptions-before.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-subscriptions.json",
+      "bytes": 760,
+      "sha256": "0a73db85b14f2797e3580f4124cb4335b4deb87cbdc70a57fedfb48fe3cd7326"
+    },
+    {
+      "member": "outputs/local-ui-evidence/b7e679d38e2c679372c9190d7248ebe2/adb-pull-failure-cleanup.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-evidence-copy.json",
+      "bytes": 7164,
+      "sha256": "8f1a4eb868cc11ab43e669fcfe790b4fe308139c474eeb02330e4687a3b1fbd6"
+    },
+    {
+      "member": "outputs/store-review-screenshots/network-bootstrap/chat-subscriptions-before.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-bootstrap-subscriptions.json",
+      "bytes": 764,
+      "sha256": "e24ebad12219f801ff1b3f5d217db5b75a42161e08d9734a5002f2b8edf41d6d"
+    },
+    {
+      "member": "outputs/store-review-screenshots/disposable-store-restore.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-device-restore.json",
+      "bytes": 368,
+      "sha256": "3ca860c3a97e3696efd28e3b0035b8324f3422a9eaf7e04f1dc1e5a09416b77f"
+    },
+    {
+      "member": "outputs/store-review-screenshots/native-suite-status.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-suite-status.json",
+      "bytes": 115,
+      "sha256": "18479a658d44df5ab7972e655dae82c62c2879556330f7240e0f46d4f9ce747b"
+    },
+    {
+      "member": "outputs/store-review-screenshots/ordinary-results.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-ordinary-results.json",
+      "bytes": 75145,
+      "sha256": "a31130569025eb6dda907deb8945085b5066112cfc26e6a8b19e44821b6932dc"
+    },
+    {
+      "member": "outputs/focused-safety-ui/full-matrix/host-shutdown/complete.json",
+      "destination": "docs/release/evidence/native-network-959-comparison-2026-11-06/",
+      "file": "main-host-shutdown.json",
+      "bytes": 387,
+      "sha256": "df15cb7c28a90f91036f4564e4516202ce5115d7ca8659bed7b9f5b5b8602410"
+    }
+  ]
+}

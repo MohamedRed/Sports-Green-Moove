@@ -1,0 +1,18 @@
+{
+  "apk-identity.json": "240d2bfd1be79825f06bcbe1bb7cadb61757c30f86c0a479aba2674a82da3130",
+  "cleanup.json": "1c2d45adc32cc5842a61d99e44d2f8b2fedcbb03a0561da7cabd00e241acb879",
+  "phone/driver.json": "31128503a1abd5fdf4f1d599efc42b25418c12678f3f229700085ecf176f5a6b",
+  "phone/initial.json": "b64ad4381e37ee9c9e35f757939583df321dbb8a7a4fd60b0e977b7548dbc4b3",
+  "phone/read.json": "1bcb05f079f9fb508e5f11437c79315628d73af81c5ce8b64c630789d63656fe",
+  "phone/reopened.json": "1ee250e5ba6ac1d2862d447ded6c9e747acae1ca69bfb0b776a7ecf7cfa1d2fd",
+  "phone/session-results.json": "e7bd44829eedb8a1371c16df034bf30acc02d98561d105984c2887830e1c9256",
+  "source/functions/src/callables/notificationRead.ts.txt": "2bd44abcdbe8941f53cbe9283a3ee647ae3258ed602e05064a3a084e6926dafe",
+  "source/scripts/qa/local-notification-read-ui.mjs.txt": "3529c76b1181d340281cfca3728e65f257651188887267088ec7627a2e2b15e1",
+  "source/scripts/qa/manual-notification-read-phone-session.mjs.txt": "0be81f8a2f53b094c85fde77f5145bbd8d3ef83775928f65111175d22ff57c3e",
+  "source/scripts/qa/notification-read-restart-evidence.mjs.txt": "bac79673bff406ae84b513da6618f8db34c8588db0530cb600e2a7a32f37dc03",
+  "summary.json": "65cf86562e391e5dabcd1ff217f689b37f049b349793bec5d50cd4076303c5dd",
+  "captures/unread.jpg": "20d4027a51cf0e5cd3b862552fe9b3559afb8c305f26d83554d161bde0aee40a",
+  "captures/read.jpg": "acca55b5d35b037415a0e44db9ad229c08f3242e2e7eee3834daffb73f30ee14",
+  "captures/driver.jpg": "2444d8a115a55b80ce2faef12fb5db7fcd680c4c39169ce91d37cbca9d7e37f6",
+  "captures/parent-return.jpg": "8527a218cfc54763804666934dddc2e6b88ef7a7cc025a3b9f1a95f6c3b2a0d9"
+}

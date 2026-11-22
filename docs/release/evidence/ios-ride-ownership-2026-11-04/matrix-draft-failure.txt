@@ -1,0 +1,3 @@
+Ride logout reproduction: restored=false, calls=start-ride
+SportsGreenMooveNativeChecks/main.swift:7: Fatal error: Revoked tracking did not stop local services
+scripts/check-ios-native-plan.sh: line 72: 48671 Trace/BPT trap: 5       "${BUILD_DIR}/SportsGreenMooveNativeChecks"

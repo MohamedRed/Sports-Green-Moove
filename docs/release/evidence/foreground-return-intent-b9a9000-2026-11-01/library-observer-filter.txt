@@ -1,0 +1,164 @@
+Compiled from "ActivityScenario.java"
+class androidx.test.core.app.ActivityScenario$1 implements androidx.test.runner.lifecycle.ActivityLifecycleCallback {
+  final androidx.test.core.app.ActivityScenario this$0;
+
+  androidx.test.core.app.ActivityScenario$1(androidx.test.core.app.ActivityScenario);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+       5: aload_0
+       6: invokespecial #2                  // Method java/lang/Object."<init>":()V
+       9: return
+
+  public void onActivityLifecycleChanged(android.app.Activity, androidx.test.runner.lifecycle.Stage);
+    Code:
+       0: aload_0
+       1: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+       4: invokestatic  #3                  // Method androidx/test/core/app/ActivityScenario.access$000:(Landroidx/test/core/app/ActivityScenario;)Landroid/content/Intent;
+       7: aload_1
+       8: invokestatic  #4                  // Method androidx/test/core/app/ActivityScenario.access$100:(Landroid/content/Intent;Landroid/app/Activity;)Z
+      11: ifne          52
+      14: invokestatic  #5                  // Method androidx/test/core/app/ActivityScenario.access$200:()Ljava/lang/String;
+      17: ldc           #6                  // String Activity lifecycle changed event received but ignored because the intent does not match. startActivityIntent=%s, activity.getIntent()=%s, activity=%s
+      19: iconst_3
+      20: anewarray     #7                  // class java/lang/Object
+      23: dup
+      24: iconst_0
+      25: aload_0
+      26: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+      29: invokestatic  #3                  // Method androidx/test/core/app/ActivityScenario.access$000:(Landroidx/test/core/app/ActivityScenario;)Landroid/content/Intent;
+      32: aastore
+      33: dup
+      34: iconst_1
+      35: aload_1
+      36: invokevirtual #8                  // Method android/app/Activity.getIntent:()Landroid/content/Intent;
+      39: aastore
+      40: dup
+      41: iconst_2
+      42: aload_1
+      43: aastore
+      44: invokestatic  #9                  // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+      47: invokestatic  #10                 // Method android/util/Log.v:(Ljava/lang/String;Ljava/lang/String;)I
+      50: pop
+      51: return
+      52: aload_0
+      53: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+      56: invokestatic  #11                 // Method androidx/test/core/app/ActivityScenario.access$300:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/ReentrantLock;
+      59: invokevirtual #12                 // Method java/util/concurrent/locks/ReentrantLock.lock:()V
+      62: getstatic     #13                 // Field androidx/test/core/app/ActivityScenario$2.$SwitchMap$androidx$test$runner$lifecycle$Stage:[I
+      65: aload_0
+      66: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+      69: invokestatic  #14                 // Method androidx/test/core/app/ActivityScenario.access$400:(Landroidx/test/core/app/ActivityScenario;)Landroidx/test/runner/lifecycle/Stage;
+      72: invokevirtual #15                 // Method androidx/test/runner/lifecycle/Stage.ordinal:()I
+      75: iaload
+      76: lookupswitch  { // 2
+                     1: 104
+                     2: 104
+               default: 148
+          }
+     104: aload_2
+     105: getstatic     #16                 // Field androidx/test/runner/lifecycle/Stage.CREATED:Landroidx/test/runner/lifecycle/Stage;
+     108: if_acmpeq     200
+     111: invokestatic  #5                  // Method androidx/test/core/app/ActivityScenario.access$200:()Ljava/lang/String;
+     114: ldc           #17                 // String Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was %s
+     116: iconst_1
+     117: anewarray     #7                  // class java/lang/Object
+     120: dup
+     121: iconst_0
+     122: aload_0
+     123: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     126: invokestatic  #14                 // Method androidx/test/core/app/ActivityScenario.access$400:(Landroidx/test/core/app/ActivityScenario;)Landroidx/test/runner/lifecycle/Stage;
+     129: aastore
+     130: invokestatic  #9                  // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     133: invokestatic  #10                 // Method android/util/Log.v:(Ljava/lang/String;Ljava/lang/String;)I
+     136: pop
+     137: aload_0
+     138: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     141: invokestatic  #11                 // Method androidx/test/core/app/ActivityScenario.access$300:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/ReentrantLock;
+     144: invokevirtual #18                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+     147: return
+     148: aload_0
+     149: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     152: invokestatic  #19                 // Method androidx/test/core/app/ActivityScenario.access$500:(Landroidx/test/core/app/ActivityScenario;)Landroid/app/Activity;
+     155: aload_1
+     156: if_acmpeq     200
+     159: invokestatic  #5                  // Method androidx/test/core/app/ActivityScenario.access$200:()Ljava/lang/String;
+     162: ldc           #20                 // String Activity lifecycle changed event received but ignored because the activity instance does not match. currentActivity=%s, receivedActivity=%s
+     164: iconst_2
+     165: anewarray     #7                  // class java/lang/Object
+     168: dup
+     169: iconst_0
+     170: aload_0
+     171: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     174: invokestatic  #19                 // Method androidx/test/core/app/ActivityScenario.access$500:(Landroidx/test/core/app/ActivityScenario;)Landroid/app/Activity;
+     177: aastore
+     178: dup
+     179: iconst_1
+     180: aload_1
+     181: aastore
+     182: invokestatic  #9                  // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     185: invokestatic  #10                 // Method android/util/Log.v:(Ljava/lang/String;Ljava/lang/String;)I
+     188: pop
+     189: aload_0
+     190: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     193: invokestatic  #11                 // Method androidx/test/core/app/ActivityScenario.access$300:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/ReentrantLock;
+     196: invokevirtual #18                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+     199: return
+     200: aload_0
+     201: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     204: aload_2
+     205: invokestatic  #21                 // Method androidx/test/core/app/ActivityScenario.access$402:(Landroidx/test/core/app/ActivityScenario;Landroidx/test/runner/lifecycle/Stage;)Landroidx/test/runner/lifecycle/Stage;
+     208: pop
+     209: aload_0
+     210: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     213: aload_2
+     214: getstatic     #22                 // Field androidx/test/runner/lifecycle/Stage.DESTROYED:Landroidx/test/runner/lifecycle/Stage;
+     217: if_acmpeq     224
+     220: aload_1
+     221: goto          225
+     224: aconst_null
+     225: invokestatic  #23                 // Method androidx/test/core/app/ActivityScenario.access$502:(Landroidx/test/core/app/ActivityScenario;Landroid/app/Activity;)Landroid/app/Activity;
+     228: pop
+     229: invokestatic  #5                  // Method androidx/test/core/app/ActivityScenario.access$200:()Ljava/lang/String;
+     232: ldc           #24                 // String Update currentActivityStage to %s, currentActivity=%s
+     234: iconst_2
+     235: anewarray     #7                  // class java/lang/Object
+     238: dup
+     239: iconst_0
+     240: aload_0
+     241: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     244: invokestatic  #14                 // Method androidx/test/core/app/ActivityScenario.access$400:(Landroidx/test/core/app/ActivityScenario;)Landroidx/test/runner/lifecycle/Stage;
+     247: aastore
+     248: dup
+     249: iconst_1
+     250: aload_0
+     251: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     254: invokestatic  #19                 // Method androidx/test/core/app/ActivityScenario.access$500:(Landroidx/test/core/app/ActivityScenario;)Landroid/app/Activity;
+     257: aastore
+     258: invokestatic  #9                  // Method java/lang/String.format:(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+     261: invokestatic  #10                 // Method android/util/Log.v:(Ljava/lang/String;Ljava/lang/String;)I
+     264: pop
+     265: aload_0
+     266: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     269: invokestatic  #25                 // Method androidx/test/core/app/ActivityScenario.access$600:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/Condition;
+     272: invokeinterface #26,  1           // InterfaceMethod java/util/concurrent/locks/Condition.signal:()V
+     277: aload_0
+     278: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     281: invokestatic  #11                 // Method androidx/test/core/app/ActivityScenario.access$300:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/ReentrantLock;
+     284: invokevirtual #18                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+     287: goto          303
+     290: astore_3
+     291: aload_0
+     292: getfield      #1                  // Field this$0:Landroidx/test/core/app/ActivityScenario;
+     295: invokestatic  #11                 // Method androidx/test/core/app/ActivityScenario.access$300:(Landroidx/test/core/app/ActivityScenario;)Ljava/util/concurrent/locks/ReentrantLock;
+     298: invokevirtual #18                 // Method java/util/concurrent/locks/ReentrantLock.unlock:()V
+     301: aload_3
+     302: athrow
+     303: return
+    Exception table:
+       from    to  target type
+          62   137   290   any
+         148   189   290   any
+         200   277   290   any
+}

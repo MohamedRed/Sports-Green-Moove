@@ -1,0 +1,10 @@
+{
+  "scope": "sdk-termination-does-not-resolve-closed-watch-cleanup",
+  "runId": "7de9ad0a152329ad09058258c2de622f",
+  "accepted": false,
+  "originalNativeCasePassed": true,
+  "fixtureCleanupVerified": false,
+  "firestoreClientTerminated": true,
+  "physicalDevice": false,
+  "productionWrites": false
+}
