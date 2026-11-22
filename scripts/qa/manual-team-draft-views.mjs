@@ -7,6 +7,10 @@ export function verifyManualTeamDraftViews(driver, parent, fixture, sent) {
     assert.equal(page.historyPolicy, 'after-current-admission'); assert.equal(page.nextCursor, null);
     assert(page.items.every(row => Number.isSafeInteger(row.sequence) && row.sequence > 0));
     assert.equal(new Set(page.items.map(row => row.sequence)).size, page.items.length);
+    for (const row of page.items) {
+      assert.equal(typeof row.needsRead, 'boolean');
+      if (row.senderUserId === uid) assert.equal(row.needsRead, false, 'Own messages cannot need incoming read acknowledgement');
+    }
   }
   const rows = driver.items.toSorted((a, b) => a.sequence - b.sequence);
   const visible = parent.items.toSorted((a, b) => a.sequence - b.sequence);
@@ -16,6 +20,7 @@ export function verifyManualTeamDraftViews(driver, parent, fixture, sent) {
   ]);
   assert.equal(rows[0].id, fixture.earlyMessageId); assert.equal(rows[1].id, fixture.initialMessageId);
   assert.equal(new Set(rows.map(row => row.id)).size, rows.length);
-  assert.deepEqual(visible, rows.slice(1));
+  const sharedMessage = ({ needsRead, ...message }) => message;
+  assert.deepEqual(visible.map(sharedMessage), rows.slice(1).map(sharedMessage));
   return sent ? rows[2].id : null;
 }
