@@ -1,0 +1,11 @@
+# Android team conversation checkpoint, 22 November 2026
+
+The existing `app-debug.apk` from the approved 17 November upload opened on a physical Google Pixel 10 running Android 16 in BrowserStack App Live. The app used `demo-sgm-local-qa` through the four-service loopback tunnel. Source remained `159173d174fed523950fa1bc17aeb2e2a10d9539` throughout the phone check.
+
+The synthetic parent signed in, refreshed the club directory, opened “Club conversations QA”, loaded the next team page, and opened “Équipe conversations QA”. The phone displayed “Bonjour équipe QA”. The original [phone screenshot](before.jpg) and [independent checkpoint](before.json) retain this observation. The checkpoint confirms two backend messages and two operation records, including the earlier message excluded from the parent's admitted history, and an unchanged protected baseline of 158 records.
+
+The parent typed the exact draft “Brouillon équipe après fermeture QA”. Browser control timed out before the unsent screenshot was saved. The original session ended during recovery. A fresh device session started, but both browser and native computer controls then failed. Draft restoration, explicit send, clearing after acknowledgement, and isolation from another account remain unverified. The [controller result](session-results.json) records only the initial checkpoint and `completed: false`.
+
+The owned controller closed, the tunnel process group stopped and its private handoff directory was removed. The backend supervisor confirmed removal of its fixture credential file and runtime directory. A follow-up host check found no listeners on the four test ports. After recovering space, native computer control became available and Stop Session returned to the uploaded-app dashboard. No production records were used. The physical tracking, push-delivery, emergency-dialer and production safety-audit requirements remain pending.
+
+The host subsequently reported a full disk. This prevented preparation of the portal publication checkout and could have affected the computer control services. The underlying cause of the browser interruption is unconfirmed. Only this run's disposable vendor download and failed checkout were removed to recover space.

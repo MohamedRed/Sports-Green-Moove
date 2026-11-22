@@ -37,8 +37,10 @@ import {iosParentRowProgress} from './ios-parent-row.mjs';
 import {emergencyDialerProgress} from './emergency-dialer-pixel.mjs';
 import {androidTeamAccessRetryProgress} from './android-team-access-retry.mjs';
 import {androidAppLiveStartupProgress} from './android-app-live-pixel-10.mjs';
+import {androidTeamPhoneCheckpointProgress} from './android-team-phone-checkpoint.mjs';
 
 export const latestReleaseProgress = [
+  androidTeamPhoneCheckpointProgress,
   androidAppLiveStartupProgress,
   androidTeamAccessRetryProgress,
   emergencyDialerProgress,
