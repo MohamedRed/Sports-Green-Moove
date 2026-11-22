@@ -38,8 +38,10 @@ import {emergencyDialerProgress} from './emergency-dialer-pixel.mjs';
 import {androidTeamAccessRetryProgress} from './android-team-access-retry.mjs';
 import {androidAppLiveStartupProgress} from './android-app-live-pixel-10.mjs';
 import {androidTeamPhoneCheckpointProgress} from './android-team-phone-checkpoint.mjs';
+import {androidTeamDraftReplayProgress} from './android-team-draft-replay.mjs';
 
 export const latestReleaseProgress = [
+  androidTeamDraftReplayProgress,
   androidTeamPhoneCheckpointProgress,
   androidAppLiveStartupProgress,
   androidTeamAccessRetryProgress,

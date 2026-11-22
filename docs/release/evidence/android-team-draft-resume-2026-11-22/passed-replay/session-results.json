@@ -1,0 +1,148 @@
+{
+  "scope": "manual-team-draft-record-checkpoints-not-ui-or-release-proof",
+  "projectId": "demo-sgm-local-qa",
+  "runId": "0b88240e51758342440e0b75274c05f6",
+  "testedAt": "2026-11-22T14:27:00.021Z",
+  "completed": true,
+  "checkpoints": [
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:14:25.386Z",
+      "phase": "before",
+      "messageId": null,
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 2,
+        "messageOperationCount": 2,
+        "unsentDraftNotSubmitted": true,
+        "exactlyOneExplicitParentSend": false
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    },
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:14:57.282Z",
+      "phase": "unsent",
+      "messageId": null,
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 2,
+        "messageOperationCount": 2,
+        "unsentDraftNotSubmitted": true,
+        "exactlyOneExplicitParentSend": false
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    },
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:17:15.481Z",
+      "phase": "reopened",
+      "messageId": null,
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 2,
+        "messageOperationCount": 2,
+        "unsentDraftNotSubmitted": true,
+        "exactlyOneExplicitParentSend": false
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    },
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:17:33.604Z",
+      "phase": "sent",
+      "messageId": "1b17dd8ec2617633eced6b100634c86987e06fa94d54cba3c79df22c89ce05a7",
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 3,
+        "messageOperationCount": 3,
+        "unsentDraftNotSubmitted": false,
+        "exactlyOneExplicitParentSend": true
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    },
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:20:41.770Z",
+      "phase": "cleared",
+      "messageId": "1b17dd8ec2617633eced6b100634c86987e06fa94d54cba3c79df22c89ce05a7",
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 3,
+        "messageOperationCount": 3,
+        "unsentDraftNotSubmitted": false,
+        "exactlyOneExplicitParentSend": true
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    },
+    {
+      "scope": "independent-isolated-record-checkpoint-not-phone-ui-proof",
+      "projectId": "demo-sgm-local-qa",
+      "runId": "0b88240e51758342440e0b75274c05f6",
+      "recordedAt": "2026-11-22T14:26:52.458Z",
+      "phase": "other-account",
+      "messageId": "1b17dd8ec2617633eced6b100634c86987e06fa94d54cba3c79df22c89ce05a7",
+      "persisted": {
+        "protectedBaselinePreserved": true,
+        "originalClaimsUnchanged": true,
+        "expectedProfileTimestampUpdatesOnly": true,
+        "protectedRecordCount": 158,
+        "messageCount": 3,
+        "messageOperationCount": 3,
+        "unsentDraftNotSubmitted": false,
+        "exactlyOneExplicitParentSend": true
+      },
+      "preAdmissionMessageHiddenForParent": true,
+      "separateDriverServiceRead": true,
+      "phoneUiProven": false
+    }
+  ],
+  "sourceFiles": {
+    "scripts/qa/manual-team-draft-phone-session.mjs": "db3c315df8e42e413fce56eb3a19a1208fc63a2c863f7394633c5f2476850cf7",
+    "scripts/qa/team-conversation-ui-fixture.mjs": "681bb61f61f892e713fcdae229940ba3946a9ef3737daa3c941bd4a38e29384a",
+    "scripts/qa/team-draft-native-records.mjs": "e27e0d75de437b21224ed5a6d1427eac21c9217b46c587c3432e6ea163140307",
+    "scripts/qa/manual-team-draft-views.mjs": "94ef408a2ad39d7249eb572aa72ecba71aad01f18d443a0dfbe2f3f675c8708e"
+  },
+  "cleanupMode": "destroy-owned-local-environment-after-session",
+  "adminClientClosed": true,
+  "fixtureEnvironmentDestroyed": false,
+  "productionWrites": false,
+  "physicalUiProvenByThisReport": false,
+  "fullProcessRestartProvenByThisReport": false,
+  "notificationsVerified": false
+}
