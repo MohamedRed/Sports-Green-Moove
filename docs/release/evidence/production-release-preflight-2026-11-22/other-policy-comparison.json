@@ -1,0 +1,15 @@
+{
+  "storage": {
+    "releaseName": "projects/sports-green-moove-prod/releases/firebase.storage/sports-green-moove-prod.firebasestorage.app",
+    "updateTime": "2026-06-14T12:22:37.275223Z",
+    "deployedSha256": "883d9224b8384dc49fe83a91aebd83c8ae0406f17ad067469fe5f8edee74a5ae",
+    "candidateSha256": "883d9224b8384dc49fe83a91aebd83c8ae0406f17ad067469fe5f8edee74a5ae",
+    "matches": true
+  },
+  "database": {
+    "instanceName": "projects/912388695601/locations/europe-west1/instances/sports-green-moove-prod-default-rtdb",
+    "rulesEqualAsJson": true,
+    "normalizedDeployedSha256": "8f17a9c535c1d0d6670396645607bb365b67183536c6751e6f456b79a77c70e5",
+    "candidateFileSha256": "8f17a9c535c1d0d6670396645607bb365b67183536c6751e6f456b79a77c70e5"
+  }
+}

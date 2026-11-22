@@ -1,0 +1,216 @@
+[
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/messages/indexes/CICAgJim14AJ",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "arrayConfig": "CONTAINS",
+        "fieldPath": "participantUserIds"
+      },
+      {
+        "fieldPath": "createdAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/trips/indexes/CICAgJj7z4EJ",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "regionGeohash",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "departureAt",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "ASCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/rideSessions/indexes/CICAgJiUpoMJ",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "startedAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/rideSessions/indexes/CICAgJim14AK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "arrayConfig": "CONTAINS",
+        "fieldPath": "participantUserIds"
+      },
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "startedAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/trips/indexes/CICAgOjXh4EK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "departureAt",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "ASCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/trips/indexes/CICAgJj7z4EK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "teamId",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "departureAt",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "ASCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/rideSessions/indexes/CICAgJjF9oIK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "arrayConfig": "CONTAINS",
+        "fieldPath": "childUserIds"
+      },
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "startedAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/rideSessions/indexes/CICAgJiUpoMK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "driverUserId",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "startedAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/bookings/indexes/CICAgJiH2JAK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "parentUserId",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "status",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "createdAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  },
+  {
+    "name": "projects/sports-green-moove-prod/databases/(default)/collectionGroups/notifications/indexes/CICAgJiUsZIK",
+    "queryScope": "COLLECTION",
+    "fields": [
+      {
+        "fieldPath": "userId",
+        "order": "ASCENDING"
+      },
+      {
+        "fieldPath": "createdAt",
+        "order": "DESCENDING"
+      },
+      {
+        "fieldPath": "__name__",
+        "order": "DESCENDING"
+      }
+    ],
+    "state": "READY"
+  }
+]
